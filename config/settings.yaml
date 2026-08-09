@@ -33,7 +33,7 @@ publish:
   wrangler_project: cardtrack
 
 agent:
-  enabled: false      # bootstrap step 4 (spec §13): enable only after monitor runs clean
+  enabled: true
   max_turns: 60
   # The vendor-agnosticism seam (spec §6): swapping agents edits this one string.
   # CARDTRACK_RUN_ID/CARDTRACK_ACTOR are exported by run_daily.sh purely for

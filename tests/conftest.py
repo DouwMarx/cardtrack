@@ -191,6 +191,7 @@ def write_test_config(root: Path, server: TestServer, *, caps: dict | None = Non
         "agent_attested": {
             "primary_source": True,
             "about_a_specific_model_or_eval": True,
+            "distinct_model_release": True,
         },
         "policy": {"when_uncertain": "file_issue"},
     }
@@ -216,7 +217,8 @@ def repo(repo_root: Path):
 
 # ---------------------------------------------------------------- helpers
 
-ATTESTED = {"primary_source": True, "about_a_specific_model_or_eval": True}
+ATTESTED = {"primary_source": True, "about_a_specific_model_or_eval": True,
+            "distinct_model_release": True}
 
 
 def make_proposal(server: TestServer, path: str = "/doc1", **overrides) -> dict:

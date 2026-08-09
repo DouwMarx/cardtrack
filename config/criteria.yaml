@@ -6,7 +6,14 @@ validator_checked:                   # enforced deterministically; any failure �
 agent_attested:                      # judgment calls; agent must assert, recorded in provenance
   primary_source: true               # the org's own publication, not press coverage
   about_a_specific_model_or_eval: true
-soft:                                # recorded, displayed, not blocking at MVP
+  distinct_model_release: true       # a distinct release/eval — NOT a size, quantization,
+                                     # checkpoint, or regional variant of a model already
+                                     # covered; family cards → one entry, all model_names
+soft:                                # recorded, displayed, filterable — not blocking
+  has_safety_evals: null             # quantitative safety/dangerous-capability evals,
+                                     # red-teaming, or risk assessment — not a mere
+                                     # "limitations" paragraph. Drives the site's
+                                     # safety filter; absence is itself a finding.
   has_quantitative_data: null
   pdf_available: null
 policy:

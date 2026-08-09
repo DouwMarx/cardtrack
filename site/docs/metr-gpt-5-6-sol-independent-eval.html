@@ -31,6 +31,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://metr.org/blog/2026-06-26-gpt-5-6-sol/" rel="noopener nofollow">https://metr.org/blog/2026-06-26-gpt-5-6-sol/</a>
@@ -85,6 +88,20 @@
           <div class="just">notes: "URL returns HTTP 200 with no redirects and serves the full report itself: \"Summary of METR\u0027s predeployment evaluation of GPT-5.6 Sol\", dated June 26, 2026, evaluating GPT-5.6 Sol. Although hosted under /blog/, this page is METR\u0027s canonical evaluation summary, not an announcement of a separate document; it links to no PDF or fuller report. Publication date 2026-06-26 matches the page. No more canon" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
       </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:36Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 0</div>
+          <div class="just">Backfill assessment by term scan of extracted text: fewer than 2 safety-content markers found (independent_eval).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:58Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: 0 → 1</div>
+          <div class="just">Independent evaluations by safety-focused evaluators are safety-evaluation content by definition; the term scan under-matched the blog-style extraction.</div>
+      </li>
     </ol>
   </section>
 
@@ -114,6 +131,6 @@ If future models display much fewer undesirable propensities, we could become mo
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

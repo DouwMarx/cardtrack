@@ -31,6 +31,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" rel="noopener nofollow">https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities</a>
@@ -85,6 +88,20 @@
           <div class="just">notes: "URL fetches successfully and serves the full evaluation write-up (title matches; reports 73% expert-level CTF success and first completion of AISI\u0027s 32-step network attack simulation). Blog index at aisi.gov.uk/blog lists the post dated Apr 13, 2026, matching publication_date 2026-04-13. UK AISI publishes its model evaluations as blog posts; this post is the evaluation itself, not an announcement " → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
       </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:36Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 0</div>
+          <div class="just">Backfill assessment by term scan of extracted text: fewer than 2 safety-content markers found (independent_eval).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:58Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: 0 → 1</div>
+          <div class="just">Independent evaluations by safety-focused evaluators are safety-evaluation content by definition; the term scan under-matched the blog-style extraction.</div>
+      </li>
     </ol>
   </section>
 
@@ -115,6 +132,6 @@ Future frontier models will be more capable still, so investment now in cyber de
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

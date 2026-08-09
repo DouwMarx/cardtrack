@@ -95,6 +95,8 @@ td.models, td.title { max-width: 24rem; }
 .badge.status-active { color: var(--ok); border-color: var(--ok); }
 .badge.status-dead, .badge.status-removed { color: var(--bad); border-color: var(--bad); }
 .badge.status-moved, .badge.status-superseded { color: var(--warn); border-color: var(--warn); }
+.badge.safety-yes { color: var(--ok); border-color: var(--ok); }
+.badge.safety-no { color: var(--warn); border-color: var(--warn); }
 
 .doc .meta { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; }
 .doc .meta dt { color: var(--muted); }

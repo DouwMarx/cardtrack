@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://deploymentsafety.openai.com/gpt-5-3-codex/gpt-5-3-codex.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-3-codex/gpt-5-3-codex.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual 930 KB PDF system card (HTTP 200, no redirect). PDF title page: \"GPT-5.3-Codex System Card\", OpenAI, February 5, 2026 \u2014 matches publication_date 2026-02-05. HTML companion page at https://deploymentsafety.openai.com/gpt-5-3-codex also states \"Published February 5, 2026\" and links to this same PDF via its \"View PDF\" button, so the candidate URL is already the canonical primary" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched alignment (assessment|evaluation|audit), cyber capab, jailbreak, preparedness (system_card).</div>
       </li>
     </ol>
   </section>
@@ -1402,6 +1412,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

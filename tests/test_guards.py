@@ -324,3 +324,36 @@ def test_content_file_refused_in_sandbox(repo_root, http_server, tmp_path):
         capture_output=True, text=True, timeout=60, env=env)
     assert proc.returncode == 2
     assert "human-only" in proc.stdout
+
+
+def test_safety_evals_flag_stored_and_updatable(repo, http_server):
+    http_server.set_html("/flagged-doc", "Red-teaming and dangerous capability evals.")
+    r = process_proposal(repo, make_proposal(
+        http_server, path="/flagged-doc", model_names=["FlagModel"],
+        soft={"has_safety_evals": True}), "r1")
+    assert r.status == "written"
+    conn = connect(repo.db_path)
+    assert conn.execute("SELECT safety_evals FROM documents WHERE slug=?",
+                        (r.slug,)).fetchone()[0] == 1
+    conn.close()
+
+    upd = process_proposal(repo, {
+        "action": "field_update", "slug": r.slug, "field": "safety_evals",
+        "new": False, "justification": "reassessed: only a limitations paragraph",
+        "evidence_urls": []}, "r2")
+    assert upd.status == "written"
+    conn = connect(repo.db_path)
+    assert conn.execute("SELECT safety_evals FROM documents WHERE slug=?",
+                        (r.slug,)).fetchone()[0] == 0
+    conn.close()
+
+
+def test_safety_evals_null_when_not_supplied(repo, http_server):
+    http_server.set_html("/unflagged-doc", "No soft dict provided.")
+    r = process_proposal(repo, make_proposal(http_server, path="/unflagged-doc",
+                                             model_names=["UnflaggedModel"]), "r1")
+    assert r.status == "written"
+    conn = connect(repo.db_path)
+    assert conn.execute("SELECT safety_evals FROM documents WHERE slug=?",
+                        (r.slug,)).fetchone()[0] is None
+    conn.close()

@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www.anthropic.com/claude-fable-5-mythos-5-system-card" rel="noopener nofollow">https://www.anthropic.com/claude-fable-5-mythos-5-system-card</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "Candidate URL is alive: HTTP 200, content-type application/pdf, 26.96 MB, 317 pages, title \"Claude Fable 5 \u0026 Claude Mythos 5 System Card\", cover page reads \"System Card: Claude Fable 5 \u0026 Claude Mythos 5, June 9, 2026, anthropic.com\" - publication_date 2026-06-09 confirmed (announcement page also dated June 9, 2026). It is the primary document, not an announcement. However, the candidate\u0027s hash-pin" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched \basl-\d, alignment (assessment|evaluation|audit), autonomy evaluation, bioweapon (system_card).</div>
       </li>
     </ol>
   </section>
@@ -9532,6 +9542,6 @@ news.qq.com/rain/a/20260228A00WDR00
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

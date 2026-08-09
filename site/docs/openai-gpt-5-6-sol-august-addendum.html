@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://deploymentsafety.openai.com/gpt-5-6-august-update/gpt-5-6-august-update.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-6-august-update/gpt-5-6-august-update.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "PDF fetched successfully (HTTP 200, application/pdf, 1.5MB) and inspected: cover page reads \"OpenAI / GPT-5.6 - August Updates / 2026-08-06\". Content confirms it is the system card addendum for GPT-5.6 Sol (August) and GPT-5.6 Luna (August), including High capability designations in Cybersecurity and Biological/Chemical under the Preparedness Framework, matching the candidate metadata. Date 2026-0" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched cyber capab, jailbreak, preparedness, red[- ]team (addendum).</div>
       </li>
     </ol>
   </section>
@@ -1122,6 +1132,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

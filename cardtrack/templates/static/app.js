@@ -8,6 +8,7 @@ const COLUMNS = [
   { key: "doc_type", label: "Type", show: true },
   { key: "model_names", label: "Models", show: true },
   { key: "publication_date", label: "Published", show: true },
+  { key: "safety_evals", label: "Safety evals", show: true },
   { key: "canonical_url", label: "Source", show: true },
   { key: "status", label: "Status", show: false },
   { key: "version_count", label: "Versions", show: false },
@@ -17,7 +18,7 @@ const COLUMNS = [
 const state = {
   docs: [],
   q: "",
-  facets: { publisher: "", doc_type: "", is_independent: "", status: "", year: "" },
+  facets: { publisher: "", doc_type: "", is_independent: "", status: "", year: "", safety: "" },
   sort: { key: "publication_date", dir: -1 },
   visible: new Set(COLUMNS.filter(c => c.show).map(c => c.key)),
 };
@@ -41,6 +42,7 @@ function matches(d) {
   if (f.is_independent !== "" && String(d.is_independent) !== f.is_independent) return false;
   if (f.status && d.status !== f.status) return false;
   if (f.year && docYear(d) !== f.year) return false;
+  if (f.safety !== "" && String(d.safety_evals) !== f.safety) return false;
   return true;
 }
 
@@ -76,6 +78,11 @@ function cellHtml(d, key) {
       return `<td class="models">${esc((d.model_names || []).join(", "))}</td>`;
     case "status":
       return `<td><span class="badge status-${esc(d.status)}">${esc(d.status)}</span></td>`;
+    case "safety_evals": {
+      if (d.safety_evals === 1) return '<td><span class="badge safety-yes">yes</span></td>';
+      if (d.safety_evals === 0) return '<td><span class="badge safety-no">none</span></td>';
+      return '<td><span class="badge">?</span></td>';
+    }
     case "publisher": {
       const badge = d.is_independent ? ' <span class="badge independent">indep.</span>' : "";
       return `<td>${esc(d.publisher)}${badge}</td>`;
@@ -139,6 +146,7 @@ function setupControls() {
   bind("f-independent", "is_independent");
   bind("f-status", "status");
   bind("f-year", "year");
+  bind("f-safety", "safety");
 
   const boxes = $("column-boxes");
   for (const c of COLUMNS) {

@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://deploymentsafety.openai.com/gpt-live/gpt-live.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-live/gpt-live.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual 7-page PDF system card (HTTP 200, application/pdf, pdfinfo title \"GPT-Live System Card\", author OpenAI). Title page states 2026-07-08; landing page https://deploymentsafety.openai.com/gpt-live confirms \"Published July 8, 2026\" and links to this same PDF, so the candidate URL is canonical. Content matches claims: GPT-Live-1 (paid) and GPT-Live-1 mini (free), full-duplex voice " → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched preparedness, red[- ]team, safety evaluation (system_card).</div>
       </li>
     </ol>
   </section>
@@ -348,6 +358,6 @@ Table 4: Voice-Native Evaluations: Synthetic Prompts — Original and Corrected 
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

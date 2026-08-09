@@ -31,7 +31,8 @@ from .repo import Repo, utcnow
 ACTIONS = {"add", "new_version", "status_change", "field_update"}
 STATUSES = {"active", "moved", "dead", "superseded", "removed"}
 DOC_TYPES = {"model_card", "system_card", "independent_eval", "addendum", "other"}
-FIELD_UPDATE_FIELDS = {"title", "publication_date", "model_names", "notes", "canonical_url"}
+FIELD_UPDATE_FIELDS = {"title", "publication_date", "model_names", "notes", "canonical_url",
+                       "safety_evals"}
 
 
 @dataclass
@@ -148,6 +149,8 @@ def _validate_schema(p: dict) -> str | None:
             return "publication_date must be ISO 8601 (YYYY-MM-DD) or null"
         if not isinstance(p.get("criteria", {}), dict):
             return "criteria must be an object"
+        if not isinstance(p.get("soft", {}), dict):
+            return "soft (criteria) must be an object"
     if action == "status_change":
         if not p.get("slug"):
             return "slug is required"
@@ -450,15 +453,17 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
     # All gates passed → write.
     slug = derive_slug(conn, p["publisher"], p["model_names"], p["doc_type"])
     now = utcnow()
+    safety = p.get("soft", {}).get("has_safety_evals")
+    safety_db = None if safety is None else (1 if safety else 0)
     cur = conn.execute(
         """INSERT INTO documents
            (slug, title, publisher, doc_type, is_independent, model_names,
             publication_date, canonical_url, alt_urls, status, first_seen,
-            last_checked, last_changed, source_of_lead, notes)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, '[]', 'active', ?, ?, ?, ?, ?)""",
+            last_checked, last_changed, source_of_lead, notes, safety_evals)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, '[]', 'active', ?, ?, ?, ?, ?, ?)""",
         (slug, p["title"].strip(), p["publisher"], p["doc_type"], is_independent,
          json.dumps(sorted(p["model_names"])), p.get("publication_date"), canonical,
-         now, now, now, p.get("source_of_lead", "manual"), p.get("notes")),
+         now, now, now, p.get("source_of_lead", "manual"), p.get("notes"), safety_db),
     )
     document_id = cur.lastrowid
     version_id = _insert_version(ctx, document_id, fetched, content_hash, fp, text, kind,
@@ -662,6 +667,12 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
                 ]), labels=["needs-review"], document_id=doc["id"],
                 extra={"byte_size": len(fetched.content)})
         current_cmp = current
+    elif field == "safety_evals":
+        if new not in (None, True, False, 0, 1):
+            return _reject(ctx, p, "invalid_value: safety_evals must be true/false/null",
+                           document_id=doc["id"])
+        current_cmp = current
+        new_db = None if new is None else int(bool(new))
     else:  # title, notes
         if field == "title" and (not isinstance(new, str) or not new.strip()):
             return _reject(ctx, p, "invalid_value: title must be a non-empty string",

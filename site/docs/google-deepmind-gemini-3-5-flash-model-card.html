@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual PDF (application/pdf, ~544 KB): title page \"Gemini 3.5 Flash Model Card\" (Google branding), body header \"Gemini 3.5 Flash - Model Card\" with \"Published: May 2026\". Sections: Model Information (based on Gemini 3 Flash, 1M context, 64K output), Model Data, Implementation and Sustainability, Distribution (Gemini App, AI Studio, Gemini API, Antigravity, etc.). Evidence page deepm" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched frontier safety, red[- ]team, safety evaluation (model_card).</div>
       </li>
     </ol>
   </section>
@@ -262,6 +272,6 @@ the Gemini 3.1 Pro model card.
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

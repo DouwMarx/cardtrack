@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "PDF verified: HTTP 200, content-type application/pdf, 875842 bytes, direct fetch (no redirect). Content confirmed as the first-party Gemini 3.1 Pro Model Card by Google DeepMind (\"Gemini 3.1 Pro Model Card\", \"Published: February 2026\"; card describes model based on Gemini 3 Pro, 1M context / 64K output, with model info, data, distribution, safety sections). Publication date 2026-02-19 confirmed by" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched cbrn, cyber capab, frontier safety, red[- ]team (model_card).</div>
       </li>
     </ol>
   </section>
@@ -351,6 +361,6 @@ Misalignment    (Deep Think mode) On stealth evaluations, the      Instrumental 
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

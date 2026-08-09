@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf" rel="noopener nofollow">https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "Candidate URL serves the real 145-page PDF (HTTP 200, title \u0027Claude Sonnet 5 System Card\u0027, cover date June 30, 2026), matching publication_date 2026-06-30 and the June 30, 2026 announcement. However, both anthropic.com/news/claude-sonnet-5 and anthropic.com/transparency now link CDN hash 9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e instead of the candidate\u0027s 480e0bb5...; a text diff shows the candidat" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched \basl-\d, alignment (assessment|evaluation|audit), autonomy evaluation, bioweapon (system_card).</div>
       </li>
     </ol>
   </section>
@@ -4229,6 +4239,6 @@ blocked. Our blocklist contains the following patterns:
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

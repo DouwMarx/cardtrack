@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini Robotics On-Device 2 Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Gemini Robotics On-Device 2 Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Gemini Robotics On-Device 2</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-30</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T19:48:38Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-robotics-on-device-2-model-card&amp;body=Document%3A%20google-deepmind-gemini-robotics-on-device-2-model-card%0AURL%3A%20https%3A//deepmind.google/models/model-cards/gemini-robotics-on-device-2/%0AFingerprint%3A%204eaa75fabf891c5d73a8fe531a39f1bd9b22a06b2af7f1ecd2feca8fe98d3199%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T19:48:38Z</td>
+          <td>text/html</td>
+          <td>143,597</td>
+          <td><code title="4eaa75fabf891c5d73a8fe531a39f1bd9b22a06b2af7f1ecd2feca8fe98d3199">4eaa75fabf891c5d</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T19:48:38Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-09T17:30Z-supervised · agent · lead: index_diff</span>
+          <div class="just">Google DeepMind first-party model card dated 30 July 2026 on the official model-cards index - one of the two most recent DeepMind cards. I fetched the page: it holds the complete card (model information, training data, implementation, distribution, evaluation results with quantitative success rates, intended usage, limitations, ethics and safety) for the on-device vision-language-action robotics model.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:36Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched red[- ]team, safety evaluation (model_card).</div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Gemini Robotics On-Device 2
+Model Cards are intended to provide essential information about models, including known limitations, mitigation approaches, and safety performance. Model cards may be updated from time-to-time; for example, to include updated evaluations as the model is improved or revised.
+Published: July 2026
+Model Information
+Description
+Gemini Robotics On-Device is a state-of-the-art Vision-Language-Action (VLA) model based on our on-device Gemma models. It is designed for general-purpose robotic manipulation, operating efficiently on local devices. This model supports a wide range of tasks, scenes, and multiple robot types. It is currently available to a select group of trusted testers.
+Inputs
+Text (e.g., a question or instruction), images (e.g., robot’s perspective of the environment), and robot proprioception as numerical values.
+Outputs
+Robot actions as numerical values.
+Architecture
+Gemini Robotics On-Device is an on-device VLA model based on Gemini Robotics 1.5 technology and our on-device Gemma models.
+Model Data
+Training Dataset
+Gemini Robotics On-Device was trained on datasets consisting of images, text, and robot sensor and action data.
+Training Data Processing
+Data filtering and preprocessing included techniques such as deduplication, safety filtering in line with Google&#39;s commitment to advancing AI safely and responsibly and quality filtering to mitigate risks and improve training data reliability.
+Implementation and Sustainability
+Hardware
+Gemini Robotics On-Device was trained using Google’s Tensor Processing Units (TPUs). TPUs are specifically designed to handle the massive computations involved in training LLMs and can speed up training considerably compared to CPUs. TPUs come with large amounts of high-bandwidth memory, allowing for the handling of large models and batch sizes during training, which can lead to better model quality. TPU Pods (large clusters of TPUs) also provide a scalable solution for handling the growing complexity of large foundation models. Training can be distributed across multiple TPU devices for faster and more efficient processing.
+The efficiencies gained through the use of TPUs are aligned with Google&#39;s commitment to operate sustainably.
+Software
+Training was done using JAX and ML Pathways.
+Distribution
+Gemini Robotics On-Device 2 is distributed only to Trusted Testers (signup link).
+Evaluation
+Approach
+Gemini Robotics On-Device was evaluated on several simulation and on-robot benchmarks. This evaluation assessed scene, instruction, and action generalization, as well as instruction following for tasks outside the training data distribution.
+Results
+Gemini Robotics On-Device 2 demonstrates substantial performance advancements over Gemini Robotics On-Device 1 across diverse robotic embodiments. When evaluated on novel platforms introduced exclusively during post-training, Gemini Robotics On-Device 2 exhibits faster and more efficient learning and achieves a significantly higher final success rate.
+Intended Usage and Limitations
+Intended Usage
+The Gemini Robotics On-Device model is a VLA model designed for on-device deployment in robotics applications, offering competitive results to larger models (like Gemini Robotics VLA) on in-domain tasks. The model allows for efficient on-robot inference and is trained to provide a general base for a variety of tasks on bi-arm robots. Its intended use is to serve as a core component in robotics systems, enabling them to understand and respond to linguistic instructions, and to act in a given environment.
+Known Limitations
+The Gemini Robotics On-Device model is limited in its ability to generalise to out of distribution tasks as well as controlling high-degree-of-freedom robots.
+Ethics and Safety
+Safety Evaluations, Risks and Mitigations
+Gemini Robotics On-Device was developed in partnership with our internal safety, security, and responsibility teams. For specific physical embodiments, we conducted safety evaluations and red-teaming, tracking metrics such as collision rates, motion quality, and out-of-distribution robustness.
+Gemini Robotics On-Device inherently minimizes standard generative content risks by restricting its outputs to physical actions rather than text. Because it has been evaluated primarily on standing bi-arm manipulation tasks, risks associated with mobile platforms or whole-body control are outside its current scope. We recommend a layered approach to safety: interfacing VLAs with Embodied Reasoning models for high-level semantic safety; using low-level controllers for collision-free motion planning, balance and force control, and implementing hardware-specific functional safety mechanisms.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
+</body>
+</html>

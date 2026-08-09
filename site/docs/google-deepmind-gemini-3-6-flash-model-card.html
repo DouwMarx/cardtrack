@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-6-Flash-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-6-Flash-Model-Card.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual first-party PDF model card (application/pdf, 318 KB, HTTP 200, no redirect). Verified content by reading the PDF: Google-branded \"Gemini 3.6 Flash Model Card\", states model is based on Gemini 3.5 Flash, 1M token context, 64K output; page 1 says \"Published: July 2026\". Exact day 21 July 2026 confirmed by both evidence URLs: the card page at deepmind.google/models/model-cards/g" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched cbrn, frontier safety, jailbreak, red[- ]team (model_card).</div>
       </li>
     </ol>
   </section>
@@ -295,6 +305,6 @@ and mitigations for the Gemini 3 series, see the Gemini 3.1 Pro model card.
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

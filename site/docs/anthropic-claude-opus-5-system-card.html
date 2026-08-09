@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf" rel="noopener nofollow">https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual 193-page system card PDF directly (HTTP 200, application/pdf, 15.98 MB, no redirect). Cover page reads \"System Card: Claude Opus 5, July 24, 2026, anthropic.com\", confirming publication_date 2026-07-24; CDN last-modified header (2026-07-24 16:51:28 GMT) corroborates. PDF metadata title \"Claude Opus 5 System Card\" and 193 pages match the candidate justification. Announcement e" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched \basl-\d, alignment (assessment|evaluation|audit), autonomy evaluation, cyber capab (system_card).</div>
       </li>
     </ol>
   </section>
@@ -5698,6 +5708,6 @@ problem statement as base64 data URIs.
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

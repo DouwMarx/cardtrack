@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS documents (
   last_checked     TEXT,
   last_changed     TEXT,
   source_of_lead   TEXT,
-  notes            TEXT
+  notes            TEXT,
+  safety_evals     INTEGER            -- 1 = contains safety evals, 0 = none, NULL = unassessed
 );
 
 CREATE TABLE IF NOT EXISTS document_versions (
@@ -81,7 +82,9 @@ CREATE INDEX IF NOT EXISTS idx_link_checks_doc ON link_checks(document_id, id);
 """
 
 VIEWS = """
-CREATE VIEW IF NOT EXISTS latest_versions AS
+DROP VIEW IF EXISTS latest_versions;
+DROP VIEW IF EXISTS site_documents;
+CREATE VIEW latest_versions AS
 SELECT dv.* FROM document_versions dv
 WHERE dv.id = (
   SELECT id FROM document_versions
@@ -89,7 +92,7 @@ WHERE dv.id = (
   ORDER BY fetched_at DESC, id DESC LIMIT 1
 );
 
-CREATE VIEW IF NOT EXISTS site_documents AS
+CREATE VIEW site_documents AS
 SELECT d.*, lv.content_hash, lv.content_type, lv.fetched_at AS version_fetched_at,
        lv.content_fingerprint, lv.text_path,
        (SELECT COUNT(*) FROM document_versions WHERE document_id = d.id) AS version_count
@@ -107,6 +110,13 @@ def connect(db_path: str | Path) -> sqlite3.Connection:
     # DELETE journal mode keeps the DB a single file (it is committed to git).
     conn.execute("PRAGMA journal_mode = DELETE")
     conn.executescript(SCHEMA)
+    # idempotent column migrations for DBs created before a column existed
+    existing = {row[1] for row in conn.execute("PRAGMA table_info(documents)")}
+    if "safety_evals" not in existing:
+        conn.execute("ALTER TABLE documents ADD COLUMN safety_evals INTEGER")
+    existing_lc = {row[1] for row in conn.execute("PRAGMA table_info(link_checks)")}
+    if "byte_size" not in existing_lc:
+        conn.execute("ALTER TABLE link_checks ADD COLUMN byte_size INTEGER")
     conn.executescript(VIEWS)
     conn.commit()
     return conn

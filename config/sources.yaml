@@ -26,7 +26,8 @@ publishers:            # first-party
   meta:
     tier: 1
     display_name: Meta AI
-    index_urls: []      # ai.meta.com bot-blocks scripted fetches; agent search covers
+    index_urls:         # reachable since the browser-impersonation fetch fallback
+      - https://ai.meta.com/blog/
   mistral:
     tier: 2
     display_name: Mistral AI
@@ -42,6 +43,53 @@ publishers:            # first-party
     display_name: Alibaba Qwen
     index_urls:
       - https://qwenlm.github.io/blog/
+  thinking_machines:
+    tier: 1
+    display_name: Thinking Machines Lab
+    index_urls:
+      - https://thinkingmachines.ai/blog/
+  deepseek:
+    tier: 1
+    display_name: DeepSeek
+    index_urls:
+      - https://api-docs.deepseek.com/news/
+      - https://huggingface.co/deepseek-ai
+  tencent_hunyuan:
+    tier: 1
+    display_name: Tencent Hunyuan
+    index_urls:
+      - https://huggingface.co/tencent
+  xiaomi:
+    tier: 1
+    display_name: Xiaomi MiMo
+    index_urls:
+      - https://huggingface.co/XiaomiMiMo
+  nvidia:
+    tier: 1
+    display_name: NVIDIA
+    index_urls:
+      - https://huggingface.co/nvidia
+  moonshot_ai:
+    tier: 1
+    display_name: Moonshot AI
+    index_urls:
+      - https://huggingface.co/moonshotai
+      - https://moonshotai.github.io/
+  poolside:
+    tier: 2
+    display_name: poolside
+    index_urls:
+      - https://poolside.ai/
+  stepfun:
+    tier: 2
+    display_name: StepFun
+    index_urls:
+      - https://huggingface.co/stepfun-ai
+  inclusion_ai:
+    tier: 2
+    display_name: InclusionAI (Ant Group)
+    index_urls:
+      - https://huggingface.co/inclusionAI
 
 evaluators:            # independent
   metr:

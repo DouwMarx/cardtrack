@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual 4.2MB PDF (HTTP 200, application/pdf): title page \"OpenAI / GPT-5.6 Preview / System Card\". Content verified: covers GPT-5.6 Sol (flagship), Terra (lower-cost), Luna (fastest/most cost-efficient); Preparedness Framework treatment matches the candidate justification (High in Cybersecurity and Biological/Chemical for all three, below High in AI Self-Improvement); card states an Model name disambiguated from the GA card (GPT-5.6 Sol) per corpus convention." → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:36Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched alignment (assessment|evaluation|audit), cyber capab, dangerous capab, jailbreak (system_card).</div>
       </li>
     </ol>
   </section>
@@ -2455,6 +2465,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

@@ -31,6 +31,10 @@
         <span data-pagefind-filter="year" hidden>{{ year }}</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-{{ doc.status }}">{{ doc.status }}</span></dd>
+    <dt>Safety evals</dt>
+    <dd>{% if doc.safety_evals == 1 %}<span class="badge safety-yes">yes</span>
+        {% elif doc.safety_evals == 0 %}<span class="badge safety-no">none found</span>
+        {% else %}<span class="badge">unassessed</span>{% endif %}</dd>
     <dt>Source</dt>
     <dd>
       <a href="{{ doc.canonical_url }}" rel="noopener nofollow">{{ doc.canonical_url }}</a>

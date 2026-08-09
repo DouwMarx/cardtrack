@@ -48,6 +48,7 @@ uv run python scripts/propose_doc.py \
   --justification "First-party system card announced at …" \
   --evidence-url "https://www.anthropic.com/news/…" \
   --attest primary_source --attest about_a_specific_model_or_eval \
+  --attest distinct_model_release \
   --source-of-lead manual
 ```
 

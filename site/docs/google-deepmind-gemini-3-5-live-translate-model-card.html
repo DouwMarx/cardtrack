@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini 3.5 Audio (Live Translate) Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Gemini 3.5 Audio (Live Translate) Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Gemini 3.5 Live Translate</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-06-09</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://deepmind.google/models/model-cards/gemini-3-5-audio/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-3-5-audio/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T19:47:45Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-5-live-translate-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-5-live-translate-model-card%0AURL%3A%20https%3A//deepmind.google/models/model-cards/gemini-3-5-audio/%0AFingerprint%3A%200c1d5f5fa528ad38cb0ff3e82c5feedba600f0d3619db1f2203baf5204f6d04e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T19:47:45Z</td>
+          <td>text/html</td>
+          <td>145,702</td>
+          <td><code title="0c1d5f5fa528ad38cb0ff3e82c5feedba600f0d3619db1f2203baf5204f6d04e">0c1d5f5fa528ad38</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T19:47:45Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-09T17:30Z-supervised · agent · lead: index_diff</span>
+          <div class="just">Google DeepMind first-party model card dated 9 June 2026 on the official model-cards index. I fetched the page: it contains the full card for the Gemini 3.5 Live Translate system built on Gemini 3 Pro, with quantitative evaluations across translation accuracy (AutoMQM), latency and speech naturalness, plus an explicit limitations section. A specific named model, not marketing copy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:36Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 0</div>
+          <div class="just">Backfill assessment by term scan of extracted text: fewer than 2 safety-content markers found (model_card).</div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://deepmind.google/models/model-cards/gemini-3-5-audio/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Gemini 3.5 Audio (Live Translate)
+Model Cards are intended to provide essential information on Gemini models, including known limitations, mitigation approaches, and safety performance. Model cards may be updated from time-to-time; for example, to include updated evaluations as the model is improved or revised.
+Published: June 2026
+Model Information
+Description
+Gemini 3.5 Live Translate is a member of the Gemini series of models, a suite of highly-capable, natively multimodal reasoning models.
+Model dependencies
+Gemini 3.5 Live Translate is based on Gemini 3 Pro.
+Inputs
+Audio with a token context window of up to 128K.
+Outputs
+Audio and text, with up to 64K token output.
+Architecture
+Gemini 3.5 Live Translate is based on Gemini 3 Pro. For more information about the model architecture for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.
+Model Data
+Training Dataset
+Gemini 3.5 Live Translate is based on Gemini 3 Pro. For more information about the training dataset for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.
+Training Data Processing
+For more information about the training data processing for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.
+Implementation and Sustainability
+Hardware
+Gemini 3.5 Live Translate is based on Gemini 3 Pro. For more information about the hardware for Gemini 3.5 Live Translate and our continued commitment to operate sustainably, see the Gemini 3 Pro model card.
+Software
+Gemini 3.5 Live Translate is based on Gemini 3 Pro. For more information about the software for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.
+Distribution
+Gemini 3.5 Live Translate is distributed in the following channels; respective documentation shared in line:
+Our models are available to downstream providers via an Application Programming Interface (API) and subject to relevant terms of use. There is no required hardware or software to use the model. For AI Studio and Gemini API, see the Gemini API Additional Terms of Service. For more information, see Gemini Model API instructions.
+Evaluation
+Approach
+Gemini 3.5 Live Translate was evaluated across three main quality dimensions: translation quality, latency, and speech naturalness.
+Capabilities / Benchmarks
+- Translation Quality: We evaluate translation quality using AutoMQM - an error-based automatic metric which identifies and categorizes translation errors to produce a fine-grained quality score. These metrics are applied across a variety of language pairs and content types to assess the accuracy and adequacy of the translated output.
+- Latency: For a real-time translation system, latency (how far behind the translation lags during a live session) is a critical quality dimension. We measure latency at multiple granularities:
+  - Initial latency: the time between the start of speech in the input stream and the start of speech in the translated output stream. This is measured using standard voice activity detection.
+  - Word-level latency: to capture the most complete picture of translation delay, we align words in the input to their corresponding words in the output and measure the average time between the end of a source word and the start of its corresponding translated word.
+- Speech Naturalness: We evaluate the naturalness and quality of the synthesized output audio using established speech synthesis quality metrics. These capture issues such as choppy or discontinuous audio, voice drift (where the output voice characteristics shift over the course of a session), and unintended artifacts. Maintaining natural-sounding, consistent output audio is essential for a usable real-time translation experience.
+Methodology
+Gemini 3.5 Live Translate was evaluated using internal implementations of these benchmarks on outputs generated using the Gemini Live API.
+Intended Usage and Limitations
+Benefit and Intended Usage
+Gemini 3.5 Live Translate enables low-latency, real-time translation interactions. It processes continuous streams of audio to deliver immediate, human-like spoken responses, creating a natural translation experience for your users.
+Known Limitations
+Gemini 3.5 Live Translate may exhibit some of the following limitations. Voices can be inconsistent, and voices may shift after long pauses, change gender, or get stuck on one voice during rapid multi-speaker sessions. Language detection can struggle with non-native accents, similar languages, or rapid language switches. Gemini 3.5 Live Translate is designed to filter out background noise, but not all background audio may be ignored. When set to echo the target language, background noise may introduce artifacts in the translated audio when input audio is in the target language.
+For more information about the known limitations for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.
+Acceptable Usage
+For more information about the acceptable usage for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.
+Ethics and Content Safety
+Evaluation Approach
+Gemini 3.5 Live Translate was developed in partnership with internal safety and responsibility teams. Evaluations conducted in alignment with Google&#39;s AI Principles and responsible AI approach, as well as Google&#39;s Generative AI policies (e.g., the Gen AI Prohibited Use Policy and the Gemini API Additional Terms of Service).
+Evaluation types included but were not limited to:
+- Training/Development Evaluations including automated and human evaluations carried out throughout and after the model’s training, to monitor its progress and performance;
+- Ethics &amp; Safety Reviews were conducted ahead of the model’s release including human evaluation of the final model to ensure the model adhere to safety policies.
+Frontier Safety Assessment
+Gemini 3.5 Live Translate is part of the Gemini 3 family of models. For frontier safety, we rely on our evaluation of Gemini 3.1 Pro with Deep Think mode as it is the most generally capable model as of publication of this model card, and it did not reach the Critical Capability Levels (CCLs) outlined in our Frontier Safety Framework. Our assessments have shown that Gemini 3.5 Live Translate is less capable than Gemini 3.1 Pro, therefore based on Gemini 3.1 Pro, we are confident that Gemini 3.5 Live Translate is also unlikely to reach any CCLs. For more information, read the Gemini 3.1 Pro Model Card.
+Risks and Mitigations
+For more information about the risks and mitigations for Gemini 3.5 Live Translate, see the Gemini 3 Pro model card.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
+</body>
+</html>

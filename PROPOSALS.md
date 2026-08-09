@@ -15,3 +15,57 @@ Evidence: …
 ```
 
 ---
+
+## 2026-08-09 — Candidate lists surface navigation, not documents; backfill depth ends up decided by the add cap rather than by editorial judgment
+
+Problem: `logs/candidates.json` carried 1694 links this run, of which ~186 survived a keyword
+filter and perhaps 20 were actual documents. None of the twelve documents I added today came
+from reading that list end to end — they came from fetching four publisher index pages
+directly (Anthropic's Transparency Hub Model Report page, OpenAI's Deployment Safety Hub,
+DeepMind's model-cards index, AISI's work page), each of which lists title + date + URL in
+one place. Meanwhile the add cap bound at exactly 40/40 and I left at least six
+verified-qualifying DeepMind cards unproposed. The cap is currently doing the job editorial
+triage should be doing: what gets in is a function of the order I happened to check things
+in, not of what matters most.
+
+Suggested change: two parts, both small.
+(1) Add an optional `document_index_urls:` key per publisher in `sources.yaml`, separate from
+    `index_urls:`, for pages that are *listings of documents* rather than news feeds — e.g.
+    `https://www.anthropic.com/transparency/model-report`,
+    `https://deploymentsafety.openai.com/`, `https://deepmind.google/models/model-cards/`.
+    Phase A would surface links from those pages as a distinct, small, high-precision
+    `document_candidates` array, leaving the noisy nav-link diff where it is. That turns the
+    first part of every run from filtering into deciding.
+(2) When the add cap is hit, have the rejection reason carry the remaining slot count, and
+    let the run record the verified-but-unproposed backlog in a machine-readable
+    `logs/backlog.json` so the next run starts from it instead of rediscovering it. Today's
+    backlog survives only as prose in a friction line.
+
+Evidence: `logs/friction.jsonl` entries `cap_exhausted` and `unverifiable_third_party_claim`
+(2026-08-09). Candidate-list arithmetic: 1694 links → 186 keyword hits → ~20 documents; of
+the 12 documents written this run, none were identifiable as documents from `link_text`
+alone. Anthropic's CDN links in particular render as bare hashes with link text "system
+card" — no model name, no date, no way to tell the Opus 4.7 card from the Sonnet 4.6 card
+without fetching each. The four publisher index pages gave title, date and model
+immediately, in every case.
+
+## 2026-08-09 — Write/Edit cannot append to PROPOSALS.md: atomic writes need a temp file in a read-only directory
+
+Problem: `PROPOSALS.md` is documented as one of the agent's four write targets, but the
+Write and Edit tools both fail on it with `EROFS: read-only file system, open
+'/…/PROPOSALS.md.tmp.2.<hex>'`. They write atomically via a sibling temp file, and the repo
+root is read-only in the sandbox even though `PROPOSALS.md` itself is writable. The same
+tools work fine under `logs/`, where creating a sibling file is allowed. Today this entry
+only exists because a shell append was available; in the headless configuration
+(`agent.cmd` restricts Bash to `propose_doc.py` and `comment_issue.py`) the agent's
+self-improvement channel would be silently unwritable — and the failure surfaces as an
+opaque EROFS on a filename the agent never chose.
+
+Suggested change: make the repo root writable for the `*.tmp.*` pattern, or move the channel
+to `logs/proposals.md` (or an append-only `logs/proposals.jsonl`) so it sits in a directory
+that already supports atomic writes. Either way, prefer a location where the documented
+permission and the tool's actual write mechanism agree.
+
+Evidence: two consecutive tool failures this run, one Edit and one Write, both
+`EROFS … PROPOSALS.md.tmp.2.<hex>`, against a file the run contract lists as writable;
+`logs/friction.jsonl` was written successfully by the same tool moments earlier.

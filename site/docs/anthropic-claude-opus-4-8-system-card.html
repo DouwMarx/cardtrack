@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www.anthropic.com/claude-opus-4-8-system-card" rel="noopener nofollow">https://www.anthropic.com/claude-opus-4-8-system-card</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "Candidate URL serves the real 246-page PDF (HTTP 200, application/pdf, 20.6MB); cover reads \"System Card: Claude Opus 4.8, May 28, 2026, anthropic.com\", confirming publication_date 2026-05-28 (announcement page carries the same date). However, the candidate CDN URL (hash 0b491591...) is a stale revision snapshot containing only the June 3, 2026 changelog entry. The stable canonical link anthropic." → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 1</div>
+          <div class="just">Backfill assessment by term scan of extracted text: matched \basl-\d, alignment (assessment|evaluation|audit), autonomy evaluation, bioweapon (system_card).</div>
       </li>
     </ol>
   </section>
@@ -7391,6 +7401,6 @@ Our blocklist contains the following patterns:
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>

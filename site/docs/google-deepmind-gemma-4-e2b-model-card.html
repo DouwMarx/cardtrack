@@ -30,6 +30,9 @@
         <span data-pagefind-filter="year" hidden>2026</span></dd>
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://ai.google.dev/gemma/docs/core/model_card_4" rel="noopener nofollow">https://ai.google.dev/gemma/docs/core/model_card_4</a>
@@ -83,6 +86,13 @@
         <span class="run">run backfill-2026-08-09 · human</span>
           <div class="just">notes: "URL serves the actual Gemma 4 model card (architecture, benchmarks, safety evals) covering all five claimed variants: E2B, E4B, 12B Unified, 26B A4B (MoE), 31B Dense. Publication date 2026-04-02 confirmed by DeepMind model-cards index (\"Updated 2 April 2026\", linking to this URL) and the April 2, 2026 Gemma 4 launch announcement. Page footer shows \"Last updated 2026-07-30 UTC\", a later doc revisio" → null</div>
           <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T20:04:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run safety-backfill-2026-08-09 · human</span>
+          <div class="just">safety_evals: null → 0</div>
+          <div class="just">Backfill assessment by term scan of extracted text: fewer than 2 safety-content markers found (model_card).</div>
       </li>
     </ol>
   </section>
@@ -303,6 +313,6 @@ If you find our work helpful, please consider citing it:
   </section>
 </article>
 
-<footer><p>Built 2026-08-09T19:14:31Z</p></footer>
+<footer><p>Built 2026-08-09T20:05:08Z</p></footer>
 </body>
 </html>
