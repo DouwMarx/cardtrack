@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nemotron 3 Embed Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Nemotron 3 Embed Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Nemotron-3-Embed-1B, Nemotron-3-Embed-8B</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-16</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:48:22Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-3-embed-8b-model-card&amp;body=Document%3A%20nvidia-nemotron-3-embed-8b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16%0AFingerprint%3A%207625c50591ce06a41d5a31927ff380383cd7c8a58ba2c9f1cef35d975f527a25%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:48:22Z</td>
+          <td>text/html</td>
+          <td>300,971</td>
+          <td><code title="7625c50591ce06a41d5a31927ff380383cd7c8a58ba2c9f1cef35d975f527a25">7625c50591ce06a4</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:48:22Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-2 · agent · lead: monitor</span>
+          <div class="just">NVIDIA&#39;s own model card for the Nemotron 3 Embed retrieval-embedding release. I fetched and read the 8B card, which states its release as &#39;07/16/2026 via https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16&#39; and lists the 1B sibling; per the family rule I file one entry naming both sizes and exclude the NVFP4 quantization. It is notable rather than an obscure artifact: 450k+ downloads on the 1B and 150k+ on the 8B, plus NVIDIA&#39;s own announcement post on the HuggingFace blog about the release topping RTEB. The card has Bias, Safety, Explainability and Privacy sections, but they are NVIDIA&#39;s standard subcard boilerplate - bias participation &#39;None&#39;, physical safety &#39;Not Applicable&#39;, and one qualitative known risk about retrieval accuracy - with no evaluation results behind them, so I record has_safety_evals as false.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/blog/nvidia/nemotron-3-embed-wins-rteb" rel="noopener nofollow">https://huggingface.co/blog/nvidia/nemotron-3-embed-wins-rteb</a> · <a href="https://huggingface.co/nvidia/Nemotron-3-Embed-1B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-3-Embed-1B-BF16</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use nvidia/Nemotron-3-Embed-8B-BF16 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  sentence-transformers How to use nvidia/Nemotron-3-Embed-8B-BF16 with sentence-transformers: from sentence_transformers import SentenceTransformer
+model = SentenceTransformer(&#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;)
+sentences = [
+    &#34;The weather is lovely today.&#34;,
+    &#34;It&#39;s so sunny outside!&#34;,
+    &#34;He drove to the stadium.&#34;
+]
+embeddings = model.encode(sentences)
+similarities = model.similarity(embeddings, embeddings)
+print(similarities.shape)
+# [3, 3]
+-  Transformers How to use nvidia/Nemotron-3-Embed-8B-BF16 with Transformers: # Load model directly
+from transformers import AutoTokenizer, AutoModel
+tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;)
+model = AutoModel.from_pretrained(&#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+Model Overview
+Description:
+Nemotron-3-Embed-8B-BF16 is a versatile text embedding model trained by NVIDIA and optimized for retrieval and semantic similarity tasks. It provides strong multilingual and cross-lingual retrieval capabilities and is designed to serve as a foundational component in text-based Retrieval-Augmented Generation (RAG) systems. This model was evaluated across 34 languages: English, Arabic, Assamese, Bengali, Bulgarian, Chinese, Danish, Dutch, Finnish, French, German, Hindi, Hinglish, Indonesian, Italian, Japanese, Korean, Malay, Marathi, Nepali, Norwegian, Persian, Portuguese, Romanian, Russian, Spanish, Swahili, Swedish, Tamil, Telugu, Thai, Ukrainian, Urdu, Vietnamese.
+The model generates dense vector embeddings from multilingual text inputs, enabling retrieval, semantic search, and (agentic) RAG workflows. As a core component of text retrieval systems, an embedding model transforms text, such as questions or passages, into dense vector representations. These models are typically transformer encoders that process input tokens and produce embeddings suitable for efficient similarity matching.
+Nemotron-3-Embed-8B-BF16 achieves state-of-the-art performance on the multilingual RTEB leaderboard as of July 16, 2026. Read more details in our Blog Post.
+This model is ready for commercial use.
+License/Terms of Use:
+This model and its associated configuration files are licensed under the OpenMDW License Agreement, version 1.1 (OpenMDW-1.1). Additional Information: Built with Ministral-3-8B-Instruct-2512 which is released under Apache 2.0.
+This project will download and install additional third-party open source software projects. Review the license terms of these open source projects before use.
+Deployment Geography:
+Global
+
+		Use Case:
+
+Nemotron-3-Embed-8B-BF16 is most suitable for users who want to build a multilingual question-and-answer application over a large text corpus, leveraging the latest dense retrieval technologies.
+
+		Release Date:
+
+07/16/2026 via https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16
+Model Architecture:
+Architecture Type: Transformer
+Network Architecture: Ministral-3-8B-Instruct-2512 based encoder model.
+Number of model parameters: The model has approximately 8B parameters.
+Hidden Size: 4096
+The Nemotron-3-Embed-8B-BF16 model is a transformer-based text embedding model trained with bidirectional attention masking, where the final embedding vector is obtained by applying average pooling to the transformer’s token-level representations. It encodes each input text into a dense embedding vector of dimension 4096.
+Input(s):
+Input Type(s): Text
+Input Format(s):
+- Text: List of strings
+Input Parameters:
+- Text: One-Dimensional (1D)
+Other Properties Related to Input: Text inputs should be tokenized by the model tokenizer. The model’s max sequence length is 32768. Longer inputs should be chunked or truncated.
+Output(s):
+Output Type(s): Floats
+Output Format(s):
+- List of float arrays
+Output Parameters: One-Dimensional (1D) embedding vector per input text string
+Other Properties Related to Output: The model outputs a 4096-dimensional embedding vector for each input text string. It also supports dynamic embedding sizes by slicing the vector from the start (for example, keeping the first 2048 or 1024 dimensions). These sliced embeddings remain highly functional, provided the resulting sub-vector is re-normalized (L2 normalization) after slicing.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA&#39;s hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Usage
+For local Python examples, use the Hugging Face model ID by default. If you are working from a local checkout, replace MODEL_ID with that path. For vLLM online serving from a local checkpoint, use the local checkpoint example.
+MODEL_ID = &#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;
+Use this model for retrieval-style embeddings. Add the query:  prefix for queries and the passage:  prefix for documents. Embeddings are L2-normalized, so dot product and cosine similarity are equivalent. The output tables use q[i] for queries and d[i] for documents. Scores are rounded to four decimals. Exact values can vary by runtime and package version.
+Local Python Dependencies
+The BF16 checkpoints support Transformers 5.2.0 and above. The examples also require a CUDA-enabled PyTorch installation that matches your driver and CUDA environment.
+If you are not using an NVIDIA PyTorch container, install PyTorch first. Use the PyTorch local installation selector to choose the command that matches your operating system, package manager, and CUDA environment. If the default PyPI wheel matches your CUDA environment, run:
+pip install --upgrade torch
+For non-default CUDA environments, the selector can include an additional --index-url argument. Use that CUDA-specific index URL when the default PyPI wheel does not match your CUDA environment.
+Then install Transformers and Sentence Transformers:
+pip install --upgrade &#34;transformers&gt;=5.2.0&#34; &#34;sentence-transformers&gt;=5.4.1&#34;
+NVIDIA tested the examples in nvcr.io/nvidia/pytorch:26.06-py3 with the container-provided Torch and CUDA stack. Inside NVIDIA PyTorch containers, do not upgrade Torch. Install only the missing packages:
+pip install --upgrade &#34;transformers&gt;=5.2.0&#34; &#34;sentence-transformers&gt;=5.4.1&#34;
+The tested nvcr.io/nvidia/pytorch:26.06-py3 container includes flash-attn, so the snippets use FlashAttention-2 by default. If your environment does not have FlashAttention-2, set attn_implementation or ATTN_IMPLEMENTATION to sdpa.
+Sentence Transformers
+Use Sentence Transformers for the simplest local Python interface. It reads the saved query and document prompts and normalization metadata.
+import torch
+from sentence_transformers import SentenceTransformer
+MODEL_ID = &#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;
+model = SentenceTransformer(
+    MODEL_ID,
+    device=&#34;cuda&#34;,
+    model_kwargs={
+        &#34;dtype&#34;: torch.bfloat16,
+        &#34;attn_implementation&#34;: &#34;flash_attention_2&#34;,
+    },
+    processor_kwargs={&#34;padding_side&#34;: &#34;left&#34;},
+)
+model.max_seq_length = 32768
+QUERIES = [
+    &#34;Write a Python function that counts the frequency of each element in a list of lists.&#34;,
+    &#34;Write a function that orders a dictionary with tuple keys by the product of each key&#39;s tuple values.&#34;,
+    &#34;What symptoms and common triggers help distinguish eczema from other inflammatory skin conditions?&#34;,
+    &#34;How can someone reduce exposure to pollen during allergy season?&#34;,
+]
+DOCUMENTS = [
+    &#34;def frequency_lists(list1):\n    flattened = [item for sublist in list1 for item in sublist]\n    counts = {}\n    for item in flattened:\n        if item in counts:\n            counts[item] += 1\n        else:\n            counts[item] = 1\n    return counts&#34;,
+    &#34;def sort_dict_item(test_dict):\n    return {key: test_dict[key] for key in sorted(test_dict.keys(), key=lambda ele: ele[0] * ele[1])}&#34;,
+    &#34;Eczema commonly causes itchy, dry, inflamed patches of skin. The affected areas may look red, scaly, cracked, or darker than the surrounding skin depending on skin tone. Symptoms can flare after exposure to irritants, allergens, stress, or changes in weather.&#34;,
+    &#34;People with pollen allergy can reduce exposure by staying indoors on dry, windy days, avoiding early-morning outdoor activity, and going outside after rain when pollen levels are lower. They should check pollen forecasts, close windows and doors when counts are high, and consider starting allergy medication before symptoms begin if high pollen is expected. After being outside, showering, changing clothes, avoiding outdoor laundry drying, and wearing a face mask for yard work can help limit pollen contact.&#34;,
+]
+query_embeddings = model.encode_query(QUERIES, batch_size=1, convert_to_tensor=True)
+document_embeddings = model.encode_document(DOCUMENTS, batch_size=1, convert_to_tensor=True)
+scores = model.similarity(query_embeddings, document_embeddings)
+print(&#34;Similarity scores:&#34;)
+print(f&#34;{&#39;&#39;:&gt;4}&#34; + &#34;&#34;.join(f&#34;d[{i}]&#34;.rjust(10) for i in range(scores.shape[1])))
+for query_index, row in enumerate(scores):
+    print(f&#34;q[{query_index}]&#34; + &#34;&#34;.join(f&#34;{score.item():&gt;10.4f}&#34; for score in row))
+Sentence Transformers Expected Output
+Similarity scores:
+          d[0]      d[1]      d[2]      d[3]
+q[0]    0.7852    0.0496    0.0115   -0.0299
+q[1]    0.0457    0.6562   -0.0645    0.0452
+q[2]   -0.0016   -0.0530    0.6602    0.1123
+q[3]   -0.0170   -0.0036    0.1147    0.8008
+Transformers
+Use Transformers when you want manual control over tokenization, pooling, or batching.
+import torch
+import torch.nn.functional as F
+from transformers import AutoModel, AutoTokenizer
+MODEL_ID = &#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;
+MAX_LENGTH = 32768
+BATCH_SIZE = 1
+DTYPE = torch.bfloat16
+ATTN_IMPLEMENTATION = &#34;flash_attention_2&#34;
+QUERIES = [
+    &#34;Write a Python function that counts the frequency of each element in a list of lists.&#34;,
+    &#34;Write a function that orders a dictionary with tuple keys by the product of each key&#39;s tuple values.&#34;,
+    &#34;What symptoms and common triggers help distinguish eczema from other inflammatory skin conditions?&#34;,
+    &#34;How can someone reduce exposure to pollen during allergy season?&#34;,
+]
+DOCUMENTS = [
+    &#34;def frequency_lists(list1):\n    flattened = [item for sublist in list1 for item in sublist]\n    counts = {}\n    for item in flattened:\n        if item in counts:\n            counts[item] += 1\n        else:\n            counts[item] = 1\n    return counts&#34;,
+    &#34;def sort_dict_item(test_dict):\n    return {key: test_dict[key] for key in sorted(test_dict.keys(), key=lambda ele: ele[0] * ele[1])}&#34;,
+    &#34;Eczema commonly causes itchy, dry, inflamed patches of skin. The affected areas may look red, scaly, cracked, or darker than the surrounding skin depending on skin tone. Symptoms can flare after exposure to irritants, allergens, stress, or changes in weather.&#34;,
+    &#34;People with pollen allergy can reduce exposure by staying indoors on dry, windy days, avoiding early-morning outdoor activity, and going outside after rain when pollen levels are lower. They should check pollen forecasts, close windows and doors when counts are high, and consider starting allergy medication before symptoms begin if high pollen is expected. After being outside, showering, changing clothes, avoiding outdoor laundry drying, and wearing a face mask for yard work can help limit pollen contact.&#34;,
+]
+def average_pool(last_hidden_state: torch.Tensor, attention_mask: torch.Tensor) -&gt; torch.Tensor:
+    last_hidden = last_hidden_state.masked_fill(~attention_mask[..., None].bool(), 0.0)
+    return last_hidden.sum(dim=1) / attention_mask.sum(dim=1)[..., None]
+if not torch.cuda.is_available():
+    raise RuntimeError(&#34;CUDA is required for practical BF16 inference.&#34;)
+device = torch.device(&#34;cuda&#34;)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, padding_side=&#34;left&#34;)
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
+model = AutoModel.from_pretrained(
+    MODEL_ID,
+    dtype=DTYPE,
+    attn_implementation=ATTN_IMPLEMENTATION,
+).to(device)
+model.eval()
+def encode_texts(texts: list[str]) -&gt; torch.Tensor:
+    embedding_batches = []
+    for start in range(0, len(texts), BATCH_SIZE):
+        encoded = tokenizer(
+            texts[start : start + BATCH_SIZE],
+            max_length=MAX_LENGTH,
+            truncation=True,
+            padding=True,
+            return_tensors=&#34;pt&#34;,
+        )
+        encoded = {name: tensor.to(device) for name, tensor in encoded.items()}
+        with torch.inference_mode():
+            output = model(**encoded)
+            pooled = average_pool(output.last_hidden_state, encoded[&#34;attention_mask&#34;])
+            embeddings = F.normalize(pooled, p=2, dim=-1)
+        embedding_batches.append(embeddings.detach().cpu().to(torch.float32))
+    return torch.cat(embedding_batches, dim=0)
+embeddings = encode_texts(
+    [&#34;query: &#34; + query for query in QUERIES]
+    + [&#34;passage: &#34; + doc for doc in DOCUMENTS]
+)
+query_embeddings = embeddings[: len(QUERIES)]
+document_embeddings = embeddings[len(QUERIES) :]
+scores = query_embeddings @ document_embeddings.T
+print(&#34;Similarity scores:&#34;)
+print(f&#34;{&#39;&#39;:&gt;4}&#34; + &#34;&#34;.join(f&#34;d[{i}]&#34;.rjust(10) for i in range(scores.shape[1])))
+for query_index, row in enumerate(scores):
+    print(f&#34;q[{query_index}]&#34; + &#34;&#34;.join(f&#34;{score.item():&gt;10.4f}&#34; for score in row))
+Transformers Expected Output
+Similarity scores:
+          d[0]      d[1]      d[2]      d[3]
+q[0]    0.7856    0.0496    0.0113   -0.0298
+q[1]    0.0458    0.6505   -0.0642    0.0451
+q[2]   -0.0018   -0.0529    0.6609    0.1124
+q[3]   -0.0171   -0.0034    0.1151    0.8004
+vLLM Dependencies
+For BF16, use vllm==0.25.0 for /v2/embed serving. NVIDIA also validated vllm serve &#34;$MODEL_ID&#34; with vllm/vllm-openai:v0.21.0, nvcr.io/nvidia/vllm:26.06-py3, and vllm/vllm-openai:v0.24.0 for this checkpoint.
+pip install --upgrade &#34;vllm==0.25.0&#34; openai requests numpy
+FP8 acceleration: On NVIDIA Hopper and Ada Lovelace GPUs, enable FP8 in vLLM online with --quantization fp8_per_tensor, or offline with quantization=&#34;fp8_per_tensor&#34; in LLM(...). Validated with vLLM 0.25.0 on H100; accuracy matched BF16.
+vLLM Offline Python
+Use the offline Python API when you want local vLLM inference without running an HTTP server. LLM.embed accepts formatted strings, so add the query:  and passage:  prefixes manually.
+vLLM Offline Python Example
+import numpy as np
+from vllm import LLM
+MODEL_ID = &#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;
+QUERIES = [
+    &#34;Write a Python function that counts the frequency of each element in a list of lists.&#34;,
+    &#34;Write a function that orders a dictionary with tuple keys by the product of each key&#39;s tuple values.&#34;,
+    &#34;What symptoms and common triggers help distinguish eczema from other inflammatory skin conditions?&#34;,
+    &#34;How can someone reduce exposure to pollen during allergy season?&#34;,
+]
+DOCUMENTS = [
+    &#34;def frequency_lists(list1):\n    flattened = [item for sublist in list1 for item in sublist]\n    counts = {}\n    for item in flattened:\n        if item in counts:\n            counts[item] += 1\n        else:\n            counts[item] = 1\n    return counts&#34;,
+    &#34;def sort_dict_item(test_dict):\n    return {key: test_dict[key] for key in sorted(test_dict.keys(), key=lambda ele: ele[0] * ele[1])}&#34;,
+    &#34;Eczema commonly causes itchy, dry, inflamed patches of skin. The affected areas may look red, scaly, cracked, or darker than the surrounding skin depending on skin tone. Symptoms can flare after exposure to irritants, allergens, stress, or changes in weather.&#34;,
+    &#34;People with pollen allergy can reduce exposure by staying indoors on dry, windy days, avoiding early-morning outdoor activity, and going outside after rain when pollen levels are lower. They should check pollen forecasts, close windows and doors when counts are high, and consider starting allergy medication before symptoms begin if high pollen is expected. After being outside, showering, changing clothes, avoiding outdoor laundry drying, and wearing a face mask for yard work can help limit pollen contact.&#34;,
+]
+def main():
+    llm = LLM(model=MODEL_ID)
+    texts = [&#34;query: &#34; + query for query in QUERIES] + [
+        &#34;passage: &#34; + doc for doc in DOCUMENTS
+    ]
+    outputs = llm.embed(texts, use_tqdm=False)
+    embeddings = np.array(
+        [output.outputs.embedding for output in outputs],
+        dtype=np.float32,
+    )
+    query_embeddings = embeddings[: len(QUERIES)]
+    document_embeddings = embeddings[len(QUERIES) :]
+    scores = query_embeddings @ document_embeddings.T
+    print(&#34;Similarity scores:&#34;)
+    print(f&#34;{&#39;&#39;:&gt;4}&#34; + &#34;&#34;.join(f&#34;d[{i}]&#34;.rjust(10) for i in range(scores.shape[1])))
+    for query_index, row in enumerate(scores):
+        print(f&#34;q[{query_index}]&#34; + &#34;&#34;.join(f&#34;{score:&gt;10.4f}&#34; for score in row))
+if __name__ == &#34;__main__&#34;:
+    main()
+vLLM Offline Python Expected Output
+Similarity scores:
+          d[0]      d[1]      d[2]      d[3]
+q[0]    0.7846    0.0489    0.0118   -0.0301
+q[1]    0.0454    0.6505   -0.0645    0.0455
+q[2]   -0.0018   -0.0531    0.6611    0.1120
+q[3]   -0.0166   -0.0040    0.1148    0.7983
+vLLM Online Serving
+MODEL_ID=nvidia/Nemotron-3-Embed-8B-BF16
+vllm serve &#34;$MODEL_ID&#34;
+vLLM defaults to port 8000. Add host and port when you need an explicit bind address or a non-default port:
+vllm serve &#34;$MODEL_ID&#34; --host 0.0.0.0 --port 8000
+If you serve the Hugging Face model ID, the served model name defaults to nvidia/Nemotron-3-Embed-8B-BF16. If you serve a local checkpoint path, vLLM still reads the model config and weights from that path; --served-model-name only sets the model name accepted by API requests.
+MODEL_PATH=/path/to/local/Nemotron-3-Embed-8B-BF16
+vllm serve &#34;$MODEL_PATH&#34; --host 0.0.0.0 --port 8000 --served-model-name nvidia/Nemotron-3-Embed-8B-BF16
+With --served-model-name, client requests continue to use MODEL = &#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;. If you omit it, use the served name reported by /v1/models in client requests.
+Recommended Retrieval Endpoint
+After the server is running, use /v2/embed for retrieval. Send raw query and document strings. input_type applies the saved query and document prompts:
+import numpy as np
+import requests
+MODEL = &#34;nvidia/Nemotron-3-Embed-8B-BF16&#34;
+URL = &#34;http://localhost:8000/v2/embed&#34;
+QUERIES = [
+    &#34;Write a Python function that counts the frequency of each element in a list of lists.&#34;,
+    &#34;Write a function that orders a dictionary with tuple keys by the product of each key&#39;s tuple values.&#34;,
+    &#34;What symptoms and common triggers help distinguish eczema from other inflammatory skin conditions?&#34;,
+    &#34;How can someone reduce exposure to pollen during allergy season?&#34;,
+]
+DOCUMENTS = [
+    &#34;def frequency_lists(list1):\n    flattened = [item for sublist in list1 for item in sublist]\n    counts = {}\n    for item in flattened:\n        if item in counts:\n            counts[item] += 1\n        else:\n            counts[item] = 1\n    return counts&#34;,
+    &#34;def sort_dict_item(test_dict):\n    return {key: test_dict[key] for key in sorted(test_dict.keys(), key=lambda ele: ele[0] * ele[1])}&#34;,
+    &#34;Eczema commonly causes itchy, dry, inflamed patches of skin. The affected areas may look red, scaly, cracked, or darker than the surrounding skin depending on skin tone. Symptoms can flare after exposure to irritants, allergens, stress, or changes in weather.&#34;,
+    &#34;People with pollen allergy can reduce exposure by staying indoors on dry, windy days, avoiding early-morning outdoor activity, and going outside after rain when pollen levels are lower. They should check pollen forecasts, close windows and doors when counts are high, and consider starting allergy medication before symptoms begin if high pollen is expected. After being outside, showering, changing clothes, avoiding outdoor laundry drying, and wearing a face mask for yard work can help limit pollen contact.&#34;,
+]
+def embed(input_type: str, texts: list[str]) -&gt; np.ndarray:
+    response = requests.post(
+        URL,
+        json={
+            &#34;model&#34;: MODEL,
+            &#34;input_type&#34;: input_type,
+            &#34;texts&#34;: texts,
+            &#34;embedding_types&#34;: [&#34;float&#34;],
+            &#34;truncate&#34;: &#34;END&#34;,
+        },
+        timeout=120,
+    )
+    response.raise_for_status()
+    return np.array(response.json()[&#34;embeddings&#34;][&#34;float&#34;], dtype=np.float32)
+query_embeddings = embed(&#34;query&#34;, QUERIES)
+document_embeddings = embed(&#34;document&#34;, DOCUMENTS)
+scores = query_embeddings @ document_embeddings.T
+print(&#34;Similarity scores:&#34;)
+print(f&#34;{&#39;&#39;:&gt;4}&#34; + &#34;&#34;.join(f&#34;d[{i}]&#34;.rjust(10) for i in range(scores.shape[1])))
+for query_index, row in enumerate(scores):
+    print(f&#34;q[{query_index}]&#34; + &#34;&#34;.join(f&#34;{score:&gt;10.4f}&#34; for score in row))
+Recommended Retrieval Endpoint Expected Output
+Similarity scores:
+          d[0]      d[1]      d[2]      d[3]
+q[0]    0.7848    0.0489    0.0117   -0.0298
+q[1]    0.0454    0.6512   -0.0644    0.0455
+q[2]   -0.0021   -0.0529    0.6614    0.1121
+q[3]   -0.0169   -0.0033    0.1151    0.7989
+You can also use the OpenAI-compatible /v1/embeddings endpoint. For those requests, pass strings in input and manually prefix them with query:  or passage: .
+Expected Configuration Warning
+When this checkpoint is loaded by Transformers, whether directly or through Sentence Transformers or vLLM, the following warning may appear:
+[transformers] Unrecognized keys in `rope_parameters` for &#39;rope_type&#39;=&#39;yarn&#39;: {&#39;apply_yarn_scaling&#39;}
+This warning is expected and does not prevent model loading or inference. apply_yarn_scaling is retained as a temporary vLLM compatibility field that preserves the checkpoint&#39;s intended long-context RoPE behavior. Do not remove it from config.json. The upstream compatibility work is tracked in vLLM issue #48621.
+Software Integration:
+Runtime Engine(s):  PyTorch, vLLM
+Supported Hardware Microarchitecture Compatibility:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+Supported Operating System(s):
+- Linux
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Model Version(s):
+Nemotron-3-Embed-8B-BF16
+Training, Testing, and Evaluation Datasets:
+Dataset Overview:
+Total Size: 50M+ data samples
+Dataset Partition: Training [100%], Testing [N/A — evaluation benchmarks used separately], Validation [N/A — evaluation benchmarks used separately].
+Model training was conducted using publicly available, commercially permissible datasets and synthetically generated datasets. Synthetic datasets were created either by generating queries from seed documents or by generating complete question–answer pairs through LLM-based prompting using the LLMs listed below.
+Public Datasets:
+Synthetic Datasets:
+Synthetic query-document pairs were generated either from scratch or by using seed datasets to generate queries with the models listed below.
+| LLMs used to generate synthetic datasets: |
+|---|
+| Qwen/Qwen3-Next-80B-A3B-Instruct Qwen/Qwen3-235B-A22B Qwen/Qwen3.5-397B-A17B Qwen/Qwen3.6-27B Qwen/Qwen3.6-35B-A3B |
+| google/gemma-4-31B-it |
+| openai/gpt-oss-120b openai/gpt-oss-20b |
+| nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16 nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4 |
+| Seed Datasets |  |
+|---|---|
+| Dataset | Reference |
+| FinePdfs | https://huggingface.co/datasets/HuggingFaceFW/finepdfs |
+| CentralActs | https://zenodo.org/records/5088102 |
+| BRIGHT | https://huggingface.co/datasets/xlangai/BRIGHT |
+| MultiHiertt | https://github.com/psunlpgroup/MultiHiertt |
+Training Dataset:
+Data Modality:
+- Text
+Training Data Size:
+Text Training Data Size: 50M+ data samples
+Data Collection Method by dataset: Hybrid: Human, Automated, Synthetic
+Labeling Method by dataset: Hybrid: Human, Automated, Synthetic
+Properties: Model training was conducted on text datasets using question–passage pairs from publicly available, commercially permissible datasets and synthetically generated datasets.
+Testing Dataset:
+Data Collection Method by dataset: Not Applicable
+Labeling Method by dataset: Not Applicable
+Properties: Not Applicable. Model quality was assessed using the evaluation benchmark datasets described in the Evaluation Dataset subsection.
+Evaluation Dataset:
+Data Collection Method by dataset: Hybrid: Human, Automated, Synthetic
+Labeling Method by dataset: Hybrid: Human, Automated, Synthetic
+Properties: This model is evaluated on 16 public tasks on Retrieval Embedding Benchmark (RTEB), a new benchmark designed to reliably evaluate the retrieval accuracy of embedding models for real-world applications. More details on RTEB can be found on their leaderboard.
+We also evaluated the model on the MMTEB (Retrieval) benchmark datasets (paper), and on the eight text datasets (extracted via OCR) from the ViDoRe-V3 benchmark.
+We set the model sequence length to 4096 for the evaluation results below.
+| Text Retrieval benchmarks (chunk retrieval) - Avg. NDCG@10 |  |  |  |
+|---|---|---|---|
+| Model Name | RTEB 16 | ViDoRe-V3 text | MMTEB (Retrieval) |
+| llama-nemotron-embed-vl-1b-v2 | 61.98 | 52.54 | 59.71 |
+| Nemotron-3-Embed-1B-BF16 | 72.38 | 57.74 | 71.04 |
+| Nemotron-3-Embed-8B-BF16 | 78.46 | 60.60 | 75.45 |
+Inference:
+Acceleration Engine: PyTorch, vLLM
+Test Hardware:
+- NVIDIA Ampere - A100 80GB
+- NVIDIA Hopper - H100 80GB
+Ethical Considerations:
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. Developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, Explainability, Safety &amp; Security, and Privacy Subcards.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI concerns here.
+Bias
+| Field | Response |
+|---|---|
+| Participation considerations from adversely impacted groups protected classes in model design and testing: | None |
+| Measures taken to mitigate against unwanted bias: | None |
+| Bias Metric (If Measured): | None |
+Explainability
+| Field | Response |
+|---|---|
+| Intended Task/Domain: | Passage and query embedding for question and answer retrieval |
+| Model Type: | Transformer encoder |
+| Intended Users: | Generative AI creators working with conversational AI models - users who want to build a multilingual question and answer application over a large text corpus, leveraging the latest dense retrieval technologies. |
+| Output: | Array of float numbers (Dense Vector Representation for the input text) |
+| Describe how the model works: | Model transforms the tokenized input text into a dense vector representation. |
+| Name the adversely impacted groups this has been tested to deliver comparable outcomes regardless of: | Not Applicable |
+| Technical Limitations &amp; Mitigation: | The model’s max sequence length is 32768. Therefore, longer text inputs should be truncated. |
+| Verified to have met prescribed NVIDIA quality standards: | Yes |
+| Performance Metrics: | Accuracy, Throughput, and Latency |
+| Potential Known Risks: | This model does not always guarantee to retrieve the correct passage(s) for a given query. |
+| Licensing: | This model and its associated configuration files are licensed under the OpenMDW License Agreement, version 1.1 (OpenMDW-1.1). Additional Information: Built with Ministral-3-8B-Instruct-2512 which is released under Apache 2.0. |
+Privacy
+| Field | Response |
+|---|---|
+| Generatable or reverse engineerable personal data? | None |
+| Was consent obtained for any personal data used? | Not Applicable |
+| Personal data used to create this model? | None Known |
+| How often is the dataset reviewed? | Before Every Release |
+| Is there provenance for all datasets used in training? | Yes |
+| Does data labeling (annotation, metadata) comply with privacy laws? | Yes |
+| Was data from user interactions with the AI model (e.g. user input and prompts) used to train the model? | Yes |
+| Is data compliant with data subject requests for data correction or removal, if such a request was made? | No, not possible with externally-sourced data. |
+| Applicable Privacy Policy | https://www.nvidia.com/en-us/about-nvidia/privacy-policy/ |
+Safety
+| Field | Response |
+|---|---|
+| Model Application(s): | Text Embedding for Retrieval |
+| Describe the physical safety impact (if present). | Not Applicable |
+| Use Case Restrictions: | This model and its associated configuration files are licensed under the OpenMDW License Agreement, version 1.1 (OpenMDW-1.1). Additional Information: Built with Ministral-3-8B-Instruct-2512 which is released under Apache 2.0. |
+| Model and dataset restrictions: | The Principle of least privilege (PoLP) is applied limiting access for dataset generation and model development. Restrictions enforce dataset access during training, and dataset license constraints adhered to. |
+- Downloads last month
+- 153,450
+Model tree for nvidia/Nemotron-3-Embed-8B-BF16
+Base model
+mistralai/Ministral-3-8B-Base-2512</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

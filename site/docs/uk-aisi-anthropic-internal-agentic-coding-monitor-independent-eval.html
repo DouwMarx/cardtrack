@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How our new Control Red Team is stress-testing frontier monitors — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">How our new Control Red Team is stress-testing frontier monitors</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">uk_aisi</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Anthropic internal agentic coding monitor, Claude Sonnet 4.6, Google DeepMind asynchronous reasoning monitor</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-23</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.aisi.gov.uk/blog/how-our-new-control-red-team-is-stress-testing-frontier-monitors" rel="noopener nofollow">https://www.aisi.gov.uk/blog/how-our-new-control-red-team-is-stress-testing-frontier-monitors</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T22:09:34Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20uk-aisi-anthropic-internal-agentic-coding-monitor-independent-eval&amp;body=Document%3A%20uk-aisi-anthropic-internal-agentic-coding-monitor-independent-eval%0AURL%3A%20https%3A//www.aisi.gov.uk/blog/how-our-new-control-red-team-is-stress-testing-frontier-monitors%0AFingerprint%3A%20ec29a33576ae2db0652fe13100385c440a1593e957df1bb4bb1b6e7768c24d62%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T22:09:34Z</td>
+          <td>text/html</td>
+          <td>31,715</td>
+          <td><code title="ec29a33576ae2db0652fe13100385c440a1593e957df1bb4bb1b6e7768c24d62">ec29a33576ae2db0</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T22:09:34Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-6 · agent · lead: monitor</span>
+          <div class="just">UK AISI&#39;s Control Red Team report on adversarially stress-testing the safety monitors that frontier developers actually run in production, which I fetched and read. It is an independent evaluation of named third-party systems: Google DeepMind&#39;s asynchronous reasoning monitor and several versions of Anthropic&#39;s synchronous internal agentic coding monitor, with Claude Sonnet 4.6 used as both attack proposer and monitor in the automated experiments. Results are quantitative: an evolutionary search drove monitor suspicion scores down to 3 out of 100 across three 150k-query runs against Best-of-N baselines of 14, 15 and 18, with one run reaching 3 in under 5,000 steps. The previous session logged this document as an unresolved scope question, on the grounds that it red-teams monitors rather than models. I am resolving it as in scope, because the database already catalogues METR&#39;s &#39;Red-Teaming Anthropic&#39;s Internal Agent Monitoring Systems&#39; (2026-03-26) as an independent_eval on exactly the same subject matter, so excluding this one would be inconsistent, and because the systems evaluated are named, developer-specific and model-backed rather than generic. Safety flag true: the whole document is adversarial safety evaluation.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/" rel="noopener nofollow">https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.aisi.gov.uk/blog/how-our-new-control-red-team-is-stress-testing-frontier-monitors" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>As LLM agents become more autonomous, they have more opportunities to cause harm. To mitigate risk, frontier AI developers, such as OpenAI and Anthropic, are already deploying agents under the watch of a monitor: a separate LLM that reviews the agent’s actions and flags them if they are dangerous. The growing field of AI control research aims to design these kinds of safety measures, and evaluate whether they would be robust even if agents were trying to evade detection.
+For over two years, AISI’s Red Team has been evaluating misuse safeguards: protections against humans deliberately eliciting harmful actions from a model. We break these safeguards so that developers can find and patch their flaws. We&#39;ve now spun up a new subteam – the Control Red Team – to bring the same adversarial approach to control safeguards, which address harmful actions that agents take of their own accord. Since these safety measures are often the last line of defence against harmful actions from autonomous agents, stress-testing them is especially important: we strengthen them by identifying vulnerabilities before misaligned agents do.
+This blog briefly describes our monitor red teaming exercises, our attempts to automate the search for attacks, and the research questions we need to answer to strengthen our evaluations.
+Our evaluations of frontier control monitors
+Typically, frontier AI developers use safety measures that centre on a monitor. Safety depends on when the monitor flags an action and what happens to flagged actions – but an action that is not caught by the monitor cannot be blocked.
+Red teaming a control monitor means asking ‘if an AI attacker completed a harmful objective instead of a user request, would the monitor flag the attack?’ For example, if a user asked an agent to fix a bug in their codebase, but the agent instead downloaded and executed some malware, would the monitor flag the attack?
+We have already tested, and are helping to improve, the internal control monitors of two frontier AI developers:
+- With Google DeepMind, we tested an asynchronous reasoning monitor (reviewing agents’ reasoning after they act) designed to detect agents deceptively pursuing misaligned goals. We identified several monitor vulnerabilities, including one in which an agent can complete a malicious objective by pretending to hallucinate that it was a user instruction.
+- With Anthropic, we tested successive versions of a synchronous internal agentic coding monitor (reviewing each action before it executes). We found vulnerabilities in every monitor version we tested, driving an iterative improvement cycle in which our best attacks ultimately informed Anthropic’s testing of Claude Mythos Preview.
+Some of our attacks succeeded by finding gaps in the monitor’s prompt. Others exploited weaknesses in the LLM itself, completing objectives the prompt explicitly prohibited. In some cases, hard-coded rules decide which actions are sent to the monitor for review, so the best attack strategy avoids actions being sent to the monitor entirely.
+Our early red teaming exercises have surfaced open research questions that are new both to us and to the field: our Misuse Red Team had not faced them while focused on human misuse, and AI control researchers have mostly studied stylised red-blue games rather than red teaming specific monitors. We return to these questions in the final section.
+Automated red teaming
+Agents may soon outperform human experts on many tasks – including producing attacks that slip past a control monitor. If agents can outperform our red team, a monitor that stops our red team might still be beaten by a misaligned agent.1
+Our Misuse Red Team already uses automation to find jailbreaks. The Control Red Team is applying a similar approach to find transcripts of attacks that don’t get flagged by the monitor. We experimented with different algorithms, but had the most success with one of the simplest: an evolutionary search algorithm with four stages:
+- Initialisation: We start with an initial population of attack transcripts – drawn from agents instructed to attack in their system prompt.
+- Evaluation: We evaluate each transcript – running the target monitor to produce a suspicion score, and verifying that the transcript completes the malicious objective.
+- Filtering: We filter the population – keeping the least suspicious transcripts in a fixed-size buffer of candidate attacks.
+- Proposal: An LLM proposes new attack transcripts, adapted from transcripts in the buffer. The proposer may use feedback from the monitor, such as the suspicion score or the monitor’s reasoning.
+For example, one of our early experiments used our algorithm to red team a monitor in a challenging single-step coding setting, where an agent produces code that covertly exposes their private API key. We used Claude 4.6 Sonnet as both proposer and monitor.
+Taking three runs of 150k queries each, we compare the evolutionary search (blue) against a Best-of-N (BoN) baseline (grey) that takes the best scoring example from N independent samples. Across all three runs, the evolutionary search eventually achieves a minimum suspicion score of 3 out of 100 – well below the BoN scores of 14, 15 and 18. In one run, the evolutionary algorithm achieved a score of 3 in under 5k steps.
+There is a lot of room for improvement on these early experiments. In the future, we’d like to account for the random noise in a monitor’s score, and develop algorithms that discover successful ‘strategies’ rather than individual transcripts. Still, our automated red-teaming tools are already surfacing interesting failure modes in frontier monitors.
+Next steps for the Control Red Team
+Control monitors are now being deployed, and as LLM agents become more capable and operate with less oversight, the stakes will rise. Our goal is to ensure AISI has the expertise to keep meaningfully stress-testing monitors, and to develop methods for producing overall assessments of them. To do this, we need to answer several open research questions:
+- How can we simulate a realistic AI attacker? One of the most challenging aspects of control red teaming is deciding what a simulated misaligned agent should be able to do, and then judging the plausibility of attacks we find. Our automated red teaming highlights this problem: our algorithm iterates against monitor feedback in ways a deployed agent couldn’t. How should the capabilities we grant our simulated attackers track the capabilities of real agents – and how do we find attacks that are both strong and realistic?
+- How do we estimate overall safety? Finding monitor weaknesses is one thing; estimating the overall efficacy of a safety measure from those findings is another. How do we use red teaming results to estimate the actual likelihood of a given agent evading a safety measure? AISI has been working on how to estimate overall safety, but many open problems remain.
+- How can we develop stronger algorithms? To scale to highly realistic environments, and keep pace with stronger monitors, we’ll need to continue to improve on our basic evolutionary search algorithm (e.g. by incorporating higher-level strategy generation).
+- How can we account for monitor misalignment? In practice, developers often use one instance of a potentially misaligned LLM to oversee another instance of itself. AI control researchers distinguish between ‘trusted’ and ‘untrusted’ monitors, but we so far have no way to establish trust. How do we rule out, or counteract, misalignment in the monitor itself?
+Our early work with Google DeepMind and Anthropic shows that red teaming safety measures is both feasible and useful: monitors have real weaknesses, and surfacing them early helps developers strengthen their safety measures. There is a lot left to do – we are excited to both improve our attack search algorithms and progress the conceptual work of understanding when these attacks are realistic.
+We’re hiring exceptional people to help us red-team frontier AI developers’ monitors. If that’s you, please express interest here.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

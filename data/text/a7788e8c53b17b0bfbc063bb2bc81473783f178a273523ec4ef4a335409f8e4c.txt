@@ -1,0 +1,95 @@
+Gemini 3.1 Flash Image
+Model Cards are intended to provide essential information on Gemini models, including known limitations, mitigation approaches, and safety performance. Model cards may be updated from time-to-time; for example, to include updated evaluations as the model is improved or revised.
+Published: February 2026
+Model Information
+Description
+Gemini 3.1 Flash Image is a member of the Gemini series of models, a suite of highly-capable, natively multimodal reasoning models. Gemini 3.1 Flash Image can comprehend input from different information sources, including text, images, audio and video. Image and text output is generated in the response.
+Model dependencies
+Gemini 3.1 Flash Image is based on Gemini 3 Flash.
+Inputs
+Text strings (e.g., a prompt, document(s)) and images, with a token context window of up to 1M.
+Outputs
+Image, with a 4K token output and text, with a 64K token output.
+Architecture
+Gemini 3.1 Flash Image is based on Gemini 3 Flash. For more information about the model architecture for Gemini 3 Flash, see the Gemini 3 Flash model card.
+Model Data
+Training Dataset
+Gemini 3.1 Flash Image is based on Gemini 3 Flash. For more information about the training dataset for Gemini 3 Flash, see the Gemini 3 Flash model card.
+Training Data Processing
+For more information about the training data processing for Gemini 3.1 Flash Image, see the Gemini 3 Flash model card.
+Implementation and Sustainability
+Hardware
+Gemini 3.1 Flash Image was trained using Google’s Tensor Processing Units (TPUs). TPUs are specifically designed to handle the massive computations involved in training LLMs and can speed up training considerably compared to CPUs. TPUs often come with large amounts of high-bandwidth memory, allowing for the handling of large models and batch sizes during training, which can lead to better model quality. TPU Pods (large clusters of TPUs) also provide a scalable solution for handling the growing complexity of large foundation models. Training can be distributed across multiple TPU devices for faster and more efficient processing.
+The efficiencies gained through the use of TPUs are aligned with Google's commitment to operate sustainably.
+Software
+Training was done using JAX and ML Pathways.
+Distribution
+Gemini 3.1 Flash Image is distributed in the following channels; respective documentation shared in line:
+Evaluation
+The following Evaluation approach and results are for Gemini 3.1 Flash Image. For more information about the evaluation for Gemini 3 Flash, see the Gemini 3 Flash model card.
+Approach
+Gemini 3.1 Flash Image was evaluated using the methodology below:
+- Human evaluations of several different quality aspects of image generation were conducted. Prompt sets for human evaluations were in two broad categories:
+  - New capability sets: diverse Text-to-Image (T2I) and editing evals are curated, covering a wide range of capabilities, e.g., text, style, character, reasoning, factuality, infographics, ink (doodle) based editing, multi-turn, multi-image (multi-product recontextualization, multi-character, etc.)
+  - Regression sets: popular use cases observed on Gemini 2.5 Flash Image and Gemini 3 Pro Image, to ensure Gemini 3.1 Flash Image does not show noticeable regression.
+- Capabilities / Benchmarks:
+  - T2I: General Text-to-Image, Text Rendering, Visual Design.
+  - Editing: General Image Editing, Stylization, Character Editing, Object/Environment Editing, Factuality, Infographics, Ink (doodle) based Editing, Multi-Image (Multi-Product Recontextualization, Multi-Character, etc.), Multi-Turn.
+  - Public benchmark: a subset of GenExam.
+- Eval Methodology
+  - SxS human eval to get Elo across diverse T2I, Editing, and Multi-Turn.
+  - Single sided expert rating on subject-focused tasks on EDU tasks, GenExam.
+  - AutoRater on factuality, style diversity of non-natural images.
+Results
+Results for Gemini 3.1 Flash Image are below.
+Capabilities
+Text-to-Image
+Capabilities
+Editing
+Intended Usage and Limitations
+Benefit and Intended Usage
+Gemini 3.1 Flash Image is capable of using Gemini’s real-world knowledge to deliver precise results and reflect the world around you, from complex infographics to historically accurate scenes. It is well-suited for applications that require:
+- creation and editing of images with professional levels of precision and control and multiple, quick iterations
+- generation of clear text for posters and intricate diagrams
+- long context real-world knowledge
+- localized text rendering across several languages
+- studio-quality control
+Known Limitations
+Gemini 3.1 Flash Image may exhibit some of the general limitations of foundation models, such as hallucinations. There may also be occasional slowness or timeout issues.
+Gemini 3.1 Flash Image still has room for several quality improvements:
+- Text rendering: poor in small text (often blurry in 1k model), long paragraphs, page length
+- Character consistency is not always perfect between input images and generated output image
+- Masked/Doodle based editing: partial instruction following and persistent ink
+- When editing images: infrequent copying/pasting from user's input image to generated image
+- Occasional confusion around spatial localisation (e.g. left/right etc.)
+- Still limited in advanced capabilities with world knowledge, 3D reasoning and factuality
+The knowledge cutoff date for Gemini 3.1 Flash Image was January 2025.
+Acceptable Usage
+For more information about the acceptable usage for Gemini 3.1 Flash Image, see the Gemini 3 Flash model card.
+Ethics and Content Safety
+Evaluation Approach
+Gemini 3.1 Flash Image was developed in partnership with internal safety, and responsibility teams. A range of evaluations and red teaming activities were conducted to help improve the model and inform decision-making. These evaluations and activities align with Google's AI Principles and responsible AI approach, as well as Google's Generative AI policies (e.g. Gen AI Prohibited Use Policy and the Gemini API Additional Terms of Service). As Gemini 3.1 Flash Image is based on Gemini 3 Flash, see the Gemini 3 Flash model card for additional Ethics & Content Safety details.
+Evaluation types included but were not limited to:
+- Training/Development Evaluations including automated and human evaluations carried out continuously throughout and after the model’s training, to monitor its progress and performance;
+- Human Red Teaming conducted by specialist teams across the policies and desiderata, deliberately trying to spot weaknesses and ensure the model adheres to safety policies and desired outcomes;
+- Trust Assurance Evaluations conducted by evaluators who sit outside of the model development team, used to independently assess responsibility and safety governance decisions;
+- Ethics & Safety Reviews were conducted ahead of the model’s release.
+Safety Policies
+Gemini’s safety policies are based on Google’s standard framework, which aim to prevent our Generative AI models from generating harmful content, including:
+- Content related to child sexual abuse material and exploitation
+- Hate speech (e.g. dehumanizing members of protected groups)
+- Dangerous content (e.g. promoting suicide, or instructing in activities that could cause real-world harm)
+- Harassment (e.g. encouraging violence against people)
+- Sexually explicit content
+- Medical advice that runs contrary to scientific or medical consensus
+We continue to improve our internal evaluations, including refining automated evaluations to reduce false positives and negatives, as well as update query sets to ensure balance and maintain a high standard of results.
+Frontier Safety Assessment
+Gemini 3.1 Flash Image is part of the Gemini 3 family of models. We evaluated Gemini 3.1 Pro for frontier safety as it was the most generally capable model as of publication of this model card, and it did not reach any Critical Capability Levels (CCLs) outlined in our Frontier Safety Framework. Our assessments have shown that Gemini 3.1 Flash Image is likely to perform similarly to Gemini 3.1 Pro, therefore based on Gemini 3.1 Pro, we are confident that that Gemini 3.1 Flash Image is also unlikely to reach any CCLs. For more information, read the Gemini 3.1 Pro Model Card.
+Risks and Mitigations
+Safety and responsibility was built into Gemini 3.1 Flash Image throughout the training and deployment lifecycle, including pre-training, post-training, and product-level mitigations. Mitigations include, but are not limited to:
+- dataset filtering;
+- conditional pre-training;
+- supervised fine-tuning;
+- reinforcement learning from human and critic feedback;
+- safety policies and desiderata;
+- product-level mitigations such as safety filtering.

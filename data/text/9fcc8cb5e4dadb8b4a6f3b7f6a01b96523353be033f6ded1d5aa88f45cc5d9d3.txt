@@ -1,0 +1,109 @@
+Instructions to use nvidia/Cosmos-H-Dreams with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  NV-MedTech How to use nvidia/Cosmos-H-Dreams with NV-MedTech: # No code snippets available yet for this library. # To use this model, check the repository files and the library's documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
+- Notebooks
+- Google Colab
+- Kaggle
+Cosmos-H-Dreams
+Description
+Cosmos-H-Dreams is a real-time, action-conditioned generative surgical world model that lets a human operator or a learned surgical-robotics policy act inside a synthesized surgical scene and observe the interactions live. Given a surgical context frame and a stream of robot kinematic actions, the model autoregressively generates the resulting future video in short blocks, streaming interactively on a single GPU.
+Unlike the bidirectional, offline Cosmos-H-Surgical-Simulator, Cosmos-H-Dreams is a causal, few-step self-forcing distilled student: it is distilled from a bidirectional teacher into a streaming model that responds immediately to actions, turning a passive video generator into a controllable surgical simulator. The released checkpoint specializes the model to da Vinci Research Kit (dVRK) tabletop suturing.
+The model is intended for real-time surgical-skills rehearsal, interactive demonstration, closed-loop evaluation of surgical robotics policies, and synthetic data generation.
+The released model is derived from the public NVIDIA Cosmos-Predict2.5-2B world foundation model for physical AI, and its teacher is warm-started from Cosmos-H-Surgical-Simulator (the Open-H 44D action-conditioned checkpoint).
+This model is ready for commercial or non-commercial use.
+License/Terms of Use
+Use of this model is governed by the NVIDIA Open Model License Agreement.
+Deployment Geography
+Global
+Use Case
+Primarily intended for surgical robotics researchers, healthcare AI developers, academic institutions, and surgical robotics companies exploring interactive surgical simulation, surgeon/trainee rehearsal, closed-loop surgical policy evaluation, and synthetic data generation. Because it is interactive, the same served model can be driven live by a human (browser keyboard or Meta Quest headset) or by a learned policy in a closed-loop evaluation harness.
+Release Date
+- GitHub: 07/23/2026 via https://github.com/isaac-for-healthcare/Cosmos-H-Dreams
+- Huggingface: 07/23/2026 via https://huggingface.co/nvidia/Cosmos-H-Dreams
+Reference(s)
+Ali, A., Bai, J., Bala, M., Balaji, Y., Blakeman, A., Cai, T., Cao, J., Cao, T., Cha, E., Chao, Y.-W., Chattopadhyay, P., Chen, M., Chen, Y., Cheng, S., Cui, Y., Diamond, J., Ding, Y., Fan, J., Fan, L., Feng, L., Ferroni, F., Fidler, S., Fu, X., Gao, R., Ge, Y., Gu, J., … Zhu, Y. (2025). World Simulation with Video Foundation Models for Physical AI (arXiv:2511.00062) [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2511.00062
+Link to Cosmos’ nvidia/Cosmos-Predict2.5-2B-Video2World Model Card
+Link to nvidia/Cosmos-H-Surgical-Simulator Model Card (the teacher warm-start checkpoint).
+Model Architecture
+Architecture Type: Diffusion Transformer Network Architecture: Latent video diffusion transformer (DiT-style denoiser) with cross-attention conditioning, distilled into a causal, few-step autoregressive student with a streaming key/value (KV) cache.
+This model was developed based on Cosmos-Predict2.5-2B-Video2World.
+Cosmos-H-Dreams extends Cosmos-Predict2.5-2B-Video2World, a 2B-parameter diffusion transformer for video generation in latent space (Wan2.1 video tokenizer, spatial compression 8×, temporal compression 4×, 16 latent channels; hidden width 2048, 28 blocks, 16 heads, 2×2 spatial patchification, rotary position embeddings, AdaLN-LoRA modulation, Cosmos-Reason text encoder cross-attention). It incorporates two small MLPs that condition the model on kinematic actions through the timestep/AdaLN modulation pathway.
+The model consumes a unified 44-dimensional action vector; each latent frame folds the 4 action steps it is responsible for into a 4 × 44 = 176-dimensional input. The unified action space lets a subset of the 44 dimensions carry an embodiment's native content while the remainder are zero-padded, which keeps the weights embodiment- and horizon-invariant. The released dVRK tabletop checkpoint uses a 20-dimensional dual-arm content vector (per patient-side manipulator: a 3D translation delta, a 6D continuous rotation, and a gripper value) zero-padded to 44D.
+The model is built in two stages from the same backbone:
+- A bidirectional teacher that learns action-conditioned surgical dynamics (warm-started from the Cosmos-H-Surgical-Simulator Open-H 44D checkpoint and fine-tuned on the target data, optionally at progressively longer temporal horizons, i.e., 13 → 25 → 49 → 73 frames, for long-rollout stability).
+- A distilled causal streaming student (the released model) that subclasses the same backbone and adds causal temporal attention masking, a streaming KV cache with a rolling local window and an appearance "sink" frame, and CUDA-graph capture of the steady-state forward pass. The student rolls forward in outer blocks of 12 generated frames, denoising each latent frame in a small number of steps (2–4).
+Input
+- Input Type(s): Image (camera frame), a stream of 44-dimensional numerical action vectors
+- Input Format(s): Red, Green, Blue (RGB) frame, numeric vector
+- Input Parameters: Image: Two-Dimensional (2D) image frame; Vector: stream of forty-four-dimensional (44D) action vectors, consumed in chunks (each 12-frame output block consumes 12 action steps) Other Properties Related to Input:
+- Recommended resolution: The model operates at 288 × 512 (height × width); a 16:9 aspect ratio is recommended. Input frames are automatically resized.
+- Control rate: Effective 10 Hz for dVRK (30 Hz capture, stride 3).
+- Pre-processing: Action values are normalized using precomputed statistics. The dVRK kinematic action is a hybrid relative action as defined here. In interactive use, the live control surface (keyboard or Meta Quest) produces the 44D action stream directly, so no action .npy file is required.
+Output
+- Output Type(s): A stream of generated video frames (12-frame blocks)
+- Output Format: RGB frames
+- Output Parameters: Three-Dimensional (3D)
+- Other Properties Related to Output:
+  - The model generates 12 video frames per outer block, representing the next world states that incorporate the input kinematic actions into the current context frame. Through an autoregressive streaming loop with a bounded-memory KV cache, a complete surgical trajectory of arbitrary length can be generated.
+  - No additional post-processing is strictly required.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA’s hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration
+Runtime Engine(s):
+- Cosmos-H-Dreams — the streaming-inference library that serves the distilled student in real time (static-shape KV cache, torch.compile + CUDA Graphs, few-step diffusion, lightweight LightTAE decoder, and the keyboard/Quest serving stack).
+- Cosmos-Predict2.5 — the training/base runtime. Not required for running Cosmos-H-Dreams inference.
+Supported Hardware Microarchitecture Compatibility:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+- NVIDIA Lovelace
+Note: Only BF16 (Brain Floating Point 16) precision is tested. Other precisions like FP16 or FP32 are not officially supported.
+Preferred/Supported Operating System(s): Linux (We have not tested on other operating systems.)
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Model Version(s)
+v1.0 Real-time self-forcing distilled student (dVRK tabletop suturing). A causal, few-step (2–4 step) streaming student distilled from a bidirectional teacher that is warm-started from the Cosmos-H-Surgical-Simulator Open-H 44D checkpoint and fine-tuned on the dVRK tabletop suturing mixture (a subset of the Open-H Embodiment dataset).
+Developers may integrate the model into an AI evaluation or rehearsal system by providing a context video frame along with a stream of kinematic actions, either from a live control surface (keyboard or Meta Quest) or from a surgical policy model such as GR00T-H and receiving streamed video of the resulting scene.
+Training, Testing, and Evaluation Datasets
+The teacher is warm-started from the Open-H 44D pre-training checkpoint (Cosmos-H-Surgical-Simulator) and then fine-tuned/distilled on the target regime. The released student targets dVRK tabletop suturing.
+Dataset: Open-H-Embodiment community-generated dataset (pre-training) and the dVRK tabletop suturing dataset (post-training).
+- Open-H total size: ~26,500+ surgical task demonstrations spanning 32 datasets, 9 robot embodiments, and 10+ institutions, unified under the 44D action space, totaling on the order of ~4.9 million synchronized video-kinematics frames.
+- dVRK tabletop post-training data: the dVRK suturing dataset introduced by Cosmos-Surg-dVRK: JHU SutureBot suturing and knot-tying data together with converted failure and out-of-distribution episodes (needle drops, missed throws, unsuccessful knot ties) on the order of ~1 million frames at 10 Hz, expressed in the dual-arm 20D dVRK action format (padded to 44D). Failure episodes are deliberately retained so the model renders the consequences of poor actions, not only clean expert demonstrations.
+- Dataset partition: 95% training and validation, 5% test (approximate).
+Training Dataset
+- Data Modality [Video] [Kinematics]
+- Video Size [Less than 10,000 Hours]
+- Kinematics Size [Less than 10,000 Hours]
+- Link: Open-H Embodiment dataset (pre-training); dVRK tabletop suturing dataset from Cosmos-Surg-dVRK (post-training).
+- Data Collection Method: Manually-Collected
+- Labeling Method: Manually-Collected
+- Properties:
+  - Human experts teleoperated the surgical robotic arms, which were recorded as synchronized video and kinematics pairs.
+  - Includes both successful and failed/OOD tabletop episodes to broaden the action-conditioned distribution.
+Testing Dataset
+- Link: Holdout portion of the dVRK tabletop / Open-H Embodiment dataset.
+- Data Collection Method: Manually-Collected
+- Labeling Method: Manually-Collected
+- Properties:
+  - Frames never seen during training, held out for evaluation.
+Evaluation Dataset
+- Link: Held-out dVRK tabletop / Open-H Embodiment frames never seen during training.
+- Data Collection Method: Manually-Collected
+- Labeling Method: Manually-Collected
+- Properties:
+  - Held-out episodes used for offline world-model quality metrics and closed-loop action-controllability evaluation.
+Key performance: The model can generate physically plausible surgical robotic videos in real time given an initial frame and a live kinematic action stream, either from a surgeon/trainee (keyboard or Meta Quest) or from a surgical robotic policy model such as GR00T-H.
+Inference
+Acceleration Engine: PyTorch, Transformer Engine, torch.compile + CUDA Graphs (via FlashDreams).
+Test Hardware: Real-time interactive serving validated on a single NVIDIA RTX PRO 6000 (edge target); also runs on NVIDIA Ampere (A100) and NVIDIA Hopper (H100)-class GPUs.
+Usage:
+- See Cosmos-H-Dreams for real-time streaming inference and the interactive keyboard/Meta Quest serving stack.
+- See Cosmos-Predict2.5 for further details on the base model and training.
+Ethical Considerations
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. Developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+Please make sure you have proper rights and permissions for all input image and video content; if image or video includes people, personal health information, or intellectual property, the image or video generated will not blur or maintain proportions of image subjects included.
+For more detailed information on ethical considerations for this model, please see the Model Card++ for Bias, Explainability, Safety & Security, and Privacy Subcards.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 354
+Model tree for nvidia/Cosmos-H-Dreams
+Base model
+nvidia/Cosmos-Predict2.5-2B

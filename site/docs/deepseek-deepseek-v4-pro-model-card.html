@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence (model card) — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence (model card)</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">deepseek</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>DeepSeek-V4-Flash, DeepSeek-V4-Flash-Base, DeepSeek-V4-Pro, DeepSeek-V4-Pro-Base</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-04-24</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:23:18Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro%0AFingerprint%3A%20a1f15a5bea87b788dcdfb8ac81ea4cb5874f7c200a0b641ea4bc47b2223cac74%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:23:18Z</td>
+          <td>text/html</td>
+          <td>376,367</td>
+          <td><code title="a1f15a5bea87b788dcdfb8ac81ea4cb5874f7c200a0b641ea4bc47b2223cac74">a1f15a5bea87b788</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:23:18Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-1 · agent · lead: monitor</span>
+          <div class="just">DeepSeek&#39;s own family model card for the V4 series, read in full from the repo README. It is one card covering all four released variants (Pro 1.6T/49B, Pro-Base, Flash 284B/13B, Flash-Base) plus the Pro-Max/Flash-Max reasoning modes, so it is proposed as a single entry with all model_names rather than one row per size. Announced by DeepSeek itself as &#39;DeepSeek-V4 Preview Release 2026/04/24&#39; on api-docs.deepseek.com/news/news260424, which links this HF collection and the technical report (arXiv 2606.19348); the release is widely covered and UK AISI&#39;s open-weight cyber evaluation already in the corpus assesses DeepSeek V4-Pro, so notability is independently confirmed. has_safety_evals is false and that is a real finding, not an omission on my part: the card&#39;s sections are Introduction, Model Downloads, Evaluation Results, Chat Template, How to Run Locally, License, Citation, Contact — capability benchmarks only, with no safety, red-teaming or risk-assessment content anywhere in the 13 KB README. Date is the org&#39;s own announcement date; the repos themselves show later mtimes (bases Apr 27, instruct Jun 22) which reflect file updates, not the release.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://api-docs.deepseek.com/news/news260424" rel="noopener nofollow">https://api-docs.deepseek.com/news/news260424</a> · <a href="https://huggingface.co/collections/deepseek-ai/deepseek-v4" rel="noopener nofollow">https://huggingface.co/collections/deepseek-ai/deepseek-v4</a> · <a href="https://arxiv.org/abs/2606.19348" rel="noopener nofollow">https://arxiv.org/abs/2606.19348</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use deepseek-ai/DeepSeek-V4-Pro with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use deepseek-ai/DeepSeek-V4-Pro with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)
+model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;, device_map=&#34;auto&#34;)
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use deepseek-ai/DeepSeek-V4-Pro with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;deepseek-ai/DeepSeek-V4-Pro&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Pro&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-V4-Pro
+-  SGLang  How to use deepseek-ai/DeepSeek-V4-Pro with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;deepseek-ai/DeepSeek-V4-Pro&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Pro&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;deepseek-ai/DeepSeek-V4-Pro&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Pro&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use deepseek-ai/DeepSeek-V4-Pro with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-V4-Pro
+DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence
+Introduction
+We present a preview version of DeepSeek-V4 series, including two strong Mixture-of-Experts (MoE) language models — DeepSeek-V4-Pro with 1.6T parameters (49B activated) and DeepSeek-V4-Flash with 284B parameters (13B activated) — both supporting a context length of one million tokens.
+DeepSeek-V4 series incorporate several key upgrades in architecture and optimization:
+- Hybrid Attention Architecture: We design a hybrid attention mechanism combining Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA) to dramatically improve long-context efficiency. In the 1M-token context setting, DeepSeek-V4-Pro requires only 27% of single-token inference FLOPs and 10% of KV cache compared with DeepSeek-V3.2.
+- Manifold-Constrained Hyper-Connections (mHC): We incorporate mHC to strengthen conventional residual connections, enhancing stability of signal propagation across layers while preserving model expressivity.
+- Muon Optimizer: We employ the Muon optimizer for faster convergence and greater training stability.
+We pre-train both models on more than 32T diverse and high-quality tokens, followed by a comprehensive post-training pipeline. The post-training features a two-stage paradigm: independent cultivation of domain-specific experts (through SFT and RL with GRPO), followed by unified model consolidation via on-policy distillation, integrating distinct proficiencies across diverse domains into a single model.
+DeepSeek-V4-Pro-Max, the maximum reasoning effort mode of DeepSeek-V4-Pro, significantly advances the knowledge capabilities of open-source models, firmly establishing itself as the best open-source model available today. It achieves top-tier performance in coding benchmarks and significantly bridges the gap with leading closed-source models on reasoning and agentic tasks. Meanwhile, DeepSeek-V4-Flash-Max achieves comparable reasoning performance to the Pro version when given a larger thinking budget, though its smaller parameter scale naturally places it slightly behind on pure knowledge tasks and the most complex agentic workflows.
+Model Downloads
+| Model | #Total Params | #Activated Params | Context Length | Precision | Download |
+|---|---|---|---|---|---|
+| DeepSeek-V4-Flash-Base | 284B | 13B | 1M | FP8 Mixed | HuggingFace \| ModelScope |
+| DeepSeek-V4-Flash | 284B | 13B | 1M | FP4 + FP8 Mixed* | HuggingFace \| ModelScope |
+| DeepSeek-V4-Pro-Base | 1.6T | 49B | 1M | FP8 Mixed | HuggingFace \| ModelScope |
+| DeepSeek-V4-Pro | 1.6T | 49B | 1M | FP4 + FP8 Mixed* | HuggingFace \| ModelScope |
+*FP4 + FP8 Mixed: MoE expert parameters use FP4 precision; most other parameters use FP8.
+Evaluation Results
+Base Model
+| Benchmark (Metric) | # Shots | DeepSeek-V3.2-Base | DeepSeek-V4-Flash-Base | DeepSeek-V4-Pro-Base |
+|---|---|---|---|---|
+| Architecture | - | MoE | MoE | MoE |
+| # Activated Params | - | 37B | 13B | 49B |
+| # Total Params | - | 671B | 284B | 1.6T |
+| World Knowledge |  |  |  |  |
+| AGIEval (EM) | 0-shot | 80.1 | 82.6 | 83.1 |
+| MMLU (EM) | 5-shot | 87.8 | 88.7 | 90.1 |
+| MMLU-Redux (EM) | 5-shot | 87.5 | 89.4 | 90.8 |
+| MMLU-Pro (EM) | 5-shot | 65.5 | 68.3 | 73.5 |
+| MMMLU (EM) | 5-shot | 87.9 | 88.8 | 90.3 |
+| C-Eval (EM) | 5-shot | 90.4 | 92.1 | 93.1 |
+| CMMLU (EM) | 5-shot | 88.9 | 90.4 | 90.8 |
+| MultiLoKo (EM) | 5-shot | 38.7 | 42.2 | 51.1 |
+| Simple-QA verified (EM) | 25-shot | 28.3 | 30.1 | 55.2 |
+| SuperGPQA (EM) | 5-shot | 45.0 | 46.5 | 53.9 |
+| FACTS Parametric (EM) | 25-shot | 27.1 | 33.9 | 62.6 |
+| TriviaQA (EM) | 5-shot | 83.3 | 82.8 | 85.6 |
+| Language &amp; Reasoning |  |  |  |  |
+| BBH (EM) | 3-shot | 87.6 | 86.9 | 87.5 |
+| DROP (F1) | 1-shot | 88.2 | 88.6 | 88.7 |
+| HellaSwag (EM) | 0-shot | 86.4 | 85.7 | 88.0 |
+| WinoGrande (EM) | 0-shot | 78.9 | 79.5 | 81.5 |
+| CLUEWSC (EM) | 5-shot | 83.5 | 82.2 | 85.2 |
+| Code &amp; Math |  |  |  |  |
+| BigCodeBench (Pass@1) | 3-shot | 63.9 | 56.8 | 59.2 |
+| HumanEval (Pass@1) | 0-shot | 62.8 | 69.5 | 76.8 |
+| GSM8K (EM) | 8-shot | 91.1 | 90.8 | 92.6 |
+| MATH (EM) | 4-shot | 60.5 | 57.4 | 64.5 |
+| MGSM (EM) | 8-shot | 81.3 | 85.7 | 84.4 |
+| CMath (EM) | 3-shot | 92.6 | 93.6 | 90.9 |
+| Long Context |  |  |  |  |
+| LongBench-V2 (EM) | 1-shot | 40.2 | 44.7 | 51.5 |
+Instruct Model
+DeepSeek-V4-Pro and DeepSeek-V4-Flash both support three reasoning effort modes:
+| Reasoning Mode | Characteristics | Typical Use Cases | Response Format |
+|---|---|---|---|
+| Non-think | Fast, intuitive responses | Routine daily tasks, low-risk decisions | &lt;/think&gt; summary |
+| Think High | Conscious logical analysis, slower but more accurate | Complex problem-solving, planning | &lt;think&gt; thinking&lt;/think&gt; summary |
+| Think Max | Push reasoning to its fullest extent | Exploring the boundary of model reasoning capability | Special system prompt + &lt;think&gt; thinking&lt;/think&gt; summary |
+DeepSeek-V4-Pro-Max vs Frontier Models
+| Benchmark (Metric) | Opus-4.6 Max | GPT-5.4 xHigh | Gemini-3.1-Pro High | K2.6 Thinking | GLM-5.1 Thinking | DS-V4-Pro Max |
+|---|---|---|---|---|---|---|
+| Knowledge &amp; Reasoning |  |  |  |  |  |  |
+| MMLU-Pro (EM) | 89.1 | 87.5 | 91.0 | 87.1 | 86.0 | 87.5 |
+| SimpleQA-Verified (Pass@1) | 46.2 | 45.3 | 75.6 | 36.9 | 38.1 | 57.9 |
+| Chinese-SimpleQA (Pass@1) | 76.4 | 76.8 | 85.9 | 75.9 | 75.0 | 84.4 |
+| GPQA Diamond (Pass@1) | 91.3 | 93.0 | 94.3 | 90.5 | 86.2 | 90.1 |
+| HLE (Pass@1) | 40.0 | 39.8 | 44.4 | 36.4 | 34.7 | 37.7 |
+| LiveCodeBench (Pass@1) | 88.8 | - | 91.7 | 89.6 | - | 93.5 |
+| Codeforces (Rating) | - | 3168 | 3052 | - | - | 3206 |
+| HMMT 2026 Feb (Pass@1) | 96.2 | 97.7 | 94.7 | 92.7 | 89.4 | 95.2 |
+| IMOAnswerBench (Pass@1) | 75.3 | 91.4 | 81.0 | 86.0 | 83.8 | 89.8 |
+| Apex (Pass@1) | 34.5 | 54.1 | 60.9 | 24.0 | 11.5 | 38.3 |
+| Apex Shortlist (Pass@1) | 85.9 | 78.1 | 89.1 | 75.5 | 72.4 | 90.2 |
+| Long Context |  |  |  |  |  |  |
+| MRCR 1M (MMR) | 92.9 | - | 76.3 | - | - | 83.5 |
+| CorpusQA 1M (ACC) | 71.7 | - | 53.8 | - | - | 62.0 |
+| Agentic |  |  |  |  |  |  |
+| Terminal Bench 2.0 (Acc) | 65.4 | 75.1 | 68.5 | 66.7 | 63.5 | 67.9 |
+| SWE Verified (Resolved) | 80.8 | - | 80.6 | 80.2 | - | 80.6 |
+| SWE Pro (Resolved) | 57.3 | 57.7 | 54.2 | 58.6 | 58.4 | 55.4 |
+| SWE Multilingual (Resolved) | 77.5 | - | - | 76.7 | 73.3 | 76.2 |
+| BrowseComp (Pass@1) | 83.7 | 82.7 | 85.9 | 83.2 | 79.3 | 83.4 |
+| HLE w/ tools (Pass@1) | 53.1 | 52.0 | 51.6 | 54.0 | 50.4 | 48.2 |
+| GDPval-AA (Elo) | 1619 | 1674 | 1314 | 1482 | 1535 | 1554 |
+| MCPAtlas Public (Pass@1) | 73.8 | 67.2 | 69.2 | 66.6 | 71.8 | 73.6 |
+| Toolathlon (Pass@1) | 47.2 | 54.6 | 48.8 | 50.0 | 40.7 | 51.8 |
+Comparison across Modes
+| Benchmark (Metric) | V4-Flash Non-Think | V4-Flash High | V4-Flash Max | V4-Pro Non-Think | V4-Pro High | V4-Pro Max |
+|---|---|---|---|---|---|---|
+| Knowledge &amp; Reasoning |  |  |  |  |  |  |
+| MMLU-Pro (EM) | 83.0 | 86.4 | 86.2 | 82.9 | 87.1 | 87.5 |
+| SimpleQA-Verified (Pass@1) | 23.1 | 28.9 | 34.1 | 45.0 | 46.2 | 57.9 |
+| Chinese-SimpleQA (Pass@1) | 71.5 | 73.2 | 78.9 | 75.8 | 77.7 | 84.4 |
+| GPQA Diamond (Pass@1) | 71.2 | 87.4 | 88.1 | 72.9 | 89.1 | 90.1 |
+| HLE (Pass@1) | 8.1 | 29.4 | 34.8 | 7.7 | 34.5 | 37.7 |
+| LiveCodeBench (Pass@1) | 55.2 | 88.4 | 91.6 | 56.8 | 89.8 | 93.5 |
+| Codeforces (Rating) | - | 2816 | 3052 | - | 2919 | 3206 |
+| HMMT 2026 Feb (Pass@1) | 40.8 | 91.9 | 94.8 | 31.7 | 94.0 | 95.2 |
+| IMOAnswerBench (Pass@1) | 41.9 | 85.1 | 88.4 | 35.3 | 88.0 | 89.8 |
+| Apex (Pass@1) | 1.0 | 19.1 | 33.0 | 0.4 | 27.4 | 38.3 |
+| Apex Shortlist (Pass@1) | 9.3 | 72.1 | 85.7 | 9.2 | 85.5 | 90.2 |
+| Long Context |  |  |  |  |  |  |
+| MRCR 1M (MMR) | 37.5 | 76.9 | 78.7 | 44.7 | 83.3 | 83.5 |
+| CorpusQA 1M (ACC) | 15.5 | 59.3 | 60.5 | 35.6 | 56.5 | 62.0 |
+| Agentic |  |  |  |  |  |  |
+| Terminal Bench 2.0 (Acc) | 49.1 | 56.6 | 56.9 | 59.1 | 63.3 | 67.9 |
+| SWE Verified (Resolved) | 73.7 | 78.6 | 79.0 | 73.6 | 79.4 | 80.6 |
+| SWE Pro (Resolved) | 49.1 | 52.3 | 52.6 | 52.1 | 54.4 | 55.4 |
+| SWE Multilingual (Resolved) | 69.7 | 70.2 | 73.3 | 69.8 | 74.1 | 76.2 |
+| BrowseComp (Pass@1) | - | 53.5 | 73.2 | - | 80.4 | 83.4 |
+| HLE w/ tools (Pass@1) | - | 40.3 | 45.1 | - | 44.7 | 48.2 |
+| MCPAtlas (Pass@1) | 64.0 | 67.4 | 69.0 | 69.4 | 74.2 | 73.6 |
+| GDPval-AA (Elo) | - | - | 1395 | - | - | 1554 |
+| Toolathlon (Pass@1) | 40.7 | 43.5 | 47.8 | 46.3 | 49.0 | 51.8 |
+Chat Template
+This release does not include a Jinja-format chat template. Instead, we provide a dedicated encoding folder with Python scripts and test cases demonstrating how to encode messages in OpenAI-compatible format into input strings for the model, and how to parse the model&#39;s text output. Please refer to the encoding folder for full documentation.
+A brief example:
+from encoding_dsv4 import encode_messages, parse_message_from_completion_text
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hello&#34;},
+    {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;Hello! I am DeepSeek.&#34;, &#34;reasoning_content&#34;: &#34;thinking...&#34;},
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;1+1=?&#34;}
+]
+# messages -&gt; string
+prompt = encode_messages(messages, thinking_mode=&#34;thinking&#34;)
+# string -&gt; tokens
+import transformers
+tokenizer = transformers.AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)
+tokens = tokenizer.encode(prompt)
+How to Run Locally
+Please refer to the inference folder for detailed instructions on running DeepSeek-V4 locally, including model weight conversion and interactive chat demos.
+For local deployment, we recommend setting the sampling parameters to temperature = 1.0, top_p = 1.0. For the Think Max reasoning mode, we recommend setting the context window to at least 384K tokens.
+License
+This repository and the model weights are licensed under the MIT License.
+Citation
+@misc{deepseekai2026deepseekv4,
+      title={DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence},
+      author={DeepSeek-AI},
+      year={2026},
+}
+Contact
+If you have any questions, please raise an issue or contact us at service@deepseek.com.
+- Downloads last month
+- 1,483,187
+Model tree for deepseek-ai/DeepSeek-V4-Pro
+Spaces using deepseek-ai/DeepSeek-V4-Pro 100
+Collection including deepseek-ai/DeepSeek-V4-Pro
+Paper for deepseek-ai/DeepSeek-V4-Pro
+Evaluation results
+- openai/gsm8k · Gsm8k View evaluation results    leaderboard   92.6
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results leaderboard
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   55.4
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   90.1
+- IntelligenceLab/Long-Horizon-Terminal-Bench · Lhtb View evaluation results  source    30.7 *
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   87.5
+- actava/chi-bench leaderboard</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

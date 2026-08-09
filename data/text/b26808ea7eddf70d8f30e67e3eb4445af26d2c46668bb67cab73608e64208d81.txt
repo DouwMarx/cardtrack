@@ -1,0 +1,33 @@
+Consumers are increasingly turning to Large language models (LLMs) for advice on consequential life decisions, from health and relationships to career choices and wellbeing. They are also common tools for information-seeking, on political topics, for example.
+However, chatbots sometimes say what they infer the user wants to hear. This behaviour, known as sycophancy, manifests as models favouring validation, flattery or alignment with assumed user preferences and beliefs over balanced and critical engagement. Scientific research has identified sycophancy as a safety and alignment risk – emphasising elevated risks in advisory contexts where users may be vulnerable or where the stakes are high. Research has explored how certain training methods and data can lead language models to become sycophantic.
+However, less attention has been paid to the other side of the interaction: does the way a user phrases their input influence how sycophantic the model's response will be? In our new paper, we find that several factors including input type, perspective, and level of professed certainty have a measurable impact on levels of model sycophancy. We then propose a straightforward strategy that may help reduce sycophancy in language model outputs.
+Does input framing impact sycophancy?
+Previous research has found that sycophancy in model responses occurs frequently and that it can be problematic, but we've lacked a systematic understanding of the conversational context in which it is most likely to occur. Observational studies have found correlations between sycophantic responses and conversational features, such as framing inputs from a first- or third-person perspective. However, inputs on the same topic often differ not only in framing, but also in structure and expressed epistemic certainty.
+To isolate the effect of input framing, we designed a controlled experimental study. We created a set of yes/no questions across four domains (hobbies, social relationships, mental health, medical topics) and then equivalent statements that were not framed as questions. Specifically, we generated 10 variants of non-questions by varying epistemic certainty (statement, belief, conviction), perspective (I- vs user-perspective), and affirmation vs negation (Figure 1).
+This design let us independently assess the contribution of three factors to sycophancy:
+- Input type: question vs. non-question
+- Epistemic certainty: plain statement vs. belief vs. conviction
+- Perspective: first-person ("I believe…") vs. third-person ("the user believes…")
+We evaluated three LLMs (GPT-4o, GPT-5, and Claude Sonnet 4.5) across prompt variants, scoring responses for sycophancy using a detailed rubric assessed by two independent LLM-as-a-judge graders.
+What we found
+Our results show that several factors can affect sycophancy:
+Input type: Across all models and graders, responses to questions showed near-zero sycophancy, while non-question inputs expressing the same underlying claim produced markedly higher levels. The difference amounted to a 24-percentage point gap on the sycophancy grader scale.
+Epistemic certainty: The stronger a user’s professed certainty, the more sycophantic models became. Plain statements produced the least sycophancy among non-questions, followed by beliefs ("I believe…"), with convictions ("I am convinced…") eliciting the most.
+Perspective. First-person framing ("I believe…") triggered more sycophancy than equivalent third-person framing ("the user believes…").
+Topic: User inputs about hobbies and social relationships elicited higher sycophancy than inputs about medical or mental health topics. This pattern suggests that models may have stronger safeguards against sycophantic behaviour in higher-stakes domains — though even in those domains, the framing effects persisted (Figure 3, left).
+Model: We also found differences between models: GPT-4o was notably more sycophantic than GPT-5 and Claude Sonnet 4.5, suggesting that more recently released models may have benefited from targeted training against sycophantic tendencies (Figure 3, middle and right).
+Reducing sycophancy
+Having identified factors that drive sycophancy, we asked whether these insights could be turned into a straightforward practical fix. If questions produce less sycophancy, what happens if we get the model to convert non-questions into questions before responding?
+We tested two versions of this "question reframing" mitigation:
+- 2-step reframing: A separate "framer" model converts the non-question into a question, which is then passed to a "responding" model.
+- 1-step reframing: The responding model itself is instructed to rephrase the input as a question before answering, all within a single prompt.
+For comparison, we also tested a baseline approach commonly used in the literature: simply instructing the model "not to be sycophantic".
+Both reframing strategies produced reductions in sycophancy and crucially, both substantially outperformed the explicit "don't be sycophantic" instruction. This is a notable finding: a simple, interpretable input transformation proved more effective than a direct behavioural constraint (Figure 4).
+Looking forward
+Our findings demonstrate that user inputs can change how sycophantic a model's responses are. Models appear to infer how committed a user is to their position, and the more committed the user seems, the more the model agrees with them.
+This has immediate practical implications:
+- For model developers: Adding a simple reframing instruction to the system prompt, e.g., "rephrase the user's input as a question before responding", could meaningfully reduce sycophantic behaviour, more effectively than telling the model not to be sycophantic.
+- For users: Being mindful that phrasing inputs matters. Asking a question ("Is X true?") rather than stating a belief ("I believe X is true") or conviction can lead to more balanced, critically engaged model responses.
+Our study focuses on controlled, single-turn interactions with synthetic prompts in contexts that lack a clear, factually correct answer. Real-world conversations are messier, they unfold over multiple turns, involve diverse user populations, and span contexts where some degree of validation or emotional support may be entirely appropriate.
+Future work could examine whether these framing effects generalise to multi-turn dialogue, prompts that have a factually correct answer, human-written prompts, and deployed systems, and consider how reducing sycophancy interacts with other desirable properties like helpfulness, empathy, and user satisfaction.
+For a more detailed discussion of these results, see our full paper.

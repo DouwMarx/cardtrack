@@ -1,0 +1,1 @@
+{"run_id": "backfill-drain-1", "checked": 40, "ok": 40, "not_found": 0, "blocked": 0, "errors": 0, "moved": 0, "marked_dead": 0, "fingerprint_checked": 6, "new_versions": 0, "candidates": 1728, "budget_exhausted": false, "candidates_new": 38}

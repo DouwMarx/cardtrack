@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Red-teaming auto mode: lessons from our first external monitor campaign with Anthropic — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Red-teaming auto mode: lessons from our first external monitor campaign with Anthropic</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">apollo_research</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Anthropic auto mode</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-13</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.apolloresearch.ai/monitoring/pilot-automode-campaign" rel="noopener nofollow">https://www.apolloresearch.ai/monitoring/pilot-automode-campaign</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T22:57:52Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-anthropic-auto-mode-independent-eval&amp;body=Document%3A%20apollo-research-anthropic-auto-mode-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/monitoring/pilot-automode-campaign%0AFingerprint%3A%206e8206ec9928b521cb3343ab87e10ea089a8488f440d8768ef3655ae5f19ea32%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T22:57:52Z</td>
+          <td>text/html</td>
+          <td>128,417</td>
+          <td><code title="6e8206ec9928b521cb3343ab87e10ea089a8488f440d8768ef3655ae5f19ea32">6e8206ec9928b521</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T22:57:52Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-8 · agent · lead: agent_search</span>
+          <div class="just">Apollo Research report (published 13 July 2026) on its first external red-teaming campaign against a deployed safety monitor: Anthropic&#39;s &#39;auto mode&#39;, the permission mode that decides whether an autonomous coding agent&#39;s next action is allowed or blocked. Three red-team methods were used - injecting failure modes at graded severity into real coding trajectories, static monitoring benchmarks including MonitoringBench, and dynamic off-policy control red-teaming - and each identified weakness was paired with a recommendation that Anthropic implemented. The findings are qualitative rather than numeric: timing of intervention, what constitutes informed user authorisation, trust boundaries for moving information, and how much context a monitor should see before prompt-injection risk outweighs the benefit. Included on the precedent this corpus already set by cataloguing METR&#39;s red-teaming of Anthropic&#39;s internal agent monitoring (2026-03-26) and AISI&#39;s control red team (2026-07-23): an evaluation of a named, developer-specific safety monitor counts as being about a specific eval. Fetched and read.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.apolloresearch.ai/monitoring" rel="noopener nofollow">https://www.apolloresearch.ai/monitoring</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.apolloresearch.ai/monitoring/pilot-automode-campaign" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Research
+1 min read
+Red-teaming auto mode: lessons from our first external monitor campaign with Anthropic
+Table of Contents
+Evaluating anti-scheming training
+At Apollo Research, we&#39;ve spent the last few years running pre-deployment evaluations of frontier models. We&#39;re now building on this experience to red-team black-box monitors of autonomous coding agents. As a first step, we ran a pilot red-teaming campaign against Anthropic’s auto mode, the new permission mode that decides whether an agent&#39;s next action should be allowed or blocked.
+The goal of a pilot was to build out the monitor red-teaming methodology and establish practices. We performed 3 types of red-teaming:
+- Failure modes at different severity levels are injected into real trajectories,
+- Static monitoring benchmarks such as MonitoringBench,
+- Dynamic off-policy control red-teaming.
+By working through real coding sessions with injected attacks across a range of failure modes, we identified areas for improvement and paired each with actionable recommendations, which Anthropic implemented.
+The red-teaming exercise surfaced important considerations for monitor developers:
+- Time of intervention. When exactly should a blocking monitor step in: at the moment a potentially risky change is introduced, or at the point when it&#39;s executed or published? Monitors need to trade off overblocking too early before real harm happens versus focusing on only a handful of execution steps that reduce blocking opportunities for the monitor.
+- User authorisation. What does it actually mean for a user to authorise an action? The monitors need to get good at obtaining informed consent without interfering with the workflow, where users might run hours- and days-long tasks.
+- Trust boundary. Where is it safe to move information, and which boundaries should never be crossed? Monitors need to get good at distinguishing between public vs. private destinations, development vs. deployment, and discerning between secret, sensitive, confidential and public data.
+- Monitor visibility. What information should the monitor receive? On the one hand, monitors need to get important details and full context to make the decision, on the other, too much information risks prompt injection, higher cost, latency and context length degradation.
+What&#39;s next
+Apollo Research will build on their pre-deployment testing experience and start running monitor red-teaming campaigns, beginning with frontier AI labs. Because monitor deployments are decoupled from model releases, we expect these campaigns to run asynchronously and periodically. They would be triggered by new monitor versions shipping or by rising frontier-model risk, for example models taking irreversible dangerous actions through overeagerness or mistakes. Lessons from the campaigns will further inform our blue-teaming research and monitoring for Watcher to ensure the frontier defences are ready as capabilities and agentic autonomy increase. Over time, monitor red-teaming can provide stronger security guarantees through independent testing, foster a healthier industry-wide safety culture, and enable methodology sharing between frontier labs and AI safety research organisations.
+If you are a monitor developer interested in red-teaming campaigns for your monitors, please reach out.
+If you&#39;d like to work on this, the monitoring research team is hiring AI Security and Control Engineers and Control Research Scientists.
+Share this article
+oUR FINDINGS
+More papers
+July 23, 2026
+What makes a good monitoring prompt?
+We want to understand which principles work well for high-quality monitoring prompts. We use a 1-10 severity scale and full-trajectory scoring, as opposed to real-time binary prompts.
+Product
+February 17, 2026
+Apollo x Tailscale: Introducing “Watcher” for AI Oversight &amp; Control
+Watcher is an oversight layer for AI agents. It detects real-world safety and security failures before they become liabilities, and flags those failures to you.
+Product
+July 7, 2026
+Evaluating LLM Calibration for Coding-Agent Monitoring
+We evaluate 16 LLMs scoring coding-agent trajectories on a 1-10 severity scale across three datasets and five failure modes to assess their capabilities and calibration as coding agent monitors.
+Research
+January 20, 2026
+Apollo’s product vision
+We’re building tools that make it easier to secure frontier AI agents.
+Product</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

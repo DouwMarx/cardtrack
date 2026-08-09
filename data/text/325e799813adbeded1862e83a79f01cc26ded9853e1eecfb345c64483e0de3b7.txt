@@ -1,0 +1,180 @@
+Instructions to use nvidia/Nemotron-Labs-Audex-30B-A3B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use nvidia/Nemotron-Labs-Audex-30B-A3B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("text-generation", model="nvidia/Nemotron-Labs-Audex-30B-A3B")# Load model directly
+from transformers import AutoModel
+model = AutoModel.from_pretrained("nvidia/Nemotron-Labs-Audex-30B-A3B", device_map="auto")
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use nvidia/Nemotron-Labs-Audex-30B-A3B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "nvidia/Nemotron-Labs-Audex-30B-A3B"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "nvidia/Nemotron-Labs-Audex-30B-A3B",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'Use Dockerdocker model run hf.co/nvidia/Nemotron-Labs-Audex-30B-A3B
+-  SGLang  How to use nvidia/Nemotron-Labs-Audex-30B-A3B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "nvidia/Nemotron-Labs-Audex-30B-A3B" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "nvidia/Nemotron-Labs-Audex-30B-A3B",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "nvidia/Nemotron-Labs-Audex-30B-A3B" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "nvidia/Nemotron-Labs-Audex-30B-A3B",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'
+-  Docker Model Runner  How to use nvidia/Nemotron-Labs-Audex-30B-A3B with Docker Model Runner: docker model run hf.co/nvidia/Nemotron-Labs-Audex-30B-A3B
+Nemotron-Labs-Audex-30B-A3B
+Introduction
+We're excited to introduce Nemotron-Labs-Audex-30B-A3B, a unified audio-text LLM built on Nemotron-Cascade-2-30B-A3B, a strong text-only MoE LLM with 30B MoE model with 3B activated parameters. Audex-30B-A3B extends the vocabulary for discrete audio tokens used for speech and general audio outputs, as well as an audio encoder for speech and general audio inputs. Audex-30B-A3B delivers strong abilities on audio tasks (audio understanding, speech recognition and translation, text-to-speech, audio generation, and speech-to-speech generation) while preserving very compelling reasoning, alignment, knowledge, long-context, and agentic capabilities of its text-only LLM backbone with marginal or no regression. Audex-30B-A3B operates in both thinking and instruct (non-thinking) modes.
+Model Architecture
+Templates
+Multi-Stage-SFT and Cascaded-RL Pipelines
+Quick Start
+- Audex-30B-A3B follows the ChatML template and supports both thinking and instruct (non-thinking) modes. Reasoning content is enclosed within <think> and</think> tags. To activate the instruct (non-thinking) mode, we prepend<think></think> to the beginning of the assistant’s response.
+- Audex-30B-A3B supports up to a 1M-token context length.
+- Audex-30B-A3B follows Nemotron-Cascade-2 on text evaluation.
+- Audex-30B-A3B has different recommended inference setups per audio-related task as described below.
+Environment
+We use vLLM 0.20.0 container image: vllm/vllm-openai:v0.20.0-cu129
+- vLLM inference — text-only reasoning, text-to-speech, text-to-audio, and audio understanding / speech recognition / speech translation: runs on vLLM 0.20.0.
+- Hugging Face / transformers inference — requires transformers >= 4.53.0 (tested with 4.53.3) and also works with transformers >=
+5.0. This additionally needs mamba-ssm andcausal-conv1d . Build against your CUDA toolchain:
+python3 -m pip install transformers==5.14.0 safetensors==0.8.0
+python3 -m pip install --no-build-isolation causal-conv1d==1.6.2.post1 mamba-ssm==2.3.1
+Audio extras: vllm/vllm-openai:v0.20.0 image does not include audio codecs. This command installs audio-related packages: python3 -m pip install "vllm[audio]".
+Audio QA Inference
+Audio QA includes audio understanding, speech recognition, and speech translation (see templates in Introduction).
+- vLLM (recommended) — offline LLM.generate and an OpenAI-compatibleaudio_url server.
+- Hugging Face / transformers — requires transformers >= 4.53.0 (we tested with 4.53.3), and also works with transformers >= 5.
+Inputs
+To prepare inputs, create a JSON file in the following format with the <sound>\n placeholder:
+[
+  {
+    "id": "sample_0",
+    "sound": "/path/to/audio_0.wav",
+    "conversations": [
+      {"from": "human", "value": "<sound>\nDescribe the audio in detail."},
+      {"from": "gpt", "value": "N/A"}
+    ]
+  },
+  {
+    "id": "sample_1",
+    "sound": "/path/to/audio_1.wav",
+    "conversations": [
+      {"from": "human", "value": "<sound>\n{prompt}"},
+      {"from": "gpt", "value": "N/A"}
+    ]
+  },
+  ...
+]
+Inference recipes
+- For audio understanding, we use top_p=0.9 and temperature=0.7.
+- For speech recognition and translation, we use greedy sampling.
+vLLM (recommended)
+To install environments:
+python3 -m pip install "vllm[audio]"   # audio input decoding; skip if your image already bundles it (see Environment)
+pip install -e inference_scripts_vllm/audioqa_scripts --no-deps --no-build-isolation
+- Offline (JSON in → JSONL out):
+python inference_scripts_vllm/audioqa_scripts/run_audioqa_vllm.py \
+  --model-path "$(pwd)/checkpoint_folder_full" \
+  --input-json ./inputs.json \
+  --output-jsonl ./audioqa_outputs/results.jsonl \
+  --tensor-parallel-size 8
+- OpenAI-compatible server + client:
+bash inference_scripts_vllm/audioqa_scripts/serve_audioqa_vllm.sh "$(pwd)/checkpoint_folder_full" 8000
+python inference_scripts_vllm/audioqa_scripts/client_audioqa.py --audio /path/to/audio.wav --prompt "Describe this audio."
+Hugging Face / transformers
+- Example inference script: bash inference_scripts_hf/inference_example.sh .
+- Task instruction examples: audio understanding — a question about the audio; speech recognition — Transcribe the speech in the input audio.\n<sound> ; speech translation — a translation instruction such asTranslate the speech in the input audio into English.\n<sound> .
+Audio Generation Inference
+Audio generation includes text-to-speech and text-to-audio generation.
+First, prepare vLLM inference using bash model_conversion_scripts/prepare_audiogen_vllm_checkpoint.sh (which only creates symlinks of safetensors under checkpoint_folder_audiogen).
+Text-to-audio (TTA)
+Download XCodec1 (hf-audio/xcodec-hubert-general-balanced) via
+hf download hf-audio/xcodec-hubert-general-balanced --local-dir /path/to/xcodec1
+Prepare a folder /path/to/caption_txt_dir/ with all .txt files where each contains one caption. Run cd inference_scripts_vllm/audiogen_scripts/ and
+set --tensor-parallel-size to the number of GPUs. Run
+XCODEC1_PATH=/path/to/xcodec1 python3 run_audio_gen_vllm_rvq_logit_mask.py \
+        --task tta \
+        --model-path $(pwd)/../../checkpoint_folder_audiogen/ \
+        --dataset-path /path/to/caption_txt_dir/ \
+        --output-dir ../../tta_outputs/dataset_name/ \
+        --tensor-parallel-size 8 \
+        --temperature 1.0 \
+        --top-k 80 \
+        --max-tokens 2048 \
+        --cfg-scale 3.0 \
+        --cfg-pairs-per-batch 2
+Finally (optional), apply the 48 kHz enhancement VAE to the generated waveforms; see enhancement_VAE/README.md.
+Text-to-speech (TTS)
+we recommend using the standalone Audex causal speech decoder in audex_causal_speech_decoder (default).
+./run_tts_vllm.sh --transcription "The weather is so good, and I want to enjoy the beautiful morning in the park." \
+    --output-dir ./tts_outputs --utt-id the_weather_is_so_good
+Alternatively, users can download the original XCodec2 via this repo and decode the tokens after full generation; this has better quality but is not streaming.
+Text-Only Reasoning
+The text reasoning follows Nemotron-Cascade-2-30B-A3B.
+- To create the checkpoint that completely matches their setup, run python model_conversion_scripts/convert_full_HF_to_textonly_HF.py to remove the audio-related vocabularies.
+- Then, the text-only inference completely follows Nemotron-Cascade-2-30B-A3B. See a simple reasoning example with cd inference_scripts_vllm/textonly_scripts/; python run_text_vllm_example.py --model-path $(pwd)/../../checkpoint_folder_textonly .
+- Note: you could also avoid model conversion by using sampling_params = SamplingParams(allowed_token_ids=list(range(131072))) in vLLM inference to mask the audio tokens, although we did not thoroughly test this approach.
+Demo: speech-to-speech interaction with text reasoning
+See inference_scripts_vllm/unified_s2s_scripts/README.md.
+Reproducibility
+The benchmark numbers below use the following setups:
+- Text-to-speech (TTS): the original non-streaming XCodec2 decoder.
+- Text-to-audio (TTA): XCodec1 followed by the enhancement VAE.
+- Text: same as Nemotron-Cascade-2.
+- Audio understanding: transformers 4.53.3 and Megatron-LM's native inference.
+Detailed Benchmark Results
+Text Results
+Text-To-Speech Results
+Text-To-Audio Results
+Speech Recognition and Translation Results
+Audio Understanding Results
+Speech-To-Speech Results
+Release Date
+June 8, 2026
+License
+Your use of this model is governed by the NVIDIA Oneway Noncommercial License
+Citation
+@article{Nemotron-Labs-Audex,
+  title={Unified Audio Intelligence Without Regressing on Text Intelligence},
+  author={Kong, Zhifeng and Lee, Sang-gil and Kim, Jaehyeon and Wang, Boxin and Liu, Zihan and Kim, Sungwon and Chen, Yang and Goel, Arushi and Roy, Rajarshi and Dai, Wenliang and Yang, Zhuolin and Chen, Yangyi and Jiang, Dongfu and Ghosh, Sreyan and Rintamaki, Tuomas and Tao, Andrew and Raiman, Jonathan and Shoeybi, Mohammad and Catanzaro, Bryan and Ping, Wei},
+  year={2026}
+}
+- Downloads last month
+- 2,455

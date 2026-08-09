@@ -1,0 +1,1570 @@
+2026-5-21
+
+Nemotron-Labs-Diffusion: A Tri-Mode Language
+Model Unifying Autoregressive, Diffusion, and
+Self-Speculation Decoding
+Yonggan Fu, Lexington Whalen1† , Abhinav Garg, Chengyue Wu2† , Maksim Khadkevich, Nicolai
+Oswald, Enze Xie, Daniel Egert, Sharath Turuvekere Sreenivas, Shizhe Diao, Chenhan Yu, Ye Yu,
+Weijia Chen, Sajad Norouzi, Jingyu Liu3† , Shiyi Lan, Ligeng Zhu, Jin Wang2† , Jindong Jiang,
+Morteza Mardani, Mehran Maghoumi, Song Han4 , Ante Jukić, Nima Tajbakhsh, Jan Kautz,
+Pavlo Molchanov
+
+We introduce Nemotron-Labs-Diffusion, a tri-mode language model (LM) that unifies AR, diffusion, and
+self-speculation decoding within a single architecture. Trained with a joint AR-diffusion objective, Nemotron-
+Labs-Diffusion can switch modes to sustain high throughput across deployment settings and concurrency
+levels. Our study shows that (1) AR and diffusion objectives are complementary: diffusion improves lookahead
+planning, while AR provides left-to-right linguistic priors. (2) In self-speculation mode, diffusion drafts while
+AR verifies, outperforming multi-token prediction (MTP) methods in both acceptance rate and real-device
+efficiency. (3) A speed-of-light analysis further demonstrates diffusion’s long-term potential, with up to
+76.5% more tokens per forward pass than self-speculation under an optimal sampler. Scaling to 3B, 8B, and
+14B parameters, our Nemotron-Labs-Diffusion family, including base, instruct, and vision-language models,
+consistently outperforms state-of-the-art open-source AR and diffusion LMs in both accuracy and speed. For
+example, Nemotron-Labs-Diffusion-8B decodes 6× more tokens per forward than Qwen3-8B with comparable
+accuracy, translating to 4× higher throughput on SPEED-Bench with SGLang on a GB200 GPU.
+Models on Hugging Face: Nemotron-Labs-Diffusion Model Family
+
+                                                                                      NLD-8B (AR)         NLD-8B (Diff.)                              upper right
+                                                                                                                                                       is better
+                                                                                                                            NLD-8B
+                                                                                     Qwen3-8B                              (Quad. SS)
+
+                                                              Average Accuracy (%)
+                                                                                                                                         NLD-8B
+        AR Mode                           Diffusion Mode                                        Ministral3-8B                           (Linear SS)
+           Best for                 Highest Speed- of-Light                                      Qwen2.5-7B                                                                @ NVIDIA GB200
+      High- Concurrency                  Potential for
+        Cloud Serving      Tri-Mode    Parallel Decoding                                           Qwen3-4B
+                          In One Model
+                                                                                      SDAR-8B               Qwen3-1.7B
+                          DRAFT         VERIFY                                                                                                                                         3.3x
+                                                                                                                                                                                     speedup
+                                                                                        Dream-7B
+
+               Self-Speculation Mode                                                    LLaDA-8B                               @ NVIDIA H100                         1.4x speedup
+                   Best for Low- Concurrency
+                     Personal AI Inference
+                                                                                          Throughput (tok/sec) with one stream
+                                  (a)                                                                     (b)                                                       (c)
+
+Figure 1 | (a) An illustration of three modes in one model. (b) Accuracy–throughput trade-off measured
+on general benchmarks at batch size 1 on an NVIDIA H100 using PyTorch. NLD denotes our model and
+Linear/Quad SS denotes linear/quadratic self-speculation. ⋆ indicates the diffusion mode with different
+denoising block sizes (8, 16, 32), where smaller symbols correspond to smaller block sizes. (c) Trade-off
+between system vs. per-user throughput of the AR and Linear SS modes of our 8B model and Qwen3-8B
+Eagle3, measured on SPEED-Bench [1] at different concurrency 𝑐 on an NVIDIA GB200 GPU using SGLang.
+
+1. Introduction                                                                                                   theless, diffusion LMs often lag behind AR models in
+                                                                                                                  accuracy and learning efficiency, requiring substan-
+The strictly sequential, token-by-token decoding pro-                                                             tially more data to reach comparable performance [5].
+cess of autoregressive (AR) language models (LMs)                                                                 A key reason is that diffusion training treats all token
+fundamentally limits their inference parallelism, re-                                                             permutations uniformly [6], rather than leveraging
+sulting in resource under-utilization and low through-                                                            the strong left-to-right prior inherent in natural lan-
+put, especially in low-batch-size deployment scenarios.                                                           guage. Moreover, existing diffusion LMs still lack
+Diffusion LMs [2, 3, 4] have recently emerged as a                                                                clear advantages over multi-token prediction (MTP)
+promising alternative, enabling parallel generation by                                                            methods and often fall behind them in practical effi-
+decoding multiple tokens per forward pass. Never-                                                                 ciency–accuracy trade-offs.
+
+Additional affiliations: 1 Georgia Tech, 2 HKU, 3 University of Chicago, 4 MIT. † Work done during internships at NVIDIA.
+© 2026 NVIDIA. All rights reserved.
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+                   Nemotron-Labs-Diffusion
+
+                   (a)                                    (b)                                    (c)
+
+Figure 2 | Benchmarking our Nemotron-Labs-Diffusion-8B (Instruct) against SOTA AR and diffusion instruct
+LMs across different benchmarks. (a) shows the average accuracy across all 10 tasks (HumanEval, MBPP,
+LiveCodeBench-CPP, GSM8K, Math500, AIME24, AIME25, GPQA, IFEval, MMLU) and the tokens per
+forward (TPF) of different models, while (b) and (c) show the average accuracy across coding (HumanEval,
+MBPP, LiveCodeBench-CPP) and math (GSM8K, Math500, AIME24, AIME25) domains, respectively.
+  These limitations raise three critical questions for          (3) self-speculation, where diffusion drafts candidate
+understanding the role of diffusion LMs:                        tokens and AR predictions verify them.
+  Q1: Should diffusion LMs compete with AR LMs,                    We leverage this training scheme to deliver the
+or can the two paradigms be harmonized?                         Nemotron-Labs-Diffusion model family, including
+                                                                base, instruct, and vision-language variants at
+   Q2: Can diffusion LMs provide a stronger acceler-
+                                                                3B/8B/14B scales. As shown in Fig. 2, our mod-
+ation mechanism than MTP methods?
+                                                                els outperform state-of-the-art (SOTA) open-source
+  Q3: Does diffusion decoding have enough long-term             AR / diffusion LMs in both accuracy and inference
+potential to justify deeper exploration?                        speed across a wide range of benchmarks. For ex-
+                                                                ample, our Nemotron-Labs-Diffusion-8B delivers 6×
+   Answering these questions is critical for judging
+                                                                tokens per forward over Qwen3-8B while maintaining
+the true promise of diffusion LMs and guiding their
+                                                                comparable or better accuracy on general benchmarks,
+correct and wide adoption. This work studies these
+                                                                translating to 4× throughput on SPEED-Bench [1]
+questions by unifying AR and diffusion modeling
+                                                                measured with SGLang on an NVIDIA GB200 GPU.
+within a single model that preserves the strengths
+of AR LMs while exploring the benefits and potential               The results and analysis of our tri-mode LMs offer
+of parallel decoding. The motivation is that AR and             rich insights to answer the above questions. First,
+diffusion LMs might not be competing paradigms in               AR and diffusion LMs can be harmonized rather than
+which one should replace the other; instead, they can           treated as competing alternatives and unifying AR
+be mutually beneficial and unified within a single              and diffusion objectives is a promising pathway: AR
+model by switching between causal and bidirectional             contributes strong next-token modeling and linguis-
+attention. Specifically, AR models inherently learn to          tic priors, while diffusion unlocks parallel generation
+plan ahead for future tokens [7], and diffusion training        without sacrificing benchmark performance. Beyond
+can further enhance this capability. Conversely, pre-           accuracy, the joint objective naturally enables self-
+serving AR objectives during training injects strong            speculation, allowing tri-mode LMs to adapt to dif-
+left-to-right linguistic priors into diffusion modeling.        ferent deployment regimes with different levels of
+                                                                concurrency: self-speculation is especially effective
+   Based on this insight, we introduce Nemotron-Labs-
+                                                                in low-concurrency settings, as shown in Fig. 1 (b),
+Diffusion, a tri-mode LM that jointly optimizes diffu-
+                                                                while AR remains well suited for compute-bound high-
+sion and AR losses under a unified training framework.
+                                                                concurrency scenarios. As such, tri-mode models can
+Our training scheme employs a global loss-averaging
+                                                                serve as drop-in replacements for conventional AR
+strategy that treats all tokens across batches equally
+                                                                LMs, requiring no architectural or pipeline changes
+to stabilize optimization. We further adopt a two-
+                                                                while offering consistently high throughput across
+stage training procedure: we first strengthen AR
+                                                                deployment scenarios.
+capabilities to establish strong left-to-right linguistic
+priors, and then enable joint diffusion and AR train-              Our speed-of-light (SOL) analysis, which estimates
+ing to fully integrate both objectives. The resulting           the upper bound of diffusion decoding when equipped
+models support tri-mode decoding as shown in Fig. 1             with an optimal sampler, shows that diffusion decod-
+(a): (1) AR decoding, (2) parallel diffusion-based de-          ing has strong potential and substantial headroom be-
+coding, which can be paired with a sampler optimized            yond current parallel decoding methods. Specifically,
+on sampling trajectories for improved parallelism, and          diffusion-based decoding with an optimal sampler can
+
+                                                                                                                         2
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+                                                                   Diffusion Loss    AR Loss
+correctly predict over 76.5% more tokens per forward
+pass than the self-speculation mode, indicating that
+current samplers still leave a large fraction of the                 Nemotron-Labs-Diffusion
+available parallelism unused. These results highlight
+the long-term promise of diffusion decoding.
+   Notably, we find that sampling tokens from the                  Masking
+
+diffusion mode to approach the SOL upper bound re-
+mains an open challenge, and that the most effective
+approach is to verify the decoded tokens using the          Figure 3 | Visualizing the attention pattern of
+same model in AR mode. This observation motivates           Nemotron-Labs-Diffusion, where denotes attention
+the aforementioned self-speculation mode, where dif-        among noisy tokens, denotes attention from noisy
+fusion generates high-quality multi-token drafts while      tokens to clean-context tokens, and denotes atten-
+AR verifies them within a single model, eliminating         tion within the clean context.
+the need for the auxiliary prediction heads used by
+prior MTP methods [8]. As shown in Fig. 1 (c), this         Diffusion objective. As shown in Fig. 3, we adopt
+yields higher acceptance rates and more favorable           the block-wise diffusion formulation [9, 10], which
+trade-offs between system throughput and per-user           partitions the sequence into 𝐵 contiguous blocks
+throughput, making tri-mode LMs a stronger and              {𝑥𝑏 }𝐵𝑏=1 and trains the model to denoise one block
+more flexible alternative to existing MTP approaches.       at a time conditioned on its clean prefix. At noise
+  We hope the above insights can shed light on the          level 𝑡 ∼ 𝒰[0, 1], only the tokens in the current block
+proper adoption of diffusion objectives in language         are corrupted via a forward noising process 𝑞, i.e.,
+modeling and on future directions that fully unlock         ˜𝑏𝑡 ∼ 𝑞(· | 𝑥𝑏 ), while the prefix 𝑥<𝑏 remains clean:
+                                                            𝑥
+the potential of diffusion decoding.                                                     [︃    𝐵
+                                                                                                                     ]︃
+                                                                                            1 ∑︁        (︀ 𝑏 𝑏 <𝑏 )︀
+Paper structure. The rest of the paper is orga-              ℒdiff (𝜃) = E 𝑡∼𝒰 [0,1] −            log 𝑝𝜃 𝑥 | 𝑥
+                                                                                                             ˜𝑡 , 𝑥     .
+                                                                           ˜𝑏𝑡 ∼𝑞(·|𝑥𝑏 )
+                                                                           𝑥
+                                                                                            𝑡
+                                                                                              𝑏=1
+nized as follows. Sec. 2 and Sec. 3 detail our joint
+                                                                                                                     (2)
+AR-diffusion training framework and tri-mode infer-
+                                                            This block-wise design is bidirectional within each
+ence algorithms; Sec. 4 presents the speed-of-light
+                                                            block to enable parallel intra-block prediction, and
+analysis; Sec. 5 and Sec. 6 introduce the Nemotron-
+                                                            causal across blocks so that previously generated
+Labs-Diffusion model family and present experiments,
+                                                            blocks can reuse their KV cache during inference.
+including comparisons between self-speculation and
+MTP; Sec. 7 reviews related work and Sec. 8 concludes       Joint objective. We optimize a weighted combina-
+with insights and future directions.                        tion of the two losses:
+
+                                                                             ℒ(𝜃) = ℒAR (𝜃) + 𝛼 ℒdiff (𝜃),           (3)
+2. Tri-Mode LM Training
+                                                            where the AR loss has coefficient 1 and 𝛼 controls the
+2.1. Training Objectives                                    strength of diffusion supervision. This design choice
+                                                            is motivated by the observation that the diffusion loss
+Motivation. We hypothesize that AR and diffusion
+                                                            is often larger than the AR loss, and selecting an 𝛼
+objectives are complementary rather than compet-
+                                                            that aligns the magnitudes of the two losses yields
+ing. AR pretraining induces an implicit ability to
+                                                            the best results, i.e., enabling diffusion-style parallel
+plan ahead [7], which the diffusion objective further
+                                                            decoding while maintaining AR accuracy. We set
+unlocks by forcing the model to reason about future
+                                                            𝛼 = 0.3 across all training stages.
+tokens; in turn, the AR objective anchors diffusion
+training to the left-to-right structure of language and     Two-stage training. To strengthen left-to-right
+prevents wasted capacity on arbitrary token permuta-        priors and improve learning efficiency, we adopt a
+tions. Therefore, we train Nemotron-Labs-Diffusion          two-stage training strategy that first trains with the
+on a weighted combination of an AR next-token loss          AR objective, which anchors the representation to
+and a block-wise diffusion denoising loss.                  the language’s inherent left-to-right inductive bias,
+                                                            and then switches to the joint objective. In terms of
+AR objective. For a token sequence 𝑥, the AR
+                                                            Eq. 3, Stage 1 sets 𝛼 = 0, reducing the optimization
+objective maximizes the likelihood under the left-to-
+                                                            to the pure AR objective in Eq. 1. In Stage 2, we
+right factorization:
+                                                            turn on diffusion supervision by setting 𝛼 to align
+                     ⎡                          ⎤
+                          |𝑥|
+                         ∑︁                                 the magnitudes of the two losses, as mentioned above,
+      ℒAR (𝜃) = E𝑥∼𝒟 ⎣−       log 𝑝𝜃 (𝑥𝑖 | 𝑥<𝑖 )⎦ . (1)     so that diffusion gradients complement rather than
+                           𝑖=1                              overwrite the AR priors.
+
+                                                                                                                        3
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 1 | Ablation study of each training technique during continuous pretraining on 25B tokens.
+            Technique               HumanEval   HumanEval+      MBPP     MBPP+       GSM8K     Minerva Math     Avg
+       Block-wise attention             39.02        37.80       53.40      67.72     82.87         44.58       54.23
+        + Global Loss Avg               42.07        39.02       56.20      71.69     83.78         45.36       56.35
+ + DP-rank Varying Masking Ratios       45.12        43.29       55.80      70.90     81.58         45.66       57.06
+       + Two-stage training             58.54        52.44       53.00      73.81     83.17         55.84       62.80
+            + AR loss                   64.02        57.93       65.60      80.95     86.73         66.44       70.28
+
+Global loss averaging. Since the diffusion objective            The Noisy→Noisy and Noisy→Clean parts follow
+involves randomly sampling masked tokens, different          the standard block diffusion design [9]: we partition
+training examples may have different numbers of to-          the sequence into 𝐵 contiguous blocks {𝑥𝑏 }𝐵   𝑏=1 ; in
+kens contributing to the diffusion loss. As a result, the    the noisy stream, tokens attend bidirectionally within
+strategy for averaging token-wise losses matters, anal-      each block and causally across blocks; and for denois-
+ogous to how the choice of aggregation in on-policy          ing block 𝑏, noisy tokens additionally attend to the
+RL objectives (e.g., GRPO [11] vs. DAPO [12]) can            clean-prefix blocks 𝑥<𝑏 in the clean stream to achieve
+affect training stability. We consider two loss averag-      clean-context conditioning.
+ing strategies. Let a batch contain 𝑁 sequences, each
+                                                                The key difference lies in the Clean→Clean mask.
+of length 𝐿, and let ℓ𝑛,𝑖 denote the token-level loss
+                                                             Prior designs [9, 10, 13] allow the clean stream to
+for token 𝑖 in sequence 𝑛 based on Eq. 3. One choice
+                                                             attend to future tokens using block-wise attention. In
+is to first average token losses within each sequence
+                                                             contrast, we enforce a strictly causal mask within the
+and then average them over sequences:
+                                                             clean stream [14, 7]. This enables us to compute the
+                           𝑁       𝐿                         AR objective on 𝑥 in this clean-context part together
+                        1 ∑︁ (︁ 1 ∑︁     )︁
+           ℒseq-avg =                ℓ𝑛,𝑖 .           (4)    with the diffusion objective on 𝑥
+                                                                                             ˜𝑡 in the same forward-
+                        𝑁 𝑛=1 𝐿 𝑖=1
+                                                             backward pass, without label leakage.
+Another choice is to treat all tokens across the batch
+                                                             Relationship with prior works. Our attention
+equally and globally average over the 𝑁 𝐿 token losses:
+                                                             pattern follows the pioneering work of [14], which also
+                               𝑁
+                           1 ∑︁ ∑︁
+                                    𝐿                        performs joint diffusion and AR training. The key
+              ℒglobal =               ℓ𝑛,𝑖 .          (5)    differences in our work lie in (1) proposing tri-mode in-
+                          𝑁 𝐿 𝑛=1 𝑖=1
+                                                             ference, particularly self-speculation decoding, along
+                                                             with post-training enhancements for improved paral-
+   While Eq. 4 and Eq. 5 coincide when every sequence        lelism, including the samplers and LoRA-enhanced
+has the same number of loss-contributing tokens, they        drafters introduced in Sec. 3; (2) the overall training
+differ once masking yields variable numbers of noisy         pipeline used to develop the full model family de-
+tokens across samples, which is common in the dif-           scribed in Sec. 5; and (3) the systematic studies and
+fusion objective. In particular, in Eq. 2, the loss          SOL analysis conducted to address critical questions
+includes a 1𝑡 reweighting, and the number of noisy           regarding the true potential of diffusion LMs.
+tokens is approximately proportional to 𝑡. When 𝑡
+is small, each noisy token tends to carry a larger           2.3. Ablation Study on Training Techniques
+weight (due to 1𝑡 ), but there are fewer such tokens
+                                                             We ablate the contribution of each training tech-
+in the sample. Sequence-wise averaging can there-
+                                                             nique by progressively adding them during contin-
+fore amplify the influence of these small-𝑡 samples:
+                                                             uous pretraining on 25B tokens, starting from the
+their per-token losses are larger, yet the per-sequence
+                                                             official Ministral3-8B base model. Detailed train-
+normalization assigns them the same weight as other
+                                                             ing/evaluation settings will be elaborated in Sec. 5.1
+samples, increasing batch-to-batch fluctuations and
+                                                             and Sec. 6.3. All models are evaluated in diffusion
+gradient variance. In contrast, global averaging effec-
+                                                             mode on coding and math benchmarks.
+tively weights each training example in proportion to
+its number of contributing tokens, preventing samples        Observations. As shown in Tab. 1, we progressively
+with only a few highly weighted noisy tokens from            add each technique and observe that (1) block-wise
+disproportionately influencing the batch loss.               attention serves as the baseline at 54.23% average
+                                                             accuracy, following the setting of [10, 4] and provid-
+2.2. Attention Pattern                                       ing a functional diffusion LM; (2) global loss averag-
+                                                             ing improves the average by 2.12%, confirming that
+Following [9], at training time we use a dual-stream         treating all tokens equally across the batch reduces
+input by concatenating a corrupted/noised view and           gradient variance from variable masking ratios, as
+a clean view of the same sequence, and apply a struc-        analyzed in Sec. 2.1; (3) DP-rank varying masking
+tured attention pattern, as shown in Fig. 3.                 ratios, which applies different noise levels across data-
+
+                                                                                                                        4
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+              0.95
+                                         AR Loss                                    4.0
+                                                                                                        Diffusion Loss
+                                                             =0                                 12.9 (off-scale)                  =0
+                                                             = 0.1                                                                = 0.1
+              0.90                                           = 0.2                                                                = 0.2
+                                                             = 0.3                  3.5                                           = 0.3
+                                                             = 0.5                                                                = 0.5
+              0.85                                           =1                                                                   =1
+       Loss                                                  = 1, no AR      Loss   3.0
+                                                                                                                                  = 1, no AR
+              0.80
+
+              0.75                                                                  2.5
+              0.70
+                     0   2000    4000     6000    8000     10000 12000                    0   2000    4000     6000       8000   10000 12000
+                                           Step                                                                    Step
+Figure 4 | Visualizing the evolution of the AR and diffusion losses across training steps under different diffusion
+loss coefficients 𝛼. The AR loss coefficient is set to 1 by default across all settings, except in the ‘no AR’
+setting, where the AR loss is removed and only the diffusion loss is used.
+
+Table 2 | Impact of diffusion loss weight 𝛼 during                            pretraining on top of the two-stage training setting in
+25B-token continuous pretraining.                                             Tab. 2. We observe that both modes peak at 𝛼=0.3.
+                Human    Human                             Minerva            This implies that the two modes do not necessarily
+  𝛼     Mode     Eval    Eval+   MBPP    MBPP+    GSM8K     Math     Avg
+        Diff.    56.71   51.83   64.80    81.22    87.64    67.02    68.20
+                                                                              compete with each other or achieve the best perfor-
+ 0.1
+        AR       58.54   53.05   64.60    80.42    87.64    68.02    68.71    mance at the two extremes; instead, there exists a
+        Diff.    60.37   54.27   63.40    80.69    86.43    66.58    68.62
+ 0.2
+        AR       60.98   57.93   66.40    83.60    87.04    67.04    70.50    sweet spot where both are well harmonized. Similarly,
+ 0.3
+        Diff.    61.59   58.54   64.60    80.42   87.64     65.86    69.77    no value of 𝛼 in [0.1, 0.5] improves one mode at the
+        AR       62.80   57.93   65.80    82.54   87.79     66.84    70.62
+        Diff.    59.76   54.27   64.40    80.16    87.11    66.98    68.78
+                                                                              expense of the other, and the two objectives rise and
+ 0.5
+        AR       58.54   53.05   65.40    82.80    86.81    67.14    68.96    fall together, indicating that they are complementary
+        Diff.    56.10   48.78   65.00    80.69    84.91    66.12    66.93
+ 1.0
+        AR       54.27   50.61   64.80    80.69    86.58    66.36    67.22    rather than competing for model capacity.
+
+parallel ranks, further improves the average by 0.71%;                           We also visualize the training loss curves in Fig. 4.
+(4) two-stage training, which provides a better AR ini-                       We observe that the aforementioned setting 𝛼=0.3,
+tialization with 1T-token AR objective training, yields                       which achieves the best accuracy, provides a good
+a substantial 5.74% gain, implying that stronger AR                           balance between the two losses. Setting 𝛼 too small
+initialization can enable better future planning and                          or too large leads to increased diffusion or AR loss,
+ease AR-to-diffusion conversion; (5) the addition of                          respectively. In addition, without the AR or diffusion
+AR loss contributes the largest single improvement                            loss, the corresponding AR or diffusion capabilities
+of 7.48%, significantly boosting diffusion decoding                           are degraded or lost.
+abilities, echoing our analysis in Sec. 2.                                    Diffusion loss preserves AR accuracy. To study
+   Cumulatively, the full pipeline improves the base-                         whether diffusion loss can hurt or preserve AR ac-
+line by 16.05% in average accuracy, with the AR loss                          curacy, we compare models trained w/o and w/ the
+and two-stage training contributing the most. This                            diffusion loss (𝛼=0.3) under two settings: continuous
+validates our core insight that preserving the AR ob-                         pretraining on 25B tokens on top of the two-stage
+jective during diffusion training anchors the model                           training setting in Tab. 1, and further SFT on 45B to-
+to linguistically coherent trajectories and is a critical                     kens, following training/evaluation settings in Sec. 5.2
+factor for achieving strong diffusion LM accuracy.                            and Sec. 6.1. We ensure that all settings are trained
+                                                                              on the same number of tokens.
+2.4. Mutual Impact of AR/Diffusion Losses                                        As shown in Tab. 3, we observe that: (1) In both set-
+                                                                              tings, the average AR accuracy is preserved or slightly
+In this subsection, we examine whether the AR and                             boosted, with 0.14% and 0.43% improvements for the
+diffusion objectives compete for model capacity or                            base and instruct models, respectively, indicating that
+reinforce each other: the impact of adding the AR                             diffusion training, when properly integrated, can en-
+loss on the diffusion mode, and the impact of adding                          hance the future prediction abilities of the AR mode,
+the diffusion loss on AR-mode accuracy.                                       similar to observations in DeepSeek-V3 [15]; (2) At the
+AR loss boosts diffusion accuracy. As studied in                              per-benchmark level, the instruct model shows gains
+Sec. 2.3 and Tab. 1, AR loss can significantly boost                          on coding and math benchmarks, e.g., 4.24% higher on
+diffusion accuracy. As a complement to this study,                            LCB-CPP and 1.59% higher on MBPP, but drops on
+we also vary 𝛼 in Eq. 3 during 25B-token continuous                           IFEval (3.01% lower) and HumanEval (2.44% lower),
+
+                                                                                                                                               5
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 3 | AR-mode accuracy with and without the diffusion loss (𝛼=0.3). Base: 25B-token continuous
+pretraining from Ministral3-8B. Instruct: further SFT on 45B tokens.
+                                                               Base Model
+  Training      HumanEval   HumanEval+    MBPP       MBPP+    GSM8K       Minerva Math   MMLU     Hellaswag   PIQA    Winogrande   Avg
+  AR only         60.37        56.10       67.00      81.48     87.64           67.90     76.34     76.54     79.71      71.98     72.50
+ + Diff. loss     62.80        57.93       65.80      82.54     87.79           66.84     75.99     76.59     79.82      70.32     72.64
+                                                              Instruct Model
+  Training       GPQA         IFEval     HumanEval   MBPP     Math500          GSM8K     AIME24   AIME25      MMLU    LCB-CPP      Avg
+  AR only         44.44        71.66       82.93      83.60     87.80           93.63     36.67     26.67     79.77      24.61     63.18
+ + Diff. loss     44.44        68.65       80.49      85.19     88.00           94.01     33.33     33.33     79.85      28.85     63.61
+
+suggesting that strict instruction-following compli-                    criterion that we later analyze in Sec. 4. The sam-
+ance is slightly affected by the diffusion objective.                   pler architecture, feature engineering, and training
+                                                                        trajectory data collection are detailed in Appendix A.
+   These results, together with the 𝛼 sensitivity
+analysis above, support the conclusion that joint
+AR–diffusion training is not a zero-sum trade-off: the                  3.3. Mode 3: Self-Speculation Decoding
+diffusion loss enables parallel decoding modes (Sec. 3)                 Linear self-speculation.              The simplest self-
+at negligible cost to AR-mode accuracy, and the two                     speculative mode separates diffusion-based drafting
+objectives share a common optimal operating point.                      and AR-based verification into two forward passes.
+                                                                        Let [𝑥1 , . . . , 𝑥𝑛 ] denote the currently verified prefix
+3. Tri-Mode LM Inference                                                and let 𝑘 be the speculative width.
+                                                                        Drafting with diffusion. We append 𝑘 mask to-
+The joint AR and diffusion training enables decoding                    kens to the verified prefix, forming the input
+in three modes: AR, diffusion, and self-speculation                     [𝑥1 , . . . , 𝑥𝑛 , 𝑚1 , . . . , 𝑚𝑘 ]. The model denoises all 𝑘
+decoding, as shown in Fig. 5.                                           mask positions in parallel using the diffusion pathway,
+                                                                        producing draft tokens {^                           ^𝑛+𝑘 }.
+                                                                                                             𝑥𝑛+1 , . . . , 𝑥
+3.1. Mode 1: AR Decoding                                                Verification with AR. We then run a second forward
+Tri-mode LMs fully preserve standard left-to-right                      pass over the draft tokens [^    𝑥𝑛+1 , . . . , 𝑥
+                                                                                                                        ^𝑛+𝑘 ] with
+generation: at step 𝑖, they sample 𝑥𝑖 ∼ 𝑝𝜃 (· | 𝑥<𝑖 )                   causal attention, again reusing the prefix KV cache.
+with causal attention. This mode is preferred when                      The AR logits at each position yield next-token pre-
+                                                                                          𝑘
+serving with high concurrency.                                          dictions {𝑥AR𝑛+𝑗 }𝑗=1 . We accept the longest prefix
+                                                                        of draft tokens that passes the verification criterion
+                                                                        (e.g., 𝑥AR
+                                                                                𝑛+𝑗 = 𝑥^𝑛+𝑗 ) and commit the accepted tokens
+3.2. Mode 2: Block-wise Diffusion Denoising                             to the verified prefix. As in standard speculative de-
+                                                                        coding [17], the AR prediction at the first rejected
+Confidence-based sampling. Following [13, 10],
+                                                                        position provides one additional verified token, so
+the diffusion decoding mode proceeds block by block.
+                                                                        each step produces between 1 and 𝑘+1 tokens. Note
+For the current block, we initialize its positions as
+                                                                        that both the drafting and verification passes can
+mask tokens and iteratively denoise multiple tokens in
+                                                                        reuse the cached prefix KVs from prior verified steps.
+parallel per step based on a confidence threshold [16].
+When a block is completed, its KV cache will be                         Enhance linear self-speculation w/ LoRA. We
+refreshed, and decoding proceeds to the next block.                     further enhance linear self-speculation by tuning a
+                                                                        LoRA adapter [18] on top of the diffusion draft path-
+Sampling with a trained sampler. A fixed con-
+                                                                        way to better align its drafts with the AR verifier,
+fidence threshold is an implicit signal that is not
+                                                                        thereby extending the accepted prefix length per step.
+explicitly optimized during training. We therefore
+                                                                        We apply LoRA only to the 𝑜proj layer of the at-
+train a lightweight sampler that, for every masked po-
+                                                                        tention module (rank 128, 𝛼=512, ∼36M trainable
+sition in the current block, predicts whether the top-1
+                                                                        parameters/∼0.4% of the backbone), leaving the AR
+prediction at the current denoising step is correct.
+                                                                        pathway unchanged. The training loss combines an
+Here, correct means that the decoded token matches
+                                                                        LK-hybrid distribution-matching term [19] with a
+the token that will eventually be committed at this
+                                                                        token-level cross-entropy term, both applied to the
+position when decoding only the highest-confidence
+                                                                        accepted prefix plus the first rejected position of each
+token at each step. At inference, we commit positions
+                                                                        draft block, as shown in Fig. 11 in Appendix B.
+whose predicted probability from the sampler exceeds
+a predefined threshold, which trades off TPF against                    Drafter–verifier setup. For each position 𝑗 ∈
+per-token error rate. The sampler can be viewed as a                    {1, . . . , 𝑘} in the draft block, the LoRA-augmented
+learned classifier to approach the greedy-acceptance                    drafter produces logits 𝑧𝑗𝑑 ∈ R|𝒱| over the vocabulary
+
+                                                                                                                                           6
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+                                                       AR        decoding            .                                                       do     diffusion      decoding
+
+                                        AR Mode                                                                          Diffusion Mode
+
+         Our         model             can             do            AR         decoding             It         can          also     [MASK]        [MASK]          [MASK]
+
+                              (a) Mode 1: AR Decoding                                                             (b) Mode 2: Diffusion Decoding
+
+                              enable          linear          self        decoding                                    enable        linear         self         speculation
+
+                                                                                           Single
+                      Diffusion Mode for Draft                                             Model
+                                                                                                                               AR Mode for Verification
+
+   The         two           [MASK]          [MASK]         [MASK]        [MASK]                          The          two          enable        linear          self        decoding
+
+                                                                      (c) Mode 3: Self-Speculation Decoding                          Cache KV for Next Iter
+
+Figure 5 | Visualizing tri-mode inference: (a) left-to-right AR decoding, (b) parallel diffusion decoding, and
+(c) linear self-speculation decoding (quadratic self-speculation is visualized in Fig. 12).
+
+𝒱, while the frozen AR verifier produces target logits                                              𝑞˜𝑗 is accepted by the speculative-decoding rejec-
+𝑧𝑗𝑡 on the same context. We define the temperature-                                                 tion rule against 𝑝˜𝑗 . The adaptive coefficient 𝜆𝑗 =
+scaled distributions                                                                                exp(−𝜂 ·sg[𝛼𝑗 ]) with 𝜂=0.5 makes the loss behave like
+                                                                                                    the (forward) KL early in training (when 𝛼𝑗 ≈ 0 and
+  𝑞𝑗 = softmax(𝑧𝑗𝑑 /𝜏 ),                          𝑝𝑗 = softmax(𝑧𝑗𝑡 /𝜏 ),
+                                                                                                    𝜆𝑗 ≈ 1, providing a stronger distribution-matching
+with 𝜏 =3.0. The target 𝑝𝑗 is treated as fixed (stop-                                               gradient) and like TV as the drafter approaches the
+gradient), so only the drafter 𝑞𝑗 carries gradient                                                  verifier (𝛼𝑗 → 1 and 𝜆𝑗 → 𝑒−𝜂 ≈ 0.6, directly mini-
+through the LoRA parameters.                                                                        mizing the acceptance-rate gap).
+Active position mask: “accepted + 1”. As shown in                                                   Cross-entropy term. The LK-hybrid term matches
+Fig. 11, both loss terms are computed only on the                                                   the full top-𝐾 output distribution. We addition-
+accepted prefix plus the first rejected position. Letting                                           ally apply a token-level cross-entropy at each ac-
+𝑗 * denote the position of the first mismatch (the                                                  tive position against the verifier’s argmax target
+smallest 𝑗 with 𝑥  ^𝑛+𝑗 ̸= 𝑥AR
+                            𝑛+𝑗 ), the active set is 𝒜 =                                            𝑦𝑗 = arg max𝑣 𝑧𝑗𝑡 (𝑣) on the same union support:
+             *
+{1, . . . , 𝑗 } when there is a rejection in the block,                                                              {︃
+and 𝒜 = {1, . . . , 𝑘} otherwise; all other positions                                                                         (𝒰 )
+                                                                                                                       − log 𝑞𝑗 𝑗 (𝑦𝑗 ) if 𝑦𝑗 ∈ 𝒰𝑗 ,
+are masked out and contribute neither to the loss                                                               ℓ𝑗 =                                                                     (7)
+                                                                                                                       0                otherwise,
+numerator nor to its denominator. This mask is
+essential because, at inference, the verifier’s KV cache                                                    (𝒰 )
+                                                                                                    where 𝑞𝑗 𝑗 is the drafter softmax restricted to 𝒰𝑗
+is rebuilt at the rejection point: logits at positions
+                                                                                                    with 𝜏 =1.0. The cross-entropy provides a strong
+𝑗 > 𝑗 * are conditioned on a continuation the deployed
+                                                                                                    teacher-forcing signal toward the verifier’s modal to-
+loop never observes, so training on them would bias
+                                                                                                    ken, complementing the soft distribution-matching
+the drafter toward a counterfactual distribution.
+                                                                                                    of LK. When the truncation excludes 𝑦𝑗 (rare, < 2%
+LK-hybrid distribution-matching loss.                      The                                      at 𝐾=200), ℓ𝑗 is set to zero; that position is also
+distribution-matching term adapts the LK-hybrid loss                                                dropped from the CE denominator below (Eq. 8), so
+of [19] to a truncated top-𝐾 support. We retain the                                                 occasional truncation misses cannot blow up the loss.
+union of the top-𝐾 token indices, 𝒰𝑗 = 𝒮𝑗𝑡 ∪ 𝒮𝑗𝑑 , where
+                                                                                                    Total loss and training-time drafter sampling. The
+𝒮𝑗𝑡 (resp. 𝒮𝑗𝑑 ) is the set of 𝐾 indices with the largest
+                                                                                                    two terms are aggregated as masked means over the
+probability under 𝑝𝑗 (resp. 𝑞𝑗 ). Setting 𝐾=200 gives
+                                                                                                    active positions of each draft block:
+|𝒰𝑗 | ≤ 2𝐾 = 400. We zero both distributions outside
+𝒰𝑗 and renormalize to obtain 𝑝˜𝑗 and 𝑞˜𝑗 . Truncation
+                                                                                                                                            ∑︀
+                                                                                                              1 ∑︁ LK                         𝑗∈𝒜 ℓ𝑗
+to the union avoids the KL(˜      𝑝𝑗 ‖ 𝑞˜𝑗 ) = ∞ catastrophe                                        ℒLK =            ℒ𝑗 ,      ℒCE = ∑︀                    .
+                                                                                                             |𝒜|                          𝑗∈𝒜 ⊮{𝑦 𝑗 ∈ 𝒰𝑗 }
+of full-vocabulary KL. The per-position hybrid loss is                                                                𝑗∈𝒜
+                                             ∑︁ ⃒                                                                                                 (8)
+ℒLK
+                                                               ⃒
+  𝑗    = 𝜆𝑗 ·KL(˜  𝑝𝑗 ‖ 𝑞˜𝑗 ) + (1−𝜆𝑗 )· 12     ⃒𝑝˜𝑗 (𝑣)−˜
+                                                         𝑞𝑗 (𝑣)⃒,                                   These per-block means are further averaged across
+                                                              𝑣∈𝒰𝑗                                  the inner training batch. The total loss is
+                                                         (6)
+where the right-hand total-variation
+                        ∑︀          (︀ (TV)   term    equals
+                                                      )︀                                            ℒ = 𝜆KL · ℒLK + 𝜆CE · ℒCE ,   𝜆KL = 𝜆CE = 1.
+1 − 𝛼𝑗 , with 𝛼𝑗 =         𝑣∈𝒰𝑗 min 𝑝  ˜𝑗 (𝑣), 𝑞˜𝑗 (𝑣) the                                                                                     (9)
+standard speculative-decoding acceptance probabil-                                                  At training time, 90% of the inner-batch slots
+ity [17]—the probability that a token sampled from                                                  draw their drafter tokens by sampling from
+
+                                                                                                                                                                                          7
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+                                                     Match Target
+          Target                    Step 1          w/ Greedy Accep.
+
+    A     B    C     D        B    B     C     C
+
+                                                                                        Match Target
+                              B    B     C    M                        Step 2
+                                                                                       w/ Greedy Accep.
+    M     M    M     M
+                              M    B     C    M                    A   B     C    D                 Final SOL Path
+               decode
+    B     B    C     C        M    B     M    M                    A   B     C    M
+
+Figure 6 | An example of using the recursive dynamic compaction method to identify the SOL path.
+
+softmax(𝑧𝑗𝑑 /𝑇draft ) with 𝑇draft =1.0; the rest stay         tiguous prefix of the draft and is therefore truncated
+greedy. Sampling exposes the LK gradient to a                 at the first rejection, diffusion-mode decoding can
+broader empirical distribution of drafter outputs and         commit any subset of masked positions per pass.
+yields adapters that remain robust when the verifier
+is itself sampled at inference.
+                                                              4.1. Diffusion SOL Construction
+
+3.4. Variant: Quadratic Self-Speculation                      Oracle target via serial denoising. We first define
+                                                              the diffusion model’s converged output for each block
+A variant of linear self-speculation is quadratic self-       of length 𝐵. Let 𝑓𝜃 denote the diffusion model, which
+speculation, which leverages quadratic decoding [7]           on a partially masked input outputs a categorical
+with single-forward drafting and verification, following      distribution over the vocabulary at every masked po-
+the same process as [20]. This decoding scheme pre-           sition; let [M] denote the mask token. Starting from
+pares for the worst case by predicting the next block         an all-mask input x(0) = [M]𝐵 , at each step we iden-
+at all possible acceptance positions with a quadratic         tify the masked position whose output distribution
+cost. Specifically, quadratic self-speculation performs       has the highest peak probability (across positions and
+speculative drafting and verification simultaneously          vocabulary), commit its argmax to that position, and
+within a single forward pass by using a structured            re-evaluate 𝑓𝜃 on the resulting partially-unmasked se-
+attention mask, where causal predictions verify pre-          quence; we repeat until all 𝐵 positions are filled. This
+vious drafts while parallel diffusion predictions gen-        serial denoising procedure uses exactly 𝐵 forward
+erate new draft tokens for the next iteration. The            passes—one position committed per pass—and yields
+interleaved quadratic layout ensures that each itera-         a target sequence t = (𝑡1 , . . . , 𝑡𝐵 ) that the model
+tion consistently produces 𝑘 speculative tokens even          would converge to in the absence of any parallel com-
+when verification terminates early due to mismatches.         mits. The SOL acceptance ratio is then the average
+In addition to standard AR-based verification, our            TPF needed to reproduce t from the same all-mask
+tri-mode model further supports an AR-diffusion en-           input under a parallel scheme.
+semble verifier that combines causal and diffusion
+predictions through weighted interpolation. More              Greedy parallel acceptance. The simplest parallel
+details are provided in Appendix C and Fig. 12.               scheme is greedy acceptance. At iteration 𝑘, the
+                                                              model produces argmax predictions ^t(𝑘) for every
+                                                              position from the current input x(𝑘) , and we commit
+4. Speed-of-Light Analysis                                    every masked position whose prediction matches the
+                                                                                          (𝑘)           (𝑘)
+                                                              serial target, 𝒜(𝑘) = {𝑗 : 𝑥𝑗 = [M] ∧ 𝑡^𝑗 = 𝑡𝑗 }; if
+We conduct a speed-of-light (SOL) analysis to quan-
+                                                              no position matches, we commit the single highest-
+tify the maximum acceptance rate / token-per-
+                                                              confidence position as a fallback. After 𝐾 iterations
+forward achievable by the diffusion mode. We apply
+                                                              the block is fully unmasked and the realized TPF is
+this analysis to the diffusion mode of Nemotron-Labs-
+                                                              𝐵/𝐾. Greedy is fast but is not always exact: each
+Diffusion-8B delivered in Sec. 3.2. The SOL ceiling
+                                                              committed token becomes part of the context for the
+tells us how much intrinsic parallelism the current
+                                                              next forward pass, and committing several context-
+confidence-based sampling is leaving on the table.
+                                                              dependent tokens at once can shift the conditional
+SOL is computed entirely within the diffusion model,
+                                                              distribution at the remaining positions away from
+i.e., no AR verifier is involved, so it isolates the dif-
+                                                              t. This motivates a second scheme that recovers t
+fusion model’s own parallel-decoding capability and
+                                                              exactly on every block.
+provides a reference ceiling for any scheme that tar-
+gets its converged output. Compared with linear               Recursive dynamic compaction. To recover t
+self-speculation in Sec. 3, which only commits a con-         exactly on every block, we replace greedy acceptance
+
+                                                                                                                         8
+     Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+14
+            Diffusion SOL                                                                         10            Diffusion SOL
+12          Linear SS                                                                   11.3                    Linear SS                                                                        8.3
+                                                                               10.2        10.1    8                                                                                     7.8
+10                                                                    9.3                                                                                                        7.2
+                                                                         8.1      8.6                                                                                    6.4
+                                                     8.0     8.0                                          6.0                                    5.7     5.9     6.0
+ 8      7.4                                   6.9 7.2 7.3       7.0                                6
+           6.8                                                                                                           4.8     5.1     5.1                                                       5.0
+                                     6.1         6.3     6.2
+ 6                  5.5 5.6 6.05.5      5.1                                                                                                                4.0                     4.1     4.3
+                           4.7                                                                     4        3.4 3.1                                3.2                     3.5
+                                                                                                                   2.8             2.7                             3.1
+ 4               3.5                                                                                                       2.3             2.5
+                                                                                                   2
+ 2
+ 0                                                                                                 0
+       Avg oleplay QA marize riting anities soning RAG STEM Math oding lingual                           Avg oleplay QA marize riting anities soning RAG STEM Math oding lingual
+                           W um Rea                             C ulti                                                       W um Rea                             C ulti
+         R         Sum        H                                  M
+                                                                                                           R         Sum        H                                  M
+                                     Acceptance Rate                                                                                               TPF
+Figure 7 | Visualizing the acceptance rate and TPF across different SPEED-Bench categories for diffusion
+SOL and linear self-speculation. The average metrics across all categories are highlighted in red.
+
+with a strategic search for the largest safe subset                                               Table 4 | Per-category SOL acceptance ratio on
+of matching positions, as shown in Fig. 6. At each                                                SPEED-Bench under recursive dynamic compaction.
+iteration, we rank the 𝑁 matched positions by model                                               Benchmark accuracy is averaged over 10 instruct LM
+confidence as (𝑝1 , . . . , 𝑝𝑁 ) and search for the largest                                       benchmarks in Sec. 6.1.
+prefix {𝑝1 , . . . , 𝑝𝑘 } whose commit is safe—where “safe”
+                                                                                                       Category                          BL=32             BL=16               BL=8            BL=4
+means that continuing decoding on the remaining
+positions still arrives at t. Each safety check itself runs                                            coding                                  10.24             7.50            5.32            3.32
+                                                                                                       humanities                               6.93             5.00            3.76            2.76
+the decoder one level shallower (greedy acceptance)
+                                                                                                       math                                     9.30             7.02            4.90            3.20
+under a simulation budget of 5000 forward passes                                                       multilingual                            11.26             8.08            5.46            3.37
+per block, which is what makes the scheme recursive;                                                   qa                                       5.63             4.43            3.46            2.61
+if the budget is exceeded, the candidate is treated                                                    rag                                      7.32             5.67            4.14            2.91
+as unsafe and the binary search shrinks the prefix.                                                    reasoning                                7.22             5.06            3.87            2.79
+Because the top-1 match is always safe (committing                                                     roleplay                                 3.49             2.76            2.41            2.00
+one position is no different from a serial step), the                                                  stem                                     8.01             5.68            4.11            2.98
+                                                                                                       summarization                            6.02             4.48            3.25            2.71
+scheme commits at least one position per iteration                                                     writing                                  6.13             4.71            3.58            2.62
+and its TPF dominates greedy whenever greedy is
+exact, while recovering exact-match cases that greedy                                                  Acceptance rate                         7.60              5.68            4.17            2.89
+misses. We use this scheme to report SOL throughout                                                    Benchmark Acc                       61.81               63.18           65.43           64.04
+this section; greedy serves as a fast lower-bound proxy.
+                                                                                                  SOL spans a ∼3.2× range, from 3.49× on roleplay
+4.2. SOL Evaluation on SPEED-Bench                                                                to 11.26× on multilingual content. We hypothesize
+We apply recursive dynamic compaction to 713                                                      this reflects token-level entropy: templated content
+SPEED-Bench [1] samples spanning 11 categories                                                    has more positions that are confidently determined by
+on the diffusion mode of Nemotron-Labs-Diffusion-8B                                               partial context, while open-ended generation does not.
+(instruct), sweeping the block length 𝐵 ∈ {4, 8, 16, 32}.                                         If this holds, samplers that adapt to the local content
+We also report the average accuracy achieved by SOL                                               type could exploit this variance. (4) A moderately
+under different block lengths on the 10 instruct LM                                               small block length achieves the best accuracy, while
+benchmarks in Sec. 6.1 to understand their impact.                                                larger block lengths degrade it. The trade-off between
+                                                                                                  benchmark accuracy and efficiency, i.e., acceptance
+Observations on diffusion SOL. From Tab. 4, we
+                                                                                                  rate, indicates that improving diffusion performance
+observe that (1) The diffusion mode exhibits substan-
+                                                                                                  under larger block lengths is a critical direction.
+tial intrinsic parallelism: the SOL acceptance rate
+reaches 7.60× on average and exceeds 10× on multilin-                                             Diffusion SOL vs. linear self-speculation. We
+gual and coding content at 𝐵 = 32, and grows nearly                                               additionally compare the SOL ceiling with linear self-
+linearly with 𝐵, from 2.89× at 𝐵 = 4 to 7.60× at                                                  speculation (Sec. 3) on SPEED-Bench at 𝐵=32, vi-
+𝐵 = 32. (2) Confidence-based sampling, by contrast,                                               sualized in Fig. 7. Two distinct metrics matter here:
+achieves only ∼3× TPF at comparable accuracy in                                                   The acceptance rate counts how many tokens are com-
+the block-32 diffusion-mode results of Sec. 6.1, leav-                                            mitted per acceptance step. SOL commits multiple
+ing a notable gap to the 7.60× SOL ceiling. This                                                  positions in a single diffusion forward pass, while lin-
+indicates that confidence-based sampling is far from                                              ear self-speculation accepts up to 𝑘 draft tokens per
+optimal and that there is substantial headroom for                                                draft+verify cycle. The real TPF, in contrast, is the
+better-designed samplers to capture. (3) Per-category                                             average number of tokens committed per single model
+
+                                                                                                                                                                                                         9
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+forward pass: SOL incurs only a per-block KV-cache           continuous pretraining for 1T tokens in Stage 1 (pure
+recompute on top of one forward per acceptance step,         AR) and 300B tokens in Stage 2 (joint AR and diffu-
+so its real TPF is close to its acceptance rate; linear      sion training with an 𝛼 of 0.3). The initial learning
+self-speculation, however, uses two forwards per cycle       rate is set to 1e-5 and decayed to 3e-6 using a WSD
+(one diffusion draft, one AR verification), so its real      schedule [23] with the AdamW optimizer and a weight
+TPF is the acceptance rate divided by two. The two           decay of 0.1. We adopt a global batch size of 512 and
+settings also target different correctness signals: SOL      a sequence length of 4096. The training is performed
+agrees with the diffusion mode’s own serial-denoising        on 256 NVIDIA H100 GPUs. We release the training
+output, while linear self-speculation agrees with the        and inference pipeline through Megatron Bridge.
+AR mode verification. We view this as a fair head-
+to-head measurement of parallel-decoding potential,          5.2. Instruct Models
+considering that the diffusion and AR modes achieve
+comparable accuracy in Sec. 6.1 and thus both targets        We perform supervised fine-tuning (SFT) on top of
+are equally credible references for a correct token.         our base models to deliver instruct models. Specifi-
+                                                             cally, we adopt joint AR and diffusion training with
+   From Fig. 7, we observe that: (1) At the acceptance-
+                                                             an 𝛼 of 0.3 throughout the SFT process. The initial
+rate level, linear self-speculation approaches SOL,
+                                                             learning rate is set to 2.5e-6 and decayed to 2.5e-7
+achieving 6.82× vs. 7.60× overall (approximately
+                                                             using the WSD schedule [23] with the AdamW opti-
+10.3% below the upper bound), with similarly small
+                                                             mizer and a weight decay of 0.1. We train the model
+gaps across categories. Thus, on top of diffusion draft-
+                                                             on 45B tokens from the SFT dataset of [24], with
+ing, applying AR verification is an effective way to
+                                                             a global batch size of 256 and a sequence length of
+approach the SOL ceiling. (2) The real TPF gap,
+                                                             16k. Following [2], the training pipeline is the same
+however, is much larger: 6.02× for SOL vs. 3.41×
+                                                             as pretraining except that we do not mask any tokens
+for linear self-speculation, i.e., a 76.5% improvement.
+                                                             from the prompt, and the loss is computed only on
+Beyond the doubled forward-pass cost, linear self-
+                                                             the answer parts. The training is performed on 256
+speculation only commits a contiguous prefix of the
+                                                             NVIDIA H100 GPUs.
+draft, discarding confident tokens beyond the first re-
+jection. These two effects together motivate stronger
+diffusion-mode samplers that can safely commit to-           5.3. Vision-Language Models
+kens within a single forward pass, including at non-         We extend Nemotron-Labs-Diffusion to the vision-
+prefix positions.                                            language setting by adding a vision encoder and a
+Implications for the tri-mode framework. The                 multimodal projector to the diffusion LM backbone.
+SOL analysis highlights two key takeaways for the tri-       The resulting VLM inherits the joint AR-diffusion
+mode framework. (1) Diffusion-mode decoding can              training objective, the dual-stream attention pattern,
+be a promising approach for highly parallel decoding,        and the tri-mode inference capability. Below, we
+provided that an optimized sampler can close the gap         describe how the VLM is initialized from pretrained
+between pure confidence-based sampling and the SOL           components and how image features are integrated
+ceiling. (2) AR verification is an effective way to          into the dual-stream training layout.
+sample from diffusion drafts and can approach SOL.           Architecture. The VLM augments Nemotron-Labs-
+However, its additional verification cost and prefix-        Diffusion with a vision encoder and a two-layer MLP
+only acceptance pattern fundamentally cap its real           projector with 2 × 2 patch merging. The diffusion
+TPF below SOL, even when the diffusion drafter and           training and inference pipeline is shared with the
+the AR verifier are well aligned.                            text-only model, with only the vision frontend added.
+                                                             Weight initialization. We initialize the LM
+5. Nemotron-Labs-Diffusion Family                            backbone and LM head from the Nemotron-Labs-
+                                                             Diffusion-8B instruct model, which carries the
+We deliver the Nemotron-Labs-Diffusion model family          diffusion-aware representations learned during joint
+in 3B, 8B, and 14B sizes, including base and instruct        AR-diffusion training, and initialize the vision en-
+models as well as VLMs.                                      coder and projector from the corresponding AR
+                                                             VLM (Ministral3-8B-Instruct-2512) from the
+5.1. Base Models                                             same model family, which provides fully trained visual
+                                                             perception and cross-modal alignment weights.
+To speed up pretraining, we start from the pretrained
+Ministral3 [21] base models and apply the two-stage            Because the LM architectures are identical between
+training strategy introduced in Sec. 2.1. Specifically,      the two sources, the merge is exact with no parameter
+we adopt the pretraining dataset in [22] and perform         mismatch or interpolation. No new parameters are in-
+
+                                                                                                                     10
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 5 | Benchmark our Nemotron-Labs-Diffusion-8B instruct model against SOTA AR and diffusion instruct
+LMs across scientific QA, instruction following, coding, and math reasoning benchmarks.
+                   Qwen2.5     Qwen3    Ministral3-8B    LLaDA-8B        Dream-7B     SDAR-8B           Nemotron-Labs-Diffusion-8B
+       Model
+                     7B         8B      Instruct-2512     Instruct        Instruct      Chat             (Tri-Mode in One Model)
+ Gen. Mode            AR        AR           AR              Diff.            Diff.   Diff.   Diff.   AR      Diff.   Linear SS   Quad. SS
+                                                    Scientific QA & Instruction Following
+       GPQA          37.12      49.24       42.87           33.30             33.00   40.20   30.80   44.44   43.94     40.40      44.30
+       IFEval        74.58      87.38       64.31           59.90             62.50   61.40   60.07   68.65   68.32     69.13      71.00
+       MMLU          74.86      76.66       73.90           65.50             67.00   78.60   78.83   79.85   78.71     79.01      79.95
+                                                                     Coding
+ HumanEval           77.44      81.71       71.04           49.40             55.50   78.70   79.27   80.49   78.66     81.71      79.27
+   MBPP              81.55      81.88       78.97           41.00             58.80   72.00   67.32   85.19   83.86     84.92      85.19
+ LCB-CPP             12.33      21.09       20.76            4.19             1.25    13.44   11.89   28.85   26.16     24.89      27.70
+                                                                     Math
+   Math500           75.10      84.80       83.60           39.20             43.00   78.60   72.40   88.00   85.80     87.60      88.80
+   GSM8K             91.89      92.42       92.42           79.91             81.00   91.30   88.48   94.01   93.03     93.78      94.16
+   AIME24            13.75      30.21       27.71           0.00               0.00   16.67   13.33   33.33   46.67     36.67      33.33
+   AIME25             6.88      22.08       24.58           0.00               3.33   10.00   3.33    33.33   26.67     30.00      36.67
+                                                           Average over All Tasks
+  Accuracy           54.55      62.75       58.02           37.24             40.54   54.09   50.57   63.61   63.18     62.81      64.04
+    TPF               1.00       1.00        1.00            1.00             1.00    1.00    1.75     1.00    2.57     5.99        6.38
+
+troduced; the vocabulary and embedding dimensions                        SOTA AR instruct models (Qwen3-8B, Qwen2.5-7B,
+remain unchanged.                                                        and Ministral3-8B Instruct) and SOTA diffusion in-
+                                                                         struct models (LLaDA-8B Instruct [2], Dream-7B
+Continued SFT. Starting from the merged initial-
+                                                                         Instruct [3], and SDAR-8B Chat [4]). We evalu-
+ization, we finetune the full model (LM backbone,
+                                                                         ate all modes of our model: AR, diffusion, and self-
+vision encoder, and projector) with the same joint
+                                                                         speculation, including both linear and quadratic self-
+AR-diffusion objective used for the text-only instruct
+                                                                         speculation modes (denoted as linear SS and quadratic
+model, on multimodal instruction-following data [25].
+                                                                         SS). We use LoRA-enhanced linear self-speculation
+Asymmetric dual stream. A straightforward ex-                            by default. For the diffusion model evaluation of
+tension doubles all tokens in the noisy half, includ-                    Nemotron-Labs-Diffusion-8B and SDAR-8B Chat [4],
+ing vision tokens. However, vision tokens are never                      we also report tokens per forward (TPF) by selecting
+masked; only text response tokens are subject to for-                    different denoising thresholds [16]. All models are
+ward corruption. Carrying vision tokens in the noisy                     evaluated in the non-thinking mode.
+half, therefore, adds FLOPs without contributing to
+                                                                           We evaluate across scientific QA and instruction fol-
+the diffusion loss. For high-resolution images, this
+                                                                         lowing (GPQA, IFEval, MMLU), coding (HumanEval,
+overhead is substantial. We address this with an
+                                                                         MBPP, LiveCodeBench-CPP), and math reasoning
+asymmetric dual-stream layout that strips all vision
+                                                                         (Math500, GSM8K, AIME24, AIME25). We use
+token positions from the noisy half:
+                                                                         NeMo-Skills [26] as the evaluation framework for all
+         (text, 𝐿text )                                                  AR baselines and our Nemotron-Labs-Diffusion-8B,
+                          | 𝑥(𝐿) ,
+  [︀                            ]︀
+       𝑥
+       ˜𝑡                               𝐿text = 𝐿 − 𝑁vis , (10)
+                                                                         and use the official evaluation pipelines provided in
+                                                                         the original papers for the diffusion baselines [2, 3, 4].
+where 𝑁vis is the number of vision tokens. The clean
+half retains the full sequence, including vision tokens,                 Observations. As shown in Tab. 5, we observe that,
+preserving complete visual context for the AR ob-                        compared to SOTA AR and diffusion instruct LMs,
+jective and for cross-stream conditioning. The total                     our Nemotron-Labs-Diffusion-8B achieves both higher
+sequence length becomes 𝐿text + 𝐿 instead of 2𝐿, and                     accuracy and efficiency across all modes. More specif-
+the reduction of FLOPs of attention scales with the                      ically, (1) In terms of AR performance, Nemotron-
+vision tokens 𝑁vis /𝐿.                                                   Labs-Diffusion-8B in AR mode delivers +0.86% higher
+                                                                         average accuracy than Qwen3-8B and outperforms
+                                                                         all other AR baselines, demonstrating that the joint
+6. Evaluation and Analysis                                               AR–diffusion training objective effectively preserves
+                                                                         strong AR accuracy. In fact, the ablation study under
+6.1. Benchmark Instruct Models                                           a controlled setting in Sec. 2.4 indicates that adding
+                                                                         the diffusion objective can maintain or slightly im-
+Baselines and benchmarks. We compare our                                 prove AR accuracy, potentially due to an improved
+Nemotron-Labs-Diffusion-8B instruct model against
+
+                                                                                                                                           11
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 6 | Per-task TPF achieved by linear self-speculation w/ and w/o LoRA tuning across 3B/8B/14B scales.
+ Model Scale   Setting    GPQA   IFEval   HumanEval   MBPP   Math500   GSM8K   AIME24   AIME25   MMLU    LCB-CPP     Avg TPF   Avg Acc
+               w/o LoRA   3.07    2.97       4.77     3.74     4.94     4.01    4.33     4.53     2.42      3.34       3.81     55.00
+     3B
+               w/ LoRA    3.57    3.30       5.56     4.23     5.63     4.55    4.99     5.11     2.74      3.95       4.36     55.00
+               w/o LoRA   5.10    4.32       4.62     3.44     5.43     4.47    5.38     5.05     3.25      4.14       4.52     62.88
+     8B
+               w/ LoRA    6.64    5.52       5.82     4.44     7.36     5.89    7.44     6.92     4.08      5.70       5.99     62.81
+               w/o LoRA   5.31    3.86       6.75     4.42     5.01     4.54    4.47     3.92     4.95      3.42       4.67     66.35
+    14B
+               w/ LoRA    6.07    4.74       8.11     5.22     6.72     5.79    5.88     5.41     7.22      4.46       5.96     66.36
+
+ability to predict the future. (2) The diffusion mode
+decodes 2.57× TPF while achieving +0.43% higher av-
+erage accuracy than Qwen3-8B. Compared to existing                                                       1.3x TPF
+
+diffusion LMs, Nemotron-Labs-Diffusion-8B outper-
+forms SDAR-8B Chat by +9.09% in average accuracy                                                                    +10.6%
+                                                                                                                     Acc
+and better maintains accuracy under larger decoding
+parallelism, as shown in Fig. 1 (b). (3) LoRA-tuned
+linear self-speculation maintains comparable accuracy
+to the diffusion mode while further boosting TPF to
+5.99×, indicating the effectiveness of aligning the diffu-
+sion drafter with the AR target via lightweight LoRA
+tuning. (4) Quadratic self-speculation can achieve the                 Figure 8 | Comparing the accuracy-TPF trade-offs
+highest TPF of 6.38×, as it prepares the next block for                achieved w/ and w/o a sampler.
+all possible acceptance positions at a quadratic cost.                 ments from this simple design suggest that part of
+However, due to the use of FlexAttention with less op-                 the gap between the realized diffusion-mode TPF and
+timized kernels for the dedicated attention mask [20],                 the SOL ceiling in Sec. 4 can be closed by learning
+the real-device efficiency of quadratic self-speculation               the acceptance policy itself.
+falls behind the linear one according to Fig. 1 (b). As
+such, we use linear self-speculation by default.                       The impact of LoRA tuning for linear self-
+                                                                       speculation. We perform an ablation study on
+Remark. The tri-mode design enables Nemotron-                          the impact of LoRA tuning for aligning diffusion
+Labs-Diffusion to serve different deployment needs                     drafters and AR verifiers. As shown in Tab. 6, we
+within a single model: (1) The AR mode matches                         observe that (1) even without LoRA adapters, lin-
+or surpasses SOTA AR LMs in accuracy, meaning                          ear self-speculation already achieves nontrivial TPF,
+that Nemotron-Labs-Diffusion can serve as a drop-in                    e.g., 4.67× for our 14B model, with larger model
+replacement for any application that currently uses                    scales generally leading to higher TPF; and (2) adding
+an AR model, with no pipeline changes required. (2)                    LoRA tuning consistently improves TPF, yielding
+The diffusion mode enables one-for-all flexibility: by                 14.4%/32.5%/27.6% relative gains at the 3B/8B/14B
+adjusting the denoising threshold, a single model can                  scales. We also note that the small accuracy gap be-
+achieve a range of accuracy-throughput trade-offs,                     tween different self-speculation settings and the AR
+as illustrated in Fig. 1 (b). (3) Self-speculation is                  mode is due to kernel mismatches between 1-token
+promising for achieving significant inference speedup                  decoding and multi-token prefilling.
+through the synergy between AR and diffusion. While
+it sacrifices the flexibility of the diffusion mode by
+only accepting prefix tokens, it provides a reliable                   6.2. Extend to More Model Scales
+mechanism to verify diffusion drafts, which can lead                   Baselines and benchmarks. We extend the eval-
+to substantial inference acceleration, as demonstrated                 uation to two additional scales, Nemotron-Labs-
+in Sec. 6.5.                                                           Diffusion-3B/14B, under the same evaluation protocol
+Improve diffusion decoding with a better sam-                          as Sec. 6.1, and benchmark against SOTA open-source
+pler. We evaluate the effectiveness of the proposed                    AR instruct models at the corresponding scales.
+sampler in Sec. 3.2. We apply it on top of our instruct                Observations. As shown in Tab. 7, we observe that:
+model with a block size of 32 and report the average                   (1) Nemotron-Labs-Diffusion maintains consistent im-
+accuracy across all ten tasks under different denoising                provements in accuracy and efficiency across scales
+thresholds to obtain the accuracy–TPF trade-off. As                    and generation modes. For example, using LoRA-
+shown in Fig. 8, the trained sampler shifts the entire                 tuned linear self-speculation, our Nemotron-Labs-
+Pareto frontier upward, delivering higher TPF at the                   Diffusion-3B/14B outperforms the strongest base-
+same accuracy (e.g., 1.3× TPF) or higher accuracy at                   lines, Qwen3-4B/14B, by +1.77%/+1.19% in accu-
+the same TPF (e.g., +10.6% accuracy). The improve-                     racy while achieving 4.36×/5.96× TPF, respectively.
+
+                                                                                                                                        12
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 7 | Benchmark our Nemotron-Labs-Diffusion-3B/14B instruct models against SOTA AR instruct models.
+           Model                  Gen. Mode       GPQA       IFEval   HumanEval     MBPP       Math500      GSM8K       AIME24          AIME25      MMLU      LCB-CPP    Avg Acc      Avg TPF
+                                                                                            3B Scale
+   Llama-3.2-3B-Instruct             AR           27.78      69.69       65.85      66.93        32.60          62.09       0.00         0.00       62.45      9.25        39.90           1.00
+    Phi-4-mini-Instruct              AR           40.91      71.16       77.44      75.13        70.80          76.57       10.00         6.67      53.37       9.91       49.20           1.00
+ Ministral3-3B-Instruct-2512         AR           28.79      57.55       64.79      68.39        71.90          87.41       12.50        12.71      63.21      12.50       47.97           1.00
+         Qwen3-4B                    AR           37.18      72.20       75.91      72.49        68.40          92.19       10.63        10.63      77.05      15.58       53.23           1.00
+                                      AR          39.39      69.39       76.22      71.16        77.60          87.87       23.33        16.67      71.70      21.37       55.50           1.00
+      Nemotron-Labs
+                                     Diff.        33.84      68.93       74.39      73.54        74.80          88.40       16.67        10.00      72.06      16.30       52.90           1.91
+       -Diffusion-3B
+                                   Linear SS      35.86      68.96       75.00      70.11        77.40          87.79       26.67        16.67      71.89      20.04       55.00           4.36
+        (Tri-Mode)
+                                   Quad. SS       42.93      71.36       79.27      76.46        78.20          88.25       13.33        16.67      72.12      19.60       55.80           5.42
+                                                                                            14B Scale
+      Gemma-3-12B-IT                 AR           38.32      85.73       58.23      85.45        84.55          90.45       23.75        16.88      76.41      20.54       58.03           1.00
+     Phi-3-Medium-14B                AR           37.56      85.75       70.43      76.65        43.35          89.69        1.88         0.62      76.67      10.79       49.34           1.00
+          Phi-4-14B                  AR           56.94      68.96       84.60      83.93        79.95          92.27       19.17        15.83      84.76      21.75       60.82           1.00
+ Ministral3-14B-Instruct-2512        AR           52.02      71.51       72.56      82.47        86.30          92.80       36.25        29.38      79.88      26.54       62.97           1.00
+         Qwen3-14B                   AR           50.51      88.36       83.54      87.30        85.40          94.31       33.33        20.00      81.51      27.42       65.17           1.00
+                                      AR          54.55      68.50       86.59      85.19        88.40          91.36       46.67        43.33      82.51      27.48       67.46           1.00
+      Nemotron-Labs
+                                     Diff.        48.99      69.03       83.54      82.80        85.80          93.71       43.33        50.00      82.17      25.77       66.51           2.74
+      -Diffusion-14B
+                                   Linear SS      47.47      70.06       85.37      84.66        86.60          92.04       50.00        40.00      81.11      26.32       66.36           5.96
+       (Tri-Mode)
+                                   Quad. SS       52.02      72.15       87.20      85.45        88.00          92.12       53.33        40.00      82.45      28.74       68.15           6.92
+
+Table 8 | Benchmark our Nemotron-Labs-Diffusion-8B base model against SOTA AR and diffusion base LMs
+across coding, math, knowledge, and commonsense reasoning benchmarks.
+                                        Human      Human                                           Minerva                                            Hella              Wino      Avg      Avg
+      Model           Gen. Mode                                 MBPP      MBPP+      GSM8K                         MMLU       ARC-E       ARC-C                PIQA
+                                         Eval      Eval+                                            Math                                              swag              grande     Acc      TPF
+   Llama-3.1-8B           AR              35.37      28.66       48.80      61.90      54.06            18.22       65.15       81.31       53.41     78.93    81.18    77.43      57.04     1.00
+   Ministral3-8B          AR              42.68      38.41       61.60      76.98      80.21            44.58       76.39       86.15       60.75     79.01    80.74    73.48      66.75     1.00
+    Qwen3-8B              AR              64.63      56.71       69.40      83.07      86.73            52.94       76.93       81.90       53.16     78.59    79.22    75.69      71.58     1.00
+    LLaDA-8B              Diff.           32.32      27.44       40.80      51.85      70.96            27.30       65.86       73.78       49.15     71.05    73.88    74.66      54.92     1.00
+    Dream-7B              Diff.           54.88      49.39       56.80      74.60      77.18            39.60       67.00       82.20       59.13     73.73    75.52    73.56      65.30     1.00
+                           AR             60.37      53.05       68.20      82.54      88.25            66.00       74.68       83.38       58.11     76.08    80.09    71.98      71.89     1.00
+ Nemotron-Labs
+                          Diff.           62.80      57.32       67.00      81.75      87.26            65.16       74.68       83.38       58.11     76.08    80.09    71.98      72.13     2.06
+  -Diffusion-8B
+                        Linear SS         63.41      56.10       67.20      81.75      88.17            67.38       74.68       83.38       58.11     76.08    80.09    71.98      72.36     4.67
+   (Tri-Mode)
+                        Quad. SS          62.20      54.88       67.60      81.48      88.48            66.24       74.68       83.38       58.11     76.08    80.09    71.98      72.10     7.04
+
+(2) Based on the performance of Nemotron-Labs-                                                     racy compared to the strongest baseline, Qwen3-8B.
+Diffusion-3B/8B/14B, larger LMs generally more
+readily unlock parallel diffusion abilities, as the TPF                                            6.4. Benchmark VLMs
+of diffusion/self-speculation modes grows broadly with
+scale. For example, the TPF of linear self-speculation                                             Benchmarks and evaluation settings. We eval-
+increases from 4.36× to 5.96× when scaling from                                                    uate on a diverse set of VLM benchmarks spanning
+3B to 14B. We attribute this to the stronger future-                                               two categories. Short-answer benchmarks require
+prediction abilities of larger models, which yield more                                            brief, factual responses: AI2D [27], ChartQA [28],
+reliable draft predictions.                                                                        DocVQA [29], MMMU [30], MathVista [31], and Re-
+                                                                                                   alWorldQA [32]. Long-answer benchmarks require
+6.3. Benchmark Base Models                                                                         extended chain-of-thought reasoning: MMMU-Pro-
+                                                                                                   V [33]. We benchmark against existing diffusion
+Baselines and benchmarks.            We compare                                                    VLMs [34, 35, 36, 37]. All benchmarks are evalu-
+Nemotron-Labs-Diffusion-8B against SOTA AR base                                                    ated using VLMEvalKit [38] under the same prompts
+LMs and two representative diffusion LMs (LLaDA-                                                   and post-processing as the AR baseline (Ministral3
+8B [2] and Dream-7B [3]). We evaluate on cod-                                                      VLM). Throughput (tokens per second, TPS) is mea-
+ing benchmarks (HumanEval, HumanEval+, MBPP,                                                       sured on a single NVIDIA H100 GPU with identical
+MBPP+), math reasoning (GSM8K, Minerva Math),                                                      prompt batching for fair comparison.
+knowledge (MMLU), and commonsense reasoning
+                                                                                                  Observations. As shown in Tab. 9, we compare
+(ARC-E, ARC-C, Hellaswag, PIQA, Winogrande).
+                                                                                                  our Nemotron-Labs-Diffusion-VLM against existing
+Observations. As shown in Tab. 8, we observe                                                      diffusion VLMs in three modes: diffusion, AR, and
+findings consistent with the instruct model results.                                              linear self-speculation decoding. We observe that
+Our Nemotron-Labs-Diffusion-8B base model achieves                                                (1) In terms of AR performance, our model deliv-
+both higher accuracy and efficiency across all modes:                                             ers 1.3% higher average accuracy than the strongest
+(1) the AR mode delivers +5.14%/+0.31% higher                                                     baseline, LLaDA-V-8B. (2) The diffusion mode pro-
+average accuracy than Ministral3-8B/Qwen3-8B; (2)                                                 vides 2.46×–3.15× TPF while maintaining compet-
+the diffusion mode delivers +17.21%/+6.83% higher                                                 itive accuracy. (3) Linear self-speculation preserves
+accuracy than LLaDA-8B/Dream-7B; and (3) self-                                                    near-AR accuracy, with only a 0.1% average accuracy
+speculation achieves 4.67× TPF (linear) and 7.04×                                                 drop, while further increasing decoding parallelism to
+TPF (quadratic) with over 0.5% higher average accu-                                               3.63×–7.45× TPF, where the higher end is achieved
+
+                                                                                                                                                                                                  13
+                           Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 9 | Benchmarking discrete diffusion VLMs and Nemotron-Labs-Diffusion-VLM across tasks. The
+diffusion mode of Nemotron-Labs-Diffusion-VLM uses denoising threshold 𝜏 =0.9.
+                                                                                                                                                                                                                                                                        MMMU              MMMU                    Math      RealWorld
+                                     Model                                         Gen. Mode                             AI2D                                               ChartQA                 DocVQA                 MMMU                                                                                                                                                          TPF                       Acc
+                                                                                                                                                                                                                                                                        Pro-10c          Pro-V-CoT                Vista        QA
+                              MMaDA                                                           Diff.                       67.4                                                     9.6                    9.5                  30.2                                        16.5                     8.5           33.4        49.2                                                          1                     28.0
+                              LaViDa                                                          Diff.                       70.0                                                    59.0                   64.6                  43.3                                        28.7                    10.5           44.8        54.5                                                          1                     46.9
+                              Dimple                                                          Diff.                       74.4                                                    63.4                   37.7                  45.2                                        23.8                    12.4           42.3        55.4                                                          1                     44.3
+                            LLaDA-V-8B                                                        Diff.                       77.8                                                    78.3                   83.9                  48.6                                        35.2                    18.6           59.7        63.2                                                          1                     58.2
+                                                                                                AR                         75.0                                               81.3                       89.2                  50.3                                            32.6            24.3               60.4            62.6                                              1                             59.5
+                                                                                                                                                                                                                                                                                                                                                                            2.46 all samples
+               Nemotron-Labs                                                                  Diff.                        74.7                                                   76.6                   88.3                  50.4                                            31.7                22.2           58.5            60.3                                       2.80 tok>100                         57.9
+                 -Diffusion                                                                                                                                                                                                                                                                                                                                                  3.15 tok>200
+                 -VLM-8B                                                                                                                                                                                                                                                                                                                                                    3.63 all samples
+                                                                                     Linear SS                             74.9                                                   81.2                   89.3                  50.0                                            32.8                24.1           60.7            62.4                                       6.03 tok>100                         59.4
+                                                                                                                                                                                                                                                                                                                                                                             7.45 tok>200
+
+for responses exceeding 200 tokens. This implies that                                                                                                                                                                                                 through (1) significantly higher acceptance length,
+the advantage of our model is most pronounced on                                                                                                                                                                                                      and (2) token-parallel drafting that enables better
+tasks requiring longer reasoning. These results demon-                                                                                                                                                                                                GPU utilization.
+strate that the joint AR–diffusion training framework
+                                                                                                                                                                                                                                                   Setup. We deploy Nemotron-Labs-Diffusion-8B with
+extends effectively to the vision-language setting, pre-
+                                                                                                                                                                                                                                                   the SGLang server and profile it on NVIDIA GB200,
+serving the broad capabilities of the LM backbone
+                                                                                                                                                                                                                                                   RTX Pro 6000, and DGX Spark under different con-
+while enabling efficient multi-token decoding.
+                                                                                                                                                                                                                                                   currency levels, comparing against Qwen3-8B-Eagle3,
+                                                                                                                                                                                                                                                   with results shown in Fig. 1 (c) and Fig. 9. Eval-
+6.5. Inference Efficiency                                                                                                                                                                                                                          uations are conducted on SPEED-Bench [1] across
+                                                                                                                                                                                                                                                   four categories (math, coding, reasoning, and multilin-
+We analyze and compare the deployment efficiency of                                                                                                                                                                                                gual), and limiting generation length to 1024 tokens
+Nemotron-Labs-Diffusion against MTP/Eagle3-style                                                                                                                                                                                                   to avoid repetition/hallucinations. We perform a
+speculative decoding.                                                                                                                                                                                                                              grid search over hyperparameters for Eagle3, whereas
+Self-speculation vs. MTP. MTP methods such                                                                                                                                                                                                         for Nemotron-Labs-Diffusion we only vary the block
+as Eagle3 [8] have become the default choice for effi-                                                                                                                                                                                             length. We additionally report a SOL throughput
+cient LLM deployment at low concurrency, where a                                                                                                                                                                                                   estimate mentioned in Sec. 4, providing a reference
+small model is used to draft multiple future tokens,                                                                                                                                                                                               ceiling for current self-speculation infrastructure.
+and then a single forward pass of a larger AR model                                                                                                                                                                                                 Observations. As shown in Fig. 1 (c) and Fig. 9, we
+verifies and accepts some of them. This schedule is                                                                                                                                                                                                 observe that: (1) Linear self-speculation consistently
+more efficient at low concurrency because the memory                                                                                                                                                                                                improves user throughput over the AR mode across all
+transfer cost is similar between token-by-token gen-                                                                                                                                                                                                three GPUs, achieving up to 3.3× speedup over AR
+eration and verification passes, while the latter can                                                                                                                                                                                               on GB200 (3.97× speedup and 1015 tok/sec with an
+accept multiple tokens in a single pass. The two main                                                                                                                                                                                               optimized kernel), as shown in Fig. 9 (c), and pushing
+bottlenecks of Eagle3 are: (1) the draft model has                                                                                                                                                                                                  the absolute throughput at batch size 1 to 277/525
+limited capacity and is less reliable beyond a short                                                                                                                                                                                                tok/sec on RTX Pro 6000 (3.46×/2.35× over AR) and
+horizon; and (2) proposals are generated recursively,                                                                                                                                                                                               77.5/112.5 tok/sec on DGX Spark (3.14×/2.69× over
+so even if the draft model is tiny, it still incurs the                                                                                                                                                                                             AR) under FP8/INT4 quantization, demonstrating
+cost of the embedding layer and LM head. In contrast,                                                                                                                                                                                               its effectiveness as a drop-in low-concurrency accel-
+Nemotron-Labs-Diffusion provides unique advantages
+
+                                     c=128
+                           4000                                                            Autoregressive                                                                         FP8                        INT4 SOL                                                                                                                                                FP8
+                                                                                                                                                                                                               12.36×                                                   1750                              SOL                                                                                        INT4 SOL
+                                                                                           Linear SS                                                                              INT4-AWQ-Marlin                                                                                                                                                                    INT4-AWQ-Marlin
+
+                                                                                                                                Decode Throughput at c=1 (tok/sec)
+                                                                                                                                                                                                                989                                                                                                                                         250
+
+                                                                                                                                                                                                                                      GPU Throughput at c=1 (tok/sec)
+                           3500                                                            Qwen3-8B-Eagle3                                                           1000                                                                                                                                 5.75×                                                                                         9.03×
+                                                                                                                                                                                                                                                                        1500                              1471                                                                                          223.1
+
+GPU Throughput (tok/sec)                                                                                                                                                                                                                                                                                                      Throughput at c=1 (tok/sec)
+                                  BL=8
+                           3000    c=64 c=64                                                                                                                                                                                                                                                                                                                                                     FP8 SOL
+                                                                                                                                                                      800                                                                                                                                                                                   200                                   7.13×
+                                  c=64
+                                                        BL=8 c=32                                                                                                                                                                                                       1250            CUDA optimized                                                                                            176.2
+                           2500                   c=32                                                                                                                                                   FP8 SOL                                                                           3.97×
+                                                                                                                                                                                                          7.09×                                                                             1015
+                                                                            BL=16 c=16
+                                                                                                                                                                      600                        6.56×     567                                                          1000                3.32×                                                           150
+                           2000                c=32
+                                                                                                                                                                                                  525                                                                                        851                                                                                         4.56×
+                                                                                                                                                                                                                                                                                                                                                                                         112.5
+                           1500
+                                                             c=16                                                                                                                                                                                                        750
+                                                                                         BL=16 c=8
+                                                                                                                                                                      400                                                                                                                                                                                   100                  3.14×
+                                                c=16                                                                                                                                      3.46×                                                                                                           1.52×                                                                   77.5
+                           1000                                     c=8                                                                                                           2.79×    277                 2.55×         2.64×                                       500                                        1.38×                                                                              2.19×
+                                                                                                       BL=32 c=4
+                                                                                                                                                                                   223                                                                                                                     389       354                                                 1.69×                    1.48× 54.1    1.75×
+                                                  c=8
+                                                                    c=4                                      BL=64 c=2                                                200                                 1.71× 204     1.51× 211                                                 256                                                                        50          41.8                     36.5          43.2
+                           500                                                                                                                                                                             137           121                                             250
+                                                      c=4
+                                                      c=2
+                                                                     c=2                                            BL=64 c=1                                                80                                                                                                                                                                                   24.7
+                                                       c=1            c=1
+                             0                                                                                                                                         0                                                                                                   0                                                                                 0
+                                         50                  100               150               200               250                                                        AR          Linear SS         Diff.        Eagle3                                                   AR      Linear SS       Diff.    Eagle3                                            AR           Linear SS         Diff.        Eagle3
+                                         Per-User Throughput (tok/sec/stream)
+                                                             (a) RTX Pro 6000                                                                                                             (b) RTX Pro 6000                                                                                    (c) GB200                                                                          (d) DGX Spark
+
+Figure 9 | (a) System vs. per-user throughput trade-off on an NVIDIA RTX Pro 6000 GPU; (b)/(c)/(d): The
+throughput under a concurrency of 1 on NVIDIA RTX Pro 6000, GB200, and DGX Spark, respectively.
+
+                                                                                                                                                                                                                                                                                                                                                                                                                          14
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+Table 10 | Per-category acceptance length on SPEED-          up work has further explored alternative diffusion
+Bench [1]. Comparing Native / LoRA for Nemotron-             LM paradigms [48, 49, 6], and scaled them to larger
+Labs-Diffusion-8B and Qwen3-8B-Eagle3 / Qwen3-               scales [50, 51, 52] or domain-specific specialists such
+9B-MTP, all with draft length 31.                            as coding agents [53, 54, 55, 56], explored dedicated
+                                                             reinforcement learning schemes [57, 58], and extended
+ Category           Native     LoRA     Eagle3    MTP
+                                                             them to more modalities [36, 34]. Compared to AR
+ coding                 6.61     8.57      3.14     5.97     LMs, diffusion LMs have been demonstrated to be
+ math                   6.24     8.14      2.79     4.80     better learners under data-constrained settings [59]
+ reasoning              6.18     7.99      3.40     3.68
+ multilingual           7.96    10.06      1.91     4.47
+                                                             and show improved performance in planning [3] and
+ humanities             5.01     6.31      3.12     3.76     text embedding [60].
+ qa                     4.01     4.65      2.63     3.50        Diffusion language model acceleration. De-
+ rag                    5.07     6.15      3.06     4.75
+                                                             spite the acceleration potential of large diffusion
+ roleplay               4.66     5.54      2.10     2.32
+ stem                   5.55     7.02      2.92     4.45     LMs [2, 3], the gap between bidirectional attention
+ summarization          4.47     5.48      2.66     3.69     and KV caching, along with the one-token-per-step
+ writing                4.28     5.07      2.81     3.21     denoising process, limits their achievable speed-up.
+                                                             To address these challenges, dedicated caching strate-
+ Average               5.46      6.82      2.75     4.24
+ 4 category avg        6.75      8.69      2.81     4.73     gies [61, 62, 16] have been developed to reuse com-
+                                                             putations and approximate bidirectional attention.
+                                                             In addition, to realize the potential of parallel token
+eration scheme. (2) Compared with Eagle3, linear             generation, confidence-based sampling [16], guidance
+self-speculation delivers a 2.4×/2.3×/1.8× speedup           from AR models [63], and adaptive decoding with cer-
+at batch size 1 on GB200/RTX Pro 6000/DGX                    tainty and positional priors [64] have been proposed.
+Spark and achieves better trade-offs between system          Beyond these training-free methods, [65, 3] propose
+throughput and per-user throughput, as shown in              initializing diffusion LMs from AR models with token
+Fig. 1 (c) and Fig. 9 (a). This indicates that diffusion     shifts to accelerate diffusion LM training. Block Dif-
+drafting paired with AR verification is a more effec-        fusion [9] combines AR and diffusion by performing
+tive acceleration mechanism than auxiliary-head MTP          block-wise AR and in-block diffusion to support na-
+due to its higher acceptance length. (3) The SOL             tive KV caching. Follow-up works [13, 10, 4, 66, 67]
+ceiling reveals substantial remaining headroom: on           also convert pretrained AR models or diffusion LMs
+RTX Pro 6000, the projected SOL throughput reaches           into block-wise ones. [14, 7] further explore combin-
+7.09×/12.36× over AR under FP8/INT4 quantiza-                ing AR and diffusion through either joint training or
+tion, roughly 2× above linear self-speculation.              LoRA modules dedicated to diffusion.
+Acceptance length per category. As shown in
+Tab. 10, Nemotron-Labs-Diffusion achieves signifi-           8. Insights and Future Directions
+cantly higher acceptance length than both Eagle3
+and MTP across all categories, with average accep-           We deliver Nemotron-Labs-Diffusion, a tri-mode lan-
+tance lengths of 5.46/6.82 for Native/LoRA-tuned             guage model family trained via joint AR-diffusion
+Nemotron-Labs-Diffusion versus 2.75/4.24 for Ea-             optimization that unifies AR, diffusion, and self-
+gle3/MTP. The gap further widens to 6.75/8.69 vs.            speculation within a single model. The resulting
+2.81/4.73 on the four diffusion-friendly categories          base, instruct, and vision-language models outper-
+(coding, math, reasoning, multilingual), implying that       form SOTA open-source AR/diffusion LMs in both
+diffusion drafting yields more reliable multi-token pro-     accuracy and efficiency. The training and analysis of
+posals, especially on structured tasks with strong           tri-mode LMs reveal the following insights:
+syntactic or semantic constraints.
+                                                             1. Tri-mode generation arises naturally from
+7. Related Work                                                 joint AR-diffusion training. By enabling both
+                                                                AR and non-AR parallel token prediction within
+Diffusion language models. To overcome the                      a single model, the joint training objective simul-
+token-by-token decoding nature of AR LMs, dif-                  taneously produces three inference modes without
+fusion LMs, both continuous [39, 40, 41] and dis-               any mode-specific architectural modifications.
+crete [42, 43, 44, 45, 46, 47], have been proposed           2. AR and diffusion losses are complementary,
+to perform non-AR decoding and thus enable par-                 not competing. The two objectives mutually
+allel token generation. Among them, masked diffu-               benefit each other and peak at the same loss co-
+sion LMs [43, 45, 44, 2, 3] have been successfully              efficient (𝛼=0.3). Adding the AR loss induces
+scaled up (e.g., LLaDA [2] and Dream [3]). Follow-              left-to-right linguistic priors for diffusion, and the
+
+                                                                                                                     15
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+   diffusion loss preserves or slightly improves AR         3. Beyond prefix-only AR verification. Current
+   accuracy through better future planning.                    AR verification accepts drafted tokens only in a
+3. Self-speculation outperforms MTP methods.                   prefix-wise manner, which does not fully exploit
+   Instead of relying on auxiliary prediction heads,           the non-AR nature of diffusion drafts. A promising
+   self-speculation leverages diffusion to generate high-      direction is to explore diffusion-mode verification,
+   quality multi-token drafts and uses AR verification         potentially using another diffusion verifier, to vali-
+   to ensure correctness, achieving higher acceptance          date multiple non-contiguous drafted tokens and
+   rates and better efficiency.                                further improve the effective acceptance rate.
+4. Variance reduction is critical for diffusion             4. Enabling higher-level parallelism in diffu-
+   training. The diffusion loss introduces intrinsi-           sion generation. Although diffusion decoding en-
+   cally high variance due to random masking with              ables parallel token prediction, its generation order
+   variable noise levels. More sufficiently trained AR         still exhibits a strong left-to-right tendency and
+   starting points (e.g., via two-stage training) or           mainly provides token-level parallelism. Future
+   variance-reduction training techniques (e.g., global        training algorithms that encourage segment-level
+   loss averaging) can improve training effectiveness.         or paragraph-level parallelism could better unlock
+5. Linear self-speculation is currently the most               the global planning ability and efficiency potential
+   efficient mode. Linear self-speculation achieves            of diffusion-mode generation.
+   the best efficiency in the current infrastructure.
+   Quadratic self-speculation achieves higher TPF
+   per step, making it more promising at batch size 1
+                                                            References
+   with improved infrastructure support.                      [1] Talor Abramovich, Maor Ashkenazi, Benjamin
+6. Diffusion-mode decoding has substantial                        Chislett, Tiyasa Mitra, Bita Darvish Rouhani, Ran
+   headroom. Our SOL analysis shows the poten-                    Zilberstein, Yonatan Geifman, et al. Speed-bench: A
+   tial to correctly predict 76.5% more tokens per                unified and diverse benchmark for speculative decod-
+   forward pass than the current best strategy (linear            ing. arXiv preprint arXiv:2604.09557, 2026.
+   self-speculation), indicating a more promising up-
+                                                              [2] Shen Nie, Fengqi Zhu, Zebin You, Xiaolu Zhang,
+   per bound for parallel decoding than speculative
+                                                                  Jingyang Ou, Jun Hu, Jun Zhou, Yankai Lin, Ji-Rong
+   decoding based only on prefix decoding.
+                                                                  Wen, and Chongxuan Li. Large language diffusion
+                                                                  models. arXiv preprint arXiv:2502.09992, 2025.
+  Looking forward, these insights shed light on several
+promising directions for further improvements:                [3] Jiacheng Ye, Zhihui Xie, Lin Zheng, Jiahui Gao, Zirui
+                                                                  Wu, Xin Jiang, Zhenguo Li, and Lingpeng Kong.
+                                                                  Dream 7b: Diffusion large language models. arXiv
+1. Closing the gap between practical diffusion                    preprint arXiv:2508.15487, 2025.
+   decoding and its SOL upper bound. Our
+   SOL analysis suggests that diffusion-mode decod-           [4] Shuang Cheng, Yihan Bian, Dawei Liu, Linfeng
+   ing could offer a more attractive path toward par-             Zhang, Qian Yao, Zhongbo Tian, Wenhai Wang,
+   allel decoding than linear decoding, due to its                Qipeng Guo, Kai Chen, Biqing Qi, et al. Sdar:
+   non-prefix acceptance pattern and therefore higher             A synergistic diffusion-autoregression paradigm for
+   upper bound. However, current confidence-based                 scalable sequence generation.        arXiv preprint
+   samplers remain far from this upper bound. De-                 arXiv:2510.06303, 2025.
+   veloping optimized samplers that more reliably
+                                                              [5] Shen Nie, Fengqi Zhu, Chao Du, Tianyu Pang, Qian
+   identify correct tokens, or more advanced train-
+                                                                  Liu, Guangtao Zeng, Min Lin, and Chongxuan Li.
+   ing schemes that enable more aggressive parallel               Scaling up masked diffusion models on text. arXiv
+   sampling of conditionally independent tokens, is a             preprint arXiv:2410.18514, 2024.
+   promising direction for closing this gap.
+2. Improving draft-verification alignment for                 [6] Shuchen Xue, Tianyu Xie, Tianyang Hu, Zijin Feng,
+   self-speculation. Given the strong practical                   Jiacheng Sun, Kenji Kawaguchi, Zhenguo Li, and
+   speedup achieved by self-speculation, an impor-                Zhi-Ming Ma. Any-order gpt as masked diffusion
+   tant future direction is to better align the diffusion         model: Decoupling formulation and architecture.
+                                                                  arXiv preprint arXiv:2506.19935, 2025.
+   draft mode with the AR verification mode during
+   training, thereby improving the acceptance rate.           [7] Mohammad Samragh, Arnav Kundu, David Harri-
+   In addition, the cost of drafting can be further               son, Kumari Nishu, Devang Naik, Minsik Cho, and
+   reduced by using nested subnets, where weight-                 Mehrdad Farajtabar. Your llm knows the future: Un-
+   shared smaller subnets generate drafts through                 covering its multi-token prediction potential. arXiv
+   specialized training techniques [68, 69].                      preprint arXiv:2507.11851, 2025.
+
+                                                                                                                    16
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+ [8] Yuhui Li, Fangyun Wei, Chao Zhang, and Hongyang         [20] Jingyu Liu, Xin Dong, Zhifan Ye, Rishabh Mehta,
+     Zhang. Eagle-3: Scaling up inference acceleration of         Yonggan Fu, Vartika Singh, Jan Kautz, Ce Zhang,
+     large language models via training-time test. arXiv          and Pavlo Molchanov. Tidar: Think in diffusion, talk
+     preprint arXiv:2503.01840, 2025.                             in autoregression. arXiv preprint arXiv:2511.08923,
+                                                                  2025.
+ [9] Marianne Arriola, Aaron Gokaslan, Justin T Chiu,
+     Zhihan Yang, Zhixuan Qi, Jiaqi Han, Subham Sekhar       [21] Alexander H Liu, Kartik Khandelwal, Sandeep Sub-
+     Sahoo, and Volodymyr Kuleshov. Block diffusion:              ramanian, Victor Jouault, Abhinav Rastogi, Adrien
+     Interpolating between autoregressive and diffusion           Sadé, Alan Jeffares, Albert Jiang, Alexandre Cahill,
+     language models. arXiv preprint arXiv:2503.09573,            Alexandre Gavaudan, et al. Ministral 3. arXiv
+     2025.                                                        preprint arXiv:2601.08584, 2026.
+[10] Yonggan Fu, Lexington Whalen, Zhifan Ye, Xin Dong,      [22] Aarti Basant, Abhijit Khairnar, Abhijit Paithankar,
+     Shizhe Diao, Jingyu Liu, Chengyue Wu, Hao Zhang,             Abhinav Khattar, Adithya Renduchintala, Aditya
+     Enze Xie, Song Han, et al. Efficient-dlm: From au-           Malte, Akhiad Bercovich, Akshay Hazare, Ale-
+     toregressive to diffusion language models, and beyond        jandra Rico, Aleksander Ficek, et al. Nvidia
+     in speed. arXiv preprint arXiv:2512.14067, 2025.             nemotron nano 2: An accurate and efficient hybrid
+                                                                  mamba-transformer reasoning model. arXiv preprint
+[11] Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu,
+                                                                  arXiv:2508.14444, 2025.
+     Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan
+     Zhang, YK Li, Yang Wu, et al. Deepseekmath: Push-
+                                                             [23] Shengding Hu, Yuge Tu, Xu Han, Chaoqun He,
+     ing the limits of mathematical reasoning in open
+                                                                  Ganqu Cui, Xiang Long, Zhi Zheng, Yewei Fang, Yux-
+     language models. arXiv preprint arXiv:2402.03300,
+                                                                  iang Huang, Weilin Zhao, et al. Minicpm: Unveiling
+     2024.
+                                                                  the potential of small language models with scalable
+[12] Qiying Yu, Zheng Zhang, Ruofei Zhu, Yufeng Yuan,             training strategies. arXiv preprint arXiv:2404.06395,
+     Xiaochen Zuo, Yu Yue, Weinan Dai, Tiantian Fan,              2024.
+     Gaohong Liu, Lingjun Liu, et al. Dapo: An open-
+     source llm reinforcement learning system at scale.      [24] Aakshita Chandiramani, Aaron Blakeman, Abdul-
+     arXiv preprint arXiv:2503.14476, 2025.                       lahi Olaoye, Abhibha Gupta, Abhilash Somasamu-
+                                                                  dramath, Abhinav Khattar, Adeola Adesoba, Adi
+[13] Chengyue Wu, Hao Zhang, Shuchen Xue, Shizhe                  Renduchintala, Adil Asif, Aditya Agrawal, et al.
+     Diao, Yonggan Fu, Zhijian Liu, Pavlo Molchanov,              Nemotron 3 super: Open, efficient mixture-of-experts
+     Ping Luo, Song Han, and Enze Xie. Fast-dllm                  hybrid mamba-transformer model for agentic reason-
+     v2: Efficient block-diffusion llm. arXiv preprint            ing. arXiv preprint arXiv:2604.12374, 2026.
+     arXiv:2509.26328, 2025.
+                                                             [25] Luis Wiedmann, Orr Zohar, Amir Mahla, Xiaohan
+[14] Itai Gat, Heli Ben-Hamu, Marton Havasi, Daniel Haz-          Wang, Rui Li, Thibaud Frere, Leandro von Werra,
+     iza, Jeremy Reizenstein, Gabriel Synnaeve, David             Aritra Roy Gosthipaty, and Andrés Marafioti. Finevi-
+     Lopez-Paz, Brian Karrer, and Yaron Lipman. Set               sion: Open data is all you need, 2025.
+     block decoding is a language model inference acceler-
+     ator. arXiv preprint arXiv:2509.04185, 2025.            [26] NVIDIA Corporation. Nemo-skills: A toolkit for
+                                                                  improving skills of large language models. https:
+[15] DeepSeek-AI. Deepseek-v3 technical report, 2024.             //github.com/NVIDIA-NeMo/Skills, 2024. GitHub
+                                                                  repository.
+[16] Chengyue Wu, Hao Zhang, Shuchen Xue, Zhijian
+     Liu, Shizhe Diao, Ligeng Zhu, Ping Luo, Song Han,
+                                                             [27] Aniruddha Kembhavi, Mike Salvato, Eric Kolve, Min-
+     and Enze Xie. Fast-dllm: Training-free acceleration
+                                                                  joon Seo, Hannaneh Hajishirzi, and Ali Farhadi. A
+     of diffusion llm by enabling kv cache and parallel
+                                                                  diagram is worth a dozen images. In European Con-
+     decoding. arXiv preprint arXiv:2505.22618, 2025.
+                                                                  ference on Computer Vision (ECCV), pages 235–251,
+[17] Yaniv Leviathan, Matan Kalman, and Yossi Matias.             2016.
+     Fast inference from transformers via speculative de-
+     coding. In International Conference on Machine          [28] Ahmed Masry, Do Xuan Long, Jia Qing Tan, Shafiq
+     Learning, pages 19274–19286. PMLR, 2023.                     Joty, and Enamul Hoque. Chartqa: A benchmark
+                                                                  for question answering about charts with visual and
+[18] Edward J Hu, Yelong Shen, Phillip Wallis, Zeyuan             logical reasoning. In Findings of the Association for
+     Allen-Zhu, Yuanzhi Li, Shean Wang, Liang Wang,               Computational Linguistics: ACL 2022, pages 2263–
+     Weizhu Chen, et al. Lora: Low-rank adaptation of             2279, 2022.
+     large language models. Iclr, 1(2):3, 2022.
+                                                             [29] Minesh Mathew, Dimosthenis Karatzas, and C.V.
+[19] Aleksei Samarin et al. Lk losses: Direct acceptance          Jawahar. Docvqa: A dataset for vqa on document
+     rate optimization for speculative decoding. arXiv            images. In IEEE Winter Conference on Applications
+     preprint arXiv:2602.23881, 2026.                             of Computer Vision (WACV), pages 2200–2209, 2021.
+
+                                                                                                                    17
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+[30] Xiang Yue, Yuansheng Ni, Kai Zhang, Tianyu Zheng,       [39] Xiang Li, John Thickstun, Ishaan Gulrajani, Percy S
+     Ruoqi Liu, Ge Zhang, Samuel Stevens, Dongfu Jiang,           Liang, and Tatsunori B Hashimoto. Diffusion-lm
+     Weiming Ren, Yuxuan Sun, Cong Wei, Botao Yu,                 improves controllable text generation. Advances in
+     Ruibin Yuan, Renliang Sun, Ming Yin, Boyuan                  neural information processing systems, 35:4328–4343,
+     Zheng, Zhenzhu Yang, Yibo Liu, Wenhao Huang,                 2022.
+     Huan Sun, Yu Su, and Wenhu Chen. Mmmu: A mas-
+     sive multi-discipline multimodal understanding and      [40] Shansan Gong, Mukai Li, Jiangtao Feng, Zhiyong Wu,
+     reasoning benchmark for expert agi. In Proceedings           and LingPeng Kong. Diffuseq: Sequence to sequence
+     of the IEEE/CVF Conference on Computer Vision                text generation with diffusion models. arXiv preprint
+     and Pattern Recognition (CVPR), pages 9556–9567,             arXiv:2210.08933, 2022.
+     2024.
+                                                             [41] Xiaochuang Han, Sachin Kumar, and Yulia Tsvetkov.
+[31] Pan Lu, Hritik Bansal, Tony Xia, Jiacheng Liu, Chun-         Ssd-lm: Semi-autoregressive simplex-based diffusion
+     yuan Li, Hannaneh Hajishirzi, Hao Cheng, Kai-Wei             language model for text generation and modular con-
+     Chang, Michel Galley, and Jianfeng Gao. Mathvista:           trol. arXiv preprint arXiv:2210.17432, 2022.
+     Evaluating mathematical reasoning of foundation
+     models in visual contexts. In International Confer-     [42] Jacob Austin, Daniel D Johnson, Jonathan Ho,
+     ence on Learning Representations (ICLR), 2024.               Daniel Tarlow, and Rianne Van Den Berg. Structured
+                                                                  denoising diffusion models in discrete state-spaces.
+[32] xAI. Realworldqa, 2024.                                      Advances in neural information processing systems,
+                                                                  34:17981–17993, 2021.
+[33] Xiang Yue, Tianyu Zheng, Yuansheng Ni, Yubo
+     Wang, Kai Zhang, Shengbang Tong, Yuxuan Sun,            [43] Zhengfu He, Tianxiang Sun, Kuanning Wang, Xuan-
+     Botao Yu, Ge Zhang, Huan Sun, Yu Su, Wenhu                   jing Huang, and Xipeng Qiu. Diffusionbert: Improv-
+     Chen, and Graham Neubig. Mmmu-pro: A more                    ing generative masked language models with diffusion
+     robust multi-discipline multimodal understanding             models. arXiv preprint arXiv:2211.15029, 2022.
+     benchmark. In Proceedings of the 63rd Annual Meet-
+     ing of the Association for Computational Linguistics    [44] Subham Sahoo, Marianne Arriola, Yair Schiff, Aaron
+     (ACL), 2025.                                                 Gokaslan, Edgar Marroquin, Justin Chiu, Alexander
+                                                                  Rush, and Volodymyr Kuleshov. Simple and effec-
+[34] Ling Yang, Ye Tian, Bowen Li, Xinchen Zhang,                 tive masked diffusion language models. Advances in
+     Ke Shen, Yunhai Tong, and Mengdi Wang. Mmada:                Neural Information Processing Systems, 37:130136–
+     Multimodal large diffusion language models. arXiv            130184, 2024.
+     preprint arXiv:2505.15809, 2025.
+                                                             [45] Jiaxin Shi, Kehang Han, Zhe Wang, Arnaud Doucet,
+[35] Shufan Li, Konstantinos Kallidromitis, Hritik Bansal,        and Michalis Titsias. Simplified and generalized
+     Akash Gokul, Yusuke Kato, Kazuki Kozuka, Ja-                 masked diffusion for discrete data. Advances in neural
+     son Kuen, Zhe Lin, Kai-Wei Chang, and Aditya                 information processing systems, 37:103131–103167,
+     Grover. Lavida: A large diffusion language model             2024.
+     for multimodal understanding.       arXiv preprint
+     arXiv:2505.16839, 2025.                                 [46] Aaron Lou, Chenlin Meng, and Stefano Ermon.
+                                                                  Discrete diffusion modeling by estimating the ra-
+[36] Zebin You, Shen Nie, Xiaolu Zhang, Jun Hu, Jun               tios of the data distribution.    arXiv preprint
+     Zhou, Zhiwu Lu, Ji-Rong Wen, and Chongxuan Li.               arXiv:2310.16834, 2023.
+     Llada-v: Large language diffusion models with visual
+     instruction tuning. arXiv preprint arXiv:2505.16933,    [47] Jingyang Ou, Shen Nie, Kaiwen Xue, Fengqi Zhu,
+     2025.                                                        Jiacheng Sun, Zhenguo Li, and Chongxuan Li. Your
+                                                                  absorbing discrete diffusion secretly models the con-
+[37] Runpeng Yu, Xinyin Ma, and Xinchao Wang. Dim-                ditional distributions of clean data. arXiv preprint
+     ple: Discrete diffusion multimodal large language            arXiv:2406.03736, 2024.
+     model with parallel decoding.      arXiv preprint
+     arXiv:2505.16990, 2025.                                 [48] Subham Sekhar Sahoo, Zhihan Yang, Yash Akhauri,
+                                                                  Johnna Liu, Deepansha Singh, Zhoujun Cheng,
+[38] Haodong Duan, Xinyu Fang, Junming Yang, Xiangyu
+                                                                  Zhengzhong Liu, Eric Xing, John Thickstun, and
+     Zhao, Yuxuan Qiao, Mo Li, Amit Agarwal, Zhe Chen,
+                                                                  Arash Vahdat. Esoteric language models. arXiv
+     Lin Chen, Yuan Liu, Yubo Ma, Hailong Sun, Yifan
+                                                                  preprint arXiv:2506.01928, 2025.
+     Zhang, Shiyin Lu, Tack Hwa Wong, Weiyun Wang,
+     Peiheng Zhou, Xiaozhe Li, Chaoyou Fu, Junbo Cui,        [49] Subham Sekhar Sahoo, Justin Deschenaux, Aaron
+     Jixuan Chen, Enxin Song, Song Mao, Shengyuan                 Gokaslan, Guanghan Wang, Justin Chiu, and
+     Ding, Tianhao Liang, Zicheng Zhang, Xiaoyi Dong,             Volodymyr Kuleshov. The diffusion duality. arXiv
+     Yuhang Zang, Pan Zhang, Jiaqi Wang, Dahua Lin,               preprint arXiv:2506.10892, 2025.
+     and Kai Chen. Vlmevalkit: An open-source toolkit
+     for evaluating large multi-modality models. arXiv       [50] Tiwei Bie, Maosong Cao, Kun Chen, Lun Du, Min-
+     preprint arXiv:2407.11691, 2024.                             gliang Gong, Zhuochen Gong, Yanmei Gu, Jiaqi Hu,
+
+                                                                                                                     18
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+     Zenan Huang, Zhenzhong Lan, et al. Llada2. 0: Scal-       [62] Xinyin Ma, Runpeng Yu, Gongfan Fang, and Xinchao
+     ing up diffusion language models to 100b. arXiv                Wang. dkv-cache: The cache for diffusion language
+     preprint arXiv:2512.15745, 2025.                               models. arXiv preprint arXiv:2505.15781, 2025.
+
+[51] Tiwei Bie, Maosong Cao, Xiang Cao, Bingsen Chen,          [63] Daniel Israel, Guy Van den Broeck, and Aditya
+     Fuyuan Chen, Kun Chen, Lun Du, Daozhuo Feng,                   Grover. Accelerating diffusion llms via adaptive paral-
+     Haibo Feng, Mingliang Gong, et al. Llada2. 1: Speed-           lel decoding. arXiv preprint arXiv:2506.00413, 2025.
+     ing up text diffusion via token editing. arXiv preprint
+     arXiv:2602.08676, 2026.                                   [64] Qingyan Wei, Yaojie Zhang, Zhiyuan Liu, Dongrui
+                                                                    Liu, and Linfeng Zhang. Accelerating diffusion large
+[52] Google DeepMind. Gemini diffusion, 2025. Model                 language models with slowfast: The three golden
+     page: state-of-the-art, experimental text diffusion            principles. arXiv preprint arXiv:2506.10848, 2025.
+     model.
+                                                               [65] Shansan Gong, Shivam Agarwal, Yizhe Zhang, Ji-
+[53] Samar Khanna, Siddhant Kharbanda, Shufan Li,                   acheng Ye, Lin Zheng, Mukai Li, Chenxin An, Peilin
+     Harshit Varma, Eric Wang, Sawyer Birnbaum, Ziyang              Zhao, Wei Bi, Jiawei Han, Hao Peng, and Lingpeng
+     Luo, Yanis Miraoui, Akash Palrecha, Stefano Ermon,             Kong. Scaling diffusion language models via adapta-
+     et al. Mercury: Ultra-fast language models based on            tion from autoregressive models. In The Thirteenth
+     diffusion. arXiv preprint arXiv:2506.17298, 2025.              International Conference on Learning Representa-
+                                                                    tions, 2025.
+[54] Yuxuan Song, Zheng Zhang, Cheng Luo, Pengyang
+     Gao, Fan Xia, Hao Luo, Zheng Li, Yuehang Yang,            [66] Xu Wang, Chenkai Xu, Yijie Jin, Jiachun Jin, Hao
+     Hongli Yu, Xingwei Qu, et al. Seed diffusion: A                Zhang, and Zhijie Deng. Diffusion llms can do faster-
+     large-scale diffusion language model with high-speed           than-ar inference via discrete diffusion forcing. arXiv
+     inference. arXiv preprint arXiv:2508.02193, 2025.              preprint arXiv:2508.09192, 2025.
+[55] Shansan Gong, Ruixiang Zhang, Huangjie Zheng,             [67] Yu-Yang Qian, Junda Su, Lanxiang Hu, Peiyuan
+     Jiatao Gu, Navdeep Jaitly, Lingpeng Kong, and Yizhe            Zhang, Zhijie Deng, Peng Zhao, and Hao
+     Zhang. Diffucoder: Understanding and improving                 Zhang.     d3llm:   Ultra-fast diffusion llm us-
+     masked diffusion models for code generation. arXiv             ing pseudo-trajectory distillation. arXiv preprint
+     preprint arXiv:2506.20639, 2025.                               arXiv:2601.07568, 2026.
+[56] Zhihui Xie, Jiacheng Ye, Lin Zheng, Jiahui Gao,           [68] Ruisi Cai, Saurav Muralidharan, Greg Heinrich,
+     Jingwei Dong, Zirui Wu, Xueliang Zhao, Shansan                 Hongxu Yin, Zhangyang Wang, Jan Kautz, and Pavlo
+     Gong, Xin Jiang, Zhenguo Li, et al. Dream-coder 7b:            Molchanov. Flextron: Many-in-one flexible large lan-
+     An open diffusion language model for code. arXiv               guage model. arXiv preprint arXiv:2406.10260, 2024.
+     preprint arXiv:2509.01142, 2025.
+                                                               [69] Yonggan Fu, Zhongzhi Yu, Junwei Li, Jiayi Qian,
+[57] Siyan Zhao, Devaansh Gupta, Qinqing Zheng, and                 Yongan Zhang, Xiangchi Yuan, Dachuan Shi, Ro-
+     Aditya Grover. d1: Scaling reasoning in diffusion              man Yakunin, and Yingyan Celine Lin. Amoeballm:
+     large language models via reinforcement learning.              Constructing any-shape large language models for
+     arXiv preprint arXiv:2504.12216, 2025.                         efficient and instant deployment. Advances in Neu-
+[58] Fengqi Zhu, Rongzhen Wang, Shen Nie, Xiaolu                    ral Information Processing Systems, 37:78299–78319,
+     Zhang, Chunwei Wu, Jun Hu, Jun Zhou, Jianfei Chen,             2024.
+     Yankai Lin, Ji-Rong Wen, et al. Llada 1.5: Variance-
+                                                               [70] Dhruv Nathawani, Shuoyang Ding, Vitaly Lavrukhin,
+     reduced preference optimization for large language
+                                                                    Igor Gitman, Somshubra Majumdar, Evelina Bakh-
+     diffusion models. arXiv preprint arXiv:2505.19223,
+                                                                    turina, Boris Ginsburg, and Jane Polak Scowcroft.
+     2025.
+                                                                    Nemotron-Post-Training-Dataset-v2, August 2025.
+[59] Mihir Prabhudesai, Mengning Wu, Amir Zadeh, Kate-
+     rina Fragkiadaki, and Deepak Pathak. Diffusion beats
+     autoregressive in data-constrained settings. arXiv
+     preprint arXiv:2507.15857, 2025.
+
+[60] Siyue Zhang, Yilun Zhao, Liyuan Geng, Arman Co-
+     han, Anh Tuan Luu, and Chen Zhao. Diffusion vs.
+     autoregressive language models: A text embedding
+     perspective. arXiv preprint arXiv:2505.15045, 2025.
+
+[61] Zhiyuan Liu, Yicun Yang, Yaojie Zhang, Junjie
+     Chen, Chang Zou, Qingyuan Wei, Shaobo Wang,
+     and Linfeng Zhang. dllm-cache: Accelerating diffu-
+     sion large language models with adaptive caching.
+     arXiv preprint arXiv:2506.06295, 2025.
+
+                                                                                                                        19
+  Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+A. Diffusion Sampler Details                                               as the early stopping criterion. The resulting ac-
+                                                                           curacy–TPF gains over confidence thresholding are
+This appendix details the sampler introduced in                            empirically reported in Sec. 6.1 and Fig. 8.
+Sec. 3.2, including its architecture, input features,
+and training trajectory collection.
+                                                                           B. LoRA-Enhanced Linear SS
+Architecture and feature engineering. As shown in
+Fig. 10, the sampler operates on top of the frozen                         We provide a visualization of the enhanced linear
+backbone and adds negligible parameter overhead                            self-speculation w/ LoRA in Fig. 11.
+(∼0.06%, with 4.8M compared to the 8B backbone).
+It is a 4-layer lightweight Transformer with a hid-
+den dimension of 𝑑=384. It attends bidirectionally                         C. Quadratic SS Details
+over the current block, followed by a per-position
+linear head with a sigmoid output. Each input po-                          We provide more details about quadratic self-
+sition is represented by a 144-dimensional feature:                        speculation, which is visualized in Fig. 12. Specif-
+PCA-compressed semantic embeddings of the top-                             ically, let [𝑥1 , . . . , 𝑥𝑛 ] denote the currently verified
+3 predictions, as well as statistics summarizing the                       prefix, and let 𝑘 be the speculative width. At gen-
+output distribution (e.g., top-1 probability, margin,                      eration step 𝑡+1, we reuse the 𝑘 speculative tokens
+top-3 mass, and entropy). The semantic embedding                           from the previous step, denoted {𝑥𝑡𝑛+𝑗 }𝑘+1    𝑗=2 , and in-
+of the model’s own top-1 prediction is by far the most                     terleave 𝑘 fresh mask tokens after each speculative
+informative feature. We also find cross-position atten-                    token, yielding the quadratic input:
+tion to be essential as an MLP-only ablation drops                            𝑡+1
+accuracy-TPF AUC by 10 percentage points, indicat-                           𝑋𝑚   = [𝑥1 , . . . , 𝑥𝑛 , 𝑥𝑛+1 ] + [𝑥𝑡𝑛+2 , 𝑚1 , . . . , 𝑚𝑘 ]
+ing that the sampler must jointly reason about which                                   + · · · + [𝑥𝑡𝑛+𝑘+1 , 𝑚1 , . . . , 𝑚𝑘 ],
+positions are mutually safe to commit.                                                                                      (11)
+                                                                           where 𝑥𝑛+1 is the next token generated autoregres-
+Data collection for sampler training. To train the
+                                                                           sively at step 𝑡+1 (and is thus immediately verified),
+sampler, we collect ∼20M denoising trajectories from
+                                                                           and the total number of inserted masks is 𝑘 2 .
+Nemotron-Labs-Diffusion-8B on [70] (math, code,
+                                                                                                                            𝑡+1
+STEM, and chat subsets) at block lengths 𝐵 ∈ 8, 32.                           Parallel draft and verification. Feeding 𝑋𝑚       via
+We use two complementary trajectory policies: (i)                          a structured attention mask into our model pro-
+standard confidence decoding (𝑘=1), where the block                        duces two types of outputs in a single forward pass.
+is decoded one token at a time in confidence order;                        First, the model generates next-token predictions for
+and (ii) a hybrid policy that first commits ground-                        the speculative tokens in a causal manner, yielding
+truth tokens whenever the model’s top-1 prediction                         {𝑥𝑡+1   𝑘+1
+                                                                              𝑛+𝑗 }𝑗=2 . These tokens are used to verify the pre-
+already agrees with them, then falls back to confi-                        vious speculative draft through sequential compari-
+dence for the remaining positions. At each inter-                          son [7]: we accept the longest prefix that satisfies a
+mediate step of every trajectory, we store the 144-                        verification criterion (e.g., 𝑥𝑡+1      𝑡
+                                                                                                           𝑛+𝑗 = 𝑥𝑛+𝑗 , as detailed
+dimensional per-position features and the binary label                     later), commit the accepted tokens to the verified
+1[current top-1 = final ID], where the final ID is the                     prefix, and stop verification at the first mismatch.
+token ultimately committed at that position once the                       Second, in the same forward pass, the model predicts
+block is fully decoded under the same policy. Train-                       the tokens corresponding to the newly inserted masks
+ing uses per-position binary cross-entropy on masked                       {𝑚𝑟 }𝑘𝑟=1 in parallel; we treat these predictions as the
+positions, with AUC on a held-out trajectory split                         draft tokens that will serve as {𝑥𝑡+1     𝑘+1
+                                                                                                               𝑛+𝑗 }𝑗=2 in the next
+                                                                           iteration. The interleaved quadratic layout ensures
+                                                                           that, even if verification fails early at some position,
+                                         Sampler                           newly inserted mask positions remain that still yield
+         Output Stats
+                                                                           fresh speculative tokens for the next step, so each
+                                                                           iteration consistently produces 𝑘 tokens to verify [7].
+                         can       can        diffusion   decoding
+
+                                                                     PCA      Verification with the AR-diffusion ensemble. For
+                         Diffusion Mode
+                                                                           verification, the simplest choice is to use the AR
+                        Embedding Layer                                    predictions on the speculative tokens. In addition,
+                                                                           our tri-mode model provides a complementary veri-
+   Our      model       [MASK]    [MASK]      [MASK]      [MASK]
+                                                                           fication signal from the diffusion pathway: for each
+                                                                           speculative token 𝑥𝑡𝑛+𝑗 in Eq. 11, we can use the
+Figure 10 | An illustration of the sampler design on                       diffusion prediction at the first newly inserted mask
+top of the diffusion mode.                                                 position 𝑚1 immediately following it as an alternative
+
+                                                                                                                                             20
+ Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding
+
+                                                                                       LK + CE Losses
+
+                        enable           linear            self            decoding                           enable        linear     self       speculation
+
+                                                                                              Single
+                      Diff. Mode for Draft                 LoRA            Oproj
+                                                                                              Model
+                                                                                                                       AR Mode for Verification
+
+   The        two      [MASK]           [MASK]           [MASK]            [MASK]                       The    two         enable     linear        self        decoding
+
+                                                                                                                             Cache KV for Next Iter
+Figure 11 | An illustration of LoRA training on the diffusion drafter of the linear self-speculation mode.
+
+                             also           perform           diffusion               style
+
+                          perform          quadratic              mode             decoding
+
+                          quadratic           self                 and                and
+
+                             self          speculation             AR                 AR
+
+                          speculation      decoding               mode                style
+
+         Quadratic Decoding (Simultaneous Draft / Verification)
+
+    It         can           also           perform           diffusion               style
+
+                           [Mask]           [Mask]                [Mask]           [Mask]
+
+                           [Mask]           [Mask]                [Mask]           [Mask]
+
+                           [Mask]           [Mask]                [Mask]           [Mask]
+
+                           [Mask]           [Mask]                [Mask]           [Mask]
+
+Figure 12 | An illustration of quadratic self-
+speculation with simultaneous drafting and verifica-
+tion.    denotes draft tokens that match AR verifi-
+cation, and denotes the block that originates from
+the last matched token and is to be verified in the
+next iteration.
+verifier for the same token. Concretely, the AR veri-
+fier uses the causal logits 𝑝AR
+                             𝜃 (· | 𝑥<𝑛+𝑗 ) at position
+𝑛+𝑗, while the diffusion verifier uses the denoising
+                 𝑡+1
+logits 𝑝diff
+        𝜃 (· | 𝑋𝑚 , 𝑡) produced for the corresponding
+𝑚1 position. Generally, we can form an AR-diffusion
+ensemble verifier by combining the two distributions:
+
+           𝑝ens        AR               diff
+            𝜃 (·) = 𝜆 𝑝𝜃 (·) + (1 − 𝜆) 𝑝𝜃 (·),
+
+where 𝜆 ∈ [0, 1] controls the interpolation.
+
+                                                                                                                                                                           21

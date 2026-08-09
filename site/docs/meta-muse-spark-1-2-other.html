@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muse Spark 1.2 &amp; Muse Code Evaluation Methodology — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Muse Spark 1.2 &amp; Muse Code Evaluation Methodology</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">meta</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">other</span></dd>
+    <dt>Models</dt>
+    <dd>Muse Code, Muse Spark 1.2</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-08-05</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://research.meta.ai/static/muse-spark-1-2-methodology" rel="noopener nofollow">https://research.meta.ai/static/muse-spark-1-2-methodology</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T21:05:14Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-spark-1-2-other&amp;body=Document%3A%20meta-muse-spark-1-2-other%0AURL%3A%20https%3A//research.meta.ai/static/muse-spark-1-2-methodology%0AFingerprint%3A%20fd0ba0cff7c67f70fe1f0f4095f33dfb2df7b37539f3ffc75eacd841bf30f0cf%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T21:05:14Z</td>
+          <td>application/pdf</td>
+          <td>81,397</td>
+          <td><code title="fd0ba0cff7c67f70fe1f0f4095f33dfb2df7b37539f3ffc75eacd841bf30f0cf">fd0ba0cff7c67f70</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T21:05:14Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-3 · agent · lead: agent_search</span>
+          <div class="just">Meta Superintelligence Labs&#39; own evaluation-methodology report for Muse Spark 1.2 and the Muse Code agent, linked as &#39;our report&#39; from Meta&#39;s launch post &#39;Introducing Muse Code and Muse Spark 1.2&#39; dated August 5, 2026. Two previous sessions could not close Meta because ai.meta.com/blog shows nothing after 2026-07-27; the announcement and this document live on research.meta.ai, a host absent from Meta&#39;s index_urls, which is why index diffing missed them. I read the full four-page PDF. It documents the harnesses and scoring for Terminal-Bench 2.1, DeepSWE v1.1, GDPVal-AA v2, MCP Atlas and Meta Internal Coding Bench, including the caveat that its third-party comparisons are not harness-identical to the official leaderboards. It contains no safety evaluations, dangerous-capability testing, red-teaming or risk assessment whatsoever, so has_safety_evals is false — a meaningful negative finding, since Meta&#39;s two catalogued Muse Spark documents are both safety and evaluation reports and this release shipped with capability benchmarks only. I chose doc_type &#39;other&#39; rather than system_card for the same reason. The document carries no internal date, so I used the date of the announcement post that publishes it.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2" rel="noopener nofollow">https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2</a> · <a href="https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/" rel="noopener nofollow">https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://research.meta.ai/static/muse-spark-1-2-methodology" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Muse Spark 1.2 &amp; Muse Code
+                                             Evaluation Methodology
+We evaluate Muse Spark 1.2 with Muse Code on Terminal-Bench 2.1 (Stanford × Laude
+Institute) and DeepSWE v1.1 (Datacurve), alongside results on GDPVal-AA v2 (Artificial
+Analysis), MCP Atlas (Scale AI), and Meta Internal Coding Bench.
+
+Overall Methodology
+   ●​ Models and agents. Where comparable results are available, we compare Muse
+      Spark 1.2 with Muse Spark 1.1, Grok 4.5, Claude Opus 5, GPT-5.6 Terra, Gemini 3.6
+      Flash, and Kimi K3. For Terminal-Bench 2.1 and DeepSWE 1.1, each model is
+      evaluated with its selected agent product: Muse Code for Muse Spark 1.2,
+      mini-swe-agent for Muse Spark 1.1, Grok Build for Grok, Claude Code for Opus,
+      Codex for GPT, Antigravity for Gemini, and Kimi Code for Kimi. We use the
+      maximum available reasoning strength for each model: xhigh reasoning effort for
+      Muse Spark 1.2 and Muse Spark 1.1, high for Grok and Gemini, and max for Opus,
+      GPT, and Kimi. Muse Spark 1.2 is served through the Meta Model API. GDPVal-AA
+      v2 and MCP Atlas use the benchmark providers&#39; agent harnesses and therefore
+      are not CLI agent comparisons.
+   ●​ Evaluation framework. Our Terminal-Bench 2.1 and DeepSWE 1.1 runs use an
+      internal agent evaluation framework. Each task attempt runs the selected agent
+      and model in an isolated Daytona cloud sandbox. We use the official benchmark
+      datasets or faithfully convert them to Harbor format. Each benchmark&#39;s verifier
+      grades the final result. GDPVal-AA v2 results come from Artificial Analysis, and
+      MCP Atlas results come from Scale AI. Meta Internal Coding Bench uses a
+      separate internal agentic harness and dedicated grading containers.
+   ●​ Agentic evaluations for third-party models: The results represent our best-effort
+      evaluations of third-party models. Where applicable, we use a common
+      evaluation framework and align benchmark settings as closely as is practical. We
+      note that our evaluation setup (e.g., agent tools and system prompts) may not be
+      specifically tuned for proprietary third-party models. Therefore, the results may
+      not reflect these models&#39; best performance when used in environments tailored to
+      their specific strengths.
+Terminal benchmarks
+Terminal-Bench 2.1: Terminal-Bench 2.1 evaluates agents on tasks completed in a
+terminal environment. The Terminal-Bench paper describes the preceding 2.0 release.
+Our evaluation uses all 89 tasks in the official 2.1 release. Each attempt runs the selected
+agent in an isolated Daytona sandbox. The task&#39;s executable verifier then evaluates the
+final container state. We report the average task success rate (pass@1) across five
+attempts.
+
+Software engineering
+DeepSWE v1.1: Datacurve&#39;s DeepSWE paper defines 113 tasks across 91 repositories and
+five languages: TypeScript, Go, Python, JavaScript, and Rust. Each task has a
+handwritten functional verifier and regression checks. We use the Harbor-format
+dataset and run tasks in isolated Daytona cloud sandboxes. We attempt to follow Pier
+v0.3.0 as closely as possible, the benchmark&#39;s official runner. The agent&#39;s final patch is
+applied to a pristine checkout in a fresh verifier container. External internet access is
+blocked during rollout and grading, and only the model endpoint remains reachable. A
+task passes only when its functional verifier and regression checks both succeed. The
+official leaderboard uses mini-swe-agent for every model. Our evaluation instead uses
+each model&#39;s selected agent product and therefore is not harness-identical to the
+leaderboard. We report the average task success rate (pass@1) across five attempts.
+
+Professional tasks
+GDPVal-AA v2: GDPVal-AA v2 evaluates agents on 220 real-world professional tasks
+from OpenAI&#39;s GDPval dataset. The tasks span 44 occupations and nine major U.S.
+industries and require deliverables such as documents, spreadsheets, slide decks,
+diagrams, and reports. Models operate in Artificial Analysis&#39;s Stirrup agentic harness
+with shell access and web browsing. For each task, an LLM judge compares anonymized
+deliverables head-to-head. The primary metric is the Elo rating derived from these blind
+pairwise comparisons, with the human baseline anchored at 1,000. We use results
+produced by Artificial Analysis.
+
+MCP tool use
+MCP Atlas: MCP Atlas evaluates agents on 1,000 human-authored tasks across 36 real
+Model Context Protocol servers and 220 tools. The public and private splits each contain
+500 tasks. Tasks run against containerized MCP servers with a controlled set of target
+and distractor tools. An LLM judge assigns each ground-truth claim a score: 1 if fulfilled,
+0.5 if partially fulfilled, and 0 if not fulfilled. A task&#39;s coverage is the mean of its claim
+scores, and the task passes when coverage is at least 0.75. The primary metric is pass
+rate, the percentage of tasks that pass. We use the result produced by Scale AI with the
+benchmark&#39;s own agent harness and scoring pipeline.
+
+Internal coding
+Meta Internal Coding Bench: Meta Internal Coding Bench consists of 440 tasks sourced
+from Meta&#39;s internal codebase. The tasks are derived from real internal pull requests and
+cover bug fixes, feature development, refactoring, code cleanup, and other software
+engineering work. Internet access is disabled, and each task runs in an isolated sandbox
+using an internal agentic harness. Submissions are compiled and evaluated against unit
+tests in dedicated grading containers. We use two attempts per task. For each model, we
+compute each task&#39;s success rate across its attempts and then average those task-level
+rates. The primary metric is percent resolved (pass@1).</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek-OCR-2 Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">DeepSeek-OCR-2 Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">deepseek</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>DeepSeek-OCR-2</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-01-27</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/deepseek-ai/DeepSeek-OCR-2" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-OCR-2</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:47:26Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-ocr-2-model-card&amp;body=Document%3A%20deepseek-deepseek-ocr-2-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-OCR-2%0AFingerprint%3A%2025688784a0b09dfcdc2f512498eb63efbe749bafdd5be4395c09e34b9487ba5e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:47:26Z</td>
+          <td>text/html</td>
+          <td>333,229</td>
+          <td><code title="25688784a0b09dfcdc2f512498eb63efbe749bafdd5be4395c09e34b9487ba5e">25688784a0b09dfc</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:47:26Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-2 · agent · lead: monitor</span>
+          <div class="just">DeepSeek&#39;s own model card on its official HuggingFace org for DeepSeek-OCR-2, the successor to DeepSeek-OCR, released alongside the paper &#39;DeepSeek-OCR 2: Visual Causal Flow&#39; (arXiv 2601.20552). I fetched and read the card: it describes the 3B vision-language OCR model and reports document-understanding benchmarks (Real5-OmniDocBench, ParseBench). It is a distinct release, not a size/quantization variant of anything already in the corpus, and it is plainly notable - 1.6M downloads and 1073 likes on the hub, and DeepSeek-OCR was widely covered when the first version shipped. The repository was created 2026-01-27 (HuggingFace API createdAt), which is the release date I use since the card itself carries no dateline. The card contains no safety or dangerous-capability evaluation - it is a capability/benchmark card only - so has_safety_evals is false.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/api/models/deepseek-ai/DeepSeek-OCR-2" rel="noopener nofollow">https://huggingface.co/api/models/deepseek-ai/DeepSeek-OCR-2</a> · <a href="https://huggingface.co/papers/2601.20552" rel="noopener nofollow">https://huggingface.co/papers/2601.20552</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/deepseek-ai/DeepSeek-OCR-2" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>DeepSeek-OCR
+ Collection
+ 2 items • Updated  •  34
+- Libraries
+-  Transformers How to use deepseek-ai/DeepSeek-OCR-2 with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;deepseek-ai/DeepSeek-OCR-2&#34;, trust_remote_code=True)# Load model directly
+from transformers import AutoModel
+model = AutoModel.from_pretrained(&#34;deepseek-ai/DeepSeek-OCR-2&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use deepseek-ai/DeepSeek-OCR-2 with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;deepseek-ai/DeepSeek-OCR-2&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-OCR-2&#34;,
+		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
+		&#34;max_tokens&#34;: 512,
+		&#34;temperature&#34;: 0.5
+	}&#39;Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-OCR-2
+-  SGLang  How to use deepseek-ai/DeepSeek-OCR-2 with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;deepseek-ai/DeepSeek-OCR-2&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-OCR-2&#34;,
+		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
+		&#34;max_tokens&#34;: 512,
+		&#34;temperature&#34;: 0.5
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;deepseek-ai/DeepSeek-OCR-2&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-OCR-2&#34;,
+		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
+		&#34;max_tokens&#34;: 512,
+		&#34;temperature&#34;: 0.5
+	}&#39;
+-  Docker Model Runner  How to use deepseek-ai/DeepSeek-OCR-2 with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-OCR-2
+🌟 Github | 📥 Model Download | 📄 Paper Link | 📄 Arxiv Paper Link |
+DeepSeek-OCR 2: Visual Causal Flow
+Explore more human-like visual encoding.
+Inference using Huggingface transformers on NVIDIA GPUs. Requirements tested on python 3.12.9 + CUDA11.8：
+torch==2.6.0
+transformers==4.46.3
+tokenizers==0.20.3
+einops
+addict
+easydict
+pip install flash-attn==2.7.3 --no-build-isolation
+from transformers import AutoModel, AutoTokenizer
+import torch
+import os
+os.environ[&#34;CUDA_VISIBLE_DEVICES&#34;] = &#39;0&#39;
+model_name = &#39;deepseek-ai/DeepSeek-OCR-2&#39;
+tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+model = AutoModel.from_pretrained(model_name, _attn_implementation=&#39;flash_attention_2&#39;, trust_remote_code=True, use_safetensors=True)
+model = model.eval().cuda().to(torch.bfloat16)
+# prompt = &#34;&lt;image&gt;\nFree OCR. &#34;
+prompt = &#34;&lt;image&gt;\n&lt;|grounding|&gt;Convert the document to markdown. &#34;
+image_file = &#39;your_image.jpg&#39;
+output_path = &#39;your/output/dir&#39;
+res = model.infer(tokenizer, prompt=prompt, image_file=image_file, output_path = output_path, base_size = 1024, image_size = 768, crop_mode=True, save_results = True)
+Refer to 🌟GitHub for guidance on model inference acceleration and PDF processing, etc.
+- Dynamic resolution
+  - Default: (0-6)×768×768 + 1×1024×1024 — (0-6)×144 + 256 visual tokens ✅
+# document: &lt;image&gt;\n&lt;|grounding|&gt;Convert the document to markdown.
+# without layouts: &lt;image&gt;\nFree OCR.
+We would like to thank DeepSeek-OCR, Vary, GOT-OCR2.0, MinerU, PaddleOCR for their valuable models and ideas.
+We also appreciate the benchmark OmniDocBench.
+@article{wei2025deepseek,
+  title={DeepSeek-OCR: Contexts Optical Compression},
+  author={Wei, Haoran and Sun, Yaofeng and Li, Yukun},
+  journal={arXiv preprint arXiv:2510.18234},
+  year={2025}
+}
+@article{wei2026deepseek,
+  title={DeepSeek-OCR 2: Visual Causal Flow},
+  author={Wei, Haoran and Sun, Yaofeng and Li, Yukun},
+  journal={arXiv preprint arXiv:2601.20552},
+  year={2026}
+}
+- Downloads last month
+- 1,608,298
+ Inference Providers NEW
+  This model isn&#39;t deployed by any Inference Provider. 🙋 63 Ask for provider support
+ Paper • 2601.20552 • Published  •  73
+ Paper • 2510.18234 • Published  •  95
+- PaddlePaddle/Real5-OmniDocBench leaderboard
+- Overall View evaluation resultssource73.01
+- Scanning View evaluation resultssource89.59
+- Warping View evaluation resultssource66.53
+- llamaindex/ParseBench leaderboard
+- Mean View evaluation resultssourcePipeline name: deepseekocr2_vllm41.2 *</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

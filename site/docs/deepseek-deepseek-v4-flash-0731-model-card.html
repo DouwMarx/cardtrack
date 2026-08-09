@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek-V4-Flash-0731 Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">DeepSeek-V4-Flash-0731 Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">deepseek</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>DeepSeek-V4-Flash-0731</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-31</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:27:46Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-flash-0731-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-flash-0731-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731%0AFingerprint%3A%207e59f2d47b6da0952c65da2ee38844c350a2f8454b06638993742581de8fb6cf%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:27:46Z</td>
+          <td>text/html</td>
+          <td>264,185</td>
+          <td><code title="7e59f2d47b6da0952c65da2ee38844c350a2f8454b06638993742581de8fb6cf">7e59f2d47b6da095</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:27:46Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-1 · agent · lead: monitor</span>
+          <div class="just">DeepSeek&#39;s own model card for DeepSeek-V4-Flash-0731, read in full. The card states this is &#39;the official release of DeepSeek-V4-Flash, superseding the preview version, with substantially enhanced agentic capabilities&#39; — new weights (304B with an attached speculative-decoding module, vs the 284B preview) that the card benchmarks as outperforming V4-Pro (Preview). I judged this a distinct release rather than a skippable checkpoint because it replaces the preview it supersedes and was separately announced by DeepSeek on 2026-07-31 in its API changelog (&#39;Official public beta release of DeepSeek-V4-Flash API&#39;); this mirrors how the corpus already keeps OpenAI&#39;s GPT-5.6 Sol (Preview) and GPT-5.6 Sol as separate rows. Notable: 2.9k likes and 869k downloads within nine days. Related artifacts I deliberately did NOT propose: DeepSeek-V4-Flash-DSpark and DeepSeek-V4-Pro-DSpark, which are speculative-decoding inference variants of already-covered models. has_safety_evals is false — the card is Introduction, benchmark table, Chat Template, vLLM/SGLang/local run instructions, License, Citation, Contact, with no occurrence of safety, red-teaming, risk-assessment or CBRN content.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://api-docs.deepseek.com/updates" rel="noopener nofollow">https://api-docs.deepseek.com/updates</a> · <a href="https://huggingface.co/collections/deepseek-ai/deepseek-v4" rel="noopener nofollow">https://huggingface.co/collections/deepseek-ai/deepseek-v4</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use deepseek-ai/DeepSeek-V4-Flash-0731 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use deepseek-ai/DeepSeek-V4-Flash-0731 with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;)
+model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;, device_map=&#34;auto&#34;)
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use deepseek-ai/DeepSeek-V4-Flash-0731 with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-V4-Flash-0731
+-  SGLang  How to use deepseek-ai/DeepSeek-V4-Flash-0731 with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use deepseek-ai/DeepSeek-V4-Flash-0731 with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-V4-Flash-0731
+DeepSeek-V4-Flash-0731
+Introduction
+DeepSeek-V4-Flash-0731 is the official release of DeepSeek-V4-Flash, superseding the preview version, with substantially enhanced agentic capabilities. It has the same model structure as DeepSeek-V4-Flash-DSpark, i.e. it comes with a speculative decoding module attached.
+DeepSeek-V4-Flash-0731 outperforms DeepSeek-V4-Pro (Preview) on benchmarks listed below despite its far smaller activated parameter count, and is broadly competitive with the strongest proprietary models available.
+| Benchmark | DeepSeek-V4-Flash-0731 | DeepSeek-V4-Flash (Preview) | DeepSeek-V4-Pro (Preview) | GLM-5.2 | Opus-4.8 |
+|---|---|---|---|---|---|
+| Terminal Bench 2.1 | 82.7 | 61.8 | 72.1 | 81.0 | 85.0 |
+| NL2Repo | 54.2 | 39.4 | 38.5 | 48.9 | 69.7 |
+| Cybergym | 76.7 | 38.7 | 52.7 | - | 83.1 |
+| DeepSWE | 54.4 | 7.3 | 12.8 | 46.2 | 58.0 |
+| Toolathlon-Verified | 70.3 | 49.7 | 55.9 | 59.9 | 76.2 |
+| Agents&#39; Last Exam | 25.2 | 15.8 | 16.5 | 23.8 | 25.7 |
+| AutomationBench Public | 25.1 | 10.8 | 12.8 | 12.9 | 27.2 |
+| DSBench-FullStack † | 68.7 | 37.0 | 41.8 | 61.8 | 71.6 |
+| DSBench-Hard † | 59.6 | 25.8 | 31.1 | 54.5 | 71.7 |
+Notes:
+- For the Code Agent tasks among the public benchmarks above, DeepSeek-V4-Flash-0731 is evaluated with the minimal mode of DeepSeek Harness (to be released) as the agent framework, using the max reasoning effort level withtemperature = 1.0, top_p = 0.95 .
+- † DSBench-FullStack is an internal full-stack development test set; DSBench-Hard is an internal test set of difficult coding-agent problems.
+Chat Template
+This release does not include a Jinja-format chat template. Instead, we provide a dedicated encoding folder with Python scripts and test cases demonstrating how to encode messages in OpenAI-compatible format into input strings for the model, and how to parse the model&#39;s text output. Please refer to the encoding folder for full documentation.
+The reasoning_effort parameter now supports three levels — low, high, and max — which control how much deliberation the model spends before answering.
+A brief example:
+from encoding_dsv4 import encode_messages, parse_message_from_completion_text
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hello&#34;},
+    {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;Hello! I am DeepSeek.&#34;, &#34;reasoning_content&#34;: &#34;thinking...&#34;},
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;1+1=?&#34;}
+]
+# messages -&gt; string
+prompt = encode_messages(messages, thinking_mode=&#34;thinking&#34;, reasoning_effort=&#34;max&#34;)
+# string -&gt; tokens
+import transformers
+tokenizer = transformers.AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Flash-0731&#34;)
+tokens = tokenizer.encode(prompt)
+How to Run with vLLM
+DSpark speculative decoding is enabled with a single flag — add --speculative-config with method: dspark to your vLLM launch command:
+--speculative-config &#39;{&#34;method&#34;:&#34;dspark&#34;,&#34;num_speculative_tokens&#34;:7,&#34;draft_sample_method&#34;:&#34;greedy&#34;}&#39;
+For example, the command below serves the model with vLLM on a single 4×GB300 node. See the vLLM recipe for detailed instructions and other hardware configurations.
+vllm serve deepseek-ai/DeepSeek-V4-Flash-0731 \
+  --trust-remote-code --kv-cache-dtype fp8 --block-size 256 \
+  --data-parallel-size 4 --enable-expert-parallel \
+  --moe-backend deep_gemm_mega_moe \
+  --attention-config &#39;{&#34;use_fp4_indexer_cache&#34;: true}&#39; \
+  --speculative-config &#39;{&#34;method&#34;:&#34;dspark&#34;,&#34;num_speculative_tokens&#34;:7,&#34;draft_sample_method&#34;:&#34;greedy&#34;}&#39;
+How to Run with SGLang
+Enable DSpark with --speculative-algorithm DSPARK and do not set a separate --speculative-draft-model-path as the target and draft weights therefore come from the same checkpoint.
+See the SGLang cookbook for detailed instructions, benchmarks and other hardwares configurations.
+sglang serve \
+  --trust-remote-code \
+  --model-path deepseek-ai/DeepSeek-V4-Flash-0731 \
+  --tp 4 \
+  --moe-runner-backend flashinfer_mxfp4 \
+  --speculative-algorithm DSPARK \
+  --mem-fraction-static 0.90 \
+  --chunked-prefill-size 4096 \
+  --swa-full-tokens-ratio 0.1 \
+How to Run Locally
+Please refer to the inference folder for detailed instructions on running DeepSeek-V4 locally, including model weight conversion and interactive chat demos.
+For local deployment, we recommend setting the sampling parameters to temperature = 1.0, with top_p = 0.95 for agentic scenarios and top_p = 1.0 otherwise. For the high and max reasoning effort levels, we recommend a maximum output length of 384K tokens.
+License
+This repository and the model weights are licensed under the MIT License.
+Citation
+@misc{deepseekai2026deepseekv4,
+      title={DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence},
+      author={DeepSeek-AI},
+      year={2026},
+}
+Contact
+If you have any questions, please raise an issue or contact us at service@deepseek.com.
+- Downloads last month
+- 868,576
+Model tree for deepseek-ai/DeepSeek-V4-Flash-0731
+Spaces using deepseek-ai/DeepSeek-V4-Flash-0731 11
+Collection including deepseek-ai/DeepSeek-V4-Flash-0731
+Paper for deepseek-ai/DeepSeek-V4-Flash-0731
+Evaluation results
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

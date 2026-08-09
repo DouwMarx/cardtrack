@@ -1,0 +1,39 @@
+Research
+1 min read
+Red-teaming auto mode: lessons from our first external monitor campaign with Anthropic
+Table of Contents
+Evaluating anti-scheming training
+At Apollo Research, we've spent the last few years running pre-deployment evaluations of frontier models. We're now building on this experience to red-team black-box monitors of autonomous coding agents. As a first step, we ran a pilot red-teaming campaign against Anthropic’s auto mode, the new permission mode that decides whether an agent's next action should be allowed or blocked.
+The goal of a pilot was to build out the monitor red-teaming methodology and establish practices. We performed 3 types of red-teaming:
+- Failure modes at different severity levels are injected into real trajectories,
+- Static monitoring benchmarks such as MonitoringBench,
+- Dynamic off-policy control red-teaming.
+By working through real coding sessions with injected attacks across a range of failure modes, we identified areas for improvement and paired each with actionable recommendations, which Anthropic implemented.
+The red-teaming exercise surfaced important considerations for monitor developers:
+- Time of intervention. When exactly should a blocking monitor step in: at the moment a potentially risky change is introduced, or at the point when it's executed or published? Monitors need to trade off overblocking too early before real harm happens versus focusing on only a handful of execution steps that reduce blocking opportunities for the monitor.
+- User authorisation. What does it actually mean for a user to authorise an action? The monitors need to get good at obtaining informed consent without interfering with the workflow, where users might run hours- and days-long tasks.
+- Trust boundary. Where is it safe to move information, and which boundaries should never be crossed? Monitors need to get good at distinguishing between public vs. private destinations, development vs. deployment, and discerning between secret, sensitive, confidential and public data.
+- Monitor visibility. What information should the monitor receive? On the one hand, monitors need to get important details and full context to make the decision, on the other, too much information risks prompt injection, higher cost, latency and context length degradation.
+What's next
+Apollo Research will build on their pre-deployment testing experience and start running monitor red-teaming campaigns, beginning with frontier AI labs. Because monitor deployments are decoupled from model releases, we expect these campaigns to run asynchronously and periodically. They would be triggered by new monitor versions shipping or by rising frontier-model risk, for example models taking irreversible dangerous actions through overeagerness or mistakes. Lessons from the campaigns will further inform our blue-teaming research and monitoring for Watcher to ensure the frontier defences are ready as capabilities and agentic autonomy increase. Over time, monitor red-teaming can provide stronger security guarantees through independent testing, foster a healthier industry-wide safety culture, and enable methodology sharing between frontier labs and AI safety research organisations.
+If you are a monitor developer interested in red-teaming campaigns for your monitors, please reach out.
+If you'd like to work on this, the monitoring research team is hiring AI Security and Control Engineers and Control Research Scientists.
+Share this article
+oUR FINDINGS
+More papers
+July 23, 2026
+What makes a good monitoring prompt?
+We want to understand which principles work well for high-quality monitoring prompts. We use a 1-10 severity scale and full-trajectory scoring, as opposed to real-time binary prompts.
+Product
+February 17, 2026
+Apollo x Tailscale: Introducing “Watcher” for AI Oversight & Control
+Watcher is an oversight layer for AI agents. It detects real-world safety and security failures before they become liabilities, and flags those failures to you.
+Product
+July 7, 2026
+Evaluating LLM Calibration for Coding-Agent Monitoring
+We evaluate 16 LLMs scoring coding-agent trajectories on a 1-10 severity scale across three datasets and five failure modes to assess their capabilities and calibration as coding agent monitors.
+Research
+January 20, 2026
+Apollo’s product vision
+We’re building tools that make it easier to secure frontier AI agents.
+Product

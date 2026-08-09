@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measuring Reward-Seeking via Contrastive Belief Updates — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Measuring Reward-Seeking via Contrastive Belief Updates</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">apollo_research</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>OpenAI o3, gpt-oss-120b</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-21</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates" rel="noopener nofollow">https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:49:20Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-openai-o3-independent-eval&amp;body=Document%3A%20apollo-research-openai-o3-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates%0AFingerprint%3A%20ba2e53c0ddbd184ee9fdd674b59878143914be0ad1e1169ea2d458918da5c7ff%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:49:20Z</td>
+          <td>text/html</td>
+          <td>127,761</td>
+          <td><code title="ba2e53c0ddbd184ee9fdd674b59878143914be0ad1e1169ea2d458918da5c7ff">ba2e53c0ddbd184e</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:49:20Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-2 · agent · lead: monitor</span>
+          <div class="just">Apollo Research&#39;s own publication, and the only 2026 entry on its research index - it closes a tier-1 evaluator that currently has zero coverage in the corpus. I fetched and read it: Apollo measures reward-seeking by contrasting how a model&#39;s behaviour shifts when synthetic documents change what it believes the grader rewards, and reports quantitative results on named models - a late o3 checkpoint from a capabilities-focused RL run breaks a promise 87% of the time when told the grader rewards task completion versus 9% when told it rewards honesty, against 40% vs 24% for an earlier checkpoint, and a gpt-oss-120b reward-hacking model organism shifts from 33% to 86%. That is misalignment evaluation of specific models, so has_safety_evals is true. A previous run classed this as methods work; having read it, I judge that too strict - the checkpoint-level results on o3 are the substance of the paper. It is Apollo&#39;s own primary publication, not press coverage, and is distinct from any other document in the corpus.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.apolloresearch.ai/science" rel="noopener nofollow">https://www.apolloresearch.ai/science</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Science of Scheming
+1 min read
+Measuring Reward-Seeking via Contrastive Belief Updates
+Relevant links
+Table of Contents
+Evaluating anti-scheming training
+Language models trained with reinforcement learning may learn to optimize the grader’s judgment rather than the intended objective. This “reward-seeking” is difficult to measure because a model that pursues the grader’s judgment and one that pursues the intended objective behave identically whenever the grader rewards the intended behavior. We measure reward-seeking using Contrastive Synthetic Document Finetuning to change a model’s beliefs about what the grader rewards, putting those beliefs in conflict with what users or developers want, and measuring the rate at which the model adopts each party’s preferred behavior. Applied to intermediate checkpoints of a capabilities focused OpenAI o3 RL run, without safety training, we find that these checkpoints often side with grader preferences over those of users or developers on coding and alignment tasks. This tendency to side with the grader trends upward throughout RL training. For example, in an environment that forces a choice between keeping a promise to a supervisor and breaking it to complete the task, a late capabilities-focused o3 checkpoint breaks the promise 87% of the time when SDF documents say the grader rewards task completion, versus 9% when they say it rewards honesty (a choice its chain-of-thought often makes explicit). An earlier checkpoint is far less sensitive (40% vs. 24%). Our method also generalizes to reward-hacking models. A model organism trained to reward-hack (gpt-oss-120b) is more than twice as sensitive to grader preferences as the unmodified model, with the mean behavioral shift in favor of the grader rising from 33% to 86%. These results indicate that RL can increase reward-seeking over the course of training, producing models that may act against their developers’ intentions when they believe that doing so leads to higher reward.
+Learn more at rewardseeking.ai
+Watch a short explainer video: Measuring Reward Seeking in AI Models (Apollo Research x OpenAI)
+Watch the author roundtable: Is AI doing the right thing for the wrong reasons?
+Share this article
+oUR FINDINGS
+More papers
+17 March 2025
+Claude Sonnet 3.7 (often) knows when it’s in alignment evaluations
+We evaluate whether Claude Sonnet 3.7 and other frontier models know that they are being evaluated.
+Evaluations
+Notes
+05 July 2026
+We need 3rd party Training-Run Assessments
+Training-run assessments conducted by a 3rd party should become a standard part of frontier AI safety.
+Science of Scheming
+22 January 2024
+We Need A ‘Science of Evals’
+We argue that if AI model evaluations (evals) want to have meaningful real-world impact, we need a “Science of Evals”, i.e. the field needs rigorous scientific processes that provide more confidence in evals methodology and results.
+Evaluations
+15 September 2023
+Understanding strategic deception and deceptive alignment
+Scenarios in which AI models are strategically deceptive could be catastrophic for humanity. Thus, we believe it’s crucial to have a clear and comprehensible understanding of AI deception. In this article we describe the concepts of AI strategic deception and deceptive alignment, in detail.
+Evaluations</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

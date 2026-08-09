@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nemotron-Cascade-2-30B-A3B Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Nemotron-Cascade-2-30B-A3B Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Nemotron-Cascade-2-30B-A3B</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-03-19</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:59:57Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-cascade-2-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-cascade-2-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B%0AFingerprint%3A%20d280d5c3352ba626fd042fd76ee07b3602b3b4ca59d16f3dbd0b2d902a37f110%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:59:57Z</td>
+          <td>text/html</td>
+          <td>316,349</td>
+          <td><code title="d280d5c3352ba626fd042fd76ee07b3602b3b4ca59d16f3dbd0b2d902a37f110">d280d5c3352ba626</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:59:57Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-3 · agent · lead: monitor</span>
+          <div class="just">NVIDIA&#39;s own card for Nemotron-Cascade-2-30B-A3B, an open 30B MoE reasoning model (3B active) post-trained from the Nemotron 3 Nano 30B-A3B base, released with technical report arXiv:2603.19220 and its own SFT and RL datasets. The card carries an explicit &#39;Release Date: Mar 19, 2026&#39;. It is a distinct release rather than a size or precision variant of anything in the corpus: Cascade-2 is a separately named post-trained model whose headline claim is gold-medal performance at IMO 2025 and IOI 2025 plus 10/12 at the ICPC World Finals, and it is the backbone NVIDIA later built the Audex audio models on. Widely used (about 38k downloads, 520+ likes). The card is a benchmark and inference-recipe document with no dangerous-capability evaluation, red-teaming or risk assessment, so has_safety_evals is false.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2603.19220" rel="noopener nofollow">https://arxiv.org/abs/2603.19220</a> · <a href="https://huggingface.co/collections/nvidia/nemotron-cascade-2" rel="noopener nofollow">https://huggingface.co/collections/nvidia/nemotron-cascade-2</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use nvidia/Nemotron-Cascade-2-30B-A3B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use nvidia/Nemotron-Cascade-2-30B-A3B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;, trust_remote_code=True)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use nvidia/Nemotron-Cascade-2-30B-A3B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/nvidia/Nemotron-Cascade-2-30B-A3B
+-  SGLang  How to use nvidia/Nemotron-Cascade-2-30B-A3B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use nvidia/Nemotron-Cascade-2-30B-A3B with Docker Model Runner: docker model run hf.co/nvidia/Nemotron-Cascade-2-30B-A3B
+Nemotron-Cascade-2-30B-A3B
+Introduction
+We&#39;re excited to introduce Nemotron-Cascade-2-30B-A3B, an open 30B MoE model with 3B activated parameters that delivers strong reasoning and agentic capabilities. It is post-trained from the Nemotron-3-Nano-30B-A3B-Base. Nemotron-Cascade-2-30B-A3B achieves gold medal performance in both the 2025 International Mathematical Olympiad (IMO) and the International Olympiad in Informatics (IOI). It operates in both thinking and instruct (non-thinking) modes.
+Benchmark Results
+| Benchmark | Nemotron-3-Nano-30B-A3B | Nemotron-3-Super-120B-A12B | Qwen3.5-35B-A3B | Nemotron-Cascade-2-30B-A3B |
+|---|---|---|---|---|
+| Math |  |  |  |  |
+| IMO 2025 | - | - | - | 🏅 35 pts |
+| IMO AnswerBench | 70.4‡ | 77.2‡ | 74.8‡ | 79.3 |
+| IMO ProofBench | - | - | - | 72.9 |
+| AIME 2025 | 89.1 | 90.2 | 91.9‡ | 92.4 (98.6)† |
+| AIME 2026 | 89.9‡ | 89.8‡ | 91.1‡ | 90.9 (95.0)† |
+| HMMT Feb25 | 84.6‡ | 93.7 | 89.0 | 94.6 |
+| Code Reasoning |  |  |  |  |
+| IOI 2025 | - | - | 348.6‡ | 🏅 439.3 |
+| ICPC World Finals 2025 | - | - | - | 🏅 10/12 |
+| LiveCodeBench v6 (2408-2505) | 68.3 | 78.7 | 74.6 | 87.2 (88.4)† |
+| LiveCodeBenchPro 25Q2 (Easy) | 54.5‡ | 81.7‡ | 81.1‡ | 87.0 (89.3)† |
+| LiveCodeBenchPro 25Q2 (Med) | 3.50‡ | 23.2‡ | 17.8‡ | 27.6 (36.8)† |
+| SciCode | 33.3 | 42.1 | 38.0 | 36.4 |
+| Knowledge &amp; STEM |  |  |  |  |
+| MMLU-Redux | - | - | 93.3 | 86.3 |
+| MMLU-Pro | 78.3 | 83.7 | 85.3 | 79.8 |
+| GPQA-Diamond | 73.0 | 79.2 | 84.2 | 76.1 |
+| HLE (no tool) | 10.6 | 18.3 | 22.4 | 17.7 |
+| Alignment &amp; Instruction Following |  |  |  |  |
+| ArenaHard v2 (Avg.) | 67.7 | - | 65.4‡ | 83.5 |
+| – Hard Prompt | 72.1 | 73.9 | 64.5‡ | 88.2 |
+| – Creative Writing | 63.2 | - | 66.3‡ | 78.7 |
+| IFBench (prompt) | 71.5 | 72.6 | 70.2 | 82.9 |
+| Scale AI Multi-Challenge | 38.5 | 55.2 | 60.0 | 45.3 |
+| Long Context &amp; Context Learning |  |  |  |  |
+| AA-LCR | 35.9 | 58.3 | 58.5 | 39.1 |
+| LongBench v2 | 39.6 | - | 59.0 | 40.3 |
+| NIAH@1M (RULER Subset) | 94.8 | 98.3 | 94.3‡ | 99.0 |
+| CL-Bench | 12.0‡ | - | 15.5‡ | 12.2 |
+| Agentic |  |  |  |  |
+| BFCL v4 | 53.8 | - | 67.3 | 52.9 |
+| 𝜏²-Bench | 49.0 | 61.2 | 81.2 | 58.9 |
+| Terminal Bench 2.0 | 8.5 | 31.0 | 40.5 | 21.1 |
+| SWE Verified (OpenHands) | 38.8 | 60.5 | 69.2 | 50.2 |
+| Multilingual |  |  |  |  |
+| MMLU-ProX | 59.5 | 79.4 | 81.0 | 72.5 |
+| WMT24++ (en -&gt; xx) | 86.2 | 86.7 | 87.6‡ | 84.1 |
+* † Numbers in brackets refers to Tool-Integrated Reasoning (TIR) results.
+* ‡ For the baseline models, we evaluate them using the recommended settings when official numbers are unavailable; otherwise, we report the official numbers directly.
+Quick Start
+- Nemotron-Cascade-2-30B-A3B follows the ChatML template and supports both thinking and instruct (non-thinking) modes. Reasoning content is enclosed within &lt;think&gt; and&lt;/think&gt; tags. To activate the instruct (non-thinking) mode, we prepend&lt;think&gt;&lt;/think&gt; to the beginning of the assistant’s response.
+- Nemotron-Cascade-2-30B-A3B supports up to a 1M-token context length.
+- Nemotron-Cascade-2-30B-A3B does not currently support OpenCode; it primarily supports OpenHands for agentic coding and SWE tasks.
+- To reduce the context length in a multi-turn conversation, when the previous user turn involves thinking mode, only the final summary of the model&#39;s output will be added to the conversation history.
+- Note that we do not define a separate tool role for tool responses; instead, we place them under theuser role and warp them with&lt;tool_response&gt; and&lt;/tool_response&gt; .
+- We recommend setting the sampling parameters to temperature = 1.0 and top_p = 0.95.
+vLLM setup
+Requires vLLM version &gt;= 0.17.1. The following will create API endpoints at http://localhost:8000/v1:
+- Standard version: Use the following command to create an API endpoint with a maximum context length of 1M tokens. vllm serve nvidia/Nemotron-Cascade-2-30B-A3B --port 8000 --tensor-parallel-size 1 --gpu-memory-utilization 0.9 --max-model-len 262144 --reasoning-parser nano_v3 --mamba-ssm-cache-dtype float32 --port 8000 --trust_remote_code
+- Tool Call: Use the following command to enable tool support. vllm serve nvidia/Nemotron-Cascade-2-30B-A3B --port 8000 --tensor-parallel-size 1 --gpu-memory-utilization 0.9 --max-model-len 262144 --reasoning-parser nano_v3 --mamba-ssm-cache-dtype float32 --port 8000 --trust_remote_code --enable-auto-tool-choice --tool-call-parser qwen3_coder
+UPDATE (July 9, 2026): We changed --reasoning-parser from nemotron_v3 to nano_v3. The nano_v3 parser simply splits the output on &lt;/think&gt;: content before &lt;/think&gt; is treated as reasoning content, and content after it is treated as summary content. If &lt;/think&gt; is not present, the entire output remains in reasoning content. In contrast, the nemotron_v3 parser treats &lt;tool_call&gt; or &lt;function= inside &lt;think&gt; as an implicit end-of-reasoning boundary when &lt;/think&gt; is missing. This difference affects tool-calling scenarios.
+Chat Template
+from transformers import AutoTokenizer
+model_name = &#39;nvidia/Nemotron-Cascade-2-30B-A3B&#39;
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+&#39;&#39;&#39;
+single-turn example
+&#39;&#39;&#39;
+messages = [
+  {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful and harmless assistant.\n\nYou are not allowed to use any tools&#34;},
+  {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;calculate 1+1?&#34;}
+]
+# thinking mode
+prompt_thinking = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+# prompt_thinking = &#39;&lt;|im_start|&gt;system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\ncalculate 1+1?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&lt;think&gt;\n&#39;
+# instruct mode
+prompt_instruct = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+# prompt_instruct = &#39;&lt;|im_start|&gt;system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\ncalculate 1+1?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&lt;think&gt;&lt;/think&gt;&#39;
+&#39;&#39;&#39;
+multi-turn example
+&#39;&#39;&#39;
+messages = [
+    {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful and harmless assistant.\n\nYou are not allowed to use any tools&#34;},
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;calculate 1+1?&#34;},
+    {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;&lt;think&gt;THINKING_CONTENT&lt;/think&gt;\nTo calculate :\n\n1. **Identify the operation**: This is a basic addition problem involving two integers.\n2. **Perform the addition**:  \n   .\n\n**Result**: &#34;,},
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;what about 2+2&#34;}
+]
+# thinking mode
+prompt_thinking = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+# prompt_thinking = &#39;&lt;|im_start|&gt;system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\ncalculate 1+1?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&lt;think&gt;&lt;/think&gt;\nTo calculate :\n\n1. **Identify the operation**: This is a basic addition problem involving two integers.\n2. **Perform the addition**:  \n   .\n\n**Result**: &lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nwhat about 2+2&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&lt;think&gt;\n&#39;
+# instruct mode
+prompt_instruct = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+# prompt_instruct = &#39;&lt;|im_start|&gt;system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\ncalculate 1+1?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&lt;think&gt;&lt;/think&gt;\nTo calculate :\n\n1. **Identify the operation**: This is a basic addition problem involving two integers.\n2. **Perform the addition**:  \n   .\n\n**Result**: &lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nwhat about 2+2&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&lt;think&gt;&lt;/think&gt;&#39;
+Python Tool Use
+model_name = &#39;nvidia/Nemotron-Cascade-2-30B-A3B&#39;
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+SYSTEM_PROMPT = &#34;&#34;&#34;# Tools
+You have access to the following functions:
+&lt;tools&gt;
+&lt;function&gt;
+&lt;name&gt;stateful_python_code_exec&lt;/name&gt;
+&lt;description&gt;Call this function to execute Python code in a stateful Jupyter notebook environment. Python will respond with the output of the execution or time out after 120.0 seconds.&lt;/description&gt;
+&lt;parameters&gt;
+&lt;parameter&gt;
+&lt;name&gt;code&lt;/name&gt;
+&lt;type&gt;string&lt;/type&gt;
+&lt;description&gt;Code to execute&lt;/description&gt;
+&lt;/parameter&gt;
+&lt;required&gt;[&#34;code&#34;]&lt;/required&gt;
+&lt;/parameters&gt;
+&lt;/function&gt;
+&lt;/tools&gt;
+If you choose to call a function ONLY reply in the following format with NO suffix:
+&lt;tool_call&gt;
+&lt;function=example_function_name&gt;
+&lt;parameter=example_parameter_1&gt;
+value_1
+&lt;/parameter&gt;
+&lt;parameter=example_parameter_2&gt;
+This is the value for the second parameter
+that can span
+multiple lines
+&lt;/parameter&gt;
+&lt;/function&gt;
+&lt;/tool_call&gt;
+&lt;IMPORTANT&gt;
+Reminder:
+- Function calls MUST follow the specified format: an inner &lt;function=...&gt;&lt;/function&gt; block must be nested within &lt;tool_call&gt;&lt;/tool_call&gt; XML tags
+- Required parameters MUST be specified
+- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after
+- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls
+&lt;/IMPORTANT&gt;&#34;&#34;&#34;
+messages = [
+  {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: SYSTEM_PROMPT},
+  {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Solve the following math problem. Put your answer inside \\boxed{}.\n\nIn a school with 2008 students, each student is a member of certain committees. Each committee has at most 1004 members, and every two students are in at least one common committee. Determine the smallest possible number of committees in the school.&#34;}
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+print(prompt)
+Agentic Usage
+model_name = &#39;nvidia/Nemotron-Cascade-2-30B-A3B&#39;
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+SYSTEM_PROMPT = &#34;&#34;&#34;You are a customer service agent that helps the user.  The policy that determines how you should respond to requests from users is described below between the &lt;policy&gt; and &lt;/policy&gt; tags.
+In each turn you can either:
+- Send a message to the user.
+- Make a tool call.
+You cannot do both at the same time.
+&lt;policy&gt;
+_NEED_TO_ADD_POLICY_HERE_
+&lt;/policy&gt;
+Try to be helpful and always follow the policy.
+# Tools
+You have access to the following functions:
+&lt;tools&gt;
+&lt;function&gt;
+&lt;name&gt;_NEED_TO_ADD_FUNCTION_NAME_1_&lt;/name&gt;
+&lt;description&gt;_FUNCTION_DESCRIPTION_&lt;/description&gt;
+&lt;parameters&gt;
+&lt;parameter&gt;
+&lt;name&gt;_NEED_TO_ADD_PARAMETER_NAME_1_&lt;/name&gt;
+&lt;type&gt;_PARAMETER_TYPE_&lt;/type&gt;
+&lt;description&gt;_PARAMETER_DESCRIPTION_&lt;/description&gt;
+&lt;title&gt;_PARAMETER_TITLE_&lt;/title&gt;
+&lt;/parameter&gt;
+&lt;parameter&gt;
+&lt;name&gt;_NEED_TO_ADD_PARAMETER_NAME_2_&lt;/name&gt;
+&lt;type&gt;_PARAMETER_TYPE_&lt;/type&gt;
+&lt;description&gt;_PARAMETER_DESCRIPTION_&lt;/description&gt;
+&lt;title&gt;_PARAMETER_TITLE_&lt;/title&gt;
+&lt;/parameter&gt;
+...... (_MORE_PARAMETERS_TO_ADD_)
+&lt;parameters&gt;
+&lt;/function&gt;
+...... (_MORE_FUNCTIONS_TO_ADD_)
+&lt;/tools&gt;
+&#34;&#34;&#34;
+messages = [
+  {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: SYSTEM_PROMPT},
+  {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello, I&#39;m calling regarding my upcoming stay at your hotel. My guest ID is G90920 and booking ID is B11246 for a Deluxe room on June 5th. I&#39;m traveling with three 6-month-old triplets and need to request three infant cribs for our room. It&#39;s currently 30 hours before check-in—could you please confirm if this is feasible and if there are quiet room options available for families with infants?&#34;}
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+print(prompt)
+Release Date
+Mar 19, 2026
+License
+Your use of this model is governed by the NVIDIA Open Model License.
+Citation
+@article{Nemotron_Cascade_2,
+  title={Nemotron-Cascade 2: Post-Training LLMs with Cascade RL and Multi-Domain On-Policy Distillation},
+  author={Yang, Zhuolin and Liu, Zihan and Chen, Yang and Dai, Wenliang and Wang, Boxin and Lin, Sheng-Chieh and Lee, Chankyu and Chen, Yangyi and Jiang, Dongfu and He, Jiafan and Pi, Renjie and Lam, Grace and Lee, Nayeon and Bukharin, Alexander and Shoeybi, Mohammad and Catanzaro, Bryan and Ping, Wei},
+  year={2026}
+}
+- Downloads last month
+- 38,197
+Model tree for nvidia/Nemotron-Cascade-2-30B-A3B
+Spaces using nvidia/Nemotron-Cascade-2-30B-A3B 3
+Collection including nvidia/Nemotron-Cascade-2-30B-A3B
+Paper for nvidia/Nemotron-Cascade-2-30B-A3B
+Evaluation results
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   76.1
+- .eval_results/hle.yaml error
+- .eval_results/mmlu_pro.yaml error</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

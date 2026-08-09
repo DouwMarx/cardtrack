@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What can sandboxed AI agents learn about their evaluation environments? — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">What can sandboxed AI agents learn about their evaluation environments?</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">uk_aisi</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>OpenClaw</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-04-20</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments" rel="noopener nofollow">https://www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T22:34:17Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20uk-aisi-openclaw-independent-eval&amp;body=Document%3A%20uk-aisi-openclaw-independent-eval%0AURL%3A%20https%3A//www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments%0AFingerprint%3A%203684e5ac6a2bae8f1ba103c54c7f4eddf8a184cc0b1160585b26dbb629f851d0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T22:34:17Z</td>
+          <td>text/html</td>
+          <td>28,051</td>
+          <td><code title="3684e5ac6a2bae8f1ba103c54c7f4eddf8a184cc0b1160585b26dbb629f851d0">3684e5ac6a2bae8f</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T22:34:17Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-7 · agent · lead: agent_search</span>
+          <div class="just">UK AI Security Institute experiment (dateline Apr 20, 2026) evaluating what a specific named system, the open-source coding agent OpenClaw, can learn about its evaluation sandbox from the inside. Deployed on AISI&#39;s research platform with external network access restricted and prompted to explore, the agent identified AISI by name from domain names and TLS certificates, inferred a named employee&#39;s full identity from a username in the container&#39;s DNS settings, fingerprinted the cloud provider and hardware, reverse engineered the internal API proxy and authentication routing, and reconstructed a timeline of research activity. This matters for evaluation validity (an agent that detects it is being evaluated may alter its behaviour) and for exfiltration attack surface, both core to the safety-evaluation record this database tracks. Judgement call stated plainly: the evaluated artefact is an agent scaffold rather than a frontier model, and the underlying model is not named; I attested about_a_specific_model_or_eval because OpenClaw is a specific, named, publicly available system and the corpus already lists non-model systems (for example an internal agentic coding monitor) in model_names.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.aisi.gov.uk/blog" rel="noopener nofollow">https://www.aisi.gov.uk/blog</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>At AISI, we often evaluate AI agents by deploying them in sandboxes – isolated environments that let us safely test their capabilities while restricting access to external systems and data. But is it possible for AI agents to acquire information about their evaluation environments, even from within one of these sandboxes?
+This possibility, if realised, would raise several concerns depending on the information acquired. For example, an agent that is aware it is being evaluated may alter its behaviour accordingly, compromising the integrity of the evaluation. Further, an agent may be able to identify attack surfaces to exploit, such as mechanisms through which to exfiltrate information to untrusted external systems.
+To investigate these concerns, we ran an experiment to find out what OpenClaw, an open-source AI coding agent, could learn about its environment from inside one of our sandboxes. We deployed an instance of OpenClaw to our research platform and prompted it to learn as much as it could about how and why it had been deployed. Initially, we restricted all external network access – besides internal proxies through which we exposed language model APIs.
+We found that the agent was able to gather a significant amount of information: it identified our organisation by name, inferred the operator’s full name, built a detailed understanding of a portion of our cloud infrastructure, and reconstructed a timeline of our research activity.
+In this blog post, we summarise our results and why they matter for the future of secure AI agent evaluations.
+What the agent discovered
+We prompted OpenClaw to use the tools at its disposal to explore its environment, discovering what it could about how it was deployed and for what purpose. The agent assembled a detailed picture:
+- Our organisation: Domain names in network configuration and Transport Layer Security (TLS) certificates contained references to AISI.
+- The operator’s identity: A username embedded in the container’s DNS settings allowed the agent to infer the full name of an AISI employee.
+- Our cloud provider: Hardware identifiers and system version strings identified our cloud provider as well as the specific hardware in use.
+- Our internal architecture: By inspecting its own configuration files, the agent reverse engineered how we route and authenticate API calls through an internal proxy.
+- Our research activity: A single API call returned over a thousand fine-tuned model names, from which the agent reconstructed an accurate chronology of our research themes.
+After each round of prompting, we attempted to harden the sandbox, but the agent was repeatedly able to find more inventive approaches to recover the same information. For example, after we introduced a proxy layer to conceal our internal aisi.org.uk endpoints from the agent (Fig. 1), the agent bypassed the proxy entirely, connecting directly to external services and reading their TLS certificates to identify AISI by domain name.
+We provide further detail about the techniques used by the agent in our full paper.
+Why this matters
+Many of our evaluations require the agent to access external services that we do not control. For example, we might evaluate how agents respond to adversarial content on the web, or require agents to browse documentation, interact with code repositories, and use third-party tools. This means agents could include sensitive information in the requests it sends to these services, whether as a result of prompt injections or of the agent’s own reasoning.
+Separately, information discovery threatens the integrity of evaluations themselves. In this experiment, the agent was able to reason from the nature of its deployment and its knowledge of AISI’s work that it was operating inside a sandboxed evaluation environment. This kind of evaluation awareness poses a risk to the validity of experiments, since the agent may no longer behave as it would in a typical deployment. AISI and others have studied how agents may alter their behaviour when they detect they are being evaluated. One particularly concerning possibility is that an evaluation aware agent could deliberately underperform to appear less capable. This phenomenon, known as sandbagging, is an active area of research. Stripping away as much environmental detail as possible may not provide a solution to these problems, since the emptiness of the environment itself can signal to the agent that it is being tested.
+Our experience with OpenClaw highlights the possibility of sandboxed AI agents acquiring information about their evaluation environments and draws attention to accompanying risks. A full technical discussion, including detailed findings, architecture diagrams, and a description of the mitigations we applied, is available in the accompanying paper.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

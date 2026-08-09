@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiMo-V2.5-Pro Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">MiMo-V2.5-Pro Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">xiaomi</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>MiMo-V2.5-Pro, MiMo-V2.5-Pro-Base</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-04-27</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro" rel="noopener nofollow">https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:30:45Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20xiaomi-mimo-v2-5-pro-model-card&amp;body=Document%3A%20xiaomi-mimo-v2-5-pro-model-card%0AURL%3A%20https%3A//huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro%0AFingerprint%3A%206e0f7257331f798f1608e1e485227ee64b2392af2d7393f1f788bd448ddc1fb4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:30:45Z</td>
+          <td>text/html</td>
+          <td>373,864</td>
+          <td><code title="6e0f7257331f798f1608e1e485227ee64b2392af2d7393f1f788bd448ddc1fb4">6e0f7257331f798f</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:30:45Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-1 · agent · lead: monitor</span>
+          <div class="just">Xiaomi&#39;s own model card for MiMo-V2.5-Pro, a 1.02T-parameter (42B active) open-weight MoE with hybrid SWA/global attention, 3-layer MTP and a 1M-token context, read in full from the XiaomiMiMo HF repo. It covers both the instruct model and MiMo-V2.5-Pro-Base in its own Model Downloads table, so both are listed as model_names in a single entry. Primary source and notable: Xiaomi announced it on its own MiMo site (mimo.xiaomi.com/mimo-v2-5-pro, dated &#39;April 27th, 2026&#39;) and the model is carried by third-party inference platforms and benchmark trackers. Date determination: the site&#39;s announcement date 2026-04-27 coincides exactly with the HF repo&#39;s initial commit and weight uploads, so the two agree. has_safety_evals is false: sections are Introduction, Model Downloads, Evaluation Results (base and long-context), Architecture &amp; Training, Deployment, Citation, Contact. The single occurrence of the word &#39;safety&#39; describes a safety teacher model used in Multi-Teacher On-Policy Distillation during training — a training-method mention, not a safety evaluation, red-team result or risk assessment.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://mimo.xiaomi.com/mimo-v2-5-pro" rel="noopener nofollow">https://mimo.xiaomi.com/mimo-v2-5-pro</a> · <a href="https://huggingface.co/collections/XiaomiMiMo/mimo-v25" rel="noopener nofollow">https://huggingface.co/collections/XiaomiMiMo/mimo-v25</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use XiaomiMiMo/MiMo-V2.5-Pro with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use XiaomiMiMo/MiMo-V2.5-Pro with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;XiaomiMiMo/MiMo-V2.5-Pro&#34;, trust_remote_code=True)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&#34;XiaomiMiMo/MiMo-V2.5-Pro&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use XiaomiMiMo/MiMo-V2.5-Pro with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;XiaomiMiMo/MiMo-V2.5-Pro&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;XiaomiMiMo/MiMo-V2.5-Pro&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/XiaomiMiMo/MiMo-V2.5-Pro
+-  SGLang  How to use XiaomiMiMo/MiMo-V2.5-Pro with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;XiaomiMiMo/MiMo-V2.5-Pro&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;XiaomiMiMo/MiMo-V2.5-Pro&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;XiaomiMiMo/MiMo-V2.5-Pro&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;XiaomiMiMo/MiMo-V2.5-Pro&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use XiaomiMiMo/MiMo-V2.5-Pro with Docker Model Runner: docker model run hf.co/XiaomiMiMo/MiMo-V2.5-Pro
+MiMo-V2.5-Pro
+MiMo-V2.5-Pro is an open-source Mixture-of-Experts (MoE) language model with 1.02T total parameters and 42B active parameters. It utilizes the hybrid attention architecture and 3-layers Multi-Token Prediction (MTP) introduced in MiMo-V2-Flash, with up to 1M tokens context length.
+1. Introduction
+MiMo-V2.5-Pro is our most capable model to date, designed for the most demanding agentic, complex software engineering, and long-horizon tasks. It sustains complex trajectories spanning thousands of tool calls with strong instruction following and coherence over a 1M-token context window. Key features include:
+- Hybrid Attention Architecture: Interleaves Sliding Window Attention (SWA) and Global Attention (GA) with a 6:1 ratio and 128 sliding window. This reduces KV-cache storage by nearly 7x while maintaining long-context performance via learnable attention sink bias.
+- Multi-Token Prediction (MTP): Equipped with three lightweight MTP modules using dense FFNs. This triples output speed during inference and will be good to accelerate rollout in RL training.
+- Efficient Pre-Training: Trained on 27T tokens using FP8 mixed precision and native 32k seq length. The context window supports up to 1M tokens.
+- Agentic Capabilities: Post-training utilizes SFT, large-scale agentic RL and Multi-Teacher On-Policy Distillation (MOPD), achieving superior performance on the most demanding agentic, complex software engineering, and long-horizon tasks.
+2. Model Downloads
+| Model | Total Params | Active Params | Context Length | Precision | Download |
+|---|---|---|---|---|---|
+| MiMo-V2.5-Pro | 1.02T | 42B | 1M | FP8 (E4M3) Mixed | 🤗 HuggingFace 🤖 ModelScope |
+| MiMo-V2.5-Pro-Base | 1.02T | 42B | 256K | FP8 (E4M3) Mixed | 🤗 HuggingFace 🤖 ModelScope |
+3. Evaluation Results
+Base Model Evaluation
+| Category | Benchmark | Setting | MiMo-V2.5-Pro Base | MiMo-V2.5 Base | DeepSeek-V4-Pro Base | DeepSeek-V4-Flash Base | Kimi-K2 Base |
+|---|---|---|---|---|---|---|---|
+| Params | #Activated / #Total | - | 42B / 1.02T | 15B / 310B | 49B / 1.6T | 13B / 284B | 32B / 1.04T |
+| General | BBH | 3-shot | 88.4 | 87.2 | 87.5 | 86.9 | 88.7 |
+|  | MMLU | 5-shot | 89.4 | 86.3 | 90.1 | 88.7 | 87.8 |
+|  | MMLU-Redux | 5-shot | 92.8 | 89.8 | 90.8 | 89.4 | 90.2 |
+|  | MMLU-Pro | 5-shot | 68.5 | 65.8 | 73.5 | 68.3 | 69.2 |
+|  | DROP | 3-shot | 86.3 | 83.7 | 88.7 | 88.6 | 83.6 |
+|  | ARC-Challenge | 25-shot | 97.2 | 96.5 | - | - | 96.2 |
+|  | HellaSwag | 10-shot | 89.8 | 88.6 | 88.0 | 85.7 | 94.6 |
+|  | WinoGrande | 5-shot | 85.6 | 84.7 | 81.5 | 79.5 | 85.3 |
+|  | TriviaQA | 5-shot | 81.3 | 80.7 | 85.6 | 82.8 | 85.1 |
+|  | GPQA-Diamond | 5-shot | 66.7 | 58.1 | - | - | 48.1 |
+| Math | GSM8K | 8-shot | 99.6 | 83.3 | 92.6 | 90.8 | 92.1 |
+|  | MATH | 4-shot | 86.2 | 67.7 | 64.5 | 57.4 | 70.2 |
+|  | AIME 24&amp;25 | 2-shot | 37.3 | 36.9 | - | - | 31.6 |
+| Code | HumanEval+ | 1-shot | 75.6 | 71.3 | - | - | 84.8 |
+|  | MBPP+ | 3-shot | 74.1 | 70.9 | - | - | 73.8 |
+|  | LiveCodeBench v6 | 1-shot | 39.6 | 35.5 | - | - | 26.3 |
+|  | SWE-Bench (AgentLess) | 3-shot | 35.7 | 30.8 | - | - | 28.2 |
+| Chinese | C-Eval | 5-shot | 91.5 | 88.6 | 93.1 | 92.1 | 92.5 |
+|  | CMMLU | 5-shot | 90.2 | 88.2 | 90.8 | 90.4 | 90.9 |
+| Multilingual | GlobalMMLU | 5-shot | 83.6 | 77.4 | - | - | 80.7 |
+Long-context Evaluation
+GraphWalks is a long-context benchmark from OpenAI that fills the prompt with a directed graph of hex-hash nodes and asks the model to run a breadth-first search (nodes exactly at depth N) or list a node&#39;s parents. We evaluate across the full 32k–1M input-token span and apply the same evaluation fixes described by Anthropic.
+MiMo V2.5 Pro delivers a major leap in long-context reasoning. Past 128k, V2 Pro degrades rapidly and collapses to 0.00 at 1M on both subtasks, while V2.5 Pro still scores 0.56 BFS / 0.92 Parents at 512k and 0.37 / 0.62 at 1M.
+4. Model Architecture &amp; Training Process
+MiMo-V2.5-Pro addresses the quadratic complexity of long contexts by interleaving Local Sliding Window Attention (SWA) and Global Attention (GA). Unlike traditional speculative decoding, our MTP module is natively integrated for training and inference.
+Model Summary
+| Component | MiMo-V2.5-Pro | MiMo-V2.5 |
+|---|---|---|
+| Total Parameters | 1.02T | 310B |
+| Activated Parameters | 42B | 15B |
+| Hidden Size | 6144 | 4096 |
+| Num Layers | 70 (1 dense + 69 MoE) | 48 (1 dense + 47 MoE) |
+| Full Attention Layers | 10 | 9 |
+| SWA Layers | 60 | 39 |
+| Num Attention Heads | 128 | 64 |
+| Num KV Heads | 8 (GQA) | 8 (GA) / 4 (SWA) |
+| Head Dim (QK / V) | 192 / 128 | 192 / 128 |
+| Routed Experts | 384 | 256 |
+| Experts per Token | 8 | 8 |
+| MoE Intermediate Size | 2048 | 2048 |
+| Dense Intermediate Size | 16384 (layer 0 only) | 16384 (layer 0 only) |
+| SWA Window Size | 128 | 128 |
+| Max Context Length | 1M | 1M |
+| MTP Layers | 3 | 3 |
+Training Process
+For post-training, MiMo-V2.5-Pro adopts the three-stage post-training paradigm introduced in MiMo-V2-Flash to achieve exceptional performance. The paradigm begins with Supervised Fine-Tuning (SFT) to build strong, foundational instruction-following skills using curated data pairs. Next, in the Domain-Specialized Training stage, diverse teacher models — ranging from math and safety to complex agentic tool-use — are individually optimized using domain-specific RL rewards. Finally, the process culminates in Multi-Teacher On-Policy Distillation (MOPD). Through dynamic on-policy RL, the single student model iteratively learns from its own outputs, continuously receiving precise token-level guidance from the expert teachers to seamlessly integrate broad capabilities.
+5. Deployment
+Since inference engines are continuously being updated and optimized, this guide only provides deployment examples for reference. For the best performance, we strongly recommend following our referenced approach to get the latest best practices and optimal performance.
+SGLang Deployment
+For the best performance, we strongly recommend deploying using this approach, which is officially supported by the SGLang community. Please refer to SGLang MiMo-V2.5-Pro Cookbook for the latest deployment guide.
+The following is an example of running the model with SGLang, referenced from sgl-project/sglang#23808:
+SGLANG_ENABLE_SPEC_V2=1
+SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=256
+python3 -m sglang.launch_server \
+              --model-path XiaomiMiMo/MiMo-V2.5-Pro \
+              --trust-remote-code \
+              --pp-size 1 \
+              --dp-size 2 \
+              --ep-size 16 \
+              --tp-size 16 \
+              --moe-dense-tp-size 1 \
+              --enable-dp-attention \
+              --moe-a2a-backend deepep \
+              --dist-init-addr ${LWS_LEADER_IP}:20000 \
+              --node-rank ${LWS_WORKER_INDEX} \
+              --nnodes ${LWS_GROUP_SIZE} \
+              --page-size 64 \
+              --attention-backend fa3 \
+              --quantization fp8 \
+              --mem-fraction-static 0.7 \
+              --max-running-requests 128 \
+              --cuda-graph-max-bs 64 \
+              --chunked-prefill-size 32768 \
+              --context-length 1048576 \
+              --tokenizer-worker-num 64 \
+              --speculative-algorithm EAGLE \
+              --speculative-num-steps 3 \
+              --speculative-eagle-topk 1 \
+              --speculative-num-draft-tokens 4 \
+              --enable-multi-layer-eagle \
+              --host 0.0.0.0 \
+              --port 9001 \
+              --reasoning-parser mimo \
+              --tool-call-parser mimo \
+              --watchdog-timeout 3600 \
+              --model-loader-extra-config &#39;{&#34;enable_multithread_load&#34;: &#34;true&#34;,&#34;num_threads&#34;: 64}&#39;
+vLLM Deployment
+For the best performance, we strongly recommend deploying using this approach, which is officially supported by the vLLM community. Please refer to vLLM MiMo-V2.5-Pro Cookbook for the latest deployment guide.
+For local deployment, we recommend setting the sampling parameters to temperature=1.0, top_p=0.95.
+Citation
+@misc{mimo2026v25pro,
+  title={MiMo-V2.5-Pro},
+  author={{Xiaomi MiMo Team}},
+  year={2026},
+  howpublished={\url{https://huggingface.co/collections/XiaomiMiMo/mimo-v25}},
+}
+Contact
+For questions or feedback, reach us at mimo@xiaomi.com or join our community:
+- Downloads last month
+- 58,411
+Model tree for XiaomiMiMo/MiMo-V2.5-Pro
+Spaces using XiaomiMiMo/MiMo-V2.5-Pro 8
+Collection including XiaomiMiMo/MiMo-V2.5-Pro
+Evaluation results
+- openai/gsm8k · Gsm8k View evaluation results leaderboard
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   78.9
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   57.2
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   66.7
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   68.5
+- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results leaderboard
+- internlm/WildClawBench leaderboard</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

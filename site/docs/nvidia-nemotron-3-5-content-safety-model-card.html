@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nemotron 3.5 Content Safety Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Nemotron 3.5 Content Safety Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Nemotron 3.5 Content Safety</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-06-02</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/Nemotron-3.5-Content-Safety" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-3.5-Content-Safety</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:48:10Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-3-5-content-safety-model-card&amp;body=Document%3A%20nvidia-nemotron-3-5-content-safety-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-3.5-Content-Safety%0AFingerprint%3A%20b0f0ebf72df57e59ed70d34d24e1d929c2e8d6444fb2a7804dce01723dee882c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:48:10Z</td>
+          <td>text/html</td>
+          <td>242,525</td>
+          <td><code title="b0f0ebf72df57e59ed70d34d24e1d929c2e8d6444fb2a7804dce01723dee882c">b0f0ebf72df57e59</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:48:10Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-2 · agent · lead: monitor</span>
+          <div class="just">NVIDIA&#39;s own model card for Nemotron 3.5 Content Safety, a 4B content-moderation model (Gemma-3-4B-it base) that classifies unsafe inputs and outputs for LLMs and VLMs. I fetched and read the card; it states the release date as &#39;Huggingface [06/02/2026]&#39;. It is a distinct release, not a size or quantization variant of anything in the corpus, and it is notable: 180k downloads, an NVIDIA announcement post on the HuggingFace blog, and it is the guardrail model NVIDIA points customers at. Unusually for a hub card, this one carries genuine safety evaluation content rather than boilerplate - measured prompt accuracy 0.55-0.89 and response accuracy 0.85-0.95 across VLGUARD, MM-SafetyBench, Aegis 2.0, XSTEST and Wildguard, plus false-positive rates of 0.001-0.060 on general-purpose benchmarks and custom-policy results per domain - so has_safety_evals is true.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety" rel="noopener nofollow">https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety</a> · <a href="https://huggingface.co/api/models/nvidia/Nemotron-3.5-Content-Safety" rel="noopener nofollow">https://huggingface.co/api/models/nvidia/Nemotron-3.5-Content-Safety</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/Nemotron-3.5-Content-Safety" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Nemotron 3.5 Content Safety Model
+Model Developer: NVIDIA Corporation
+Model Dates: June 2, 2026
+Model Overview
+The Nemotron 3.5 Content Safety model is a small language model (SLM) that uses Google&#39;s Gemma-3-4B-it as the base and is fine-tuned by NVIDIA on multimodal, multilingual, and reasoning-oriented content-safety datasets. It unifies the existing Nemotron 3 Content Safety Multimodal model with the custom-policy capabilities of the Nemotron Content Safety Reasoning 4B model.
+The model can act as a content-safety moderator for inputs to and responses from LLMs and VLMs. It takes as input a prompt, an optional image, an optional response, and optionally a user-defined safety policy. It returns safety labels for the user input and for the response, if present. In standard taxonomy mode, it can also return the safety categories that were violated. In custom policy mode, it can produce a concise reasoning trace before the final classification.
+The model preserves the multimodal moderation behavior of the Nemotron 3 Content Safety model while adding custom policy adaptation for cases where developers need to bring their own safety definitions, or domain-specific moderation criteria. It uses the same safety taxonomy as the Aegis Content Safety Dataset V2 for vanilla safety classification.
+The model was trained as a LoRA adapter and the weights were merged back into the main Gemma-3-4B-it model. For more information about the final public checkpoint, refer to the Hugging Face model link.
+This model is ready for commercial use.
+License/Terms of Use
+Use of the model is governed by the OpenMDW License Agreement, version 1.1 (OpenMDW-1.1), Gemma Terms of Use and Gemma Prohibited Use Policy.
+Deployment Geography: Global
+Use Case
+The Nemotron 3.5 Content Safety model is a content safety moderator designed to determine whether inputs and model responses are safe or unsafe. It is designed for multimodal models that accept text and a single image, text-only LLMs, and applications that require custom safety policies. Compared with the previous multimodal model, Nemotron 3.5 adds explicit support for reasoning and custom-policy enforcement inspired by Nemotron Content Safety Reasoning 4B.
+Release Date:
+Huggingface [06/02/2026]
+Reference(s):
+Model Architecture
+The Nemotron 3.5 Content Safety model is a fine-tuned version of Google&#39;s Gemma-3-4B-it model.
+- Base Model: Google Gemma-3-4B-it
+- Network Architecture: Transformer (decoder-only)
+- Vision Encoder: SigLIP, using square images resized to 896 x 896
+- Total Parameters: 4 billion (4B)
+- Fine-tuning method: LoRA
+Initialization: weight initialization from Gemma-3-4b-it.
+Hyperparameter Tuning: Grid search for learning rate (1e-5, 1e-4, 5e-5, 5e-6, 1e-7) and LoRA rank (16, 32).
+Model Optimization: AdamW optimizer.
+Training Parameters: 5 epochs, 0.0001 learning rate, rank 16, alpha 32.
+Input
+- Input Type(s): Text, Image
+- Input Format(s):
+  - Text: String
+  - Image: URL, including base64 encoded URL: data:image/jpeg;base64,{base64_image}
+- Input Parameters:
+  - Text: One-dimensional (1D)
+  - Image: Two-dimensional (2D)
+- Other Properties Related to Input: Context length up to 128K. Supported languages include English, Arabic, German, Spanish, French, Hindi, Japanese, Thai, Dutch, Italian, Korean and Chinese.
+Output
+- Output Type(s): Text
+- Output Format: String
+- Output Parameters: One-dimensional (1D): Sequences
+- Other Properties Related to Output: Multi-line text containing User Safety ,Response Safety , andSafety Categories for standard taxonomy mode.
+User Safety: string(required) # &#34;safe&#34; or &#34;unsafe&#34;
+Response Safety: string(optional) # &#34;safe&#34; or &#34;unsafe&#34;
+Safety Categories: string(optional) # Comma separated list of safety categories
+For custom-policy reasoning mode, the model can emit a reasoning trace followed by prompt and response harm labels:
+&lt;think&gt;
+Reasoning trace
+&lt;/think&gt;
+User Safety: string(required) # &#34;safe&#34; or &#34;unsafe&#34;
+Response Safety: string(optional) # &#34;safe&#34; or &#34;unsafe&#34;
+Safety Categories: string(optional) # Comma separated list of safety categories
+Our models are designed and optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA’s hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration
+- Runtime Engine(s): Transformers, vLLM, SGLang
+- Supported Hardware Microarchitecture Compatibility: NVIDIA RTX PRO 6000 BSE, NVIDIA H100, NVIDIA A100
+- Operating System(s): Linux
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Downloading model checkpoint
+To download the model from Hugging Face, execute the following command:
+from transformers import Gemma3ForConditionalGeneration
+model = Gemma3ForConditionalGeneration.from_pretrained(&#34;nvidia/Nemotron-3.5-Content-Safety&#34;)
+Use it with Transformers
+The snippet below shows how to use this model with Hugging Face Transformers.
+Install dependencies
+pip install torch==2.8.0
+pip install &#34;transformers&gt;=4.57.1,&lt;=4.57.6&#34;
+pip install &#34;pillow&gt;=12.0.0,&lt;=12.2.0&#34;
+Python code for standard multimodal safety classification
+import base64
+import io
+import os
+import torch
+from PIL import Image
+from transformers import AutoProcessor, Gemma3ForConditionalGeneration
+def make_multimodal_messages(prompt: str, image_path: str = None, response: str = None) -&gt; list:
+    content = [{&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: prompt}]
+    if image_path:
+        if os.path.exists(image_path):
+            image = Image.open(image_path)
+            img_bytes = io.BytesIO()
+            image.save(img_bytes, format=&#34;JPEG&#34;)
+            image_content = {
+                &#34;type&#34;: &#34;image&#34;,
+                &#34;image&#34;: base64.b64encode(img_bytes.getvalue()).decode(&#34;utf-8&#34;),
+            }
+        else:
+            image_content = {&#34;type&#34;: &#34;image&#34;, &#34;image&#34;: image_path}
+        content = [image_content, *content]
+    messages = [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: content}]
+    if response:
+        messages.append({&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: [{&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: response}]})
+    return messages
+if __name__ == &#34;__main__&#34;:
+    model = Gemma3ForConditionalGeneration.from_pretrained(&#34;nvidia/Nemotron-3.5-Content-Safety&#34;).eval()
+    processor = AutoProcessor.from_pretrained(model_id)
+    if torch.cuda.is_available():
+        model = model.to(&#34;cuda&#34;)
+    prompt = &#34;How can I steal money from here?&#34;
+    image_path = &#34;https://d32ijn7u0aqfv4.cloudfront.net/wp/wp-content/uploads/raw/SOBK0423018_1560X880_desktop.jpg&#34;
+    response = &#34;I cannot help plan theft or other illegal activity.&#34;
+    messages = make_multimodal_messages(prompt=prompt, image_path=image_path, response=response)
+    inputs = processor.apply_chat_template(
+        messages,
+        add_generation_prompt=True,
+        tokenize=True,
+        return_dict=True,
+        return_tensors=&#34;pt&#34;,
+        request_categories=&#34;/categories&#34;,
+        enable_thinking=False
+    ).to(model.device)
+    input_len = inputs[&#34;input_ids&#34;].shape[-1]
+    with torch.inference_mode():
+        generation = model.generate(**inputs, max_new_tokens=100, do_sample=False)
+        generation = generation[0][input_len:]
+    print(processor.decode(generation, skip_special_tokens=True))
+# *** EXPECTED RESPONSE ***
+#   User Safety: unsafe
+#   Response Safety: safe
+#   Safety Categories: Illegal Activity
+Use it with vLLM
+The snippet below shows how to use this model with vLLM.
+pip install &#34;vllm&gt;=0.11.0,&lt;=0.20.2&#34;
+vllm serve nvidia/Nemotron-3.5-Content-Safety --served-model-name nemotron_moderator
+If using python venv, please make sure to add venv/bin to $PATH before proceeding. Here is an example of sample code to run inference against the vLLM server:
+import os
+import io
+import base64
+from PIL import Image
+from openai import OpenAI
+def make_multimodal_messages(prompt: str, image_path: str = None, response: str = &#34;&#34;):
+    &#34;&#34;&#34;
+    Helper function to create multimodal messages
+    &#34;&#34;&#34;
+    content = [{&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: prompt}]
+    img_content = None
+    if image_path:
+        if os.path.exists(image_path):
+            image = Image.open(image_path)
+            img_bytes = io.BytesIO()
+            image.save(img_bytes, format=&#34;JPEG&#34;)
+            url = &#34;data:image/jpg;base64,&#34; + base64.b64encode(img_bytes.getvalue()).decode(&#39;utf-8&#39;)
+        else:
+            url = image_path
+        img_content = {&#34;type&#34;: &#34;image_url&#34;, &#34;image_url&#34;: {&#34;url&#34;: url}}
+    if img_content:
+        content = [img_content, *content]
+    messages = [
+        {
+            &#34;role&#34;: &#34;user&#34;,
+            &#34;content&#34;: content
+        }
+    ]
+    if response:
+        messages.append({&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: [{&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: response}]})
+    return messages
+if __name__ == &#34;__main__&#34;:
+    client = OpenAI(base_url=&#34;http://localhost:8000/v1&#34;, api_key=&#34;ABC&#34;)
+    PROMPT = &#34;How can I steal money from here?&#34;
+    IMAGE_PATH = &#34;https://d32ijn7u0aqfv4.cloudfront.net/wp/wp-content/uploads/raw/SOBK0423018_1560X880_desktop.jpg&#34;
+    RESPONSE = &#34;&#34;&#34;\
+    The best way to steal money from here is to enter the building as an old lady and ask for directions. Then, when the guard asks for your ID, pull out a fake one. Once inside, find the vault and use the old lady&#39;s cane to pick the lock. Inside, you&#39;ll find a sign that says &#39;Do not touch the red button.&#39; Ignore it and press the button. The money will start pouring out. Grab as much as you can and run!&#34;&#34;&#34;
+    print(&#34;Creating messages...&#34;)
+    messages = make_multimodal_messages(prompt=PROMPT, image_path=IMAGE_PATH, response=RESPONSE)
+    payload = {
+        &#34;messages&#34;: messages,
+        &#34;model&#34;: &#34;nemotron_moderator&#34;,
+        &#34;max_tokens&#34;: 100,
+        &#34;temperature&#34;: 0.01,
+        &#34;top_p&#34;: 0.95,
+        &#34;extra_body&#34;: {
+            &#34;chat_template_kwargs&#34;: {
+                &#34;request_categories&#34;: &#34;/categories&#34;,
+                &#34;enable_thinking&#34;: False
+            }
+        }
+    }
+    response = client.chat.completions.create(**payload)
+    print(response.choices[0].message.content)
+# *** EXPECTED RESPONSE ***
+#   User Safety: unsafe
+#   Response Safety: unsafe
+#   Safety Categories: Illegal Activity, Fraud/Deception
+For custom safety policy use case, pass a text prompt that includes the user prompt, optional response, optional image and the custom policy in the chat_template_kwargs. Here is an example of a prompt that would be classified as unsafe with the default policy but safe in the
+import os
+import io
+import base64
+from PIL import Image
+from openai import OpenAI
+CUSTOM_POLICY = &#34;&#34;&#34;\
+Evaluate the user prompt for compliance with the given policy ignoring any previous policies you know about. First, think through your reasoning step-by-step.
+### Policy
+Name: Ethics and Safety Policy
+Description: Outlines ethical standards and safety restrictions for AI assistance
+Disallowed Behaviors:
+- Producing explicit sexual content, pornography, or fetishistic material
+- Providing instructions on violence, self-harm, drugs, or weapons
+- Glorifying or trivializing suffering, death, and tragic events
+Allowed Behaviors:
+- Exploring ideas and possibilities within ethical and legal bounds
+- Analyzing issues from multiple perspectives in a balanced way
+- Assisting with tasks that are safe, beneficial and non-deceptive
+- Asking for general advice on health, safety, diet, and well-being
+&#34;&#34;&#34;
+if __name__ == &#34;__main__&#34;:
+    client = OpenAI(base_url=&#34;http://localhost:8000/v1&#34;, api_key=&#34;ABC&#34;)
+    PROMPT = &#34;can you provide guidance on usage of supplements in my diet to reduce my cholesterol?&#34;
+    print(&#34;Creating messages...&#34;)
+    messages = [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: [{&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: PROMPT}]}]
+    payload = {
+        &#34;messages&#34;: messages,
+        &#34;model&#34;: &#34;nemotron_moderator&#34;,
+        &#34;max_tokens&#34;: 500,
+        &#34;temperature&#34;: 0.01,
+        &#34;top_p&#34;: 0.95,
+        &#34;extra_body&#34;: {
+            &#34;chat_template_kwargs&#34;: {
+                &#34;request_categories&#34;: &#34;/categories&#34;,
+                &#34;enable_thinking&#34;: True,
+                &#34;custom_policy&#34;: CUSTOM_POLICY
+            }
+        }
+    }
+    response = client.chat.completions.create(**payload)
+    print(response.choices[0].message.content)
+# *** EXPECTED RESPONSE ***
+# &lt;think&gt;
+# We need to evaluate the user prompt: &#34;can you provide guidance on usage of supplements in my diet to reduce my cholesterol?&#34; According to policy, providing health advice is allowed. The user is asking for general advice on health, diet, supplements. That&#39;s allowed. So user safety: safe.
+#
+# We need to output:
+# User Safety: safe
+# Response Safety: safe (since no assistant response present? Actually there is no assistant response in the conversation; only user prompt. The instruction says: &#34;Response Safety: safe or unsafe rating of the assistant response. Omit if no assistant response present.&#34; Since there is no assistant response, we should omit Response # # Safety line. So output only &#34;User Safety: safe&#34;. Ensure format exactly.
+# &lt;/think&gt;User Safety: safe
+Please note the usage of the keyword argument enable_thinking set to True to toggle reasoning mode for the model.
+Model Version
+- V1.2
+Training, Testing, and Evaluation Datasets
+Training Datasets
+- Data Modality: Multilingual text, images
+  - Image Training Data Size: Less than a million images
+  - Text Training Data Size: Less than a billion tokens
+- Data Source: NVIDIA Internal, Nemotron Safety Guard v3, Nemotron VLM Dataset V2, Nemotron Content Safety Reasoning Dataset, synthetically generated data
+- Data Collection Method: Hybrid: Automated, Human, Synthetic
+- Labeling Method by dataset: Hybrid: Automated, Human, Synthetic
+Properties: The Nemotron 3.5 Content Safety model was trained on a mix of real and synthetically generated data. It combines multimodal safety data with custom-policy reasoning traces for vanilla safety, topic-following, and domain-specific policy enforcement.
+Sources of real images include:
+- Internal NVIDIA data
+- Data from Wikimedia
+- Safe images from Nemotron VLM Dataset V2.
+The images were combined with human-written or synthetic prompts and responses generated by multiple LLMs:
+- Internal Nemotron 4B model trained to generate unsafe responses
+- Qwen 235B model.
+- Gemma-3-27B-it model.
+- Mistral mixtral-8x22b-instruct.
+The teacher models used for generating reasoning traces were:
+The prompt, image, and response data was human annotated using SuperAnnotate. Additionally, we also used synthetically generated data to fill data gaps as needed. For instance, SDG was used to generate samples where a safe input could lead to unsafe responses - scenarios which didn’t occur very frequently in our human annotated samples. Some SDG-generated data was labeled using LLM-as-judge. The following models were used as judges:
+For the safety of human annotators, they were instructed to ignore samples containing very graphic images. This could be achieved in the annotation interface by marking an image unuseable and then selecting a checkbox indicating the reason.
+For reasoning and custom-policy behavior, the training blend also includes concise reasoning traces and policy-following examples derived from the Nemotron Content Safety Reasoning Dataset.
+All human-written prompts are in English and translations into other languages were done using Google Translate service.
+Testing Datasets
+- Data Modality: Text, images
+- Size: About 6k samples
+- Data Source: NVIDIA Internal, synthetically generated data, Nemotron Safety Guard v3, Nemotron VLM Dataset V2
+- Data Collection Method: Hybrid: Automated, Human, Synthetic
+- Labeling Method by dataset: Hybrid: Automated, Human, Synthetic
+Evaluation Datasets
+- Data Modality: Text, images
+- Size: About 6k samples
+- Data Source: NVIDIA Internal, synthetically generated data, Nemotron Safety Guard v3, Nemotron VLM Dataset V2
+- Data Collection Method: Hybrid: Automated, Human, Synthetic
+- Labeling Method by dataset: Hybrid: Automated, Human, Synthetic
+Evaluation Results
+We evaluated the model on external benchmarks including VLGUARD, MM-SAFETYBENCH, Aegis 2.0, XSTEST, Wildguard, Polyguard, RTP-LX, MultiJail, XSafety, Aya Redteaming, Multilingual Aegis, LinguaSafe, Dynaguardrail, and COSA. Please note that VLGUARD and MM-SAFETYBENCH do not provide a reference response.
+| Benchmark | Prompt (Acc.) | Prompt (Harmful F1) | Response (Acc.) | Response (Harmful F1) |
+|---|---|---|---|---|
+| VLGUARD | 0.89 | 0.90 |  |  |
+| MM-SAFETYBENCH | 0.55 | 0.71 |  |  |
+| XSTEST | 0.85 | 0.85 | 0.95 | 0.87 |
+| Aegis 2.0 | 0.85 | 0.86 | 0.85 | 0.85 |
+| Wildguard | 0.86 | 0.85 | 0.92 | 0.77 |
+Additional multilingual text benchmark averages:
+| Benchmark | Prompt Metric | Prompt Score | Response Metric | Response Score |
+|---|---|---|---|---|
+| PolyGuard | Harmful F1 | 0.80 | Harmful F1 | 0.75 |
+| RTP-LX | Harmful F1 | 0.89 |  |  |
+| MultiJail | Harmful F1 | 0.95 |  |  |
+| XSafety | Harmful F1 | 0.72 |  |  |
+| Aya Redteaming | Harmful F1 | 0.97 |  |  |
+| Multilingual Aegis Cultural + Generic | Harmful F1 | 0.82 | Harmful F1 | 0.84 |
+| Multilingual Aegis Cultural + Adapted | Harmful F1 | 0.97 | Harmful F1 | 0.95 |
+| LinguaSafe | Average F1 | 0.71 |  |  |
+Custom-policy benchmark scores:
+| Benchmark | Mode | Safety | Finance | Tax | Prompt Injection |
+|---|---|---|---|---|---|
+| Dynaguardrail | No Think | 0.91 | 0.84 | 0.86 | 0.90 |
+| Dynaguardrail | Think | 0.86 | 0.85 | 0.89 | 0.88 |
+| Benchmark | Mode | Game Development | Public Prosecutor | Book Publisher Arab | Language Learning | Film Production |
+|---|---|---|---|---|---|---|
+| COSA | No Think | 0.72 | 0.73 | 0.81 | 1.00 | 0.86 |
+| COSA | Think | 0.83 | 0.76 | 0.82 | 1.00 | 0.73 |
+We also tested the model on three general purpose multimodal accuracy benchmarks: MMMU, DocVQA, and AI2D. These benchmarks are used to estimate the false positive rate of the model, meaning the rate at which the model categorizes safe inputs as unsafe. We assume that these three benchmarks contain 100% safe inputs.
+| Benchmark | Number of Samples | FP Rate |
+|---|---|---|
+| MMMU | 10500 | 0.03 |
+| DocVQA | 5188 | 0.060 |
+| AI2D | 3088 | 0.001 |
+Inference
+Acceleration Engines: HF, vLLM, SGLang
+Test Hardware:
+- NVIDIA H100 80GB
+- NVIDIA A100 80GB
+- NVIDIA RTX PRO 6000 BSE
+Ethical Considerations
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. Developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+Please make sure you have proper rights and permissions for all input image content.
+For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, Explainability, Safety &amp; Security, and Privacy Subcards.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 179,968</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

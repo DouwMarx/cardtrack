@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measuring Time Horizon using Claude Code and Codex — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Measuring Time Horizon using Claude Code and Codex</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">metr</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Opus 4.5, GPT-5</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-02-13</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/" rel="noopener nofollow">https://metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T22:56:09Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-5-independent-eval-2&amp;body=Document%3A%20metr-claude-opus-4-5-independent-eval-2%0AURL%3A%20https%3A//metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/%0AFingerprint%3A%204c6f2d4b81e11a3bfa035cb67cd24bba167ddc3773c46122ccb501b0f85f270f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T22:56:09Z</td>
+          <td>text/html</td>
+          <td>58,081</td>
+          <td><code title="4c6f2d4b81e11a3bfa035cb67cd24bba167ddc3773c46122ccb501b0f85f270f">4c6f2d4b81e11a3b</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T22:56:09Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-8 · agent · lead: agent_search</span>
+          <div class="just">METR research note (dated 2026-02-13) re-running its time-horizon measurement with production agent scaffolds instead of METR&#39;s in-house ones, to test whether the published time-horizon numbers understate real deployed capability. It reports Claude Opus 4.5 under Claude Code against Opus 4.5 under METR&#39;s ReAct scaffold (Claude Code ahead in 50.7% of bootstrap samples) and GPT-5 under Codex against GPT-5 under Triframe (Codex ahead in 14.5% of bootstrap samples); neither difference is statistically significant, so the specialised scaffolds gave no measurable advantage. That is a methodologically load-bearing negative result for a metric this corpus already tracks across several METR reports, on two named frontier models. Found via metr.org/notes. Fetched and read.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/notes" rel="noopener nofollow">https://metr.org/notes</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Most of METR’s time horizon measurements are done using two scaffolds: Triframe and ReAct1.
+People sometimes see that we use these two scaffolds and feel skeptical about the validity of our results. Shouldn’t scaffolds like Claude Code and Codex do much better on time horizon given how much work has gone into making those scaffolds better for software engineering?
+In the past, we have measured the time horizons of a few Anthropic and OpenAI models using Claude Code and Codex2. These tests indicated that they’re probably not better than our own scaffolds. I decided to perform a few more checks into this question (on our new task suite, with newer versions of Claude Code and Codex), and compared the time horizon of two models on our scaffolds and their specialized scaffolds.
+To summarize my new findings: it seems that neither Claude Code nor Codex outperform the default scaffolds METR uses, at least when measuring the time horizon of Opus 4.5 and GPT-5.
+Main differences between scaffolds
+ReAct is a very simple scaffold where an agent takes an action, sees the results of the action, and repeats. Triframe is a bit more complicated – before every action, an advisor subagent strategizes, parallel actor subagents generate possible actions, and then parallel rater subagents compare all the possible actions. Only the highest rated action actually gets executed.
+Codex is similar to ReAct, in that it’s a simple loop that takes actions in a sequence (although with access to a more sophisticated file editing tool). Claude Code is a bit more complicated – the main agent is a simple loop, but it can spin up subagents at will to search codebases or plan next steps. Both Codex and Claude Code are prompted much more elaborately than either Triframe or ReAct, including to use to-do lists for long tasks. Also, Codex and Claude Code have been explicitly optimized for their respective model families, while ReAct and Triframe are general scaffolds that we haven’t specifically optimized for performance on any model family3.
+Methods
+Prior to my investigation, METR had already measured the time horizon of:
+- Opus 4.5 using ReAct
+- GPT-5 using Triframe4.
+I additionally measured the time horizon of:
+- Opus 4.5 using Claude Code
+- GPT-5 using Codex.
+To run the evaluations on METR’s Inspect infrastructure, I used the pre-existing Claude Code and Codex agents from inspect_swe, with minor modifications5:
+- Adding token usage messages, so the agent knows how many tokens it has left out of its total budget.
+- Adding retries for API requests that time out.
+After the runs were in, I did basic failure analysis to check whether the scaffolds might be broken. This consisted of finding tasks where Codex or Claude Code underperformed our default scaffolds by a wide margin, and manually inspecting those transcripts to see if it might be due to a technical issue with our wrappers of Codex or Claude Code. In some cases, the failures were due to technical issues (the scoring code would disqualify some correct answers due to containing newlines or spaces), and I re-scored those runs appropriately.
+I also did cheating detection (running an LLM-based cheating scanner over all of the runs, and manually reviewing ones that the scanner flagged), and noted examples of the kinds of mistakes Claude Code and Codex scaffolds tend to make in long-horizon tasks.
+Results
+It looks like Claude Code and Codex aren’t obviously better than the default scaffolds we use for our agents. Neither the GPT-5 time horizon difference, nor the Opus 4.5 time horizon difference, are statistically significant:
+- For Opus 4.5, Claude Code beats ReAct in 50.7% of bootstrap samples.
+- For GPT-5, Codex beats Triframe in 14.5% of bootstrap samples.
+Qualitative impressions
+GPT-5 with Codex sometimes tries to talk to the obviously non-existent user: At the end of many runs, GPT-5 with Codex writes a short report about its work, saying things like “If you want, I can also commit these changes to git.” This makes me think that the model has somewhat poor situational awareness (it doesn’t seem to realize that it’s in a fully automated evaluation instead of talking to a user), and might get driven off-distribution from the lack of any sort of user dialogue.
+Opus 4.5 with Claude Code sometimes gets over-anchored on a plan: In one run, Claude Opus 4.5 made a 4-step plan to find a solution. It only realized that its solution wasn’t very good at step 4. It submitted its suboptimal solution instead of going back and trying a different approach. Maybe this is because Claude Opus 4.5 has a strong drive to check items off of a list and an aversion to un-checking already checked items on a list.
+Opus 4.5 with Claude Code sometimes over-eagerly wastes limited resources. In one task, the agent is given a limited number of times to query a function. In multiple runs, Opus 4.5 with Claude Code wasted most of its attempt using an automated script and forgot to print out the results, thus learning nothing from the queries.
+Limitations
+Codex and Claude Code might not have been given enough tokens. Originally, I gave each model the same token budget regardless of scaffold – Claude Opus 4.5 had 8 million tokens, and GPT-5 had 16 million. It might be that Claude Code and Codex are more token-hungry than ReAct and Triframe. To investigate this, I generated this graph:
+For each agent, this graph plots its score at different token usage amounts by counting every run that hasn’t completed by that token amount as a failure. It’s meant to give some insight into whether we’re giving agents enough tokens, as an agent given too few tokens might “panic” and submit a lot of its solutions right at the end, causing a sudden uptick in time horizon.
+Given this graph, I was somewhat worried about the relative lack of a plateau for Opus 4.5 with Claude Code. I decided to run another time horizon measurement with a four times higher token budget of 32 million tokens. The preliminary time horizon measurement barely changed, so I concluded that the token budget probably isn’t a huge factor.
+The GPT-5-Codex model might be much better at using the Codex scaffold than GPT-5. I think this is plausible – I chose GPT-5 to more directly compare Codex to Triframe. However, I doubt that using the GPT-5-Codex model would result in a more than 2x improvement in time horizon compared to the non-“Codex” version of the model.
+Our wrappers of the Codex and Claude Code scaffolds are still rough around the edges. I think that with some minor changes to Claude Code and Codex, such as additional prompting that encourages the agents not to give up early on the task, agents could perform moderately better. We also had some minor technical issues with API timeouts, but I don’t expect these to have had a large effect on the final time horizon measurement.
+Conclusion
+From these results, I conclude that, for GPT-5 and Opus 4.5, using Codex and Claude Code doesn’t make a huge difference for the time horizon of the model. Combined with our results for other models in the past, this makes me think that the difference probably isn’t huge for other recent models either. I expect that we’ll keep periodically measuring the differences as new models come in.
+On some level, it’s not surprising that Codex and Claude Code don’t beat the default agents out of the park. Those scaffolds are mostly used in an interactive setting, where a human user often checks in on the agent’s work. In contrast, agents perform our time horizon tasks autonomously, without any human input. Also, the distribution of the types of tasks is probably moderately different in the real world compared to our task suite.
+-
+      Before we switched our infrastructure from Vivaria to Inspect, we primarily used Triframe and Modular. Modular is very similar to ReAct. ↩
+-
+      We performed some initial experiments with Claude Code with Sonnet 3.7 in April 2025, as well as trying out Claude Code with Opus 4, and trying out Codex for the GPT-5.1-Codex Max report. We didn’t see major improvements over our scaffolds in any of these experiments. ↩
+-
+      We originally developed Triframe to use with o1-preview, but I consider it mostly to be optimized around reasoning models in general rather than OpenAI models in particular. ↩
+-
+      We also have some preliminary measurements of the time horizon of Opus 4.5 using Triframe and GPT-5 using ReAct. It seems that Opus 4.5 does better with ReAct and GPT-5 does better with Triframe. ↩
+-
+      Due to a scoring issue, I ran both agents with a different version of the scaffold (without token usage messages) on just one HCAST task family (out of 69 HCAST task families). ↩</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

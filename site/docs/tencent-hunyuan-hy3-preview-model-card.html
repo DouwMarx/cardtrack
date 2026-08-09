@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hy3 preview Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Hy3 preview Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">tencent_hunyuan</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Hy3 preview, Hy3 preview Base</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-04-23</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/tencent/Hy3-preview" rel="noopener nofollow">https://huggingface.co/tencent/Hy3-preview</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:47:48Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy3-preview-model-card&amp;body=Document%3A%20tencent-hunyuan-hy3-preview-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy3-preview%0AFingerprint%3A%20fe092129a6324e560a911285f824c6e6715e19a7662d3e373e7a7305c6fa2fc3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:47:48Z</td>
+          <td>text/html</td>
+          <td>334,911</td>
+          <td><code title="fe092129a6324e560a911285f824c6e6715e19a7662d3e373e7a7305c6fa2fc3">fe092129a6324e56</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:47:48Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-2 · agent · lead: monitor</span>
+          <div class="just">Tencent&#39;s own model card for Hy3 preview, the 295B-A21B MoE preview release that preceded the Hy3 model already in the corpus (2026-07-06). I fetched and read the card; its update line reads &#39;[2026-04-23] We open-source Hy3 preview model weights on Hugging Face, ModelScope, and GitCode&#39;, which is the date I use. I treat this as a distinct release rather than a variant of Hy3 on the same basis the corpus already treats OpenAI&#39;s GPT-5.6 Preview system card as distinct from the GPT-5.6 system card: it is a separately announced, separately weighted preview checkpoint with its own card and its own benchmark results, three months ahead of the final model. It is clearly notable at 59k downloads and 301 likes. The card covers architecture and academic benchmarks (STEM, coding, reasoning) with no safety guardrail, misuse, or risk discussion, so has_safety_evals is false.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/api/models/tencent/Hy3-preview" rel="noopener nofollow">https://huggingface.co/api/models/tencent/Hy3-preview</a> · <a href="https://huggingface.co/tencent/Hy3" rel="noopener nofollow">https://huggingface.co/tencent/Hy3</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/tencent/Hy3-preview" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use tencent/Hy3-preview with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use tencent/Hy3-preview with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;tencent/Hy3-preview&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;tencent/Hy3-preview&#34;)
+model = AutoModelForCausalLM.from_pretrained(&#34;tencent/Hy3-preview&#34;, device_map=&#34;auto&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use tencent/Hy3-preview with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;tencent/Hy3-preview&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;tencent/Hy3-preview&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/tencent/Hy3-preview
+-  SGLang  How to use tencent/Hy3-preview with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;tencent/Hy3-preview&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;tencent/Hy3-preview&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;tencent/Hy3-preview&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;tencent/Hy3-preview&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use tencent/Hy3-preview with Docker Model Runner: docker model run hf.co/tencent/Hy3-preview
+中文 ｜ English
+
+🖥️ Official Website | 💬 GitHub
+Table of Contents
+Model Introduction
+Hy3 preview is a 295B-parameter Mixture-of-Experts (MoE) model with 21B active parameters and 3.8B MTP layer parameters, developed by the Tencent Hy Team. Hy3 preview is the first model trained on our rebuilt infrastructure, and the strongest we&#39;ve shipped so far. It improves significantly on complex reasoning, instruction following, context learning, coding, and agent tasks.
+| Property | Value |
+|---|---|
+| Architecture | Mixture-of-Experts (MoE) |
+| Total Parameters | 295B |
+| Activated Parameters | 21B |
+| MTP Layer Parameters | 3.8B |
+| Number of Layers (excluding MTP layer) | 80 |
+| Number of MTP Layers | 1 |
+| Attention Heads | 64 (GQA, 8 KV heads, head dim 128) |
+| Hidden Size | 4096 |
+| Intermediate Size | 13312 |
+| Context Length | 256K |
+| Vocabulary Size | 120832 |
+| Number of Experts | 192 experts, top-8 activated |
+| Supported Precisions | BF16 |
+Highlights
+- STEM &amp; Reasoning — Complex reasoning underpins everything else. Hy3 preview performs well on challenging STEM benchmarks like FrontierScience-Olympiad and IMOAnswerBench, and achieved excellent results in the Tsinghua Qiuzhen College Math PhD qualifying exam (Spring &#39;26) and the China High School Biology Olympiad (CHSBO 2025), demonstrating generalizable reasoning capacity.
+- Context Learning &amp; Instruction Following — Real-world tasks require the ability to parse messy, lengthy contexts and follow complex rules. We built CL-bench and CL-bench-Life from our own business scenarios to innovatively measure context learning ability. Hy3 preview exhibits solid gains in both context learning and instruction following capabilities.
+- Code &amp; Agent — Coding and agents saw the biggest gains. With a rebuilt RL infrastructure and larger-scale training tasks, we posted competitive scores across mainstream coding agent benchmarks (SWE-bench Verified, Terminal-Bench 2.0) and search agent benchmarks (BrowseComp, WideSearch).
+Benchmark Results
+Pre-trained Model Performance
+| Category | Benchmark (Metric) | # Shots | Kimi-K2 BASE | DeepSeek-V3 BASE | GLM-4.5 BASE | Hy3 preview-Base |
+|---|---|---|---|---|---|---|
+|  | #ActivatedParams | - | 32B | 37B | 32B | 21B |
+|  | #TotalParams | - | 1043B | 671B | 355B | 295B |
+| English | MMLU | 5-shot | 88.24 | 87.68 | 87.73 | 87.42 |
+|  | MMLU-Pro | 5-shot | 65.98 | 63.98 | 63.67 | 65.76 |
+|  | MMLU-Redux | 5-shot | 87.18 | 86.81 | 86.56 | 86.86 |
+|  | ARC-Challenge | 0-shot | 96.66 | 94.65 | 96.32 | 95.99 |
+|  | DROP | 5-shot | 86.40 | 86.50 | 82.90 | 85.50 |
+|  | PIQA | 4-shot | 84.93 | 84.22 | 84.71 | 84.39 |
+|  | SuperGPQA | 5-shot | 51.10 | 46.17 | 49.64 | 51.60 |
+|  | SimpleQA | 5-shot | 34.37 | 26.15 | 29.26 | 26.47 |
+| Code | MBPP-plus | 3-shot | 81.35 | 75.47 | 78.05 | 78.71 |
+|  | CRUXEval-I | 3-shot | 68.01 | 67.79 | 68.51 | 71.19 |
+|  | CRUXEval-O | 3-shot | 69.62 | 71.00 | 67.75 | 68.38 |
+|  | LiveCodeBench-v6 | 1-shot | 30.86 | 29.31 | 27.43 | 34.86 |
+| Math | GSM8K | 4-shot | 93.46 | 88.15 | 90.06 | 95.37 |
+|  | MATH | 4-shot | 71.20 | 59.37 | 61.00 | 76.28 |
+|  | CMath | 4-shot | 90.83 | 85.50 | 89.33 | 91.17 |
+| Chinese | C-Eval | 5-shot | 91.51 | 90.35 | 85.84 | 89.80 |
+|  | CMMLU | 5-shot | 90.72 | 87.90 | 86.46 | 89.61 |
+|  | Chinese-simpleQA | 5-shot | 74.58 | 68.72 | 68.49 | 69.73 |
+| Multilingual | MMMLU | 5-shot | 77.63 | 79.54 | 79.26 | 80.15 |
+|  | INCLUDE | 5-shot | 75.66 | 77.86 | 76.27 | 78.64 |
+Instruct Model Performance
+STEM &amp; Reasoning
+Complex reasoning underpins everything else. Hy3 preview performs well on challenging STEM benchmarks like FrontierScience-Olympiad and IMOAnswerBench. It also achieved excellent results in the Tsinghua Qiuzhen College Math PhD qualifying exam (Spring &#39;26) and the China High School Biology Olympiad (CHSBO 2025), demonstrating a high degree of generalizable reasoning capacity.
+Context Learning &amp; Instruction Following
+Real-world tasks require the ability to parse messy, lengthy contexts and follow complex rules. We built CL-bench and CL-bench-Life from our own business scenarios to innovatively measure context learning ability. Hy3 preview exhibits solid gains in both context learning and instruction following capabilities.
+Code &amp; Agent
+Coding and agents saw the biggest gains. With a rebuilt RL infrastructure and larger-scale training tasks, we posted competitive scores across mainstream coding agent benchmarks (SWE-bench Verified, Terminal-Bench 2.0) and search agent benchmarks (BrowseComp, WideSearch).
+Coding is about whether a model can execute in a development environment. Search is about whether it can find and combine information from the open web. Both matter for complex agent scenarios like OpenClaw. Hy3 preview scores well on ClawEval and WildClawBench — a sign that its agent capabilities are becoming practical.
+Beyond public benchmarks, we built internal evaluation sets to test the model in real development scenarios. On Hy-Backend (backend-focused tasks), Hy-Vibe Bench (real-user dev workflows), and Hy-SWE Max, Hy3 preview scores competitively against other open-source models.
+News
+- [2026-04-23] 🔥 We open-source Hy3 preview model weights on Hugging Face, ModelScope, and GitCode.
+Model Links
+| Model Name | Description | Hugging Face | ModelScope | GitCode |
+|---|---|---|---|---|
+| Hy3 preview | Instruct model | 🤗 Model | Model | Model |
+| Hy3 preview-Base | Pre-trained base model | 🤗 Model | Model | Model |
+Quickstart
+Deploy Hy3 preview with vLLM or SGLang first, then call the OpenAI-compatible API:
+from openai import OpenAI
+client = OpenAI(base_url=&#34;http://localhost:8000/v1&#34;, api_key=&#34;EMPTY&#34;)
+response = client.chat.completions.create(
+    model=&#34;hy3-preview&#34;,
+    messages=[
+        {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello! Can you briefly introduce yourself?&#34;},
+    ],
+    temperature=0.9,
+    top_p=1.0,
+    # reasoning_effort: &#34;no_think&#34; (default, direct response), &#34;low&#34;, &#34;high&#34; (deep chain-of-thought)
+    extra_body={&#34;chat_template_kwargs&#34;: {&#34;reasoning_effort&#34;: &#34;no_think&#34;}},
+)
+print(response.choices[0].message.content)
+Recommended parameters: temperature=0.9, top_p=1.0.
+Reasoning mode: Set reasoning_effort to &#34;high&#34; for complex tasks (math, coding, reasoning) or &#34;no_think&#34; for direct responses.
+See the Deployment section below for how to start the API server.
+Deployment
+Hy3-preview has 295B parameters in total. To serve it on 8 GPUs, we recommend using H20-3e or other GPUs with larger memory capacity.
+vLLM
+Build vLLM from source:
+uv venv --python 3.12 --seed --managed-python
+source .venv/bin/activate
+git clone https://github.com/vllm-project/vllm.git
+cd vllm
+uv pip install --editable . --torch-backend=auto
+Start the vLLM server with MTP enabled:
+vllm serve tencent/Hy3-preview \
+  --tensor-parallel-size 8 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 1 \
+  --tool-call-parser hy_v3 \
+  --reasoning-parser hy_v3 \
+  --enable-auto-tool-choice \
+  --served-model-name hy3-preview
+SGLang
+Build SGLang from source:
+git clone https://github.com/sgl-project/sglang
+cd sglang
+pip3 install pip --upgrade
+pip3 install &#34;transformers&gt;=5.6.0&#34;
+pip3 install -e &#34;python&#34;
+Launch SGLang server with MTP enabled:
+python3 -m sglang.launch_server \
+  --model tencent/Hy3-preview \
+  --tp 8 \
+  --tool-call-parser hunyuan \
+  --reasoning-parser hunyuan \
+  --speculative-num-steps 1 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 2 \
+  --speculative-algorithm EAGLE \
+  --served-model-name hy3-preview
+Training
+Hy3 preview provides a complete model training pipeline, supporting both full fine-tuning and LoRA fine-tuning, with DeepSpeed ZeRO configurations and LLaMA-Factory integration.
+For detailed training documentation, please refer to: Training Guide
+Quantization
+We provide AngelSlim, a more accessible, comprehensive, and efficient toolkit for large model compression. AngelSlim supports a comprehensive suite of compression tools for large-scale multimodal models, including common quantization algorithms, low-bit quantization, and speculative sampling.
+License
+Hy3 preview is released under the Tencent Hy Community License Agreement. See LICENSE for details.
+Contact Us
+If you would like to leave a message for our R&amp;D and product teams, welcome to contact us. You can also reach us via email:
+📧 hunyuan_opensource@tencent.com
+Hy3 preview is developed by the Tencent Hy Team.
+- Downloads last month
+- 58,979
+Model tree for tencent/Hy3-preview
+Spaces using tencent/Hy3-preview 18
+Collection including tencent/Hy3-preview
+Evaluation results
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   74.4
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   87.2
+- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results    leaderboard   54.4
+- cais/hle · Hle View evaluation results      30 *</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

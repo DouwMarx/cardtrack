@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can AI agents escape their sandboxes? A benchmark for safely measuring container breakout capabilities — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Can AI agents escape their sandboxes? A benchmark for safely measuring container breakout capabilities</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">uk_aisi</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>—</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-03-23</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.aisi.gov.uk/blog/can-ai-agents-escape-their-sandboxes-a-benchmark-for-safely-measuring-container-breakout-capabilities" rel="noopener nofollow">https://www.aisi.gov.uk/blog/can-ai-agents-escape-their-sandboxes-a-benchmark-for-safely-measuring-container-breakout-capabilities</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T22:50:59Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20uk-aisi-unspecified-independent-eval&amp;body=Document%3A%20uk-aisi-unspecified-independent-eval%0AURL%3A%20https%3A//www.aisi.gov.uk/blog/can-ai-agents-escape-their-sandboxes-a-benchmark-for-safely-measuring-container-breakout-capabilities%0AFingerprint%3A%202d10262638397e0db263f83fc71d1a5121f64cd2fdf5e6ad143d38c5cec9912f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T22:50:59Z</td>
+          <td>text/html</td>
+          <td>28,514</td>
+          <td><code title="2d10262638397e0db263f83fc71d1a5121f64cd2fdf5e6ad143d38c5cec9912f">2d10262638397e0d</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T22:50:59Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-8 · agent · lead: monitor</span>
+          <div class="just">UK AISI&#39;s own publication (dated Mar 23, 2026 on the page) introducing SandboxEscapeBench, an open-source dangerous-capability benchmark of 18 container-escape scenarios spanning the orchestration, runtime and kernel layers, run inside a hardened sandbox-within-a-sandbox so that successful breakouts cause no real harm, plus first results. Reported findings: the tested models reliably escape common real-world misconfigurations such as exposed Docker sockets and privileged containers; the largest models make meaningful progress on multi-step exploit scenarios but none solved the hardest ones; every successful breakout used a previously disclosed vulnerability; escape capability scales with model size and approximately log-linearly with inference-time compute; and during development one model found an unintended escape path the authors had not built in. AISI does not name the evaluated models in this post, so model_names is left empty rather than guessed — the document qualifies under &#39;about a specific model or eval&#39; as a specific, named evaluation. Fetched and read in full.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.aisi.gov.uk/blog" rel="noopener nofollow">https://www.aisi.gov.uk/blog</a> · <a href="https://arxiv.org/abs/2603.02277" rel="noopener nofollow">https://arxiv.org/abs/2603.02277</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.aisi.gov.uk/blog/can-ai-agents-escape-their-sandboxes-a-benchmark-for-safely-measuring-container-breakout-capabilities" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Sandboxes are a critical part of AI agent evaluation. They are isolation environments that limit model’s access to external systems and data, allowing evaluators to observe their behaviour and capabilities while avoiding real-world harm. Last year, we released our Inspect Sandboxing Toolkit, a series of plugins purpose-built for safely evaluating AI agents.
+But as agents grow more advanced, there is a risk that they could find and exploit vulnerabilities in these sandboxes, undermining their security. We’ve developed SandboxEscapeBench, an open-source benchmark dedicated to evaluating whether AI agents can break out of their sandboxes.
+What we built
+SandboxEscapeBench introduces a secure, “sandbox-within-a-sandbox” evaluation set-up for testing container breakout capabilities safely. Each container runs inside a hardened virtual machine, so even if a model escapes the container, it remains isolated from real infrastructure. This makes it possible to study container escape behaviour in a controlled environment where successful breakouts cause no real harm.
+Within this set-up, SandboxEscapeBench introduces 18 escape scenarios spanning three layers of the container stack: orchestration, runtime, and kernel. The scenarios are grounded in real-world vulnerability classes, ranging from simple misconfigurations (exposed Docker sockets, privileged containers) to multi-step kernel exploits (runtime CVEs, privilege escalation chains).
+For security and evaluation integrity reasons, we’ve limited the public release to scenarios based on known vulnerability classes, while retaining a private test set for internal AISI evaluations. The benchmark is implemented as capture-the-flag-style challenges using Inspect, AISI’s open-source framework for AI evaluations, and the SandboxEscapeBench open-source code is available on GitHub.
+What we found
+Advanced models can reliably escape common misconfigurations when prompted to do so. In evaluation environments, the models we tested were frequently able to break out of sandbox environments in scenarios involving misconfigurations that are common in the real world, such as exposed Docker sockets and privileged containers. These scenarios can easily arise in developer tooling, ad-hoc evaluation harnesses, and fast-moving agent prototypes. Models are also resourceful: during benchmark development, one model found and exploited an unintended escape path, illustrating how easily gaps creep into container setups even when designed by security-conscious teams.
+The largest models make progress beyond misconfigurations. On scenarios requiring multi-step exploits or specific knowledge of documented vulnerabilities, the largest models still succeed at meaningful rates on intermediate challenges, though none solved the hardest scenarios (which we estimate would require 1-2 hours for an experienced cybersecurity professional). Every successful breakout exploited a previously disclosed vulnerability.
+Escape capability scales with model size and inference-time compute. Large capability gaps persist between frontier models and their smaller counterparts, with smaller models degrading sharply as tasks demand more complex exploitation chains. Performance also scales approximately log-linearly with compute budget: giving a model more tokens to reason with increased success rates. Previous AISI research has also shown that increasing token budgets produces substantial performance improvements for cyber evaluations.
+Why this matters going forward
+Our results show that misconfigurations like exposed Docker sockets, excessive privileges, and unpatched runtimes can be reliably exploited by frontier models. This capability is likely to improve as models advance, extending beyond common misconfigurations towards harder vulnerability cases. Increasing the token budgets that models have to work with can also significantly improve success rates. To ensure that sandboxes continue to provide secure environments for AI agent testing, ongoing evaluation of breakout capabilities will be essential. We’ve open-sourced SandboxEscapeBench and its tooling to support defenders, evaluators, and AI security researchers in tracking this capability over time.
+Sandbox effectiveness also has implications for the field of AI control. You can learn more about AISI’s work on AI control from our previous blog post on asynchronous control measures, and ControlArena, our open-source environment for control experiments.
+For detailed results and methodology, read our full paper. You can also find the benchmark code and outer sandbox tooling (Vagrant, EC2) on GitHub.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

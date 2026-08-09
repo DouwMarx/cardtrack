@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lyria 3 Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Lyria 3 Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Lyria 3</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-02-18</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://deepmind.google/models/model-cards/lyria-3/" rel="noopener nofollow">https://deepmind.google/models/model-cards/lyria-3/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:36:08Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-lyria-3-model-card&amp;body=Document%3A%20google-deepmind-lyria-3-model-card%0AURL%3A%20https%3A//deepmind.google/models/model-cards/lyria-3/%0AFingerprint%3A%20e81d9c462ab5c55b21b0d5656086fe7545ba855f070eda81b6322388940cfe25%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:36:08Z</td>
+          <td>text/html</td>
+          <td>143,715</td>
+          <td><code title="e81d9c462ab5c55b21b0d5656086fe7545ba855f070eda81b6322388940cfe25">e81d9c462ab5c55b</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:36:08Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-1 · agent · lead: monitor</span>
+          <div class="just">Google DeepMind&#39;s own model card for Lyria 3, read directly. Primary source, listed on DeepMind&#39;s official model-cards index, and a distinct release from Lyria 3.5 (separate card, five months later, proposed separately in this run). Date is the card&#39;s own &#39;Published 18 February 2026&#39;; note the card also carries an &#39;Updated: March 2026&#39; stamp, and I used the publication date rather than the update date, consistent with the index entry of &#39;Updated 18 February 2026&#39;. has_safety_evals is true: the card documents Training/Development Evaluations, Human Red Teaming and Ethics &amp; Safety Reviews, plus Risks and Mitigations covering dataset filtering, supervised fine-tuning, reinforcement learning from human and critic feedback, safety filtering and SynthID watermarking.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://deepmind.google/models/model-cards/lyria-3/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Lyria 3
+Model Cards are intended to provide developers with essential, summarized information on models, including overviews of known limitations and mitigation approaches. Model cards may be updated from time to time; for example, to include updated evaluations as the model is improved or revised. The model card below covers Lyria 3 and subsequent versions.
+Updated: March 2026
+Model information
+Description
+Lyria 3 is a music generation system capable of synthesizing high-quality audio from a text prompt.
+Inputs
+Text
+Outputs
+Audio (music), text (lyrics)
+Architecture
+Lyria 3 utilizes latent diffusion, applied to temporal audio latents.
+Model data
+Training dataset
+Lyria 3 was trained on audio data. Audio datasets were annotated with text captions at different levels of detail.
+Training data processing
+Data filtering and preprocessing included techniques such as deduplication, safety filtering in-line with Google&#39;s commitment to advancing AI safely and responsibly, and quality filtering to mitigate risks and improve training data reliability and compliance. Once data is collected, it is cleaned and preprocessed to make it suitable for training.
+Implementation and sustainability
+Hardware
+Lyria 3 was trained using Google’s Tensor Processing Units (TPUs). TPUs are specifically designed to handle large-scale computation involved in training and serving generative AI models, increasing training throughput and efficiency considerably when compared to CPUs. TPUs come with large amounts of high-bandwidth memory, allowing for the handling of large models and batch sizes during training, which can lead to better model quality. TPU Pods (large clusters of TPUs) also provide a scalable solution for handling the growing complexity of large foundation models. Training can be distributed across multiple TPU devices for faster and more efficient processing.
+The efficiencies gained through the use of TPUs are aligned with Google&#39;s commitment to operate sustainably.
+Software
+Training was done using JAX and ML Pathways.
+Distribution
+Lyria 3 is distributed in the following channels; respective documentation shared in line:
+Our models are available to downstream providers via an application program interface (API) and subject to relevant terms of use. There is no required hardware or software to use the model.
+Evaluation
+Approach
+Lyria 3 was evaluated across a range of benchmarks, including human and automated evaluations. In close collaboration with music experts, we have developed an evaluation framework that tests the model&#39;s ability to represent concepts (such as genres, moods, instruments) in- and out-of-distribution across a broad range of curated user prompts. We sampled several music generation models for comparison, including Lyria 2.
+We focus on a range of quality dimensions including music quality and aesthetics, vocal quality, audio fidelity, and prompt adherence.
+Results
+Lyria 3 improved significantly compared to Lyria 2 on audio fidelity, highlighting the technical quality and clarity of the generated audio. With lyrics, Lyria 3 demonstrates better prompt adherence, following both simple and more complex instructions more accurately.
+Intended usage and limitations
+Benefit and Intended Usage
+Lyria 3 is Google’s most capable music generation model to date. Lyria can be used to generate high-quality music in a wide range of genres and styles.
+Acceptable Usage
+Google’s Generative AI Prohibited Use Policy applies to uses of the model in accordance with the applicable terms of service. Additionally, the model should not be integrated into certain systems (also found in Google’s Generative AI Prohibited Use Policy), including those that: (1) engage in dangerous or illicit activities, or otherwise violate applicable laws or regulations, (2) violate the rights of others, including privacy and intellectual property rights, (3) compromise the security of others’ or Google’s services, (4) engage in sexually explicit, violent, hateful, or harmful activities, (5) engage in misinformation, misrepresentation, or misleading activities.
+Ethics and content safety
+Evaluation Approach
+Lyria 3 was developed in partnership with internal safety and responsibility teams. A range of evaluations and red-teaming activities were conducted to help improve the model and inform decision-making. These evaluations and activities align with Google&#39;s AI Principles and responsible AI approach. Evaluation types included but were not limited to:
+- Training/Development Evaluations including automated and human evaluations carried out continuously throughout and after the model’s training, to monitor progress and performance
+- Human Red Teaming conducted by specialist teams who sit outside of the model development team deliberately trying to spot weaknesses and ensure the model adheres to safety policies and desired outcomes
+- Ethics &amp; Safety Reviews were conducted ahead of the model’s release
+In addition to the evaluations above, system-level safety evaluations and reviews are run within the context of specific applications that models are deployed within.
+Risks and Mitigations
+Safety and responsibility was built into Lyria 3 throughout the training and deployment lifecycle, including pre-training, post-training, and product-level mitigations.
+Mitigations include, but are not limited to:
+- dataset filtering;
+- conditional pre-training;
+- supervised fine-tuning;
+- reinforcement learning from human and critic feedback;
+- safety policies and desiderata;
+- product-level mitigations such as safety filtering and applying SynthID watermarking.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

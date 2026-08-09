@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Red-Teaming Anthropic&#39;s Internal Agent Monitoring Systems — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Red-Teaming Anthropic&#39;s Internal Agent Monitoring Systems</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">metr</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Opus 4.6</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-03-26</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/" rel="noopener nofollow">https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:48:59Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-6-independent-eval-4&amp;body=Document%3A%20metr-claude-opus-4-6-independent-eval-4%0AURL%3A%20https%3A//metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/%0AFingerprint%3A%20ab7f5eef8a9cf641f63667b577fb6b5463407ca251372a6d8b16f244364441b2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:48:59Z</td>
+          <td>text/html</td>
+          <td>47,044</td>
+          <td><code title="ab7f5eef8a9cf641f63667b577fb6b5463407ca251372a6d8b16f244364441b2">ab7f5eef8a9cf641</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:48:59Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-2 · agent · lead: monitor</span>
+          <div class="just">METR&#39;s own account of an adversarial red-teaming exercise against the internal agent monitoring systems Anthropic describes in Appendix 8.4 of the Claude Opus 4.6 Sabotage Risk Report. I fetched and read it; METR generated agent trajectories containing covert attacks, found several specific novel vulnerabilities, and delivered a 26-page report to Anthropic. It is a primary METR publication and a distinct evaluation from METR&#39;s review of the sabotage report itself. One honest caveat recorded here rather than hidden: the target of this exercise is Anthropic&#39;s monitoring stack, not the model&#39;s own capabilities, so the model_names field carries Claude Opus 4.6 as the release whose risk report scopes the work rather than as the artifact evaluated - a reviewer may prefer to empty that field. It reports adversarial safety testing results, so has_safety_evals is true. The published date on the page is 2026-03-26 even though the URL slug says 03-25; I use the page&#39;s own date.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-03-12-sabotage-risk-report-opus-4-6-review/" rel="noopener nofollow">https://metr.org/blog/2026-03-12-sabotage-risk-report-opus-4-6-review/</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Update: Further details on this exercise are included in our Frontier Risk Report (February-March 2026), within the Anthropic section of Appendix B.
+In collaboration with Anthropic, a METR staff member (David Rein) recently spent three weeks red-teaming a subset of Anthropic’s internal agent monitoring and security systems, many of which are described in the Opus 4.6 Sabotage Risk Report (Appendix 8.4, especially 8.4.8). Anthropic provided substantial access to relevant internal systems and information, and made staff available to answer questions and provide feedback throughout the exercise.
+The exercise discovered several specific novel vulnerabilities, some of which have since been patched, and none of which severely undermine major claims in the Opus 4.6 Sabotage Risk Report. It also produced several artifacts, including agent trajectories containing covert attacks and a small attack strategy ideation test set. We expect both of these to be useful for ongoing improvements to Anthropic’s monitoring systems. The resulting 26 page report was shared with Anthropic, and a redacted version was shared with a subset of METR staff. We are exploring ways to incorporate more detailed takeaways from the exercise in future METR risk reports.
+This kind of adversarial testing by external researchers is valuable for discovering vulnerabilities, as well as for developing best practices for embedding third party evaluators inside frontier AI companies. We hope to do more exercises like these in the future—if you are a frontier AI developer interested in working with us, get in touch at partnerships@metr.org.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>

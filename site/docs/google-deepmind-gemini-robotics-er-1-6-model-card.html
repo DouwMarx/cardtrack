@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini Robotics-ER 1.6 Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Gemini Robotics-ER 1.6 Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Gemini Robotics-ER 1.6</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-04-20</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://deepmind.google/models/model-cards/gemini-robotics-er-1-6/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-robotics-er-1-6/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T20:36:09Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-robotics-er-1-6-model-card&amp;body=Document%3A%20google-deepmind-gemini-robotics-er-1-6-model-card%0AURL%3A%20https%3A//deepmind.google/models/model-cards/gemini-robotics-er-1-6/%0AFingerprint%3A%20454b84f8c083b3515572914f7264b19f04accd7657a28e807bc65653e99ac4c9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T20:36:09Z</td>
+          <td>text/html</td>
+          <td>139,707</td>
+          <td><code title="454b84f8c083b3515572914f7264b19f04accd7657a28e807bc65653e99ac4c9">454b84f8c083b351</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T20:36:09Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-drain-1 · agent · lead: monitor</span>
+          <div class="just">Google DeepMind&#39;s own model card for Gemini Robotics-ER 1.6, an embodied-reasoning model built on Gemini 3.0 Flash, read directly. Primary source, listed on DeepMind&#39;s official model-cards index under Robotics Models, and a distinct release from Gemini Robotics-ER 2 (already in the corpus, published three months later under its own card). Gemini 3.0 Flash is named only as the base model, so it is not listed in model_names. Date is the card&#39;s own &#39;April 20, 2026&#39;. has_safety_evals is true: the card has an Ethics and Safety section with Ethical Considerations &amp; Risks, and an Evaluation section reporting testing on adversarial spatial-reasoning tasks, physical safety constraints and human-centric safety-hazard scenarios, plus compliance with Gemini safety policies and a cross-reference to the Gemini ER 1.5 impact assessment.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://deepmind.google/models/model-cards/gemini-robotics-er-1-6/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Gemini Robotics-ER 1.6
+Model Cards are intended to provide essential information on Gemini models, including known limitations, mitigation approaches, and safety performance. Model cards may be updated from time-to-time; for example, to include updated evaluations as the model is improved or revised.
+Published: April 2026
+Model Information
+Description
+Gemini Robotics-ER (Embodied Reasoning) 1.6 is a Vision-Language-Model that enhances Gemini’s spatial and physical reasoning capabilities. It is based on Gemini 3.0 Flash.
+Inputs
+Text strings (e.g., a question, a prompt, document(s) to be summarized), images, audio, and video files, with a token context window of up to 128k.
+Outputs
+Text, with a 64K token output.
+Architecture
+Architecture: Gemini Robotics-ER 1.6 is based on the Gemini 3.0 model family. For more information about the model architecture, see the Gemini 3.0 Flash model card.
+Model Data
+Training Dataset
+Gemini Robotics-ER 1.6 was trained on Gemini 3.0 training datasets and additional datasets representing various embodied reasoning tasks. For more information about the training data, see the Gemini 3.0 Flash model card.
+Training Data Processing
+For more information about the training data processing, see the Gemini 3.0 Flash model card.
+Implementation and Sustainability
+Hardware
+Gemini Robotics-ER 1.6 was trained using Google’s Tensor Processing Units (TPUs). See details in the Gemini 3.0 Flash model card.
+The efficiencies gained through the use of TPUs are aligned with Google&#39;s commitment to operate sustainably.
+Software
+Software JAX (Bradbury et al., 2018), ML Pathways (Dean, 2021).
+Evaluation
+Approach
+See Figure1, Figure 2 in the release post for Gemini Robotics-ER 1.6 evaluation procedures and Figure 3 for Gemini Robotics Safety evaluation procedures.
+Results
+See Figure 1, Figure 2 in the release post for Gemini Robotics-ER 1.6 evaluation results, and Figure 3 for Gemini Robotics Safety evaluation results.
+Intended Usage and Limitations
+Benefit and Intended Usage
+Gemini Robotics-ER 1.6 represents an advancement to our reasoning-first Gemini Robotics-ER models that enables robots to understand their environments with precision. This model specializes in reasoning critical for robotics, including visual and spatial understanding, task planning and success detection.
+Known Limitations
+For more information about the known limitations for Gemini Robotics-ER1.6, see the Gemini 3.0 Flash model card.
+Acceptable Usage
+For information about the acceptable usage for Gemini Robotics-ER1.6 see the Gemini 3.0 Flash model card. Additionally, users are required to use discretion before using the Robotics Models in a production, commercial, or public environments, and to not use the Robotics Models for safety-critical applications or work, such as in the following settings: (i) healthcare, (ii) transportation, or (iii) other areas where safety protocols are vital, and a malfunction could reasonably foreseeably lead to death, personal injury, or property damage.
+Ethics and Safety
+Ethical Considerations &amp; Risks
+Previous impact assessment and risk analysis work as discussed in (Gemini ER1.5 report) and references therein remain relevant to Gemini Robotics. See Section 6 for information on responsible development and safety mitigations.
+Evaluation
+Gemini Robotics-ER 1.6 demonstrates compliance with Gemini safety policies on adversarial spatial reasoning tasks, and shows a substantially improved capacity to adhere to physical safety constraints compared to previous generations. To ensure real-world readiness, we tested how well the model identifies safety hazards in human-centric scenarios.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T22:58:53Z</p></footer>
+</body>
+</html>
