@@ -35,7 +35,7 @@ def test_full_pipeline_via_clis(repo_root, http_server, pdf_bytes):
         "--justification", "Independent eval of Model B.",
         "--evidence-url", http_server.url("/index-page"),
         "--attest", "primary_source", "--attest", "about_a_specific_model_or_eval",
-        "--attest", "distinct_model_release",
+        "--attest", "distinct_model_release", "--attest", "notable_release",
         root=repo_root)
     assert code == 0 and res_b["status"] == "written", (res_b, err)
     assert res_b["slug"] == "testeval-model-b-independent-eval"

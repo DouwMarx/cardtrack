@@ -355,6 +355,7 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
         return _reject(ctx, p, f"cap_exceeded: max_new_documents_per_run "
                                f"(rolling {CAP_WINDOW_HOURS}h)")
 
+
     if ctx.local_content is not None:
         fetched = _LocalContent(canonical, ctx.local_content, ctx.local_content_type)
     else:

@@ -82,7 +82,7 @@ for clarification, is always the safe move.
   "publication_date": "2026-08-01",
   "justification": "One paragraph: why this belongs, per criteria.",
   "criteria": {"primary_source": true, "about_a_specific_model_or_eval": true,
-               "distinct_model_release": true},
+               "distinct_model_release": true, "notable_release": true},
   "soft": {"has_safety_evals": true},
   "evidence_urls": ["https://announcement…"],
   "source_of_lead": "agent_search",
@@ -97,7 +97,10 @@ variants, propose ONE entry listing all `model_names`. `has_safety_evals` (soft,
 honest either way): true only if the document contains safety or dangerous-capability
 evaluations, red-teaming results, or a risk assessment — a generic "limitations"
 paragraph is false. Documents without safety evals are still in scope (release
-tracking); the flag is how the site keeps the safety signal visible. `publication_date` must
+tracking); the flag is how the site keeps the safety signal visible.
+`notable_release`: canonical enough to catalog — announced by the org, widely used,
+or independently covered. Do not propose obscure checkpoints, size/quant re-uploads,
+or third-party mirrors. `publication_date` must
 be the document's own publication date (null if you truly cannot determine it — the
 validator will route it to review). Do not invent URLs; only propose documents you
 fetched and read.

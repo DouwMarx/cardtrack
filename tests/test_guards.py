@@ -357,3 +357,4 @@ def test_safety_evals_null_when_not_supplied(repo, http_server):
     assert conn.execute("SELECT safety_evals FROM documents WHERE slug=?",
                         (r.slug,)).fetchone()[0] is None
     conn.close()
+

@@ -9,6 +9,9 @@ agent_attested:                      # judgment calls; agent must assert, record
   distinct_model_release: true       # a distinct release/eval — NOT a size, quantization,
                                      # checkpoint, or regional variant of a model already
                                      # covered; family cards → one entry, all model_names
+  notable_release: true              # canonical enough to catalog: announced by the org
+                                     # (blog/news), widely used, or independently
+                                     # covered — not an obscure checkpoint or re-upload
 soft:                                # recorded, displayed, filterable — not blocking
   has_safety_evals: null             # quantitative safety/dangerous-capability evals,
                                      # red-teaming, or risk assessment — not a mere
