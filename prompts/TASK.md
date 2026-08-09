@@ -100,7 +100,14 @@ paragraph is false. Documents without safety evals are still in scope (release
 tracking); the flag is how the site keeps the safety signal visible.
 `notable_release`: canonical enough to catalog — announced by the org, widely used,
 or independently covered. Do not propose obscure checkpoints, size/quant re-uploads,
-or third-party mirrors. `publication_date` must
+or third-party mirrors.
+
+**Scope discipline for `doc_type: other`** — reserve it for model-specific
+evaluation, risk, or incident reports that don't fit the other labels. NOT in scope,
+even from allowlisted publishers: partnership or product announcements, capability
+demos and showcases, policy/election/deprecation updates, developer tutorials, and
+general research essays that do not evaluate a named model. When in doubt, skip —
+the database catalogs model documentation, not lab blogs. `publication_date` must
 be the document's own publication date (null if you truly cannot determine it — the
 validator will route it to review). Do not invent URLs; only propose documents you
 fetched and read.

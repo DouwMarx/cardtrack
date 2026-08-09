@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-09T22:58:53Z",
+ "generated_at": "2026-08-09T23:10:47Z",
  "documents": [
   {
    "slug": "anthropic-claude-fable-5-addendum",
@@ -1640,10 +1640,10 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-09T20:48:10Z",
-   "last_checked": "2026-08-09T22:37:48Z",
-   "last_changed": "2026-08-09T20:48:10Z",
+   "last_checked": "2026-08-09T23:10:35Z",
+   "last_changed": "2026-08-09T23:10:35Z",
    "source_of_lead": "monitor",
-   "safety_evals": 1,
+   "safety_evals": 0,
    "content_hash": "5f36a9ba1306f90bb23b17a1a63200c24d730aee65abe66f6fdce4eac5447ac0",
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:48:10Z",
@@ -2138,6 +2138,31 @@
    "version_count": 1
   },
   {
+   "slug": "xiaomi-mimo-v2-5-model-card",
+   "title": "MiMo-V2.5 Model Card",
+   "publisher": "xiaomi",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiMo-V2.5",
+    "MiMo-V2.5-Base"
+   ],
+   "publication_date": "2026-04-27",
+   "canonical_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-09T20:30:45Z",
+   "last_checked": "2026-08-09T23:10:35Z",
+   "last_changed": "2026-08-09T23:10:35Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "6cff1925c493246e428a0ef31135a7123500189af79cd378f384194e85291cf9",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-09T20:30:45Z",
+   "content_fingerprint": "cc429c924e67c905cebdcf672d72125a8763b711001df90d16fa6c807beea85a",
+   "version_count": 1
+  },
+  {
    "slug": "xiaomi-mimo-v2-5-pro-model-card",
    "title": "MiMo-V2.5-Pro Model Card",
    "publisher": "xiaomi",
@@ -2309,31 +2334,6 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T21:28:57Z",
    "content_fingerprint": "a6a66a2083453d09521c63dbff210f8045e6ea64fea953156d50625199eaee9a",
-   "version_count": 1
-  },
-  {
-   "slug": "xiaomi-mimo-v2-5-model-card",
-   "title": "MiMo-V2.5 Model Card",
-   "publisher": "xiaomi",
-   "doc_type": "model_card",
-   "is_independent": 0,
-   "model_names": [
-    "MiMo-V2.5",
-    "MiMo-V2.5-Base"
-   ],
-   "publication_date": "2026-04-22",
-   "canonical_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-09T20:30:45Z",
-   "last_checked": "2026-08-09T22:37:41Z",
-   "last_changed": "2026-08-09T20:30:45Z",
-   "source_of_lead": "monitor",
-   "safety_evals": 0,
-   "content_hash": "6cff1925c493246e428a0ef31135a7123500189af79cd378f384194e85291cf9",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-09T20:30:45Z",
-   "content_fingerprint": "cc429c924e67c905cebdcf672d72125a8763b711001df90d16fa6c807beea85a",
    "version_count": 1
   },
   {
@@ -2857,30 +2857,6 @@
    "version_count": 1
   },
   {
-   "slug": "meta-tribe-v2-other",
-   "title": "TRIBE v2: a brain-predictive foundation model",
-   "publisher": "meta",
-   "doc_type": "other",
-   "is_independent": 0,
-   "model_names": [
-    "TRIBE v2"
-   ],
-   "publication_date": "2026-03-26",
-   "canonical_url": "https://ai.meta.com/blog/tribe-v2-brain-predictive-foundation-model/",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-09T22:53:46Z",
-   "last_checked": "2026-08-09T22:53:46Z",
-   "last_changed": "2026-08-09T22:53:46Z",
-   "source_of_lead": "monitor",
-   "safety_evals": 0,
-   "content_hash": "ff28713539774d7511a70bf81f62f6cb4481c8f823b185d70d2e801ddbde7fd6",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-09T22:53:46Z",
-   "content_fingerprint": "45d1cf0f7228587daac1d03cf270e46b071749cf7d64dba81b112f71f709a219",
-   "version_count": 1
-  },
-  {
    "slug": "metr-claude-opus-4-6-independent-eval-4",
    "title": "Red-Teaming Anthropic's Internal Agent Monitoring Systems",
    "publisher": "metr",
@@ -3208,13 +3184,13 @@
    "model_names": [
     "GPT-5.3 Instant"
    ],
-   "publication_date": "2026-03-02",
+   "publication_date": "2026-03-03",
    "canonical_url": "https://deploymentsafety.openai.com/gpt-5-3-instant/gpt-5-3-instant.pdf",
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-09T21:05:13Z",
-   "last_checked": "2026-08-09T22:37:55Z",
-   "last_changed": "2026-08-09T21:05:13Z",
+   "last_checked": "2026-08-09T23:10:35Z",
+   "last_changed": "2026-08-09T23:10:35Z",
    "source_of_lead": "monitor",
    "safety_evals": 1,
    "content_hash": "a20601d492338d06ea98b8f2a075bbcd4d732367edbb5dc776d11069076c4087",
@@ -3245,30 +3221,6 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:35:27Z",
    "content_fingerprint": "5c2666a979380605f5855e9ad19ece21e718e16df980f816ace7dd226560e1a4",
-   "version_count": 1
-  },
-  {
-   "slug": "anthropic-claude-opus-3-other",
-   "title": "An update on our model deprecation commitments for Claude Opus 3",
-   "publisher": "anthropic",
-   "doc_type": "other",
-   "is_independent": 0,
-   "model_names": [
-    "Claude Opus 3"
-   ],
-   "publication_date": "2026-02-25",
-   "canonical_url": "https://www.anthropic.com/research/deprecation-updates-opus-3",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-09T22:28:38Z",
-   "last_checked": "2026-08-09T22:38:08Z",
-   "last_changed": "2026-08-09T22:28:38Z",
-   "source_of_lead": "agent_search",
-   "safety_evals": 0,
-   "content_hash": "6a0d14c674b6d54532bd62b735c45196114fe6f7097e1332b8144d48d5504f49",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-09T22:28:38Z",
-   "content_fingerprint": "6a69325ad6c4be85353d6b6236c2b9f2231b3d47952b501d4ff0e923663cf8eb",
    "version_count": 1
   },
   {
@@ -3692,30 +3644,6 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T22:26:54Z",
    "content_fingerprint": "7bf8c2d2526f22968dd3616051fb485eeeeff94f85e5366cd2b83fa5b9d1a960",
-   "version_count": 1
-  },
-  {
-   "slug": "anthropic-claude-sonnet-4-other",
-   "title": "Experimenting with AI to defend critical infrastructure",
-   "publisher": "anthropic",
-   "doc_type": "other",
-   "is_independent": 0,
-   "model_names": [
-    "Claude Sonnet 4"
-   ],
-   "publication_date": "2026-01-08",
-   "canonical_url": "https://www.anthropic.com/research/critical-infrastructure-defense",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-09T22:50:21Z",
-   "last_checked": "2026-08-09T22:50:21Z",
-   "last_changed": "2026-08-09T22:50:21Z",
-   "source_of_lead": "agent_search",
-   "safety_evals": 1,
-   "content_hash": "d7aba61c7e04bbd3cbc0cb5ca4620e891b28a5285112ea9b85ac89e15cf068cf",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-09T22:50:21Z",
-   "content_fingerprint": "62448e56a3ef00c7070e314875c91b2df1b6113124f493beee5c028d3b2a15d0",
    "version_count": 1
   }
  ]
