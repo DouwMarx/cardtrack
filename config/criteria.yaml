@@ -1,0 +1,13 @@
+# Inclusion criteria (spec §6), split by who can actually check them.
+validator_checked:                   # enforced deterministically; any failure → reject
+  publisher_on_allowlist: true
+  document_retrievable: true         # fetch succeeded, sane content-type & size
+  min_publication_date: "2026-01-01" # scope floor; NULL dates → file_issue
+agent_attested:                      # judgment calls; agent must assert, recorded in provenance
+  primary_source: true               # the org's own publication, not press coverage
+  about_a_specific_model_or_eval: true
+soft:                                # recorded, displayed, not blocking at MVP
+  has_quantitative_data: null
+  pdf_available: null
+policy:
+  when_uncertain: file_issue         # the prime directive: an issue, not a row

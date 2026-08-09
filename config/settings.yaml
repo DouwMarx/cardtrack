@@ -1,0 +1,53 @@
+# Operational caps and cadences (spec §6). All knobs live here, not in code.
+
+caps:
+  max_new_documents_per_run: 15
+  max_new_versions_per_run: 30
+  max_fetch_bytes: 52428800            # 50 MB per document
+  max_total_fetch_bytes_per_run: 524288000   # 500 MB per run
+  fetch_timeout_seconds: 60
+
+cadence:
+  linkcheck: all_active_every_run
+  fingerprint_fraction: 0.15           # ~weekly full coverage of silent updates
+
+fetch:
+  allow_private_hosts: false           # SSRF guard; true only in tests
+  impersonate_fallback: true           # retry bot-blocked fetches (400/403/429/…) with
+                                       # a real-browser TLS fingerprint (curl_cffi) so
+                                       # bot-walled publishers don't bias the corpus
+
+github:
+  repo: ""            # e.g. DouwMarx/cardtrack; empty → issues/comments go to logs/ outbox
+  use_gh: true
+
+site:
+  title: cardtrack
+  base_url: https://cards.douwmarx.com
+  run_pagefind: true
+
+publish:
+  git_commit: false   # flip on when going live under cron (bootstrap step 3, spec §13)
+  git_push: false
+  wrangler_deploy: true    # project + domain live since 2026-08-09
+  wrangler_project: cardtrack
+
+agent:
+  enabled: false      # bootstrap step 4 (spec §13): enable only after monitor runs clean
+  max_turns: 60
+  # The vendor-agnosticism seam (spec §6): swapping agents edits this one string.
+  # CARDTRACK_RUN_ID/CARDTRACK_ACTOR are exported by run_daily.sh purely for
+  # changelog grouping/provenance; caps are enforced inside the validator over a
+  # rolling 24 h window and cannot be reset by run-id games.
+  # `env -u ANTHROPIC_API_KEY` pins billing to the subscription login, never the API.
+  # --model opus: curation needs solid judgment but not the top-tier model.
+  # .venv/bin/python (not uv run): inside the sandbox the venv is read-only and
+  # $HOME is tmpfs, so uv's cache/sync machinery must stay out of the loop.
+  # Write/Edit are allowed because the OS sandbox limits writes to data/, logs/,
+  # and PROPOSALS.md anyway (tool scoping is ergonomics, bwrap is the boundary).
+  cmd: >-
+    env -u ANTHROPIC_API_KEY
+    claude -p "$(cat prompts/TASK.md)" --model opus --max-turns 60 --output-format text
+    --allowedTools "Read" "Glob" "Grep" "WebSearch" "WebFetch" "Write" "Edit"
+    "Bash(.venv/bin/python scripts/propose_doc.py *)"
+    "Bash(.venv/bin/python scripts/comment_issue.py *)"

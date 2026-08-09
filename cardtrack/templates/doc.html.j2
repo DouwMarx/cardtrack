@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ doc.title }} — {{ site_title }}</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">{{ site_title }}</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">{{ doc.title }}</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">{{ doc.publisher }}</span>
+        {% if doc.is_independent %}<span class="badge independent">independent</span>
+        {% else %}<span class="badge">first-party</span>{% endif %}</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">{{ doc.doc_type }}</span></dd>
+    <dt>Models</dt>
+    <dd>{{ doc.model_names | join(", ") if doc.model_names else "—" }}</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">{{ doc.publication_date or "unknown" }}</span>
+        <span data-pagefind-filter="year" hidden>{{ year }}</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-{{ doc.status }}">{{ doc.status }}</span></dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="{{ doc.canonical_url }}" rel="noopener nofollow">{{ doc.canonical_url }}</a>
+      {% if doc.status == 'dead' %} <span class="warn">(link was dead at last check; extracted text below is retained)</span>
+      {% elif doc.status == 'moved' %} <span class="warn">(document has moved; link may redirect)</span>
+      {% elif doc.status == 'superseded' %} <span class="warn">(superseded by a newer document)</span>
+      {% endif %}
+    </dd>
+    {% if doc.alt_urls %}
+    <dt>Previous URLs</dt>
+    <dd>{% for u in doc.alt_urls %}<a href="{{ u }}" rel="noopener nofollow">{{ u }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</dd>
+    {% endif %}
+    <dt>First seen</dt>
+    <dd>{{ doc.first_seen }}</dd>
+    <dt>Versions</dt>
+    <dd>{{ doc.version_count }}</dd>
+    {% if notes %}
+    <dt>Notes</dt>
+    <dd>{{ notes }}</dd>
+    {% endif %}
+  </dl>
+
+  {% if issue_url %}
+  <p><a class="button" href="{{ issue_url }}" rel="noopener">Report an issue with this entry</a></p>
+  {% endif %}
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+      {% for v in versions %}
+        <tr>
+          <td>{{ v.fetched_at }}</td>
+          <td>{{ v.content_type or "?" }}</td>
+          <td>{{ "{:,}".format(v.byte_size) if v.byte_size else "?" }}</td>
+          <td><code title="{{ v.content_fingerprint }}">{{ v.content_fingerprint[:16] }}</code></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+    {% for entry in provenance %}
+      <li>
+        <span class="ts">{{ entry.ts }}</span>
+        <strong>{{ entry.action }}</strong>
+        <span class="run">run {{ entry.run_id }}{% if entry.detail.actor %} · {{ entry.detail.actor }}{% endif %}{% if entry.detail.source_of_lead %} · lead: {{ entry.detail.source_of_lead }}{% endif %}</span>
+        {% if entry.detail.field %}
+          <div class="just">{{ entry.detail.field }}: {{ entry.detail.old | tojson }} → {{ entry.detail.new | tojson }}</div>
+        {% elif entry.action == 'status_change' %}
+          <div class="just">{{ entry.detail.old }} → {{ entry.detail.new }}</div>
+        {% endif %}
+        {% if entry.detail.justification %}
+          <div class="just">{{ entry.detail.justification }}</div>
+        {% endif %}
+        {% if entry.detail.validator_criteria or entry.detail.criteria %}
+          <div class="evidence">Criteria:
+            {% for k, v in (entry.detail.validator_criteria or {}).items() %}
+              {{ k }}={{ 'pass' if v else 'FAIL' }}{{ ";" if not loop.last }}
+            {% endfor %}
+            {% for k, v in (entry.detail.criteria or {}).items() %}
+              · attested {{ k }}={{ v | lower }}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if entry.detail.evidence_urls %}
+          <div class="evidence">Evidence:
+          {% for u in entry.detail.evidence_urls %}
+            {% if u.startswith('http://') or u.startswith('https://') %}<a href="{{ u }}" rel="noopener nofollow">{{ u }}</a>{% else %}{{ u }}{% endif %}{% if not loop.last %} · {% endif %}
+          {% endfor %}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    {% if text %}
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="{{ doc.canonical_url }}" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>{{ text }}</pre>
+    </details>
+    {% else %}
+    <p>Text extraction is unavailable for this document.</p>
+    {# keep the doc findable in full-text search even without extracted text #}
+    <div data-pagefind-body hidden>{{ doc.title }} — {{ doc.publisher }} —
+      {{ doc.model_names | join(", ") }}</div>
+    {% endif %}
+  </section>
+</article>
+
+<footer><p>Built {{ generated_at }}</p></footer>
+</body>
+</html>

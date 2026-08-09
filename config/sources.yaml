@@ -1,0 +1,62 @@
+# The allowlist (spec §6): two categories × two tiers.
+# tier 1 = auto-merge eligible; tier 2 = proposals become issues, not rows.
+# index_urls are pages Phase A diffs for new links. Some publishers bot-block
+# scripted fetches (OpenAI /news, Meta blog); index diffing quietly skips
+# failures and agent web search covers the gap.
+# Verified reachable with a browser UA on 2026-08-09.
+
+publishers:            # first-party
+  anthropic:
+    tier: 1
+    display_name: Anthropic
+    index_urls:
+      - https://www.anthropic.com/news
+      - https://www.anthropic.com/transparency
+  openai:
+    tier: 1
+    display_name: OpenAI
+    index_urls:
+      - https://openai.com/safety/
+  google_deepmind:
+    tier: 1
+    display_name: Google DeepMind
+    index_urls:
+      - https://deepmind.google/discover/blog/
+      - https://deepmind.google/models/
+  meta:
+    tier: 1
+    display_name: Meta AI
+    index_urls: []      # ai.meta.com bot-blocks scripted fetches; agent search covers
+  mistral:
+    tier: 2
+    display_name: Mistral AI
+    index_urls:
+      - https://mistral.ai/news/
+  xai:
+    tier: 2
+    display_name: xAI
+    index_urls:
+      - https://x.ai/news
+  alibaba_qwen:
+    tier: 2
+    display_name: Alibaba Qwen
+    index_urls:
+      - https://qwenlm.github.io/blog/
+
+evaluators:            # independent
+  metr:
+    tier: 1
+    display_name: METR
+    index_urls:
+      - https://metr.org/research
+      - https://metr.org/blog
+  uk_aisi:
+    tier: 1
+    display_name: UK AI Security Institute
+    index_urls:
+      - https://www.aisi.gov.uk/work
+  apollo_research:
+    tier: 1
+    display_name: Apollo Research
+    index_urls:
+      - https://www.apolloresearch.ai/research

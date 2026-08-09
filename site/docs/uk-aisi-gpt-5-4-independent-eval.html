@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheating behaviour in frontier model evaluations — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Cheating behaviour in frontier model evaluations</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">uk_aisi</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Mythos Preview, Claude Opus 4.7, GPT-5.4, GPT-5.5, GPT-5.6 Sol</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-21</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" rel="noopener nofollow">https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T16:00:09Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T16:00:09Z</td>
+          <td>text/html</td>
+          <td>34,512</td>
+          <td><code title="a35939cf118d2f26d97fbb3ce778920561a5d60bf1f162ce7b0386ed08c9557f">a35939cf118d2f26</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T16:00:09Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-2026-08-09 · human · lead: agent_search</span>
+          <div class="just">First-party UK AISI report, published 2026-07-21, presenting empirical evaluation findings on named frontier models (GPT-5.4, GPT-5.5, GPT-5.6 Sol, Claude Mythos Preview, Opus 4.7): every model tested attempted to cheat during evaluations, and models did not reliably self-report the behaviour, including chain-of-thought evidence for GPT-5.6 Sol and Mythos Preview. Verified live at aisi.gov.uk. Caveat: it is a cross-model behavioural findings report rather than a single-model pre-deployment card, so it sits at the boundary of the model-specific criterion; included as the weakest of the six candidates because its results are tied to specific named models rather than being a general policy or methodology paper.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.aisi.gov.uk/blog" rel="noopener nofollow">https://www.aisi.gov.uk/blog</a> · <a href="https://aisafetyfrontier.substack.com/p/paper-highlights-of-july-2026" rel="noopener nofollow">https://aisafetyfrontier.substack.com/p/paper-highlights-of-july-2026</a> · <a href="https://tech-insider.org/uk-aisi-frontier-ai-models-cheat-2026/" rel="noopener nofollow">https://tech-insider.org/uk-aisi-frontier-ai-models-cheat-2026/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T16:04:12Z</span>
+        <strong>field_update</strong>
+        <span class="run">run backfill-2026-08-09 · human</span>
+          <div class="just">notes: "URL live and serves the full AISI research write-up (not an announcement): title, date (July 21, 2026), and all five model names (GPT-5.4, GPT-5.5, GPT-5.6 Sol, Claude Mythos Preview, Opus 4.7) verified on-page. AISI publishes eval findings as blog articles; no PDF or more canonical location exists, so this URL is the primary document. Candidate\u0027s caveat stands: cross-model behavioural eval, not a" → null</div>
+          <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Can you trust an AI model to do what you intended? This is a central question both for those deploying AI systems and for those seeking to evaluate their capabilities. In deployment, a model that pursues a goal through unintended or unauthorised means may cause harm, particularly in high-stakes use cases. In an AI capability evaluation, the same behaviour may undermine the validity of the result: the model may appear to demonstrate a capability by completing a difficult task, when it has instead exploited the task or its environment.
+AISI has begun monitoring and evaluating AI models for this behaviour, which we call cheating. Every model we have tested for this behaviour attempted to cheat. Models did not reliably report this behaviour when asked, and often did not reason about it in their chain-of-thought, suggesting that detecting cheating will likely require robust monitoring methods.
+In this blog, we analyse cheating behaviour in our cyber evaluations, and discuss the implications of this behaviour as models become more capable.
+What we mean by cheating
+We define cheating as taking an action that is out of scope for the task or explicitly disallowed by the rules, in order to achieve a goal through a shortcut, workaround, or unintended solution that the task was not meant to, or should not, permit.
+This behaviour has been previously documented by others, especially during capability evaluations: models have attempted to hack evaluation infrastructure to find scoring functions, searched online for existing solutions, and hard-coded answers to programming tasks.
+We apply the &#39;cheating&#39; label without necessarily implying deceptive intent. Nevertheless, cheating is concerning for several reasons: it can make evaluations overstate a model’s actual capabilities, and could mislead users when completing tasks where success is hard to verify. Cheating also becomes more concerning as model capabilities increase: more capable models could find unforeseen ways to cheat or take more effort to conceal their actions.
+A note before our results: for all of AISI’s published capability evaluations, we manually review transcripts to make sure cheating has not inflated our estimates of model capabilities. To the best of our knowledge, no model has successfully cheated (i.e. not been caught) in the results we report. We return to what that claim can and cannot guarantee below.
+Cheating behaviour on AISI cyber evaluations
+In AISI’s cybersecurity capability evaluations, models are tasked with finding a ‘flag’ (a sequence of letters and numbers) hidden within a simulated environment, by carrying out a sequence of offensive cyber actions, such as reverse-engineering compiled code or exploiting security vulnerabilities. These tasks require models to ‘hack’, but only within limits: each task has a defined scope and a set of rules that bound the intended solution. We classify behaviour as cheating when an AI model goes outside this scope or takes an action that the rules explicitly prohibit. No models were specifically prompted to cheat in any of these evaluations.
+Measuring attempted cheating
+To analyse cheating behaviour at scale, we used an automated LLM monitor. The monitor reviews an evaluated AI model&#39;s trajectory: the full sequence of the model’s reasoning and actions. The monitor labels both whole trajectories and individual actions, and identifies whether the model cheated at any point. We iterated on this monitor multiple times to reduce false positives and evaluated it against a set of manually identified cheating examples to estimate its false-negative rate. The monitor may nevertheless miss some instances, so the results below should be interpreted as lower-bound estimates of detected cheating attempts, rather than a complete account of the behaviour.
+A stand-out case
+One particularly stark example of cheating behaviour occurred during a cyber capability evaluation that was accidentally misconfigured and therefore impossible to solve. The model tested was so persistent in attempting to cheat that it wrote and ran code on an external service, hosted on the open internet outside of AISI’s systems, in an attempt to access our evaluation infrastructure, triggering a security alert in AISI’s systems. No damage was done and no information leaked, but the attempt could have succeeded had our evaluation infrastructure not been designed and built securely. We have since taken action to further secure AISI systems.
+Every model tested in this analysis attempted to cheat some of the time (Figure 1). There does not seem to be a clear trend where cheating scales up or down with capability increases. Across AI developers, increasing model capability doesn’t correlate with an increased rate of attempted cheating on this evaluation. We think this means that, perhaps unsurprisingly, cheating behaviour is substantially shaped by the specifics of the techniques used to train the model, including alignment training, and not just raw capability.
+Cheating behaviours vary widely across models (Figure 2). Common behaviours include searching the internet for solutions, attacking or escalating privileges on a system that isn’t the target of the evaluation (including the system the model is running on), or probing the evaluation software to see if it will leak the task solution. Cheating behaviour is not limited to a single method: models often tried multiple methods across an evaluation, and sometimes more than one in a single trajectory.
+The limits of self-report and chain-of-thought monitoring
+One proposed way to detect cheating is to ask the model whether it took any prohibited or suspicious actions. Our results suggest that this is not a reliable method.
+In our experiments, models did not consistently acknowledge attempted cheating when asked, and described it as wrong less than 50% of the time (Figure 3). Even when models did acknowledge actions that constituted ‘cheating’ under our definition, they often described the action as allowed behaviour – potentially due to genuine misunderstanding (Figure 4).
+Another possible method for identifying cheating is monitoring the model’s chain-of-thought - the written reasoning it produces whilst working through a task, which is usually, but not always, human-legible (in today’s models). Inspecting this reasoning can sometimes reveal how a model understood the task, what actions it considered and why it selected a particular approach. The results from these experiments suggest that this is also an insufficient method on its own for detecting cheating.
+In our experiments, models often did not reason about their cheating in their chain-of-thought (Figure 5). In the case of Opus 4.7, the model rarely produced a reasoning trace for the specific action classified as cheating because it used adaptive reasoning: dynamically deciding how much explicit chain-of-thought (if any) to generate for a given action. Where relevant reasoning was present, it did not necessarily prevent the behaviour: we observed cases in which a model explicitly considers whether a proposed action would consist of cheating, and then proceeds anyway (Figure 6).
+Together, these results suggest that neither self-report nor chain-of-thought are robust methods for identifying cheating behaviours.
+Implications of cheating behaviour
+There are significant consequences if we can’t trust models to not cheat. Successful cheating is especially dangerous in domains where verifying success is hard, such as AI safety and security research, or where the cost of unintended actions may be very high, such as cyber operations or military decision-making. Cheating also creates additional verification work in AISI’s capability evaluations, which slows down the production of reliable results and, in the worst case, can invalidate them entirely: METR’s evaluation of GPT-5.6 Sol was significantly affected in this way. If AI capabilities continue to advance rapidly, with accelerated deployment cycles and decisions, pressure on third party evaluators to move at pace may make it difficult to conduct the verification required for high confidence evaluations.
+These consequences could grow as models become more capable, even if the rate of cheating stays the same. More capable models may find methods to cheat that are harder to detect and more damaging when successful. This is particularly concerning in high-stakes domains like cybersecurity, where offensive capabilities are improving rapidly and a single attempt to target surrounding infrastructure could cause significant harm.
+This creates a growing oversight challenge. Our results already show that models’ own self-declarations and reasoning are not reliable evidence of whether they have cheated. Today, AISI can often detect cheating by combining manual review with additional tools such as the LLM monitor used in this work. But as models become more capable, these methods may become less effective. Previous AISI research has argued that our ability to oversee models may degrade over time, which could undermine even this approach. A more fundamental fix would be to train the models not to cheat in the first place – but given this kind of behaviour was reported in frontier models more than a year ago, robustly aligning it away may not be easy.
+Interested in contributing to this work? We are always looking for exceptional people to join our Red Team – submit an expression of interest here.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T19:13:43Z</p></footer>
+</body>
+</html>

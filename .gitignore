@@ -1,0 +1,24 @@
+# raw blobs are local-only insurance, never published (spec §2.8)
+data/raw/
+
+# venv / tooling
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# secrets (see env.example)
+.env
+
+# run state
+.run.lock
+.agent-home/
+
+# raw logs are noise; run_report.md, friction.jsonl, issues_outbox.jsonl stay tracked
+logs/*.log
+logs/run-*.log
+logs/cron.log
+logs/candidates.json
+logs/state_summary.json
+logs/open_issues.json

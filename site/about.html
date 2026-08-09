@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — cardtrack</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="masthead">
+  <div><h1><a href="./index.html">cardtrack</a> / about</h1></div>
+  <nav>
+    <a href="./index.html">Table</a>
+    <a href="./search.html">Search</a>
+  </nav>
+</header>
+
+<article class="doc about">
+  <p>cardtrack is a public index of AI model documentation: model cards,
+  system cards, and independent evaluation reports.</p>
+
+  <h3>What it does</h3>
+  <ul>
+    <li>Catalogs documents from an allowlist of AI labs and independent evaluators.</li>
+    <li>Links originals. Never re-hosts them.</li>
+    <li>Fingerprints every document daily. Silent edits become recorded versions.</li>
+    <li>Shows provenance for every entry: when, how, and why it was added.</li>
+  </ul>
+
+  <h3>How it works</h3>
+  <ul>
+    <li>A deterministic monitor checks every link daily, re-fetches a rotating subset,
+        and diffs publisher index pages for new documents.</li>
+    <li>An LLM agent triages candidates and proposes entries. A deterministic validator
+        (allowlist, fetchability, dedup, caps) has the final say on every write.</li>
+    <li>The database is public SQLite;
+        this site is a static export of it.</li>
+  </ul>
+
+  <h3>Corrections</h3>
+  <ul>
+    <li>Wrong entry: use the "report an issue" link on its page.</li>
+  </ul>
+</article>
+
+<footer><p>Built 2026-08-09T19:13:43Z</p></footer>
+</body>
+</html>

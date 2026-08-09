@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cardtrack — AI model documentation index</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1>cardtrack</h1>
+  </div>
+  <nav>
+    <a href="./search.html">Full-text search</a>
+    <a href="./about.html">About</a>
+  </nav>
+</header>
+
+<section class="controls" aria-label="filters">
+  <input id="q" type="search" placeholder="Filter by title, model, or publisher…"
+         autocomplete="off" spellcheck="false">
+  <select id="f-publisher"><option value="">publisher: all</option></select>
+  <select id="f-doctype"><option value="">type: all</option></select>
+  <select id="f-independent">
+    <option value="">source: all</option>
+    <option value="1">independent</option>
+    <option value="0">first-party</option>
+  </select>
+  <select id="f-status"><option value="">status: all</option></select>
+  <select id="f-year"><option value="">year: all</option></select>
+  <button id="export" type="button" title="CSV of the current filtered view">Export CSV</button>
+  <details class="columns-toggle">
+    <summary>Columns</summary>
+    <div id="column-boxes"></div>
+  </details>
+</section>
+
+<p id="count" class="count" aria-live="polite">Loading…</p>
+
+<div class="table-wrap">
+  <table id="tbl">
+    <thead><tr id="tbl-head"></tr></thead>
+    <tbody id="tbl-body"></tbody>
+  </table>
+</div>
+
+<footer>
+  <p>Metadata filter searches identity fields only; for content questions use
+     <a href="./search.html">full-text search</a>. Built 2026-08-09T19:13:43Z ·
+     25 documents  </p>
+</footer>
+<script src="./app.js"></script>
+</body>
+</html>

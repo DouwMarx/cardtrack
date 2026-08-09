@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full-text search — {{ site_title }}</title>
+<link rel="stylesheet" href="./style.css">
+<link href="./pagefind/pagefind-ui.css" rel="stylesheet"
+      onerror="document.getElementById('pagefind-missing').hidden = false">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="./index.html">{{ site_title }}</a> / search</h1>
+    <p class="tagline">Full-text search over the extracted text of every document.
+      Looking for a specific card? The <a href="./index.html">table filter</a> searches
+      titles and model names only and is more precise.</p>
+  </div>
+  <nav><a href="./index.html">Table</a> <a href="./about.html">About</a></nav>
+</header>
+
+<p id="pagefind-missing" hidden class="warn">Search index not built yet
+  (Pagefind did not run on the last build).</p>
+<div id="search"></div>
+
+<script src="./pagefind/pagefind-ui.js"
+        onerror="document.getElementById('pagefind-missing').hidden = false"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    if (window.PagefindUI) {
+      new PagefindUI({ element: "#search", showSubResults: true, pageSize: 10 });
+    }
+  });
+</script>
+</body>
+</html>

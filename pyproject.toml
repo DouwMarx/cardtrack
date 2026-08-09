@@ -1,0 +1,49 @@
+[project]
+name = "cardtrack"
+version = "0.1.0"
+description = "Continuously maintained public database of AI model documentation with change tracking and search"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32",
+    "pyyaml>=6.0",
+    "trafilatura>=1.12",
+    "pypdf>=5.0",
+    "jinja2>=3.1",
+    "curl-cffi>=0.7",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.8",
+    "poethepoet>=0.30",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cardtrack"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "network: hits the real internet; opt in with CARDTRACK_NET=1",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+
+[tool.poe.tasks]
+test = "pytest -q"
+lint = "ruff check ."
+fmt = "ruff format ."
+monitor = "python scripts/monitor.py"
+build = "python scripts/build_site.py"
+serve = "python -m http.server -d site 8791"
+daily = "bash scripts/run_daily.sh"

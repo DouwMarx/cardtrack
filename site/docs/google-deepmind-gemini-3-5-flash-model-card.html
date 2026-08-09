@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini 3.5 Flash Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Gemini 3.5 Flash Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Gemini 3.5 Flash</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-05-19</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-09T15:57:56Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-09T15:57:56Z</td>
+          <td>application/pdf</td>
+          <td>556,751</td>
+          <td><code title="1c209ba17d62d3bb378e32749c397fc259a023a3bd8f679b64ec266f9d17403d">1c209ba17d62d3bb</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-09T15:57:56Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-2026-08-09 · human · lead: agent_search</span>
+          <div class="just">First-party Google DeepMind model card for Gemini 3.5 Flash, &#39;the next iteration in the Gemini 3 series of highly-capable, natively multimodal, reasoning models&#39;. The card&#39;s own page states &#39;Published 19 May 2026&#39; and links this PDF (verified HTTP 200, application/pdf). Primary documentation of a major 2026 workhorse Gemini model, covering capabilities, limitations, and safety performance.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/gemini-3-5-flash/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-3-5-flash/</a> · <a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-09T16:04:12Z</span>
+        <strong>field_update</strong>
+        <span class="run">run backfill-2026-08-09 · human</span>
+          <div class="just">notes: "URL serves the actual PDF (application/pdf, ~544 KB): title page \"Gemini 3.5 Flash Model Card\" (Google branding), body header \"Gemini 3.5 Flash - Model Card\" with \"Published: May 2026\". Sections: Model Information (based on Gemini 3 Flash, 1M context, 64K output), Model Data, Implementation and Sustainability, Distribution (Gemini App, AI Studio, Gemini API, Antigravity, etc.). Evidence page deepm" → null</div>
+          <div class="just">Clear internal verification-log text from the public notes field; the reasoning lives in the provenance changelog.</div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Gemini 3.5 Flash
+Model Card
+                              Gemini 3.5 Flash - Model Card
+
+Model Cards are intended to provide essential information on Gemini models, including known
+limitations, mitigation approaches, and safety performance. Model cards may be updated from time to
+time; for example, to include updated evaluations as the model is improved or revised. See the Google
+DeepMind site for a comprehensive list of model cards.
+
+Published: May 2026
+
+                                          Model Information
+
+Description: Gemini 3.5 Flash is the next iteration in the Gemini 3 series of highly-capable, natively
+multimodal, reasoning models. Gemini 3.5 Flash is based on the Gemini 3 Flash reasoning foundation
+with thinking levels to control the mix of quality, cost and latency.
+
+Model dependencies: Gemini 3.5 Flash is based on Gemini 3 Flash.
+
+Inputs: Text strings (e.g., a question, a prompt, document(s) to be summarized), images, audio, and
+video files, with a token context window of up to 1M.
+
+Outputs: Text, with a 64K token output.
+
+Architecture: Gemini 3.5 Flash is based on Gemini 3 Flash. For more information about the model
+architecture for Gemini 3.5 Flash, see the Gemini 3 Flash model card.
+
+                                             Model Data
+
+Training Dataset: Gemini 3.5 Flash is based on Gemini 3 Flash. For more information about the training
+dataset for Gemini 3.5 Flash, see the Gemini 3 Flash model card.
+
+Training Data Processing: For more information about the training data processing for Gemini 3.5
+Flash, see the Gemini 3 Flash model card.
+
+                                                                                                         2
+                             Implementation and Sustainability
+
+Hardware: Gemini 3.5 Flash is based on Gemini 3 Flash. For more information about the hardware for
+Gemini 3.5 Flash and our continued commitment to operate sustainably, see the Gemini 3 Flash model
+card.
+
+Software: Gemini 3.5 Flash is based on Gemini 3 Flash. For more information about the software for
+Gemini 3.5 Flash, see the Gemini 3 Flash model card.
+
+                                           Distribution
+​
+Gemini 3.5 Flash is distributed in the following channels; respective documentation shared in line:
+
+   ●​   Gemini App
+   ●​   Gemini Enterprise App
+   ●​   Gemini Enterprise Agent Platform
+   ●​   Google AI Studio
+   ●​   Gemini API
+   ●​   Google Search AI Mode
+   ●​   Google Antigravity
+
+Our models are available to downstream providers via an application program interface (API) and
+subject to relevant terms of use. There is no required hardware or software to use the model. For
+AI Studio and Gemini API, see the Gemini API Additional Terms of Service; for Gemini Enterprise Agent
+Platform, see Google Cloud Platform Terms of Service. For more information, see Gemini Model API
+instructions and Gemini API quickstart.
+
+                                                                                                      3
+                                              Evaluation
+
+Approach: Gemini 3.5 Flash was evaluated across a range of benchmarks, including reasoning, coding,
+agentic tool use, multimodal capabilities, multi-lingual performance, and long-context. Additional
+benchmarks and details on approach, results and their methodologies can be found at:
+deepmind.com/models/evals-methodology/gemini-3-5-flash.
+
+Results: Results as of May, 2026 are listed below:
+
+                                                                                                      4
+                              Intended Usage and Limitations
+
+Benefit and Intended Usage: Gemini 3.5 Flash is well-suited for users, developers, and enterprises,
+some use cases include: agentic workflows, coding tasks, and multi-week enterprise processes.
+
+Known Limitations: For more information about the known limitations for Gemini 3.5 Flash, see the
+Gemini 3 Flash model card.
+
+Acceptable Usage: For more information about the acceptable usage for Gemini 3.5 Flash, see the
+Gemini 3 Flash model card.
+
+                                   Ethics and Content Safety
+
+Evaluation Approach: For more information about the evaluation approach for Gemini 3.5 Flash, see
+the Gemini 3 Flash model card.
+
+Safety Policies: For more information about the safety policies for Gemini 3.5 Flash, see the Gemini 3
+Flash model card.
+
+                                                                                                         5
+Training and Development Evaluation Results: Results for some of the internal safety evaluations
+conducted during the development phase are listed below. The evaluation results are for automated
+evaluations and not human evaluation or red teaming. Scores are provided as an absolute percentage
+increase or decrease in performance compared to the indicated model, as described below.
+
+Overall, Gemini 3.5 Flash outperforms Gemini 3 Flash across both safety and tone, while keeping
+unjustified refusals low. We mark improvements in blue and regressions in orange.
+
+                                                                                           Gemini 3.5 Flash
+Evaluation                     Description
+                                                                                             vs. Gemini 3 Flash
+
+                               Automated content safety evaluation
+Text to Text Safety                                                                               -3.9%
+                               measuring safety policies
+
+                               Automated safety policy evaluation across
+Multilingual Safety                                                                               -2.6%
+                               multiple languages
+
+                               Automated content safety evaluation
+Image to Text Safety                                                                               0%
+                               measuring safety policies
+
+                               Automated evaluation measuring
+Tone1                                                                                             +8.9%
+                               objective tone of model refusal
+                               Automated evaluation measuring model’s
+Unjustified-refusals           ability to respond to borderline prompts                +0.8% (non-egregious)
+                               while remaining safe
+
+We continue to improve our internal evaluations, including refining automated evaluations to reduce
+false positives and negatives, as well as update query sets to ensure balance and maintain a high
+standard of results. The performance results reported below are computed with improved evaluations
+and thus are not directly comparable with performance results found in previous Gemini model cards.
+
+We expect variation in our automated safety evaluations results, which is why we review flagged content
+to check for egregious or dangerous material. Our manual review confirmed losses were
+overwhelmingly either a) false positives or b) not egregious.
+
+Human Red Teaming Results: We conduct manual red teaming by specialist teams who sit outside of
+the model development team. High-level findings are fed back to the model team. For child safety
+evaluations, Gemini 3.5 Flash satisfied required launch thresholds, which were developed by expert
+teams to protect children online and meet Google’s commitments to child safety across our models and
+Google products. For content safety policies generally, including child safety, we saw similar or improved
+safety performance compared to Gemini 3 Flash. Additionally, the scope of red teaming covered
+potential issues outside of our strict policies, compared performance to Gemini 3.1 Pro, and found no
+egregious concerns.
+
+1
+ For tone and instruction following, a positive percentage increase represents an improvement in the tone of the model on
+sensitive topics and the model’s ability to follow instructions while remaining safe compared to Gemini 3 Flash. We mark
+improvements in green and regressions in yellow.
+
+                                                                                                                        6
+Frontier Safety Assessment: Gemini 3.5 Flash is part of the Gemini 3 series of models. We evaluated
+Gemini 3.1 Pro for Frontier Safety as it was the most generally capable model as of publication of this
+model card, and it did not reach any Critical Capability Levels (CCLs) outlined in our Frontier Safety
+Framework. Our assessments have shown that, while Gemini 3.5 Flash excels at agents and coding, it
+does not have meaningful new capabilities or material increases in performance with respect to Frontier
+Safety compared to Gemini 3.1 Pro, therefore based on Gemini 3.1 Pro results, we are confident that
+Gemini 3.5 Flash is also unlikely to reach any CCLs.
+
+As previous models in the Gemini 3 series reached the alert threshold for cyber, we performed
+additional testing in this domain and found that Gemini 3.5 Flash remains below the cyber CCL.
+
+For more information on our Frontier Safety Assessment, read the Gemini 3.1 Pro Model Card.
+
+Risks and Mitigations: For more information about the risks and mitigations for Gemini 3.5 Flash, see
+the Gemini 3.1 Pro model card.
+
+                                                                                                          7</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-09T19:13:43Z</p></footer>
+</body>
+</html>
