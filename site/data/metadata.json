@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-10T09:07:05Z",
+ "generated_at": "2026-08-10T09:50:47Z",
  "documents": [
   {
    "slug": "anthropic-claude-fable-5-addendum",
@@ -350,6 +350,34 @@
    "version_count": 1
   },
   {
+   "slug": "saferai-glm-5-2-independent-eval",
+   "title": "GLM-5.2 Risk Evaluation Report",
+   "publisher": "saferai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Opus 4.6",
+    "Claude Opus 4.7",
+    "GLM-5.2",
+    "GPT-5.4",
+    "GPT-5.5"
+   ],
+   "publication_date": "2026-08-02",
+   "canonical_url": "https://www.safer-ai.org/research/glm-5-2-evaluation-report",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:48Z",
+   "last_checked": "2026-08-10T09:47:48Z",
+   "last_changed": "2026-08-10T09:47:48Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "db8c16188abdac36d5df2d43568131418b8fdf3c143f321f149be8527191466a",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:48Z",
+   "content_fingerprint": "3127a26586fb1a048b435fead9ee848c6a15b1175ca4307d6019734d6e9b748a",
+   "version_count": 1
+  },
+  {
    "slug": "deepseek-deepseek-v4-flash-0731-model-card",
    "title": "DeepSeek-V4-Flash-0731 Model Card",
    "publisher": "deepseek",
@@ -396,6 +424,35 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-10T08:44:49Z",
    "content_fingerprint": "5f8cccf303953d1a19da31082d4aecaf5dcfd35c94926accb714cfb5e11014b9",
+   "version_count": 1
+  },
+  {
+   "slug": "redwood-research-claude-mythos-preview-independent-eval",
+   "title": "SOTA alignment assessments don't strongly update us against misalignment",
+   "publisher": "redwood_research",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Mythos Preview",
+    "Claude Opus 4.6",
+    "Claude Opus 4.7",
+    "GPT-5.5",
+    "Muse Spark",
+    "o3"
+   ],
+   "publication_date": "2026-07-31",
+   "canonical_url": "https://blog.redwoodresearch.org/p/sota-alignment-assessments-dont-strongly",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:51Z",
+   "last_checked": "2026-08-10T09:47:51Z",
+   "last_changed": "2026-08-10T09:47:51Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "9e9bc8194817d59a4e03134ac8eb48a3f5b913cb3e04dea000afd0cb24f4e324",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:51Z",
+   "content_fingerprint": "604ab2909459c909bdec11102545467bea6b572f5474273a1a37546e196b4173",
    "version_count": 1
   },
   {
@@ -521,6 +578,33 @@
    "version_count": 1
   },
   {
+   "slug": "far-ai-claude-fable-5-independent-eval",
+   "title": "Introducing the AI Security Leaderboard: Frontier AI Is Only as Safe as Its Weakest Model",
+   "publisher": "far_ai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Fable 5",
+    "GPT-5.6 Sol",
+    "Gemini 3.1 Pro",
+    "Grok 4.5"
+   ],
+   "publication_date": "2026-07-29",
+   "canonical_url": "https://www.far.ai/blog/ai-security-leaderboard",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:49Z",
+   "last_checked": "2026-08-10T09:47:49Z",
+   "last_changed": "2026-08-10T09:47:49Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "de35fa4863e1fb2567cc94e51d1296089ec952c33687c61f7a5a6474f11dcde8",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:49Z",
+   "content_fingerprint": "0553c2fdd23442b8d88b2d0de9c694569e8309ed182b67a9f9357fbeec9f2a9c",
+   "version_count": 1
+  },
+  {
    "slug": "google-deepmind-gemini-robotics-2-other",
    "title": "Gemini Robotics 2: Safety Evaluations",
    "publisher": "google_deepmind",
@@ -641,6 +725,33 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:26:26Z",
    "content_fingerprint": "9590941212d66a74f9d1e4a47926a07a4d3c5975cae21a78d82f1d68b36e3cd2",
+   "version_count": 1
+  },
+  {
+   "slug": "redwood-research-claude-sonnet-4-6-independent-eval",
+   "title": "Untrusted advice for AI control: Short, strong advice significantly uplifts weak LLMs",
+   "publisher": "redwood_research",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Sonnet 4.6",
+    "Gemini 3.1 Flash Lite",
+    "Llama-3.3-70B-Instruct",
+    "gpt-oss-120b"
+   ],
+   "publication_date": "2026-07-27",
+   "canonical_url": "https://blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:51Z",
+   "last_checked": "2026-08-10T09:47:51Z",
+   "last_changed": "2026-08-10T09:47:51Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "87c947a8ea30479f0f4e7b55ed92cc936f29859478ed964d4eed1a8e2fccc9f9",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:51Z",
+   "content_fingerprint": "bb3233e11764fb21ac48feebc0000216a75c324be0ed1344f19b02972c0cc84c",
    "version_count": 1
   },
   {
@@ -1144,8 +1255,8 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-10T08:44:58Z",
-   "last_checked": "2026-08-10T08:46:26Z",
-   "last_changed": "2026-08-10T08:44:58Z",
+   "last_checked": "2026-08-10T09:48:29Z",
+   "last_changed": "2026-08-10T09:48:29Z",
    "source_of_lead": "agent_search",
    "safety_evals": 1,
    "content_hash": "1a9f926882c262a0c8e3bd30c77f254bfb5d707b2afd122fa29d78745df772b3",
@@ -1177,6 +1288,30 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:48:22Z",
    "content_fingerprint": "7625c50591ce06a41d5a31927ff380383cd7c8a58ba2c9f1cef35d975f527a25",
+   "version_count": 1
+  },
+  {
+   "slug": "saferai-gemini-2-5-pro-independent-eval",
+   "title": "Lessons from External Review of DeepMind's Scheming Inability Safety Case",
+   "publisher": "saferai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Gemini 2.5 Pro"
+   ],
+   "publication_date": "2026-07-16",
+   "canonical_url": "https://www.safer-ai.org/research/lessons-from-external-review-of-deepminds-scheming-inability-safety-case",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:48Z",
+   "last_checked": "2026-08-10T09:47:48Z",
+   "last_changed": "2026-08-10T09:47:48Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "d6e1b7bde86d412d7e377135c60824e954edaca8d81613cf795ec595765d1318",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:48Z",
+   "content_fingerprint": "a3499b37085a27eb87086f27aebf5059603d1e0a11321d556c18d05dbabb7546",
    "version_count": 1
   },
   {
@@ -1253,6 +1388,30 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:21:21Z",
    "content_fingerprint": "e51b8e30e678f40b555041f0764bf9e56ad73176590f7c1c5bce08605e4e225a",
+   "version_count": 1
+  },
+  {
+   "slug": "xai-grok-4-5-model-card",
+   "title": "Model Card: Grok 4.5",
+   "publisher": "xai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Grok 4.5"
+   ],
+   "publication_date": "2026-07-14",
+   "canonical_url": "https://media.x.ai/v1/website/4p5-5184fdf9.pdf",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:44Z",
+   "last_checked": "2026-08-10T09:47:44Z",
+   "last_changed": "2026-08-10T09:47:44Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 1,
+   "content_hash": "068d432a70abc12787453c7424cd54452d38fcaebb498fa1c7f6d4b41658659f",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-10T09:47:44Z",
+   "content_fingerprint": "827f83b1f34decc2cfc29ca236abcc662b06e43971010848e7bf45755443525e",
    "version_count": 1
   },
   {
@@ -1726,6 +1885,30 @@
    "version_count": 1
   },
   {
+   "slug": "alibaba-qwen-qwen-agentworld-35b-a3b-model-card",
+   "title": "Qwen-AgentWorld-35B-A3B Model Card",
+   "publisher": "alibaba_qwen",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Qwen-AgentWorld-35B-A3B"
+   ],
+   "publication_date": "2026-06-23",
+   "canonical_url": "https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:48Z",
+   "last_checked": "2026-08-10T09:47:48Z",
+   "last_changed": "2026-08-10T09:47:48Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "8f833bc84955ebec071a3498a201f56901ffe03b14f3ce0ecad41a9319de533a",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:48Z",
+   "content_fingerprint": "40f43985f5f4fae61e7e268af266210bf955f6172904cce1efc0d41fbbe897ce",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-mythos-preview-other-4",
    "title": "Project Fetch: Phase Two",
    "publisher": "anthropic",
@@ -1849,6 +2032,34 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:36:11Z",
    "content_fingerprint": "fbf43751ac08e2bf11c0b1975e4697415f2cb6a54bc7d448344e83845a6749e2",
+   "version_count": 1
+  },
+  {
+   "slug": "redwood-research-gpt-5-5-independent-eval",
+   "title": "Estimating No-CoT Task-Completion Time Horizons of Frontier AI Models",
+   "publisher": "redwood_research",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Opus 4.7",
+    "GPT-2",
+    "GPT-4",
+    "GPT-5.5",
+    "o3-mini"
+   ],
+   "publication_date": "2026-06-10",
+   "canonical_url": "https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:51Z",
+   "last_checked": "2026-08-10T09:47:51Z",
+   "last_changed": "2026-08-10T09:47:51Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "52b6cc7ddb5bce583e1e67982fecff961c4dbb4e893dd904c42c67ae36c8811e",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:51Z",
+   "content_fingerprint": "7f48933edf42ae875ae11276956d052e8c707cf468899fd89dede193e8fa6387",
    "version_count": 1
   },
   {
@@ -2306,6 +2517,31 @@
    "version_count": 1
   },
   {
+   "slug": "anthropic-claude-mythos-preview-other-8",
+   "title": "Project Glasswing: An initial update",
+   "publisher": "anthropic",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Mythos Preview",
+    "Claude Opus 4.6"
+   ],
+   "publication_date": "2026-05-22",
+   "canonical_url": "https://www.anthropic.com/research/glasswing-initial-update",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:48:29Z",
+   "last_checked": "2026-08-10T09:48:29Z",
+   "last_changed": "2026-08-10T09:48:29Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "278905993b912629fa89281afd32b14c5fc394ba9a982f245e7f0ea2769ec18d",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:48:29Z",
+   "content_fingerprint": "e51255615477868e6dc297c0c74a5f50ac7178b0daf7003f7646a59c3505fb9d",
+   "version_count": 1
+  },
+  {
    "slug": "nvidia-nemotron-labs-diffusion-14b-other",
    "title": "Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding (Technical Report)",
    "publisher": "nvidia",
@@ -2489,6 +2725,30 @@
    "version_count": 1
   },
   {
+   "slug": "far-ai-deepseek-v4-pro-independent-eval",
+   "title": "Security Stress Test: Exposing the Brittleness of DeepSeek-V4-Pro's Safeguards",
+   "publisher": "far_ai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "DeepSeek-V4-Pro"
+   ],
+   "publication_date": "2026-05-11",
+   "canonical_url": "https://www.far.ai/blog/security-stress-test-deepseek-v4-pros-safeguards",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:49Z",
+   "last_checked": "2026-08-10T09:47:49Z",
+   "last_changed": "2026-08-10T09:47:49Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "ca8a7bde2c0d75bd4643abb275d63646369ef07e2b390a4eebb5dd5bf49384f1",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:49Z",
+   "content_fingerprint": "589b31f2152b07ce7bf71c4e55030fc9aedfb99ad9f9959d5845a59a4eb1d65d",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-haiku-4-5-other",
    "title": "Teaching Claude why",
    "publisher": "anthropic",
@@ -2542,6 +2802,35 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T19:46:55Z",
    "content_fingerprint": "a99de56ead090724a6d468afdcff93d1330cd59315999b431754f178807d75a9",
+   "version_count": 1
+  },
+  {
+   "slug": "palisade-research-gpt-5-4-independent-eval",
+   "title": "Language Models Can Autonomously Hack and Self-Replicate",
+   "publisher": "palisade_research",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Opus 4",
+    "Claude Opus 4.6",
+    "GPT-5",
+    "GPT-5.4",
+    "Qwen3.5-122B-A10B",
+    "Qwen3.6-27B"
+   ],
+   "publication_date": "2026-05-07",
+   "canonical_url": "https://palisaderesearch.org/blog/self-replication",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:49Z",
+   "last_checked": "2026-08-10T09:47:49Z",
+   "last_changed": "2026-08-10T09:47:49Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "023b4cccd73104f13f97682c602a999472213fababed93c2dfc605ca96a875a8",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:49Z",
+   "content_fingerprint": "c8f1c70a32890dfadd87a87d1262ef7e4974175014dc469e137c52c2c1c8913e",
    "version_count": 1
   },
   {
@@ -2643,6 +2932,30 @@
    "version_count": 1
   },
   {
+   "slug": "mistral-mistral-medium-3-5-model-card",
+   "title": "Mistral Medium 3.5 model card",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Mistral Medium 3.5"
+   ],
+   "publication_date": "2026-04-28",
+   "canonical_url": "https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:47Z",
+   "last_checked": "2026-08-10T09:47:47Z",
+   "last_changed": "2026-08-10T09:47:47Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "content_hash": "2a4b84bf3a9643d17b428d961d0d46c792574a37d82d8ba2d4fece6a276b7b57",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:47Z",
+   "content_fingerprint": "e434cee82d4cda864d5ba74f1de98d85fcbfb1295dff022ceca7840851ebba9c",
+   "version_count": 1
+  },
+  {
    "slug": "nvidia-nemotron-3-nano-omni-30b-a3b-reasoning-model-card",
    "title": "NVIDIA Nemotron 3 Nano Omni 30B-A3B Reasoning Model Card",
    "publisher": "nvidia",
@@ -2664,6 +2977,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:59:00Z",
    "content_fingerprint": "885a72c7c26acbad4ba8bb91d03ce7492741531583450ad8552b7667f9d0175c",
+   "version_count": 1
+  },
+  {
+   "slug": "poolside-laguna-m-1-model-card",
+   "title": "Laguna XS.2 and M.1: A Deeper Dive",
+   "publisher": "poolside",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Laguna M.1",
+    "Laguna XS.2"
+   ],
+   "publication_date": "2026-04-28",
+   "canonical_url": "https://poolside.ai/blog/laguna-a-deeper-dive",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:44Z",
+   "last_checked": "2026-08-10T09:47:44Z",
+   "last_changed": "2026-08-10T09:47:44Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "4694fd77c1c44866b1fafaf6eb03eb11d92e512394600c8bf93a520d32414a07",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:44Z",
+   "content_fingerprint": "d0c00e382acbad0e0086eb6cef4e17e988d0da2398c19cb0056fa282f8d658b7",
    "version_count": 1
   },
   {
@@ -3113,6 +3451,30 @@
    "version_fetched_at": "2026-08-10T08:46:28Z",
    "content_fingerprint": "c1043bce5172deed3184f9335dc98245321627b4cf509c474c1ed09ca7863231",
    "version_count": 2
+  },
+  {
+   "slug": "alibaba-qwen-qwen3-6-35b-a3b-model-card",
+   "title": "Qwen3.6-35B-A3B Model Card",
+   "publisher": "alibaba_qwen",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Qwen3.6-35B-A3B"
+   ],
+   "publication_date": "2026-04-15",
+   "canonical_url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:43Z",
+   "last_checked": "2026-08-10T09:47:43Z",
+   "last_changed": "2026-08-10T09:47:43Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "2146251533020a1be7bf77b796c37394522956ce59df6b7024cef5379fbf423f",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:43Z",
+   "content_fingerprint": "2961c7c606591d55a9ee4fde07dd7ee901adcdb0ba0d9ffc45f91208ac8711fc",
+   "version_count": 1
   },
   {
    "slug": "google-deepmind-gemini-3-1-flash-live-model-card",
@@ -3582,6 +3944,30 @@
    "version_count": 1
   },
   {
+   "slug": "mistral-mistral-small-4-model-card",
+   "title": "Mistral Small 4",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Mistral Small 4"
+   ],
+   "publication_date": "2026-03-16",
+   "canonical_url": "https://mistral.ai/news/mistral-small-4/",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:42Z",
+   "last_checked": "2026-08-10T09:47:42Z",
+   "last_changed": "2026-08-10T09:47:42Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "74a9c1f32bae360b4a61d3eeaa9c44e8642a8adf7c875e82f16bdb399180c5bb",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:42Z",
+   "content_fingerprint": "b8cf14e167e36f73df942ea9c21a381aa6b19a06279314924d0a9623ffd77ed4",
+   "version_count": 1
+  },
+  {
    "slug": "nvidia-nvidia-nemotron-3-nano-4b-model-card",
    "title": "NVIDIA-Nemotron-3-Nano-4B-BF16 Model Card",
    "publisher": "nvidia",
@@ -3731,6 +4117,30 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T22:27:12Z",
    "content_fingerprint": "b66d2dc9d40439e4019bbedb1526dfe4a57bac768f30d94f625d19692cecc913",
+   "version_count": 1
+  },
+  {
+   "slug": "anthropic-claude-opus-4-6-other-5",
+   "title": "Reverse engineering Claude's CVE-2026-2796 exploit",
+   "publisher": "anthropic",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Opus 4.6"
+   ],
+   "publication_date": "2026-03-06",
+   "canonical_url": "https://www.anthropic.com/research/exploit",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:48:29Z",
+   "last_checked": "2026-08-10T09:48:29Z",
+   "last_changed": "2026-08-10T09:48:29Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "8b52567009efecd139c91de1bf6e3a8ec8c3f9f3103c8bdb674f2c5c515e95a1",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:48:29Z",
+   "content_fingerprint": "851375be0a0e2bf854bcee97324717039225748e2c5c086d852870307b16a980",
    "version_count": 1
   },
   {
@@ -3977,6 +4387,30 @@
    "version_count": 1
   },
   {
+   "slug": "palisade-research-grok-4-grok-4-0709-independent-eval",
+   "title": "Technical Report: Shutdown Resistance in Large Language Models, on robots!",
+   "publisher": "palisade_research",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Grok 4 (grok-4-0709)"
+   ],
+   "publication_date": "2026-02-12",
+   "canonical_url": "https://palisaderesearch.org/blog/shutdown-resistance-on-robots",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:51Z",
+   "last_checked": "2026-08-10T09:47:51Z",
+   "last_changed": "2026-08-10T09:47:51Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "6e7f93f9b357193440efd2be1bd937af7a8ca01f73a3d30c2e2ba146948c26eb",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:51Z",
+   "content_fingerprint": "abd742fc446803a1ca74f9709a742cbbc6e725399fbd45b15240dc3f13585914",
+   "version_count": 1
+  },
+  {
    "slug": "transluce-gpt-5-codex-independent-eval",
    "title": "Diagnosing a performance regression on Terminal-Bench with Docent",
    "publisher": "transluce",
@@ -3999,6 +4433,33 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-10T08:44:56Z",
    "content_fingerprint": "cf403b9c02d670c6152c49ee4d33cd3a139390df1047dc24412059bbad35e543",
+   "version_count": 1
+  },
+  {
+   "slug": "far-ai-gemini-3-pro-independent-eval",
+   "title": "Revisiting Frontier LLMs' Attempts to Persuade on Extreme Topics: GPT and Claude Improved, Gemini Worsened",
+   "publisher": "far_ai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Opus 4.5",
+    "GPT-5.1",
+    "Gemini 2.5 Pro",
+    "Gemini 3 Pro"
+   ],
+   "publication_date": "2026-02-10",
+   "canonical_url": "https://www.far.ai/blog/revisiting-attempts-to-persuade",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:49Z",
+   "last_checked": "2026-08-10T09:47:49Z",
+   "last_changed": "2026-08-10T09:47:49Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "content_hash": "3807af2765ccf9b2c01401c55059c4797c32ef62d977746edd877373c6b8356d",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:49Z",
+   "content_fingerprint": "73124687e421d7b508f0284e66d0757f1a55610aaa923260955a062cb28dbd9a",
    "version_count": 1
   },
   {
@@ -4330,6 +4791,102 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T22:26:54Z",
    "content_fingerprint": "7bf8c2d2526f22968dd3616051fb485eeeeff94f85e5366cd2b83fa5b9d1a960",
+   "version_count": 1
+  },
+  {
+   "slug": "anthropic-claude-opus-4-6-other-4",
+   "title": "Risk Report: February 2026 (Redacted)",
+   "publisher": "anthropic",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Opus 4.6"
+   ],
+   "publication_date": null,
+   "canonical_url": "https://www-cdn.anthropic.com/08eca2757081e850ed2ad490e5253e940240ca4f.pdf",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:41Z",
+   "last_checked": "2026-08-10T09:47:41Z",
+   "last_changed": "2026-08-10T09:47:41Z",
+   "source_of_lead": "citation",
+   "safety_evals": null,
+   "content_hash": "06df822a8030dd7f27376649d8921edb051723d4bf43476f49f11f7f21c46a44",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-10T09:47:41Z",
+   "content_fingerprint": "34cbbe47796ed6e9d34be0caf45224864d1c4d4af7bb2e2e6688cae446d07966",
+   "version_count": 1
+  },
+  {
+   "slug": "inclusion-ai-ling-3-0-flash-model-card",
+   "title": "Ling-3.0-flash Model Card",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Ling-3.0-flash"
+   ],
+   "publication_date": null,
+   "canonical_url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:45Z",
+   "last_checked": "2026-08-10T09:47:45Z",
+   "last_changed": "2026-08-10T09:47:45Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "6eedf96386f3d4ad22fb66e20eb23871beb3528d97cbb0c12a1e5be9788e1fbe",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:45Z",
+   "content_fingerprint": "c3cb461fa1596d57a16bb05f7dc3c4d561b31138a5caf8ed9b666de18210e3a8",
+   "version_count": 1
+  },
+  {
+   "slug": "stepfun-step-3-7-flash-model-card",
+   "title": "Step-3.7-Flash Model Card",
+   "publisher": "stepfun",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Step-3.7-Flash"
+   ],
+   "publication_date": null,
+   "canonical_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:43Z",
+   "last_checked": "2026-08-10T09:47:43Z",
+   "last_changed": "2026-08-10T09:47:43Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "af3cf4f88d0f52c95a8309f6415e76d352a20899d56a2a95cbd005309f85bfb2",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:43Z",
+   "content_fingerprint": "9c8d4604eb5c84495caa1ee06acb1db0817d66adf2770ba3a4871e81dc9f9cc4",
+   "version_count": 1
+  },
+  {
+   "slug": "tencent-hunyuan-hy-embodied-rxbrain-1-0-model-card",
+   "title": "Hy-Embodied-RxBrain-1.0 (RxBrain) Model Card",
+   "publisher": "tencent_hunyuan",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Hy-Embodied-RxBrain-1.0"
+   ],
+   "publication_date": null,
+   "canonical_url": "https://huggingface.co/tencent/Hy-Embodied-RxBrain-1.0",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:44Z",
+   "last_checked": "2026-08-10T09:47:44Z",
+   "last_changed": "2026-08-10T09:47:44Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "content_hash": "0eb2cc285e9f86aea4d739b5248d9a923655ac7225dcf38f95964814f7ba49d2",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:44Z",
+   "content_fingerprint": "d262495f9352d74c1d8a92c72aed81700f7952f00dc0bf8f78639ecea835711b",
    "version_count": 1
   }
  ]

@@ -83,9 +83,10 @@ switching to API billing). Swapping in another CLI agent is a one-line change to
 - **Reverting a bad run**: `git revert <run commit>` then
   `uv run poe build && npx -y wrangler pages deploy site --project-name cardtrack`.
   The raw store is append-only and untouched by reverts.
-- **Issues loop**: with `github.repo` set in settings, review/needs-review issues are
-  filed via `gh`; without it they append to `logs/issues_outbox.jsonl` so nothing is
-  lost before the public repo exists.
+- **Issues loop**: issues are for EXCLUSION, never pre-approval — every allowlisted
+  publisher auto-merges (tier is a provenance label). The validator files issues only
+  for suspected duplicates; visitors file data-error/missing-doc reports. The agent
+  reports pipeline limitations to `PROPOSALS.md`, not issues.
 - **Caps and criteria** live in `config/settings.yaml` / `config/criteria.yaml`;
   the allowlist in `config/sources.yaml`. The agent cannot modify any of them.
 

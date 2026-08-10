@@ -1,0 +1,100 @@
+RxBrain
+Embodied Cognition Foundation Model with Joint Language–Visual Reasoning and Imagination
+Tencent Robotics X × Futian Laboratory × Tencent Hy Team
+🔥 Updates
+- [2026-07] 🎉 We release Hy-Embodied-RxBrain-1.0 — the technical report, official inference code, and model weights.
+📖 Introduction
+RxBrain (Hy-Embodied-RxBrain-1.0) is a unified multimodal foundation model for embodied cognition — a single model that couples language reasoning with visual imagination to deliver three core capabilities:
+- 🤖 Embodied Understanding & Reasoning — question answering and chain-of-thought over images and multi-frame video.
+- 🔮 World State Prediction — imagine the near-future frames an action produces in the physical world.
+- 🧩 Joint Subgoal Planning — decompose a task into steps, emitting for each step both the next action (language) and the goal image it should reach (vision).
+These capabilities are unified through interleaved generation: within a single autoregressive sequence RxBrain alternates reasoning text and flow-matched imagined frames — a learned <Image> token decides when to imagine — so an embodied plan couples what to do with what the world should look like, step by step.
+⭐️ Key Features
+- 🧠 Unified Mixture-of-Transformers (MoT): A ~6.2B-parameter backbone with modality-specific pathways (text / vision / generation), so understanding and image synthesis share one autoregressive model instead of separate towers.
+- 🎨 Flow-Matching Image Head: Imagined frames are produced by a flow-matching head decoding into a frozen FLUX VAE latent space, enabling text-to-image, multi-frame world-model rollout, and goal-image planning.
+- 🔗 Interleaved Reasoning + Imagination: Text reasoning and generated frames are emitted in one sequence, coupling symbolic plans with visual goals.
+📋 TODO
+- Open-source RxBrain-Bench, a comprehensive benchmark for embodied cognition.
+- Open-source the fine-tuning code for Visual Question Answering (VQA), Multi Frames Generation, and Interleave Generation.
+- Release the technical report, inference code, and model weights.
+🛠️ Dependencies and Installation
+Prerequisites
+- 🖥️ Operating System: Linux (recommended)
+- 🐍 Python: 3.10+
+- ⚡ CUDA: 12.x, an NVIDIA GPU (required for flash-attn )
+- 🔥 PyTorch: 2.10
+Installation
+- Install the specific Transformers version required for this model (it provides the hunyuan_vl_mot backbone thatunified_mot builds on):
+pip install git+https://github.com/huggingface/transformers@9293856c419762ebf98fbe2bd9440f9ce7069f1a
+Note: A stock transformers release does not yet include hunyuan_vl_mot; this pinned commit is required. We will merge the improvements into the Transformers main branch later.
+- Clone the inference code and install the remaining dependencies:
+git clone https://github.com/Tencent-Hunyuan/Hy-Embodied-RxBrain-1.0.git
+cd Hy-Embodied-RxBrain-1.0
+pip install -r requirements.txt
+Model Download
+| Component | Params | Source |
+|---|---|---|
+| Hy-Embodied-RxBrain-1.0 | ~6.2 B | 🤗 tencent/Hy-Embodied-RxBrain-1.0 |
+| FLUX VAE ( ae.safetensors ) | 83.8 M | Obtain from the FLUX distribution |
+Download the weights to a local directory — the loader reads the checkpoint files directly, so --ckpt must be a local path, not the Hub repo id:
+pip install -U "huggingface_hub[cli]"
+hf download tencent/Hy-Embodied-RxBrain-1.0 --local-dir ./Hy-Embodied-RxBrain-1.0
+The VQA (understanding) path needs only the main weights. Image generation (T2I / world-model rollout / interleaved planning) additionally requires the external FLUX VAE ae.safetensors.
+🚀 Quick Start with Transformers
+Load the Transformers processor together with the UnifiedMoT classes shipped in this repo, then run understanding (VQA). Run this from the repo root so the model package is importable, and point MODEL_PATH at your local download (see Model Download).
+import torch
+from transformers.models.hunyuan_vl_mot import HunYuanVLMoTProcessor
+from model import UnifiedMoTForConditionalGeneration, maybe_init_generation_path
+from vqa_inference import answer
+MODEL_PATH = "./Hy-Embodied-RxBrain-1.0"  # local checkpoint directory, not the Hub id
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+dtype = torch.bfloat16
+# Load processor & model
+processor = HunYuanVLMoTProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)
+model = UnifiedMoTForConditionalGeneration.from_pretrained(MODEL_PATH, dtype=dtype)
+maybe_init_generation_path(model, model_load_path=MODEL_PATH)  # wires up the generation path
+model.to(device).eval()
+# Ask a question about an image
+text = answer(
+    model, processor,
+    image_paths=["demo_cases/bridgev2_move_toy/input/obs_1.jpg"],
+    question="What objects are on the stovetop, and where is the green toy?",
+    device=device, dtype=dtype, max_new_tokens=256,
+)
+print(text)
+Note: RxBrain uses a custom interleaved text/image decoding loop rather than the standard model.generate API. The answer(...) helper (in vqa_inference.py) wraps that loop for the understanding case; image generation and planning have their own entry points below.
+The same tasks are also available as ready-to-run scripts:
+① Visual Question Answering (VQA) — image(s) + question → answer text
+Pure autoregressive text understanding — no VAE / flow-matching needed.
+python vqa_inference.py \
+    --ckpt ./Hy-Embodied-RxBrain-1.0 \
+    --images demo_cases/bridgev2_move_toy/input/obs_1.jpg \
+    --question "What objects are on the stovetop, and where is the green toy?" \
+    --max_new_tokens 256
+② Text-to-Image (T2I)
+python text2image_inference.py \
+    --ckpt ./Hy-Embodied-RxBrain-1.0 --vae /path/to/ae.safetensors \
+    --prompt "a watercolor painting of a cat" \
+    --height 256 --width 256 --num_steps 25 --out out.png
+# with classifier-free guidance
+python text2image_inference.py \
+    --ckpt ./Hy-Embodied-RxBrain-1.0 --vae /path/to/ae.safetensors \
+    --prompt "a watercolor painting of a cat" \
+    --cfg_scale 5.0 --num_steps 50 --out out.png
+③ Multi-Frame World-Model Rollout — imagine future frames from an observation
+python multiframe_inference.py \
+    --ckpt ./Hy-Embodied-RxBrain-1.0 --vae /path/to/ae.safetensors \
+    --frames /path/to/obs.jpg --task "imagine the next frames" \
+    --num_frames 4 --num_steps 50 --out_dir multiframe_out
+④ Interleaved Embodied Planning — text plan + goal images, step by step
+Runs interleaved planning on a bundled scene. See demo_cases/README.md for details.
+CASE=umi_fold_sock
+python interleave_inference.py \
+    --ckpt ./Hy-Embodied-RxBrain-1.0 --vae /path/to/ae.safetensors \
+    --frames  demo_cases/$CASE/input/*.jpg \
+    --task    "$(cat demo_cases/$CASE/prompt.txt)" \
+    --max_frames 5 --num_steps 50 --out_dir out_$CASE
+📊 Evaluation
+RxBrain is evaluated on embodied understanding, spatial reasoning, and imagination/generation benchmarks. For detailed metrics and methodology, please refer to our technical report.
+- Downloads last month
+- 367

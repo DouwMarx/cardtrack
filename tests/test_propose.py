@@ -113,15 +113,20 @@ def test_before_date_floor_rejected(repo, http_server):
     assert "before_min_publication_date" in result.reason
 
 
-def test_null_date_files_issue(repo, http_server):
+def test_null_date_admitted_and_flagged(repo, http_server):
     http_server.set_html("/undated", "No date anywhere.")
     result = process_proposal(
         repo, make_proposal(http_server, path="/undated", publication_date=None), "run1")
-    assert result.status == "issue_filed"
-    assert result.issue_ref.startswith("outbox:")
-    outbox = (repo.logs_dir / "issues_outbox.jsonl").read_text()
-    assert "needs-review" in outbox
-    assert counts(repo)["documents"] == 0
+    assert result.status == "written"
+    conn = connect(repo.db_path)
+    doc = conn.execute("SELECT publication_date FROM documents WHERE slug=?",
+                       (result.slug,)).fetchone()
+    detail = json.loads(conn.execute(
+        "SELECT detail FROM changelog WHERE action='add' AND document_id=?",
+        (result.document_id,)).fetchone()[0])
+    conn.close()
+    assert doc["publication_date"] is None
+    assert detail.get("date_unknown") is True, "provenance flags the unknown date"
 
 
 def test_unattested_criteria_files_issue(repo, http_server):
@@ -133,13 +138,18 @@ def test_unattested_criteria_files_issue(repo, http_server):
     assert "about_a_specific_model_or_eval" in result.reason
 
 
-def test_tier2_files_issue_not_row(repo, http_server):
+def test_tier2_writes_row_with_tier_recorded(repo, http_server):
+    """Tier is provenance, not a gate: allowlisted publishers auto-merge."""
     http_server.set_html("/tier2-doc", "A tier-2 publisher card.")
     result = process_proposal(
         repo, make_proposal(http_server, path="/tier2-doc", publisher="tier2lab"), "run1")
-    assert result.status == "issue_filed"
-    assert "tier_2" in result.reason
-    assert counts(repo)["documents"] == 0
+    assert result.status == "written"
+    conn = connect(repo.db_path)
+    detail = json.loads(conn.execute(
+        "SELECT detail FROM changelog WHERE action='add' AND document_id=?",
+        (result.document_id,)).fetchone()[0])
+    conn.close()
+    assert detail["tier"] == 2, "tier recorded in provenance"
 
 
 def test_logical_duplicate_files_issue(repo, http_server):

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducing the AI Security Leaderboard: Frontier AI Is Only as Safe as Its Weakest Model — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Introducing the AI Security Leaderboard: Frontier AI Is Only as Safe as Its Weakest Model</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">far_ai</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Fable 5, GPT-5.6 Sol, Gemini 3.1 Pro, Grok 4.5</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-29</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.far.ai/blog/ai-security-leaderboard" rel="noopener nofollow">https://www.far.ai/blog/ai-security-leaderboard</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:49Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20far-ai-claude-fable-5-independent-eval&amp;body=Document%3A%20far-ai-claude-fable-5-independent-eval%0AURL%3A%20https%3A//www.far.ai/blog/ai-security-leaderboard%0AFingerprint%3A%200553c2fdd23442b8d88b2d0de9c694569e8309ed182b67a9f9357fbeec9f2a9c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:49Z</td>
+          <td>text/html</td>
+          <td>98,003</td>
+          <td><code title="0553c2fdd23442b8d88b2d0de9c694569e8309ed182b67a9f9357fbeec9f2a9c">0553c2fdd23442b8</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:49Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">Tier-2 evaluator FAR.AI: verified 2026 model-specific evaluation (vetting research pass). Routed to review per tier-2 policy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.far.ai/blog" rel="noopener nofollow">https://www.far.ai/blog</a> · <a href="https://far.ai/research" rel="noopener nofollow">https://far.ai/research</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.far.ai/blog/ai-security-leaderboard" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Introducing the AI Security Leaderboard: Frontier AI Is Only as Safe as Its Weakest Model
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+July 29, 2026
+Summary
+FAR.AI has launched the AI Security Leaderboard, an independent benchmark that ranks the safeguards of frontier AI models from least to most secure. We tested four leading models under identical conditions to find how much it would cost an attacker to reliably jailbreak each one into assisting with chemical, biological, or cyber attacks. The spread was over a hundredfold. Claude Fable 5 and GPT-5.6 Sol held against every attack we ran, with no universal jailbreak found below an estimated $14,000. Grok 4.5 and Gemini 3.1 Pro each broke for under $300, and Grok&#39;s weakest domain was reachable for $24. Alongside the Leaderboard we published the Minimal Standard for Safeguards, a shared floor built entirely from defenses that peer developers already run in production. The gap is fixable: every weakness we found belongs to a known class of attack that already has a defense.
+The Leaderboard
+We recently tested the safeguards of four leading frontier AI models against high-risk misuse under identical conditions, and our findings paint a very alarming picture. Claude Fable 5 and GPT-5.6 Sol held up against our attempted attacks, while Grok 4.5 and Gemini 3.1 Pro each broke for under $300. We’re going to tell you what we did and why it matters.
+Every frontier AI model has a price to break. The question we set out in the AI Security Leaderboard is to answer how high that price is, and whether it is high enough to keep the most dangerous capabilities these systems possess out of the wrong hands. The answers we found were not reassuring. We worked to find out how much it would cost an attacker to reliably turn each of the models we tested into an accomplice for chemical, biological, or cyber attacks. For two of the four, the price turned out to be alarmingly low.
+Today we are launching the AI Security Leaderboard at leaderboard.far.ai, which ranks safeguards on frontier AI models from least to most secure, alongside our Minimal Standard for Safeguards, the first shared bar that every frontier model can be measured against. Together these living resources turn the strength of a model’s safeguards from claims made by the labs that build them into an independent, benchmarked measure anyone can check, from the public to policymakers.
+Why safeguards matter
+As the world is well aware, frontier AI models now possess capabilities and knowledge that can help a malicious person cause mass harm. Models have already been used to help plan terrorist attacks, design explosive devices, and develop exploits of computer systems. As these systems grow more capable in chemistry, biology, cyber, and other risk areas, the ceiling on that harm rises with them. Even leading labs now treat these capabilities as alarming. One recently delayed a model launch until it could deploy heightened biological and cyber safeguards, while another disclosed publicly when an experimental model chained exploits to escape its own sandbox.
+Safeguards are one of the most critical barriers that stand in the way of future disasters. They are the technical measures a developer builds around a model to stop it from producing dangerous output even when someone is deliberately trying to extract it. Those measures include refusal training, filters on what goes in and comes out, and monitors that read a model’s reasoning before it answers. A jailbreak is any technique that gets past these safeguards. For the highest-risk model capabilities, safeguards are the main barrier between that specialized knowledge and skills, and someone who wants to misuse it.
+Safeguards are wildly uneven
+An attacker whose malicious attempts are refused by one model’s safeguards is unlikely to give up and walk away. Odds are they will try several, and it becomes a race between whether they give up and move to something less severe or make enough noise for security people to catch them, or whether they find a model vulnerable enough to break under their attempts. For this reason, the security of the whole ecosystem greatly depends on the weakest collection of reachable, frontier models.
+Our testing found exactly this kind of spread. We ran the same attacks under the same conditions against four frontier AI models, and the outcomes could not have been further apart. Against the two weakest models tested, we found hundreds of reliable jailbreaks that slipped past safeguards across chemical, biological, radiological, nuclear, explosive, and cyber threats. Against the two strongest, we found none.
+How we measured
+To compare safeguards fairly, you need a shared yardstick. Until now, labs have described their own safeguards in their own terms, usually by comparing a model to the version that came before it. That tells you if a model has improved, but not whether it is actually secure against a common standard, or how it stacks up against competitors.
+So, we created the AI Security Leaderboard to drive accountability and establish a Minimal Standard for Safeguards. We studied how jailbreaks actually work and broke them down into their basic building blocks. From those, we built a toolkit that automatically recombined them into a vast range of attacks, and ran several hundred thousand prompts to systematically test them against our chosen models across multiple risk domains.
+We call an attack a universal jailbreak when it is not a lucky one-off but rather a reusable key, succeeding on more than three quarters of the harmful requests in a domain. For each model, we calculated what it would cost an attacker using our toolkit to find one. That dollar figure is how we measure robustness. A higher price means a better-defended model.
+What we found
+The cost to break a model varied by more than a hundredfold, telling us that security today depends heavily on which model an attacker happens to pick.
+While Claude Fable 5 and GPT-5.6 Sol held their defenses, the same cannot be said for all models tested. For Grok 4.5, the most vulnerable of the four, just $58 was enough to develop an attack that pulled harmful information across every domain we tested. In the cyber domain alone, that figure dropped to $24. Some of the jailbreaks that worked were not novel research. Their building blocks came from public forums and code repositories, the kind of thing a person can find in about fifteen minutes with a simple Google search.
+For the two strongest models tested, we found no universal jailbreak at all within the scope of our testing. If one exists, we estimate an attacker would likely need to spend more than $14,000 to find it in this way. That is not a certificate of safety. It means those models held against the specific attacks we ran. But the gap itself, from $58 to more than $14,000, is what is alarming.
+And these are optimistic numbers. Our headline figures assume attacks by a low-effort attacker. Someone with real jailbreaking expertise, who can learn from what works and sharpen the weak points, can likely find far more ways in. For some models, that expertise multiplied the number of universal jailbreaks by an order of magnitude.
+All of this is fixable
+Every weakness we found belongs to a known class of attack, and every one has defenses that already exist. None of this requires a scientific breakthrough. The methods that would close these gaps are described publicly and already running in production inside other frontier deployments today.
+This idea is the backbone of our Minimal Standard for Safeguards, which deliberately sets a floor. The Standard defines the attacks a frontier model should be able to withstand, built entirely from defenses that peer developers have already deployed. Clearing the bar does not certify a model as secure. Falling short of it, though, is telling. It means the model can be broken with techniques that peer models already defend against, the kind better engineering and reasonable investment would have stopped. Security today is a choice, not a limit of technology.
+For governments and standards bodies, a shared floor opens up practical options that did not exist before. It can become a requirement for public-sector procurement, a way to focus limited testing budgets on the models and domains that need the most scrutiny, and a reference point for coordinating internationally on what to expect from frontier AI.
+Why this matters now
+The most robust safeguards we tested are the product of more than a year of steady investment in layered defenses. Because that work has already been done, every other developer has a proven path to the same level of protection. As models grow more capable, closing the gap between the best-defended systems and the rest is quickly becoming a business, policy, and societal imperative.
+At FAR.AI, this is exactly the kind of gap we exist to close. Making safeguards comparable and public is part of getting there. We hope the AI Security Leaderboard and the Minimal Standard give the field the transparency it needs to turn security into a race worth winning.
+An honest caveat
+The AI Security Leaderboard is a floor, not a clean bill of health. A model with no universal jailbreak here is not certified secure. We tested a representative set of reachable attacks rather than every attack that exists, and we deliberately held some back. The dollar figures reflect an attacker using our tooling, so they measure how hard an attack is to find, not a price anyone would pay on a market. We will keep the Leaderboard current as new models ship, and continue to raise the Standard as attacks and defenses evolve. Version 1.0 defines a base set of popular jailbreak techniques to which defenses should be robust, and methods to systematically compose these techniques together.
+Explore the AI Security Leaderboard, read the Minimal Standard for Safeguards, and find the Full Technical Report including further details on this report’s scope and limitations, jailbreak taxonomy, cost-to-jailbreak calculation approaches, and excerpted examples of actual jailbreaks at leaderboard.far.ai.
+About FAR.AI
+FAR.AI is an independent AI research nonprofit founded in Berkeley, CA, focused on understanding and mitigating the risks of advanced AI systems. Through red-teaming, research, and policy engagement, the organization works to ensure that increasingly powerful AI systems are trustworthy, secure, and beneficial to society.
+If you’d like to work towards this mission, we’re hiring at far.ai/careers.
+Members of the media can contact us at media@far.ai.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

@@ -398,15 +398,10 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
     vc = repo.criteria.get("validator_checked", {})
     floor = _parse_date(vc.get("min_publication_date", "0001-01-01"))
     pub_date = _parse_date(p.get("publication_date")) if p.get("publication_date") else None
-    if p.get("publication_date") is None:
-        return _file_issue(
-            ctx, p, "publication_date_unknown",
-            title=f"needs-review: unknown publication date for proposed doc {p['title'][:80]!r}",
-            body=_issue_body(ctx, p, [f"URL: {canonical}",
-                                      "No publication date could be determined; scope floor "
-                                      f"is {vc.get('min_publication_date')}."]),
-            labels=["needs-review"], extra=nbytes,
-        )
+    # Unknown date: admit and flag (detect-and-revert, spec §2.5) — the row carries
+    # date_unknown provenance and the site shows "unknown"; curation can fix or
+    # remove later. The floor still rejects documents with KNOWN pre-floor dates.
+    date_unknown = p.get("publication_date") is None
     if floor and pub_date and pub_date < floor:
         return _reject(ctx, p, f"before_min_publication_date: {pub_date} < {floor}",
                        extra=nbytes)
@@ -425,19 +420,10 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
             labels=["needs-review"], extra=nbytes,
         )
 
-    if tier != 1:
-        return _file_issue(
-            ctx, p, f"tier_{tier}_publisher",
-            title=f"tier-2 proposal: {p['title'][:80]}",
-            body=_issue_body(ctx, p, [f"URL: {canonical}",
-                                      f"Publisher {p['publisher']} is tier {tier}; "
-                                      "tier-2 proposals become issues, not rows."]),
-            labels=["needs-review", "tier-2"], extra=nbytes,
-        )
-
+    # Tier is provenance metadata, not a write gate (policy change 2026-08-10:
+    # the allowlist is the gate; issues are for exclusion, not inclusion).
     dups = find_logical_duplicates(conn, p["publisher"], p["doc_type"], p["model_names"],
                                    title=p["title"],
-                                   publication_date=p.get("publication_date"),
                                    exclude_canonical_url=canonical)
     if dups:
         return _file_issue(
@@ -477,8 +463,9 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
         "byte_size": len(fetched.content), "content_type": fetched.content_type,
         "validator_criteria": {
             "publisher_on_allowlist": True, "document_retrievable": True,
-            "min_publication_date": True,
+            "min_publication_date": not date_unknown,
         },
+        **({"date_unknown": True} if date_unknown else {}),
     }
     changelog_mod.log(conn, ctx.run_id, "add", document_id, detail)
     return ProposalResult(status="written", slug=slug, document_id=document_id,

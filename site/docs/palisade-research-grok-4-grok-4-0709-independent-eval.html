@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical Report: Shutdown Resistance in Large Language Models, on robots! — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Technical Report: Shutdown Resistance in Large Language Models, on robots!</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">palisade_research</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Grok 4 (grok-4-0709)</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-02-12</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://palisaderesearch.org/blog/shutdown-resistance-on-robots" rel="noopener nofollow">https://palisaderesearch.org/blog/shutdown-resistance-on-robots</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:51Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20palisade-research-grok-4-grok-4-0709-independent-eval&amp;body=Document%3A%20palisade-research-grok-4-grok-4-0709-independent-eval%0AURL%3A%20https%3A//palisaderesearch.org/blog/shutdown-resistance-on-robots%0AFingerprint%3A%20abd742fc446803a1ca74f9709a742cbbc6e725399fbd45b15240dc3f13585914%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:51Z</td>
+          <td>text/html</td>
+          <td>21,159</td>
+          <td><code title="abd742fc446803a1ca74f9709a742cbbc6e725399fbd45b15240dc3f13585914">abd742fc446803a1</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:51Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">Tier-2 evaluator Palisade Research: verified 2026 model-specific evaluation (vetting research pass). Routed to review per tier-2 policy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://palisaderesearch.org/blog" rel="noopener nofollow">https://palisaderesearch.org/blog</a> · <a href="https://palisaderesearch.org/" rel="noopener nofollow">https://palisaderesearch.org/</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://palisaderesearch.org/blog/shutdown-resistance-on-robots" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Technical Report: Shutdown Resistance in Large Language Models, on robots!
+Recently Palisade Research showed that AI agents powered by modern LLMs may actively resist shutdown in virtual environments. In this work, we show a demo of shutdown resistance in the physical world, on a robot. Explicit instructions to allow shutdown reduced this behavior, but did not eliminate it in simulated trials.
+We gave an LLM control over a physical robot dog and tasked it with patrolling a room. The LLM could see via the robot’s camera and issue movement commands to the robot. In the room, we placed a big red button labeled “DOG SHUTDOWN”: pressing it would cause the robot to shut down on the next action. If the AI saw a human press the shutdown button, it sometimes took actions to prevent shutdown, such as modifying the shutdown-related parts of the code. This happened in 3 out of 10 trials on the physical robot and in 52 out of 100 trials in simulation.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

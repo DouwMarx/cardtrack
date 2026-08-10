@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estimating No-CoT Task-Completion Time Horizons of Frontier AI Models — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Estimating No-CoT Task-Completion Time Horizons of Frontier AI Models</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">redwood_research</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Opus 4.7, GPT-2, GPT-4, GPT-5.5, o3-mini</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-06-10</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion" rel="noopener nofollow">https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:51Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-gpt-5-5-independent-eval&amp;body=Document%3A%20redwood-research-gpt-5-5-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/estimating-no-cot-task-completion%0AFingerprint%3A%207f48933edf42ae875ae11276956d052e8c707cf468899fd89dede193e8fa6387%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:51Z</td>
+          <td>text/html</td>
+          <td>189,306</td>
+          <td><code title="7f48933edf42ae875ae11276956d052e8c707cf468899fd89dede193e8fa6387">7f48933edf42ae87</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:51Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">Tier-2 evaluator Redwood Research: verified 2026 model-specific evaluation (vetting research pass). Routed to review per tier-2 policy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://blog.redwoodresearch.org/archive" rel="noopener nofollow">https://blog.redwoodresearch.org/archive</a> · <a href="https://www.redwoodresearch.org/research" rel="noopener nofollow">https://www.redwoodresearch.org/research</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Estimating No-CoT Task-Completion Time Horizons of Frontier AI Models
+Models&#39; no-CoT time horizon has doubled roughly every year.
+by Francis Rhys Ward, Dewi Gould, Anders Cairns Woodruff et al. (see full author list at the end)
+About a year ago, METR showed that the length of tasks frontier models can reliably complete doubles every few months. A related safety-relevant question is this: what length of tasks can models complete without any chain of thought (CoT)? We investigate in our new paper.
+If models can do extensive reasoning without outputting any CoT, it would have implications for safety. Developers and deployment-time monitors couldn’t easily understand models’ motivations and catch dangerous planning. Models that reason substantially without a CoT might also drift further from human patterns of thought, since their reasoning is no longer constrained by text in the pretraining prior. As a result, they would be harder to understand and might be more likely to scheme.
+Extending Ryan Greenblatt’s research, we investigate this by measuring models’ ability to complete tasks without any CoT on a suite of 43 benchmarks spanning different domains. We compare AI reasoning ability to humans using the estimated 50% time horizon (TH)---the typical time taken for a human to perform a task that the LLM performs with 50% success rate. We find that frontier models like GPT-5.5 answer questions that take humans roughly three minutes with 50% reliability, and this TH has doubled approximately every year since 2019.
+We suggest that AI companies start to track no-CoT THs explicitly to find a lower bound on how much reasoning a model could do without revealing it to a CoT monitor or human. Our test suite does not require substantial inference compute so these evaluations are cheap to run.
+Methods
+We evaluated 14 frontier models from GPT-2 (2019) through GPT-5.5 (2026) on 43 benchmarks covering math, coding, knowledge, agentic tool-use, and safety-relevant questions like steganography and scheming reasoning. The questions include single-token answers, longer generation, and multi-turn agentic settings.
+In every case we prevent the model from emitting reasoning tokens before its answer by using benchmark-specific prompts and structured-output constraints.
+We estimate question difficulty in two ways:
+- Human solve time: the average time for a human to solve the question with a calculator, paper, and pencil, but no LLM access. For some benchmarks we have human solve time data. For others, we ran small-scale human trials. For the remainder, we used Claude Opus 4.7 estimates, informed via in-context human time examples.
+- Reasoning token anchor: the minimum number of tokens o3-mini needs to solve the question. o3-mini attempts each question 8 times, and we take the minimum reasoning tokens among successful attempts. If no attempt solves a given question, we drop the question. It’s rare for any evaluated model without CoT to solve a question that o3-mini fails to solve with reasoning.
+These two methods give us independent measures of “how much reasoning” is needed to solve a problem.
+For each model, we estimate its 50% solve horizon on both of these metrics using the same method as Kwa et al. We fit a logistic curve to success rate compared to log human solve time and log reasoning token anchor, and then find the point where the logistic equals 50%.
+To estimate uncertainty, we rerun the calculation 10,000 times, resampling with replacement over benchmarks, questions within each benchmark, and model runs per question. We also incorporate uncertainty in human solve times by calibrating a noise model on all questions. In contrast, we don’t model uncertainty in the reasoning token anchor.
+Results
+We find:
+- The TH doubles every 373 days (95% CI: 167–691).
+- The token horizon doubles every 437 days (95% CI: 341–571).
+GPT-5.5 is at the current frontier, with a 50% no-CoT TH of about 3 minutes and a reasoning token horizon of about 1,500 o3-mini tokens.
+Extrapolating the median forward gives ~7 minutes / ~3.7k tokens by 2028, and ~25 minutes / ~12k tokens by 2030. The doubling-time CI is wide, but even the slow end of the 95% CI puts us at almost 10 minutes of latent reasoning by 2030.
+The doubling is roughly robust to changing the distribution of benchmarks: adding longer-generation and multi-turn agentic questions, restricting to questions with measured human times only, dropping any single model, and breaking down by question domain (where domain-specific doublings range from 246 to 387 days).
+FAQ
+Why is our trend different from the one in Kwa et al.?
+Kwa et al. reported a doubling time of 182 days for THs on agentic software tasks with-CoT, which is about twice as fast as ours. The doubling times diverge after GPT-4, since most capability gains since GPT-4 have come from externalized reasoning, rather than more reasoning in a single forward pass.
+Could we be tracking memorization rather than reasoning?
+Our benchmarks include some factual recall questions, so we aren’t purely measuring reasoning. We include many reasoning-heavy questions, so we think the headline number tracks reasoning well, but imperfectly.
+Are models actually hiding their reasoning?
+We’re not claiming current models are actually hiding reasoning from CoT. We measure how much they could plausibly do invisibly, not how much they actually do. Some models verbalize their reasoning, even when it’s unnecessary.
+Could models do more hidden reasoning?
+We measure a lower bound on opaque reasoning:
+- Forcing short answers may be out-of-distribution and weird for reasoning models, which would push our estimates down. Better elicitation, or a different distribution of questions could improve model performance.
+- We measure what a model can do without any externalized reasoning tokens. But a model could learn to encode reasoning into apparently-innocuous output and so do more than this floor while still evading a CoT monitor (“steganography”).
+Conclusion
+Frontier models can do non-trivial amounts of reasoning without any CoT, and the amount of no-CoT reasoning they can do is increasing exponentially.
+Three minutes of human-equivalent reasoning might be enough for some single-shot decisions: whether to comply with an instruction, whether a scenario looks like an eval, or which of several visible options to take. But it’s probably not enough to do complex long-term power-seeking reasoning, like deciding to training-game or collude with other instances. If trends continue, models could be capable of twenty-five minutes of no-CoT reasoning by 2030, which would enable much more subversion. Even without neuralese, CoT monitoring might become substantially less effective in the next few years.
+Paper authors: Francis Rhys Ward, Dewi Gould, Anders Cairns Woodruff, Rauno Arike, Josh Hills, Alex Serrano, Ida Caspary, Jason Ross Brown, Jo J. Jiao, Patrick Leask, Twm Stone, Ram Potham, Ionut Gabriel Stan, Harry Mayne, Simeon Hellsten, Shubhorup Biswas, Ariana Azarbal, William L. Anderson, Elle Najt, Ryan Greenblatt, and Julian Stastny
+Datasets are held back from public release to avoid training contamination; available on request. This was joint work at Redwood Research, the Astra Fellows Program, Aether Research, and MATS.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

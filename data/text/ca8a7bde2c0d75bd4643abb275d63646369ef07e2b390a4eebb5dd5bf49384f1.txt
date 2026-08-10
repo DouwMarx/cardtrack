@@ -1,0 +1,32 @@
+Security Stress Test: Exposing the Brittleness of DeepSeek-V4-Pro’s Safeguards
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+May 11, 2026
+Summary
+We evaluated whether DeepSeek-V4-Pro’s built-in safeguards could reliably prevent harmful assistance across several high-risk domains, and the results were stark. When subjected to adversarial testing across Chemical, Biological, Radiological, and Nuclear (CBRN) threats, cyberattacks, and terrorism-related activities, its safeguards collapsed almost completely. Low-skill attackers were able to bypass the model’s safety mechanisms with success rates ranging from 98-100% across every domain tested. Most alarming: a publicly available jailbreak originally developed for the model’s predecessor worked on DeepSeek-V4-Pro without a single modification, exploitable by anyone with API access. This indicates that the previously known vulnerability remains completely unpatched.
+The Results: Evaluating Attack Success Across Threat Domains
+To test the limits of DeepSeek-V4-Pro's safeguards, we subjected the model to a set of high-risk prompts spanning Chemical, Biological, Radiological, and Nuclear (CBRN) threats, alongside cyberattacks and other terrorism-related activities.
+On the surface, the model's alignment appears robust: when faced with direct, unmanipulated requests, it blocked 100% of harmful queries across all tested domains.
+However, these internal safeguards proved highly brittle under adversarial testing. By applying three distinct attack strategies, we systematically dismantled these defenses, achieving success rates ranging from 98% to 100% across every domain. Critically, the model did not just offer superficial compliance. Even while jailbroken, it retained nearly its full baseline utility across biology, chemistry, and coding tasks, leveraging its advanced reasoning to generate highly detailed and capable responses to severe threat scenarios.
+How We Broke the Safeguards: Three Attack Strategies
+We explored three distinct attacks that do not require complex implementation or advanced machine learning expertise. All attacks were conducted using the official DeepSeek API, requiring no local model deployment.
+1. Public Jailbreak
+- Success Rate: This attack achieved a 100% success rate across domains.
+- Strategy: The attack attempts to override safety mechanisms by simulating a developer test mode with no restrictions.
+- Time Spent: This attack requires approximately 15 minutes of attacker effort. The jailbreak itself was not newly developed for DeepSeek-V4-Pro; instead, it reused a publicly available jailbreak created for DeepSeek-V3.2 and shared on social media at the time, functioning without any further modification.
+- Access Requirements: This method relies solely on access to the user prompt.
+2. Authority Manipulation
+- Success Rate: This attack achieved a success rate of 99.6% across domains.
+- Strategy: This prompt-based jailbreak attempts to override safeguards by fabricating a privileged user identity with special authorization.
+- Time Spent: This attack requires approximately 45 minutes of an attacker's time to develop.
+- Access Requirements: This method relies on access to both the user prompt and the system message.
+3. Response Prefill
+- Success Rate: This attack achieved a success rate of 99.6% across domains.
+- Strategy: This attack uses a mocked safety assessment that is prefilled directly into the model’s response. It inserts text that makes it appear as if the model has already rated the request as safe and begun responding in a permissive way.
+- Time Spent: This attack requires approximately 150 minutes of an attacker's time.
+- Access Requirements: This method relies on access to the user prompt, system message, and response prefill.
+The Elephant in the Room: Unpatched Vulnerabilities
+Perhaps the most concerning takeaway from our evaluation is the rapid success of the highly effective "Public Jailbreak" attack. This specific exploit was not a novel creation by our team; rather, it was a known jailbreak originally shared on social media for the model's predecessor, DeepSeek-V3.2.
+The fact that this older bypass transferred to DeepSeek-V4-Pro without a single modification indicates that updates to the model's internal safeguards, if any, failed to address this publicly known vulnerability. This exposes a massive operational scalability risk inherent to open-weight releases. Because a single, static attack string can easily be reused across many queries without modification, low-skill actors can elicit harmful content at scale. Furthermore, unlike closed-API systems, deployed checkpoints of open-weight models cannot be patched post-release. Once a vulnerability is discovered and a static bypass is shared, it enables widespread misuse indefinitely.
+As open-weight models like DeepSeek-V4-Pro continue to approach the capabilities of frontier closed-weight systems, ensuring robust alignment and security before release remains a critical, evolving hurdle for developers.
+Our Commitment to AI Safety
+This evaluation is part of FAR.AI's ongoing work to stress-test AI systems before vulnerabilities can be exploited at scale. Exposing brittleness in safety mechanisms is essential to building AI systems that are genuinely safe, not just superficially compliant. We continually assess new and emerging models across high-risk domains, disclosing vulnerabilities to developers when patchable, and sharing unpatched or unpatchable vulnerabilities with the broader community so that developers, downstream industry, policymakers, and researchers have the information they need for informed decisions and actions.

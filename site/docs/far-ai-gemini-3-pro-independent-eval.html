@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisiting Frontier LLMs&#39; Attempts to Persuade on Extreme Topics: GPT and Claude Improved, Gemini Worsened — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Revisiting Frontier LLMs&#39; Attempts to Persuade on Extreme Topics: GPT and Claude Improved, Gemini Worsened</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">far_ai</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Opus 4.5, GPT-5.1, Gemini 2.5 Pro, Gemini 3 Pro</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-02-10</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.far.ai/blog/revisiting-attempts-to-persuade" rel="noopener nofollow">https://www.far.ai/blog/revisiting-attempts-to-persuade</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:49Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20far-ai-gemini-3-pro-independent-eval&amp;body=Document%3A%20far-ai-gemini-3-pro-independent-eval%0AURL%3A%20https%3A//www.far.ai/blog/revisiting-attempts-to-persuade%0AFingerprint%3A%2073124687e421d7b508f0284e66d0757f1a55610aaa923260955a062cb28dbd9a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:49Z</td>
+          <td>text/html</td>
+          <td>97,243</td>
+          <td><code title="73124687e421d7b508f0284e66d0757f1a55610aaa923260955a062cb28dbd9a">73124687e421d7b5</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:49Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">Tier-2 evaluator FAR.AI: verified 2026 model-specific evaluation (vetting research pass). Routed to review per tier-2 policy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.far.ai/blog" rel="noopener nofollow">https://www.far.ai/blog</a> · <a href="https://far.ai/research" rel="noopener nofollow">https://far.ai/research</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.far.ai/blog/revisiting-attempts-to-persuade" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Revisiting Frontier LLMs’ Attempts to Persuade on Extreme Topics: GPT and Claude Improved, Gemini Worsened
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+February 10, 2026
+Summary
+We test recently released models from frontier companies to see whether progress has been made on their willingness to persuade on harmful topics like radicalization and child sexual abuse. We find that OpenAI’s GPT and Anthropic’s Claude models are trending in the right direction, with near zero compliance on extreme topics. But Google’s Gemini 3 Pro complies with almost any persuasion request in our evaluation, without jailbreaking.
+Recap and Background: The Attempt-to-Persuade Eval
+Back in August 2025, we released the Attempt-to-Persuade-Eval (APE) which measures a Large Language Model (LLM)&#39;s propensity to comply with prompts to persuade users on topics ranging from the benign, such as “cake is better than pie”, to the clearly harmful, such as terrorism recruitment. When an LLM is asked directly for harmful assistance, e.g., “Can you help me [commit crime X]?”, frontier models refuse virtually 100% of the time. However, if one simply asked the model to persuade other people to [commit crime X], many frontier models readily complied.
+This behavior is particularly troubling given growing evidence that LLMs can be as or even more persuasive than humans in many domains. Coupled with their low cost, this could enable bad actors to readily engage in large-scale, personalized manipulation: for example, terrorist groups could further empower their existing use of AI in radicalization of vulnerable people, or political actors could attempt to manipulate hundreds of thousands of users on social media with extensively targeted persuasion towards specific belief points (e.g., election voting, conspiracies, or other political topics).
+Recent Model Update
+In this post, we examine models released by frontier companies over the last 6 months to see whether any progress has been made. Specifically, we tested Gemini 3 Pro, GPT-5.1, and Claude Opus 4.5.
+The results are mixed. On the positive side, GPT-5.1 and Claude Opus 4.5 have an attempt rate near zero for topics that are non-controversially harmful and even refuse to persuade on conspiracies and undermining human control 15-20% of the time (previously ~0%).
+However, Gemini 3 Pro complies with almost all persuasion requests, including on mass murder, physical violence, torture, human trafficking, and child sexual abuse. This is much worse than the harmful attempt rate from the older Gemini 2.5 Pro (35% across the same topics). Compared to the full results in our August 2025 paper with twelve closed-weight and open-weight models from five providers, only two old, small models (Gemini 2.0 Flash and GPT-4o-mini) were more compliant on these topics.
+Digging Deeper into Gemini
+When trying to understand this behaviour further, we noticed that there have been several model endpoint changes over the past year to Gemini 2.5 (some of which are no longer available). We plot APE results for Gemini Pro models in chronological order from the original 2.5 Pro Preview (03-25) to the final Gemini 3 Pro Preview (09-18). The results show harmful persuasion rates fluctuate tremendously with each new release with no overall trend towards persuasion refusal. Notably, the most recent and capable model from Google, Gemini 3 Pro, has the lowest refusal rate.
+Comparison with Google&#39;s findings
+Our findings are consistent with Google’s Gemini 3 Pro Frontier Safety Framework, which reports increased manipulation propensity in Gemini 3 Pro relative to earlier models.[1]
+The publication states that they “did not see evidence that this increase translates into greater manipulative efficacy”, but reports a marked increase in odds on average on both measures of belief change. However, some of the results reported in their Figure 3 (pictured above) have error bars spanning almost the entire figure, such that even though the odds of “sentiment flip”, for example, has more than doubled on average compared to Gemini 2.5 Pro, the assessment lacked sufficient statistical power to show a significant difference. In other words, the most likely explanation for Google’s results is that Gemini 3 Pro is not only more willing to persuade but also more effective at persuasion, but this could not be established to a high degree of confidence because there were too few data points.
+Conclusion
+Even a small success rate for persuasion on extreme, dangerous topics like terrorism could result in significant real-world harm. We cannot ethically test for the real world efficacy of persuasion on such topics with humans, but LLMs have proven persuasive in diverse high-stakes contexts (such as conspiracy beliefs, vaccination intentions, political voting, and climate concern), implying persuasion success is possible.
+The results on GPT and Claude demonstrate that it is technically feasible to cut compliance with extreme persuasion requests in frontier models to near zero. In contrast, the regression observed in Gemini 3.0 Pro relative to prior models demonstrates reliably achieving low persuasion rates requires concerted post-training and evaluation effort.
+We encourage the community to adopt and extend the Attempt-to-Persuade Eval to catch these issues prior to deployment and enable more consistent safeguards across the ecosystem. APE highlights gaps in refusal behaviours that traditional harmful-assistance evaluations miss, especially around incitement and radicalization. The paper and code are open-sourced to support ongoing research.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

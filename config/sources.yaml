@@ -1,5 +1,6 @@
-# The allowlist (spec §6): two categories × two tiers.
-# tier 1 = auto-merge eligible; tier 2 = proposals become issues, not rows.
+# The allowlist (spec §6): two categories. tier is a provenance/confidence LABEL
+# recorded on every write — it no longer gates anything (policy 2026-08-10:
+# allowlist is the gate; curation happens post-merge, spec §2.5 detect-and-revert).
 # index_urls are pages Phase A diffs for new links. Some publishers bot-block
 # scripted fetches (OpenAI /news, Meta blog); index diffing quietly skips
 # failures and agent web search covers the gap.

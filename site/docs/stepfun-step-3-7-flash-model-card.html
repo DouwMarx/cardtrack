@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Step-3.7-Flash Model Card — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Step-3.7-Flash Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">stepfun</span>
+<span class="badge">first-party</span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Step-3.7-Flash</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">unknown</span>
+        <span data-pagefind-filter="year" hidden>unknown</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/stepfun-ai/Step-3.7-Flash" rel="noopener nofollow">https://huggingface.co/stepfun-ai/Step-3.7-Flash</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:43Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-3-7-flash-model-card&amp;body=Document%3A%20stepfun-step-3-7-flash-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-3.7-Flash%0AFingerprint%3A%209c8d4604eb5c84495caa1ee06acb1db0817d66adf2770ba3a4871e81dc9f9cc4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:43Z</td>
+          <td>text/html</td>
+          <td>325,049</td>
+          <td><code title="9c8d4604eb5c84495caa1ee06acb1db0817d66adf2770ba3a4871e81dc9f9cc4">9c8d4604eb5c8449</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:43Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: monitor</span>
+          <div class="just">StepFun&#39;s own model card for Step-3.7-Flash, its flagship 2026 open-weight release: a 198B sparse MoE vision-language model aimed at coding agents and search workflows, which I fetched and read (multimodal perception, tool-orchestration and code-engineering benchmarks; no safety evaluations, so has_safety_evals is false). It is clearly notable - 140k downloads, 437 likes, Apache 2.0, and independent write-ups - and stepfun has zero coverage, so I am spending the third tier-2 slot on it. I am submitting it with a null publication date on purpose rather than guessing: the card carries no dateline, the repository createdAt is 2026-05-23, and secondary coverage puts the release at May 28 or May 29 2026 without agreeing. A human should pin the date from StepFun&#39;s own announcement. I exclude the FP8, NVFP4 and GGUF re-uploads and the earlier Step-3.5-Flash line from this entry.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=FAIL;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/api/models/stepfun-ai/Step-3.7-Flash" rel="noopener nofollow">https://huggingface.co/api/models/stepfun-ai/Step-3.7-Flash</a> · <a href="https://huggingface.co/collections/stepfun-ai/step-37-flash" rel="noopener nofollow">https://huggingface.co/collections/stepfun-ai/step-37-flash</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/stepfun-ai/Step-3.7-Flash" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use stepfun-ai/Step-3.7-Flash with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use stepfun-ai/Step-3.7-Flash with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;stepfun-ai/Step-3.7-Flash&#34;, trust_remote_code=True)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+pipe(text=messages)# Load model directly
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&#34;stepfun-ai/Step-3.7-Flash&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use stepfun-ai/Step-3.7-Flash with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;stepfun-ai/Step-3.7-Flash&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;stepfun-ai/Step-3.7-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/stepfun-ai/Step-3.7-Flash
+-  SGLang  How to use stepfun-ai/Step-3.7-Flash with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;stepfun-ai/Step-3.7-Flash&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;stepfun-ai/Step-3.7-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;stepfun-ai/Step-3.7-Flash&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;stepfun-ai/Step-3.7-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use stepfun-ai/Step-3.7-Flash with Docker Model Runner: docker model run hf.co/stepfun-ai/Step-3.7-Flash
+[ModelPage]: https://static.stepfun.com/blog/step-3.7-flash/
+1. Introduction
+Step 3.7 Flash is a 198B-parameter sparse Mixture-of-Experts (MoE) vision-language model that combines a 196B-parameter language backbone with a 1.8B-parameter vision encoder for native image understanding. Engineered for high-frequency production workloads, it activates approximately 11B parameters per token and delivers a throughput of up to 400 tokens per second. Step 3.7 Flash supports a 256k context window and offers three selectable reasoning levels (low, medium, and high) so developers can easily balance speed, cost, and cognitive depth.
+We built Step 3.7 Flash for developers who need to scale agentic workflows that combine perception, search, and reasoning. It is designed to handle intensive tasks such as parsing massive financial reports in one pass, running multi-step search loops with cross-source verification, or operating concurrent coding agents in high-throughput pipelines.
+2. Capabilities &amp; Performance
+Multimodal Perception and Verification
+The model delivers top-tier visual intelligence, securing first place on SimpleVQA (Search) with a 79.2 and achieving frontier parity on V* (Python) at 95.3. These metrics reflect strong visual grounding and retrieval-augmented reasoning beyond basic image description. The model accurately processes dense visual interfaces, such as UI wireframes, application GUIs, and data charts, to map them into structured code. When it encounters an incomplete visual asset, it can independently identify missing data and execute lookups to verify context before returning a factually verified conclusion.
+Workflow Integrity and Tool Orchestration
+Execution reliability is critical for autonomous agents. Step 3.7 Flash leads the ClawEval-1.1 benchmark with a score of 67.1, which significantly outperforms the next closest competitor at 59.8. This performance demonstrates high resistance to adversarial traps and strict adherence to system policies during multi-turn orchestration. Backed by scores of 49.5 on Toolathlon and 48.1 on HLE w. Tool, this profile ensures high trajectory integrity. Step 3.7 Flash reliably interacts with external APIs and executes long-horizon workflows without drifting from instructions or violating system constraints.
+Code Engineering and Professional Baselines
+Step 3.7 Flash is built for live engineering tasks and secured a definitive second-place finish on SWE-Bench PRO with a score of 56.3. It can independently trace multi-file repositories, isolate bugs from raw issue reports, and generate functional patches that pass automated unit tests. While evaluations like Terminal-Bench 2.1 (59.5) and GDPVal-AA (45.8) show clear areas for future optimization compared to the absolute peak of the cohort, they establish a dependable baseline for system interactions and structured professional deliverables.
+3. Pricing
+| Token Type | Price |
+|---|---|
+| Input (cache miss) | $0.20 / M tokens |
+| Input (cache hit) | $0.04 / M tokens |
+| Output | $1.15 / M tokens |
+4. Availability, Deployment, and Ecosystem
+- Availability: Step 3.7 Flash is available on the StepFun Open Platform — platform.stepfun.ai (Global) and platform.stepfun.com (China), OpenRouter, and NVIDIA NIM. StepFun is also partnering with DeepInfra, Fireworks AI, and Modal to expand availability soon.
+- Deployment: Step 3.7 Flash supports flexible deployment across cloud, data center, and local environments. For large-scale production and enterprise use cases, Step 3.7 Flash can be deployed on modern data center infrastructure. For local and workstation scenarios, it can also run on high-memory devices such as NVIDIA DGX Station, AMD Ryzen AI Max+ 395-based systems, and Mac Studio / Macbook Pro devices with at least 128GB unified memory.
+- Ecosystem: Step 3.7 Flash is supported across popular open-source infrastructure for both inference and model development. For inference and serving, developers can use vLLM, SGLang, Hugging Face Transformers, and llama.cpp. For model development &amp; customization workflows, StepFun model support has landed in the NVIDIA Nemo ecosystem, including AutoModel, Megatron Core and Megatron Bridge. Step 3.7 Flash is also available as an NVIDIA NIM inference microservice for on-prem, cloud, or hybrid deployment.
+5. Examples
+You can get started with Step 3.7 Flash in minutes using StepFun&#39;s API or via other inference providers.
+Pick the right base_url for your region. StepFun operates two regional platforms with separate API hosts. The base_url you pass to the OpenAI client must match the platform where your API key was issued, otherwise requests will be rejected as unauthorized.
+- Global: platform.stepfun.ai —
+base_url=https://api.stepfun.ai/v1- China: platform.stepfun.com —
+base_url=https://api.stepfun.com/v1
+To avoid hard-coding the wrong region, the examples below read both the API key and base URL from environment variables. Export them once before running:
+export STEP_API_KEY=&#34;sk-...&#34;
+export STEP_BASE_URL=&#34;https://api.stepfun.ai/v1&#34;   # use https://api.stepfun.com/v1 for the China platform
+5.1 Chat Example
+import os
+from openai import OpenAI
+client = OpenAI(
+    api_key=os.environ[&#34;STEP_API_KEY&#34;],
+    base_url=os.environ[&#34;STEP_BASE_URL&#34;],
+)
+completion = client.chat.completions.create(
+    model=&#34;step-3.7-flash&#34;,
+    messages=[
+        {
+            &#34;role&#34;: &#34;system&#34;,
+            &#34;content&#34;: &#34;You are an AI assistant provided by StepFun. You are good at Chinese, English, and many other languages, and you can see, think, and act to help users get things done.&#34;,
+        },
+        {
+            &#34;role&#34;: &#34;user&#34;,
+            &#34;content&#34;: &#34;Introduce StepFun&#39;s artificial intelligence capabilities.&#34;
+        },
+    ],
+)
+print(completion)
+5.2 Text and Image Input Example
+import os
+from openai import OpenAI
+client = OpenAI(
+    api_key=os.environ[&#34;STEP_API_KEY&#34;],
+    base_url=os.environ[&#34;STEP_BASE_URL&#34;],
+)
+completion = client.chat.completions.create(
+    model=&#34;step-3.7-flash&#34;,
+    messages=[
+        {
+            &#34;role&#34;: &#34;user&#34;,
+            &#34;content&#34;: [
+                {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What is in this picture?&#34;},
+                {
+                    &#34;type&#34;: &#34;image_url&#34;,
+                    &#34;image_url&#34;: {&#34;url&#34;: &#34;https://example.com/photo.jpg&#34;},
+                },
+            ],
+        },
+    ],
+)
+print(completion)
+6. Local Deployment
+Step 3.7 Flash is optimized for local inference and supports industry-standard backends including vLLM, SGLang, Hugging Face Transformers and llama.cpp.
+6.1 vLLM
+We recommend using StepFun&#39;s prebuilt vLLM Docker image with Step 3.7 support.
+- Install vLLM.
+# via Docker
+docker pull vllm/vllm-openai:stepfun37
+- Launch the server.
+- For FP8 model
+vllm serve &lt;MODEL_PATH_OR_HF_ID&gt; \
+--served-model-name step3p7-flash \
+--tensor-parallel-size 8 \
+--enable-expert-parallel \
+--disable-cascade-attn \
+--reasoning-parser step3p5 \
+--enable-auto-tool-choice \
+--tool-call-parser step3p5 \
+--speculative_config &#39;{&#34;method&#34;: &#34;mtp&#34;, &#34;num_speculative_tokens&#34;: 3}&#39; \
+--trust-remote-code
+- For BF16 model
+vllm serve &lt;MODEL_PATH_OR_HF_ID&gt; \
+--served-model-name step3p7-flash-bf16 \
+--tensor-parallel-size 8 \
+--enable-expert-parallel \
+--disable-cascade-attn \
+--reasoning-parser step3p5 \
+--enable-auto-tool-choice \
+--tool-call-parser step3p5 \
+--speculative_config &#39;{&#34;method&#34;: &#34;mtp&#34;, &#34;num_speculative_tokens&#34;: 3}&#39; \
+--trust-remote-code
+- For NVFP4 model Compared to standard precisions, running the FP4 quantized version requires modelopt activation and FP8 KV Cache alignment.
+python3 -m vllm.entrypoints.openai.api_server \
+--host 0.0.0.0 \
+--port ${PORT} \
+--model stepfun-ai/Step-3.7-Flash-NVFP4 \
+--served-model-name step3p7 \
+--tensor-parallel-size 4 \
+--gpu-memory-utilization 0.9 \
+--enable-expert-parallel \
+--trust-remote-code \
+--quantization modelopt \
+--kv-cache-dtype fp8 \
+--max-model-len 8192 \
+--reasoning-parser step3p5 \
+--enable-auto-tool-choice \
+--tool-call-parser step3p5 \
+--async-scheduling
+6.2 SGLang
+- Install SGLang.
+# via Docker
+docker pull lmsysorg/sglang:dev-step-3.7-flash
+# or from source (pip)
+pip install &#34;sglang[all] @ git+https://github.com/sgl-project/sglang.git&#34;
+- Launch the server.
+Note: For Blackwell GPUs, --mm-attention-backend fa4 may be used.
+- For BF16 model
+sglang serve --model-path stepfun-ai/Step-3.7-Flash \
+  --tp 8 \
+  --reasoning-parser step3p5 \
+  --tool-call-parser step3p5 \
+  --enable-multimodal \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --enable-multi-layer-eagle \
+  --trust-remote-code \
+  --host 0.0.0.0 \
+  --port 8000
+- For FP8 model
+sglang serve --model-path stepfun-ai/Step-3.7-Flash-FP8 \
+  --tp 8 \
+  --ep 4 \
+  --reasoning-parser step3p5 \
+  --tool-call-parser step3p5 \
+  --enable-multimodal \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --enable-multi-layer-eagle \
+  --trust-remote-code \
+  --host 0.0.0.0 \
+  --port 8000
+- For NVFP4 model
+sglang serve --model-path stepfun-ai/Step-3.7-Flash-NVFP4 \
+  --tp 4 --ep 4 \
+  --moe-runner-backend flashinfer_trtllm \
+  --kv-cache-dtype fp8_e4m3 \
+  --quantization modelopt_fp4 \
+  --trust-remote-code \
+  --reasoning-parser step3p5 \
+  --tool-call-parser step3p5 \
+  --attention-backend trtllm_mha
+6.3 Transformers (Debug / Verification)
+Use this snippet for quick functional verification. For high-throughput serving, use vLLM or SGLang.
+Note: Deployment of this model requires transformers 5.0 or later.
+from transformers import AutoProcessor, AutoModelForCausalLM
+MODEL_PATH = &#34;&lt;MODEL_PATH_OR_HF_ID&gt;&#34;
+# 1. Setup
+processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL_PATH,
+    device_map=&#34;auto&#34;,
+    dtype=&#34;auto&#34;,
+    trust_remote_code=True
+)
+# 2. Prepare Input
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://example.com/photo.jpg&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What is in this picture?&#34;}
+        ]
+    },
+]
+inputs = processor.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+    return_tensors=&#34;pt&#34;,
+).to(model.device)
+# 3. Generate
+generated_ids = model.generate(**inputs, max_new_tokens=128, do_sample=False)
+output_text = processor.decode(generated_ids[0][inputs.input_ids.shape[1]:], skip_special_tokens=True)
+print(output_text)
+6.4 llama.cpp
+System Requirements
+GGUF Model Weights:
+| Component | Quantization | File Size |
+|---|---|---|
+| Language Model | Q4_K_S | 111.5 GB |
+| Language Model | IQ4_XS | 104.99 GB |
+| Language Model | Q3_K_L | 102.5 GB |
+| Multimodal Projector | FP16 | 3.97 GB |
+- Runtime Overhead: ~7 GB
+- Minimum unified memory / VRAM: 120 GB (e.g., Mac Studio, NVIDIA DGX Station, AMD Ryzen AI Max+ 395)
+- Recommended: 128 GB unified memory
+Steps
+- Use llama.cpp:
+git clone https://github.com/stepfun-ai/llama.cpp.git
+cd llama.cpp
+git checkout -b step3.7 origin/step3.7
+- Build llama.cpp on Mac:
+cmake -B build-macos -S . \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=ON \
+    -DLLAMA_BUILD_SERVER=ON \
+    -DLLAMA_BUILD_TESTS=ON \
+    -DGGML_METAL=ON \
+    -DGGML_METAL_EMBED_LIBRARY=ON \
+    -DGGML_BLAS=ON \
+    -DGGML_BLAS_VENDOR=Apple \
+    -DGGML_ACCELERATE=ON \
+    -DGGML_NATIVE=ON
+cmake --build build-macos -j8
+- Build llama.cpp on DGX-Spark:
+cmake -S . -B build-cuda \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DGGML_CUDA=ON \
+  -DGGML_CUDA_GRAPHS=ON \
+  -DGGML_CUDA_FORCE_MMQ=ON \
+  -DLLAMA_OPENSSL=OFF \
+  -DLLAMA_BUILD_COMMON=ON \
+  -DLLAMA_BUILD_TOOLS=ON \
+  -DLLAMA_BUILD_SERVER=ON \
+  -DLLAMA_BUILD_EXAMPLES=OFF \
+  -DLLAMA_BUILD_TESTS=OFF
+cmake --build build-cuda -j8
+- Build llama.cpp on AMD Windows:
+cmake -S . -B build-vulkan \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DGGML_VULKAN=ON \
+  -DGGML_NATIVE=ON \
+  -DLLAMA_BUILD_SERVER=ON \
+  -DLLAMA_BUILD_UI=OFF \
+  -DLLAMA_BUILD_TOOLS=ON
+cmake --build build-vulkan -j8
+- Run with llama-cli :
+./llama-cli -m Step3.7_Q4_K_S.gguf -b 2048 -ub 2048 -fa on --temp 1.0 -p &#34;What&#39;s your name?&#34;
+- Test performance with llama-batched-bench :
+./llama-batched-bench -m step3.7_Q4_K_S.gguf -c 32768 -b 2048 -ub 2048 -npp 0,2048,8192,16384,32768 -ntg 128 -npl 1
+7. Using Step 3.7 Flash on Agent Platforms
+You can use Step 3.7 Flash on Agent platforms such as Hermes Agent, OpenClaw, Kilo Code, and more.
+8. Getting in Touch
+As we work to shape the future of AGI by expanding broad model capabilities, we want to ensure we are solving the right problems. We invite you to be part of this continuous feedback loop — your insights directly influence our priorities.
+- Join the Conversation: Our Discord community is the primary hub for brainstorming future architectures, proposing capabilities, and getting early access updates 🚀
+- Report Friction: Encountering limitations? You can open an issue or start a discussion on GitHub / HuggingFace, or flag it directly in our Discord support channels.
+📄 License
+This project is open-sourced under the Apache 2.0 License.
+- Downloads last month
+- 139,414
+Model tree for stepfun-ai/Step-3.7-Flash
+Spaces using stepfun-ai/Step-3.7-Flash 28
+Collection including stepfun-ai/Step-3.7-Flash
+Evaluation results
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   56.3
+- cais/hle · Hle View evaluation results      48.1 *</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

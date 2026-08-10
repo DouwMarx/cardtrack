@@ -65,14 +65,13 @@ def find_logical_duplicates(
     doc_type: str,
     model_names: list[str],
     title: str = "",
-    publication_date: str | None = None,
     exclude_canonical_url: str | None = None,
 ) -> list[sqlite3.Row]:
     """Catch "same card, different URL" (spec §5): publisher + doc_type + overlapping
-    normalized model names, PLUS same publication date or clearly similar title.
-    The extra condition matters for evaluators, who legitimately publish many
-    distinct reports about the same models; exact mirrors are caught separately by
-    the content fingerprint. Outcome for a match is needs_review, never a merge."""
+    normalized model names PLUS clearly similar title. Same-date alone is not a
+    trigger (two distinct docs about one model on launch day is normal); exact
+    mirrors are caught separately by the content fingerprint. Outcome for a match
+    is needs_review, never a merge."""
     proposed = model_name_set(model_names)
     if not proposed:
         return []
@@ -87,9 +86,6 @@ def find_logical_duplicates(
         existing = model_name_set(json.loads(row["model_names"]))
         if not (proposed & existing):
             continue
-        same_date = (publication_date is not None
-                     and row["publication_date"] == publication_date)
-        similar_title = title_similarity(title, row["title"]) >= TITLE_SIMILARITY_THRESHOLD
-        if same_date or similar_title:
+        if title_similarity(title, row["title"]) >= TITLE_SIMILARITY_THRESHOLD:
             matches.append(row)
     return matches

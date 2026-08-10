@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons from External Review of DeepMind&#39;s Scheming Inability Safety Case — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Lessons from External Review of DeepMind&#39;s Scheming Inability Safety Case</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">saferai</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Gemini 2.5 Pro</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-16</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.safer-ai.org/research/lessons-from-external-review-of-deepminds-scheming-inability-safety-case" rel="noopener nofollow">https://www.safer-ai.org/research/lessons-from-external-review-of-deepminds-scheming-inability-safety-case</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:48Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20saferai-gemini-2-5-pro-independent-eval&amp;body=Document%3A%20saferai-gemini-2-5-pro-independent-eval%0AURL%3A%20https%3A//www.safer-ai.org/research/lessons-from-external-review-of-deepminds-scheming-inability-safety-case%0AFingerprint%3A%20a3499b37085a27eb87086f27aebf5059603d1e0a11321d556c18d05dbabb7546%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:48Z</td>
+          <td>text/html</td>
+          <td>52,947</td>
+          <td><code title="a3499b37085a27eb87086f27aebf5059603d1e0a11321d556c18d05dbabb7546">a3499b37085a27eb</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:48Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">Tier-2 evaluator SaferAI: verified 2026 model-specific evaluation (vetting research pass). Routed to review per tier-2 policy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.safer-ai.org/research" rel="noopener nofollow">https://www.safer-ai.org/research</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.safer-ai.org/research/lessons-from-external-review-of-deepminds-scheming-inability-safety-case" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>In 2025, Google DeepMind published something rare in frontier AI: a structured safety case arguing that Gemini 2.5 Pro could not cause severe harm through scheming, even if it were misaligned. This paper reports what happened when an independent team spent three months testing whether that argument holds.
+Safety cases are structured arguments, supported by evidence, that a system is safe enough to deploy. In aviation, nuclear, and medical devices they are never accepted on the developer’s word alone. Independent review is what turns a self-assessment into something regulators and decision-makers can trust, and frontier AI has no established equivalent yet. The review team of six, with backgrounds spanning systems safety assurance, AI governance, machine learning, and evaluations, applied the Assurance 2.0 framework over roughly four person-months, with limited engagement from DeepMind itself.
+The case earns real credit. It is unusually explicit about its argument structure, its dependence on empirical evaluations, and some of its own possible defeaters, and DeepMind’s decision to publish it enabled exactly the scrutiny this paper provides.
+The review nonetheless surfaced concerns that materially affect what the safety case can support. The case never defines severe harm, leaving the property being assured unspecified. It does not describe the boundary of the assured system, so it is unclear whether the claim covers the bare model or the full deployment stack of scaffolding, tools, and memory that shapes what the model can actually do. Internal deployment could mean Google DeepMind or the whole of Google, with 185,000 employees and products serving billions, and exposure differs enormously between the two readings. Weighing the evidence, the team found the evaluations moderately confirm that Gemini 2.5 Pro fails DeepMind’s specific proxy tasks, but only weakly confirm the deployment-relevant incapability the argument rests on. No argument is offered for ruling out sandbagging, where a model strategically underperforms on the very tests designed to detect its capabilities. History also pressures a load-bearing premise. The claim that humans under ordinary oversight cannot cause severe harm sits uneasily beside the 2024 CrowdStrike incident, in which a single faulty update passing through ordinary controls disrupted 8.5 million systems.
+From this experience the paper draws concrete recommendations for both sides of a review. Developers should publish safety cases in structured form, with defined system models, hazard logs, criticality analyses, and explicit validity conditions, and should grant trusted reviewers controlled access to evidence that cannot be made public. Reviewers should form their own risk pathways and criticality assessments before reading the developer’s, a discipline that guards against inheriting the author’s blind spots.
+The gaps identified reflect the current state of the field rather than a failing unique to DeepMind. They are also the strongest argument for making external review routine before safety cases are used to justify deployment decisions.
+              Back to top</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

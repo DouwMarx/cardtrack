@@ -23,4 +23,9 @@ soft:                                # recorded, displayed, filterable — not b
   has_quantitative_data: null
   pdf_available: null
 policy:
-  when_uncertain: file_issue         # the prime directive: an issue, not a row
+  # Inclusion philosophy (2026-08-10): the allowlist is the gate. Allowlisted
+  # publishers auto-merge regardless of tier (tier is a provenance label only).
+  # We accept slightly more false positives and curate OUT via issues/removals;
+  # issues are never a pre-approval queue. Validator-filed issues remain only for
+  # suspected duplicates — genuine exclusion judgment calls.
+  when_uncertain: admit_and_flag

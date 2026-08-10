@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLM-5.2 Risk Evaluation Report — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">GLM-5.2 Risk Evaluation Report</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">saferai</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Opus 4.6, Claude Opus 4.7, GLM-5.2, GPT-5.4, GPT-5.5</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-08-02</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://www.safer-ai.org/research/glm-5-2-evaluation-report" rel="noopener nofollow">https://www.safer-ai.org/research/glm-5-2-evaluation-report</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T09:47:48Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20saferai-glm-5-2-independent-eval&amp;body=Document%3A%20saferai-glm-5-2-independent-eval%0AURL%3A%20https%3A//www.safer-ai.org/research/glm-5-2-evaluation-report%0AFingerprint%3A%203127a26586fb1a048b435fead9ee848c6a15b1175ca4307d6019734d6e9b748a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T09:47:48Z</td>
+          <td>text/html</td>
+          <td>83,197</td>
+          <td><code title="3127a26586fb1a048b435fead9ee848c6a15b1175ca4307d6019734d6e9b748a">3127a26586fb1a04</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T09:47:48Z</span>
+        <strong>add</strong>
+        <span class="run">run policy-reprocess-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">Tier-2 evaluator SaferAI: verified 2026 model-specific evaluation (vetting research pass). Routed to review per tier-2 policy.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.safer-ai.org/research" rel="noopener nofollow">https://www.safer-ai.org/research</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://www.safer-ai.org/research/glm-5-2-evaluation-report" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>We use cookies to make your experience on this website better.
+GLM-5.2 Risk Evaluation Report
+Publication date
+August 2, 2026
+authors
+Chinmayi Dixit*, Jacob Davies*, Jasmine Li, Ben Snodin, Jack Kengott, Henry Papadatos
+share
+Abstract
+SaferAI&#39;s independent evaluation of GLM-5.2, the first in Europe, tests Zhipu AI&#39;s open-weight flagship across the four systemic risk areas in the EU Code of Practice and finds frontier-level capability on cyber and biology benchmarks without the safeguards frontier developers apply.
+Open-weight models are approaching the capabilities of frontier closed-weight models, yet they are often released without the safety evaluations that accompany closed models, and their safeguards are either weak or can be easily removed. This report presents SaferAI’s external evaluation of GLM-5.2, Zhipu AI’s open-weight flagship model (released June 16th 2026), across the four systemic risk areas defined in the EU General-Purpose AI Code of Practice: Loss of Control, Cyber Offense, CBRN, and Harmful Manipulation. We worked from the public API, with no developer cooperation, and compared GLM-5.2 against recent frontier models, principally Claude Opus 4.7 (released April 16th 2026) and GPT-5.5 (released April 24th 2026).
+At release, GLM-5.2’s capabilities trailed the frontier by roughly two to four months, depending on the area, sometimes falling further behind. On biological knowledge, it was about level with Opus 4.7 and slightly below GPT-5.5, roughly two months behind. On cyber, it was around 2-4 months behind, at the level of Opus 4.6 and near GPT-5.5. On software engineering, it was the furthest behind, below Opus 4.6 and GPT-5.4, the frontier models from around four months earlier. Beyond capability, it refused none of the offensive-security or biological tasks, and as an open-weight model, any safeguards that might be present can be stripped by a self-hoster. Additionally, it attempted persuasion on conspiracy and control-undermining topics more readily than the comparison models, and it could be pushed into harmful actions under pressure. We do not draw an overall risk judgment from these results, but they reinforce the case for more systematic, independent safety testing of open-weight models at this capability level.
+Cyber Offense
+Cyber Offense risk may manifest as uplift, where AI lowers the skill barrier and widens the pool of cyber attackers, or autonomy, where AI runs the attack itself from reconnaissance to objective (Google DeepMind 2024).
+Cyber Offense evaluations are usually measured through sub-capabilities of the models, such as identification and exploitation of known vulnerable machines and ability to identify known vulnerabilities in a given codebase. In this report, we assess a subset of GLM-5.2’s offensive cybersecurity capabilities using the Cybench and CyberGym benchmarks (Zhang et al., 2024; Wang et al., 2025).
+GLM-5.2 performs near saturation on Cybench, within confidence intervals of Opus 4.7 and GPT-5.5, across offensive skills including reverse engineering, exploitation, and web security. On Cybergym, GLM-5.2 performs comparably to Opus 4.6 and behind GPT-5.5 when given a 2M token budget per task. However, its CyberGym reproduction rate rose from 36.6% to 76.2% as the token budget increased from 2M to 50M, without hitting a separate wall-clock limit. This is in line with UK AISI findings that cyber capabilities scale with inference budget (UK AI Security Institute 2026).
+As GLM-5.2 is an open-weight model, its cyber capabilities are not gated behind content filtering, as is often the case with closed-weight frontier models – such as Claude Opus 4.7, which declined our CyberGym evaluations. This suggests that GLM-5.2 poses a higher Cyber Offense risk than a closed model of comparable capability. Together, we conclude that the cyber capability of GLM-5.2 is comparable to frontier models from 2-4 months before its release.
+Bio
+For biological risk, a key concern is uplift where the model provides a malicious actor the ability they would otherwise lack across the knowledge and skill-intensive steps required to acquire, produce, or deploy a biological weapon (e.g., troubleshooting laboratory protocols, manipulating genetic sequences, and executing multi-step molecular cloning).
+On both LAB-Bench and BioMysteryBench, GLM-5.2 performs at the level of Opus 4.7 and GPT-5.5, two frontier models released about two months earlier. On LAB-Bench, it meets or exceeds the human-expert baseline on every subtask. On BioMysteryBench, it solves about 81% of the human-solvable problems it completes, and about a third of the problems no human expert solved.
+Both benchmarks test general scientific skills, so blanket refusals on these tasks would be over-refusal. Consistent with this, no model refused a task on either LAB-Bench or BioMysteryBench. The barrier between this capability and misuse is therefore the controls around access to the model rather than its willingness to answer. On a hosted API, those controls include content filtering, abuse monitoring, rate limits, and the ability to withdraw or patch access after release. In our runs they engaged only lightly: content filtering triggered on a low share of samples (about 4.9% of Opus’ LAB-Bench samples and 1 to 3% on BioMysteryBench).
+At a similar level of capability, an open-weight model carries more misuse risk than an API-gated one, because the controls that detect or limit misuse are absent and cannot be reinstated after release. However, a full risk assessment weighs other factors, and these two benchmarks cover only part of the biological skill set and none of the operational pathway. On this evidence, GLM-5.2 reaches frontier-level biological capability with weaker safeguards than the comparably capable models it matches.
+Loss of Control
+To pose a Loss of Control risk, a model should be able to start and maintain a rogue deployment against its developer’s intent. This may include subverting the companies’ existing control and oversight measures, deploying itself on an unmonitored channel, and operating for a sustained period. We measure the capabilities of the model required to pose LoC risk and its propensities.
+GLM-5.2 performs only slightly worse than both Opus 4.6 and GPT-5.4 on SWE-Bench Pro, though we note that with further scaffolding, fine-tuning, and affordances, these capabilities may increase. On the other hand, two factors might lead us to overstate actual SWE capabilities. First, because we rely on tasks from a public dataset, there may be data contamination leading to inflated benchmark performance. Second, benchmark tasks are on average easier for models than real-world tasks (for example, see the discussion of “hill-climbable tasks” on page 17 of the METR Frontier Risk Report (METR 2026a)).
+Our Agentic Misalignment results indicate it may be more prone to take actions like blackmail to preserve its goal than the comparison models. Combined with the open-weight availability of this model, we see this as a risk profile that warrants continued monitoring, particularly as capabilities continue to improve in future model releases.
+Harmful Manipulation
+The public evaluation landscape for harmful manipulation is thin: few benchmarks measure this risk area comprehensively. The available benchmarks are useful for observing model behavior across different elicitation conditions, but they cannot decisively demonstrate Harmful Manipulation risk, since they do not measure the downstream effect on human behavior. To close this gap, some frontier developers such as Google DeepMind supplement them with controlled human studies that measure manipulation directly through its effect on human participants (Akbulut et al. 2026). Such studies predict real-world manipulation risk more accurately but are considerably more resource-intensive.
+We evaluate some of the sub-component propensities of a model to pose Harmful Manipulation risk through two benchmarks measuring dishonesty (MASK) and the willingness to persuade towards a harmful action or belief (APE). While these evaluations provide us with information on tvhe propensities of the model, they do not form a complete picture of the Harmful Manipulation risk a model poses.
+On MASK, GLM-5.2 shows similar levels of dishonesty under pressure as Opus 4.7 and worse than GPT-5.5.
+While it correctly refuses to persuade towards severely harmful topics at the same rate as the comparison models, GLM-5.2 shows a willingness to persuade towards conspiracies and topics that undermine control more often than them. Neither benchmark measures what happens when a persuasion attempt reaches a real target population, so this signals a propensity difference rather than a measured real-world manipulation risk.
+Combined with the open-weight availability of this model, whose propensities could shift with further fine-tuning, we see this as a risk profile that warrants continued monitoring, particularly around the conspiracy and control-undermining categories where GLM-5.2 stands apart from comparison models.
+Conclusion
+Across the four risk areas, GLM-5.2’s capabilities are broadly comparable to frontier models released a few months earlier, with some variation by risk area. Its biological knowledge is strong, meeting or exceeding the human-expert baseline, and its offensive-cyber capability is strong on both exploit generation and CTF challenges. Its software-engineering capability is weaker, below both the comparison models and the level METR associates with a robust rogue deployment.
+On propensities, GLM-5.2 is close to the comparison models in some regards: its honesty under pressure is at a similar level to Opus 4.7 and worse than GPT-5.5. However, it shows some harmful tendencies: it has a slightly elevated willingness to cooperate with misuse, shows behaviors related to loss-of-control when under pressure, and can be induced to take harmful actions in adversarial scenarios. While the model refuses to persuade users towards a non-controversially harmful position, it willingly did so for conspiracies and topics undermining control.
+These observations are preliminary and rest on a subset of public benchmarks, so they do not support an overall risk judgment. They fit a broader pattern of results showing that open-weight models are approaching frontier capability while typically being released without published developer safety evaluations and with weaker safeguards. Additionally, once released, their safeguards can be removed and cannot be restored. On that basis, open-weight models of this capability warrant more systematic and independent safety testing than they currently receive.
+Limitations and Future Work
+Capability Coverage: Fixed benchmarks only capture narrow slices of risk areas and are prone to saturation as models improve, often missing strategic or real-world capabilities. A comprehensive evaluation strategy requires combining tightly scoped benchmarks with open-ended, complex environments like cyber ranges to provide a fuller picture of model risks.
+Evaluation Awareness: Models sometimes exhibit awareness that they are being tested, which can alter their behavior and undermine the validity of safety evaluations. Consequently, safe results on propensity tests cannot definitively prove that a model is aligned, necessitating more robust evaluation methodologies.
+Data Contamination: Because most public benchmarks are widely accessible, models may have “seen” tasks during training, leading to inflated scores that do not accurately reflect real-world reasoning. Shifting toward private, held-out benchmarks and audit scaffolds validated against deployment data is essential to reduce memorization risk and provide clearer capability assessments.
+Validity: Evaluation environments often lack the complexity of real-world scenarios, creating gaps between test performance and actual risk. Addressing these limitations requires using more diverse evaluation tools — such as practitioner surveys, real-world data, and uplift studies — to capture factors that current benchmarks fail to represent.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:50:47Z</p></footer>
+</body>
+</html>

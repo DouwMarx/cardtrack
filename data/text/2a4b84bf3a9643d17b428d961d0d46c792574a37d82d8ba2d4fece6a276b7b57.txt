@@ -1,0 +1,25 @@
+April 28, 2026Blog
+GAv26.04
+Mistral Medium 3.5
+Our frontier-class multimodal model optimized for agentic and coding use cases. Released as open weights under a Modified MIT license.
+Speed
+Performance
+Modalities
+Context
+256k
+Price
+$1.5
+/M Tokens
+$7.5
+/M Tokens
+Speed
+Performance
+Modalities
+Context
+256k
+Price
+$1.5
+/M Tokens
+$7.5
+/M Tokens
+Other Models

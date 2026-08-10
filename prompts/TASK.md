@@ -61,9 +61,11 @@ for clarification, is always the safe move.
 6. **Friction log**: append one JSON line per obstacle you hit (rejected proposals
    you believe were wrong, unfetchable-but-alive pages, ambiguous criteria) to
    `logs/friction.jsonl`: `{"ts": "...", "kind": "...", "detail": "..."}`.
-7. **Proposals**: if you see a recurring process problem with concrete evidence,
-   append a dated entry to `PROPOSALS.md` (problem, suggested change, evidence).
-   Rare is expected; empty is fine.
+7. **Proposals**: if you see a recurring process problem, a schema/criteria
+   limitation, or a document class the pipeline cannot accommodate, append a dated
+   entry to `PROPOSALS.md` (problem, suggested change, evidence). This is the ONLY
+   channel for such reports — never park work in review issues for humans; human
+   review time is the scarcest resource in this system. Rare is expected.
 8. **Run report**: write `logs/run_report.md` — what you checked, proposed, and
    skipped, with the validator's verdict for each proposal (it prints JSON).
 
