@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Daily run orchestrator (spec §8): Phase A monitor → Phase B agent → Phase C build/publish.
+# Daily run orchestrator: Phase A monitor → Phase B agent → Phase C build/publish.
 # Idempotent and lock-guarded; a missed day self-heals on the next run.
 set -euo pipefail
 
@@ -74,7 +74,7 @@ echo "-- Phase C: build & publish"
 
 if [ "$(setting publish.git_commit false)" = "true" ]; then
   # scoped add: never sweep unrelated working-tree changes into an automated commit
-  git -C "$ROOT" add data site PROPOSALS.md logs 2>/dev/null || true
+  git -C "$ROOT" add data site logs 2>/dev/null || true
   if git -C "$ROOT" diff --cached --quiet; then
     echo "nothing to commit"
   else

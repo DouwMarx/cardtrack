@@ -1,6 +1,7 @@
-# The allowlist (spec §6): two categories. tier is a provenance/confidence LABEL
-# recorded on every write — it no longer gates anything (policy 2026-08-10:
-# allowlist is the gate; curation happens post-merge, spec §2.5 detect-and-revert).
+# The allowlist: two categories (publishers = first-party, evaluators = independent).
+# tier is a provenance/confidence LABEL recorded on every write — it gates nothing.
+# Being on this list is the only inclusion gate; curation happens post-merge
+# (detect-and-revert: a bad row is one git revert away, a missed doc is invisible).
 # index_urls are pages Phase A diffs for new links. Some publishers bot-block
 # scripted fetches (OpenAI /news, Meta blog); index diffing quietly skips
 # failures and agent web search covers the gap.
@@ -12,23 +13,25 @@ publishers:            # first-party
     display_name: Anthropic
     index_urls:
       - https://www.anthropic.com/news
-      - https://www.anthropic.com/transparency
+      - https://www.anthropic.com/transparency/model-report
+      - https://www.anthropic.com/research
   openai:
     tier: 1
     display_name: OpenAI
     index_urls:
-      - https://openai.com/safety/
+      - https://deploymentsafety.openai.com/
   google_deepmind:
     tier: 1
     display_name: Google DeepMind
     index_urls:
       - https://deepmind.google/discover/blog/
-      - https://deepmind.google/models/
+      - https://deepmind.google/models/model-cards/
   meta:
     tier: 1
     display_name: Meta AI
     index_urls:         # reachable since the browser-impersonation fetch fallback
       - https://ai.meta.com/blog/
+      - https://research.meta.ai/blog/
   mistral:
     tier: 2
     display_name: Mistral AI
@@ -39,11 +42,12 @@ publishers:            # first-party
     display_name: xAI
     index_urls:
       - https://x.ai/news
+      - https://x.ai/safety
   alibaba_qwen:
     tier: 2
     display_name: Alibaba Qwen
-    index_urls:
-      - https://qwenlm.github.io/blog/
+    index_urls:            # qwen.ai renders client-side (unfetchable); HF org covers releases
+      - https://huggingface.co/Qwen
   thinking_machines:
     tier: 1
     display_name: Thinking Machines Lab
@@ -114,6 +118,9 @@ evaluators:            # independent
     display_name: Epoch AI
     index_urls:
       - https://epoch.ai/latest
+      - https://epoch.ai/publications
+      - https://epoch.ai/data-insights
+      - https://epoch.ai/gradient-updates
   securebio:
     tier: 1
     display_name: SecureBio
@@ -138,12 +145,12 @@ evaluators:            # independent
       - https://www.rand.org/global-and-emerging-risks/centers/ai-security-and-technology/projects/canary.html
       - https://www.rand.org/global-and-emerging-risks/centers/ai-security-and-technology/research-and-commentary.html
   saferai:
-    tier: 2                       # first first-hand model eval Aug 2026; promote if sustained
+    tier: 1
     display_name: SaferAI
     index_urls:
       - https://www.safer-ai.org/research
   far_ai:
-    tier: 2
+    tier: 1
     display_name: FAR.AI
     index_urls:
       - https://www.far.ai/blog

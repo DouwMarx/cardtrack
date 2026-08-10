@@ -1,9 +1,10 @@
 # Agent proposals
 
-Append-only. The daily agent's only self-improvement channel (spec §2.10): dated
-entries suggesting process/schema/criteria changes, with evidence from
+Append-only. The daily agent's only self-improvement channel: dated entries
+suggesting process/schema/criteria changes, with evidence from
 `logs/friction.jsonl`. Humans read and decide; agents never modify code, schema,
-prompts, or criteria.
+prompts, or criteria. (Lives under logs/ so the sandboxed agent's atomic-write
+tools can create their temp files next to it.)
 
 Format:
 

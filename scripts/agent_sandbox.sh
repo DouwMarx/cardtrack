@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# OS-level sandbox for Phase B (spec §4). Tool scoping (--allowedTools) is ergonomics;
+# OS-level sandbox for the curation agent. Tool scoping (--allowedTools) is ergonomics;
 # this is the boundary. Layout inside the sandbox:
 #   - / and the repo: read-only
 #   - $HOME: tmpfs (hides ~/.ssh, ~/.config/secrets.env, ~/.config/gh, everything)
 #   - $ROOT/.env: masked with /dev/null (Cloudflare token invisible)
-#   - writable: $ROOT/data, $ROOT/logs, $ROOT/PROPOSALS.md, and an EPHEMERAL
+#   - writable: $ROOT/data and $ROOT/logs (which holds PROPOSALS.md), and an EPHEMERAL
 #     $HOME/.claude seeded with only the CLI credentials (discarded after the run,
 #     so poisoned settings/hooks never reach the host; gh is unauthenticated inside,
 #     so issues fall back to the outbox, which run_daily.sh flushes OUTSIDE the box)
@@ -24,7 +24,7 @@ if ! command -v bwrap >/dev/null 2>&1; then
 fi
 
 mkdir -p "$ROOT/data" "$ROOT/logs"
-touch "$ROOT/PROPOSALS.md" "$ROOT/logs/friction.jsonl"
+touch "$ROOT/logs/PROPOSALS.md" "$ROOT/logs/friction.jsonl"
 
 # Ephemeral agent home: credentials in, nothing out.
 AGENT_HOME="$ROOT/.agent-home"
@@ -54,7 +54,6 @@ exec bwrap \
   "${UV_PY[@]}" \
   --bind "$ROOT/data" "$ROOT/data" \
   --bind "$ROOT/logs" "$ROOT/logs" \
-  --bind "$ROOT/PROPOSALS.md" "$ROOT/PROPOSALS.md" \
   --bind "$AGENT_HOME/.claude" "$HOME/.claude" \
   --setenv HOME "$HOME" \
   --setenv CARDTRACK_SANDBOX 1 \

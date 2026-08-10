@@ -1,4 +1,4 @@
-# Inclusion criteria (spec §6), split by who can actually check them.
+# Inclusion criteria, split by who can actually check them.
 validator_checked:                   # enforced deterministically; any failure → reject
   publisher_on_allowlist: true
   document_retrievable: true         # fetch succeeded, sane content-type & size
@@ -28,4 +28,5 @@ policy:
   # We accept slightly more false positives and curate OUT via issues/removals;
   # issues are never a pre-approval queue. Validator-filed issues remain only for
   # suspected duplicates — genuine exclusion judgment calls.
+  # (Rationale: human review time is this system's scarcest resource.)
   when_uncertain: admit_and_flag

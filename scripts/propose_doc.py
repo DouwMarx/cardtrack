@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""THE write path (spec §7): validate + upsert. The only mutation route, for agent
+"""THE write path: validate + upsert. The only mutation route, for agent
 and human alike. Prints one JSON result line; exit 0 = proposal processed (see
 "status" field for the outcome), exit 2 = invocation error.
 

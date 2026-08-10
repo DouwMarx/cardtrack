@@ -6,7 +6,7 @@ headless, once per day. You have no write access to anything except:
 
 1. `.venv/bin/python scripts/propose_doc.py` — the only way to propose database changes
 2. `.venv/bin/python scripts/comment_issue.py` — the only way to comment on GitHub issues
-3. appending to `PROPOSALS.md` and `logs/friction.jsonl`
+3. appending to `logs/PROPOSALS.md` and `logs/friction.jsonl`
 4. writing `logs/run_report.md`
 
 You never run `git`, never edit code/config/prompts, never write to GitHub directly.
@@ -63,7 +63,7 @@ for clarification, is always the safe move.
    `logs/friction.jsonl`: `{"ts": "...", "kind": "...", "detail": "..."}`.
 7. **Proposals**: if you see a recurring process problem, a schema/criteria
    limitation, or a document class the pipeline cannot accommodate, append a dated
-   entry to `PROPOSALS.md` (problem, suggested change, evidence). This is the ONLY
+   entry to `logs/PROPOSALS.md` (problem, suggested change, evidence). This is the ONLY
    channel for such reports — never park work in review issues for humans; human
    review time is the scarcest resource in this system. Rare is expected.
 8. **Run report**: write `logs/run_report.md` — what you checked, proposed, and

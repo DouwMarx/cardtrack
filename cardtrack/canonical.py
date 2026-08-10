@@ -1,4 +1,4 @@
-"""URL canonicalization (spec §5 identity rules).
+"""URL canonicalization: one URL, one identity.
 
 Offline normalization only: lowercase scheme+host, drop default ports and fragments,
 strip known tracking params. Redirect resolution happens in fetch.py; callers

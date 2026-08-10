@@ -1,4 +1,4 @@
-# Operational caps and cadences (spec §6). All knobs live here, not in code.
+# Operational caps and cadences. All knobs live here, not in code.
 
 caps:
   max_new_documents_per_run: 15
@@ -35,7 +35,7 @@ publish:
 agent:
   enabled: true
   max_turns: 60
-  # The vendor-agnosticism seam (spec §6): swapping agents edits this one string.
+  # The vendor-agnosticism seam: swapping in another CLI agent edits this one string.
   # CARDTRACK_RUN_ID/CARDTRACK_ACTOR are exported by run_daily.sh purely for
   # changelog grouping/provenance; caps are enforced inside the validator over a
   # rolling 24 h window and cannot be reset by run-id games.

@@ -1,4 +1,4 @@
-"""Validator tests (spec §13: 'the component everything else trusts')."""
+"""Validator tests — the component everything else trusts."""
 
 from __future__ import annotations
 
@@ -212,7 +212,7 @@ def test_caps_enforced(repo_root, http_server):
         "caprun")
     assert r.status == "rejected"
     assert "cap_exceeded" in r.reason
-    # caps are a rolling window: a fresh run id must NOT reset them (spec §2.1);
+    # caps are a rolling window: a fresh run id must NOT reset them;
     # window expiry is covered in test_guards.py
     http_server.set_html("/capdoc3", "Next day content.")
     r = process_proposal(

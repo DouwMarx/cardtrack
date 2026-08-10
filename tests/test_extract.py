@@ -3,7 +3,7 @@ from cardtrack.extract import extract_text, fingerprint_text, sniff_kind
 
 def test_html_extraction_and_fingerprint_stability():
     """Two HTML variants differing only in script nonces and whitespace must
-    produce the same fingerprint (spec §5: change detection on text, not bytes)."""
+    produce the same fingerprint (change detection runs on text, never bytes)."""
     html_a = b"""<!DOCTYPE html><html><head><title>Card</title>
 <script>var nonce="abc123";</script></head>
 <body><main><h1>Card</h1><p>The model was evaluated on autonomy tasks.</p></main></body></html>"""

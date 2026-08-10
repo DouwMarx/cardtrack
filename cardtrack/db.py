@@ -1,4 +1,4 @@
-"""SQLite schema and connection handling. Schema per spec §5, plus two append-only
+"""SQLite schema and connection handling: the catalog tables plus two append-only
 fact tables (link_checks, index_links) that the monitor derives state from."""
 
 from __future__ import annotations

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import ipaddress
 import socket
+import time
 from dataclasses import dataclass, field
 
 import requests
@@ -82,14 +83,21 @@ def fetch(
     session: requests.Session | None = None,
     impersonate_fallback: bool = True,
 ) -> FetchResult:
-    """GET with manual redirect handling. If the plain client is bot-blocked
-    (400/401/403/406/429/503), retries once with browser-TLS impersonation
-    (curl_cffi) so bot-walled publishers don't bias the database toward
-    browser-accessible sources. range_bytes limits the request to a prefix
-    (the monitor's link probe; many CDNs mishandle HEAD)."""
+    """GET with manual redirect handling, plus two recovery layers:
+    - one retry after a short pause on 5xx (a single transient upstream error must
+      not permanently burn a lead — rejected proposals are not retried by callers),
+    - one retry with browser-TLS impersonation (curl_cffi) when bot-blocked
+      (400/401/403/406/429/503), so bot-walled publishers don't bias the corpus.
+    range_bytes limits the request to a prefix (the monitor's link probe; many
+    CDNs mishandle HEAD)."""
     result = _fetch_requests(url, max_bytes=max_bytes, timeout=timeout,
                              allow_private_hosts=allow_private_hosts,
                              range_bytes=range_bytes, session=session)
+    if not result.ok and result.status is not None and result.status >= 500:
+        time.sleep(2)
+        result = _fetch_requests(url, max_bytes=max_bytes, timeout=timeout,
+                                 allow_private_hosts=allow_private_hosts,
+                                 range_bytes=range_bytes, session=session)
     if (impersonate_fallback and not result.ok
             and result.status in IMPERSONATE_TRIGGER):
         fallback = _fetch_impersonate(url, max_bytes=max_bytes, timeout=timeout,

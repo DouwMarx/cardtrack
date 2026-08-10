@@ -23,7 +23,7 @@ def slugify(text: str) -> str:
 def derive_slug(conn: sqlite3.Connection, publisher: str, model_names: list[str],
                 doc_type: str) -> str:
     """Deterministic: <publisher>-<primary model>-<doc_type>, numeric suffix on collision.
-    Agent-supplied slugs are ignored (spec §7)."""
+    Agent-supplied slugs are always ignored — slugs are derived, never chosen."""
     primary = model_names[0] if model_names else "unspecified"
     base = slugify(f"{publisher}-{primary}-{doc_type.replace('_', '-')}")
     slug = base
@@ -67,7 +67,7 @@ def find_logical_duplicates(
     title: str = "",
     exclude_canonical_url: str | None = None,
 ) -> list[sqlite3.Row]:
-    """Catch "same card, different URL" (spec §5): publisher + doc_type + overlapping
+    """Catch "same card, different URL": publisher + doc_type + overlapping
     normalized model names PLUS clearly similar title. Same-date alone is not a
     trigger (two distinct docs about one model on launch day is normal); exact
     mirrors are caught separately by the content fingerprint. Outcome for a match

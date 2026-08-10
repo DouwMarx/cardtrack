@@ -1,4 +1,4 @@
-"""Phase A: deterministic monitoring, no LLM (spec §8).
+"""Phase A: deterministic monitoring, no LLM.
 1) link-check all active/moved documents (3-strike dead rule; 403/429 never strike),
 2) fingerprint-check a rotating subset (silent-update detection),
 3) diff allowlisted publisher index pages into candidates.json for the agent.

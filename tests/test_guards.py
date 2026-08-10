@@ -28,7 +28,7 @@ def _age_changelog(repo, hours: int) -> None:
 
 
 def test_caps_are_rolling_window_not_run_id(repo_root, http_server):
-    """Fresh run ids must NOT reset caps (spec §2.1); expiry of the window must."""
+    """Fresh run ids must NOT reset caps; expiry of the rolling window must."""
     write_test_config(repo_root, http_server, caps={"max_new_documents_per_run": 2})
     repo = Repo(root=repo_root)
     for i in range(2):

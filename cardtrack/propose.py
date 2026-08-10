@@ -1,4 +1,4 @@
-"""The write path (spec §7). Every mutation — agent, monitor, or human — flows through
+"""The write path. Every mutation — agent, monitor, or human — flows through
 process_proposal(). It canonicalizes, dedups, fetches, fingerprints, applies criteria
 and caps, and only then writes. Agent proposes; this code disposes.
 """
@@ -205,7 +205,7 @@ def _window_cutoff() -> str:
 def _count_recent_actions(conn: sqlite3.Connection, action: str) -> int:
     """Cap accounting over a rolling window keyed on the changelog's own timestamps.
     Deliberately NOT keyed on run_id: run ids are caller-supplied, and caps must be
-    guaranteed by deterministic code, never by caller diligence (spec §2.1)."""
+    guaranteed by deterministic code, never by caller diligence."""
     return conn.execute(
         "SELECT COUNT(*) FROM changelog WHERE action = ? AND ts > ?",
         (action, _window_cutoff()),
@@ -287,7 +287,7 @@ def _content_identity(content: bytes, content_type: str | None, url: str):
     content_hash = sha256_bytes(content)
     kind = sniff_kind(content, content_type, url)
     text, method = extract_text(content, content_type, url)
-    fp = fingerprint_text(text) if text else content_hash  # fallback per spec §5
+    fp = fingerprint_text(text) if text else content_hash  # extraction failed → raw hash
     return content_hash, fp, text, kind, method
 
 
@@ -398,7 +398,7 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
     vc = repo.criteria.get("validator_checked", {})
     floor = _parse_date(vc.get("min_publication_date", "0001-01-01"))
     pub_date = _parse_date(p.get("publication_date")) if p.get("publication_date") else None
-    # Unknown date: admit and flag (detect-and-revert, spec §2.5) — the row carries
+    # Unknown date: admit and flag (detect-and-revert beats pre-approval) — the row carries
     # date_unknown provenance and the site shows "unknown"; curation can fix or
     # remove later. The floor still rejects documents with KNOWN pre-floor dates.
     date_unknown = p.get("publication_date") is None
@@ -514,7 +514,7 @@ def _version_check(ctx: _Ctx, p: dict, doc: sqlite3.Row, routed_from: str | None
     content_hash, fp, text, kind, method = _content_identity(
         fetched.content, fetched.content_type, doc["canonical_url"])
 
-    # Byte identity first (spec §2.3 layer 1): identical raw bytes can never be a
+    # Byte identity first: identical raw bytes can never be a
     # new version, even if extraction wobbles across environments.
     known = conn.execute(
         "SELECT id FROM document_versions WHERE document_id = ? AND "

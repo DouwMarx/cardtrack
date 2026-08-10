@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compact known-state JSON for the agent's context (spec §8 Phase B): every document's
+"""Compact known-state JSON for the agent's context: every document's
 (slug, publisher, doc_type, model_names, canonical_url, status) plus counts."""
 
 from __future__ import annotations

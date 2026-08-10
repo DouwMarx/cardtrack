@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The only route to GitHub issue comments, for agent and human alike (spec §4).
+"""The only route to GitHub issue comments, for agent and human alike.
 Every comment is logged to logs/comments.jsonl; without a configured repo (or gh),
 comments land in the outbox log instead of GitHub."""
 
@@ -26,7 +26,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--body", help="comment body")
     p.add_argument("--body-file", help="file containing the comment body ('-' for stdin)")
     p.add_argument("--resolve", action="store_true",
-                   help="also add the 'resolved' label (humans close; spec §10)")
+                   help="also add the 'resolved' label (humans close issues)")
     args = p.parse_args(argv)
 
     if bool(args.body) == bool(args.body_file):

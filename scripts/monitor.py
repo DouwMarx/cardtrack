@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase A monitor CLI (spec §8): link checks, fingerprint rotation, index-page diff.
+"""Phase A monitor CLI: link checks, fingerprint rotation, index-page diff.
 Prints a JSON summary. Deterministic; no LLM involved."""
 
 from __future__ import annotations

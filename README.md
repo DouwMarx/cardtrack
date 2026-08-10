@@ -5,7 +5,7 @@ first-party model/system cards and independent evaluation reports — with chang
 tracking, provenance, and full-text search. Curated daily by an LLM agent behind
 deterministic guardrails; published as a static site.
 
-Design: see `cardtrack-spec.md`. Live site: https://cards.douwmarx.com
+Original design document: `cardtrack-spec.md` (historical). Live site: https://cards.douwmarx.com
 
 ## Setup (clean clone)
 
@@ -58,7 +58,7 @@ Proposals can also be piped as JSON: `propose_doc.py --json -` (see
 
 ## The daily run
 
-`scripts/run_daily.sh` orchestrates (spec §8): Phase A `monitor.py` (deterministic
+`scripts/run_daily.sh` orchestrates: Phase A `monitor.py` (deterministic
 link checks, fingerprint rotation, index diffs) → Phase B agent (only if
 `agent.enabled: true` in `config/settings.yaml`) → Phase C `build_site.py` +
 optional git commit/push + optional Cloudflare Pages deploy (gated by the
@@ -90,7 +90,7 @@ switching to API billing). Swapping in another CLI agent is a one-line change to
 - **Caps and criteria** live in `config/settings.yaml` / `config/criteria.yaml`;
   the allowlist in `config/sources.yaml`. The agent cannot modify any of them.
 
-## Security model (spec §2, §8)
+## Security model
 
 The agent proposes; `propose_doc.py` disposes. Correctness (no duplicates, valid
 schema, caps, allowlist) is enforced deterministically at the write boundary, never
@@ -111,7 +111,7 @@ Known residual gaps at MVP, accepted deliberately: (1) the validator runs inside
 the sandbox, so `data/` itself is agent-writable and a fully compromised agent
 could bypass it — provenance display, the changelog-to-commit diff, `git revert`,
 and the append-only raw store bound the damage; the stronger boundary (validator
-behind privilege separation) is roadmap §14 material. (2) The SSRF guard resolves
+behind privilege separation) is future work. (2) The SSRF guard resolves
 DNS separately from the fetch, so a DNS-rebinding attacker can race it — impact is
 limited to reading the local network from a machine that exposes no local services
 to the agent's benefit. (3) `canonical_url` moves require a publisher-known host
@@ -119,10 +119,10 @@ plus identical content; shared hosts (e.g. `storage.googleapis.com`) make the ho
 check weaker than it looks, which is why the content fingerprint must also match.
 Everything the agent reads (web pages, issue text) is treated as untrusted input.
 
-## Bootstrap status (spec §13)
+## Status
 
 1. ✅ Schema + validator + extraction + 76-test suite; 23 documents seeded through the tool
 2. ✅ Site live at https://cards.douwmarx.com (Pages project `cardtrack`, CNAME + custom domain attached)
-3. ⬜ `run_daily.sh` under cron without Phase B — add the crontab line above
-4. ⬜ Enable Phase B (`agent.enabled: true`) after a clean week; sandbox plumbing already smoke-tested
+3. ⬜ `run_daily.sh` under cron — add the crontab line above
+4. ✅ Agent enabled and battle-tested (backfill drain + audits, 2026-08-09/10)
 5. ✅ 2026 corpus backfilled (supervised session, 2026-08-09); deepen later by lowering `min_publication_date`
