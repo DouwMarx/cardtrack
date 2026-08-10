@@ -1,0 +1,10 @@
+GLM-5.2 was released as an open-weight model by the PRC-based company Z.ai (formerly known as Zhipu AI) on June 16, 2026, and CAISI completed its assessment on July 8. In CAISI's full assessment of GLM-5.2, the key findings were that:
+- GLM-5.2 was probably the most capable open-weight AI model when it was released (Figure 1). According to CAISI’s set of evaluations:
+  - GLM-5.2’s overall capabilities are similar to that of GPT-5.2, released in December 2025.
+  - GLM-5.2’s cyber capabilities are similar to that of Opus 4.6, released in February 2026.
+- GLM-5.2’s performance on safeguards and security is mixed. According to CAISI’s set of evaluations:
+  - GLM-5.2’s safeguards allow assistance with agentic cyber exploit development.
+  - GLM-5.2’s safeguards block fewer sensitive biological questions than reference U.S. models.
+  - However, GLM-5.2 appears potentially more robust against agent hijacking and jailbreaking attacks than other evaluated PRC open-weight models.
+  - These evaluations measure robustness against prompt-based jailbreaks. Regardless of their robustness, safeguards for open-weight models can be circumvented when self-hosted.
+  Released July 17, 2026

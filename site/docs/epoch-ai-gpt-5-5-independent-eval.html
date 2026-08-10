@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contributions to OpenAI&#39;s Codex codebase show signs of AI uplift — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Contributions to OpenAI&#39;s Codex codebase show signs of AI uplift</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">epoch_ai</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>Claude Opus 4.8, GPT-5.5, Gemini 3.1 Pro</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-07</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://epoch.ai/data-insights/codex-engineer-effort" rel="noopener nofollow">https://epoch.ai/data-insights/codex-engineer-effort</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T08:44:49Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20epoch-ai-gpt-5-5-independent-eval&amp;body=Document%3A%20epoch-ai-gpt-5-5-independent-eval%0AURL%3A%20https%3A//epoch.ai/data-insights/codex-engineer-effort%0AFingerprint%3A%20542819e7b329f41d2779d4fdec8ab32e1d72526919b00c23f01b7394bb7e8b54%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T08:44:49Z</td>
+          <td>text/html</td>
+          <td>127,405</td>
+          <td><code title="542819e7b329f41d2779d4fdec8ab32e1d72526919b00c23f01b7394bb7e8b54">542819e7b329f41d</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T08:44:49Z</span>
+        <strong>add</strong>
+        <span class="run">run evaluator-backfill-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">2026 model-specific evaluation by Epoch AI, verified during the evaluator-vetting research pass (URL fetched, date and models confirmed on page).</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://epoch.ai/latest" rel="noopener nofollow">https://epoch.ai/latest</a> · <a href="https://epoch.ai/publications" rel="noopener nofollow">https://epoch.ai/publications</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://epoch.ai/data-insights/codex-engineer-effort" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>How much does AI speed up the engineers building it? We analyzed 41 core contributors to OpenAI’s public Codex repository, asking LLM judges to estimate how long each merged pull request would take an experienced engineer without AI assistance. In Q2 2026, 8% of contributor-days reflected work estimated at over 24 hours of unassisted effort — more than a skilled engineer could do in a day, even working around the clock — up from 2% in Q2 2025.
+| Daily effort levels of Codex repository collaborators, Q2 2025 vs Q2 2026 |  |  |  |
+|---|---|---|---|
+| Effort level | Estimated hours | Q2 2025 share | Q2 2026 share |
+|---|---|---|---|
+| Low | &lt;6 | 66.3 | 50.9 |
+| Medium | 6-12 | 18.8 | 24.0 |
+| High | 12-24 | 12.9 | 16.9 |
+| Very high | 24-48 | 2.0 | 7.2 |
+| Extremely high | &gt;=48 | 0.0 | 1.0 |
+This shift is consistent with growing AI uplift within software engineering. However, estimates by LLM judges are imperfect and should be interpreted as only an upper bound on time saved: without AI, engineers would build less or build differently, and longer or more complex contributions aren’t necessarily more valuable ones.
+Epoch&#39;s work is free to use, distribute, and reproduce provided the source and authors are credited under the Creative Commons BY license.
+Learn more about this graph
+We analyzed contributions to OpenAI’s Codex repository for evidence of software engineering uplift. By looking at the timing of individual contributors’ pull requests we can see whether engineers are writing more code per day, over time. In particular, we find that a small but growing fraction of contributor-days produced outputs which would take an experienced developer more than 24 hours to accomplish without AI assistance.
+For each merged pull request, we prompt an ensemble of three frontier AI models to estimate the time one experienced engineer working alone and without AI tools would need to reproduce the net change that was merged. This follows a methodology established by METR’s Amy Deng.
+Data
+We draw the underlying changes from OpenAI’s public Codex repository. The repository is squash-merged, so each commit on the default branch whose subject ends in “(#N)” corresponds to one merged pull request. We analyze 7,524 distinct merged pull requests from April 2025 through June 2026, contributed by roughly 500 distinct GitHub accounts. We take each PR’s net diff from a local git checkout, and fetch its branch commits’ authors and dates from the GitHub GraphQL API.
+While the Codex repository features contributions from 497 distinct accounts, we focus our analysis on a subset of 41 contributors who appear as official repository collaborators, defined by a GitHub author_association value of “COLLABORATOR (write access)” on their pull requests. We exclude automated accounts like dependabot and github-actions.
+We also systematically remove PRs whose estimate reflects code not authored in this repository: wholesale imports (code developed elsewhere and dropped in as a single commit, such as the initial import of the Rust Codex implementation) and relands (code re-applied from an earlier reverted PR). Because the LLM judges only see one PR at a time and cannot see that code in these PRs was authored elsewhere or already counted, their inclusion would overstate the amount of work done. This deterministic, title-based rule removes six of the 7,524 PRs and leaves the trend unchanged.
+Analysis
+We score each PR with an ensemble of three frontier models (Claude Opus 4.8, GPT-5.5, and Gemini 3.1 Pro), run without extended reasoning through each provider’s batch API, and take the per-PR median. For each estimate, the model reads the PR title, description, per-file line counts, branch commit messages, and a sample of the diff distributed evenly across changed files, then emits a single time estimate. A PR’s hours are split evenly across the contributor-days its commits touch, and each contributor-day sums the allocations landing on it. To get a contributor’s effort level on any given day, we total each contributor’s estimated hours by Pacific-time calendar day, forming contributor-days (distinct author-and-day pairs).
+The three models agree closely on ordering (pairwise log-scale correlations of 0.95-0.98) but less on scale: on the median PR, the highest of the three estimates is 2.5 times the lowest. See the “Assumptions and limitations” section below for details on ablations to our LLM judge methodology.
+We bucket contributor-day hours into the following categories: &lt;6 hours, 6 to 12 hours, 12 to 24 hours, 24 to 48 hours, and ≥48 hours. Estimates falling exactly on the border of two buckets are sorted into the higher bucket.
+Among the 41 collaborators, the share of working days reaching the upper effort levels rises across the period:
+| Quarter | Contributor-days | ≥12 hours | ≥24 hours |
+|---|---|---|---|
+| 2025-Q2* | 101 | 14.9% (10.0–21.6) | 2.0% (0.7–5.8) |
+| 2025-Q3 | 422 | 7.1% (5.3–9.5) | 0.7% (0.3–1.8) |
+| 2025-Q4 | 578 | 7.3% (5.7–9.2) | 1.0% (0.5–2.0) |
+| 2026-Q1 | 913 | 18.0% (16.0–20.1) | 5.1% (4.1–6.5) |
+| 2026-Q2* | 844 | 25.1% (22.7–27.7) | 8.2% (6.8–9.9) |
+* Partial quarters: the repository launched in mid-April 2025, and our data runs through mid-June 2026. Intervals are 90% Wilson score intervals, treating each contributor-day as an independent observation.
+Assumptions and limitations
+While our results are suggestive of AI uplift, they fall short of causal evidence. We lack a counterfactual comparison for the time it would have taken a non-AI assisted software engineer, and thus rely on noisy estimates from LLM judges. To reduce noise, we use the median result as a rough estimate, and group them into broad buckets.
+Further, the implicit uplift shown here corresponds to an upper bound on time saved. Without AI, engineers wouldn’t replicate the observed output – they would build less, or build differently. Since some of the code written could have been prohibitively costly to replicate exactly without AI, the gap between actual and “no AI assistance” time costs overestimates the actual gain in productivity. See METR’s post “Task Substitution and Uplift” for a more detailed analysis of this effect.
+To identify core collaborators on the Codex repo, we rely on GitHub author-association flags and identity signals. Contributors whose repository status changed over time may be misclassified. We also attribute a PR’s working hours evenly across its contributor-days, inferring those days from branch-commit timestamps. We lack a source of ground truth to validate this approximation against.
+Compared to METR’s original method, we use pull request diffs and metadata rather than full agent transcripts. As such, METR’s validation of the approach – which found that LLM predictions were consistently within a factor of 2 to 3, when compared against human estimates – does not transfer directly to our numbers.
+We tested two interventions to the judging infrastructure, which had minimal effect: extended thinking, and using more fully featured scaffolding. Across 20 randomly selected PRs, using high thinking effort changed the median estimate by only 10.1%. After bucketing results into categories of 0–6, 6–12, 12–24, 24–48, and 48+ hours, the assigned bucket changed only once out of those 20 cases. In that case, the estimate rose from 5.5 hours to 6.0 hours. We also produced estimates for the same 20 PRs with high thinking effort, file reading tools, and access to the full PR diff rather than a sample. Relative to the high thinking test, the additional tools and context resulted in a median change of 0% across PRs.
+Appendix
+The LLM-judge prompt
+You are an expert forecaster, with expertise in software engineering and Fermi
+estimation in this area. You read the git history of a single merged pull
+request (PR) and estimate how long it would have taken a human to produce it
+WITHOUT any AI assistance.
+THE QUESTION YOU ARE ANSWERING
+Estimate the number of engineering hours that ONE experienced software engineer,
+working ALONE and WITHOUT any AI tools whatsoever (no Copilot, no Codex, no
+Claude, no ChatGPT, no AI autocomplete — only a normal editor, compiler, docs,
+and a web browser), would need to produce the NET output of this PR: the exact
+code change that was merged.
+This is a counterfactual &#34;time without AI&#34; estimate. It is NOT how long the PR
+actually took, and NOT how long it would take with AI help. Picture a competent
+engineer who already has reasonable context on this codebase, doing the work by
+hand.
+WHAT TO COUNT
+- The PR was merged, so treat its final diff as accepted, successful output.
+  Estimate the time to design, write, and verify exactly that change.
+- Include the realistic surrounding work an unassisted engineer cannot skip:
+  understanding the relevant code, designing the approach, writing the change,
+  writing/adjusting tests that are part of the diff, debugging, and iterating to
+  a working, review-ready state.
+- Judge complexity from the DIFF, not just its size. Lines of code are a weak
+  signal: a 500-line mechanical rename, generated file, or config/vendored bump
+  is fast; a 60-line change to subtle concurrency, parsing, or algorithmic logic
+  can take a day. Read what actually changed and reason about its difficulty for
+  a skilled human.
+WHAT NOT TO COUNT
+- Do not add time for code review latency, CI waiting, meetings, or other
+  process overhead — only hands-on engineering time.
+- Do not count work that is not in this PR. If the diff merely reverts, vendors,
+  or auto-generates code, estimate the (small) human time to produce that net
+  result, not the time to author what was generated.
+- Largely mechanical or trivial changes (typo fixes, dependency version bumps,
+  formatting, generated lockfiles, simple config edits) should receive small
+  estimates even when the diff is large.
+HOW TO RESPOND
+Reason it through explicitly, then commit to one number:
+1. In a sentence or two, say what the PR&#39;s net change actually does.
+2. Walk through the concrete steps a competent engineer who ALREADY knows this
+   codebase would take to produce exactly this diff by hand, with no AI — what
+   they would read, design, write, and test, and where the genuinely hard or
+   fiddly parts are. Do NOT charge time to &#34;learn the codebase&#34;; that context
+   is already there.
+3. From that walk-through, give ONE holistic estimate of the total hands-on
+   engineering hours. Do NOT add up the per-step numbers — judge the task as a
+   whole, so shared or overlapping work is not double-counted.
+Then, on the FINAL line and nothing after it, output exactly:
+PR &lt;pr_number&gt; FINAL_ESTIMATE_HOURS: &lt;number&gt;
+where &lt;pr_number&gt; is the number from the &#34;# Merged PR #&lt;number&gt;&#34; header above and
+&lt;number&gt; is a single positive decimal of hours (e.g. 0.3, 2.5, 14, 40). Put
+nothing after that line.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:07:05Z</p></footer>
+</body>
+</html>

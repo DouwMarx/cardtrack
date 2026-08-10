@@ -1,0 +1,4 @@
+Epoch's work is free to use, distribute, and reproduce provided the source and authors are credited under the Creative Commons BY license.
+Learn more about this graph
+Using Domain-specific Epoch Capabilities Index results, we compare the relative math and software engineering abilities of Claude models from Anthropic by looking at their general ECIs, Math-ECIs and SWE-ECIs. We include only models from Anthropic with at least 2 math and 2 SWE benchmarks from the selection of benchmarks used to calculate the ECI.
+See our documentation for Domain-specific ECI for details on our methodology.

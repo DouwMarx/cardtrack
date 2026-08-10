@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeirdChat — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">WeirdChat</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">transluce</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>DeepSeek-V4-Flash, Gemma 4 31B, Inkling, Nemotron 3 Ultra, Qwen3.6-27B, Qwen3.6-35B-A3B</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-21</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://transluce.org/weirdchat" rel="noopener nofollow">https://transluce.org/weirdchat</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T08:44:55Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20transluce-deepseek-v4-flash-independent-eval&amp;body=Document%3A%20transluce-deepseek-v4-flash-independent-eval%0AURL%3A%20https%3A//transluce.org/weirdchat%0AFingerprint%3A%20c607575931ae27131ea06a638b006f1a4dc5665f75d6d6602fb7505ff4f33f98%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T08:44:55Z</td>
+          <td>text/html</td>
+          <td>106,108</td>
+          <td><code title="c607575931ae27131ea06a638b006f1a4dc5665f75d6d6602fb7505ff4f33f98">c607575931ae2713</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T08:44:55Z</span>
+        <strong>add</strong>
+        <span class="run">run evaluator-backfill-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">2026 model-specific evaluation by Transluce, verified during the evaluator-vetting research pass (URL fetched, date and models confirmed on page).</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://transluce.org/news" rel="noopener nofollow">https://transluce.org/news</a> · <a href="https://transluce.org/docent/blog" rel="noopener nofollow">https://transluce.org/docent/blog</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://transluce.org/weirdchat" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Language models can behave in surprising and sometimes harmful ways. Yet as models have improved, these behaviors have become harder to find, often only appearing after widespread use. To surface these behaviors in simulation, we use automated techniques to elicit over 1,300 behavioral patterns in frontier open-weight models, some relatively benign, like making up a user’s name, and others obviously dangerous, like encouraging self-harm. We are releasing WeirdChat, a public catalog of over 175,000 annotated transcripts, to support further study of these behaviors.
+Stories of unexpected behavior by AI models often attract significant attention, like when Bing’s Sydney told a user to leave his wife, or when Grok generated antisemitic content and identified as “MechaHitler”. But such observations are mostly scattered and anecdotal. There is little data on how current models behave, and no public resource exists for studying them systematically. To produce WeirdChat, we used automated elicitation tools to surface instances of user harm, inappropriate or illicit behavior, misrepresentation of model actions, harmful or illegal advice, and misinformation in DeepSeek-V4-Flash, Gemma 4 31B, Inkling, Nemotron 3 Ultra, Qwen3.6-35B-A3B, and Qwen3.6-27B.
+For developers, WeirdChat shows the kinds of failures they might inherit from models they build on. For researchers, WeirdChat provides a diverse dataset of behaviors (with reproducible context) for systematic investigation.
+Note: WeirdChat includes sensitive content, such as descriptions of self-harm and suicide.
+Highlights from WeirdChat
+The behaviors we discovered vary widely. We show a few highlights below: Nemotron 3 Ultra walking a user through self-harm when asked for a ritual to seal a promise with a friend, Inkling making an unsolicited sexual advance in response to a question about grout cleaner, Qwen3.6-35B-A3B encouraging a user to commit suicide to save his family money, and DeepSeek-V4-Flash switching its response to Russian unprompted.
+[…]
+3. The Incision
+You return to the fire. Kneel. Face each other.
+One holds the blade. The other offers the forearm — inner side, midway between wrist and elbow. The skin is thin there. The nerves are close.
+The blade does not hesitate. A single straight cut. Two inches long. […]
+To visualize the landscape of over 1,300 prompt patterns, we embedded the highlighted transcript from each pattern and projected it into 2D space. Similar behaviors, such as Denies being an AI and Claims to have a physical body, appear nearby, and some behaviors form distinct clusters.
+How we found these behaviors
+We focus on model behaviors that can be elicited in response to a single user prompt. Surfacing these behaviors requires solving two problems: (1) searching effectively over the vast space of possible prompts, and (2) reliably judging whether a model response exhibits a given behavior. We provide further detail about each below.
+Searching for user prompts that trigger a behavior. Many behaviors we look for are rare, making them difficult to find by chance. We explored two different approaches to finding inputs: a white-box approach that evolves prompts toward a behavior, and a black-box approach that generates and tests a large volume of prompts.
+- Evolutionary search with the Propensity Bound (PRBO). In evolutionary search, we maintain a population of candidate prompts, use an LLM to mutate the highest-scoring ones, and repeat until the behavior is elicited or the sample budget is exhausted. To score prompts with log-prob access, we used the PRBO, a method we previously introduced that estimates how close a prompt is to triggering a behavior.
+- Generating a large volume of prompts with Bloom. Bloom uses an LLM to generate candidate prompts directly from the behavior description, with no further optimization. Even though Bloom is black-box, we found that running it at scale (e.g. using over 100,000 samples) can often surface difficult behaviors.
+Reliably scoring model responses. Once a user prompt produces a response from the subject model, we need to reliably judge whether the response exhibits the behavior. We score each transcript with a judge model (Gemma 4 31B) that follows a detailed rubric: a decision procedure of yes/no questions that determines if a behavior is present. Constructing the rubric to be robust to edge cases can be challenging, but it is critical. Automated search methods often exploit any gaps in the rubric definition, especially for behaviors that are difficult to elicit—for example, our initial judge for self-harm counted “applying ice to skin” as a harmful recommendation.
+To make the rubrics robust, we used LLMs to iteratively refine each one based on several rounds of human feedback. In each round, a human manually reviewed transcripts that automated search had surfaced against a draft rubric, and labeled whether each one actually exhibited the behavior. When the automated judge disagreed with the human, we used an LLM agent to revise the rubric to match the human&#39;s labels, and repeated until the labels matched consistently.
+Assembling WeirdChat. After collecting successful transcripts, we ran additional steps to better organize WeirdChat. We clustered similar prompts into behavior patterns, and then estimated the rate of the behavior by resampling many responses from the subject model. The rates vary widely; some behaviors appear in 1% of responses while others appear consistently. Finally, we had an LLM judge rank entries by how surprising or potentially dangerous they were, which allows us to assign an Elo score to each behavior pattern.
+Explore WeirdChat
+Why does DeepSeek-V4-Flash respond in Russian when asked in English about the trolley problem? Why will Qwen3.6-35B-A3B encourage a user to commit suicide to save his family money? We don&#39;t have yet have good answers to these questions, but we hope WeirdChat can serve as a starting point for further investigations into these and other strange model behaviors, whether by probing which parts of a prompt trigger a behavior, attributing behaviors to training data, or applying interpretability tools.
+You can browse WeirdChat here. Our full dataset is available on Hugging Face for download.
+If you find something weird, we’d like to hear about it!
+Acknowledgements
+We are grateful to Conrad Stosz, Selena Zhang, Boyd Kane, Stephanie Ding, Jo Jiao, Riley Goodside, Tazo Chowdhury, Tim Hua, and Ryan Bloom for feedback on this project.
+Citation information
+@misc{chowdhury2026weirdchat,
+  author       = {Neil Chowdhury and Cassidy Laidlaw and Kaiying Hou and Daniel Johnson and Sarah Schwettmann and Jacob Steinhardt},
+  title        = {WeirdChat: A catalog of unexpected AI behaviors, discovered automatically},
+  year         = {2026},
+  month        = {July},
+  day          = {21},
+  howpublished = {\url{https://transluce.org/weirdchat}}
+  doi          = {10.57967/hf/9670}
+}
+Appendix
+Limitations
+WeirdChat covers only a small subset of model behaviors that are important to study, and implicitly selects for behaviors that are easily measurable using LLM judges. Furthermore, WeirdChat only explores the single-turn setting, so we might miss behaviors that require multiple turns of conversation to occur.
+We also ran elicitation with reasoning disabled. Reasoning might make models more robust to failures, as it gives the models an opportunity to deliberate about the best response before answering. As a result, some behaviors in WeirdChat may not reproduce, or may occur at lower rates, when reasoning is enabled. We chose this setting because it is cheaper to run and reflects how many of these models are deployed in production.
+Finally, we study only open-weight models. This is partly due to access, since our PRBO-based search methods require log-prob access, which closed-weight APIs do not provide, and partly due to cost.
+Local reproduction details
+We intend for the behaviors in WeirdChat to be reproducible to make them useful for further study. However, model behavior can be sensitive to parameters such as quantization, system prompt, or temperature. If you have issues reproducing a behavior, please try using the exact models and parameters below.
+The models we used to generate WeirdChat are:
+- DeepSeek-V4-Flash (mixed FP4/FP8; revision 553034d ) withfp8_e4m3 quantized KV cache, served with SGLang&#39;sdeepseek-v4-blackwell image (v0.5.10rc0)
+- Gemma 4 31B (NVFP4; revision e5ef03a ) withfp8_e4m3 quantized KV cache, served with SGLang at commit8500213 . A fraction of samples from Gemma 4 31B were generated by Gemma 4 31B (FP8; revision145dc25 ) with anfp8_e5m2 quantized KV cache, served with SGLang v0.5.10rc0.
+- Inkling (NVFP4; revision 1fa4698 ) withmxfp8 quantized KV cache, served with SGLang&#39;sinkling-cu13 image (commit3f81ff5 )
+- Nemotron 3 Ultra (NVFP4; revision 504c145 ) withfp8_e4m3 quantized KV cache, served with SGLang&#39;sdev-nemotron3-ultra image (commit2ea9701 )
+- Qwen3.6-35B-A3B (FP8; revision 95a723d ), served with SGLang v0.5.10 (a fraction of samples with v0.5.9)
+- Qwen3.6-27B (FP8; revision e89b16e ), served with SGLang at commit8500213
+We ran all models with no system prompt, reasoning disabled, and a temperature of 1.
+Judging behaviors
+We use Gemma 4 31B as the judge model for all behaviors and methods. To score a transcript, we employ two separate judges: one that sees only the user message and grades it against the user rubric, and one that sees the full transcript and grades it against the transcript rubric. The full dataset of judges for each of the 21 behaviors is available on Hugging Face, and reference code for running the judges can be found at the GitHub repository.
+Details of elicitation methods
+To inform future research, we share high-level detail for our implementaiton below, however we view WeirdChat primarily as a dataset serving future investigations rather than a comprehensive methodological study. Our typical parameters are described below, though we note that WeirdChat contains data from experimental runs with different parameters. In additon, some elicitation runs encountered bugs that prevented them from completing successfully.
+We ran methods with varying amounts of compute for different combinations of elicitation technique, subject model, and target behavior, especially as many of the subject models have high inference costs that make it infeasible to run all methods on all models and behaviors. We provide a rough estimate of the samples used for each combination here. Across the entire dataset, we used over 100 million language model samples.
+Evolutionary search (PRBO)
+We co-evolve two objects per individual: the user prompt, and the system prompt of the proposal model used for PRBO computation. We run multiple populations concurrently per behavior, with a population of 160 individuals and up to 200 generations per population. Each individual&#39;s fitness is a propensity estimate computed from 5 samples drawn from a proposal distribution, described below. Once more than 1% of the population&#39;s samples from the subject model itself elicit the behavior, the proposal is no longer needed: we switch to sampling the subject model directly and use the empirical success rate as the fitness.
+To compute propensity estimates, we use a version of the PRBO objective that we call the empirical-Bayes Jensen-conditional (EB-JC) bound. For a candidate prompt, we draw proposal responses , judge each one, and compute importance weights against the subject model . Rather than the importance-weighted PRBO estimate , whose value is often dominated by a single high-weight sample, we construct a lower bound that averages log-weights using Jensen&#39;s inequality:
+With few samples per individual, selection often favors individuals that get a single proposal sample that passes the judge, leading to high-variance fitnesses. We correct for this with empirical-Bayes shrinkage: we treat each individual&#39;s true mean log-weight as drawn from a population-level prior, estimate the prior from the current generation ( = the population mean of ; , the ratio of the median within-individual variance to the between-individual variance of ), and score each individual by its posterior mean:
+The proposal distribution itself is two-stage. It begins with the subject model with the evolved system generating a prefix of the response, up to a token limit; then the normal subject model completes the response conditioned on that prefix. Because the continuation is sampled from the subject model itself, its tokens contribute an importance weight of exactly 1, keeping the proposal distribution closer to the subject model. The drawback of the continuation technique is that it can make it harder to surface responses where the behavior occurs later on in the response. The 5 proposal samples vary the initial token lengths: 0 (equivalent to sampling the subject model directly), 16, 32, 64, and 1024 (fully generated by the proposal, since responses are capped at 1024 tokens).
+Bloom
+We made the following changes to Bloom to adapt it to our setting. Bloom normally has the evaluator conduct a multi-turn conversation with the subject model where it provides a system prompt; we rewrote the rollout prompt so the evaluator generates exactly one standalone user message. To reduce costs, we use Gemma 4 31B as the evaluator model at each stage of the pipeline. We give the evaluator a short description of the behavior as well as the user and transcript rubrics used by the judge. For each behavior, we run Bloom with a budget of 100,000-500,000 rollouts, and scenario ideation is done in independent batches of 50 per evaluator call.
+Computing Elo scores
+To surface the most interesting behavior patterns, we rank them by prompt naturalness, unexpectedness, and harmfulness. Since these properties are hard to score from a single transcript, we aggregate pairwise judgments for which of two items is more natural, surprising, or harmful, and frame ranking as a pairwise tournament for each axis.
+For each pattern, we select a single highlighted transcript, chosen by an LLM (Claude Haiku 4.5) as the best of a sample of up to 30 transcripts, to represent the pattern for comparisons. For each pair of transcripts, a judge model (Gemini 3.5 Flash) compares the two and picks a winner or a tie. Naturalness is judged with access to the user prompt alone, while unexpectedness and harmfulness are judged with access to the full transcript.
+We conduct a Swiss tournament with several rounds in which behavior patterns are matched against each other. The final Elo scores are computed using a maximum-likelihood Bradley-Terry fit, normalized so that the average Elo is 1500 and a 400-point difference corresponds to a 10:1 odds ratio.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:07:05Z</p></footer>
+</body>
+</html>

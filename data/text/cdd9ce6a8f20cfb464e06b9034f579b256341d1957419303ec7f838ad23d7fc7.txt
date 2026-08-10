@@ -1,0 +1,238 @@
+OmniWeaving
+Kaihang Pan*1,2, Qi Tian*2, Jianwei Zhang2, Weijie Kong2, Jiangfeng Xiong2, Yanxin Long2, Shixue Zhang2, Haiyi Qiu1, Tan Wang3, Zheqi Lv1, Yue Wu§2, Liefeng Bo2, Siliang Tang§1, Zhao Zhong†2
+1Zhejiang University   2Tencent Hunyuan   3Nanyang Technological University
+*Equal Contribution   §Corresponding Authors   †Project Leader
+Work done during Kaihang Pan's internship at Tencent Hunyuan
+🔥🔥🔥 News
+- 📌 OmniWeaving is developed by the HunyuanVideo team and is built upon the latest HunyuanVideo-1.5 as the backbone. If you find our work useful, please consider giving this repository a like ❤️ and citing our paper~
+- 🚀 April 3, 2026: We release the code and model weights of OmniWeaving.
+- 🚀 April 3, 2026: We release the IntelligentVBench.
+- 📖 Mar 26, 2026: We release the OmniWeaving paper on Arxiv.
+- 👋 Mar 25, 2026: We release the webpage of OmniWeaving.
+📋 Table of Contents
+📖 Abstract
+We propose OmniWeaving, an omni-level video generation model featuring powerful multimodal composition and reasoning-informed capabilities. By leveraging a massive-scale pretraining dataset that encompasses diverse compositional and reasoning-augmented scenarios, OmniWeaving learns to temporally bind interleaved text, multi-image, and video inputs while acting as an intelligent agent to infer complex user intentions for sophisticated video creation. Furthermore, we introduce IntelligentVBench, the first comprehensive benchmark designed to rigorously assess next-level intelligent unified video generation. Extensive experiments demonstrate that OmniWeaving achieves SoTA performance among open-source unified models.
+🏗 Model Architecture
+Following the paper, OmniWeaving is built as an integrated MLLM + MMDiT + VAE framework for unified free-form video generation. The MLLM serves as the semantic parser for interleaved text, images, and video inputs, mapping them into a high-level semantic space and forwarding its hidden states through an MLP connector. The VAE acts as the visual tokenizer, compressing visual inputs into low-level latents, while the MMDiT uses these semantic conditions together with latent noise to generate semantically aligned, high-fidelity videos.
+On this basis, we further introduce two extra improvements tailored for advanced reasoning and composition.
+- (1) Activating Thinking Mode of the MLLM: Direct MLLM encoding of interleaved visual-text inputs often yields semantic ambiguity due to weak intra-correlations and unclear video creation intents. We elevate the MLLM from a passive feature extractor to an active reasoner. By activating the thinking mode to generate intermediate reasoning steps, it autonomously deduces a semantically precise, enhanced prompt. The hidden states of this enhanced prompt are then forwarded alongside the original MLLM features to condition the MMDiT, effectively bridging the cognitive gap between abstract user intent and pixel-level generation.
+- (2) Hidden States DeepStacking: Compositional video generation involving multiple subjects or intricate scenes often relies on both low- and high-level semantic representations. Drawing inspiration from the DeepStacking mechanism in Qwen3-VL, we extract hidden states from a broader range of intermediate MLLM layers to capture a rich semantic spectrum spanning from fine-grained details to high-level abstractions. An MLP connector projects these multi-level features into the MMDiT embedding space. These projected features are then directly added to the corresponding hidden states within the first three layers of the MMDiT conditioning branch, effectively injecting multi-granular semantic guidance into the generative process.
+Figure 1. Overview of the OmniWeaving architecture, which consists of an MLLM for multimodal understanding and an MMDiT for generation.
+🚀 Supported Tasks
+OmniWeaving is flexible in its input and output configurations, supporting a wide range of unified video generation tasks:
+| Task | Input Type | Output | Description | Demo Input | Demo Output |
+|---|---|---|---|---|---|
+| Text-to-Video (T2V) | Text 📝 | Video 🎬 | Generating a video from text prompts. |  |  |
+| First-Frame-to-Video (I2V) | Image 🖼 + Text 📝 | Video 🎬 | Generating a video based on the first frame. |  |  |
+| Key-Frames-to-Video | 2 × Images 🖼 + Text 📝 | Video 🎬 | Generating a video conditioned on start and end frames. |  |  |
+| Video-to-Video Editing | Video 🎬 + Text 📝 | Video 🎬 | Instruction-based video manipulation and stylization. |  |  |
+| Reference-to-Video | Image 🖼 + Text 📝 | Video 🎬 | Single-subject reference-driven video generation. |  |  |
+| Compositional Multi-Image-to-Video | 2–4 × Images 🖼 + Text 📝 | Video 🎬 | Multi-subject compositional video generation. |  |  |
+| Text-Image-Video-to-Video | Video 🎬 + Image 🖼 + Text 📝 | Video 🎬 | Generating a video conditioned on text, image, and video inputs. |  |  |
+| Reasoning-Augmented Video Generation | Image(s) 🖼 + Text 📝 | Reasoning 💭 + Video 🎬 | Reasoning over user intent before generating the video. |  |  |
+🛠 Preparation
+Step 1: Clone the Repository
+git clone https://github.com/Tencent-Hunyuan/OmniWeaving
+cd OmniWeaving
+Step 2: Install Dependencies
+OmniWeaving is built upon HunyuanVideo-1.5. The way to install dependencies is similar to HunyuanVideo-1.5. Specifically, you should install basic dependencies:
+pip install -r requirements.txt
+Additionally, install the attention libraries as needed (we use Flash Attention in practice):
+- Flash Attention: Install for faster inference and reduced GPU memory consumption. See Flash Attention for details.
+- Flex-Block-Attention: Required only for sparse attention to achieve faster inference: git clone https://github.com/Tencent-Hunyuan/flex-block-attn.git
+cd flex-block-attn
+git submodule update --init --recursive
+python3 setup.py install
+- SageAttention: For faster inference (will automatically disable Flex-Block-Attention): git clone https://github.com/cooper1637/SageAttention.git
+cd SageAttention
+export EXT_PARALLEL=4 NVCC_APPEND_FLAGS="--threads 8" MAX_JOBS=32 # Optional
+python3 setup.py install
+Step 3: Download Models
+Detailed download instructions are available at download-checkpoint.md.
+🔑 Inference
+In our inference code, we define six task flags corresponding to the Supported Tasks. Their mapping is as follows:
+| Task Flag | Full Name | Description |
+|---|---|---|
+| t2v | Text-to-Video | Generate videos from text prompts. |
+| i2v | First-Frame-to-Video | Animate a static image into a video guided by text. |
+| interpolation | Key-Frames-to-Video | Generate a video conditioned on start and end frames. |
+| reference2v | Reference-to-Video / Compositional Multi-Image-to-Video | Single- or multi-subject reference-driven video generation. |
+| editing | Video-to-Video Editing | Instruction-based video manipulation and stylization. |
+| tiv2v | Text-Image-Video-to-Video | Generate a video conditioned on text, image, and video inputs. |
+Among these, t2v, i2v, and interpolation can optionally enable thinking mode (--think) for Reasoning-Augmented Video Generation, where the MLLM first reasons over user intent before generating the video.
+Common Configuration
+All tasks share the following hyperparameters (configured at the top of generate.sh):
+N_INFERENCE_GPU=8
+SEED=0
+ASPECT_RATIO=16:9
+MODEL_PATH=/path/to/OmniWeaving
+SAGE_ATTN=false ### Use Flash Attention
+### SAGE_ATTN=true ### Use SageAttention
+SPARSE_ATTN=false
+OVERLAP_GROUP_OFFLOADING=false
+ENABLE_CACHE=false
+CACHE_TYPE=deepcache
+Tips: If your GPU memory is limited and you encounter OOM errors, try:
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
+If you have limited CPU memory, disable overlapped group offloading by setting OVERLAP_GROUP_OFFLOADING=false.
+Task-Specific Inference Scripts
+
+		1. Text-to-Video (t2v)
+
+Generate a video from a text prompt.
+PROMPT="Put Your Prompt Here"
+NEGATIVE_PROMPT="overexposed, low quality, deformation, a poor composition, bad hands, bad teeth, bad eyes, bad limbs, distortion"
+OUTPUT_PATH=./outputs/t2v.mp4
+torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
+  --task t2v \
+  --prompt "$PROMPT" \
+  --negative_prompt "$NEGATIVE_PROMPT" \
+  --aspect_ratio $ASPECT_RATIO \
+  --seed $SEED \
+  --sparse_attn $SPARSE_ATTN --use_sageattn $SAGE_ATTN \
+  --enable_cache $ENABLE_CACHE --cache_type $CACHE_TYPE \
+  --overlap_group_offloading $OVERLAP_GROUP_OFFLOADING \
+  --output_path $OUTPUT_PATH \
+  --model_path $MODEL_PATH \
+  # --think \          # Optional: enable reasoning-augmented generation (see note below)
+The --think flag activates the MLLM's thinking mode, in which it reasons over user intent and generates an enriched prompt before video generation. The --think flag is supported by t2v, i2v, and interpolation tasks.
+
+		2. First-Frame-to-Video (i2v)
+
+Animate a first-frame image into a video guided by a text prompt.
+PROMPT="Put Your Prompt Here"
+IMAGE_PATH=/path/to/reference.png
+OUTPUT_PATH=./outputs/i2v.mp4
+torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
+  --task i2v \
+  --prompt "$PROMPT" \
+  --image_path $IMAGE_PATH \
+  --aspect_ratio $ASPECT_RATIO \
+  --seed $SEED \
+  --sparse_attn $SPARSE_ATTN --use_sageattn $SAGE_ATTN \
+  --enable_cache $ENABLE_CACHE --cache_type $CACHE_TYPE \
+  --overlap_group_offloading $OVERLAP_GROUP_OFFLOADING \
+  --output_path $OUTPUT_PATH \
+  --model_path $MODEL_PATH \
+  # --think \          # Optional: enable reasoning-augmented generation (see note below)
+
+		3. Key-Frames-to-Video (interpolation)
+
+Generate a video that bridges two key frames, guided by a text prompt.
+PROMPT="Put Your Prompt Here"
+REF_IMAGE_PATHS=(/path/to/first_frame.png /path/to/last_frame.png)
+OUTPUT_PATH=./outputs/interpolation.mp4
+torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
+  --task interpolation \
+  --prompt "$PROMPT" \
+  --ref_image_paths "${REF_IMAGE_PATHS[@]}" \
+  --aspect_ratio $ASPECT_RATIO \
+  --seed $SEED \
+  --sparse_attn $SPARSE_ATTN --use_sageattn $SAGE_ATTN \
+  --enable_cache $ENABLE_CACHE --cache_type $CACHE_TYPE \
+  --overlap_group_offloading $OVERLAP_GROUP_OFFLOADING \
+  --output_path $OUTPUT_PATH \
+  --model_path $MODEL_PATH \
+  # --think \          # Optional: enable reasoning-augmented generation
+
+		4. Reference-to-Video / Compositional Multi-Image-to-Video (reference2v)
+
+Generate a video featuring one or more reference subjects. Provide one or more reference images via --ref_image_paths.
+PROMPT="Put Your Prompt Here"
+# Supports 1–4 reference images.
+# For best results with multiple images, use the same aspect ratio across all images,
+# as they will be center-cropped to match the size of the first image.
+REF_IMAGE_PATHS=(/path/to/img1.png /path/to/img2.png ... /path/to/img4.png)  # up to 4 input images
+OUTPUT_PATH=./outputs/reference2v.mp4
+torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
+  --task reference2v \
+  --prompt "$PROMPT" \
+  --ref_image_paths "${REF_IMAGE_PATHS[@]}" \
+  --aspect_ratio $ASPECT_RATIO \
+  --seed $SEED \
+  --sparse_attn $SPARSE_ATTN --use_sageattn $SAGE_ATTN \
+  --enable_cache $ENABLE_CACHE --cache_type $CACHE_TYPE \
+  --overlap_group_offloading $OVERLAP_GROUP_OFFLOADING \
+  --output_path $OUTPUT_PATH \
+  --model_path $MODEL_PATH
+
+		5. Video-to-Video Editing (editing)
+
+Edit an existing video according to the text instruction (e.g., style transfer, object replacement).
+PROMPT="Put Your Prompt Here"
+CONDITION_VIDEO_PATH=/path/to/source_video.mp4
+OUTPUT_PATH=./outputs/editing.mp4
+# If you have pre-extracted VAE latents for the condition video, pass them via
+# --condition_video_latents_path /path/to/latents.pt to skip VAE encoding at inference.
+torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
+  --task editing \
+  --prompt "$PROMPT" \
+  --condition_video_paths $CONDITION_VIDEO_PATH \
+  --aspect_ratio $ASPECT_RATIO \
+  --seed $SEED \
+  --sparse_attn $SPARSE_ATTN --use_sageattn $SAGE_ATTN \
+  --enable_cache $ENABLE_CACHE --cache_type $CACHE_TYPE \
+  --overlap_group_offloading $OVERLAP_GROUP_OFFLOADING \
+  --output_path $OUTPUT_PATH \
+  --model_path $MODEL_PATH \
+  # --condition_video_latents_path /path/to/latents.pt  # Optional: skip VAE encoding by providing pre-extracted latents
+
+		6. Text-Image-Video-to-Video (tiv2v)
+
+Edit a video while incorporating reference subject images (e.g., insert a character from a reference image into a source video).
+PROMPT="Put Your Prompt Here"
+CONDITION_VIDEO_PATH=/path/to/source_video.mp4
+# Only one reference image is supported for tiv2v.
+# For best results, use a reference image whose aspect ratio is close to the output video's aspect ratio.
+REF_IMAGE_PATHS=(/path/to/ref_image.png)
+OUTPUT_PATH=./outputs/tiv2v.mp4
+# If you have pre-extracted VAE latents for the condition video, pass them via
+# --condition_video_latents_path /path/to/latents.pt to skip VAE encoding at inference.
+torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
+  --task tiv2v \
+  --prompt "$PROMPT" \
+  --condition_video_paths $CONDITION_VIDEO_PATH \
+  --ref_image_paths "${REF_IMAGE_PATHS[@]}" \
+  --aspect_ratio $ASPECT_RATIO \
+  --seed $SEED \
+  --sparse_attn $SPARSE_ATTN --use_sageattn $SAGE_ATTN \
+  --enable_cache $ENABLE_CACHE --cache_type $CACHE_TYPE \
+  --overlap_group_offloading $OVERLAP_GROUP_OFFLOADING \
+  --output_path $OUTPUT_PATH \
+  --model_path $MODEL_PATH \
+  # --condition_video_latents_path /path/to/latents.pt  # Optional: skip VAE encoding by providing pre-extracted latents
+Other Optional Arguments
+The arguments below can be appended to any of the task commands above for further customization:
+| Argument | Type | Default | Description |
+|---|---|---|---|
+| --negative_prompt | str | "" | Negative prompt for video generation. Default is empty. Setting a negative prompt (e.g., 'overexposed, low quality, deformation, a poor composition, bad hands, bad teeth, bad eyes, bad limbs, distortion' ) can improve quality, especially for tasks liket2v . |
+| --num_inference_steps | int | 50 | Number of denoising steps |
+| --video_length | int | 81 | Number of frames to generate |
+| --fps | int | Auto | Output FPS (default: 16 for ≤81 frames, 24 for >81 frames) |
+| --dtype | str | bf16 | Data type: bf16 orfp32 |
+| --offloading | bool | true | Enable CPU offloading |
+| --group_offloading | bool | None | Enable group offloading (auto-enabled with offloading) |
+| --pipeline_config | str | omniweaving | Pipeline configuration preset that controls guidance_scale andflow_shift . Available presets:omniweaving (guidance_scale=6.0, flow_shift=7.0 ),omniweaving2 (guidance_scale=6.0, flow_shift=5.0 ). |
+Tuning guidance_scale / flow_shift: You can switch presets via --pipeline_config (e.g., --pipeline_config omniweaving2). If the available presets do not meet your needs, you can add a new key to the PIPELINE_CONFIGS dict in hyvideo/commons/__init__.py with your desired values. We recommend guidance_scale=6.0 with flow_shift=5.0 or 7.0.
+📚 Citation
+If you find our work helpful, please consider giving us a like ❤️ on this repo and citing our papers as follows: OmniWeaving
+@article{pan2026omniweaving,
+  title={OmniWeaving: Towards Unified Video Generation with Free-form Composition and Reasoning},
+  author={Pan, Kaihang and Tian, Qi and Zhang, Jianwei and Kong, Weijie and Xiong, Jiangfeng and Long, Yanxin and Zhang, Shixue and Qiu, Haiyi and Wang, Tan and Lv, Zheqi and others},
+  journal={arXiv preprint arXiv:2603.24458},
+  year={2026}
+}
+HunyuanVideo 1.5
+@article{wu2025hunyuanvideo,
+  title={Hunyuanvideo 1.5 technical report},
+  author={Wu, Bing and Zou, Chang and Li, Changlin and Huang, Duojun and Yang, Fang and Tan, Hao and Peng, Jack and Wu, Jianbing and Xiong, Jiangfeng and Jiang, Jie and others},
+  journal={arXiv preprint arXiv:2511.18870},
+  year={2025}
+}
+🙏 Acknowledgements
+We would like to thank the contributors to HunyuanVideo 1.5, Transformers, Diffusers, HuggingFace and Qwen-VL, for their open research and exploration.
+- Downloads last month
+- 159
+Model tree for tencent/HY-OmniWeaving
+Base model
+tencent/HunyuanVideo-1.5

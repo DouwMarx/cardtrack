@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnosing a performance regression on Terminal-Bench with Docent — cardtrack</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Diagnosing a performance regression on Terminal-Bench with Docent</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">transluce</span>
+<span class="badge independent">independent</span>
+</dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">independent_eval</span></dd>
+    <dt>Models</dt>
+    <dd>GPT-5 Codex, GPT-5.1 Codex</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-02-11</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://transluce.org/docent/blog/terminal-bench" rel="noopener nofollow">https://transluce.org/docent/blog/terminal-bench</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-10T08:44:56Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20transluce-gpt-5-codex-independent-eval&amp;body=Document%3A%20transluce-gpt-5-codex-independent-eval%0AURL%3A%20https%3A//transluce.org/docent/blog/terminal-bench%0AFingerprint%3A%20cf403b9c02d670c6152c49ee4d33cd3a139390df1047dc24412059bbad35e543%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-10T08:44:56Z</td>
+          <td>text/html</td>
+          <td>50,928</td>
+          <td><code title="cf403b9c02d670c6152c49ee4d33cd3a139390df1047dc24412059bbad35e543">cf403b9c02d670c6</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-10T08:44:56Z</span>
+        <strong>add</strong>
+        <span class="run">run evaluator-backfill-2026-08-10 · human · lead: agent_search</span>
+          <div class="just">2026 model-specific evaluation by Transluce, verified during the evaluator-vetting research pass (URL fetched, date and models confirmed on page).</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://transluce.org/news" rel="noopener nofollow">https://transluce.org/news</a> · <a href="https://transluce.org/docent/blog" rel="noopener nofollow">https://transluce.org/docent/blog</a>          </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://transluce.org/docent/blog/terminal-bench" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Terminal-Bench evaluates how well models carry out complex tasks in the terminal. On the official leaderboard, GPT-5.1 Codex underperforms GPT-5 Codex by 6.5 percentage points, even with the same scaffold. What explains the regression?
+We used Docent, our tool for analyzing traces at scale, to compare failed runs from one model against successful runs from a different model on the same task. We analyzed traces from re-running Terminal-Bench ourselves. On our own dataset, GPT-5.1 Codex underperformed GPT-5 Codex by 11.4 percentage points, a discrepancy in the same direction as the 6.5 percentage point gap on the official leaderboard.
+In under an hour, Docent finds that the regression probably stems from timeout errors, not performance. GPT-5.1 Codex times out at nearly twice the rate of GPT-5 Codex (49% vs. 29%), but Terminal-Bench&#39;s system prompt never mentions the time constraint. Although GPT-5 Codex tends toward engineering failures like corrupting file writes, GPT-5.1 Codex tends to time out during long-running processes like training runs, large package installs, or password cracking. GPT-5.1 Codex&#39;s strategies may be more effective absent time constraints, but the evaluation setup cuts them short. When we filter to tasks where neither model times out, GPT-5.1 Codex actually outperforms GPT-5 Codex by 7 percentage points.
+You can replicate our analysis with 5 minutes of setup by following along below.
+Walkthrough
+We&#39;ll (1) pair failed and successful runs on the same task to identify differences between models, (2) synthesize across tasks to surface systematic differences between the two models, and (3) validate the emerging hypothesis quantitatively using Docent&#39;s query language. Each step starts with a natural language prompt, which Claude Code translates into a Docent SDK script. The investigation results appear in the Docent UI.
+Want to follow along? You can replicate this analysis with 5 minutes of setup.
+- Click &#34;Clone Collection&#34; to copy our Terminal-Bench collection into your account. Create your free Docent account if you don&#39;t have one.
+- Install Claude Code and cd into any directory where you want Claude to write your Docent scripts.
+- Run claude . Then, run/plugin marketplace add TransluceAI/claude-code-plugins and/plugin install docent@transluce-plugins to install the Docent plugin.
+- Restart Claude Code after installing the plugin by typing exit and then re-runningclaude .
+- Verify the plugin is installed by starting to type /analysis , but avoid hitting enter or actually running the command. Claude Code should display the Docent plugin.
+- Find your collection ID and API key. Create docent.env and add them asDOCENT_API_KEY andCOLLECTION_ID . Alternatively, run/analysis , or run/analysis collection ID: &lt;YOUR_COLLECTION_ID&gt; API Key: &lt;YOUR_API_KEY&gt;
+You can find the collection ID in the top left corner of the page, next to your collection name. You can find or generate an API key on the Docent settings page.
+Step 1: Analyzing 100+ pairs of failed and successful runs
+Let&#39;s start by putting a failed run from one model next to a successful run by a different model on the same task. We prompt Claude Code to do this across all pairs in our dataset:
+/analysis For each task, find runs where one model scored reward = 0 and the other scored reward = 1. For each failed run, compare it to a successful run from the other model on the same task and write a short paragraph explaining the cause of the failure. Group results by model.
+Claude Code translates this into an SDK script that loads the relevant traces into context and sends them to an LLM judge. The script is visible and editable, so you can verify or adjust the analysis before it runs.
+&#34;&#34;&#34;
+For each task where one model scored reward=0 and the other scored reward=1,
+compare the failed run against a successful run and explain the cause of failure.
+&#34;&#34;&#34;
+from collections import defaultdict
+from docent.sdk.client import Docent
+from docent.sdk.llm_request import LLMRequest
+from docent.sdk.llm_context import Prompt, AgentRunRef
+client = Docent()
+COLLECTION_ID = &#34;a48b08ff-55ac-497a-8987-4af52a50d41f&#34;
+MODEL_A = &#34;openai/gpt-5-codex&#34;
+MODEL_B = &#34;openai/gpt-5.1-codex&#34;
+# --- Fetch all runs with reward scores ---
+result = client.execute_dql(COLLECTION_ID, &#34;&#34;&#34;
+SELECT task, model_name, reward, agent_run_id
+FROM (
+    SELECT
+        id AS agent_run_id,
+        metadata_json-&gt;&gt;&#39;task&#39; AS task,
+        metadata_json-&gt;&#39;agent&#39;-&gt;&gt;&#39;model_name&#39; AS model_name,
+        CAST(metadata_json-&gt;&#39;scores&#39;-&gt;&gt;&#39;reward&#39; AS DOUBLE PRECISION) AS reward
+    FROM agent_runs
+    WHERE metadata_json-&gt;&#39;scores&#39; ? &#39;reward&#39;
+) AS subq
+&#34;&#34;&#34;)
+rows = client.dql_result_to_dicts(result)
+# --- Group by task and model ---
+task_model = defaultdict(lambda: defaultdict(list))
+for r in rows:
+    task_model[r[&#34;task&#34;]][r[&#34;model_name&#34;]].append(
+        {&#34;reward&#34;: r[&#34;reward&#34;], &#34;id&#34;: r[&#34;agent_run_id&#34;]}
+    )
+# --- Find divergent pairs: one model=0, the other=1 ---
+divergent = []
+for task, models in task_model.items():
+    for failed_model, success_model in [(MODEL_A, MODEL_B), (MODEL_B, MODEL_A)]:
+        zeros = [r for r in models.get(failed_model, []) if r[&#34;reward&#34;] == 0]
+        ones = [r for r in models.get(success_model, []) if r[&#34;reward&#34;] == 1]
+        if zeros and ones:
+            for failed_run in zeros:
+                divergent.append(
+                    {
+                        &#34;task&#34;: task,
+                        &#34;failed_model&#34;: failed_model,
+                        &#34;failed_run_id&#34;: failed_run[&#34;id&#34;],
+                        &#34;success_model&#34;: success_model,
+                        &#34;success_run_id&#34;: ones[0][&#34;id&#34;],
+                    }
+                )
+# --- Build LLMRequests ---
+PROMPT_TEMPLATE = (
+    &#34;Below are two agent runs on the same task ({task}). &#34;
+    &#34;The first run FAILED (reward=0, model: {failed_model}). &#34;
+    &#34;The second run SUCCEEDED (reward=1, model: {success_model}).\n\n&#34;
+    &#34;Failed run:\n&#34;
+)
+PROMPT_SUFFIX = (
+    &#34;\n\nSuccessful run:\n&#34;
+)
+PROMPT_INSTRUCTION = (
+    &#34;\n\nCompare the two runs. In a short paragraph, explain the cause of the &#34;
+    &#34;failure in the first run. Focus on what the failed agent did wrong or &#34;
+    &#34;differently that led to reward=0, referencing specific actions or mistakes. &#34;
+    &#34;Be concrete and specific.&#34;
+)
+requests = []
+for d in divergent:
+    failed_ref = AgentRunRef(id=d[&#34;failed_run_id&#34;], collection_id=COLLECTION_ID)
+    success_ref = AgentRunRef(id=d[&#34;success_run_id&#34;], collection_id=COLLECTION_ID)
+    prompt = Prompt([
+        PROMPT_TEMPLATE.format(
+            task=d[&#34;task&#34;],
+            failed_model=d[&#34;failed_model&#34;],
+            success_model=d[&#34;success_model&#34;],
+        ),
+        failed_ref,
+        PROMPT_SUFFIX,
+        success_ref,
+        PROMPT_INSTRUCTION,
+    ])
+    requests.append(
+        LLMRequest(
+            prompt=prompt,
+            metadata={
+                &#34;task&#34;: d[&#34;task&#34;],
+                &#34;failed_model&#34;: d[&#34;failed_model&#34;],
+                &#34;failed_run_id&#34;: d[&#34;failed_run_id&#34;],
+                &#34;success_model&#34;: d[&#34;success_model&#34;],
+                &#34;success_run_id&#34;: d[&#34;success_run_id&#34;],
+            },
+        )
+    )
+# --- Submit ---
+result_set = client.submit_llm_requests(
+    collection_id=COLLECTION_ID,
+    requests=requests,
+    model_string=&#34;openai/gpt-5-mini&#34;,
+    result_set_name=&#34;failure-analysis/divergent-by-model/v1&#34;,
+)
+print(f&#34;Submitted {len(requests)} requests to result set: {result_set.name}&#34;)
+print(f&#34;Result set ID: {result_set.id}&#34;)
+In the Results tab of Docent&#39;s web UI, we can browse analysis of each pair. Every result is a short explanation of why the failed run diverged from the successful one.
+Clicking on a citation jumps to the relevant section of the original trace, so we can verify the analysis against the source material.
+Citations and the followup chat are useful for targeted reading, so we can investigate strategically instead of skimming a random sample. But we&#39;ve only looked at individual pairs. To understand what&#39;s systematically different between the two models, we need to look across all of them.
+Step 2: Synthesizing model differences across all pairs of runs
+Manually synthesizing across 100+ pair analyses would mean reading each one and building a mental model of the recurring patterns. With Docent, it&#39;s another prompt to Claude Code. Enter the following in the same Claude Code session as the prompt before:
+/analysis Based on the previous result, summarize the difference in failure modes between the two models.
+Docent loads and compresses all of the per-pair analyses into context and produces a summary of the key differences.
+The two models fail in characteristically different ways. GPT-5 Codex failures cluster around execution mistakes: not writing or running verification steps and corrupted file writes. GPT-5.1 Codex failures cluster around poor time management: mismanaging long-running or heavyweight operations, such as installing GPU packages instead of CPU ones, or aborting training jobs instead of waiting, triggering a timeout error.
+Step 3: Testing the timeout hypothesis
+To test whether timeout errors explain the gap, we can query our run metadata directly. Docent supports ad hoc data exploration via Docent Query Language, a subset of SQL that our Claude Code skill can generate from natural language. Try running the following prompt:
+Analyze the timeout rate per model. The exception field in the metadata indicates whether the agent timed out
+Nearly half of GPT-5.1 Codex&#39;s runs time out (49.4%), compared to fewer than one in three for GPT-5 Codex (29.1%). The pattern is broad rather than driven by a few outliers: 24 tasks produce timeouts only for GPT-5.1 Codex, while just 3 tasks time out exclusively for GPT-5 Codex.
+If timeouts account for the gap, then the two models should perform more similarly on tasks where neither times out (see the footnotes for more detail). We can test this directly:
+Filter to tasks where neither model times out across all rollouts. Create and display a pivot table that shows rollouts and reward per model per task. Then compute the macro-average reward per model on this subset of tasks.
+On the subset of tasks without timeouts, the performance difference actually flips! GPT-5.1 Codex outperforms GPT-5 Codex by about 7 percentage points.
+Conclusion
+A lower benchmark score is easy to interpret as a capability deficit, but Terminal-Bench&#39;s system prompt never mentions a timeout constraint. GPT-5.1 Codex may be choosing long-horizon strategies that the eval cutoff terminates prematurely. This kind of hypothesis is difficult to reach by skimming a handful of traces, but emerges from systematically analyzing the full dataset.
+In less than an hour, Docent analyzed traces containing 256M+ tokens and identified that GPT-5.1 Codex&#39;s 11.4 percentage point deficit is concentrated in timeout errors. On tasks where neither model times out, it actually outperforms GPT-5 Codex.
+This walkthrough covered one common pattern (pairwise comparison of failed and successful runs), but Docent can be adapted to other questions as well: why a harness works with Opus 4.6 but not GPT-5.3 Codex, whether a score drop reflects broken environments or genuine capability differences, or detecting cheating that inflates eval results.
+- Want to go further? Use Docent&#39;s rubric refinement agent to quantify how often a failure pattern appears across your dataset — take a few examples of a behavior, and Docent will operationalize it into a precise classifier you can run over every trace.
+- Try Docent on your own data. Read our Quickstart to ingest your traces and start analyzing.
+- Questions or feedback? Get in touch. We&#39;d love to hear what you&#39;re working on.
+Footnotes
+- We re-ran Terminal-Bench with three rollouts per task per model. Our absolute scores are lower than the official leaderboard and the gap is wider (11.4 vs. 6.5 percentage points), but the direction and rough magnitude of the regression are consistent. Readers should treat this analysis as illustrative of Docent&#39;s workflow rather than a definitive characterization of either model.
+- Most benchmarks report the microaverage, i.e. the average reward across all runs of a particular model. Since some of our tasks had uneven rollout counts, we reported the macro-average by averaging reward within a task, and then averaging reward across all tasks. This ensures that each task is weighted evenly.
+- Filtering to tasks where no run from either model times out may bias the result toward tasks that are easier.
+- In rare edge cases, the agent may succeed despite timing out. In one trace we examined, the agent passed the Terminal-Bench tests but repeatedly failed on a suite of its own test cases. Since Terminal-Bench only grades the final file state, the run was marked as a success despite the timeout exception.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-10T09:07:05Z</p></footer>
+</body>
+</html>

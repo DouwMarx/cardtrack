@@ -109,6 +109,10 @@ demos and showcases, policy/election/deprecation updates, developer tutorials, a
 general research essays that do not evaluate a named model. When in doubt, skip —
 the database catalogs model documentation, not lab blogs.
 
+**Co-published reports**: when two orgs jointly publish (e.g. UK AISI + US CAISI),
+each org's own copy at its own URL is a separate document — cross-reference the
+counterpart in `notes`. Never pick one "winner".
+
 The test for independent evaluations is the **system-card test**: would this
 content fit in the evaluations section of a system/model card? A report assessing
 a named model's capabilities or safety qualifies; a research paper that merely
