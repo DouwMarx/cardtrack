@@ -5,7 +5,10 @@ validator_checked:                   # enforced deterministically; any failure �
   min_publication_date: "2026-01-01" # scope floor; NULL dates → file_issue
 agent_attested:                      # judgment calls; agent must assert, recorded in provenance
   primary_source: true               # the org's own publication, not press coverage
-  about_a_specific_model_or_eval: true
+  about_a_specific_model_or_eval: true  # the system-card test: the content could sit in
+                                     # the evals section of a system/model card — it
+                                     # assesses a NAMED model's capabilities or safety.
+                                     # Research that merely uses models does not qualify.
   distinct_model_release: true       # a distinct release/eval — NOT a size, quantization,
                                      # checkpoint, or regional variant of a model already
                                      # covered; family cards → one entry, all model_names

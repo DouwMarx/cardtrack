@@ -108,3 +108,53 @@ evaluators:            # independent
     display_name: Apollo Research
     index_urls:
       - https://www.apolloresearch.ai/research
+  epoch_ai:
+    tier: 1
+    display_name: Epoch AI
+    index_urls:
+      - https://epoch.ai/latest
+  securebio:
+    tier: 1
+    display_name: SecureBio
+    index_urls:
+      - https://securebio.substack.com/archive
+      - https://securebio.org/blog/
+  transluce:
+    tier: 1
+    display_name: Transluce
+    index_urls:
+      - https://transluce.org/news
+  us_caisi:
+    tier: 1
+    display_name: US CAISI (NIST)
+    index_urls:
+      - https://www.nist.gov/caisi
+      - https://www.nist.gov/blogs/caisi-research-blog
+  rand:
+    tier: 1                       # scoped to CAST / Project Canary eval output
+    display_name: RAND (CAST / Project Canary)
+    index_urls:
+      - https://www.rand.org/global-and-emerging-risks/centers/ai-security-and-technology/projects/canary.html
+      - https://www.rand.org/global-and-emerging-risks/centers/ai-security-and-technology/research-and-commentary.html
+  saferai:
+    tier: 2                       # first first-hand model eval Aug 2026; promote if sustained
+    display_name: SaferAI
+    index_urls:
+      - https://www.safer-ai.org/research
+  far_ai:
+    tier: 2
+    display_name: FAR.AI
+    index_urls:
+      - https://www.far.ai/blog
+  palisade_research:
+    tier: 2
+    display_name: Palisade Research
+    index_urls:
+      - https://palisaderesearch.org/blog
+  redwood_research:
+    tier: 2                       # control-methods research org; model evals incidental
+    display_name: Redwood Research
+    index_urls:
+      - https://blog.redwoodresearch.org/archive
+# Consciously excluded: MLCommons/AILuminate — vendor-consortium benchmark program,
+# no model-specific 2026 eval publications (vetted 2026-08-10).

@@ -107,7 +107,12 @@ evaluation, risk, or incident reports that don't fit the other labels. NOT in sc
 even from allowlisted publishers: partnership or product announcements, capability
 demos and showcases, policy/election/deprecation updates, developer tutorials, and
 general research essays that do not evaluate a named model. When in doubt, skip —
-the database catalogs model documentation, not lab blogs. `publication_date` must
+the database catalogs model documentation, not lab blogs.
+
+The test for independent evaluations is the **system-card test**: would this
+content fit in the evaluations section of a system/model card? A report assessing
+a named model's capabilities or safety qualifies; a research paper that merely
+uses models as subjects or tools does not. `publication_date` must
 be the document's own publication date (null if you truly cannot determine it — the
 validator will route it to review). Do not invent URLs; only propose documents you
 fetched and read.
