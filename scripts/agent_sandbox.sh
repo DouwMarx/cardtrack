@@ -19,8 +19,14 @@ SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ROOT="${CARDTRACK_ROOT:-$SCRIPT_ROOT}"
 
 if ! command -v bwrap >/dev/null 2>&1; then
-  echo "[agent_sandbox] WARNING: bwrap not found; running agent WITHOUT the OS sandbox" >&2
-  exec "$@"
+  # Fail closed: an unsandboxed autonomous agent is a silent security downgrade.
+  # (Install bubblewrap; or for a one-off supervised run, set CARDTRACK_NO_SANDBOX=1.)
+  if [ "${CARDTRACK_NO_SANDBOX:-}" = "1" ]; then
+    echo "[agent_sandbox] WARNING: CARDTRACK_NO_SANDBOX=1 — running WITHOUT the OS sandbox" >&2
+    exec "$@"
+  fi
+  echo "[agent_sandbox] ERROR: bwrap not found; refusing to run the agent unsandboxed" >&2
+  exit 90
 fi
 
 mkdir -p "$ROOT/data" "$ROOT/logs"

@@ -12,7 +12,15 @@ Original design document: `cardtrack-spec.md` (historical). Live site: https://c
 Requirements: Python ≥3.11 with [uv](https://docs.astral.sh/uv/), and for the full
 pipeline: `node`/`npx` (Pagefind + wrangler), `pdftotext` (poppler; optional —
 falls back to pypdf), `gh` (optional — GitHub issues loop), `bwrap` (optional —
-agent sandbox).
+agent sandbox), the `claude` CLI (agent phase; authenticate once with `claude login`).
+
+Debian/Ubuntu: `apt install git curl nodejs npm poppler-utils bubblewrap` then the
+[uv](https://docs.astral.sh/uv/getting-started/installation/),
+[gh](https://github.com/cli/cli#installation), and
+[claude](https://claude.com/claude-code) installers. Note: bwrap needs unprivileged
+user namespaces (default-on in Debian 12+; Ubuntu 24.04 restricts them via AppArmor —
+if `bwrap true` fails there, the sandbox script warns and the agent phase should stay
+disabled or run with a relaxed AppArmor profile).
 
 ```sh
 uv sync                      # installs deps + dev tools (pytest, ruff, poe)
@@ -64,11 +72,24 @@ link checks, fingerprint rotation, index diffs) → Phase B agent (only if
 optional git commit/push + optional Cloudflare Pages deploy (gated by the
 `publish.*` settings).
 
-Cron (the lock file makes overlapping runs impossible):
+Scheduling — systemd user timer (works on NixOS and Debian; the script holds its
+own lock, so overlapping runs are impossible):
+
+```sh
+cp scripts/systemd/cardtrack.{service,timer} ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now cardtrack.timer
+loginctl enable-linger $USER     # keep timers firing when logged out
+```
+
+Classic cron works too where cron exists (not on NixOS by default):
 
 ```
-15 06 * * *  cd $HOME/projects/ais/system_card_db && flock -n .run.lock ./scripts/run_daily.sh >> logs/cron.log 2>&1
+15 06 * * *  $HOME/projects/ais/system_card_db/scripts/run_daily.sh >> $HOME/projects/ais/system_card_db/logs/cron.log 2>&1
 ```
+
+`run_daily.sh` sets its own PATH (NixOS profiles, `~/.local/bin`, system dirs), so
+it runs correctly under a scheduler's minimal environment on either OS.
 
 Phase B uses the `claude` CLI via `agent.cmd` in settings — it authenticates with
 your Claude subscription login (`env -u ANTHROPIC_API_KEY` guards against silently
@@ -123,6 +144,6 @@ Everything the agent reads (web pages, issue text) is treated as untrusted input
 
 1. ✅ Schema + validator + extraction + 76-test suite; 23 documents seeded through the tool
 2. ✅ Site live at https://cards.douwmarx.com (Pages project `cardtrack`, CNAME + custom domain attached)
-3. ⬜ `run_daily.sh` under cron — add the crontab line above
+3. ✅ Daily schedule live (systemd user timer, 06:15 UTC, linger enabled)
 4. ✅ Agent enabled and battle-tested (backfill drain + audits, 2026-08-09/10)
 5. ✅ 2026 corpus backfilled (supervised session, 2026-08-09); deepen later by lowering `min_publication_date`

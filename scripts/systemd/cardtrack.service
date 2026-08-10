@@ -1,0 +1,9 @@
+[Unit]
+Description=cardtrack daily run (monitor, curation agent, build, publish)
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/ais/system_card_db
+ExecStart=%h/projects/ais/system_card_db/scripts/run_daily.sh
+# run_daily.sh sets its own PATH and holds its own lock

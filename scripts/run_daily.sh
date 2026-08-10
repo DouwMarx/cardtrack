@@ -8,6 +8,10 @@ ROOT="${CARDTRACK_ROOT:-$SCRIPT_ROOT}"
 export CARDTRACK_ROOT="$ROOT"
 cd "$SCRIPT_ROOT"
 
+# Schedulers (cron, systemd timers) run with a minimal PATH. Prepend the places
+# uv/claude/npx/git actually live on NixOS and Debian; nonexistent dirs are harmless.
+export PATH="$HOME/.local/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/usr/local/bin:$PATH"
+
 RUN_ID="${RUN_ID:-$(date -u +%Y-%m-%dT%H:%MZ)-local}"
 mkdir -p "$ROOT/logs"
 
