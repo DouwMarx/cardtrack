@@ -22,4 +22,5 @@ logs/cron.log
 logs/candidates.json
 logs/state_summary.json
 logs/open_issues.json
+logs/agent-transcripts/
 .wrangler/

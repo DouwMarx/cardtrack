@@ -60,6 +60,13 @@ MERGE
     bash scripts/agent_sandbox.sh bash -c "$AGENT_CMD" \
       || echo "[run_daily] agent exited nonzero (continuing to Phase C)"
     unset CARDTRACK_ACTOR
+    # preserve the session transcript before the next run's sandbox wipes it
+    # (local-only audit trail: which tool calls the agent actually made)
+    if [ -d "$ROOT/.agent-home/.claude/projects" ]; then
+      mkdir -p "$ROOT/logs/agent-transcripts"
+      cp -r "$ROOT/.agent-home/.claude/projects" \
+        "$ROOT/logs/agent-transcripts/$RUN_ID" 2>/dev/null || true
+    fi
     # deliver issues the sandboxed agent could only queue (gh is unauthenticated inside)
     "${PY[@]}" scripts/flush_outbox.py --root "$ROOT"
   else
