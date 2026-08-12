@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mistral Medium 3.5 model card — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">mistral</span>
+    <dd><a href="https://mistral.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">mistral</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:no"></span>
+        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-moved">moved</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -66,6 +71,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 3 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-10T09:47:47Z</span>
@@ -93,7 +101,17 @@
           <div class="evidence">Evidence:
 <a href="https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04" rel="noopener nofollow">https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "open_weight_restrictive"</div>
+          <div class="just">Verified on HF: license tag &#39;other&#39;, license_name &#39;Modified MIT License&#39;, described as &#39;Open-source license for both commercial and non-commercial use with exceptions for companies with large revenue&#39; — entities above ~$20M global consolidated monthly revenue must obtain a separate commercial license from Mistral. Weight-bound use restriction, so restrictive rather than MIT-class (same treatment as the Kimi K3 License).</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/mistralai/Mistral-Medium-3.5-128B" rel="noopener nofollow">https://huggingface.co/mistralai/Mistral-Medium-3.5-128B</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -130,6 +148,6 @@ Other Models</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

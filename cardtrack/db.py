@@ -26,7 +26,9 @@ CREATE TABLE IF NOT EXISTS documents (
   last_changed     TEXT,
   source_of_lead   TEXT,
   notes            TEXT,
-  safety_evals     INTEGER            -- 1 = contains safety evals, 0 = none, NULL = unassessed
+  safety_evals     INTEGER,           -- 1 = contains safety evals, 0 = none, NULL = unassessed
+  openness         TEXT               -- closed | open_weight_restrictive | open_weight_permissive
+                                      -- | mixed | NULL = not model-specific / undetermined
 );
 
 CREATE TABLE IF NOT EXISTS document_versions (
@@ -114,6 +116,8 @@ def connect(db_path: str | Path) -> sqlite3.Connection:
     existing = {row[1] for row in conn.execute("PRAGMA table_info(documents)")}
     if "safety_evals" not in existing:
         conn.execute("ALTER TABLE documents ADD COLUMN safety_evals INTEGER")
+    if "openness" not in existing:
+        conn.execute("ALTER TABLE documents ADD COLUMN openness TEXT")
     existing_lc = {row[1] for row in conn.execute("PRAGMA table_info(link_checks)")}
     if "byte_size" not in existing_lc:
         conn.execute("ALTER TABLE link_checks ADD COLUMN byte_size INTEGER")

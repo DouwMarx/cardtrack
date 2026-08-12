@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 Model Card — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:no"></span>
+        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -65,6 +70,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 2 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-09T20:32:41Z</span>
@@ -83,7 +91,17 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/collections/nvidia/nvidia-nemotron-v3" rel="noopener nofollow">https://huggingface.co/collections/nvidia/nvidia-nemotron-v3</a> · <a href="https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf" rel="noopener nofollow">https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:32Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "open_weight_permissive"</div>
+          <div class="just">HF API: license:other with license_name = openmdw-1.1. OpenMDW 1.1 grants permission to deal in the model materials &#39;without restriction&#39;, imposes no restrictions on outputs, has no AUP or field-of-use limits; only notice retention and a defensive patent-litigation termination. MIT-class. Weights downloadable (561B BF16 safetensors).</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -948,6 +966,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

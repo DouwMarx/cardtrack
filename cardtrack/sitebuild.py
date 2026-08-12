@@ -3,6 +3,7 @@ then Pagefind indexing. The site consumes exports, never the live DB."""
 
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 import sqlite3
@@ -54,6 +55,19 @@ def _issue_url(gh_repo: str, doc: dict) -> str | None:
             f"?labels=data-error&title={title}&body={body}")
 
 
+def _publishers_map(repo: Repo) -> dict:
+    """Org key → display_name/homepage/independent, for hyperlinking publishers."""
+    out = {}
+    for category, indep in (("publishers", False), ("evaluators", True)):
+        for key, info in (repo.sources.get(category) or {}).items():
+            out[key] = {
+                "display_name": (info or {}).get("display_name", key),
+                "homepage": (info or {}).get("homepage"),
+                "independent": indep,
+            }
+    return out
+
+
 def _doc_text(repo: Repo, text_path: str | None) -> str | None:
     if not text_path:
         return None
@@ -81,14 +95,31 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
     gh_repo = repo.setting("github.repo") or ""
     site_title = repo.setting("site.title", "cardtrack")
     docs = export_metadata(conn)
+    publishers = _publishers_map(repo)
 
     (site / "data" / "metadata.json").write_text(
-        json.dumps({"generated_at": utcnow(), "documents": docs},
+        json.dumps({"generated_at": utcnow(), "publishers": publishers,
+                    "documents": docs},
                    ensure_ascii=False, indent=1),
         encoding="utf-8",
     )
 
-    ctx_common = {"site_title": site_title, "gh_repo": gh_repo, "generated_at": utcnow()}
+    # content-hash version tags for mutable assets: a deploy must never let a
+    # cached old app.js/style.css meet new HTML (the URLs change instead)
+    static_src = TEMPLATE_DIR / "static"
+    asset_v = {f.name: hashlib.sha256(f.read_bytes()).hexdigest()[:10]
+               for f in static_src.iterdir() if f.is_file()}
+
+    ctx_common = {"site_title": site_title, "gh_repo": gh_repo,
+                  "generated_at": utcnow(), "asset_v": asset_v}
+
+    # explicit cache policy; without it the CDN default (4 h browser TTL)
+    # serves stale assets after every deploy
+    (site / "_headers").write_text(
+        "/*\n  Cache-Control: public, max-age=0, must-revalidate\n"
+        "/pagefind/*\n  Cache-Control: public, max-age=86400\n",
+        encoding="utf-8",
+    )
 
     (site / "index.html").write_text(
         env.get_template("index.html.j2").render(**ctx_common, doc_count=len(docs)),
@@ -118,6 +149,7 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
             **ctx_common,
             doc=doc,
             source_kind=source_kind,
+            publisher_home=(publishers.get(doc["publisher"]) or {}).get("homepage"),
             notes=row["notes"],
             versions=[dict(v) for v in versions],
             provenance=[{**dict(pr), "detail": json.loads(pr["detail"])} for pr in provenance],

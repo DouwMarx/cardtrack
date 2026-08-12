@@ -330,3 +330,33 @@ def test_slug_collision_gets_suffix(repo, http_server):
     slug = derive_slug(conn, "testlab", ["TestModel 1"], "system_card")
     conn.close()
     assert slug == "testlab-testmodel-1-system-card-2"
+
+
+def test_openness_validated_on_add_and_field_update(repo, http_server):
+    """openness accepts only the four taxonomy values (or null); invalid rejects."""
+    http_server.set_html("/doc1", "The model was evaluated extensively.")
+    bad = process_proposal(repo, make_proposal(http_server, openness="open_source"), "run1")
+    assert bad.status == "rejected"
+    assert "openness" in bad.reason
+
+    added = process_proposal(
+        repo, make_proposal(http_server, openness="open_weight_permissive"), "run1")
+    assert added.status == "written"
+    conn = connect(repo.db_path)
+    row = conn.execute("SELECT openness FROM documents WHERE slug = ?",
+                       (added.slug,)).fetchone()
+    conn.close()
+    assert row["openness"] == "open_weight_permissive"
+
+    upd = process_proposal(repo, {
+        "action": "field_update", "slug": added.slug, "field": "openness",
+        "old": "open_weight_permissive", "new": "mixed",
+        "justification": "covers models in different classes",
+        "evidence_urls": ["https://example.com/license"]}, "run2")
+    assert upd.status == "written"
+
+    bad2 = process_proposal(repo, {
+        "action": "field_update", "slug": added.slug, "field": "openness",
+        "new": "totally_open", "justification": "nope",
+        "evidence_urls": ["https://example.com/license"]}, "run3")
+    assert bad2.status == "rejected"

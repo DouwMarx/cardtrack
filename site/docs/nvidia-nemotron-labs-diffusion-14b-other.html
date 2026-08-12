@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding (Technical Report) — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:no"></span>
+        <span hidden data-pagefind-filter="openness:mixed"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">other</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge">mixed</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -65,6 +70,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 2 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-09T22:02:03Z</span>
@@ -83,7 +91,17 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-14B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-14B</a> · <a href="https://huggingface.co/collections/nvidia/nemotron-labs-diffusion" rel="noopener nofollow">https://huggingface.co/collections/nvidia/nemotron-labs-diffusion</a> · <a href="https://github.com/NVlabs/Nemotron-Labs-Diffusion" rel="noopener nofollow">https://github.com/NVlabs/Nemotron-Labs-Diffusion</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:32Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "mixed"</div>
+          <div class="just">Verified both arms. Nemotron-Labs-Diffusion-3B/8B/14B: license_name nvidia-nemotron-open-model-license, whose full text I read (no guardrail, Trustworthy-AI or non-commercial clause) -&gt; permissive. Nemotron-Labs-Diffusion-VLM-8B: &#39;Use of this model is governed by the NVIDIA Source Code License (NSCLv1)&#39;, which is NVIDIA&#39;s OneWay Noncommercial license -&gt; restrictive. Different classes in one tech report.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-VLM-8B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-VLM-8B</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -1665,6 +1683,6 @@ where 𝜆 ∈ [0, 1] controls the interpolation.
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

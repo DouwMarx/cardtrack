@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Muse Spark 1.2 &amp; Muse Code Evaluation Methodology — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">meta</span>
+    <dd><a href="https://ai.meta.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">meta</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:no"></span>
+        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">other</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -65,6 +70,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 2 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-09T21:05:14Z</span>
@@ -83,7 +91,17 @@
           <div class="evidence">Evidence:
 <a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2" rel="noopener nofollow">https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2</a> · <a href="https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/" rel="noopener nofollow">https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "closed"</div>
+          <div class="just">Doc covers Muse Spark 1.2 and Muse Code. Verified as of 2026-08-12: Meta&#39;s 2026-08-10 announcement opened Muse Glimmer (Apache-2.0) and said Muse Spark 1.2 weights will follow &#39;in the coming weeks&#39; — no Spark repo, license or weights have shipped. Muse Code is a terminal coding-agent product powered by Muse Spark 1.2, i.e. a proprietary deployed system. Both closed at doc date (2026-08-05).</div>
+          <div class="evidence">Evidence:
+<a href="https://www.cnbc.com/2026/08/10/meta-muse-glimmer-open-weight-ai.html" rel="noopener nofollow">https://www.cnbc.com/2026/08/10/meta-muse-glimmer-open-weight-ai.html</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -177,6 +195,6 @@ rates. The primary metric is percent resolved (pass@1).</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

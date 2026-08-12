@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kimi K2.7-Code Model Card — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">moonshot_ai</span>
+    <dd><a href="https://www.moonshot.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">moonshot_ai</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:no"></span>
+        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -65,6 +70,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 2 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-09T20:27:04Z</span>
@@ -83,7 +91,17 @@
           <div class="evidence">Evidence:
 <a href="https://developers.cloudflare.com/changelog/post/2026-06-12-kimi-k2-7-code-workers-ai/" rel="noopener nofollow">https://developers.cloudflare.com/changelog/post/2026-06-12-kimi-k2-7-code-workers-ai/</a> · <a href="https://www.marktechpost.com/2026/06/12/moonshot-ai-releases-kimi-k2-7-code-a-coding-model-reporting-21-8-on-kimi-code-bench-v2-over-k2-6/" rel="noopener nofollow">https://www.marktechpost.com/2026/06/12/moonshot-ai-releases-kimi-k2-7-code-a-coding-model-reporting-21-8-on-kimi-code-bench-v2-over-k2-6/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "open_weight_permissive"</div>
+          <div class="just">Weights downloadable from HF. LICENSE is plain MIT plus the same scale-triggered attribution clause (&#39;Kimi K2.7 Code&#39; in UI above 100M MAU / $20M monthly revenue), no commercial prohibition.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/moonshotai/Kimi-K2.7-Code" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K2.7-Code</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -401,6 +419,6 @@ If you have any questions, please reach out at support@moonshot.ai.
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

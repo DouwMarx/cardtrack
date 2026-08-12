@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ doc.title }} — {{ site_title }}</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v={{ asset_v['favicon.svg'] }}">
+<link rel="stylesheet" href="../style.css?v={{ asset_v['style.css'] }}">
 </head>
 <body>
 <header class="masthead">
@@ -19,10 +20,12 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">{{ doc.publisher }}</span>
+    <dd>{% if publisher_home %}<a href="{{ publisher_home }}" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">{{ doc.publisher }}</span></a>
+        {% else %}<span data-pagefind-filter="publisher" data-pagefind-meta="publisher">{{ doc.publisher }}</span>{% endif %}
         {% if doc.is_independent %}<span class="badge independent" data-pagefind-filter="source">independent</span>
         {% else %}<span class="badge" data-pagefind-filter="source">first-party</span>{% endif %}
         <span hidden data-pagefind-filter="safety:{{ 'yes' if doc.safety_evals == 1 else ('no' if doc.safety_evals == 0 else 'unassessed') }}"></span>
+        <span hidden data-pagefind-filter="openness:{{ doc.openness or 'na' }}"></span>
         <span hidden data-pagefind-meta="source_kind:{{ source_kind }}"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">{{ doc.doc_type }}</span></dd>
@@ -37,6 +40,12 @@
     <dd>{% if doc.safety_evals == 1 %}<span class="badge safety-yes">yes</span>
         {% elif doc.safety_evals == 0 %}<span class="badge safety-no">none found</span>
         {% else %}<span class="badge">unassessed</span>{% endif %}</dd>
+    <dt>Openness</dt>
+    <dd>{% if doc.openness == 'closed' %}<span class="badge openness-closed">closed weights</span>
+        {% elif doc.openness == 'open_weight_restrictive' %}<span class="badge openness-restrictive">open weights (restrictive license)</span>
+        {% elif doc.openness == 'open_weight_permissive' %}<span class="badge openness-permissive">open weights (permissive license)</span>
+        {% elif doc.openness == 'mixed' %}<span class="badge">mixed</span>
+        {% else %}<span class="badge">n/a</span>{% endif %}</dd>
     <dt>Source</dt>
     <dd>
       <a href="{{ doc.canonical_url }}" rel="noopener nofollow" data-pagefind-meta="source_url[href]">{{ doc.canonical_url }}</a>
@@ -84,6 +93,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show {{ provenance | length }} changelog entr{{ 'y' if provenance | length == 1 else 'ies' }}
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
     {% for entry in provenance %}
       <li>
@@ -118,6 +130,7 @@
       </li>
     {% endfor %}
     </ol>
+    </details>
   </section>
 
   <section>

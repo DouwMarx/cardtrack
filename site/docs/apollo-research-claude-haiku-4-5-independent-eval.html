@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Evaluating LLM Calibration for Coding-Agent Monitoring — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,9 +20,10 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">apollo_research</span>
+    <dd><a href="https://www.apolloresearch.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">apollo_research</span></a>
 <span class="badge independent" data-pagefind-filter="source">independent</span>
         <span hidden data-pagefind-filter="safety:yes"></span>
+        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">independent_eval</span></dd>
@@ -34,6 +36,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -66,6 +71,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 2 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-09T22:57:28Z</span>
@@ -84,7 +92,17 @@
           <div class="evidence">Evidence:
 <a href="https://www.apolloresearch.ai/monitoring" rel="noopener nofollow">https://www.apolloresearch.ai/monitoring</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:25Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "closed"</div>
+          <div class="just">Calibration study spanning Claude (Haiku 4.5, Opus 4.6-4.8, Sonnet 4.6/5), OpenAI GPT-5.4/-mini/-nano/5.5 and Gemini 2.5/3/3.1/3.5 variants. Every model is API-only (GPT-5.4-nano is API-exclusive; Gemini is AI Studio/Vertex-only), so closed rather than mixed.</div>
+          <div class="evidence">Evidence:
+<a href="https://developers.openai.com/api/docs/models/gpt-5.4-nano" rel="noopener nofollow">https://developers.openai.com/api/docs/models/gpt-5.4-nano</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -207,6 +225,6 @@ Product</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

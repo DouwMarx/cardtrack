@@ -86,6 +86,7 @@ for clarification, is always the safe move.
   "criteria": {"primary_source": true, "about_a_specific_model_or_eval": true,
                "distinct_model_release": true, "notable_release": true},
   "soft": {"has_safety_evals": true},
+  "openness": "closed",
   "evidence_urls": ["https://announcement…"],
   "source_of_lead": "agent_search",
   "queries_used": ["…"]
@@ -100,6 +101,12 @@ honest either way): true only if the document contains safety or dangerous-capab
 evaluations, red-teaming results, or a risk assessment — a generic "limitations"
 paragraph is false. Documents without safety evals are still in scope (release
 tracking); the flag is how the site keeps the safety signal visible.
+`openness` (optional; set it only when verified): weights availability of the
+model(s) the document covers — `closed` (no public weights), `open_weight_restrictive`
+(public weights under a use-restricted or community license, e.g. Llama/Gemma terms),
+`open_weight_permissive` (Apache/MIT/BSD-class license), `mixed` (the document spans
+models in different classes). Omit when the document is not model-specific or you
+cannot verify the license.
 `notable_release`: canonical enough to catalog — announced by the org, widely used,
 or independently covered. Do not propose obscure checkpoints, size/quant re-uploads,
 or unaffiliated re-hosts. (An official copy on a launch partner's own site is a
@@ -115,9 +122,7 @@ the database catalogs model documentation, not lab blogs.
 **Co-published reports**: when two orgs jointly publish (e.g. UK AISI + US CAISI,
 or a lab card released through a launch partner), each org's own copy at its own
 URL is a separate document — cross-reference the counterpart in `notes`. Never pick
-one "winner". Copies are often not byte-identical: a partner-hosted copy can
-preserve the launch-day revision after the lab revises its own (this happened with
-Grok 4.5 — Cursor hosts the 2026-07-14 original, x.ai the 2026-07-20 revision).
+one "winner". Copies are often not byte-identical (launch-day vs revised editions).
 When adding a model card, spend one search checking for co-published copies; if the
 co-publishing org is not an allowlisted publisher, record it in `logs/PROPOSALS.md`
 instead of proposing — never propose one org's copy under another org's publisher key.

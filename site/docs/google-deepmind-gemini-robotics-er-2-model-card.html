@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gemini Robotics-ER 2 Model Card — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span>
+    <dd><a href="https://deepmind.google" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:yes"></span>
+        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -65,6 +70,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 3 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-09T19:47:45Z</span>
@@ -88,7 +96,17 @@
           <div class="just">safety_evals: null → 1</div>
           <div class="just">Backfill assessment by term scan of extracted text: matched safety evaluation, safety mitigation (model_card).</div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:30Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "closed"</div>
+          <div class="just">Distribution via Google AI Studio, Gemini API and Gemini Enterprise Agent Platform (private preview); &#39;available to downstream providers via an API&#39;.</div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/gemini-robotics-er-2/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-robotics-er-2/</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -145,6 +163,6 @@ Gemini Robotics ER 2 performs similarly to Gemini 3.5 Flash in terms of complian
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Full-text search — cardtrack</title>
-<link rel="stylesheet" href="./style.css">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="./style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead compact">
@@ -34,6 +35,14 @@
     <option value="no">no safety evals</option>
     <option value="unassessed">unassessed</option>
   </select>
+  <select id="sf-openness">
+    <option value="">openness: all</option>
+    <option value="closed">closed</option>
+    <option value="open_weight_restrictive">open (restrictive)</option>
+    <option value="open_weight_permissive">open (permissive)</option>
+    <option value="mixed">mixed</option>
+    <option value="na">n/a</option>
+  </select>
 </section>
 
 <p id="scount" class="count" aria-live="polite">Loading search index…</p>
@@ -49,14 +58,14 @@
      use it to find a specific card.</p>
 </footer>
 
-<script src="./msel.js"></script>
+<script src="./msel.js?v=89cb8b653b"></script>
 <script type="module">
 const $ = id => document.getElementById(id);
 const results = $("sresults"), count = $("scount"), more = $("smore");
 const esc = s => String(s).replace(/[&<>"']/g,
   c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-const state = { publisher: new Set(), type: new Set(), source: "", safety: "" };
+const state = { publisher: new Set(), type: new Set(), source: "", safety: "", openness: "" };
 let pagefind = null, ready = false, indexed = 0;
 let timer, token = 0, hits = [], shown = 0, chain = Promise.resolve();
 
@@ -65,6 +74,7 @@ let timer, token = 0, hits = [], shown = 0, chain = Promise.resolve();
 $("sq").addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 180); });
 $("sf-source").addEventListener("change", e => { state.source = e.target.value; run(); });
 $("sf-safety").addEventListener("change", e => { state.safety = e.target.value; run(); });
+$("sf-openness").addEventListener("change", e => { state.openness = e.target.value; run(); });
 more.addEventListener("click", () => renderMore());
 
 function indexBroken() {
@@ -94,7 +104,7 @@ try {
   indexBroken();
 }
 // catch up on anything typed or picked while the index was loading
-if (ready && ($("sq").value.trim() || state.source || state.safety)) run();
+if (ready && ($("sq").value.trim() || state.source || state.safety || state.openness)) run();
 
 async function run() {
   if (!ready) return;
@@ -104,6 +114,7 @@ async function run() {
   if (state.type.size) filters.type = { any: [...state.type] };
   if (state.source) filters.source = state.source;
   if (state.safety) filters.safety = state.safety;
+  if (state.openness) filters.openness = state.openness;
   const mine = ++token;
   if (!term && !Object.keys(filters).length) {
     hits = []; shown = 0; results.innerHTML = ""; more.hidden = true;

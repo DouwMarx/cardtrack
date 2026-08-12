@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Model Card: Grok 4.5 — cardtrack</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=72315e77d5">
 </head>
 <body>
 <header class="masthead">
@@ -19,8 +20,9 @@
 
   <dl class="meta">
     <dt>Publisher</dt>
-    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">xai</span>
+    <dd><a href="https://x.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">xai</span></a>
 <span class="badge" data-pagefind-filter="source">first-party</span>        <span hidden data-pagefind-filter="safety:yes"></span>
+        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
@@ -33,6 +35,9 @@
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -67,6 +72,9 @@
 
   <section>
     <h3>Provenance</h3>
+    <details>
+    <summary>Show 3 changelog entries
+      (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
         <span class="ts">2026-08-10T09:47:44Z</span>
@@ -94,7 +102,17 @@
           <div class="evidence">Evidence:
 <a href="https://cursor.com/blog/grok-4-5-model-card" rel="noopener nofollow">https://cursor.com/blog/grok-4-5-model-card</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-12T10:02:30Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
+          <div class="just">openness: null → "closed"</div>
+          <div class="just">Grok 4.5 is API/product-only; no weights released.</div>
+          <div class="evidence">Evidence:
+<a href="https://docs.x.ai/developers/grok-4-5" rel="noopener nofollow">https://docs.x.ai/developers/grok-4-5</a>          </div>
+      </li>
     </ol>
+    </details>
   </section>
 
   <section>
@@ -1153,6 +1171,6 @@ main text and link to a primary source. Internal evaluations are not listed.
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T09:06:54Z</p></footer>
+<footer><p>Built 2026-08-12T10:02:42Z</p></footer>
 </body>
 </html>

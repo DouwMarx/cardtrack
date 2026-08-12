@@ -11,6 +11,7 @@ publishers:            # first-party
   anthropic:
     tier: 1
     display_name: Anthropic
+    homepage: https://www.anthropic.com
     index_urls:
       - https://www.anthropic.com/news
       - https://www.anthropic.com/transparency/model-report
@@ -18,86 +19,102 @@ publishers:            # first-party
   openai:
     tier: 1
     display_name: OpenAI
+    homepage: https://openai.com
     index_urls:
       - https://deploymentsafety.openai.com/
   google_deepmind:
     tier: 1
     display_name: Google DeepMind
+    homepage: https://deepmind.google
     index_urls:
       - https://deepmind.google/discover/blog/
       - https://deepmind.google/models/model-cards/
   meta:
     tier: 1
     display_name: Meta AI
+    homepage: https://ai.meta.com
     index_urls:         # reachable since the browser-impersonation fetch fallback
       - https://ai.meta.com/blog/
       - https://research.meta.ai/blog/
   mistral:
     tier: 2
     display_name: Mistral AI
+    homepage: https://mistral.ai
     index_urls:
       - https://mistral.ai/news/
   xai:
     tier: 2
     display_name: xAI
+    homepage: https://x.ai
     index_urls:
       - https://x.ai/news
       - https://x.ai/safety
   cursor:                # co-publishes cards for models it ships (e.g. the Grok 4.5
     tier: 2              # launch-day card, whose original revision only exists here)
     display_name: Cursor
+    homepage: https://cursor.com
     index_urls:
       - https://cursor.com/blog
   alibaba_qwen:
     tier: 2
     display_name: Alibaba Qwen
+    homepage: https://qwen.ai
     index_urls:            # qwen.ai renders client-side (unfetchable); HF org covers releases
       - https://huggingface.co/Qwen
   thinking_machines:
     tier: 1
     display_name: Thinking Machines Lab
+    homepage: https://thinkingmachines.ai
     index_urls:
       - https://thinkingmachines.ai/blog/
   deepseek:
     tier: 1
     display_name: DeepSeek
+    homepage: https://www.deepseek.com
     index_urls:
       - https://api-docs.deepseek.com/news/
       - https://huggingface.co/deepseek-ai
   tencent_hunyuan:
     tier: 1
     display_name: Tencent Hunyuan
+    homepage: https://hunyuan.tencent.com
     index_urls:
       - https://huggingface.co/tencent
   xiaomi:
     tier: 1
     display_name: Xiaomi MiMo
+    homepage: https://huggingface.co/XiaomiMiMo
     index_urls:
       - https://huggingface.co/XiaomiMiMo
   nvidia:
     tier: 1
     display_name: NVIDIA
+    homepage: https://www.nvidia.com
     index_urls:
       - https://huggingface.co/nvidia
   moonshot_ai:
     tier: 1
     display_name: Moonshot AI
+    homepage: https://www.moonshot.ai
     index_urls:
       - https://huggingface.co/moonshotai
       - https://moonshotai.github.io/
   poolside:
     tier: 2
     display_name: poolside
+    homepage: https://poolside.ai
     index_urls:
       - https://poolside.ai/
   stepfun:
     tier: 2
     display_name: StepFun
+    homepage: https://www.stepfun.com
     index_urls:
       - https://huggingface.co/stepfun-ai
   inclusion_ai:
     tier: 2
     display_name: InclusionAI (Ant Group)
+    homepage: https://huggingface.co/inclusionAI
     index_urls:
       - https://huggingface.co/inclusionAI
 
@@ -105,22 +122,26 @@ evaluators:            # independent
   metr:
     tier: 1
     display_name: METR
+    homepage: https://metr.org
     index_urls:
       - https://metr.org/research
       - https://metr.org/blog
   uk_aisi:
     tier: 1
     display_name: UK AI Security Institute
+    homepage: https://www.aisi.gov.uk
     index_urls:
       - https://www.aisi.gov.uk/work
   apollo_research:
     tier: 1
     display_name: Apollo Research
+    homepage: https://www.apolloresearch.ai
     index_urls:
       - https://www.apolloresearch.ai/research
   epoch_ai:
     tier: 1
     display_name: Epoch AI
+    homepage: https://epoch.ai
     index_urls:
       - https://epoch.ai/latest
       - https://epoch.ai/publications
@@ -129,44 +150,52 @@ evaluators:            # independent
   securebio:
     tier: 1
     display_name: SecureBio
+    homepage: https://securebio.org
     index_urls:
       - https://securebio.substack.com/archive
       - https://securebio.org/blog/
   transluce:
     tier: 1
     display_name: Transluce
+    homepage: https://transluce.org
     index_urls:
       - https://transluce.org/news
   us_caisi:
     tier: 1
     display_name: US CAISI (NIST)
+    homepage: https://www.nist.gov/caisi
     index_urls:
       - https://www.nist.gov/caisi
       - https://www.nist.gov/blogs/caisi-research-blog
   rand:
     tier: 1                       # scoped to CAST / Project Canary eval output
     display_name: RAND (CAST / Project Canary)
+    homepage: https://www.rand.org
     index_urls:
       - https://www.rand.org/global-and-emerging-risks/centers/ai-security-and-technology/projects/canary.html
       - https://www.rand.org/global-and-emerging-risks/centers/ai-security-and-technology/research-and-commentary.html
   saferai:
     tier: 1
     display_name: SaferAI
+    homepage: https://www.safer-ai.org
     index_urls:
       - https://www.safer-ai.org/research
   far_ai:
     tier: 1
     display_name: FAR.AI
+    homepage: https://www.far.ai
     index_urls:
       - https://www.far.ai/blog
   palisade_research:
     tier: 2
     display_name: Palisade Research
+    homepage: https://palisaderesearch.org
     index_urls:
       - https://palisaderesearch.org/blog
   redwood_research:
     tier: 2                       # control-methods research org; model evals incidental
     display_name: Redwood Research
+    homepage: https://www.redwoodresearch.org
     index_urls:
       - https://blog.redwoodresearch.org/archive
 # Consciously excluded: MLCommons/AILuminate — vendor-consortium benchmark program,

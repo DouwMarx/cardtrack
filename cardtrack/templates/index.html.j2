@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ site_title }} — AI model documentation index</title>
-<link rel="stylesheet" href="./style.css">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg?v={{ asset_v['favicon.svg'] }}">
+<link rel="stylesheet" href="./style.css?v={{ asset_v['style.css'] }}">
 </head>
 <body>
 <header class="masthead">
@@ -38,6 +39,14 @@
     <option value="0">no safety evals</option>
     <option value="null">unassessed</option>
   </select>
+  <select id="f-openness">
+    <option value="">openness: all</option>
+    <option value="closed">closed</option>
+    <option value="open_weight_restrictive">open (restrictive)</option>
+    <option value="open_weight_permissive">open (permissive)</option>
+    <option value="mixed">mixed</option>
+    <option value="null">n/a</option>
+  </select>
   <button id="export" type="button" title="CSV of the current filtered view">Export CSV</button>
   <details class="columns-toggle">
     <summary>Columns</summary>
@@ -61,7 +70,7 @@
      <a href="https://github.com/{{ gh_repo }}/issues/new?labels=missing-doc&title=%5Bmissing-doc%5D">report a missing document</a>{% endif %}
   </p>
 </footer>
-<script src="./msel.js"></script>
-<script src="./app.js"></script>
+<script src="./msel.js?v={{ asset_v['msel.js'] }}"></script>
+<script src="./app.js?v={{ asset_v['app.js'] }}"></script>
 </body>
 </html>

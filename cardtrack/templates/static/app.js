@@ -9,16 +9,26 @@ const COLUMNS = [
   { key: "model_names", label: "Models", show: true },
   { key: "publication_date", label: "Published", show: true },
   { key: "safety_evals", label: "Safety evals", show: true },
+  { key: "openness", label: "Openness", show: true },
   { key: "canonical_url", label: "Source", show: true },
   { key: "status", label: "Status", show: false },
   { key: "version_count", label: "Versions", show: false },
   { key: "first_seen", label: "First seen", show: false },
 ];
 
+const OPENNESS_LABELS = {
+  closed: "closed",
+  open_weight_restrictive: "open (restrictive)",
+  open_weight_permissive: "open (permissive)",
+  mixed: "mixed",
+};
+
 const state = {
   docs: [],
+  publishers: {},
   q: "",
-  facets: { publisher: new Set(), doc_type: new Set(), is_independent: "", safety: "" },
+  facets: { publisher: new Set(), doc_type: new Set(), is_independent: "", safety: "",
+            openness: "" },
   sort: { key: "publication_date", dir: -1 },
   visible: new Set(COLUMNS.filter(c => c.show).map(c => c.key)),
 };
@@ -40,6 +50,7 @@ function matches(d) {
   if (f.doc_type.size && !f.doc_type.has(d.doc_type)) return false;
   if (f.is_independent !== "" && String(d.is_independent) !== f.is_independent) return false;
   if (f.safety !== "" && String(d.safety_evals) !== f.safety) return false;
+  if (f.openness !== "" && String(d.openness) !== f.openness) return false;
   return true;
 }
 
@@ -82,7 +93,18 @@ function cellHtml(d, key) {
     }
     case "publisher": {
       const badge = d.is_independent ? ' <span class="badge independent">indep.</span>' : "";
-      return `<td>${esc(d.publisher)}${badge}</td>`;
+      const home = (state.publishers[d.publisher] || {}).homepage || "";
+      const name = /^https?:\/\//i.test(home)
+        ? `<a href="${esc(home)}" rel="noopener nofollow">${esc(d.publisher)}</a>`
+        : esc(d.publisher);
+      return `<td>${name}${badge}</td>`;
+    }
+    case "openness": {
+      const label = OPENNESS_LABELS[d.openness];
+      if (!label) return '<td><span class="badge">n/a</span></td>';
+      const cls = { closed: "openness-closed", open_weight_restrictive: "openness-restrictive",
+                    open_weight_permissive: "openness-permissive" }[d.openness] || "";
+      return `<td><span class="badge ${cls}">${label}</span></td>`;
     }
     case "canonical_url": {
       const url = String(d.canonical_url || "");
@@ -127,6 +149,7 @@ function setupControls() {
   });
   bind("f-independent", "is_independent");
   bind("f-safety", "safety");
+  bind("f-openness", "openness");
 
   const boxes = $("column-boxes");
   for (const c of COLUMNS) {
@@ -171,9 +194,11 @@ function exportCsv() {
 async function main() {
   setupControls();
   try {
-    const resp = await fetch("./data/metadata.json");
+    // no-cache: always revalidate so the table reflects the latest build
+    const resp = await fetch("./data/metadata.json", { cache: "no-cache" });
     const data = await resp.json();
     state.docs = data.documents || [];
+    state.publishers = data.publishers || {};
   } catch (e) {
     $("count").textContent = "Failed to load metadata.json";
     return;
