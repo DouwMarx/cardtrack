@@ -20,18 +20,21 @@ const OPENNESS_LABELS = {
   closed: "closed",
   open_weight_restrictive: "open (restrictive)",
   open_weight_permissive: "open (permissive)",
-  mixed: "mixed",
+  na: "n/a",
 };
 
 const state = {
   docs: [],
   publishers: {},
   q: "",
-  facets: { publisher: new Set(), doc_type: new Set(), is_independent: "", safety: "",
-            openness: "" },
+  facets: { publisher: new Set(), doc_type: new Set(), openness: new Set(),
+            is_independent: "", safety: "" },
   sort: { key: "publication_date", dir: -1 },
   visible: new Set(COLUMNS.filter(c => c.show).map(c => c.key)),
 };
+
+const msels = {}; // populated in main() once options are known
+let loaded = false; // render() is inert until metadata.json arrives
 
 const $ = id => document.getElementById(id);
 
@@ -50,7 +53,7 @@ function matches(d) {
   if (f.doc_type.size && !f.doc_type.has(d.doc_type)) return false;
   if (f.is_independent !== "" && String(d.is_independent) !== f.is_independent) return false;
   if (f.safety !== "" && String(d.safety_evals) !== f.safety) return false;
-  if (f.openness !== "" && String(d.openness) !== f.openness) return false;
+  if (f.openness.size && !f.openness.has(d.openness || "na")) return false;
   return true;
 }
 
@@ -101,7 +104,7 @@ function cellHtml(d, key) {
     }
     case "openness": {
       const label = OPENNESS_LABELS[d.openness];
-      if (!label) return '<td><span class="badge">n/a</span></td>';
+      if (!label || d.openness == null) return '<td><span class="badge">n/a</span></td>';
       const cls = { closed: "openness-closed", open_weight_restrictive: "openness-restrictive",
                     open_weight_permissive: "openness-permissive" }[d.openness] || "";
       return `<td><span class="badge ${cls}">${label}</span></td>`;
@@ -118,6 +121,7 @@ function cellHtml(d, key) {
 }
 
 function render() {
+  if (!loaded) return; // early clicks must not replace "Loading…" with "0 of 0"
   const rows = filtered();
   const cols = COLUMNS.filter(c => state.visible.has(c.key));
 
@@ -149,7 +153,17 @@ function setupControls() {
   });
   bind("f-independent", "is_independent");
   bind("f-safety", "safety");
-  bind("f-openness", "openness");
+
+  $("clear-filters").addEventListener("click", () => {
+    $("q").value = ""; state.q = "";
+    $("f-independent").value = ""; state.facets.is_independent = "";
+    $("f-safety").value = ""; state.facets.safety = "";
+    for (const m of Object.values(msels)) m.clear();
+    state.facets.publisher = new Set();
+    state.facets.doc_type = new Set();
+    state.facets.openness = new Set();
+    render();
+  });
 
   const boxes = $("column-boxes");
   for (const c of COLUMNS) {
@@ -199,6 +213,7 @@ async function main() {
     const data = await resp.json();
     state.docs = data.documents || [];
     state.publishers = data.publishers || {};
+    loaded = true;
   } catch (e) {
     $("count").textContent = "Failed to load metadata.json";
     return;
@@ -212,10 +227,24 @@ async function main() {
     return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]))
       .map(([value, count]) => ({ value, count }));
   };
-  createMsel($("f-publisher"), { label: "publisher",
-    onChange: v => { state.facets.publisher = v; render(); } }).setOptions(countBy("publisher"));
-  createMsel($("f-doctype"), { label: "type",
-    onChange: v => { state.facets.doc_type = v; render(); } }).setOptions(countBy("doc_type"));
+  msels.publisher = createMsel($("f-publisher"), { label: "publisher",
+    onChange: v => { state.facets.publisher = v; render(); } });
+  msels.publisher.setOptions(countBy("publisher"));
+  msels.doc_type = createMsel($("f-doctype"), { label: "type",
+    onChange: v => { state.facets.doc_type = v; render(); } });
+  msels.doc_type.setOptions(countBy("doc_type"));
+
+  const opennessCounts = new Map();
+  for (const d of state.docs) {
+    const v = d.openness || "na";
+    opennessCounts.set(v, (opennessCounts.get(v) || 0) + 1);
+  }
+  msels.openness = createMsel($("f-openness"), { label: "openness",
+    onChange: v => { state.facets.openness = v; render(); } });
+  msels.openness.setOptions(
+    ["closed", "open_weight_restrictive", "open_weight_permissive", "na"]
+      .filter(v => opennessCounts.has(v))
+      .map(v => ({ value: v, label: OPENNESS_LABELS[v], count: opennessCounts.get(v) })));
   render();
 }
 

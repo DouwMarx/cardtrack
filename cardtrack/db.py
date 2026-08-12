@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS documents (
   last_changed     TEXT,
   source_of_lead   TEXT,
   notes            TEXT,
-  safety_evals     INTEGER,           -- 1 = contains safety evals, 0 = none, NULL = unassessed
+  safety_evals     INTEGER,           -- 1 = contains safety evals, 0 = none (required on add)
   openness         TEXT               -- closed | open_weight_restrictive | open_weight_permissive
-                                      -- | mixed | NULL = not model-specific / undetermined
+                                      -- | NULL = not model-specific / multi-class / undetermined
 );
 
 CREATE TABLE IF NOT EXISTS document_versions (

@@ -7,29 +7,38 @@ function createMsel(root, { label, onChange }) {
   const summary = root.querySelector("summary");
   const panel = root.querySelector(".msel-panel");
   const selected = new Set();
+  let labels = new Map();
 
   function refresh() {
     summary.classList.toggle("active", selected.size > 0);
+    const name = v => labels.get(v) ?? v;
     summary.textContent = !selected.size ? `${label}: all`
-      : selected.size === 1 ? `${label}: ${[...selected][0]}`
+      : selected.size === 1 ? `${label}: ${name([...selected][0])}`
       : `${label}: ${selected.size} selected`;
   }
 
+  // silent reset: callers decide whether to re-render (the panel's own clear
+  // button fires onChange; a page-level "clear filters" resets state itself)
+  function clear() {
+    selected.clear();
+    for (const box of panel.querySelectorAll("input")) box.checked = false;
+    refresh();
+  }
+
   function setOptions(options) {
-    // options: [{value, count?}]; selections that no longer exist are dropped
+    // options: [{value, label?, count?}]; selections that no longer exist are dropped
     for (const v of [...selected]) if (!options.some(o => o.value === v)) selected.delete(v);
+    labels = new Map(options.map(o => [o.value, o.label ?? o.value]));
     panel.innerHTML = "";
-    const clear = document.createElement("button");
-    clear.type = "button";
-    clear.className = "msel-clear";
-    clear.textContent = "clear";
-    clear.addEventListener("click", () => {
-      selected.clear();
-      for (const box of panel.querySelectorAll("input")) box.checked = false;
-      refresh();
+    const clearBtn = document.createElement("button");
+    clearBtn.type = "button";
+    clearBtn.className = "msel-clear";
+    clearBtn.textContent = "clear";
+    clearBtn.addEventListener("click", () => {
+      clear();
       onChange(new Set(selected));
     });
-    panel.appendChild(clear);
+    panel.appendChild(clearBtn);
     for (const o of options) {
       const lab = document.createElement("label");
       const box = document.createElement("input");
@@ -41,7 +50,7 @@ function createMsel(root, { label, onChange }) {
         refresh();
         onChange(new Set(selected));
       });
-      lab.append(box, ` ${o.value}`);
+      lab.append(box, ` ${o.label ?? o.value}`);
       if (o.count != null) {
         const c = document.createElement("span");
         c.className = "msel-count";
@@ -54,7 +63,7 @@ function createMsel(root, { label, onChange }) {
   }
 
   refresh();
-  return { setOptions, get selected() { return new Set(selected); } };
+  return { setOptions, clear, get selected() { return new Set(selected); } };
 }
 
 // one open dropdown at a time; clicking elsewhere closes it

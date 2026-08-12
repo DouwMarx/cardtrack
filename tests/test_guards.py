@@ -348,13 +348,17 @@ def test_safety_evals_flag_stored_and_updatable(repo, http_server):
     conn.close()
 
 
-def test_safety_evals_null_when_not_supplied(repo, http_server):
+def test_safety_evals_required_on_add(repo, http_server):
+    """A NULL safety_evals doc would be invisible to the site's yes/no filters,
+    so an add without the attestation is rejected, not admitted."""
     http_server.set_html("/unflagged-doc", "No soft dict provided.")
-    r = process_proposal(repo, make_proposal(http_server, path="/unflagged-doc",
-                                             model_names=["UnflaggedModel"]), "r1")
-    assert r.status == "written"
+    p = make_proposal(http_server, path="/unflagged-doc", model_names=["UnflaggedModel"])
+    del p["soft"]
+    r = process_proposal(repo, p, "r1")
+    assert r.status == "rejected"
+    assert "has_safety_evals" in r.reason
+
     conn = connect(repo.db_path)
-    assert conn.execute("SELECT safety_evals FROM documents WHERE slug=?",
-                        (r.slug,)).fetchone()[0] is None
+    assert conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0] == 0
     conn.close()
 

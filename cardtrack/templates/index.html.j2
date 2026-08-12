@@ -37,21 +37,18 @@
     <option value="">safety evals: all</option>
     <option value="1">has safety evals</option>
     <option value="0">no safety evals</option>
-    <option value="null">unassessed</option>
   </select>
-  <select id="f-openness">
-    <option value="">openness: all</option>
-    <option value="closed">closed</option>
-    <option value="open_weight_restrictive">open (restrictive)</option>
-    <option value="open_weight_permissive">open (permissive)</option>
-    <option value="mixed">mixed</option>
-    <option value="null">n/a</option>
-  </select>
-  <button id="export" type="button" title="CSV of the current filtered view">Export CSV</button>
-  <details class="columns-toggle">
-    <summary>Columns</summary>
-    <div id="column-boxes"></div>
+  <details class="msel" id="f-openness">
+    <summary>openness: all</summary><div class="msel-panel"></div>
   </details>
+  <span class="utilities">
+    <button id="clear-filters" type="button" class="utility" title="Reset all filters">Clear filters</button>
+    <button id="export" type="button" class="utility" title="CSV of the current filtered view">Export CSV</button>
+    <details class="columns-toggle utility">
+      <summary>Columns</summary>
+      <div id="column-boxes"></div>
+    </details>
+  </span>
 </section>
 
 <p id="count" class="count" aria-live="polite">Loading…</p>

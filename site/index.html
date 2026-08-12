@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>cardtrack — AI model documentation index</title>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="./style.css?v=72315e77d5">
+<link rel="stylesheet" href="./style.css?v=570f0bec74">
 </head>
 <body>
 <header class="masthead">
@@ -36,21 +36,18 @@
     <option value="">safety evals: all</option>
     <option value="1">has safety evals</option>
     <option value="0">no safety evals</option>
-    <option value="null">unassessed</option>
   </select>
-  <select id="f-openness">
-    <option value="">openness: all</option>
-    <option value="closed">closed</option>
-    <option value="open_weight_restrictive">open (restrictive)</option>
-    <option value="open_weight_permissive">open (permissive)</option>
-    <option value="mixed">mixed</option>
-    <option value="null">n/a</option>
-  </select>
-  <button id="export" type="button" title="CSV of the current filtered view">Export CSV</button>
-  <details class="columns-toggle">
-    <summary>Columns</summary>
-    <div id="column-boxes"></div>
+  <details class="msel" id="f-openness">
+    <summary>openness: all</summary><div class="msel-panel"></div>
   </details>
+  <span class="utilities">
+    <button id="clear-filters" type="button" class="utility" title="Reset all filters">Clear filters</button>
+    <button id="export" type="button" class="utility" title="CSV of the current filtered view">Export CSV</button>
+    <details class="columns-toggle utility">
+      <summary>Columns</summary>
+      <div id="column-boxes"></div>
+    </details>
+  </span>
 </section>
 
 <p id="count" class="count" aria-live="polite">Loading…</p>
@@ -64,11 +61,11 @@
 
 <footer>
   <p>Metadata filter searches identity fields only; for content questions use
-     <a href="./search.html">full-text search</a>. Built 2026-08-12T10:05:59Z ·
+     <a href="./search.html">full-text search</a>. Built 2026-08-12T11:08:45Z ·
      199 documents ·
      <a href="https://github.com/DouwMarx/cardtrack/issues/new?labels=missing-doc&title=%5Bmissing-doc%5D">report a missing document</a>  </p>
 </footer>
-<script src="./msel.js?v=89cb8b653b"></script>
-<script src="./app.js?v=4f13651d97"></script>
+<script src="./msel.js?v=21207b61f9"></script>
+<script src="./app.js?v=bf14259b8d"></script>
 </body>
 </html>

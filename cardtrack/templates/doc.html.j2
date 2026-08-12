@@ -24,7 +24,7 @@
         {% else %}<span data-pagefind-filter="publisher" data-pagefind-meta="publisher">{{ doc.publisher }}</span>{% endif %}
         {% if doc.is_independent %}<span class="badge independent" data-pagefind-filter="source">independent</span>
         {% else %}<span class="badge" data-pagefind-filter="source">first-party</span>{% endif %}
-        <span hidden data-pagefind-filter="safety:{{ 'yes' if doc.safety_evals == 1 else ('no' if doc.safety_evals == 0 else 'unassessed') }}"></span>
+        {% if doc.safety_evals is not none %}<span hidden data-pagefind-filter="safety:{{ 'yes' if doc.safety_evals == 1 else 'no' }}"></span>{% endif %}
         <span hidden data-pagefind-filter="openness:{{ doc.openness or 'na' }}"></span>
         <span hidden data-pagefind-meta="source_kind:{{ source_kind }}"></span></dd>
     <dt>Type</dt>
@@ -44,7 +44,6 @@
     <dd>{% if doc.openness == 'closed' %}<span class="badge openness-closed">closed weights</span>
         {% elif doc.openness == 'open_weight_restrictive' %}<span class="badge openness-restrictive">open weights (restrictive license)</span>
         {% elif doc.openness == 'open_weight_permissive' %}<span class="badge openness-permissive">open weights (permissive license)</span>
-        {% elif doc.openness == 'mixed' %}<span class="badge">mixed</span>
         {% else %}<span class="badge">n/a</span>{% endif %}</dd>
     <dt>Source</dt>
     <dd>

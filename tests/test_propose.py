@@ -333,7 +333,7 @@ def test_slug_collision_gets_suffix(repo, http_server):
 
 
 def test_openness_validated_on_add_and_field_update(repo, http_server):
-    """openness accepts only the four taxonomy values (or null); invalid rejects."""
+    """openness accepts only the three taxonomy values (or null); invalid rejects."""
     http_server.set_html("/doc1", "The model was evaluated extensively.")
     bad = process_proposal(repo, make_proposal(http_server, openness="open_source"), "run1")
     assert bad.status == "rejected"
@@ -348,15 +348,22 @@ def test_openness_validated_on_add_and_field_update(repo, http_server):
     conn.close()
     assert row["openness"] == "open_weight_permissive"
 
+    # clearing to null is how multi-class / non-model-specific docs are marked
     upd = process_proposal(repo, {
         "action": "field_update", "slug": added.slug, "field": "openness",
-        "old": "open_weight_permissive", "new": "mixed",
-        "justification": "covers models in different classes",
+        "old": "open_weight_permissive", "new": None,
+        "justification": "spans models in different openness classes",
         "evidence_urls": ["https://example.com/license"]}, "run2")
     assert upd.status == "written"
+    conn = connect(repo.db_path)
+    row = conn.execute("SELECT openness FROM documents WHERE slug = ?",
+                       (added.slug,)).fetchone()
+    conn.close()
+    assert row["openness"] is None
 
-    bad2 = process_proposal(repo, {
-        "action": "field_update", "slug": added.slug, "field": "openness",
-        "new": "totally_open", "justification": "nope",
-        "evidence_urls": ["https://example.com/license"]}, "run3")
-    assert bad2.status == "rejected"
+    for retired in ("mixed", "totally_open"):
+        bad2 = process_proposal(repo, {
+            "action": "field_update", "slug": added.slug, "field": "openness",
+            "new": retired, "justification": "nope",
+            "evidence_urls": ["https://example.com/license"]}, "run3")
+        assert bad2.status == "rejected"

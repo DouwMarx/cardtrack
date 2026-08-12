@@ -96,17 +96,18 @@ for clarification, is always the safe move.
 Attest a criterion `true` only if you actually verified it.
 `distinct_model_release`: a size/quantization/checkpoint/regional variant of a model
 already in the database does NOT qualify — when one family card covers several
-variants, propose ONE entry listing all `model_names`. `has_safety_evals` (soft,
-honest either way): true only if the document contains safety or dangerous-capability
+variants, propose ONE entry listing all `model_names`. `has_safety_evals` (required
+on every add — adds without it are rejected; honest either way): true only if the
+document contains safety or dangerous-capability
 evaluations, red-teaming results, or a risk assessment — a generic "limitations"
 paragraph is false. Documents without safety evals are still in scope (release
 tracking); the flag is how the site keeps the safety signal visible.
 `openness` (optional; set it only when verified): weights availability of the
 model(s) the document covers — `closed` (no public weights), `open_weight_restrictive`
 (public weights under a use-restricted or community license, e.g. Llama/Gemma terms),
-`open_weight_permissive` (Apache/MIT/BSD-class license), `mixed` (the document spans
-models in different classes). Omit when the document is not model-specific or you
-cannot verify the license.
+`open_weight_permissive` (Apache/MIT/BSD-class license). Omit when the document is
+not model-specific, spans models in different openness classes, or you cannot
+verify the license.
 `notable_release`: canonical enough to catalog — announced by the org, widely used,
 or independently covered. Do not propose obscure checkpoints, size/quant re-uploads,
 or unaffiliated re-hosts. (An official copy on a launch partner's own site is a

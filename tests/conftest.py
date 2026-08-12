@@ -233,6 +233,7 @@ def make_proposal(server: TestServer, path: str = "/doc1", **overrides) -> dict:
         "publication_date": "2026-03-01",
         "justification": "A test document that meets all criteria.",
         "criteria": dict(ATTESTED),
+        "soft": {"has_safety_evals": False},
         "evidence_urls": [server.url("/index-page")],
         "source_of_lead": "manual",
     }

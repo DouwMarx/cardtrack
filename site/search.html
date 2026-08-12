@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Full-text search — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="./style.css?v=72315e77d5">
+<link rel="stylesheet" href="./style.css?v=570f0bec74">
 </head>
 <body>
 <header class="masthead compact">
@@ -33,16 +33,13 @@
     <option value="">safety evals: all</option>
     <option value="yes">has safety evals</option>
     <option value="no">no safety evals</option>
-    <option value="unassessed">unassessed</option>
   </select>
-  <select id="sf-openness">
-    <option value="">openness: all</option>
-    <option value="closed">closed</option>
-    <option value="open_weight_restrictive">open (restrictive)</option>
-    <option value="open_weight_permissive">open (permissive)</option>
-    <option value="mixed">mixed</option>
-    <option value="na">n/a</option>
-  </select>
+  <details class="msel" id="sf-openness">
+    <summary>openness: all</summary><div class="msel-panel"></div>
+  </details>
+  <span class="utilities">
+    <button id="s-clear" type="button" class="utility" title="Reset all filters">Clear filters</button>
+  </span>
 </section>
 
 <p id="scount" class="count" aria-live="polite">Loading search index…</p>
@@ -58,15 +55,19 @@
      use it to find a specific card.</p>
 </footer>
 
-<script src="./msel.js?v=89cb8b653b"></script>
+<script src="./msel.js?v=21207b61f9"></script>
 <script type="module">
 const $ = id => document.getElementById(id);
 const results = $("sresults"), count = $("scount"), more = $("smore");
 const esc = s => String(s).replace(/[&<>"']/g,
   c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-const state = { publisher: new Set(), type: new Set(), source: "", safety: "", openness: "" };
+const state = { publisher: new Set(), type: new Set(), openness: new Set(),
+                source: "", safety: "" };
+const OPENNESS_LABELS = { closed: "closed", open_weight_restrictive: "open (restrictive)",
+                          open_weight_permissive: "open (permissive)", na: "n/a" };
 let pagefind = null, ready = false, indexed = 0;
+let msels = {};
 let timer, token = 0, hits = [], shown = 0, chain = Promise.resolve();
 
 // listeners attach BEFORE the network-bound index bootstrap so early input is
@@ -74,7 +75,14 @@ let timer, token = 0, hits = [], shown = 0, chain = Promise.resolve();
 $("sq").addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 180); });
 $("sf-source").addEventListener("change", e => { state.source = e.target.value; run(); });
 $("sf-safety").addEventListener("change", e => { state.safety = e.target.value; run(); });
-$("sf-openness").addEventListener("change", e => { state.openness = e.target.value; run(); });
+$("s-clear").addEventListener("click", () => {
+  $("sq").value = "";
+  $("sf-source").value = ""; state.source = "";
+  $("sf-safety").value = ""; state.safety = "";
+  for (const m of Object.values(msels)) m.clear();
+  state.publisher = new Set(); state.type = new Set(); state.openness = new Set();
+  run();
+});
 more.addEventListener("click", () => renderMore());
 
 function indexBroken() {
@@ -93,10 +101,18 @@ try {
   // pagefind.filters() lists every facet value with counts without needing a
   // search first — this is why the filters can render upfront
   const facets = await pagefind.filters();
-  createMsel($("sf-publisher"), { label: "publisher",
-    onChange: v => { state.publisher = v; run(); } }).setOptions(toOptions(facets.publisher));
-  createMsel($("sf-type"), { label: "type",
-    onChange: v => { state.type = v; run(); } }).setOptions(toOptions(facets.type));
+  msels.publisher = createMsel($("sf-publisher"), { label: "publisher",
+    onChange: v => { state.publisher = v; run(); } });
+  msels.publisher.setOptions(toOptions(facets.publisher));
+  msels.type = createMsel($("sf-type"), { label: "type",
+    onChange: v => { state.type = v; run(); } });
+  msels.type.setOptions(toOptions(facets.type));
+  msels.openness = createMsel($("sf-openness"), { label: "openness",
+    onChange: v => { state.openness = v; run(); } });
+  msels.openness.setOptions(
+    ["closed", "open_weight_restrictive", "open_weight_permissive", "na"]
+      .filter(v => (facets.openness || {})[v] != null)
+      .map(v => ({ value: v, label: OPENNESS_LABELS[v], count: facets.openness[v] })));
   indexed = Object.values(facets.publisher || {}).reduce((a, b) => a + b, 0);
   count.textContent = `${indexed} documents indexed. Type to search, or pick a filter.`;
   ready = true;
@@ -104,7 +120,7 @@ try {
   indexBroken();
 }
 // catch up on anything typed or picked while the index was loading
-if (ready && ($("sq").value.trim() || state.source || state.safety || state.openness)) run();
+if (ready && ($("sq").value.trim() || state.source || state.safety)) run();
 
 async function run() {
   if (!ready) return;
@@ -112,9 +128,9 @@ async function run() {
   const filters = {};
   if (state.publisher.size) filters.publisher = { any: [...state.publisher] };
   if (state.type.size) filters.type = { any: [...state.type] };
+  if (state.openness.size) filters.openness = { any: [...state.openness] };
   if (state.source) filters.source = state.source;
   if (state.safety) filters.safety = state.safety;
-  if (state.openness) filters.openness = state.openness;
   const mine = ++token;
   if (!term && !Object.keys(filters).length) {
     hits = []; shown = 0; results.innerHTML = ""; more.hidden = true;

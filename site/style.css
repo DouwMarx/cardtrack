@@ -64,6 +64,16 @@ code { font-size: 0.85em; background: var(--surface); padding: 0.1em 0.3em; bord
 }
 .columns-toggle { position: relative; }
 .columns-toggle summary { list-style: none; }
+/* view actions (clear/export/columns) read differently from the filters;
+   scoped to the button/summary so a details.utility wrapper stays unstyled */
+.controls .utilities { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
+.controls button.utility, .controls .utility summary {
+  background: transparent; border: 1px dashed var(--line); color: var(--muted);
+}
+.controls button.utility:hover, .controls .utility summary:hover,
+.controls button.utility:focus-visible, .controls .utility summary:focus-visible {
+  color: var(--fg); border-style: solid;
+}
 .columns-toggle div {
   position: absolute; right: 0; z-index: 5; margin-top: 0.3rem;
   background: var(--bg); border: 1px solid var(--line); border-radius: 6px;

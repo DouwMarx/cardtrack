@@ -58,6 +58,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--notes")
     p.add_argument("--attest", action="append", default=[], dest="attested",
                    help="repeatable: agent_attested criterion asserted true")
+    p.add_argument("--safety-evals", dest="safety_evals", choices=["yes", "no"],
+                   help="required for adds: whether the document contains safety "
+                        "or dangerous-capability evals")
     p.add_argument("--content-file",
                    help="operator-supplied document bytes for bot-walled/offline "
                         "sources; recorded as transport=manual_upload. Human use "
@@ -93,6 +96,8 @@ def proposal_from_args(args: argparse.Namespace) -> dict:
         proposal["model_names"] = args.models
         proposal["publication_date"] = args.publication_date
         proposal["criteria"] = {k: True for k in args.attested}
+        if args.safety_evals:
+            proposal["soft"] = {"has_safety_evals": args.safety_evals == "yes"}
     if args.notes:
         proposal["notes"] = args.notes
     if args.slug:

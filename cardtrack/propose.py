@@ -33,7 +33,7 @@ STATUSES = {"active", "moved", "dead", "superseded", "removed"}
 DOC_TYPES = {"model_card", "system_card", "independent_eval", "addendum", "other"}
 FIELD_UPDATE_FIELDS = {"title", "publication_date", "model_names", "notes", "canonical_url",
                        "safety_evals", "openness"}
-OPENNESS_VALUES = {"closed", "open_weight_restrictive", "open_weight_permissive", "mixed"}
+OPENNESS_VALUES = {"closed", "open_weight_restrictive", "open_weight_permissive"}
 
 
 @dataclass
@@ -442,11 +442,17 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
     openness = p.get("openness")
     if openness is not None and openness not in OPENNESS_VALUES:
         return _reject(ctx, p, "invalid_value: openness must be one of "
-                       "closed|open_weight_restrictive|open_weight_permissive|mixed")
+                       "closed|open_weight_restrictive|open_weight_permissive")
+    # required: every catalogued doc is either assessed yes or no — a NULL here
+    # would be invisible to the site's yes/no safety filters
+    safety = (p.get("soft") or {}).get("has_safety_evals")
+    if safety not in (True, False, 0, 1):
+        return _reject(ctx, p, "invalid_schema: soft.has_safety_evals (true/false) is "
+                       "required — attest honestly whether the document contains "
+                       "safety or dangerous-capability evals")
     slug = derive_slug(conn, p["publisher"], p["model_names"], p["doc_type"])
     now = utcnow()
-    safety = p.get("soft", {}).get("has_safety_evals")
-    safety_db = None if safety is None else (1 if safety else 0)
+    safety_db = int(bool(safety))
     cur = conn.execute(
         """INSERT INTO documents
            (slug, title, publisher, doc_type, is_independent, model_names,
@@ -662,15 +668,15 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
                 extra={"byte_size": len(fetched.content)})
         current_cmp = current
     elif field == "safety_evals":
-        if new not in (None, True, False, 0, 1):
-            return _reject(ctx, p, "invalid_value: safety_evals must be true/false/null",
+        if new not in (True, False, 0, 1):
+            return _reject(ctx, p, "invalid_value: safety_evals must be true/false",
                            document_id=doc["id"])
         current_cmp = current
-        new_db = None if new is None else int(bool(new))
+        new_db = int(bool(new))
     elif field == "openness":
         if new is not None and new not in OPENNESS_VALUES:
             return _reject(ctx, p, "invalid_value: openness must be one of "
-                           "closed|open_weight_restrictive|open_weight_permissive|mixed|null",
+                           "closed|open_weight_restrictive|open_weight_permissive|null",
                            document_id=doc["id"])
         current_cmp, new_db = current, new
     else:  # title, notes
