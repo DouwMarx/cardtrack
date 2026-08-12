@@ -102,7 +102,8 @@ paragraph is false. Documents without safety evals are still in scope (release
 tracking); the flag is how the site keeps the safety signal visible.
 `notable_release`: canonical enough to catalog — announced by the org, widely used,
 or independently covered. Do not propose obscure checkpoints, size/quant re-uploads,
-or third-party mirrors.
+or unaffiliated re-hosts. (An official copy on a launch partner's own site is a
+co-publication, not a mirror — see below.)
 
 **Scope discipline for `doc_type: other`** — reserve it for model-specific
 evaluation, risk, or incident reports that don't fit the other labels. NOT in scope,
@@ -111,9 +112,15 @@ demos and showcases, policy/election/deprecation updates, developer tutorials, a
 general research essays that do not evaluate a named model. When in doubt, skip —
 the database catalogs model documentation, not lab blogs.
 
-**Co-published reports**: when two orgs jointly publish (e.g. UK AISI + US CAISI),
-each org's own copy at its own URL is a separate document — cross-reference the
-counterpart in `notes`. Never pick one "winner".
+**Co-published reports**: when two orgs jointly publish (e.g. UK AISI + US CAISI,
+or a lab card released through a launch partner), each org's own copy at its own
+URL is a separate document — cross-reference the counterpart in `notes`. Never pick
+one "winner". Copies are often not byte-identical: a partner-hosted copy can
+preserve the launch-day revision after the lab revises its own (this happened with
+Grok 4.5 — Cursor hosts the 2026-07-14 original, x.ai the 2026-07-20 revision).
+When adding a model card, spend one search checking for co-published copies; if the
+co-publishing org is not an allowlisted publisher, record it in `logs/PROPOSALS.md`
+instead of proposing — never propose one org's copy under another org's publisher key.
 
 The test for independent evaluations is the **system-card test**: would this
 content fit in the evaluations section of a system/model card? A report assessing

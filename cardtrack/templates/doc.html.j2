@@ -20,8 +20,10 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">{{ doc.publisher }}</span>
-        {% if doc.is_independent %}<span class="badge independent">independent</span>
-        {% else %}<span class="badge">first-party</span>{% endif %}</dd>
+        {% if doc.is_independent %}<span class="badge independent" data-pagefind-filter="source">independent</span>
+        {% else %}<span class="badge" data-pagefind-filter="source">first-party</span>{% endif %}
+        <span hidden data-pagefind-filter="safety:{{ 'yes' if doc.safety_evals == 1 else ('no' if doc.safety_evals == 0 else 'unassessed') }}"></span>
+        <span hidden data-pagefind-meta="source_kind:{{ source_kind }}"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">{{ doc.doc_type }}</span></dd>
     <dt>Models</dt>
@@ -37,7 +39,7 @@
         {% else %}<span class="badge">unassessed</span>{% endif %}</dd>
     <dt>Source</dt>
     <dd>
-      <a href="{{ doc.canonical_url }}" rel="noopener nofollow">{{ doc.canonical_url }}</a>
+      <a href="{{ doc.canonical_url }}" rel="noopener nofollow" data-pagefind-meta="source_url[href]">{{ doc.canonical_url }}</a>
       {% if doc.status == 'dead' %} <span class="warn">(link was dead at last check; extracted text below is retained)</span>
       {% elif doc.status == 'moved' %} <span class="warn">(document has moved; link may redirect)</span>
       {% elif doc.status == 'superseded' %} <span class="warn">(superseded by a newer document)</span>

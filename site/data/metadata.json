@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-12T06:34:29Z",
+ "generated_at": "2026-08-12T09:06:54Z",
  "documents": [
   {
    "slug": "nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card",
@@ -1513,6 +1513,30 @@
    "version_count": 1
   },
   {
+   "slug": "cursor-grok-4-5-model-card",
+   "title": "Model Card: Grok 4.5 (launch-day edition)",
+   "publisher": "cursor",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Grok 4.5"
+   ],
+   "publication_date": "2026-07-14",
+   "canonical_url": "https://cursor.com/resources/grok-4-5-model-card.pdf",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-12T08:37:45Z",
+   "last_checked": "2026-08-12T08:37:45Z",
+   "last_changed": "2026-08-12T08:37:45Z",
+   "source_of_lead": "human_report",
+   "safety_evals": 1,
+   "content_hash": "cd684acfaeab6cb7fc35ae8488bda6d03764eb1b6e19666c681fa979d4135036",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-12T08:37:46Z",
+   "content_fingerprint": "e9a01b3c91f6a991a19ee5543e63d6f31c7e4942ef4896ca7ca109c5fbc5cad5",
+   "version_count": 1
+  },
+  {
    "slug": "xai-grok-4-5-model-card",
    "title": "Model Card: Grok 4.5",
    "publisher": "xai",
@@ -1526,8 +1550,8 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-10T09:47:44Z",
-   "last_checked": "2026-08-12T06:17:50Z",
-   "last_changed": "2026-08-10T09:47:44Z",
+   "last_checked": "2026-08-12T08:37:54Z",
+   "last_changed": "2026-08-12T08:37:54Z",
    "source_of_lead": "monitor",
    "safety_evals": 1,
    "content_hash": "068d432a70abc12787453c7424cd54452d38fcaebb498fa1c7f6d4b41658659f",

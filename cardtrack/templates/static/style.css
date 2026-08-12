@@ -116,3 +116,41 @@ td.models, td.title { max-width: 24rem; }
   max-height: 70vh; overflow-y: auto;
 }
 footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 0.75rem; color: var(--muted); }
+
+/* checkbox-dropdown multi-selects (msel.js) */
+.msel { position: relative; }
+.msel summary {
+  list-style: none; padding: 0.4rem 0.55rem; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--surface); color: var(--fg);
+  cursor: pointer; white-space: nowrap;
+}
+.msel summary::-webkit-details-marker { display: none; }
+.msel summary.active { border-color: var(--accent); color: var(--accent); }
+.msel .msel-panel {
+  position: absolute; left: 0; z-index: 6; margin-top: 0.3rem; min-width: 100%;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+  padding: 0.5rem 0.7rem; display: grid; gap: 0.2rem; white-space: nowrap;
+  max-height: 20rem; overflow-y: auto; box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+.msel .msel-panel label { display: flex; gap: 0.4rem; align-items: center; cursor: pointer; }
+.msel .msel-count { color: var(--muted); font-size: 0.85em; margin-left: auto; padding-left: 0.6rem; }
+.msel .msel-clear {
+  justify-self: start; background: none; border: none; padding: 0;
+  color: var(--accent); cursor: pointer; font: inherit; font-size: 0.85em;
+}
+
+/* compact masthead (search page) */
+.masthead.compact { padding-bottom: 0.55rem; margin-bottom: 0.8rem; }
+.masthead.compact h1 { font-size: 1rem; }
+
+/* full-text search results */
+.results { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 1rem; }
+.results h3 { margin: 0; font-size: 1rem; }
+.results .r-meta { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.9em; }
+.results .r-excerpt { margin: 0.2rem 0 0; }
+.results .r-excerpt mark { background: none; color: var(--accent); font-weight: 600; }
+.more {
+  margin-top: 1rem; padding: 0.4rem 0.8rem; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--surface); color: var(--fg);
+  font: inherit; cursor: pointer;
+}

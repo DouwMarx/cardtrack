@@ -5,32 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Full-text search — cardtrack</title>
 <link rel="stylesheet" href="./style.css">
-<link href="./pagefind/pagefind-ui.css" rel="stylesheet"
-      onerror="document.getElementById('pagefind-missing').hidden = false">
 </head>
 <body>
-<header class="masthead">
+<header class="masthead compact">
   <div>
     <h1><a href="./index.html">cardtrack</a> / search</h1>
-    <p class="tagline">Full-text search over the extracted text of every document.
-      Looking for a specific card? The <a href="./index.html">table filter</a> searches
-      titles and model names only and is more precise.</p>
   </div>
   <nav><a href="./index.html">Table</a> <a href="./about.html">About</a></nav>
 </header>
 
-<p id="pagefind-missing" hidden class="warn">Search index not built yet
-  (Pagefind did not run on the last build).</p>
-<div id="search"></div>
+<section class="controls" aria-label="search and filters">
+  <input id="sq" type="search" placeholder="Search inside document text…"
+         autocomplete="off" spellcheck="false" autofocus>
+  <details class="msel" id="sf-publisher">
+    <summary>publisher: all</summary><div class="msel-panel"></div>
+  </details>
+  <details class="msel" id="sf-type">
+    <summary>type: all</summary><div class="msel-panel"></div>
+  </details>
+  <select id="sf-source">
+    <option value="">source: all</option>
+    <option value="independent">independent</option>
+    <option value="first-party">first-party</option>
+  </select>
+  <select id="sf-safety">
+    <option value="">safety evals: all</option>
+    <option value="yes">has safety evals</option>
+    <option value="no">no safety evals</option>
+    <option value="unassessed">unassessed</option>
+  </select>
+</section>
 
-<script src="./pagefind/pagefind-ui.js"
-        onerror="document.getElementById('pagefind-missing').hidden = false"></script>
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    if (window.PagefindUI) {
-      new PagefindUI({ element: "#search", showSubResults: true, pageSize: 10 });
+<p id="scount" class="count" aria-live="polite">Loading search index…</p>
+<p id="pagefind-missing" hidden class="warn">Search index unavailable
+  (Pagefind did not run on the last build, or the index failed to load).</p>
+<ol id="sresults" class="results"></ol>
+<button id="smore" class="more" type="button" hidden>Show more</button>
+
+<footer>
+  <p>This page searches the extracted text of every document — use it to find what
+     documents <em>say</em> (eval names, risk categories, benchmark scores). The
+     <a href="./index.html">table</a> filters titles, models, and publishers only —
+     use it to find a specific card.</p>
+</footer>
+
+<script src="./msel.js"></script>
+<script type="module">
+const $ = id => document.getElementById(id);
+const results = $("sresults"), count = $("scount"), more = $("smore");
+const esc = s => String(s).replace(/[&<>"']/g,
+  c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const state = { publisher: new Set(), type: new Set(), source: "", safety: "" };
+let pagefind = null, ready = false, indexed = 0;
+let timer, token = 0, hits = [], shown = 0, chain = Promise.resolve();
+
+// listeners attach BEFORE the network-bound index bootstrap so early input is
+// never lost; run() no-ops until `ready`, and a catch-up run() fires after
+$("sq").addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 180); });
+$("sf-source").addEventListener("change", e => { state.source = e.target.value; run(); });
+$("sf-safety").addEventListener("change", e => { state.safety = e.target.value; run(); });
+more.addEventListener("click", () => renderMore());
+
+function indexBroken() {
+  ready = false;
+  count.textContent = "";
+  $("pagefind-missing").hidden = false;
+}
+
+const toOptions = counts => Object.entries(counts || {})
+  .sort((a, b) => a[0].localeCompare(b[0]))
+  .map(([value, n]) => ({ value, count: n }));
+
+try {
+  pagefind = await import("./pagefind/pagefind.js");
+  await pagefind.options({ excerptLength: 30 });
+  // pagefind.filters() lists every facet value with counts without needing a
+  // search first — this is why the filters can render upfront
+  const facets = await pagefind.filters();
+  createMsel($("sf-publisher"), { label: "publisher",
+    onChange: v => { state.publisher = v; run(); } }).setOptions(toOptions(facets.publisher));
+  createMsel($("sf-type"), { label: "type",
+    onChange: v => { state.type = v; run(); } }).setOptions(toOptions(facets.type));
+  indexed = Object.values(facets.publisher || {}).reduce((a, b) => a + b, 0);
+  count.textContent = `${indexed} documents indexed. Type to search, or pick a filter.`;
+  ready = true;
+} catch (e) {
+  indexBroken();
+}
+// catch up on anything typed or picked while the index was loading
+if (ready && ($("sq").value.trim() || state.source || state.safety)) run();
+
+async function run() {
+  if (!ready) return;
+  const term = $("sq").value.trim() || null;
+  const filters = {};
+  if (state.publisher.size) filters.publisher = { any: [...state.publisher] };
+  if (state.type.size) filters.type = { any: [...state.type] };
+  if (state.source) filters.source = state.source;
+  if (state.safety) filters.safety = state.safety;
+  const mine = ++token;
+  if (!term && !Object.keys(filters).length) {
+    hits = []; shown = 0; results.innerHTML = ""; more.hidden = true;
+    count.textContent = `${indexed} documents indexed. Type to search, or pick a filter.`;
+    return;
+  }
+  let search;
+  try {
+    search = await pagefind.search(term, { filters });
+  } catch (e) {
+    if (mine === token) indexBroken();
+    return;
+  }
+  if (mine !== token) return; // a newer keystroke superseded this search
+  hits = search.results; shown = 0; results.innerHTML = "";
+  count.textContent = `${hits.length} matching document${hits.length === 1 ? "" : "s"}`;
+  renderMore();
+}
+
+// batches serialize through a promise chain: a double-click loads the NEXT
+// page instead of duplicating this one, and a batch that outlives its search
+// generation (hits was replaced meanwhile) is discarded, never appended
+function renderMore() {
+  chain = chain.then(async () => {
+    const myHits = hits;
+    const batch = myHits.slice(shown, shown + 20);
+    if (!batch.length) { more.hidden = true; return; }
+    more.disabled = true;
+    try {
+      const datas = await Promise.all(batch.map(r => r.data()));
+      if (myHits !== hits) return;
+      for (const d of datas) {
+        const m = d.meta || {};
+        const li = document.createElement("li");
+        let src = "";
+        if (/^https?:\/\//.test(m.source_url || "")) {
+          src = ` · <a href="${esc(m.source_url)}" rel="noopener nofollow">${esc(m.source_kind || "source")}&nbsp;↗</a>`;
+        }
+        li.innerHTML =
+          `<h3><a href="${esc(d.url)}">${esc(m.title || d.url)}</a></h3>` +
+          `<p class="r-meta">${esc(m.publisher || "")} · ${esc(m.date || "date unknown")}${src}</p>` +
+          `<p class="r-excerpt">${d.excerpt || ""}</p>`;
+        results.appendChild(li);
+      }
+      shown += batch.length;
+      more.hidden = shown >= hits.length;
+    } catch (e) {
+      // a fragment fetch failed: keep what rendered; the button stays for retry
+    } finally {
+      more.disabled = false;
     }
   });
+}
 </script>
 </body>
 </html>

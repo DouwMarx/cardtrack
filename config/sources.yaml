@@ -43,6 +43,11 @@ publishers:            # first-party
     index_urls:
       - https://x.ai/news
       - https://x.ai/safety
+  cursor:                # co-publishes cards for models it ships (e.g. the Grok 4.5
+    tier: 2              # launch-day card, whose original revision only exists here)
+    display_name: Cursor
+    index_urls:
+      - https://cursor.com/blog
   alibaba_qwen:
     tier: 2
     display_name: Alibaba Qwen

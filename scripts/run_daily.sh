@@ -84,12 +84,14 @@ echo "-- Phase C: build & publish"
 "${PY[@]}" scripts/build_site.py --root "$ROOT"
 
 if [ "$(setting publish.git_commit false)" = "true" ]; then
+  # render the message BEFORE staging: --emit-commit-msg opens the DB, and
+  # connect() rewrites views, which would leave docs.sqlite perpetually dirty
+  MSG="$("${PY[@]}" scripts/build_site.py --root "$ROOT" --emit-commit-msg "$RUN_ID")"
   # scoped add: never sweep unrelated working-tree changes into an automated commit
   git -C "$ROOT" add data site logs 2>/dev/null || true
   if git -C "$ROOT" diff --cached --quiet; then
     echo "nothing to commit"
   else
-    MSG="$("${PY[@]}" scripts/build_site.py --root "$ROOT" --emit-commit-msg "$RUN_ID")"
     git -C "$ROOT" commit -m "$MSG"
     if [ "$(setting publish.git_push false)" = "true" ]; then
       git -C "$ROOT" push

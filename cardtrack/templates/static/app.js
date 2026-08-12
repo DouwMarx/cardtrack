@@ -18,7 +18,7 @@ const COLUMNS = [
 const state = {
   docs: [],
   q: "",
-  facets: { publisher: "", doc_type: "", is_independent: "", status: "", year: "", safety: "" },
+  facets: { publisher: new Set(), doc_type: new Set(), is_independent: "", safety: "" },
   sort: { key: "publication_date", dir: -1 },
   visible: new Set(COLUMNS.filter(c => c.show).map(c => c.key)),
 };
@@ -27,21 +27,18 @@ const $ = id => document.getElementById(id);
 
 function norm(s) { return (s || "").toString().toLowerCase(); }
 
-function docYear(d) { return (d.publication_date || "").slice(0, 4); }
-
 function matches(d) {
   const q = norm(state.q);
   if (q) {
-    // metadata scope only: identity fields, not bodies (spec §9)
-    const hay = norm(d.title) + " " + norm((d.model_names || []).join(" ")) + " " + norm(d.publisher);
+    // metadata scope only: identity fields plus the date (so "2026" works), not bodies
+    const hay = norm(d.title) + " " + norm((d.model_names || []).join(" ")) + " " +
+                norm(d.publisher) + " " + norm(d.publication_date);
     if (!q.split(/\s+/).every(tok => hay.includes(tok))) return false;
   }
   const f = state.facets;
-  if (f.publisher && d.publisher !== f.publisher) return false;
-  if (f.doc_type && d.doc_type !== f.doc_type) return false;
+  if (f.publisher.size && !f.publisher.has(d.publisher)) return false;
+  if (f.doc_type.size && !f.doc_type.has(d.doc_type)) return false;
   if (f.is_independent !== "" && String(d.is_independent) !== f.is_independent) return false;
-  if (f.status && d.status !== f.status) return false;
-  if (f.year && docYear(d) !== f.year) return false;
   if (f.safety !== "" && String(d.safety_evals) !== f.safety) return false;
   return true;
 }
@@ -123,29 +120,12 @@ function render() {
   $("count").textContent = `${rows.length} of ${state.docs.length} documents`;
 }
 
-function fillFacet(id, values, labeler) {
-  const sel = $(id);
-  const keep = sel.value;
-  while (sel.options.length > 1) sel.remove(1);
-  for (const v of values) {
-    const opt = document.createElement("option");
-    opt.value = v;
-    opt.textContent = labeler ? labeler(v) : v;
-    sel.appendChild(opt);
-  }
-  sel.value = keep;
-}
-
 function setupControls() {
   $("q").addEventListener("input", e => { state.q = e.target.value; render(); });
   const bind = (id, key) => $(id).addEventListener("change", e => {
     state.facets[key] = e.target.value; render();
   });
-  bind("f-publisher", "publisher");
-  bind("f-doctype", "doc_type");
   bind("f-independent", "is_independent");
-  bind("f-status", "status");
-  bind("f-year", "year");
   bind("f-safety", "safety");
 
   const boxes = $("column-boxes");
@@ -198,11 +178,19 @@ async function main() {
     $("count").textContent = "Failed to load metadata.json";
     return;
   }
-  const uniq = key => [...new Set(state.docs.map(d => d[key]).filter(Boolean))].sort();
-  fillFacet("f-publisher", uniq("publisher"));
-  fillFacet("f-doctype", uniq("doc_type"));
-  fillFacet("f-status", uniq("status"));
-  fillFacet("f-year", [...new Set(state.docs.map(docYear).filter(Boolean))].sort().reverse());
+  const countBy = key => {
+    const m = new Map();
+    for (const d of state.docs) {
+      const v = d[key];
+      if (v) m.set(v, (m.get(v) || 0) + 1);
+    }
+    return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([value, count]) => ({ value, count }));
+  };
+  createMsel($("f-publisher"), { label: "publisher",
+    onChange: v => { state.facets.publisher = v; render(); } }).setOptions(countBy("publisher"));
+  createMsel($("f-doctype"), { label: "type",
+    onChange: v => { state.facets.doc_type = v; render(); } }).setOptions(countBy("doc_type"));
   render();
 }
 

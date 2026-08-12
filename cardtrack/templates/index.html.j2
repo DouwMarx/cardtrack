@@ -19,22 +19,25 @@
 </header>
 
 <section class="controls" aria-label="filters">
-  <input id="q" type="search" placeholder="Filter by title, model, or publisher…"
+  <input id="q" type="search" placeholder="Filter by title, model, publisher, or year…"
          autocomplete="off" spellcheck="false">
-  <select id="f-publisher"><option value="">publisher: all</option></select>
-  <select id="f-doctype"><option value="">type: all</option></select>
+  <details class="msel" id="f-publisher">
+    <summary>publisher: all</summary><div class="msel-panel"></div>
+  </details>
+  <details class="msel" id="f-doctype">
+    <summary>type: all</summary><div class="msel-panel"></div>
+  </details>
   <select id="f-independent">
     <option value="">source: all</option>
     <option value="1">independent</option>
     <option value="0">first-party</option>
   </select>
-  <select id="f-status"><option value="">status: all</option></select>
   <select id="f-safety">
     <option value="">safety evals: all</option>
     <option value="1">has safety evals</option>
     <option value="0">no safety evals</option>
+    <option value="null">unassessed</option>
   </select>
-  <select id="f-year"><option value="">year: all</option></select>
   <button id="export" type="button" title="CSV of the current filtered view">Export CSV</button>
   <details class="columns-toggle">
     <summary>Columns</summary>
@@ -58,6 +61,7 @@
      <a href="https://github.com/{{ gh_repo }}/issues/new?labels=missing-doc&title=%5Bmissing-doc%5D">report a missing document</a>{% endif %}
   </p>
 </footer>
+<script src="./msel.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>

@@ -111,9 +111,13 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
             "SELECT * FROM changelog WHERE document_id = ? AND action != 'reject' ORDER BY id",
             (row["id"],)).fetchall()
         text = _doc_text(repo, versions[0]["text_path"] if versions else None)
+        url_path = (doc.get("canonical_url") or "").lower().split("?")[0]
+        source_kind = ("pdf" if "pdf" in (doc.get("content_type") or "").lower()
+                       or url_path.endswith(".pdf") else "web")
         page = env.get_template("doc.html.j2").render(
             **ctx_common,
             doc=doc,
+            source_kind=source_kind,
             notes=row["notes"],
             versions=[dict(v) for v in versions],
             provenance=[{**dict(pr), "detail": json.loads(pr["detail"])} for pr in provenance],
@@ -138,6 +142,9 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
     if run_pagefind is None:
         run_pagefind = bool(repo.setting("site.run_pagefind", True))
     if run_pagefind and shutil.which("npx"):
+        # fresh index dir: pagefind never prunes previous generations, and the
+        # stale pf_meta/fragment files would otherwise accumulate in git forever
+        shutil.rmtree(site / "pagefind", ignore_errors=True)
         proc = subprocess.run(
             ["npx", "-y", "pagefind", "--site", str(site)],
             capture_output=True, text=True, timeout=600,
