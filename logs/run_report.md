@@ -1,191 +1,184 @@
-# cardtrack evaluator backfill — run `evaluator-backfill-2026-08-10`
+# cardtrack daily curation — run `2026-08-12T06:17Z-local`
 
-Corpus went from 171 to 174 documents. Three written, zero routed to issues, zero rejected.
+Corpus went from 196 to 201 documents. Six proposals, five written, one rejected — and the
+rejection is the run's most useful finding.
 
-The session's headline is a negative one, and it is the useful result: **four of the five
-priority evaluators are now genuinely exhausted, and I can say exactly why for each.** I
-enumerated every 2026 publication of epoch_ai, securebio, transluce, us_caisi and rand from
-their own indexes (not from `candidates.json`, which is nav chrome for all five), dated every
-item, and fetched every one that could plausibly assess a named model. Epoch AI yielded two
-documents and SecureBio one. Transluce, US CAISI and RAND yielded nothing, because everything
-they published in 2026 that is not already catalogued is methodology, policy, or an
-organisational announcement.
+Three genuinely new releases landed in the 72-hour window and all three are now catalogued:
+**Meta's Muse Glimmer** (2026-08-10, card + methodology report), **NVIDIA Nemotron 3.5
+Lightning** (2026-08-11) and **InclusionAI Ling-3.0-tiny** (2026-08-10). RAND CAST published
+a new biosecurity evaluation of named frontier agents on 2026-08-11; it is in.
 
-The second finding is for the loop supervisor: **the three tier-2 evaluators added in the last
-commit are sitting on real named-model evaluations that this session's priority list did not
-authorise me to touch.** See "Handoff" below.
+Two frontier releases from tier-1/2 publishers are **not** in, and neither is a judgement
+call — both are fetch failures. OpenAI shipped **GPT-5.6-Cyber** on 2026-08-10 and its launch
+announcement now sits behind a Cloudflare challenge that rejects the validator as well as me.
+Alibaba shipped **Qwen3.8-Max** on 2026-08-03 and its blog serves an identical JavaScript
+shell for every URL. Details and a suggested fix in `logs/PROPOSALS.md`.
 
 ## Counts
 
 | | |
 |---|---|
-| Candidates in `logs/candidates.json` | 2228 across 28 publishers |
-| Candidates triaged | 593 — the eight evaluators in scope (epoch_ai 61, securebio 97, transluce 31, us_caisi 130, rand 65, metr 82, uk_aisi 91, apollo_research 36). The 1635 publisher candidates were skipped per the priority list |
-| Index/archive pages enumerated | 26 |
-| Documents fetched and read | 32 (in full, or far enough for an unambiguous verdict) |
-| Proposals submitted | 3 |
-| Written as rows | 3 (ids 172–174) |
+| Candidates in `logs/candidates.json` | 2476 across 28 publishers |
+| New this run (`first_seen` 2026-08-12) | 266 — qwen 140, deepmind 30, epoch 21, nvidia 19, anthropic 13, meta 12, openai 9, xai 8, inclusion_ai 6, mistral 3, securebio 2, rand 2, palisade 1 |
+| Candidates triaged | all 266; none matched an existing `canonical_url` |
+| Documents fetched and read | 21 (blogs, model cards, two PDFs read in full) |
+| Index pages swept beyond Phase A | 8 (deploymentsafety.openai.com, anthropic.com/news, deepmind blog, metr.org/blog, apolloresearch.ai/research, epoch.ai/latest, far.ai/blog, transluce.org/news), plus qwen.ai/blog, the frozen qwenlm.github.io blog, and HF org listings for six publishers via the API |
+| Web searches | 14 |
+| Proposals submitted | 6 |
+| Written as rows | 5 (ids 197–201) |
 | Routed to review issues | 0 |
-| Rejected | 0 |
-| Tier-2 proposals filed | 0 of the 3 permitted (see Handoff) |
+| Rejected | 1 (unretrievable) |
 | Open GitHub issues to investigate | 0 (`logs/open_issues.json` is `[]`) |
-| Blocked-URL escalations | 0 (empty in `candidates.json`) |
-
-Evaluator counts after the run, safety-eval flag count in parentheses: uk_aisi 16, metr 12,
-**epoch_ai 7**, **securebio 6**, rand 5, transluce 4, apollo_research 3, us_caisi 3.
+| Blocked-URL escalations | 0 (`blocked_escalations` empty in `candidates.json`) |
+| Friction lines appended | 5 |
+| PROPOSALS.md entries | 1 |
 
 ## Proposals and validator verdicts
 
-| # | Document | Publisher | Date | Safety | Verdict |
+| # | Document | Publisher | Date | Safety evals | Verdict |
 |---|---|---|---|---|---|
-| 1 | **SecureBio's pre-release assessment of OpenAI's GPT-5.5** | securebio | 2026-04-23 | yes | `written` id 172 |
-| 2 | Can AI Learn From Experience? EBR-Bench Results | epoch_ai | 2026-07-01 | no | `written` id 173 |
-| 3 | **OpenAI accidentally hacked Hugging Face — should we have seen it coming?** | epoch_ai | 2026-07-22 | yes | `written` id 174 |
+| 1 | **Testing LLM Agents on the Use of Biological Tools for Nucleic Acid Synthesis Screening Evasion** (RR-A4741-2) | rand | 2026-08-11 | yes | `written` id 197, slug `rand-gemini-3-1-pro-independent-eval-2` |
+| 2 | **Muse Glimmer 30B Model Card** | meta | 2026-08-10 | yes | `written` id 198, slug `meta-muse-glimmer-model-card` |
+| 3 | Muse Glimmer Evaluation Methodology | meta | 2026-08-10 | yes | `written` id 199, slug `meta-muse-glimmer-other` |
+| 4 | NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16 Model Card | nvidia | 2026-08-11 | no | `written` id 200 |
+| 5 | Ling-3.0-tiny Model Card | inclusion_ai | 2026-08-10 | no | `written` id 201 |
+| 6 | Expanding Daybreak as the Cyber Defense Window Narrows (GPT-5.6-Cyber) | openai | 2026-08-10 | yes | **`rejected`** — `document_retrievable=false: HTTP 403` |
 
-1. `securebio.substack.com/p/securebios-pre-release-assessment` — two pre-release GPT-5.5
-   checkpoints, accessed 2–9 April 2026 with API-level biological content filtering disabled.
-   Static expert-biology evaluations (checkpoints at or near the top of all models tested,
-   above every expert human score), the agentic ABC-Bench and ABLE dual-use protein-design
-   suites, and a manual dual-use probe of refusal and redirection behaviour. Same document
-   class as the already-catalogued GPT-5.6 Sol pre-release testing report, and the only
-   uncatalogued 2026 model-specific item in SecureBio's whole archive.
-2. `epoch.ai/publications/earthborne-rangers-benchmark` — EBR-bench, 10 or 30 repeated
-   playthroughs of an obscure board game to test learning from experience. Per-model numbers
-   for GPT-5.5, Claude Opus 4.8, GPT-5 and Claude Opus 4.1; GPT-5.5 and Opus 4.8 beat the
-   older pair on initial score but show no more on-the-fly learning. `has_safety_evals: false`
-   — the report notes that on-the-fly learning would complicate pre-release dangerous-capability
-   testing, but runs no safety evaluation itself.
-3. `epoch.ai/gradient-updates/openai-accidentally-hacked-hugging-face` — Epoch's assessment of
-   whether the Hugging Face incident was predictable from existing cyber evidence, assembled
-   per model: UK AISI's finding that Mythos 5 and GPT-5.6 Sol both consistently compromise
-   realistic corporate networks, Irregular's FrontierCyber zero-day results for GPT-5.6 Sol,
-   the ExploitBench result for Mythos, and Epoch's own Cyber ECI, on which both are a break in
-   trend. Catalogued on the same precedent as the existing `are-mythos-cyber-capabilities-overhyped`.
+1. **RAND CAST, RR-A4741-2** — read the full 48-page PDF. Two named models were run as ReAct
+   agents against four biological-tool configurations and scored through an eleven-metric
+   pipeline ending at a real commercial nucleic-acid synthesis screen: **Gemini 3.1 Pro**
+   (3 of 30 Protein-2 redesigns evaded screening) and **DeepSeek V4 Pro** (3 of 30). Claude
+   Opus 4.7 and GPT-5.5 were dropped from the primary assessment because refusals and content
+   filters blocked testing — a safeguard result in its own right, and the reason the authors
+   say their numbers understate the capability ceiling. Sequel to RRA4741-1 (2026-06-25),
+   already catalogued; cross-referenced in notes.
+2. **Muse Glimmer 30B** — Meta Superintelligence Lab's card on Hugging Face, Apache 2.0,
+   announced on research.meta.ai the same day. Four-axis safety evaluation (content safety,
+   agentic risk including indirect prompt-injection resistance, privacy, preparedness) plus a
+   Preparedness Team assessment rating chem/bio, cyber and loss-of-control at Moderate or
+   lower under Meta's Advanced AI Scaling Framework. Distinct model, not a Muse Spark variant.
+3. **Muse Glimmer Evaluation Methodology** — found by citation from the card and the
+   announcement, and the announcement's own link (`ai.meta.com/static/muse-glimmer-methodology`)
+   404s; the PDF lives at `research.meta.ai/static/muse-glimmer-methodology`. Read in full:
+   per-benchmark methodology against Gemma4-31B and Qwen3.6-27B, including the safety suite
+   (CIMemories, Siren AgentDojo prompt injection, SecureBio/CAIS MBCT-HPCT-VCT, WMDP,
+   LAB-Bench, CyberGym, CyberBench). Mirrors the catalogued `muse-spark-1-2-methodology`.
+   `has_safety_evals=true` records that it specifies and documents the dangerous-capability
+   suite; the numeric scores sit in the card and blog, and that nuance is in the entry's notes.
+4. **Nemotron 3.5 Lightning** — the card states Release Date August 11, 2026. New Nemotron
+   family member (interleaved Mamba-2 + MoE), not present in any form. Proposed the BF16
+   reference card only; `-NVFP4`, `-NVFP4-DSpark`, `-NVFP4-DFlash` and `-Base-BF16` are
+   quantizations/derivatives of the same release and were deliberately left out.
+   `has_safety_evals=false` — the card's benchmarks are capability-only and its safety content
+   is a pointer to separate Model Card++ subcards.
+5. **Ling-3.0-tiny** — 7.9B total / 1.3B active hybrid-reasoning MoE for local deployment,
+   official InclusionAI org, repo created 2026-08-10, 164 likes inside a day. The one
+   judgement call of the run: a same-family, different-size sibling of the catalogued
+   Ling-3.0-flash. Attested `distinct_model_release=true` on the precedent that Nemotron 3
+   Nano/Super/Ultra are three entries, and flagged it in its own notes as the entry to revert
+   if maintainers read the rule the other way. `-fp8` and `-int4` not proposed.
+6. **GPT-5.6-Cyber** — see below.
 
-## Judgement calls I did not paper over
+## The one rejection, and why it matters
 
-- **Two Epoch skips a reviewer could reverse**, both in friction. `data-insights/cve-severity-spike`
-  (2026-07-02) is the direct predecessor of the catalogued July update — same series, same
-  measurement, same model — so I kept only the update. `epoch.ai/MirrorCode` (2026-06-26) is a
-  benchmark landing page with a continuously-updated leaderboard whose underlying report is
-  already catalogued, so I treated it as a living page rather than a document.
-- **METR's copy of the MirrorCode report is not a second row.** `metr.org/blog/2026-04-10-mirrorcode-preliminary-results/`
-  is the same co-published report as Epoch's catalogued one. Noted in friction that the corpus
-  is currently inconsistent here: the joint UK AISI/CAISI Kimi K3 assessment *is* catalogued
-  twice, once per institute. That needs a maintainer ruling, not an agent's guess.
-- **CAISI's red-teaming blog post is the closest call I rejected.** `blogs/caisi-research-blog/insights-ai-agent-security-large-scale-red-teaming-competition`
-  (2026-03-23) reports that 250,000+ attack attempts by 400+ participants found at least one
-  successful hijack against all 13 target frontier models, that robustness differed sharply
-  between them, and that attacks transfer asymmetrically from robust to weak models. It is real
-  comparative security measurement — but the post names none of the 13 models, and the artifact
-  is a Gray Swan-led joint paper. It fails the system-card test on the naming point alone.
-- **I did not treat "evaluator published it" as sufficient.** Epoch's `where-autonomy-works`
-  robotics report, its 1,196-model biological-AI database, AISI's Frontier AI Trends Report
-  summary and METR's transcript-based uplift estimate are all substantial evaluation work that
-  names no model under assessment. They are research about models, not assessments of one.
+OpenAI announced GPT-5.6-Cyber on 2026-08-10: built on GPT-5.6 Sol, trained for zero-day
+discovery and exploit-chain development, with deliberately reduced refusals on dual-use cyber
+tasks, gated behind a new applicant-vetted **Daybreak Red** tier. OpenAI reports an internal
+Advanced Cybersecurity Completion Rate of 95.0% against 1.5% for GPT-5.6 Sol and 57.3% for
+GPT-5.5-Cyber.
 
-## What is now exhausted, and how I verified it
+I could not read the announcement: `openai.com/index/` returns HTTP 403 with a Cloudflare
+JavaScript challenge to WebFetch and to browser-UA curl alike. I proposed it anyway, with the
+gap disclosed in the record, on the basis of OpenAI's own indexed page text, the OpenAI
+developer-community repost (date and model names), and the official
+`developers.openai.com` model page. The validator hit the same 403 and rejected it. That
+verdict stands and I did not retry.
 
-- **epoch_ai** — enumerated all 261 publications/data-insights/gradient-updates with dates from
-  the section indexes' prehydrated JSON (69 are 2026), plus `sitemap-index.xml`. Fetched the
-  nine plausible items. Everything else 2026 is compute economics, chips, data centres, energy,
-  adoption surveys, forecasting or benchmark-launch announcements. `FrontierMath: Open Problems`
-  (2026-01-27) is a benchmark release with no model results.
-- **securebio** — the substack archive is 12 posts total and `securebio.org/blog` mirrors it.
-  Five were catalogued, one is now id 172, and the other six are methodology
-  (`securebios-principles-and-practices`, `the-role-of-evals-in-the-biorisk`), a dashboard
-  launch, org news, wastewater metagenomics, and the `preparing-for-the-bio-mythos-moment`
-  policy essay (which discusses Mythos and Fable but is an argument for biosecurity assurance
-  infrastructure, not an evaluation).
-- **transluce** — `/news` lists every item with a date and `/docent/blog` adds nothing new. All
-  four 2026 research/demo items are catalogued; the rest of 2026 is three vision essays
-  (`foundation-models-for-oversight`, `behavior-science`, `building-technology-to-drive-ai-governance`),
-  the Analysis Plans framework, and `oversight-assistants` (2026-01-06). **Closed.**
-- **us_caisi** — checked both the blog (4 posts; `accelerating-ai-innovation-through-measurement-science`
-  and `cheating-ai-agent-evaluations` are both 2025-12-02, below the floor; `analyzing-transcripts-ai-agent-evaluations`
-  2026-02-18 is transcript-review methodology) and the full CAISI news tag `2810121`. The three
-  catalogued assessments (DeepSeek V4 Pro, GLM-5.2, Kimi K3) are CAISI's only public
-  model-specific 2026 output; everything else 2026 is a CRADA/MoU announcement, an RFI, or a
-  methodology report. A web search confirmed CAISI's 40+ other assessments are unpublished.
-  **Closed.**
-- **rand** — the Canary project page lists the eval output, and pages 1–4 of CAST
-  research-and-commentary cover Aug 2026 back to Jan 2026. All five Canary evaluation reports
-  are catalogued; the rest is biosecurity policy, weights security, compute/energy, mirror-life
-  and evaluation methodology (`PEA4886-1` open-weight evaluation approaches, `RRA4618-1`
-  autograders, `WRA4869-1` RCT methodology). **Closed.**
-- **metr** — `/blog`, `/research` and `/notes` re-enumerated. Six uncatalogued 2026 items, none
-  qualifying: the Frontier Risk Report blog page duplicates the catalogued PDF; MirrorCode
-  duplicates Epoch's; the rest are the AI-usage survey, task-substitution theory, the uplift
-  experiment redesign, a NanoGPT-leaderboard evidence note, a Claude Code transcript uplift
-  estimate, an incident-investigation proposal, and confidential-information policy.
-- **uk_aisi** — thirteen uncatalogued in-scope-by-date blog posts fetched and name-scanned; zero
-  named models in twelve, one incidental "Claude Code" in the agent-tools survey. See friction:
-  AISI anonymises everything that is not a named model evaluation, which makes a name-scan a
-  reliable single-pass triage for this publisher.
-- **apollo_research** — `/monitoring` (the section the two catalogued 2026 items live in) has
-  six entries; the three uncatalogued ones are a product vision, a research agenda, and the
-  Watcher product launch, plus `what-makes-a-good-monitoring-prompt` (2026-07-23), which is a
-  prompt-ablation study that runs gpt-5.4, sonnet-4.6 and gemini-2.5-flash as instruments and
-  averages over them — the prompt is the subject, not the models.
+Two things follow. The block is a **regression** — three `openai.com/index/` documents were
+fetched and written on 2026-07-21, 2026-08-04 and 2026-08-07. And
+`deploymentsafety.openai.com` (checked directly this run) lists nothing after the 2026-08-06
+GPT-5.6 August update, so GPT-5.6-Cyber presently has **no** first-party documentation in the
+corpus and no route to any. Worth re-checking the Deployment Safety Hub next run.
 
-## Skipped, by reason class
+## Checked and deliberately skipped
 
-Counts are exact where I classified item by item, and marked approximate where a class was
-disposed of in bulk from an index listing.
+**From the new candidates:**
 
-| Reason class | Count | Examples |
-|---|---|---|
-| Publisher (non-evaluator) candidates, out of scope this session | 1635 (exact) | all nvidia, anthropic, mistral, tencent_hunyuan, stepfun, deepseek, xai, google_deepmind, openai, xiaomi, inclusion_ai, meta, moonshot_ai, thinking_machines, poolside, alibaba_qwen entries |
-| Navigation, hub chrome, topic and author pages | ~290 (approx.) | every `epoch.ai/topics/*`, `/data/*`, `/benchmarks/*`; the ~90 `nist.gov` site-wide nav links that make up most of the us_caisi candidate list; `substack.com/@author` profiles; RAND site furniture |
-| Below the 2026-01-01 scope floor | ~200 (approx.) | the pre-2026 tail of every evaluator index — most of METR's `/blog` and `/notes`, the bulk of the AISI blog, all Transluce research before `oversight-assistants`, SecureBio's detection-side posts; individually named: CAISI `accelerating-ai-innovation-through-measurement-science` and `cheating-ai-agent-evaluations` (both 2025-12-02), Transluce `pcd` (2025-12-18) |
-| Not about a specific model or eval (system-card test) | ~35 (approx.; also absorbs Epoch's 2026 compute, chips, energy, revenue and adoption items, which were classified from the index listing rather than fetched) | Epoch's robotics report, biological-AI-models database, `have-ai-capabilities-accelerated`, `keeping-up-with-the-gpts`, `gpt-4-longest-eci-lead`; all 13 AISI posts above; CAISI's red-teaming, transcript-analysis and measurement-science posts; METR's NanoGPT note and transcript uplift estimate; Apollo's monitoring-prompt ablation; SecureBio's methodology posts and the Bio Mythos essay; RAND's methodology and policy reports |
-| Same evaluation already covered | 3 (exact) | `epoch.ai/data-insights/cve-severity-spike` (superseded by the catalogued July update); `epoch.ai/MirrorCode` (leaderboard page for the catalogued report); `metr.org/blog/2026-04-10-mirrorcode-preliminary-results/` (co-published copy) |
-| Announcement, partnership, product or org news | 12 (exact) | CAISI's OpenMined CRADA and GSA MoU; AISI's ElevenLabs, Microsoft, Australian AISI and Google DeepMind partnerships and Engineering Playbook; Transluce's fundraiser and governance hire; SecureBio's "Leaving SecureBio AI in Good Hands"; Apollo's Watcher launch |
-| Benchmark launch with no model results | 1 (exact) | `epoch.ai/latest/benchmarking-ai-on-unsolved-math-problems` (FrontierMath: Open Problems, 2026-01-27) |
+- `anthropic.com/research/riemann-zeta` (2026-08-10) — an unreleased research Claude improved
+  a Riemann-hypothesis lower bound. Read it: a capability demonstration with no named model
+  and no safety content. Out of scope per the `other` scope discipline.
+- Anthropic `/research` backlog newly surfaced by the index (`global-workspace`,
+  `off-switch-dual-use`, `how-canada-uses-claude`, `economic-index-june-2026-report`,
+  `81k-interviews`, `project-deal`) — interpretability, alignment-method, and economic
+  research; none evaluates a named model.
+- All nine new `deploymentsafety.openai.com` links — HTML landing pages for system cards whose
+  PDFs are already catalogued (gpt-5-6, gpt-live, gpt-5-6-preview, gpt-rosalind-5-5, gpt-5-5,
+  gpt-5-5-instant, chatgpt-images-2-0, gpt-5-6-august-update). Duplicates.
+- 30 Google DeepMind model-card links — the Gemini 2.5/2.0, Gemini 1.x, Veo 3, Imagen 4 and
+  Gemma PDFs predate the 2026-01-01 scope floor; `gemini-3-6-flash` and `gemini-3-1-pro` are
+  HTML views of PDFs already catalogued.
+- `securebio.org/blog/kimi-k3-biology-capabilities-assessment` — same organisation's second
+  host for the Substack copy already catalogued (2026-08-07). Same-publisher mirror, not a
+  co-publication.
+- `securebio.org/blog/updates-aug-2026` (2026-08-11) — read it: biosurveillance programme
+  update (CASPER wastewater sequencing, Zephyr, partnerships). No model evaluated.
+- `mistral.ai/news/regional-inference-open-models-new-compute` (2026-08-11) — infrastructure
+  and sovereignty announcement, no new Mistral model. It links a Mistral-hosted model card for
+  Z.ai's GLM-5.2, which is a third-party mirror and Z.ai is not on the allowlist.
+- `x.ai/news/introducing-grok-bot` (2026-08-11) — product launch for an agent teammate
+  product, no model card, no evaluations.
+- `rand.org/pubs/research_briefs/RBA3845-3` (2026-08-11) — AI data-centre energy brief, not
+  model documentation.
+- `palisaderesearch.org/blog/palisade-podcast-tim-hua` — podcast episode.
+- 140 `alibaba_qwen` and 19 `nvidia` HuggingFace links — user profiles, datasets, Spaces,
+  collections, papers, and quantized re-uploads (`Nemotron-3-Super-120B-A12B-BF16-MTPv2` is a
+  variant of the catalogued Nemotron-3-Super; `Ling-3.0-tiny-fp8`/`-int4` are quantizations).
+- 21 `epoch_ai` links — section indexes plus data-insights and gradient-updates already
+  catalogued or not model-specific (`ai-chip-production`, `hyperscaler-capex-vs-cash-flow`,
+  `what-we-learned-from-1604-chinese-ai-job-postings`).
 
-## Handoff — what the next session should know
+**From the silence sweep** (publishers with no document for >14 days): checked
+metr, apollo_research, far_ai, epoch_ai, transluce, moonshot_ai, tencent_hunyuan, stepfun,
+xiaomi, deepseek and alibaba_qwen. Nothing new qualified.
 
-1. **The tier-2 evaluators are the biggest uncatalogued vein in the corpus right now, and I was
-   not authorised to drain them.** Concretely, and all verified by fetching the index pages:
-   - **saferai** — `safer-ai.org/research/glm-5-2-evaluation-report`, an independent risk
-     evaluation of GLM-5.2 across the four EU Code of Practice systemic-risk areas, finding
-     frontier-level cyber and biology capability without the safeguards frontier developers
-     apply. Also an external Assurance-2.0 review of DeepMind's Gemini 2.5 Pro
-     scheming-inability safety case.
-   - **far_ai** — the AI Security Leaderboard (2026-07-29): safeguards of Claude Fable 5,
-     GPT-5.6 Sol, Grok 4.5 and Gemini 3.1 Pro tested under identical conditions, with Grok 4.5
-     and Gemini 3.1 Pro broken for under $300 each. Plus a DeepSeek-V4-Pro safeguard stress test.
-   - **palisade_research** — "Language Models Can Autonomously Hack and Self-Replicate"
-     (2026-05-07) and the robot shutdown-resistance technical report (2026-02-12).
-   - **redwood_research** is the exception: its blog is commentary on other orgs' incidents and
-     reports. Low yield; deprioritise it.
-   These are tier-2, so they become review issues rather than rows — and `logs/issues_outbox.jsonl`
-   holds **13 undelivered issues** against 3 in `issues_outbox.sent.jsonl`. Adding six more to a
-   queue that is not being drained is worth a supervisor decision first, which is why I filed none.
-2. **`logs/candidates.json` coverage of the evaluators is real but uneven, so do not treat it as
-   the work list.** It is a new-links diff, so none of its 593 evaluator entries is an
-   already-catalogued URL. Article coverage per publisher: uk_aisi 79 blog articles and metr 46
-   (good), but epoch_ai only **8** — the ten items on the `/latest` front page — against 61
-   entries, and us_caisi 130 entries of which ~90 are nist.gov site-wide navigation. Neither of
-   this run's two Epoch finds beyond the front page was in the candidate list, and the SecureBio
-   find was. The friction log carries the enumeration recipe for Epoch (section-index prehydrated
-   JSON — its article pages carry no machine-readable date at all); the other four evaluators are
-   small enough to enumerate from one index fetch each. If `sources.yaml` gains an `index_urls`
-   entry for epoch_ai, `https://epoch.ai/publications` is the one to add: it lists all sections.
-3. **Two rulings a maintainer should make**, both in friction: whether co-published reports get
-   one row or one per publisher (MirrorCode is currently one, the UK AISI/CAISI Kimi K3
-   assessment is currently two), and whether superseding data-insight updates retire their
-   predecessors.
-4. `logs/open_issues.json` is `[]` and `blocked_escalations` is empty, so no issues were
-   investigated, no comments filed, and no documents found dead.
+- METR has one uncatalogued 2026 post, `2026-07-28-investigating-ai-propensities-after-incidents`
+  — a methods/policy essay on how external investigators should work after a misalignment
+  incident. No named model; fails the system-card test.
+- Apollo Research, FAR.AI, Transluce and Epoch AI have published nothing since their last
+  catalogued document (2026-07-21, 07-29, 08-06 and 07-31 respectively). Epoch's newest item,
+  `one-in-five-workers-delegate-work-to-ai` (2026-08-06), is a labour survey.
+- Moonshot AI, Tencent, StepFun, Xiaomi and DeepSeek have shipped no new HuggingFace model
+  since their last catalogued entry (checked via the HF API sorted by creation date; newest
+  across all five is `deepseek-ai/DeepSeek-V4-Flash-0731`, already catalogued).
+- **xAI is a documented absence, not a gap in my search.** Grok 4.6 launched 2026-08-07 and
+  Grok Bot on 2026-08-11; xAI published a model card for neither, and `data.x.ai` still lists
+  only the 2025 Grok 4 cards plus the catalogued Grok 4.5 card (2026-07-14). The corpus
+  correctly shows xAI silent for 29 days because xAI is in fact silent.
+- **Alibaba Qwen is a tooling gap, not silence** — Qwen3.8-Max (2026-08-03) and
+  Qwen-Image-3.0 (2026-08-05) both shipped and neither can be fetched. See `PROPOSALS.md`.
 
-## Friction and proposals
+## Citation mining
 
-Five entries appended to `logs/friction.jsonl`: the Epoch enumeration recipe and its missing
-on-page dates; the two reversible Epoch skips; the co-publication inconsistency; the AISI
-name-scan triage finding; and the tier-2 evaluator gap with the outbox backlog that blocks it.
+Fetched the recently added documents and followed their references. One catch, three misses:
 
-Nothing appended to `PROPOSALS.md`. The one process problem worth escalating — that
-`sources.yaml` gained four tier-2 evaluators whose output no session is allowed to file while the
-issue queue stays undelivered — is a scheduling decision for the supervisor, and the friction
-entry carries the specific URLs a maintainer needs.
+- **Muse Glimmer card → Muse Glimmer Evaluation Methodology** (proposal 3 above). The card
+  also cites the Muse Spark Safety & Preparedness Report, already catalogued.
+- SecureBio's Kimi K3 assessment (2026-08-07) cites its own BioTIER dashboard and an arXiv
+  methodology paper, plus Moonshot's Kimi K3 platform docs and Epoch's ECI — nothing
+  allowlisted and uncatalogued.
+- SaferAI's GLM-5.2 report (2026-08-02) cites benchmark papers, the CAIS dashboard and METR's
+  Frontier Risk Report; METR's own copy of that report (2026-05-19) is already catalogued.
+- RAND RR-A4741-2 cites academic protein-design benchmarks and its own predecessor. Nothing
+  new on the allowlist.
+- **Resolved an open ambiguity.** The 2026-08-10 friction line asked for a ruling on
+  co-published reports; this run's contract supplies it, and I applied it to the outstanding
+  case. METR's MirrorCode page stays out — I fetched it and it self-describes as "a linkpost
+  for MirrorCode, a project that METR funded and co-developed with Epoch AI", i.e. a pointer,
+  not a second copy. The AISI/CAISI Kimi K3 pair (two full assessments, both catalogued) is
+  what the co-publication rule is for.
+
+## Issues and escalations
+
+`logs/open_issues.json` is `[]` and `blocked_escalations` is empty, so no issue
+investigations and no `comment_issue.py` calls this run. No `status_change` or `field_update`
+proposals were warranted: every document I touched resolved live.

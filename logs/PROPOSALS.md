@@ -70,3 +70,50 @@ permission and the tool's actual write mechanism agree.
 Evidence: two consecutive tool failures this run, one Edit and one Write, both
 `EROFS … PROPOSALS.md.tmp.2.<hex>`, against a file the run contract lists as writable;
 `logs/friction.jsonl` was written successfully by the same tool moments earlier.
+
+## 2026-08-12 — Primary sources that fetch "successfully" but carry no document, and ones that now fetch not at all
+
+Problem: two failure modes hit the same run and both end with a real release going
+uncatalogued, but only one of them is visible to the pipeline.
+
+(1) **Hard block, correctly surfaced.** `openai.com/index/` now answers the validator and
+    every agent-side fetcher with a Cloudflare JS challenge (HTTP 403, body "Enable
+    JavaScript and cookies to continue"). My add for OpenAI's 2026-08-10 launch
+    announcement of GPT-5.6-Cyber was rejected `document_retrievable=false: HTTP 403`.
+    That is the validator working as designed — but it is a regression, not a stable
+    property: three `openai.com/index/` documents were fetched and written on 2026-07-21,
+    2026-08-04 and 2026-08-07. `deploymentsafety.openai.com` remains fetchable and carries
+    no GPT-5.6-Cyber card, so a new frontier cyber model from a tier-1 publisher currently
+    has zero first-party documentation in the corpus and no path to acquiring any.
+
+(2) **Soft block, invisible.** `qwen.ai` returns HTTP 200 and an identical 94,358-byte
+    client-rendered shell for every URL — `/blog`, `/blog?id=qwen3.8` and
+    `/blog?id=qwen3.8-max-preview` are byte-identical and contain zero occurrences of
+    "Qwen3.8". A retrievability check that tests status code, content-type and size passes
+    on all three. Had I proposed Qwen3.8-Max (2.4T MoE flagship, launched 2026-08-03) from
+    its blog URL, the likely outcome is a written row whose stored content is a JavaScript
+    shell — a silent corruption, strictly worse than the OpenAI rejection.
+
+Suggested change, in rough order of cost:
+
+- Add a **content-sanity gate** to the validator alongside the existing retrievability
+  check: reject when the extracted text is below a small floor (a few hundred characters),
+  or when it is byte-identical to a fetch of the same host's index URL. That converts
+  failure mode (2) from silent corruption into an honest rejection, and it generalises to
+  every client-rendered publisher, not just Qwen.
+- Give the fetcher a **headless-render fallback** for hosts flagged in `sources.yaml`
+  (`render: js`), which is the only thing that would actually retrieve Qwen's posts and
+  is likely to clear Cloudflare's challenge on `openai.com/index/` too.
+- Failing that, record hard-blocked but verified documents in a machine-readable
+  `logs/unretrievable.jsonl` (url, publisher, date, title, evidence urls) rather than
+  letting a rejection be the end of the trail. A missed document is invisible; a rejected
+  one at least knows its own name, and today that knowledge survives only as prose in
+  `logs/friction.jsonl`.
+
+Evidence, this run: rejection line `{"status": "rejected", "reason":
+"document_retrievable=false: HTTP 403"}` for
+`https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/`;
+`curl` of the three `qwen.ai` URLs returning identical byte counts with no model string
+present; `alibaba_qwen` reading 50 days silent in `state_summary.json` (last entry
+2026-06-23) across two confirmed August releases. Related friction lines this run:
+`rejected_proposal_fetch_blocked`, `index_unfetchable_publisher_silent`.

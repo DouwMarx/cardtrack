@@ -1,0 +1,17 @@
+Testing Large Language Model Agents on the Use of Biological Tools for Nucleic Acid Synthesis Screening Evasion
+ResearchPublished Aug 11, 2026
+Assessing a threat model in which malicious actors leverage large language model (LLM) agents to exploit biological tools (BTs), the authors evaluate whether agents can lower expertise barriers for hazardous biodesign. They find that LLM agents demonstrate emerging ability to use BTs for nucleic acid synthesis screening evasion, although success is inconsistent and model safeguards frequently limit testing of closed-weight systems.
+- Copyright: RAND Corporation
+- Availability: Web-Only
+- Year: 2026
+- Pages: 48
+- DOI: https://doi.org/10.7249/RRA4741-2
+- Document Number: RR-A4741-2
+Lee, Jeffrey, Alyssa Worland, Christopher Rodriguez, Kyle Brady, Grant Ellison, Henry Alexander Bradley, Dawid Maciorowski, Jordan Despanie, Barbara Del Castello, Jason Johnson, and Steph Guerra, Testing Large Language Model Agents on the Use of Biological Tools for Nucleic Acid Synthesis Screening Evasion, RAND Corporation, RR-A4741-2, 2026. As of August 11, 2026: https://www.rand.org/pubs/research_reports/RRA4741-2.html
+
+    Lee, Jeffrey, Alyssa Worland, Christopher Rodriguez, Kyle Brady, Grant Ellison, Henry Alexander Bradley, Dawid Maciorowski, Jordan Despanie, Barbara Del Castello, Jason Johnson, and Steph Guerra, Testing Large Language Model Agents on the Use of Biological Tools for Nucleic Acid Synthesis Screening Evasion. Santa Monica, CA: RAND Corporation, 2026. https://www.rand.org/pubs/research_reports/RRA4741-2.html.
+
+    This research was independently initiated and conducted by the Center on AI, Security, and Technology within RAND Global and Emerging Risks using income from operations and gifts and grants from philanthropic supporters.
+This publication is part of the RAND research report series. Research reports present research findings and objective analysis that address the challenges facing the public and private sectors. All RAND research reports undergo rigorous peer review to ensure high standards for research quality and objectivity.
+This document and trademark(s) contained herein are protected by law. This representation of RAND intellectual property is provided for noncommercial use only. Unauthorized posting of this publication online is prohibited; linking directly to this product page is encouraged. Permission is required from RAND to reproduce, or reuse in another form, any of its research documents for commercial purposes. For information on reprint and reuse permissions, please visit www.rand.org/pubs/permissions.
+RAND is a nonprofit institution that helps improve policy and decisionmaking through research and analysis. RAND's publications do not necessarily reflect the opinions of its research clients and sponsors.
