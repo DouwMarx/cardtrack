@@ -117,7 +117,7 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
     # serves stale assets after every deploy
     (site / "_headers").write_text(
         "/*\n  Cache-Control: public, max-age=0, must-revalidate\n"
-        "/pagefind/*\n  Cache-Control: public, max-age=86400\n",
+        "/pagefind/*\n  ! Cache-Control\n  Cache-Control: public, max-age=86400\n",
         encoding="utf-8",
     )
 

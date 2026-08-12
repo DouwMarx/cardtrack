@@ -1,4 +1,5 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate
 /pagefind/*
+  ! Cache-Control
   Cache-Control: public, max-age=86400
