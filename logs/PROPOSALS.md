@@ -117,3 +117,50 @@ Evidence, this run: rejection line `{"status": "rejected", "reason":
 present; `alibaba_qwen` reading 50 days silent in `state_summary.json` (last entry
 2026-06-23) across two confirmed August releases. Related friction lines this run:
 `rejected_proposal_fetch_blocked`, `index_unfetchable_publisher_silent`.
+
+## 2026-08-13 — HuggingFace-indexed publishers are diffed by page order, not by creation date, and a flagship release sat undetected for five days
+
+Problem: eight allowlisted publishers are indexed wholly or mostly through a HuggingFace org
+page (`alibaba_qwen`, `deepseek`, `tencent_hunyuan`, `xiaomi`, `nvidia`, `moonshot_ai`,
+`stepfun`, `inclusion_ai`). Phase A diffs the rendered HTML of those pages, which HuggingFace
+orders by
+recent activity rather than by creation date. A repo that is published and then not touched
+does not necessarily appear in the visible listing, so it never enters the diff.
+
+`Qwen/Qwen3.8-2.4T-A95B` — the 2.4T-parameter open-weight release of Qwen's Max-class
+flagship, and the largest known hole in this corpus — was created on HuggingFace
+**2026-08-08T01:50:52Z** and first appeared in `logs/candidates.json` with `first_seen`
+**2026-08-13T06:21:57Z**. Five days. It entered the diff only because the repo was modified on
+2026-08-12. During those five days two runs recorded `alibaba_qwen` as silent (51 days at the
+start of today's run) and filed the release as unreachable, because both runs went looking for
+it at `qwen.ai`, whose blog serves an identical JavaScript shell for every URL. The document
+was fetchable the whole time, at a URL under an index we already poll.
+
+The 2026-08-12 run did run a creation-date-sorted HF API sweep, and that is exactly the method
+that would have caught this — but it was an ad-hoc agent-side sweep covering the five orgs the
+agent happened to suspect (stepfun, moonshot, deepseek, tencent, xiaomi). Qwen was not among
+them, because Qwen's gap had already been attributed to the `qwen.ai` fetch failure. The method
+that works is not part of the pipeline, so its coverage depends on which orgs the agent guesses.
+
+Suggested change: for publishers whose `index_urls` point at `huggingface.co/<org>`, have
+Phase A call the HF API instead of diffing HTML:
+
+    GET https://huggingface.co/api/models?author=<org>&sort=createdAt&direction=-1&limit=50
+
+and emit each repo as a candidate with its `createdAt`, `likes` and `downloads` attached. That
+is one request per org, returns JSON, is ordered by the field that actually defines "new", and
+carries the popularity signal the `notable_release` judgement needs — which today has to be
+recovered by a second API call per candidate anyway. It would also let the diff be keyed on
+repo id rather than on link presence, so a release is detected the day it appears regardless of
+whether anyone touches it afterwards.
+
+Secondary benefit: the same JSON makes the quantization/variant filter mechanical. Of the four
+Qwen and InclusionAI repos in this window, `-FP8`, `-int4` and `-fp4` siblings share a
+`createdAt` minute with their parent and carry an order of magnitude fewer likes
+(`Qwen3.8-2.4T-A95B` 600 likes vs `-FP8` 133; `Ling-3.0-tiny` 198 vs `-int4` 19 and `-fp8` 18).
+That pattern is currently re-derived by hand every run.
+
+Evidence: `logs/friction.jsonl` entry `hf_index_detection_lag` (2026-08-13). Creation dates via
+the HF API: `Qwen/Qwen3.8-2.4T-A95B` 2026-08-08, first_seen 2026-08-13. `alibaba_qwen` last
+catalogued document before today: 2026-06-23. Two prior runs' prose on this gap:
+`logs/run_report.md` (2026-08-12) and the second entry dated 2026-08-12 in this file.

@@ -1,0 +1,228 @@
+Instructions to use tencent/Hy3-preview with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use tencent/Hy3-preview with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("text-generation", model="tencent/Hy3-preview")
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained("tencent/Hy3-preview")
+model = AutoModelForCausalLM.from_pretrained("tencent/Hy3-preview", device_map="auto")
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors="pt",
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use tencent/Hy3-preview with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "tencent/Hy3-preview"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "tencent/Hy3-preview",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Dockerdocker model run hf.co/tencent/Hy3-preview
+-  SGLang  How to use tencent/Hy3-preview with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "tencent/Hy3-preview" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "tencent/Hy3-preview",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "tencent/Hy3-preview" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "tencent/Hy3-preview",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'
+-  Docker Model Runner  How to use tencent/Hy3-preview with Docker Model Runner: docker model run hf.co/tencent/Hy3-preview
+中文 ｜ English
+
+🖥️ Official Website | 💬 GitHub
+Table of Contents
+Model Introduction
+Hy3 preview is a 295B-parameter Mixture-of-Experts (MoE) model with 21B active parameters and 3.8B MTP layer parameters, developed by the Tencent Hy Team. Hy3 preview is the first model trained on our rebuilt infrastructure, and the strongest we've shipped so far. It improves significantly on complex reasoning, instruction following, context learning, coding, and agent tasks.
+| Property | Value |
+|---|---|
+| Architecture | Mixture-of-Experts (MoE) |
+| Total Parameters | 295B |
+| Activated Parameters | 21B |
+| MTP Layer Parameters | 3.8B |
+| Number of Layers (excluding MTP layer) | 80 |
+| Number of MTP Layers | 1 |
+| Attention Heads | 64 (GQA, 8 KV heads, head dim 128) |
+| Hidden Size | 4096 |
+| Intermediate Size | 13312 |
+| Context Length | 256K |
+| Vocabulary Size | 120832 |
+| Number of Experts | 192 experts, top-8 activated |
+| Supported Precisions | BF16 |
+Highlights
+- STEM & Reasoning — Complex reasoning underpins everything else. Hy3 preview performs well on challenging STEM benchmarks like FrontierScience-Olympiad and IMOAnswerBench, and achieved excellent results in the Tsinghua Qiuzhen College Math PhD qualifying exam (Spring '26) and the China High School Biology Olympiad (CHSBO 2025), demonstrating generalizable reasoning capacity.
+- Context Learning & Instruction Following — Real-world tasks require the ability to parse messy, lengthy contexts and follow complex rules. We built CL-bench and CL-bench-Life from our own business scenarios to innovatively measure context learning ability. Hy3 preview exhibits solid gains in both context learning and instruction following capabilities.
+- Code & Agent — Coding and agents saw the biggest gains. With a rebuilt RL infrastructure and larger-scale training tasks, we posted competitive scores across mainstream coding agent benchmarks (SWE-bench Verified, Terminal-Bench 2.0) and search agent benchmarks (BrowseComp, WideSearch).
+Benchmark Results
+Pre-trained Model Performance
+| Category | Benchmark (Metric) | # Shots | Kimi-K2 BASE | DeepSeek-V3 BASE | GLM-4.5 BASE | Hy3 preview-Base |
+|---|---|---|---|---|---|---|
+|  | #ActivatedParams | - | 32B | 37B | 32B | 21B |
+|  | #TotalParams | - | 1043B | 671B | 355B | 295B |
+| English | MMLU | 5-shot | 88.24 | 87.68 | 87.73 | 87.42 |
+|  | MMLU-Pro | 5-shot | 65.98 | 63.98 | 63.67 | 65.76 |
+|  | MMLU-Redux | 5-shot | 87.18 | 86.81 | 86.56 | 86.86 |
+|  | ARC-Challenge | 0-shot | 96.66 | 94.65 | 96.32 | 95.99 |
+|  | DROP | 5-shot | 86.40 | 86.50 | 82.90 | 85.50 |
+|  | PIQA | 4-shot | 84.93 | 84.22 | 84.71 | 84.39 |
+|  | SuperGPQA | 5-shot | 51.10 | 46.17 | 49.64 | 51.60 |
+|  | SimpleQA | 5-shot | 34.37 | 26.15 | 29.26 | 26.47 |
+| Code | MBPP-plus | 3-shot | 81.35 | 75.47 | 78.05 | 78.71 |
+|  | CRUXEval-I | 3-shot | 68.01 | 67.79 | 68.51 | 71.19 |
+|  | CRUXEval-O | 3-shot | 69.62 | 71.00 | 67.75 | 68.38 |
+|  | LiveCodeBench-v6 | 1-shot | 30.86 | 29.31 | 27.43 | 34.86 |
+| Math | GSM8K | 4-shot | 93.46 | 88.15 | 90.06 | 95.37 |
+|  | MATH | 4-shot | 71.20 | 59.37 | 61.00 | 76.28 |
+|  | CMath | 4-shot | 90.83 | 85.50 | 89.33 | 91.17 |
+| Chinese | C-Eval | 5-shot | 91.51 | 90.35 | 85.84 | 89.80 |
+|  | CMMLU | 5-shot | 90.72 | 87.90 | 86.46 | 89.61 |
+|  | Chinese-simpleQA | 5-shot | 74.58 | 68.72 | 68.49 | 69.73 |
+| Multilingual | MMMLU | 5-shot | 77.63 | 79.54 | 79.26 | 80.15 |
+|  | INCLUDE | 5-shot | 75.66 | 77.86 | 76.27 | 78.64 |
+Instruct Model Performance
+STEM & Reasoning
+Complex reasoning underpins everything else. Hy3 preview performs well on challenging STEM benchmarks like FrontierScience-Olympiad and IMOAnswerBench. It also achieved excellent results in the Tsinghua Qiuzhen College Math PhD qualifying exam (Spring '26) and the China High School Biology Olympiad (CHSBO 2025), demonstrating a high degree of generalizable reasoning capacity.
+Context Learning & Instruction Following
+Real-world tasks require the ability to parse messy, lengthy contexts and follow complex rules. We built CL-bench and CL-bench-Life from our own business scenarios to innovatively measure context learning ability. Hy3 preview exhibits solid gains in both context learning and instruction following capabilities.
+Code & Agent
+Coding and agents saw the biggest gains. With a rebuilt RL infrastructure and larger-scale training tasks, we posted competitive scores across mainstream coding agent benchmarks (SWE-bench Verified, Terminal-Bench 2.0) and search agent benchmarks (BrowseComp, WideSearch).
+Coding is about whether a model can execute in a development environment. Search is about whether it can find and combine information from the open web. Both matter for complex agent scenarios like OpenClaw. Hy3 preview scores well on ClawEval and WildClawBench — a sign that its agent capabilities are becoming practical.
+Beyond public benchmarks, we built internal evaluation sets to test the model in real development scenarios. On Hy-Backend (backend-focused tasks), Hy-Vibe Bench (real-user dev workflows), and Hy-SWE Max, Hy3 preview scores competitively against other open-source models.
+News
+- [2026-04-23] 🔥 We open-source Hy3 preview model weights on Hugging Face, ModelScope, and GitCode.
+Model Links
+| Model Name | Description | Hugging Face | ModelScope | GitCode |
+|---|---|---|---|---|
+| Hy3 preview | Instruct model | 🤗 Model | Model | Model |
+| Hy3 preview-Base | Pre-trained base model | 🤗 Model | Model | Model |
+Quickstart
+Deploy Hy3 preview with vLLM or SGLang first, then call the OpenAI-compatible API:
+from openai import OpenAI
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="EMPTY")
+response = client.chat.completions.create(
+    model="hy3-preview",
+    messages=[
+        {"role": "user", "content": "Hello! Can you briefly introduce yourself?"},
+    ],
+    temperature=0.9,
+    top_p=1.0,
+    # reasoning_effort: "no_think" (default, direct response), "low", "high" (deep chain-of-thought)
+    extra_body={"chat_template_kwargs": {"reasoning_effort": "no_think"}},
+)
+print(response.choices[0].message.content)
+Recommended parameters: temperature=0.9, top_p=1.0.
+Reasoning mode: Set reasoning_effort to "high" for complex tasks (math, coding, reasoning) or "no_think" for direct responses.
+See the Deployment section below for how to start the API server.
+Deployment
+Hy3-preview has 295B parameters in total. To serve it on 8 GPUs, we recommend using H20-3e or other GPUs with larger memory capacity.
+vLLM
+Build vLLM from source:
+uv venv --python 3.12 --seed --managed-python
+source .venv/bin/activate
+git clone https://github.com/vllm-project/vllm.git
+cd vllm
+uv pip install --editable . --torch-backend=auto
+Start the vLLM server with MTP enabled:
+vllm serve tencent/Hy3-preview \
+  --tensor-parallel-size 8 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 1 \
+  --tool-call-parser hy_v3 \
+  --reasoning-parser hy_v3 \
+  --enable-auto-tool-choice \
+  --served-model-name hy3-preview
+SGLang
+Build SGLang from source:
+git clone https://github.com/sgl-project/sglang
+cd sglang
+pip3 install pip --upgrade
+pip3 install "transformers>=5.6.0"
+pip3 install -e "python"
+Launch SGLang server with MTP enabled:
+python3 -m sglang.launch_server \
+  --model tencent/Hy3-preview \
+  --tp 8 \
+  --tool-call-parser hunyuan \
+  --reasoning-parser hunyuan \
+  --speculative-num-steps 1 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 2 \
+  --speculative-algorithm EAGLE \
+  --served-model-name hy3-preview
+Training
+Hy3 preview provides a complete model training pipeline, supporting both full fine-tuning and LoRA fine-tuning, with DeepSpeed ZeRO configurations and LLaMA-Factory integration.
+For detailed training documentation, please refer to: Training Guide
+Quantization
+We provide AngelSlim, a more accessible, comprehensive, and efficient toolkit for large model compression. AngelSlim supports a comprehensive suite of compression tools for large-scale multimodal models, including common quantization algorithms, low-bit quantization, and speculative sampling.
+License
+Hy3 preview is released under the Tencent Hy Community License Agreement. See LICENSE for details.
+Contact Us
+If you would like to leave a message for our R&D and product teams, welcome to contact us. You can also reach us via email:
+📧 hunyuan_opensource@tencent.com
+Hy3 preview is developed by the Tencent Hy Team.
+- Downloads last month
+- 60,270
+Model tree for tencent/Hy3-preview
+Spaces using tencent/Hy3-preview 18
+Collection including tencent/Hy3-preview
+Evaluation results
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   74.4
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   87.2
+- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results    leaderboard   54.4
+- cais/hle · Hle View evaluation results      30 *

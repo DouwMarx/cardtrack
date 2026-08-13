@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qwen3.8-2.4T-A95B Model Card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Qwen3.8-2.4T-A95B Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://qwen.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">alibaba_qwen</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Qwen3.8-2.4T-A95B, Qwen3.8-Max</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-08-08</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-13T06:26:41Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>has_safety_evals=false is honest and is itself the finding: the card contains ZERO occurrences of safety, red-team, risk, harmful, misuse, refusal or dangerous - it is a capability-benchmark and usage card only, with no safety section, for a 2.4T frontier-class open-weight release. openness=open_weight_restrictive verified from the LICENSE file: custom &#39;Qwen3.8-Max License&#39; requiring prominent model-name attribution above 100M MAU or $20M monthly revenue, and a separate commercial licence for model-as-a-service or AI work-assistant providers above $50M revenue over 12 months - not an Apache/MIT-class permissive licence. publication_date is the Hugging Face repo creation date (createdAt 2026-08-08T01:50:52Z via the HF API); the card&#39;s own bibtex says only &#39;August 2026&#39; and the qwen.ai blog post it cites is unfetchable, so the repo creation date is the best-supported date for this document. Sibling Qwen/Qwen3.8-2.4T-A95B-FP8 (created 2026-08-08) deliberately NOT proposed: quantization of the same release.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-2-4t-a95b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-2-4t-a95b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-2.4T-A95B%0AFingerprint%3A%20d825d887a10279c687053769a4962dcfa0bcdd3b5918e28acf67ac21f1c3ee69%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-13T06:26:41Z</td>
+          <td>text/html</td>
+          <td>343,541</td>
+          <td><code title="d825d887a10279c687053769a4962dcfa0bcdd3b5918e28acf67ac21f1c3ee69">d825d887a10279c6</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-13T06:26:41Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-13T06:20Z-local · agent · lead: phase_a_candidate</span>
+          <div class="just">Alibaba Qwen&#39;s own model card for Qwen3.8-2.4T-A95B, the open-weight release of its Qwen3.8-Max flagship - 2.4T total / 95B activated parameters, 92 layers of gated DeltaNet + gated attention with a 512-expert MoE, 262,144 native context extensible to 1,010,000 tokens. The card states &#39;For the first time, Qwen3.8 brings a Qwen-Max-class model to open release&#39;, and that the hosted Qwen3.8-Max is &#39;the official version based on Qwen3.8-2.4T-A95B with more features&#39;. It is a distinct new generation, not a variant of the catalogued Qwen3.6-35B-A3B or Qwen-AgentWorld-35B-A3B, and it is unambiguously notable: announced on the Qwen blog, 600 likes on Hugging Face, and benchmarked head-to-head against Opus 4.8, Fable 5 and GPT-5.6 Sol in the card&#39;s own table. This is the release the previous two runs recorded as unreachable because qwen.ai serves an identical client-rendered shell for every blog URL; the Hugging Face card is fully fetchable and carries the substance. I fetched and read the full README and the LICENSE.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/raw/main/README.md</a> · <a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/raw/main/LICENSE" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/raw/main/LICENSE</a> · <a href="https://qwen.ai/blog?id=qwen3.8" rel="noopener nofollow">https://qwen.ai/blog?id=qwen3.8</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use Qwen/Qwen3.8-2.4T-A95B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use Qwen/Qwen3.8-2.4T-A95B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;Qwen/Qwen3.8-2.4T-A95B&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;Qwen/Qwen3.8-2.4T-A95B&#34;)
+model = AutoModelForCausalLM.from_pretrained(&#34;Qwen/Qwen3.8-2.4T-A95B&#34;, device_map=&#34;auto&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use Qwen/Qwen3.8-2.4T-A95B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;Qwen/Qwen3.8-2.4T-A95B&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;Qwen/Qwen3.8-2.4T-A95B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/Qwen/Qwen3.8-2.4T-A95B
+-  SGLang  How to use Qwen/Qwen3.8-2.4T-A95B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;Qwen/Qwen3.8-2.4T-A95B&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;Qwen/Qwen3.8-2.4T-A95B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;Qwen/Qwen3.8-2.4T-A95B&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;Qwen/Qwen3.8-2.4T-A95B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use Qwen/Qwen3.8-2.4T-A95B with Docker Model Runner: docker model run hf.co/Qwen/Qwen3.8-2.4T-A95B
+Qwen3.8-2.4T-A95B
+This repository contains model weights and configuration files for the post-trained model in the Hugging Face Transformers format.
+These artifacts are compatible with vLLM, SGLang, TokenSpeed, etc.
+For users seeking managed, scalable inference without infrastructure maintenance, the official Qwen API service is provided by Qwen Cloud.
+In particular, Qwen3.8-Max is the official version based on Qwen3.8-2.4T-A95B with more features, such as vision input &amp; non-thinking support, 1M context length by default, official built-in tools, etc. For more information, please refer to the Qwen3.8-Max Overview.
+Following the widespread community adoption of the Qwen3.5 and Qwen3.6 series, we are pleased to introduce Qwen3.8, the most capable generation in the Qwen open-model family to date.
+For the first time, Qwen3.8 brings a Qwen-Max-class model to open release. Built on the architectural foundation of Qwen3.5, Qwen3.8 delivers substantial gains across coding, professional work, research, and long-horizon agentic tasks. Beyond answering harder questions, Qwen3.8 is designed to carry complex, multi-step tasks through to completion with greater reliability.
+Qwen3.8 Highlights
+Qwen3.8 features the following enhancements:
+- Core Capabilities: Comprehensive improvements across coding, professional work, research, and long-horizon agentic tasks.
+- Agent Execution: Stronger autonomous planning and better handling of environment feedback, leading to more reliable end-to-end task completion.
+- Downstream Compatibility: Broader support for popular harnesses and development tools, making it easier to integrate into your existing stack.
+- Flexible Thinking Control: Reasoning depth can be tuned with reasoning_effort , and reasoning context from historical messages is retained viapreserve_thinking .
+For more details, please refer to our blog post Qwen3.8-Max.
+Model Overview
+- Type: Causal Language Model
+- Training Stage: Pre-training &amp; Post-training
+- Language Model
+  - Number of Parameters: 2.4T in total and 95B activated
+  - Hidden Dimension: 8192
+  - Token Embedding: 248,320 (Padded)
+  - Number of Layers: 92
+  - Hidden Layout: 23 × (3 × (Gated DeltaNet → MoE) → 1 × (Gated Attention → MoE))
+  - Gated DeltaNet:
+    - Number of Linear Attention Heads: 128 for V and 16 for QK
+    - Head Dimension: 128
+  - Gated Attention:
+    - Number of Attention Heads: 64 for Q and 4 for KV
+    - Head Dimension: 256
+    - Rotary Position Embedding Dimension: 64
+  - Mixture of Experts:
+    - Number of Experts: 512
+    - Number of Activated Experts: 10 Routed + 1 Shared
+    - Expert Intermediate Dimension: 2048
+  - LM Output: 248,320 (Padded)
+  - MTP (Multi-Token Prediction): trained with multiple steps
+- Context Length: 262,144 natively and extensible up to 1,010,000 tokens.
+Benchmark Results
+|  | Opus 4.8 | Fable 5 | GPT 5.6 Sol (max) | Qwen3.7-Max | Qwen3.8-Max |
+|---|---|---|---|---|---|
+| Coding Agent |  |  |  |  |  |
+| Terminal Bench 2.1 | 84.6 | 84.6 | 88.8 | 74.5 | 86.6 |
+| SWE-bench Pro | 69.2 | 80.0 | 64.6 | 60.6 | 67.7 |
+| DeepSWE 1.1 | 59.0 | 70.0 | 73.0 | 21.6 | 56.6 |
+| NL2Repo-Bench | 69.4 | -- | -- | 47.2 | 55.9 |
+| FrontierSWE | 70.0 | 88.8 | -- | 40.7 | 73.5 |
+| MLS-Bench-Lite | 42.8 | 49.9 | 46.2 | 31.7 | 41.0 |
+| PaperBench | 80.3 | 88.8 | 90.5 | 64.8 | 93.0 |
+| AndroidBench | 69.8 | 84.5 | 74.0 | 56.5 | 75.1 |
+| QwenSWEBench | 84.0 | 86.3 | 73.5 | 63.4 | 80.7 |
+| QwenQoderBench | 62.7 | 63.1 | 53.8 | 36.8 | 58.4 |
+| QwenReactBench | 1694 | 1770 | 1564 | 1538 | 1724 |
+| QwenSVGBench | 1648 | 1690 | 1758 | 1499 | 1713 |
+| General Agent |  |  |  |  |  |
+| CoWorkBench | 72.3 | 75.9 | 71.5 | 64.6 | 74.8 |
+| WorkSpaceBench | 66.8 | 68.7 | 65.6 | 61.4 | 67.7 |
+| JobBench | 48.4 | 57.4 | 45.4 | 31.3 | 53.4 |
+| SkillsBench | 65.1 | 70.9 | 73.5 | 61.2 | 70.2 |
+| Agents&#39; Last Exam (Pass / Score) | 27.0 / 45.1 | -- / -- | 30.6 / 53.6 | 11.8 / 31.1 | 27.0 / 52.4 |
+| Automation-Bench (Pass@1) | 27.2 | 29.1 | 29.7 | 14.2 | 27.3 |
+| Toolathlon Verified (Pass@1) | 76.2 | 77.9 | 74.9 | 49.7 | 72.5 |
+| WideSearch | 72.9 | 81.2 | -- | 75.2 | 81.9 |
+| HLE w/ tools | 57.9 | 64.5 | 58.0 | 53.5 | 56.2 |
+| General Capabilities |  |  |  |  |  |
+| GPQA Diamond | 92.0 | 92.6 | 94.1 | 92.4 | 92.6 |
+| HLE | 45.7 | 53.3 | 47.2 | 41.4 | 43.6 |
+| IFBench | 62.2 | 63.5 | 72.7 | 79.1 | 82.8 |
+| $OneMillion-Bench (expert score) | 41.8 | 55.9 | 53.8 | 44.4 | 52.5 |
+| HealthBench | 52.4 | -- | 55.3 | 54.5 | 60.2 |
+| PLawBench | 69.6 | 70.2 | 72.3 | 58.9 | 73.2 |
+| PRBench-Legal | 52.7 | 57.6 | 57.6 | 48.5 | 57.6 |
+| PRBench-Finance | 51.9 | 55.8 | 55.5 | 46.8 | 58.3 |
+| MRCR v2 256K (8-needle) | 83.2 | -- | 93.8 | 86.7 | 92.9 |
+| LongBench v2 | 69.1 | -- | 67.1 | 65.3 | 66.3 |
+1. Fable5 results may involve fallbacks.
+2. Terminal Bench 2.1: Evaluated with Claude Code (avg@10), using a 5-hour timeout and max_tokens=131,072. For all other models, we report the best published score across harnesses: Claude Opus 4.8 and Claude Fable 5 with Terminus 2 from Artificial Analysis (https://artificialanalysis.ai/evaluations/terminalbench-v2-1); GPT-5.6 Sol with Codex (https://openai.com/index/previewing-gpt-5-6-sol/).
+3. SWE-bench Pro: Evaluated with the Claude Code harness, temp=1.0, top_p=0.95, and a 256K context window. Problematic tasks corrected and all baselines evaluated on the refined benchmark.
+4. DeepSWE 1.1: Evaluated with the Claude Code and mini-SWE-agent harnesses, temp=1.0, top_p=0.95, and a 256K context window. We report the highest score among both harnesses; notably, Qwen3.8-Max performs best on Claude Code.
+5. NL2Repo-Bench: Evaluated with the Claude Code harness. To prevent reward hacking, we disable Bash commands that attempt to access the specific repository, such as pip download, pip install, and git clone.
+6. FrontierSWE: Evaluated with the Claude Code harness. All other available MEAN@5 results are taken from the official FrontierSWE leaderboard (https://www.frontierswe.com) as of August 3, 2026. Dominance scores are recomputed from the raw scores using the official evaluation script. &#34;--&#34; indicates that no official MEAN@5 result was available as of that date.
+7. MLS-Bench-Lite: Evaluated with Claude Code using a 5-hour timeout and max_tokens=131,072. All other model scores are taken from the official leaderboard.
+8. PaperBench: Evaluated in the BasicAgent setting under Code-Dev mode, judged by Claude Opus 4.6, and averaged over 3 runs (max 12 hours per run).
+9. AndroidBench: Evaluated on the 95-task public subset, reporting avg@3 scores.
+10. QwenSWEBench: Inhouse coding benchmark to evaluate models&#39; software engineering capabilities. Evaluated with the Claude Code harness. Reporting avg@3 with an 8-hour timeout, max_tokens=32,768, temperature=1.0, and a 256K-token context window.
+11. QwenQoderBench: Inhouse coding benchmark to evaluate user experience on Qoder. Evaluated with the Claude Code harness. Reporting avg@5 with a 6-hour timeout, max_tokens=32,768, temperature=1.0, and a 256K-token context window.
+12. QwenReactBench: Inhouse React project building benchmark using Claude Code as the harness, bilingual (EN/CN), 7 categories; auto-render + multimodal judge; BT/Elo rating.
+13. QwenSVGBench: Inhouse SVG code generation benchmark; bilingual (EN/CN), auto-render + multimodal judge; BT/Elo rating.
+14. CoWorkBench: Inhouse cowork benchmark for evaluating long-horizon tasks across computer science, finance, law, medical, and other productivity domains.
+15. SkillsBench: Evaluated on the public SkillsBench v1.1 benchmark across 87 tasks, reporting the average score over three runs per task. Opus 4.8 and Fable 5 are evaluated on Claude Code; GPT-5.6 Sol is evaluated on Codex; the Qwen-series are evaluated on OpenCode. All results are from our own testing.
+16. Automation-Bench: Evaluated on the 600-task public subset.
+17. WideSearch: Evaluated with the Claude Code harness for external models and the Qwen-Agent harness for ours, reporting the average item-F1 over four runs.
+18. $OneMillion-Bench: Evaluated using gemini-3.1-pro-preview.
+19. PLawBench: Evaluated using gemini-3.1-pro-preview.
+20. Empty cells (--): Scores are not yet available or are not applicable.
+Quickstart
+For streamlined integration, we recommend using Qwen3.8 via APIs.
+Serving Qwen3.8
+Inference efficiency and throughput vary significantly across frameworks. We recommend using the latest framework versions to ensure optimal performance and compatibility. For production workloads or high-throughput scenarios, dedicated serving engines such as SGLang, vLLM, or TokenSpeed are recommended.
+Qwen3.8 can be deployed with popular inference frameworks, e.g.:
+API Usage
+Qwen3.8-2.4T-A95B is a text-only model that requires thinking mode for all interactions. Multimodal inputs are not supported, and thinking cannot be disabled. Every response will automatically begin with reasoning enclosed in &lt;think&gt;\n...&lt;/think&gt;\n\n before the final output.
+We recommend using the following set of sampling parameters for generation:
+temperature=1.0, top_p=0.95, top_k=20, min_p=0.0, presence_penalty=0.0, repetition_penalty=1.0
+Please note that the support for sampling parameters varies according to inference frameworks.
+Qwen3.8 comes with official support for reasoning_effort, which can be used to adjust reasoning depth and control cost:
+- xhigh (default): for complex tasks demanding thorough analysis
+- medium : balancing accuracy and speed
+- low : efficient reasoning optimizing for speed and cost
+In addition, preserve_thinking is enabled by default for all workloads for the best out-of-the-box experience.
+Chat Completions API
+The Chat Completions API can be used with most inference frameworks, as well as Qwen Cloud. Before starting, make sure the OpenAI Python SDK is installed and the API key and the API base URL are configured, e.g.:
+pip install -U openai
+# Set the following accordingly
+export OPENAI_BASE_URL=&#39;your-base-url&#39;
+export OPENAI_API_KEY=&#39;your-api-key&#39;
+Text-Only Input
+from openai import OpenAI
+# Configured by environment variables
+client = OpenAI()
+messages = [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Write a Python function to merge two sorted linked lists.&#34;}]
+completion = client.chat.completions.create(
+    model=&#34;Qwen/Qwen3.8-2.4T-A95B&#34;,
+    messages=messages,
+    extra_body={
+        &#34;chat_template_kwargs&#34;: {
+            &#34;enable_thinking&#34;: True,  # on by default; should not be turned off
+            &#34;preserve_thinking&#34;: True, # on by default
+        },
+    },
+    reasoning_effort=&#34;xhigh&#34;,  # xhigh by default; supported levels are xhigh, medium, and low
+    stream=True,
+    stream_options={&#34;include_usage&#34;: True},
+)
+reasoning_content = &#34;&#34;
+answer_content = &#34;&#34;
+is_answering = False
+print(&#34;\n&#34; + &#34;=&#34; * 20 + &#34;Reasoning&#34; + &#34;=&#34; * 20 + &#34;\n&#34;)
+for chunk in completion:
+    if not chunk.choices:
+        print(&#34;\nUsage:&#34;)
+        print(chunk.usage)
+        continue
+    delta = chunk.choices[0].delta
+    if hasattr(delta, &#34;reasoning_content&#34;) and delta.reasoning_content is not None:
+        if not is_answering:
+            print(delta.reasoning_content, end=&#34;&#34;, flush=True)
+        reasoning_content += delta.reasoning_content
+    if hasattr(delta, &#34;content&#34;) and delta.content:
+        if not is_answering:
+            print(&#34;\n&#34; + &#34;=&#34; * 20 + &#34;Answer&#34; + &#34;=&#34; * 20 + &#34;\n&#34;)
+            is_answering = True
+        print(delta.content, end=&#34;&#34;, flush=True)
+        answer_content += delta.content
+If you are using APIs from Qwen Cloud, in addition to changing model, please pass extra_body={&#34;enable_thinking&#34;: True, &#34;preserve_thinking&#34;: True} instead of extra_body={&#34;chat_template_kwargs&#34;: {&#34;enable_thinking&#34;: True, &#34;preserve_thinking&#34;: True}}.
+Best Practices
+To achieve optimal performance, we recommend the following settings:
+- Sampling Parameters:
+  - We suggest using the following set of sampling parameters:
+    - temperature=1.0 ,top_p=0.95 ,top_k=20 ,min_p=0.0 ,presence_penalty=0.0 ,repetition_penalty=1.0
+  - For supported frameworks, you can adjust the presence_penalty parameter between 0 and 2 to reduce endless repetition. However, using a higher value may occasionally result in language mixing and a slight decrease in model performance.
+- We suggest using the following set of sampling parameters:
+- Adequate Output Length: To optimize performance on agentic tasks, we recommend allocating sufficient output length to allow the model to generate detailed and comprehensive responses. For frameworks that support separate token limits for internal reasoning and final outputs, we suggest the following configuration within the 1M context length:
+  - Reasoning Content: Set the maximum output length to 262,144 tokens.
+  - Final Response: Set the maximum output length to 131,072 tokens.
+ These settings provide the necessary capacity for complex reasoning while ensuring ample space for high-quality final deliverables.
+Citation
+If you find our work helpful, feel free to give us a cite.
+@misc{qwen38,
+    title = {{Qwen3.8-Max}: A New Bar for Coding and Cowork},
+    url = {https://qwen.ai/blog?id=qwen3.8},
+    author = {{Qwen Team}},
+    month = {August},
+    year = {2026}
+}
+- Downloads last month
+- 978
+Model tree for Qwen/Qwen3.8-2.4T-A95B
+Spaces using Qwen/Qwen3.8-2.4T-A95B 2
+Evaluation results
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
+- Idavidrein/gpqa · Diamond View evaluation results leaderboard
+- cais/hle · Hle View evaluation results      43.6</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-13T06:34:55Z</p></footer>
+</body>
+</html>

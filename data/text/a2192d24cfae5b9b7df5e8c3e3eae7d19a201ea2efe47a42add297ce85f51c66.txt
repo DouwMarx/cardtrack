@@ -1,0 +1,117 @@
+DeepSeek-OCR
+ Collection
+ 2 items • Updated  •  34
+- Libraries
+-  Transformers How to use deepseek-ai/DeepSeek-OCR-2 with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("image-text-to-text", model="deepseek-ai/DeepSeek-OCR-2", trust_remote_code=True)# Load model directly
+from transformers import AutoModel
+model = AutoModel.from_pretrained("deepseek-ai/DeepSeek-OCR-2", trust_remote_code=True, device_map="auto")
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use deepseek-ai/DeepSeek-OCR-2 with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "deepseek-ai/DeepSeek-OCR-2"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "deepseek-ai/DeepSeek-OCR-2",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-OCR-2
+-  SGLang  How to use deepseek-ai/DeepSeek-OCR-2 with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "deepseek-ai/DeepSeek-OCR-2" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "deepseek-ai/DeepSeek-OCR-2",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "deepseek-ai/DeepSeek-OCR-2" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "deepseek-ai/DeepSeek-OCR-2",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'
+-  Docker Model Runner  How to use deepseek-ai/DeepSeek-OCR-2 with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-OCR-2
+🌟 Github | 📥 Model Download | 📄 Paper Link | 📄 Arxiv Paper Link |
+DeepSeek-OCR 2: Visual Causal Flow
+Explore more human-like visual encoding.
+Inference using Huggingface transformers on NVIDIA GPUs. Requirements tested on python 3.12.9 + CUDA11.8：
+torch==2.6.0
+transformers==4.46.3
+tokenizers==0.20.3
+einops
+addict
+easydict
+pip install flash-attn==2.7.3 --no-build-isolation
+from transformers import AutoModel, AutoTokenizer
+import torch
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+model_name = 'deepseek-ai/DeepSeek-OCR-2'
+tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+model = AutoModel.from_pretrained(model_name, _attn_implementation='flash_attention_2', trust_remote_code=True, use_safetensors=True)
+model = model.eval().cuda().to(torch.bfloat16)
+# prompt = "<image>\nFree OCR. "
+prompt = "<image>\n<|grounding|>Convert the document to markdown. "
+image_file = 'your_image.jpg'
+output_path = 'your/output/dir'
+res = model.infer(tokenizer, prompt=prompt, image_file=image_file, output_path = output_path, base_size = 1024, image_size = 768, crop_mode=True, save_results = True)
+Refer to 🌟GitHub for guidance on model inference acceleration and PDF processing, etc.
+- Dynamic resolution
+  - Default: (0-6)×768×768 + 1×1024×1024 — (0-6)×144 + 256 visual tokens ✅
+# document: <image>\n<|grounding|>Convert the document to markdown.
+# without layouts: <image>\nFree OCR.
+We would like to thank DeepSeek-OCR, Vary, GOT-OCR2.0, MinerU, PaddleOCR for their valuable models and ideas.
+We also appreciate the benchmark OmniDocBench.
+@article{wei2025deepseek,
+  title={DeepSeek-OCR: Contexts Optical Compression},
+  author={Wei, Haoran and Sun, Yaofeng and Li, Yukun},
+  journal={arXiv preprint arXiv:2510.18234},
+  year={2025}
+}
+@article{wei2026deepseek,
+  title={DeepSeek-OCR 2: Visual Causal Flow},
+  author={Wei, Haoran and Sun, Yaofeng and Li, Yukun},
+  journal={arXiv preprint arXiv:2601.20552},
+  year={2026}
+}
+- Downloads last month
+- 1,458,376
+ Inference Providers NEW
+  This model isn't deployed by any Inference Provider. 🙋 63 Ask for provider support
+ Paper • 2601.20552 • Published  •  74
+ Paper • 2510.18234 • Published  •  95
+- llamaindex/ParseBench leaderboard
+- Mean View evaluation resultssourcePipeline name: deepseekocr2_vllm41.2 *
+- Text Content View evaluation resultssourcePipeline name: deepseekocr2_vllm82 *
+- Text Formatting View evaluation resultssourcePipeline name: deepseekocr2_vllm54 *
+- allenai/olmOCR-bench leaderboard
+- Overall View evaluation resultssource76.3

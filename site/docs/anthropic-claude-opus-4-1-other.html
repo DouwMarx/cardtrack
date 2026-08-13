@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:26:55Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-1-other&amp;body=Document%3A%20anthropic-claude-opus-4-1-other%0AURL%3A%20https%3A//www.anthropic.com/research/property-based-testing%0AFingerprint%3A%20d489e29e82660171108bf067c9edd7d0458a222825a5919b71f8d3910d64a99d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-1-other&amp;body=Document%3A%20anthropic-claude-opus-4-1-other%0AURL%3A%20https%3A//www.anthropic.com/research/property-based-testing%0AFingerprint%3A%203a06a8e39540dbba2e2efc69e00766e461d51837a62f1bec6fe2f5d989d5d134%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-13T06:21:38Z</td>
+          <td>text/html</td>
+          <td>152,301</td>
+          <td><code title="3a06a8e39540dbba2e2efc69e00766e461d51837a62f1bec6fe2f5d989d5d134">3a06a8e39540dbba</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:26:55Z</td>
           <td>text/html</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +104,14 @@
           <div class="just">Anthropic first-party post on Claude Opus 4.1 and Claude Sonnet 4.5; Claude weights are never published.</div>
           <div class="evidence">Evidence:
 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="noopener nofollow">https://platform.claude.com/docs/en/about-claude/models/overview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-13T06:21:38Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-13T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/property-based-testing" rel="noopener nofollow">https://www.anthropic.com/research/property-based-testing</a>          </div>
       </li>
     </ol>
     </details>
@@ -166,14 +180,16 @@ The report to python-dateutil shows an important limitation of the agent: derivi
 As language models continue to improve, we think agentic property-based testing could become an increasingly valuable complement to human-written testing. The high-level semantic guarantees of property-based testing makes them a natural fit to pair with during development. We find that LLMs are particularly good at identifying properties that should be true about a given block of code from context (the name of the function, the docstring, how it is called by other functions, etc). This allows LLMs to write high quality property-based tests effectively.
 Going forward, we believe that applying LLM to testing and bugfinding is an important research direction. Especially as LLMs improve at the process of exploiting vulnerabilities, it is necessary to stay ahead of attackers using LLMs for exploitation.
 While we do not focus on the automatic generation of patches in this work, this is a clear direction for future work. If it is possible to (nearly) completely specify the correctness properties of a block of code, then correcting the bug becomes significantly easier, and we believe that in the near future LLMs will be able to effectively propose high-quality patches that are worth the consideration of maintainers.
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
+Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
 Read more
-Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
+We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
+Read more
+An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-12T11:08:45Z</p></footer>
+<footer><p>Built 2026-08-13T06:34:55Z</p></footer>
 </body>
 </html>
