@@ -1,0 +1,22 @@
+February 4, 2026BlogTechnical Report
+GAv26.02
+Voxtral Mini Transcribe Realtime
+An efficient audio input model, pre-trained and optimized for live transcription purposes only.
+Speed
+Performance
+Modalities
+Context
+--
+Price
+€0.0053
+/Min
+Speed
+Performance
+Modalities
+Context
+--
+Price
+€0.0053
+/Min
+Features
+Other Models

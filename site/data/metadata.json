@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-13T06:34:55Z",
+ "generated_at": "2026-08-14T07:15:45Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -179,6 +179,31 @@
    "version_count": 1
   },
   {
+   "slug": "deepseek-deepseek-v4-pro-0813-model-card",
+   "title": "DeepSeek-V4-Pro-0813 Model Card",
+   "publisher": "deepseek",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "DeepSeek-V4-Pro-0813"
+   ],
+   "publication_date": "2026-08-13",
+   "canonical_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:04:53Z",
+   "last_checked": "2026-08-14T07:04:53Z",
+   "last_changed": "2026-08-14T07:04:53Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "f12f179162dd30b17052357d136a945a97b01b2e213dd813e039829c29c9e58c",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:04:53Z",
+   "content_fingerprint": "9fba63beb64c58dd82dde7e430714e1248e6b9722058bd11a3c3d324b88df304",
+   "version_count": 1
+  },
+  {
    "slug": "google-deepmind-sl2t-other",
    "title": "Putting sign language AI into users' hands (SL2T)",
    "publisher": "google_deepmind",
@@ -353,6 +378,33 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-12T06:24:51Z",
    "content_fingerprint": "946775e6acdc8928a812641fc5e89c91c6b6a67b87a339406517aaf6f2f76c66",
+   "version_count": 1
+  },
+  {
+   "slug": "openai-gpt-5-6-cyber-other",
+   "title": "Expanding Daybreak as the Cyber Defense Window Narrows",
+   "publisher": "openai",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "GPT-5.5-Cyber",
+    "GPT-5.6 Sol",
+    "GPT-5.6-Cyber"
+   ],
+   "publication_date": "2026-08-10",
+   "canonical_url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:10:52Z",
+   "last_checked": "2026-08-14T07:10:52Z",
+   "last_changed": "2026-08-14T07:10:52Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "openness": "closed",
+   "content_hash": "0e387ba6f0e673652dc6b33007406bd9c7ae6d4c5df920950c47488a3564a2f8",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:10:52Z",
+   "content_fingerprint": "106e7745fc22b2a47c5fdfffbc7c7568c4e7bbeb5b2f26f76ebf8a0c355e75b7",
    "version_count": 1
   },
   {
@@ -584,6 +636,31 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-09T21:05:14Z",
    "content_fingerprint": "fd0ba0cff7c67f70fe1f0f4095f33dfb2df7b37539f3ffc75eacd841bf30f0cf",
+   "version_count": 1
+  },
+  {
+   "slug": "mistral-shieldstral-1-0-model-card",
+   "title": "Model Card: Shieldstral 1.0",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Shieldstral 1.0"
+   ],
+   "publication_date": "2026-08-04",
+   "canonical_url": "https://docs.mistral.ai/models/shieldstral-1-0",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:07:29Z",
+   "last_checked": "2026-08-14T07:07:29Z",
+   "last_changed": "2026-08-14T07:07:29Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "bfede9190d15af0ccfaddd41677a4af3a2de9fcfd6a3548bbb804a51f96e6d1b",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:07:29Z",
+   "content_fingerprint": "0dcebe843683a8635bdc1ee1298d957c513b54650f1550ebbeb8d5f716f39257",
    "version_count": 1
   },
   {
@@ -1695,6 +1772,31 @@
    "version_count": 1
   },
   {
+   "slug": "mistral-mistral-ocr-4-1-model-card",
+   "title": "Model Card: OCR 4.1",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Mistral OCR 4.1"
+   ],
+   "publication_date": "2026-07-16",
+   "canonical_url": "https://docs.mistral.ai/models/ocr-4-1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:07:30Z",
+   "last_checked": "2026-08-14T07:07:30Z",
+   "last_changed": "2026-08-14T07:07:30Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "closed",
+   "content_hash": "6edc3b28243ca640b9eaa229b7a0f4e6f3f9fb9ef6ed6e79592e345648caa773",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:07:30Z",
+   "content_fingerprint": "a043a03bb8c2c8f6debf21b89f167cb35944b3518ba25e8dc84573b5e5be8e4e",
+   "version_count": 1
+  },
+  {
    "slug": "nvidia-nemotron-3-embed-8b-model-card",
    "title": "Nemotron 3 Embed Model Card",
    "publisher": "nvidia",
@@ -2281,6 +2383,31 @@
    "version_count": 1
   },
   {
+   "slug": "mistral-leanstral-1-5-model-card",
+   "title": "Model Card: Leanstral 1.5",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Leanstral 1.5"
+   ],
+   "publication_date": "2026-06-30",
+   "canonical_url": "https://docs.mistral.ai/models/leanstral-1-5",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:07:53Z",
+   "last_checked": "2026-08-14T07:07:53Z",
+   "last_changed": "2026-08-14T07:07:53Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "5dc83b1c3b036ca328b489251ab36e16a48af78727709e713dd420ef2e2390fa",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:07:53Z",
+   "content_fingerprint": "e6820c654f239a7bfd754914a1ae324af4d9d948b9935b0b95d043a2a0cfedae",
+   "version_count": 1
+  },
+  {
    "slug": "metr-gpt-5-6-sol-independent-eval",
    "title": "Summary of METR's predeployment evaluation of GPT-5.6 Sol",
    "publisher": "metr",
@@ -2385,6 +2512,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-10T09:47:48Z",
    "content_fingerprint": "40f43985f5f4fae61e7e268af266210bf955f6172904cce1efc0d41fbbe897ce",
+   "version_count": 1
+  },
+  {
+   "slug": "mistral-mistral-ocr-4-0-model-card",
+   "title": "Model Card: OCR 4.0",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Mistral OCR 4.0"
+   ],
+   "publication_date": "2026-06-23",
+   "canonical_url": "https://docs.mistral.ai/models/ocr-4-0",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:07:31Z",
+   "last_checked": "2026-08-14T07:07:31Z",
+   "last_changed": "2026-08-14T07:07:31Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "closed",
+   "content_hash": "0b0073739d102bb47e920e12e303c58d9b1a801549d149d072309a8567b92f52",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:07:31Z",
+   "content_fingerprint": "d4a3bd401fd1d2fcaed428750ec34d8bc60f965fc608580f9d7815204e78fbda",
    "version_count": 1
   },
   {
@@ -3634,6 +3786,32 @@
    "version_count": 1
   },
   {
+   "slug": "anthropic-claude-opus-4-5-other",
+   "title": "Project Deal: our Claude-run marketplace experiment",
+   "publisher": "anthropic",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Haiku 4.5",
+    "Claude Opus 4.5"
+   ],
+   "publication_date": "2026-04-24",
+   "canonical_url": "https://www.anthropic.com/features/project-deal",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:11:28Z",
+   "last_checked": "2026-08-14T07:11:28Z",
+   "last_changed": "2026-08-14T07:11:28Z",
+   "source_of_lead": "citation",
+   "safety_evals": 0,
+   "openness": "closed",
+   "content_hash": "4f40a664af607d55038646efa14cb76cc4a34180df06c92633fe6a9dc1ba67db",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:11:28Z",
+   "content_fingerprint": "f67107cfeb0ccd238e372bb9a40d4decec74fd29c73ef652e8f17eef9fb63019",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-opus-4-7-other-4",
    "title": "An update on our election safeguards",
    "publisher": "anthropic",
@@ -4431,6 +4609,32 @@
    "version_count": 1
   },
   {
+   "slug": "mistral-voxtral-tts-model-card",
+   "title": "Model Card: Voxtral TTS",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Voxtral Mini TTS",
+    "Voxtral TTS"
+   ],
+   "publication_date": "2026-03-23",
+   "canonical_url": "https://docs.mistral.ai/models/voxtral-tts-26-03",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:08:18Z",
+   "last_checked": "2026-08-14T07:08:18Z",
+   "last_changed": "2026-08-14T07:08:18Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": null,
+   "content_hash": "02aa2ea69feddfe507cdc19f45eedd631d44fed1f41ef00420ecf96267f2056c",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:08:18Z",
+   "content_fingerprint": "ea5c8cb7451d2e48ca34bfd2638776231c1b5964534716cf3282dbf5ac8a327b",
+   "version_count": 1
+  },
+  {
    "slug": "uk-aisi-unspecified-independent-eval",
    "title": "Can AI agents escape their sandboxes? A benchmark for safely measuring container breakout capabilities",
    "publisher": "uk_aisi",
@@ -4501,6 +4705,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:59:57Z",
    "content_fingerprint": "d280d5c3352ba626fd042fd76ee07b3602b3b4ca59d16f3dbd0b2d902a37f110",
+   "version_count": 1
+  },
+  {
+   "slug": "mistral-leanstral-model-card",
+   "title": "Model Card: Leanstral",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Leanstral"
+   ],
+   "publication_date": "2026-03-16",
+   "canonical_url": "https://docs.mistral.ai/models/leanstral-26-03",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:07:53Z",
+   "last_checked": "2026-08-14T07:07:53Z",
+   "last_changed": "2026-08-14T07:07:53Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "b151486daf9862d88d2d83c8a15759064ad223dc3f501cb5cdb589fcb46e8505",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:07:53Z",
+   "content_fingerprint": "74a74e7a5a04eecf0bd49c8e9f0ff9c3c5830cebf2a16e82552e547bb66dad76",
    "version_count": 1
   },
   {
@@ -4813,6 +5042,31 @@
    "version_count": 1
   },
   {
+   "slug": "mistral-mistral-moderation-2-model-card",
+   "title": "Model Card: Mistral Moderation 2",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Mistral Moderation 2"
+   ],
+   "publication_date": "2026-03-01",
+   "canonical_url": "https://docs.mistral.ai/models/mistral-moderation-26-03",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:07:54Z",
+   "last_checked": "2026-08-14T07:07:54Z",
+   "last_changed": "2026-08-14T07:07:54Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "closed",
+   "content_hash": "8f20989ef67b8eb6fcb1693c7d0cc2030f4d478e69e43226f1757b577c94f9c5",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:07:54Z",
+   "content_fingerprint": "85493713e228b73b17d6c3af0fc90a6403c2777ee04cb1f3305023cd614457b2",
+   "version_count": 1
+  },
+  {
    "slug": "google-deepmind-gemini-3-1-flash-image-model-card",
    "title": "Gemini 3.1 Flash Image Model Card",
    "publisher": "google_deepmind",
@@ -5116,6 +5370,56 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-09T15:57:53Z",
    "content_fingerprint": "69f0603d68be6d499caa600673f5a8528c1aa081a7aa72441c693258271457d8",
+   "version_count": 1
+  },
+  {
+   "slug": "mistral-voxtral-mini-transcribe-2-model-card",
+   "title": "Model Card: Voxtral Mini Transcribe 2",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Voxtral Mini Transcribe 2"
+   ],
+   "publication_date": "2026-02-04",
+   "canonical_url": "https://docs.mistral.ai/models/voxtral-mini-transcribe-26-02",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:08:20Z",
+   "last_checked": "2026-08-14T07:08:20Z",
+   "last_changed": "2026-08-14T07:08:20Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": null,
+   "content_hash": "55f9812b7ad6e1a549cfe3400d6ec6dee38d7d9507f6a6907ae88864b4472dc3",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:08:20Z",
+   "content_fingerprint": "fc0da825740898e61fe187df3dd364f988d79170360eb41794ef1f40a8ebd49e",
+   "version_count": 1
+  },
+  {
+   "slug": "mistral-voxtral-mini-transcribe-realtime-model-card",
+   "title": "Model Card: Voxtral Mini Transcribe Realtime",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Voxtral Mini Transcribe Realtime"
+   ],
+   "publication_date": "2026-02-04",
+   "canonical_url": "https://docs.mistral.ai/models/voxtral-mini-transcribe-realtime-26-02",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-14T07:08:19Z",
+   "last_checked": "2026-08-14T07:08:19Z",
+   "last_changed": "2026-08-14T07:08:19Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "9f80e8c1f1deedc79c89a8ebb87466f5bf6aa72965a1f9faadcf34a16d5b506e",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-14T07:08:19Z",
+   "content_fingerprint": "3a12798bf6a107db79299a1c6ca3044af09790dafb9b766a92244cfea4c1e451",
    "version_count": 1
   },
   {

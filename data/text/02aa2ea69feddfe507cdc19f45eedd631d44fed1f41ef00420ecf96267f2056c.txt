@@ -1,0 +1,22 @@
+March 23, 2026
+GAv26.03
+Voxtral TTS
+Our state-of-the-art text-to-speech model with zero-shot voice cloning. Supports 9 languages, streaming with ~90ms time-to-first-audio, and no transcript required for voice prompts.
+Speed
+Performance
+Modalities
+Price
+€0
+/M Chars
+€10
+/M Chars
+Speed
+Performance
+Modalities
+Price
+€0
+/M Chars
+€10
+/M Chars
+Features
+Other Models

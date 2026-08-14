@@ -1,0 +1,23 @@
+June 30, 2026Blog
+Public Previewv1.5
+Leanstral 1.5
+An updated Lean 4 formal proof engineering model optimised for automated theorem proving and autoformalization. 119B total parameters, 6.5B active.
+Speed
+Performance
+Modalities
+Context
+256k
+Max output
+128k
+Price
+Free
+Speed
+Performance
+Modalities
+Context
+256k
+Max output
+128k
+Price
+Free
+Other Models

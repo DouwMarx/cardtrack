@@ -1,0 +1,20 @@
+March 1, 2026
+GAv26.03
+Mistral Moderation 2
+Our latest moderation model with 128k context window and jailbreaking detection. Strong performance on complex multilingual data including long multi-turn conversations.
+Speed
+Performance
+Modalities
+Context
+128k
+Price
+Free
+Speed
+Performance
+Modalities
+Context
+128k
+Price
+Free
+Features
+Other Models

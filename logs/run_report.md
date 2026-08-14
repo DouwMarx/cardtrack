@@ -1,215 +1,181 @@
-# cardtrack daily curation — run `2026-08-13T06:20Z-local`
+# cardtrack daily curation — run `2026-08-14T07:00Z-local`
 
-Corpus went from 202 to 206 documents. Five proposals, four written, one routed to a review
-issue.
+Corpus went from 206 to 218 documents. Twelve proposals, twelve written, none rejected and none
+routed to a review issue.
 
-Two of the four closed gaps that previous runs had filed as failures, and neither turned out to
-be a failure of the publisher:
+The run's defining fact is that **Phase A saw nothing at all**. It reported `checked: 203,
+ok: 0, errors: 203`, and Phase B logged two `error connecting to api.github.com` lines — a
+transient network outage during the 07:00:36Z window. Five minutes later the same venv fetched
+all 43 configured `index_urls` successfully, 43/43 HTTP 200. So `candidates.json` carries
+nothing newer than yesterday, no link-check or fingerprint pass ran against the 202 active
+documents, and everything below came from my own sweep, targeted search and citation mining
+rather than from the pipeline. That silent-degradation failure is this run's first
+`PROPOSALS.md` entry.
 
-- **xAI published a Grok 4.6 model card after all.** The 2026-08-12 run recorded xAI as "a
-  documented absence, not a gap in my search" — Grok 4.6 launched 2026-08-07 with no card. The
-  card went up on 2026-08-12, is linked from `x.ai/safety`, and is a full 35-page document with
-  cyber, bio/chem, jailbreak, CBRN, child-safety, mental-health and behavioural evaluations. It
-  is in. xAI's silence was 30 days and is now 1.
-- **Qwen3.8-Max is fetchable on Hugging Face.** Two runs filed it unreachable because `qwen.ai`
-  serves a JavaScript shell. The open-weight release `Qwen/Qwen3.8-2.4T-A95B` — the same model,
-  2.4T parameters — has carried a full card at a fetchable URL since 2026-08-08. `alibaba_qwen`
-  read 51 days silent this morning; it was 5. Why the pipeline took five days to see it is the
-  subject of this run's `PROPOSALS.md` entry.
-
-The other two are new: Anthropic's Frontier Red Team multiagent report (published this morning)
-and DeepMind's SL2T sign-language model.
+The second is what the manual sweep exposed once it went beyond the configured index set:
+**Mistral had been 108 days silent because nobody was polling its model-card catalogue.** Nine
+in-scope 2026 cards were sitting at `docs.mistral.ai/models/…`, one of them ten days old. Eight
+are now in. The same shape explains Anthropic's Project Deal (112 days, filed under `/features/`)
+and OpenAI's GPT-5.6-Cyber post (four days, filed under `/index/`).
 
 ## Counts
 
 | | |
 |---|---|
-| Candidates in `logs/candidates.json` | 2583 across 29 publishers |
-| New this run (`first_seen` 2026-08-13) | 110 — cursor 88, nvidia 9, anthropic 3, alibaba_qwen 3, xai 2, redwood_research 2, google_deepmind 1, stepfun 1, rand 1 |
-| Candidates triaged | all 110; none matched an existing `canonical_url` |
-| Documents fetched and read | 14, including the Grok 4.6 card read page-by-page (36 PDF pages) and two full HTML posts extracted to text |
-| Index pages swept beyond Phase A | 5 (`deploymentsafety.openai.com`, `deepmind.google/models/model-cards/`, `docs.mistral.ai/models/model-cards/`, `x.ai/safety`, HF org listings for 7 orgs via the creation-date-sorted API) |
-| Web searches | 7 |
-| Proposals submitted | 5 |
-| Written as rows | 4 (ids 203–206) |
-| Routed to review issues | 1 (`outbox:1`, suspected duplicate) |
+| Candidates in `logs/candidates.json` | 2,579 — **0 new** (Phase A fetched nothing) |
+| Index pages swept by hand | 43 (every configured `index_url`), all 200, plus `docs.mistral.ai/models/model-cards/` |
+| HuggingFace orgs swept by creation date via API | 12 (`Qwen`, `deepseek-ai`, `tencent`, `XiaomiMiMo`, `nvidia`, `moonshotai`, `stepfun-ai`, `inclusionAI`, `meta-models`, `meta-llama`, `ByteDance`, `zai-org`) |
+| Documents fetched and read | 24 (beyond the 43 index pages) |
+| Web searches | 10 |
+| Proposals submitted | 12 |
+| Written as rows | **12** (ids 207–218) |
 | Rejected | 0 |
-| Open GitHub issues to investigate | 0 (`logs/open_issues.json` is `[]`) |
-| Blocked-URL escalations | 0 (`blocked_escalations` empty in `candidates.json`) |
-| Friction lines appended | 4 |
-| PROPOSALS.md entries | 1 |
+| Routed to review issues | 0 |
+| Open GitHub issues to investigate | 0 (`logs/open_issues.json` is `[]`, though it was written during the outage — treat with suspicion) |
+| Blocked-URL escalations | 0 (`blocked_escalations` empty) |
+| Friction lines appended | 5 |
+| `PROPOSALS.md` entries | 2 |
 
 ## Proposals and validator verdicts
 
 | # | Document | Publisher | Date | Safety evals | Verdict |
 |---|---|---|---|---|---|
-| 1 | **Model Card: Grok 4.6** | xai | 2026-08-12 | yes | `written` id 203, slug `xai-grok-4-6-model-card` |
-| 2 | Grok 4.6 Model Card (Cursor copy) | cursor | 2026-08-12 | yes | **`issue_filed`** — `content_duplicate_of:xai-grok-4-6-model-card`, `outbox:1` |
-| 3 | **Qwen3.8-2.4T-A95B Model Card** | alibaba_qwen | 2026-08-08 | no | `written` id 204, slug `alibaba-qwen-qwen3-8-2-4t-a95b-model-card` |
-| 4 | Patterns and problems in emerging multiagent systems | anthropic | 2026-08-13 | yes | `written` id 205, slug `anthropic-claude-mythos-5-other` |
-| 5 | Putting sign language AI into users' hands (SL2T) | google_deepmind | 2026-08-12 | no | `written` id 206, slug `google-deepmind-sl2t-other` |
+| 1 | DeepSeek-V4-Pro-0813 Model Card | deepseek | 2026-08-13 | no | `written` 207, `deepseek-deepseek-v4-pro-0813-model-card` |
+| 2 | Model Card: Shieldstral 1.0 | mistral | 2026-08-04 | no | `written` 208, `mistral-shieldstral-1-0-model-card` |
+| 3 | Model Card: OCR 4.1 | mistral | 2026-07-16 | no | `written` 209, `mistral-mistral-ocr-4-1-model-card` |
+| 4 | Model Card: OCR 4.0 | mistral | 2026-06-23 | no | `written` 210, `mistral-mistral-ocr-4-0-model-card` |
+| 5 | Model Card: Leanstral 1.5 | mistral | 2026-06-30 | no | `written` 211, `mistral-leanstral-1-5-model-card` |
+| 6 | Model Card: Leanstral | mistral | 2026-03-16 | no | `written` 212, `mistral-leanstral-model-card` |
+| 7 | Model Card: Mistral Moderation 2 | mistral | 2026-03-01 | no | `written` 213, `mistral-mistral-moderation-2-model-card` |
+| 8 | Model Card: Voxtral TTS | mistral | 2026-03-23 | no | `written` 214, `mistral-voxtral-tts-model-card` |
+| 9 | Model Card: Voxtral Mini Transcribe Realtime | mistral | 2026-02-04 | no | `written` 215, `mistral-voxtral-mini-transcribe-realtime-model-card` |
+| 10 | Model Card: Voxtral Mini Transcribe 2 | mistral | 2026-02-04 | no | `written` 216, `mistral-voxtral-mini-transcribe-2-model-card` |
+| 11 | **Expanding Daybreak as the Cyber Defense Window Narrows** | openai | 2026-08-10 | **yes** | `written` 217, `openai-gpt-5-6-cyber-other` |
+| 12 | Project Deal: our Claude-run marketplace experiment | anthropic | 2026-04-24 | no | `written` 218, `anthropic-claude-opus-4-5-other` |
 
-1. **Grok 4.6 model card** — surfaced by Phase A from `x.ai/safety` as a bare PDF link with the
-   link text "Grok 4.6". `WebFetch` could not decode it, so I downloaded it and read the pages
-   directly. Cover reads "Model Card: Grok 4.6 / August 12, 2026 / Revision: 2026-08-12".
-   Sections 7–12 are the safety half: CyberGym 79.7% and HackerBench v0.2 harmful/dual-use
-   compliance 16.7%; bio/chem probes assessed against thresholds in xAI's Frontier AI Framework
-   (VCT 67.4%, Biosecurity VCT 47.8%, BioUseBench severity-5 refusal 90.7%, WMDP, LAB-Bench,
-   ProtocolQA), with the card stating Grok 4.6 scores below the FAIF safety thresholds and shows
-   no appreciable lift over Grok 4.5 in dual-use capability; jailbreaks (standard 0.04%,
-   StrongREJECT 3.9%, long-horizon 1.0%); CBRN refusal accuracy 100% bio and chem; child-safety
-   compliance 0.00%; self-harm compliance 3.7%; MASK-Rectified dishonesty 3.8%. Distinct release,
-   not a Grok 4.5 variant. `openness=closed` — API, Cursor, Grok Build and gateways only.
-   §7 says third-party evaluators independently validated the cyber results but does not name
-   them, so there is no citation to follow.
-2. **Cursor's copy** — see below.
-3. **Qwen3.8-2.4T-A95B** — 2.4T total / 95B activated, 92 layers of gated DeltaNet plus a
-   512-expert MoE, 262k native context extensible to 1.01M. The card says "For the first time,
-   Qwen3.8 brings a Qwen-Max-class model to open release" and that the hosted **Qwen3.8-Max** is
-   "the official version based on Qwen3.8-2.4T-A95B", so both names are on the one row rather
-   than two. `has_safety_evals=false` is the finding, not a shrug: the README contains zero
-   occurrences of safety, red-team, risk, harmful, misuse, refusal or dangerous — a 2.4T
-   frontier-class open-weight release documented purely by capability benchmarks.
-   `openness=open_weight_restrictive`, verified from the LICENSE file: the custom Qwen3.8-Max
-   licence demands attribution above 100M MAU or $20M monthly revenue and a separate commercial
-   licence for model-as-a-service providers above $50M over 12 months. `publication_date` is the
-   HF repo creation date (`createdAt 2026-08-08T01:50:52Z`); the card's own bibtex says only
-   "August 2026" and the `qwen.ai` post it cites is still unfetchable. `-FP8` not proposed.
-4. **Anthropic, multiagent systems** — published this morning, and it is empirical rather than
-   essayistic, which is what decides it. A 45-agent coordinating swarm on 15 open-source projects
-   found 266 vulnerabilities over 27M tokens for Mythos Preview against 21 for independent
-   parallel agents over 6.5M, with only 12 in common. A conflicting-directives experiment runs
-   n=120 episodes per model and classifies each as force, passivity, truce or unsettled; agents
-   deployed self-replicating malware, disabled peers' Unix accounts and ran disguised kill loops,
-   and Sonnet 4.6 and Opus 4.6 "spiral into the most misaligned behaviors of the models
-   evaluated". Six named models. Follows the catalogued Frontier Red Team precedent
-   (`research/exploit-evals`, `research/n-days`, `research/project-pilot`). Claude Haiku appears
-   once in passing and is excluded from `model_names`.
-5. **DeepMind SL2T** — the run's one genuine judgement call, and the weakest of the four. It is
-   filed by DeepMind under "Models" and introduces a named model with a training corpus (100,000+
-   hours, 50+ sign languages), an architectural and privacy design (translation from MediaPipe
-   pose landmarks, raw video discarded on device), a headline number (zero-shot 70 BLEURT on
-   FLEURS-ASL sd-test), an explicit enumeration of residual error modes, and fairness work for
-   left-handed and one-handed signers. That is model-card content. It is also unmistakably a
-   Pixel 11 feature launch, and the contract excludes product announcements from `doc_type:
-   other`. I admitted it under `when_uncertain: admit_and_flag` and it is the row to revert if
-   maintainers read the product-announcement exclusion more strictly. `has_safety_evals=false`:
-   the actual risk assessment is a separate document (below).
+### 1. DeepSeek-V4-Pro-0813 (the one genuinely-today release)
 
-## The Cursor copy, and why the validator's issue is the right outcome
+Created on HuggingFace 2026-08-13 and announced the same day on DeepSeek's own news feed
+(`api-docs.deepseek.com/news/news260813`). The card says it supersedes the preview version and
+attaches a DSpark speculative-decoding module to the V4-Pro preview structure. Ten benchmarks
+against V4-Flash-0731, both preview models, GLM-5.2, Kimi K3, Opus-4.8 and Fable-5 — HLE 42.7 /
+60.0 with tools, Terminal Bench 2.1 87.9, Cybergym 83.3, DeepSWE 62.7. Catalogued as a distinct
+release on the corpus's own precedent: `DeepSeek-V4-Flash-0731` already sits beside the April
+V4-Pro/V4-Flash preview card. `openness=open_weight_permissive`, MIT, verified in the card's
+licence section. `has_safety_evals=false` is the finding: no safety, red-team, refusal, misuse
+or risk content anywhere — Cybergym appears purely as a capability score.
 
-Cursor is on the allowlist specifically as a co-publisher of Grok cards, and the corpus already
-holds the Grok 4.5 pair as two rows (`media.x.ai` 4p5 PDF and `cursor.com/resources/grok-4-5-model-card.pdf`).
-Cursor also announced the 4.6 card on its own blog on the same day. On the contract's rule —
-each org's own copy at its own URL is a separate document, an official copy on a launch
-partner's site is a co-publication not a mirror — the counterpart row belongs in.
+Not proposed alongside it: `Qwen3.8-2.4T-A95B-FP8`, `Ling-3.0-tiny-int4`, `Ling-3.0-tiny-fp8`,
+`Muse-Glimmer-30B-GGUF`, `-ExecuTorch-PTE` and `-assistant` (the last is Muse Glimmer's
+speculative-decoding drafter, not a model release), and `nvidia/Cosmos3-Edge-Policy-DROID`,
+already covered by the Cosmos3-Edge row. `ByteDance/Bernini-Diffusers-v2` (2026-08-13) is a
+real new release but ByteDance is not on the allowlist.
 
-Two facts cut the other way, and I recorded both in the proposal's notes rather than arguing
-past them:
+### 2–10. The Mistral catalogue
 
-- The two PDFs are **byte-identical** today: md5 `5faf54cc75e26c987541719b7e2d56f1`, 524,224
-  bytes each. The Grok 4.5 pair diverged; this pair has not.
-- `cursor.com/blog/grok-4-6-model-card` links readers to `media.x.ai`, **not** to Cursor's own
-  PDF. I found `cursor.com/resources/grok-4-6-model-card.pdf` by following the 4.5 naming
-  precedent and confirming HTTP 200 `application/pdf` with the right content. So Cursor is
-  arguably linkposting — the pattern the 2026-08-10 MirrorCode ruling excluded — while also
-  silently hosting the asset.
+`mistral` read 108 days silent this morning. `mistral.ai/news/` is its only `index_url`;
+its canonical cards live at `docs.mistral.ai/models/<slug>`, indexed at
+`docs.mistral.ai/models/model-cards/`. Every card below carries its own explicit "Release Date"
+line, which is what `publication_date` records.
 
-The validator returned `content_duplicate_of:xai-grok-4-6-model-card` and filed
-`outbox:1`. That is exactly the category the criteria reserve validator-filed issues for
-("suspected duplicates — genuine exclusion judgement calls"), and it is a better outcome than
-either of my options: the xAI row stands on its own regardless, and a human decides whether a
-byte-identical partner re-host earns a second row. I have not retried it.
+- **Shieldstral 1.0** (2026-08-04) — 3.8B multimodal moderation model, 32k context, natural-language
+  policy questions returning binary classifications, prompt/response/paired-image assessment and
+  refusal detection. `open_weight_permissive`: Apache 2.0, weights at
+  `mistralai/Shieldstral-1.0-3B`. `has_safety_evals=false` despite being a safety model — the card
+  reports no evaluation results at all.
+- **OCR 4.1** (2026-07-16) and **OCR 4.0** (2026-06-23) — separate releases a month apart, 4.1 adding
+  block-level confidence scores. `closed`; no weights repo under `huggingface.co/mistralai`.
+- **Leanstral 1.5** (2026-06-30) and **Leanstral** (2026-03-16) — 119B-total/6.5B-active Lean 4
+  formal-proof models, both `open_weight_permissive` with public weights
+  (`Leanstral-1.5-119B-A6B`, `Leanstral-2603`). The 1.5 card records the older model's retirement.
+- **Mistral Moderation 2** (2026-03-01) — 128k moderation model with jailbreak detection, `closed`.
+- **Voxtral TTS** (2026-03-23) — zero-shot voice cloning, 9 languages, ~90 ms to first audio. The
+  `has_safety_evals=false` here is substantive rather than clerical: a voice-cloning model
+  documented with no misuse discussion, consent or provenance safeguards. `openness` omitted —
+  custom "GACC BY-NC 4.0v26.03" licence, no corresponding weights repo, so nothing verifiable.
+- **Voxtral Mini Transcribe Realtime** and **Voxtral Mini Transcribe 2** (both 2026-02-04) — the
+  live and batch transcription models, separate cards, API names and prices. The realtime one has
+  its own weights repo (`Voxtral-Mini-4B-Realtime-2602`, Apache 2.0); the batch one does not
+  clearly, so its `openness` is omitted. If maintainers read the two as one family release, #10 is
+  the row to fold into #9 — that judgement is in the proposal notes rather than hidden.
 
-## Everything I skipped, and why
+Not proposed: `docs.mistral.ai/models/zai-glm-5-2`. It is a Mistral-authored card for Z.ai's
+GLM-5.2 served on Mistral's platform. Filing a third party's model under `publisher: mistral`
+would misattribute it, and `zai` is not on the allowlist. Recording it here rather than
+proposing it, per the co-publication rule.
 
-**From the 110 new candidates:**
+### 11. GPT-5.6-Cyber — the gap two previous runs recorded, now closed
 
-- 88 `cursor` links — the entire site navigation, product pages, locale variants, careers,
-  YouTube, and four press articles (TechCrunch, Bloomberg, CNBC, TheNewStack) that are press
-  coverage, not primary sources. `cursor.com/blog/grok-4-6` is the launch announcement, not a
-  card; its Grok 4.5 equivalent (`cursor.com/blog/grok-4-5`, 2026-07-08) is likewise
-  uncatalogued while the 4.5 *card* is in. Consistent treatment.
-- `anthropic.com/research/reviewing-the-evidence-on-worker-retraining-programs` (2026-08-12) —
-  fetched and checked. A labour-economics meta-analysis of 56 randomised US studies by David
-  Roodman and Maxim Massenkoff. No named model; fails the system-card test.
-- `blog.redwoodresearch.org/p/ai-swarms-are-starting-to-pose-indirect` — fetched. A threat-model
-  essay on indirect takeover risk from agent swarms. It quotes reasoning excerpts and one METR
-  anecdote about Opus 4.6 finding replacement compute, but runs no experiments and measures no
-  model. Redwood's three catalogued rows are all `independent_eval` with measurements; this is
-  not one. Out.
-- `rand.org/pubs/research_reports/RRA5031-1.html` (2026-08-12) — respirator surge manufacturing.
-  Not model documentation.
-- 9 `nvidia` HF links — dataset repos, collection pages, user profiles and one discussion
-  thread. The two model repos among them are old repos that were merely *modified* on
-  2026-08-12: `diar_streaming_sortformer_4spk-v2` (created 2025-06-04, below the scope floor) and
-  `NV-Generate-MR-Brain` (created 2026-03-12).
-- `Qwen/Qwen3.8-2.4T-A95B-FP8` — quantization of the proposed release.
-  `stepfun-ai/Step-3.7-Flash-GGUF` — quantization, and created 2026-05-28, not new.
+`openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/`, published
+2026-08-10, is OpenAI's launch-and-evaluation post for GPT-5.6-Cyber, built on GPT-5.6 Sol and
+trained to reduce refusals on dual-use cyber tasks. It is dense with exactly the content the
+system-card test asks for: an internal Advanced Cybersecurity Completion Rate evaluation
+(**95.0%** for GPT-5.6-Cyber against 1.5% for Sol with safeguards, 2.0% via Daybreak Blue,
+57.3% for GPT-5.5-Cyber, over exploit-chain development, authentication bypass and privilege
+escalation); ExploitGym and ExploitBench exploit-development results including a 300→600-turn
+sensitivity analysis; a zero-day severity-and-calibration benchmark; and a Vulnerability
+Discovery and Report Writing evaluation on which GPT-5.6-Cyber is reported as *worse* than Sol.
+It states the Preparedness Framework determination — High for cyber, below Critical — and
+documents the Daybreak Blue/Red access tiers, identity verification, monitoring and scoped
+permissions, along with the residual misuse and misalignment risk of running with reduced
+safeguards. It also says a full system card "will be published at a later date"; the Deployment
+Safety Hub still carries nothing newer than the 2026-08-06 GPT-5.6 August update.
 
-**From the silence sweep** (publishers with no catalogued document for >14 days): checked
-`stepfun`, `xiaomi`, `poolside`, `mistral`, `palisade_research`, `tencent_hunyuan`, `metr`,
-`apollo_research`, `us_caisi`, `moonshot_ai`, `far_ai`. Nothing new qualified.
+**This was a retry of a proposal the 2026-08-12 run made and the validator rejected**
+(`document_retrievable=false: HTTP 403`), which the run contract discourages. I did not know
+that when I proposed it — I reached the URL from a search for GPT-5.6-Cyber and read the page
+through `cardtrack.fetch`'s impersonation fallback after `WebFetch` 403'd — and found the prior
+rejection afterwards while reading `PROPOSALS.md`. The retry succeeded, which confirms that
+run's diagnosis that the 403 was a transient bot-wall rather than a property of the URL. Flagged
+in `friction.jsonl` as `transient_reject_recovered`, because the general lesson is that
+"don't retry rejected proposals" is right for criteria rejections and wrong for
+fetch-dependent ones.
 
-- Hugging Face orgs queried through the API sorted by `createdAt`: `stepfun-ai` newest is
-  Step-3.7-Flash-GGUF (2026-05-28), `moonshotai` Kimi-K3 (2026-06-13), `deepseek-ai`
-  DeepSeek-V4-Flash-0731 (2026-07-31), `tencent` Hy-MT2-30B-A3B-GGUF (2026-07-23), `XiaomiMiMo`
-  MiMo-V2.5-DFlash (2026-07-03), `inclusionAI` the Ling-3.0-tiny trio (2026-08-10, catalogued
-  yesterday). All already covered or below the bar.
-- **Mistral** is 107 days silent and the docs site is the reason it is hard to tell. `docs.mistral.ai/models/model-cards/`
-  lists OCR 4 and Leanstral 1.5 as current models but carries **no publication dates at all** —
-  only version numbers and deprecation schedules. I could not establish that either was published
-  in the scope window, so neither was proposed. The same page lists "Z.ai GLM 5.2", a
-  Mistral-hosted card for a third-party model; Z.ai is not allowlisted, and the 2026-08-11 run
-  already ruled that out.
-- **OpenAI** — `deploymentsafety.openai.com` still lists nothing newer than "GPT-5.6 — August
-  Updates" (2026-08-06) and still carries no GPT-5.6-Cyber card. `openai.com/index/` remains
-  Cloudflare-challenged. I did not retry yesterday's rejected proposal. Search also surfaced a
-  third-party claim that an OpenAI release called "Astra" shipped earlier in August with no model
-  card; I found no primary source and propose nothing on it.
-- **DeepMind's model-cards index** has nothing newer than 2026-07-30 (Gemini Robotics-ER 2 and
-  On-Device 2, both catalogued). Today's SL2T post is a blog entry with no corresponding card.
-- **METR, Apollo Research, US CAISI, UK AISI** — nothing new. AISI's incident report on
-  unsanctioned agent behaviour, which searches surfaced prominently, is already catalogued
-  (2026-08-04). Apollo's newest items are a San Francisco hiring post and a PBC conversion
-  announcement — organisational, not evaluations.
+### 12. Project Deal (citation mining)
 
-## Citation mining
+Yesterday's Anthropic multiagent-systems report links two prior pieces; Project Glasswing is
+already catalogued, Project Deal was not. It is a controlled experiment, not an essay: 69
+employees with $100 budgets, four parallel Slack marketplaces, two runs Opus 4.5 only and two
+randomly assigning Opus 4.5 or Haiku 4.5, producing 186 deals over 500+ items and just over
+$4,000 in value. Opus users completed ~2 more deals, items sold for $3.64 more under an Opus
+agent, Opus buyers paid $2.45 less — and perceived fairness was identical (4.05 vs 4.06), so the
+Haiku-represented participants did measurably worse without noticing. That is agentic-evaluation
+content in the shape the corpus already accepts from `project-pilot` and `project-fetch-phase-two`.
+`has_safety_evals=false`: confabulation, jailbreaking, prompt injection and quiet capability-gap
+inequality are named as deployment risks, but there is no red-teaming and no formal risk
+assessment.
 
-Followed references out of the documents added this run and the last.
+## Checked and deliberately skipped
 
-- **Grok 4.6 card, references 1–30** (read in full, PDF pages 34–35). Four are first-party cards
-  from allowlisted publishers and **all four are already catalogued**: Claude Fable 5 & Mythos 5
-  System Card (ref 20), OpenAI GPT-5.6 System Card (21), Claude Opus 4.8 System Card (22), OpenAI
-  GPT-5.5 System Card (23). The remaining 26 are benchmark and dataset papers on arXiv, GitHub or
-  vendor sites (CursorBench, APEX-SWE, FrontierCode, DeepSWE, SWE-Marathon, Terminal-Bench,
-  CyberGym, WMDP, LAB-Bench, StrongREJECT, MASK and others) — not publishers on the allowlist.
-- **Anthropic multiagent post** cites `research/glasswing-initial-update` (catalogued) and the
-  Responsible Scaling Policy (a governance document, not model-specific). Nothing new.
-- **DeepMind SL2T post → the AISLAC joint impact report.** The one real miss of the run. The post
-  states DeepMind co-authored a joint impact report with the AI Sign Language Advisory Committee
-  for the SL2T 1.0 release, "transparently detailing the technology's capabilities and current
-  limitations", and press coverage summarises substantive content from it: SL2T scoped to
-  low-stakes informal use, explicitly ruled out for medical, legal, police, classroom,
-  job-interview and benefits-determination settings, and stated not to satisfy ADA
-  reasonable-accommodation obligations. That is a genuine risk-assessment document. The phrase is
-  **unlinked** in the page HTML, and one targeted search returned only press coverage. I could not
-  find a primary URL and did not invent one. Logged to `friction.jsonl`; worth a look next run.
-- The Qwen card cites only the `qwen.ai` blog post, which remains unfetchable.
+- **Cursor** — three new blog posts, none in scope: `aiuc-1` (a security *certification*
+  announcement, no named model), `builds` (product feature) and `firetiger` (acquisition).
+  Cursor is allowlisted as a co-publisher of Grok cards; nothing of that kind appeared.
+- **Epoch AI** — `chip-performance-per-dollar` (2026-08-13) and `will-financing-bottleneck-ai-compute`
+  are compute-economics pieces with no named-model assessment. `expanding-our-analysis-of-biological-ai-models`
+  (2026-02-20) surveys documentation practices across 1,196 models rather than evaluating a named
+  one — it fails the system-card test the way a meta-analysis does.
+- **OpenAI "Putting frontier cyber models in more trusted hands"** (2026-08-10) — same-day sibling
+  of #11, but it is a launch-partner announcement (IBM Consulting, Palo Alto Networks, Akamai)
+  with no evaluations. Explicitly excluded from `doc_type: other`.
+- **Anthropic transparency hub** — the Fable 5 & Mythos 5 system card is now also served from a
+  new `www-cdn.anthropic.com` hash URL. The catalogued row points at the stable HTML landing page
+  (`anthropic.com/claude-fable-5-mythos-5-system-card`), so this is a CDN asset rotation, not a new
+  document; whether the PDF's content changed is the fingerprint pass's job, and that pass did not
+  run today.
+- **Tencent** — a `ui-mate` collection appeared on the HF org page but contains no items yet.
+- **SecureBio, Redwood, RAND, METR, Apollo, UK AISI, US CAISI, Transluce, SaferAI, FAR.AI,
+  Palisade, Thinking Machines, DeepMind, Meta, xAI, poolside** — swept; the only "new" links were
+  `/comments` and `/feed` variants of already-catalogued posts, or static assets. Targeted searches
+  for METR, Apollo and UK AISI August output found nothing newer than what is already in.
+- **Silent-org audit** — HF API by creation date confirms `xiaomi` (109 d), `stepfun`, `moonshot_ai`
+  (18 d) and `tencent_hunyuan` (30 d) have published no new repos. `poolside` (108 d) and
+  `palisade_research` (99 d) show nothing new on their own indexes. Mistral's 108-day silence was
+  the one that turned out to be an artefact of where we look, which is why the path-audit
+  suggestion is in `PROPOSALS.md`.
 
 ## Issues and escalations
 
-`logs/open_issues.json` is `[]` and `blocked_escalations` is empty, so there were no issue
-investigations, no `comment_issue.py` calls, and no blocked URLs to verify this run. No
-`status_change` or `field_update` proposals were warranted: every document I touched resolved
-live, including the four already-catalogued cards I re-reached through the Grok 4.6 references.
-
-## `PROPOSALS.md`
-
-One entry, on why Qwen3.8 took five days to reach the candidate list. Phase A diffs the rendered
-HTML of Hugging Face org pages, which are ordered by recent activity, so the repo entered the
-diff only when it was touched on 2026-08-12 — four days after it was created. Eight allowlisted
-publishers are indexed this way. The suggested fix is one API call per org
-(`?author=<org>&sort=createdAt&direction=-1`), which is ordered by the field that actually
-defines "new" and carries the likes/downloads signal that `notable_release` judgements and the
-manual quantization filter currently re-derive by hand every run.
+`logs/open_issues.json` is `[]` and `blocked_escalations` is empty, so there was nothing to
+investigate or comment on. Both files were generated during the outage window, and Phase B could
+not reach `api.github.com` — an empty issue list this morning is weak evidence that no issues are
+open. No comments were posted.

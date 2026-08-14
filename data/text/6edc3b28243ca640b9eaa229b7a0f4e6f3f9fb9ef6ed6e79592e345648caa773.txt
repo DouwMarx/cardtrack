@@ -1,0 +1,21 @@
+July 16, 2026
+Public Previewv4.1
+OCR 4.1
+Our latest OCR service powering our Document AI stack, with native paragraph-level bounding box extraction, structural block labels, and block-level confidence scores.
+Speed
+Performance
+Modalities
+Price
+€3.5
+/1000 Pages
+€4.38
+/1000 Annotated Pages
+Speed
+Performance
+Modalities
+Price
+€3.5
+/1000 Pages
+€4.38
+/1000 Annotated Pages
+Other Models

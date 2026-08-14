@@ -1,0 +1,21 @@
+June 23, 2026Blog
+GAv4.0
+OCR 4.0
+Our latest OCR service powering our Document AI stack, with native paragraph-level bounding box extraction and structural block labels.
+Speed
+Performance
+Modalities
+Price
+€3.5
+/1000 Pages
+€4.38
+/1000 Annotated Pages
+Speed
+Performance
+Modalities
+Price
+€3.5
+/1000 Pages
+€4.38
+/1000 Annotated Pages
+Other Models

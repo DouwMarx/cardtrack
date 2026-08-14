@@ -164,3 +164,86 @@ Evidence: `logs/friction.jsonl` entry `hf_index_detection_lag` (2026-08-13). Cre
 the HF API: `Qwen/Qwen3.8-2.4T-A95B` 2026-08-08, first_seen 2026-08-13. `alibaba_qwen` last
 catalogued document before today: 2026-06-23. Two prior runs' prose on this gap:
 `logs/run_report.md` (2026-08-12) and the second entry dated 2026-08-12 in this file.
+
+## 2026-08-14 — A whole-sweep failure is indistinguishable from a quiet day, and the run continues as if nothing were missing
+
+Problem: Phase A this morning reported `checked: 203, ok: 0, errors: 203, candidates_new: 0`
+and Phase B logged `error connecting to api.github.com` twice. Every single fetch failed —
+a transient network outage during the 07:00:36Z window. The run did not stop, did not retry,
+and did not mark its output as degraded. What it handed the agent was a `candidates.json`
+whose newest `first_seen` is 2026-08-13 and an `open_issues.json` of `[]` that may or may not
+reflect GitHub's actual state.
+
+Both artefacts are *shaped exactly like a quiet news day*. Nothing in them says "I could not
+see". I only knew because the `errors: 203` counter is in the run log, and I re-swept all 43
+configured `index_urls` by hand at 07:05Z — 43/43 returned HTTP 200, five minutes after 203/203
+had failed. The other half of the loss is invisible even in the log: `linkcheck:
+all_active_every_run` and the 15% fingerprint sample did not run for any of the 202 active
+documents, so today produced no dead-URL detection, no moved-URL detection and no new-version
+detection at all.
+
+Suggested change, in order of cheapness:
+
+- **Retry the sweep before giving up.** If more than half of the index fetches error in a pass,
+  sleep 60s and repeat the failed set, up to three times. A 30-second outage should not cost a
+  day of monitoring.
+- **Make degradation a field, not a log line.** Emit `"degraded": true` and
+  `"index_fetch_failure_rate": 1.0` at the top level of `candidates.json`, and have the agent
+  contract say: when `degraded` is true, sweep the index set yourself before concluding that a
+  publisher is silent. Today I did that by accident; the next agent may not read the run log.
+- **Fail loudly at 100%.** A pass where *every* fetch errors is never a real-world state. That
+  should exit non-zero and leave the previous `candidates.json` in place rather than overwrite
+  it with a no-op diff.
+
+Evidence: `logs/run-20260814-070036Z.log` (the counters above and the two GitHub connection
+errors); my re-sweep of the same 43 URLs at 07:05Z with `cardtrack.fetch` returning 200 for all
+of them, including `www.anthropic.com/news`, `deploymentsafety.openai.com`,
+`deepmind.google/models/model-cards/` and every HuggingFace org page; friction line
+`phase_a_total_failure_silent`.
+
+## 2026-08-14 — `index_urls` poll pages, not publication paths: three publishers file model documentation where nobody is looking
+
+Problem: the allowlist gates *who* is in scope, and `index_urls` decide *where* we look for
+them — but a publisher's `index_urls` are typically its blog, and several publishers file their
+actual model documentation somewhere else entirely. Three separate cases surfaced in one run:
+
+- **`mistral`** publishes canonical model cards at `docs.mistral.ai/models/<slug>`, catalogued
+  at `docs.mistral.ai/models/model-cards/`. Neither is an `index_url`; only `mistral.ai/news/`
+  is. Mistral read **108 days silent** this morning. That page listed **nine** in-scope 2026
+  cards missing from the corpus; I proposed eight and all eight were written, including
+  **Shieldstral 1.0**, a 3.8B open-weight moderation model released 2026-08-04 — ten days old,
+  and a safety-tooling release at that. The corpus already holds `mistral-medium-3-5-26-04`
+  from that exact catalogue, so a previous run reached it by hand without the pipeline
+  learning the path.
+- **`anthropic`** polls `/news`, `/research` and `/transparency/model-report`. **Project Deal**
+  (`anthropic.com/features/project-deal`, 2026-04-24) is a 69-participant agentic-marketplace
+  experiment measuring Claude Opus 4.5 against Claude Haiku 4.5 — a quantitative
+  model-comparison study under `/features/`, which nothing polls. Undetected for 112 days; it
+  surfaced only because yesterday's multiagent-systems report cites it.
+- **`openai`**'s only `index_url` is `deploymentsafety.openai.com`. The GPT-5.6-Cyber launch
+  and evaluation post is at `openai.com/index/…` (written this run as id 217), and the Deployment
+  Safety Hub says explicitly that its system card comes "at a later date". The three OpenAI
+  documents catalogued before it were all found by agent search on `openai.com/index/`, never by
+  the pipeline.
+
+Suggested change: treat "where does this publisher file model documentation?" as a maintained
+field rather than an accident of whoever wrote the allowlist entry.
+
+- Add the three known-missing paths now: `https://docs.mistral.ai/models/model-cards/`,
+  `https://www.anthropic.com/features/`, `https://openai.com/news/` (or `/index/` if it
+  enumerates).
+- Add a `doc_index` marker distinguishing "blog/news feed" from "model-card catalogue" in
+  `sources.yaml`. A catalogue page is worth diffing on every run and worth a louder alert when
+  a new entry appears; a blog is mostly noise. Today's ratio makes the point: 43 index pages
+  yielded two genuine leads, while one unpolled catalogue page yielded nine.
+- Make prolonged silence trigger a path audit, not just a search. A publisher at >30 days
+  silent should prompt "find this publisher's model-card catalogue and check it is in
+  `index_urls`" — the silence signal was correct for Mistral for 108 days and nobody asked
+  where the cards actually live. `xiaomi` (109 d), `poolside` (108 d) and `palisade_research`
+  (99 d) are the next three to audit this way; today's HF-API sweep confirms `xiaomi` has
+  published no new repo since 2026-04-27, so its silence looks real, but Mistral's looked real
+  too.
+
+Evidence: friction lines `index_url_incomplete` ×2 this run; written ids 208–216 (Mistral) and
+218 (Project Deal); `config/sources.yaml` `mistral.index_urls` and `anthropic.index_urls`;
+`logs/state_summary.json` last-publication dates per publisher.

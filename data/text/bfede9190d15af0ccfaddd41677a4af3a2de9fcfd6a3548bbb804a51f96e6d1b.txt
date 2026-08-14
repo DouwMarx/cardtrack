@@ -1,0 +1,15 @@
+August 4, 2026
+Public Previewv1.0
+Shieldstral 1.0
+A compact multimodal moderation model for prompt moderation, response moderation, prompt-response pair classification, refusal detection, and safety filtering across text and image inputs. It uses natural-language policy questions and returns a yes or no classification.
+Modalities
+Context
+32k
+Modalities
+Context
+32k
+Weights
+| Weights | License | Parameters (B) | Active (B) | ≈ GPU RAM at bf16 - fp4 (GB) | Context Size (tokens) |
+|---|---|---|---|---|---|
+|  |  | 3.8 | 3.8 | N/A | 32k |
+Other Models
