@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-14T07:15:45Z",
+ "generated_at": "2026-08-15T08:36:17Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -148,6 +148,60 @@
   }
  },
  "documents": [
+  {
+   "slug": "meta-muse-spark-1-1-other",
+   "title": "Addressing an issue involving a third-party cyber evaluation of Muse Spark 1.1",
+   "publisher": "meta",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Muse Spark 1.1"
+   ],
+   "publication_date": "2026-08-14",
+   "canonical_url": "https://research.meta.ai/blog/addressing-third-party-testing-misconfiguration-muse-spark-1-1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:31:43Z",
+   "last_checked": "2026-08-15T08:31:43Z",
+   "last_changed": "2026-08-15T08:31:43Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "openness": null,
+   "content_hash": "9a885d87be882455424323abaff1d7f1053eb6116791c214d7f3aecc0ff86d0a",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-15T08:31:43Z",
+   "content_fingerprint": "8cd3ccc39d6b12d0be3b8dba68f27d5247190e79fd8f0a44d186b229b8e4665d",
+   "version_count": 1
+  },
+  {
+   "slug": "nvidia-nvidia-nemotron-labs-teacher-general-reasoning-model-card",
+   "title": "NVIDIA Nemotron Labs Teacher models (Nemotron 3 Ultra family)",
+   "publisher": "nvidia",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "NVIDIA-Nemotron-Labs-Teacher-Chat",
+    "NVIDIA-Nemotron-Labs-Teacher-Competition-Coding",
+    "NVIDIA-Nemotron-Labs-Teacher-General-Reasoning",
+    "NVIDIA-Nemotron-Labs-Teacher-Instruction-Following",
+    "NVIDIA-Nemotron-Labs-Teacher-STEM"
+   ],
+   "publication_date": "2026-08-14",
+   "canonical_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:34:05Z",
+   "last_checked": "2026-08-15T08:34:05Z",
+   "last_changed": "2026-08-15T08:34:05Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "91a72e8b372d027590238c38c1b91b685afcfba893d8847172015fcafa34a912",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-15T08:34:05Z",
+   "content_fingerprint": "38066de14eb82a33c8af15320cfd72e4a379c97a381c8ef4549da249e68c7874",
+   "version_count": 1
+  },
   {
    "slug": "anthropic-claude-mythos-5-other",
    "title": "Patterns and problems in emerging multiagent systems",
@@ -613,6 +667,31 @@
    "version_count": 1
   },
   {
+   "slug": "alibaba-qwen-qwen3-8-27b-model-card",
+   "title": "Qwen3.8-27B",
+   "publisher": "alibaba_qwen",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Qwen3.8-27B"
+   ],
+   "publication_date": "2026-08-05",
+   "canonical_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:31:56Z",
+   "last_checked": "2026-08-15T08:31:56Z",
+   "last_changed": "2026-08-15T08:31:56Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "95b41f9a7de017c83be7cc18a7e4e00b02f0f33920b161c6dc5d410a36f1dade",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-15T08:31:56Z",
+   "content_fingerprint": "da4ff5c6b2cc7717f24f392ab40f7c34c61902d700a8bd71a03de9648fd49980",
+   "version_count": 1
+  },
+  {
    "slug": "meta-muse-spark-1-2-other",
    "title": "Muse Spark 1.2 & Muse Code Evaluation Methodology",
    "publisher": "meta",
@@ -817,6 +896,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T21:00:25Z",
    "content_fingerprint": "b1738225598bfe90e7d63882f7f8c2aea03d53f56936883c929cfbfcf3b8a0f3",
+   "version_count": 1
+  },
+  {
+   "slug": "inclusion-ai-ling-3-0-flash-model-card",
+   "title": "Ling-3.0-flash Model Card",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Ling-3.0-flash"
+   ],
+   "publication_date": "2026-08-02",
+   "canonical_url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:45Z",
+   "last_checked": "2026-08-15T08:34:15Z",
+   "last_changed": "2026-08-15T08:34:15Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "6eedf96386f3d4ad22fb66e20eb23871beb3528d97cbb0c12a1e5be9788e1fbe",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:45Z",
+   "content_fingerprint": "c3cb461fa1596d57a16bb05f7dc3c4d561b31138a5caf8ed9b666de18210e3a8",
    "version_count": 1
   },
   {
@@ -1952,6 +2056,31 @@
    "version_count": 1
   },
   {
+   "slug": "tencent-hunyuan-hy-embodied-rxbrain-1-0-model-card",
+   "title": "Hy-Embodied-RxBrain-1.0 (RxBrain) Model Card",
+   "publisher": "tencent_hunyuan",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Hy-Embodied-RxBrain-1.0"
+   ],
+   "publication_date": "2026-07-14",
+   "canonical_url": "https://huggingface.co/tencent/Hy-Embodied-RxBrain-1.0",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:44Z",
+   "last_checked": "2026-08-15T08:34:15Z",
+   "last_changed": "2026-08-15T08:34:15Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "0eb2cc285e9f86aea4d739b5248d9a923655ac7225dcf38f95964814f7ba49d2",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:44Z",
+   "content_fingerprint": "d262495f9352d74c1d8a92c72aed81700f7952f00dc0bf8f78639ecea835711b",
+   "version_count": 1
+  },
+  {
    "slug": "xai-grok-4-5-model-card",
    "title": "Model Card: Grok 4.5",
    "publisher": "xai",
@@ -2026,6 +2155,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T22:57:52Z",
    "content_fingerprint": "6e8206ec9928b521cb3343ab87e10ea089a8488f440d8768ef3655ae5f19ea32",
+   "version_count": 1
+  },
+  {
+   "slug": "poolside-laguna-s-2-1-model-card",
+   "title": "Laguna S 2.1",
+   "publisher": "poolside",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Laguna S 2.1"
+   ],
+   "publication_date": "2026-07-13",
+   "canonical_url": "https://huggingface.co/poolside/Laguna-S-2.1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:32:11Z",
+   "last_checked": "2026-08-15T08:32:11Z",
+   "last_changed": "2026-08-15T08:32:11Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "f8b1a01c8bb2b8c2a19285aba6f50cebdd172b58ffb9d100bb162a013b81ec14",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-15T08:32:11Z",
+   "content_fingerprint": "bc0dee12b777af4d525722166c8a9a15620a2362d9e4cc8d45e70cf1420c1031",
    "version_count": 1
   },
   {
@@ -2108,6 +2262,31 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-09T15:57:50Z",
    "content_fingerprint": "b80af5125c3082ef1ef14b5f2336e48611b05adc648442797a4f14503070b545",
+   "version_count": 1
+  },
+  {
+   "slug": "mistral-robostral-navigate-model-card",
+   "title": "Introducing Robostral Navigate",
+   "publisher": "mistral",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Robostral Navigate"
+   ],
+   "publication_date": "2026-07-08",
+   "canonical_url": "https://mistral.ai/news/robostral-navigate/",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:32:45Z",
+   "last_checked": "2026-08-15T08:32:45Z",
+   "last_changed": "2026-08-15T08:32:45Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": null,
+   "content_hash": "708866a62cc6bd03d29650c69d3a03f986c3f62ed92ca9ef7792c5df480dacfb",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-15T08:32:45Z",
+   "content_fingerprint": "f7289d7a07e6ae341b4b6124e83c92be533ddb03e6546747d84790697e389151",
    "version_count": 1
   },
   {
@@ -2540,6 +2719,31 @@
    "version_count": 1
   },
   {
+   "slug": "poolside-laguna-xs-2-1-model-card",
+   "title": "Laguna XS 2.1",
+   "publisher": "poolside",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Laguna XS 2.1"
+   ],
+   "publication_date": "2026-06-20",
+   "canonical_url": "https://huggingface.co/poolside/Laguna-XS-2.1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:32:30Z",
+   "last_checked": "2026-08-15T08:32:30Z",
+   "last_changed": "2026-08-15T08:32:30Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "67f08f0ec9f72717bd484f02fb64b62ff2ef1c84073a491e19e19ccb255d959a",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-15T08:32:30Z",
+   "content_fingerprint": "9c4c2bad77b61dd1811d741e510c6c6da0c52baf350c85fa1203cfa482438f8f",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-mythos-preview-other-4",
    "title": "Project Fetch: Phase Two",
    "publisher": "anthropic",
@@ -2776,6 +2980,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T19:47:45Z",
    "content_fingerprint": "0c1d5f5fa528ad38cb0ff3e82c5feedba600f0d3619db1f2203baf5204f6d04e",
+   "version_count": 1
+  },
+  {
+   "slug": "nvidia-nemotron-3-ultra-other",
+   "title": "Nemotron 3 Ultra: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning",
+   "publisher": "nvidia",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Nemotron 3 Ultra"
+   ],
+   "publication_date": "2026-06-09",
+   "canonical_url": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-15T08:33:35Z",
+   "last_checked": "2026-08-15T08:33:35Z",
+   "last_changed": "2026-08-15T08:33:35Z",
+   "source_of_lead": "citation",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "b8c5e9bb8f29bdff41f876a24f5da8bc1762e16d12dbece512c443a96cbbc859",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-15T08:33:36Z",
+   "content_fingerprint": "cb2ef9f6aab431c980b18577847f3107d325bb541c0600b05178bc2ac18ad310",
    "version_count": 1
   },
   {
@@ -3142,6 +3371,31 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:59:58Z",
    "content_fingerprint": "c3ee514d63f09857ddd11806734376cd6ddbf2acba14db73b4edd09362c6ccd8",
+   "version_count": 1
+  },
+  {
+   "slug": "stepfun-step-3-7-flash-model-card",
+   "title": "Step-3.7-Flash Model Card",
+   "publisher": "stepfun",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Step-3.7-Flash"
+   ],
+   "publication_date": "2026-05-23",
+   "canonical_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-10T09:47:43Z",
+   "last_checked": "2026-08-15T08:34:15Z",
+   "last_changed": "2026-08-15T08:34:15Z",
+   "source_of_lead": "monitor",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "af3cf4f88d0f52c95a8309f6415e76d352a20899d56a2a95cbd005309f85bfb2",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-10T09:47:43Z",
+   "content_fingerprint": "9c8d4604eb5c84495caa1ee06acb1db0817d66adf2770ba3a4871e81dc9f9cc4",
    "version_count": 1
   },
   {
@@ -5714,81 +5968,6 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-10T09:47:41Z",
    "content_fingerprint": "34cbbe47796ed6e9d34be0caf45224864d1c4d4af7bb2e2e6688cae446d07966",
-   "version_count": 1
-  },
-  {
-   "slug": "inclusion-ai-ling-3-0-flash-model-card",
-   "title": "Ling-3.0-flash Model Card",
-   "publisher": "inclusion_ai",
-   "doc_type": "model_card",
-   "is_independent": 0,
-   "model_names": [
-    "Ling-3.0-flash"
-   ],
-   "publication_date": null,
-   "canonical_url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-10T09:47:45Z",
-   "last_checked": "2026-08-13T06:20:51Z",
-   "last_changed": "2026-08-12T10:02:31Z",
-   "source_of_lead": "monitor",
-   "safety_evals": 0,
-   "openness": "open_weight_permissive",
-   "content_hash": "6eedf96386f3d4ad22fb66e20eb23871beb3528d97cbb0c12a1e5be9788e1fbe",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-10T09:47:45Z",
-   "content_fingerprint": "c3cb461fa1596d57a16bb05f7dc3c4d561b31138a5caf8ed9b666de18210e3a8",
-   "version_count": 1
-  },
-  {
-   "slug": "stepfun-step-3-7-flash-model-card",
-   "title": "Step-3.7-Flash Model Card",
-   "publisher": "stepfun",
-   "doc_type": "model_card",
-   "is_independent": 0,
-   "model_names": [
-    "Step-3.7-Flash"
-   ],
-   "publication_date": null,
-   "canonical_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-10T09:47:43Z",
-   "last_checked": "2026-08-13T06:20:50Z",
-   "last_changed": "2026-08-12T10:02:32Z",
-   "source_of_lead": "monitor",
-   "safety_evals": 0,
-   "openness": "open_weight_permissive",
-   "content_hash": "af3cf4f88d0f52c95a8309f6415e76d352a20899d56a2a95cbd005309f85bfb2",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-10T09:47:43Z",
-   "content_fingerprint": "9c8d4604eb5c84495caa1ee06acb1db0817d66adf2770ba3a4871e81dc9f9cc4",
-   "version_count": 1
-  },
-  {
-   "slug": "tencent-hunyuan-hy-embodied-rxbrain-1-0-model-card",
-   "title": "Hy-Embodied-RxBrain-1.0 (RxBrain) Model Card",
-   "publisher": "tencent_hunyuan",
-   "doc_type": "model_card",
-   "is_independent": 0,
-   "model_names": [
-    "Hy-Embodied-RxBrain-1.0"
-   ],
-   "publication_date": null,
-   "canonical_url": "https://huggingface.co/tencent/Hy-Embodied-RxBrain-1.0",
-   "alt_urls": [],
-   "status": "active",
-   "first_seen": "2026-08-10T09:47:44Z",
-   "last_checked": "2026-08-13T06:20:50Z",
-   "last_changed": "2026-08-12T10:02:30Z",
-   "source_of_lead": "monitor",
-   "safety_evals": 0,
-   "openness": "open_weight_permissive",
-   "content_hash": "0eb2cc285e9f86aea4d739b5248d9a923655ac7225dcf38f95964814f7ba49d2",
-   "content_type": "text/html",
-   "version_fetched_at": "2026-08-10T09:47:44Z",
-   "content_fingerprint": "d262495f9352d74c1d8a92c72aed81700f7952f00dc0bf8f78639ecea835711b",
    "version_count": 1
   }
  ]

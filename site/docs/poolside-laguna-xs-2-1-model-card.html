@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laguna XS 2.1 — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Laguna XS 2.1</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://poolside.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">poolside</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Laguna XS 2.1</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-06-20</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/poolside/Laguna-XS-2.1" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/poolside/Laguna-XS-2.1</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-15T08:32:30Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>has_safety_evals false: capability benchmarks only, no safety/red-team/risk section. Quantized and draft variants (-FP8, -NVFP4, -INT4, -GGUF, -DFlash) deliberately not proposed. The card cites a poolside technical report at poolside.ai/assets/laguna/laguna-m1-xs2-technical-report.pdf covering Laguna M1 and XS.2, which is not yet in the corpus.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20poolside-laguna-xs-2-1-model-card&amp;body=Document%3A%20poolside-laguna-xs-2-1-model-card%0AURL%3A%20https%3A//huggingface.co/poolside/Laguna-XS-2.1%0AFingerprint%3A%209c4c2bad77b61dd1811d741e510c6c6da0c52baf350c85fa1203cfa482438f8f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-15T08:32:30Z</td>
+          <td>text/html</td>
+          <td>299,550</td>
+          <td><code title="9c4c2bad77b61dd1811d741e510c6c6da0c52baf350c85fa1203cfa482438f8f">9c4c2bad77b61dd1</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-15T08:32:30Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-15T08:22Z-local · agent · lead: agent_search</span>
+          <div class="just">Official poolside model card for Laguna XS 2.1, a 33B-total / 3B-active Mixture-of-Experts agentic-coding model with a 262k context window, sized to run locally. It is a distinct model release rather than a size re-upload of Laguna S 2.1: different parameter count and layer layout (40 layers, 10 global / 30 sliding-window, sigmoid gating vs S 2.1&#39;s 48 layers and softplus gating), FP8 KV cache, its own card and its own release date (repo created 2026-06-20, three weeks before S 2.1), and it is documented as an upgrade of the earlier Laguna XS.2. The card carries benchmark results on SWE-bench Verified, SWE-bench Multilingual, SWE-Bench Pro and Terminal-Bench 2.0 against Qwen3.6-35B-A3B, North Mini Code, MAI-Code-1-Flash and gpt-oss-120B. 216 likes / 55k downloads, distributed via Ollama and llama.cpp. Licence openmdw-1.1 with public weights and free commercial use, hence open_weight_permissive.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/poolside/Laguna-XS-2.1/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/poolside/Laguna-XS-2.1/raw/main/README.md</a> · <a href="https://huggingface.co/collections/poolside/laguna-xs-21" rel="noopener nofollow">https://huggingface.co/collections/poolside/laguna-xs-21</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/poolside/Laguna-XS-2.1" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use poolside/Laguna-XS-2.1 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use poolside/Laguna-XS-2.1 with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;poolside/Laguna-XS-2.1&#34;, trust_remote_code=True)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;poolside/Laguna-XS-2.1&#34;, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(&#34;poolside/Laguna-XS-2.1&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use poolside/Laguna-XS-2.1 with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;poolside/Laguna-XS-2.1&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;poolside/Laguna-XS-2.1&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/poolside/Laguna-XS-2.1
+-  SGLang  How to use poolside/Laguna-XS-2.1 with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;poolside/Laguna-XS-2.1&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;poolside/Laguna-XS-2.1&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;poolside/Laguna-XS-2.1&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;poolside/Laguna-XS-2.1&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use poolside/Laguna-XS-2.1 with Docker Model Runner: docker model run hf.co/poolside/Laguna-XS-2.1
+Use on OpenRouter · Release blog post
+Laguna XS 2.1
+Laguna XS 2.1 is a 33B total parameter Mixture-of-Experts model with 3B activated parameters per token designed for agentic coding and long-horizon work on a local machine. This model is an upgraded version of our Laguna XS.2 model with a +5.4% jump on SWE-bench Multilingual as well as stronger performance on terminal-style tasks.
+For more details on how we train, including on data automixing and async off-policy agent RL, check out our recent technical report.
+Highlights
+- Mixed SWA and global attention layout: Laguna XS 2.1 uses sigmoid gating with per-layer rotary scales, enabling mixed SWA (Sliding Window Attention) and global attention layers in a 3:1 ratio (across 40 total layers)
+- KV cache in FP8: KV cache quantized to FP8, reducing memory per token
+- Native reasoning support: Interleaved thinking between tool calls with support for enabling and disabling thinking per-request
+- Local-ready: At 33B total parameters and 3B activated, Laguna XS 2.1 is compact enough to run on a Mac with 36 GB of RAM. Available on Ollama and llama.cpp. High-quality FP8, NVFP4 and INT4 quantized variants available (see the collection)
+- OpenMDW-1.1 license: Use and modify the model and associated materials freely for commercial and non-commercial purposes (learn more about OpenMDW)
+Model overview
+- Training: pre-training, post-training and reinforcement learning stages
+- Number of parameters: 33B total with 3B activated per token
+- Optimizer: Muon
+- Layers: 40 layers (10 layers with global attention, 30 layers with sliding window attention)
+- Experts: 256 experts with 1 shared expert
+- Sliding Window: 512 tokens
+- Modality: text-to-text
+- Context window: 262,144 tokens
+- Reasoning support: interleaved thinking with preserved thinking
+Benchmark results
+| Model | Size (total params.) | SWE-bench Verified | SWE-bench Multilingual | SWE-Bench Pro (Public Dataset) | Terminal-Bench 2.0 |
+|---|---|---|---|---|---|
+| Laguna XS 2.1 | 33B | 70.9% | 63.1% | 47.6% | 37.5% |
+| Laguna XS.2 | 33B | 69.9% | 57.7% | 46.3% | 35.7% |
+| Qwen3.6-35B-A3B | 35B | 73.4% | 67.2% | 49.5% | 51.5% |
+| North Mini Code | 30B | 67.6% | - | 40.2% | 36.0% |
+| MAI-Code-1-Flash | 137B | 71.6% | 65.5% | 51.2% | 54.8% |
+| gpt-oss-120B | 120B | - | - | 16.2% | 18.7% |
+| Claude Haiku 4.5 | - | 73.3% | - | 39.5% | 29.8% |
+| GPT-5.4 Nano | - | - | - | 52.4% | 46.3% |
+We used the highest publicly-referenced scores for all comparison models across each benchmark. In all cases these were official scores published in release blog posts or equivalent, with the exception of gpt-oss-120b and Claude Haiku 4.5 where the highest published (verified) scores for SWE-Bench Pro and Terminal-Bench 2.0 are from their respective official leaderboards.
+Expand for benchmarking methodology
+All benchmarking for Laguna XS 2.1 was completed using Laude Institute’s Harbor Framework with our agent harness, with a maximum of 500 steps and sandboxed execution. The same sampling parameters were used for all Laguna XS 2.1 benchmarking: temperature=1.0, top_k=20 and top_p=1, with thinking mode enabled and a context length of 256K tokens. All tasks were run in their own sandbox using 8 GB RAM/2 CPUs, with the exception of Terminal-Bench 2.0, which used 48 GB RAM/32 CPUs.
+Some base task images and verifiers were patched to fix infrastructure reliability issues inherent in task setup, such as rate limits on third-party dependencies in external registries used by the verifier. All four agentic benchmarks were run with patched images. We also ran a reward-hack judge post-hoc on Laguna XS 2.1 evaluation runs and did not find significant reward hacking after joint judge review and manual review.
+- SWE-bench Verified: mean pass@1 averaged over 4 attempts per task
+- SWE-bench Multilingual: mean pass@1 averaged over 4 attempts per task
+- SWE-Bench Pro: mean pass@1 averaged over 2 attempts per task
+- Terminal-Bench 2.0: mean pass@1 averaged over 5 attempts per task; 48 GB RAM/32 CPUs
+Usage
+Laguna XS 2.1 has launch-day support in vLLM, SGLang, Transformers and Llama.cpp, and TRT-LLM thanks to the support of the team at NVIDIA.
+The fastest way to get started is using OpenRouter.
+We are providing free inference for a limited time for Laguna XS 2.1, as well as our larger 225B model, Laguna M.1. Visit our provider page on OpenRouter to get started.
+pool
+pool is a lightweight terminal-based coding agent and a dual Agent Client Protocol client-server.
+Download and install for macOS and Linux:
+curl -fsSL https://downloads.poolside.ai/pool/install.sh | bash
+Launch and &gt; Log in with Poolside to get a free, limited-use API key.
+Alternatively, use Poolside models alongside the wide catalog of models available on OpenRouter by selecting &gt; Log in with OpenRouter.
+pool login
+Use in any ACP client. Configure Zed and JetBrains automatically:
+pool acp setup --editor zed|jetbrains
+Use pool with Ollama with one-command setup:
+ollama pull laguna-xs-2.1
+ollama launch pool --model laguna-xs-2.1
+Feedback and issues
+Submit feedback with /feedback and read the full documentation on GitHub.
+Local deployment
+Laguna XS 2.1 is supported in vLLM, SGLang, Transformers and Llama.cpp, and TRT-LLM thanks to the support of the team at NVIDIA. Use Laguna-XS 2.1 with Ollama (with MLX support) and the mlx-lm framework for the best experience on your local machine.
+vLLM
+Serve Laguna XS 2.1 locally with vLLM and query it from any OpenAI-compatible client (see Controlling reasoning for tool calls, streaming, and reasoning extraction):
+Laguna XS 2.1 support is available in vLLM 0.21.0 and later (vllm-project/vllm#41129).
+Use a vLLM build that includes vllm-project/vllm#47311. Without that fix, the poolside_v1 tool parser silently drops Laguna XS 2.1 tool calls that have no newline after the function name, and the raw tool-call markup leaks into the response. On an older build, pass --tool-call-parser glm47 (the GLM 4.7 parser) instead.
+pip install &#39;vllm&gt;=0.21.0&#39;
+vllm serve \
+    --model poolside/Laguna-XS-2.1 \
+    --tool-call-parser poolside_v1 \
+    --reasoning-parser poolside_v1 \
+    --enable-auto-tool-choice \
+    --served-model-name laguna \
+    --default-chat-template-kwargs &#39;{&#34;enable_thinking&#34;: true}&#39;
+See the vLLM recipes page for additional deployment guidance.
+Optional: speculative decoding with DFlash. For lower latency, pair Laguna XS 2.1 with the DFlash speculator, a 5-layer Llama-style draft model that proposes up to 7 tokens per step at ~70% per-position acceptance on coding tasks. vLLM support is in progress in vllm-project/vllm#46853; once it lands, add --speculative-config &#39;{&#34;model&#34;:&#34;poolside/Laguna-XS-2.1-DFlash&#34;,&#34;num_speculative_tokens&#34;:7,&#34;method&#34;:&#34;dflash&#34;}&#39; to the serve command above.
+SGLang
+Laguna XS 2.1 is supported in SGLang via sgl-project/sglang#24204. See the SGLang cookbook entry for a serving recipe.
+git clone https://github.com/sgl-project/sglang.git
+cd sglang
+pip install -e &#34;python[all]&#34;
+python -m sglang.launch_server \
+  --model-path poolside/Laguna-XS-2.1 \
+  --tp-size 8 \
+  --mem-fraction-static 0.7 \
+  --reasoning-parser poolside_v1 \
+  --trust-remote-code
+Optional: speculative decoding with DFlash. The DFlash speculator can be paired with Laguna XS 2.1 for lower latency. SGLang support was added in sgl-project/sglang#29446. Add --speculative-algorithm DFLASH \ --speculative-draft-model-path poolside/Laguna-XS-2.1-DFlash-FP8 to the serve command above.
+Transformers
+Laguna XS 2.1 is supported in Transformers v5.7.0 and later (huggingface/transformers#45673).
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+model_id = &#34;poolside/Laguna-XS-2.1&#34;
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    dtype=torch.bfloat16,
+    device_map=&#34;auto&#34;,
+)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Write a Python retry wrapper with exponential backoff.&#34;},
+]
+# Reasoning is on by default; pass enable_thinking=False to skip the &lt;think&gt; block.
+inputs = tokenizer.apply_chat_template(
+    messages,
+    add_generation_prompt=True,
+    return_tensors=&#34;pt&#34;,
+    enable_thinking=True,
+).to(model.device)
+outputs = model.generate(
+    inputs,
+    max_new_tokens=1024,
+    do_sample=True,
+    temperature=1.0,
+    top_k=20,
+)
+response = tokenizer.decode(outputs[0][inputs.shape[-1]:], skip_special_tokens=True)
+print(response)
+TRT-LLM
+Laguna XS 2.1 support is merged into TensorRT-LLM (NVIDIA/TensorRT-LLM#13559) and ships in the v1.3.0rc16 pre-release wheels and later.
+A stable v1.3.0 has not been released yet, so install a pre-release wheel from NVIDIA&#39;s package index (the latest stable, v1.2.x, does not include Laguna XS 2.1 support). To build from source instead, see the TensorRT-LLM build documentation. Laguna XS 2.1 support is on main.
+Install the CUDA-13 torch build first, then TensorRT-LLM. The default PyPI torch is a CUDA-12 build whose cuda-bindings pin conflicts with TRT-LLM&#39;s cuda-python 13.x, so a bare pip install tensorrt-llm fails to resolve; installing the cu130 torch up front avoids it.
+# 1. CUDA-13 torch build (pins cuda-bindings 13.x, matching TRT-LLM&#39;s cuda-python)
+pip install &#39;torch==2.10.0&#39; torchvision --index-url https://download.pytorch.org/whl/cu130
+# 2. TRT-LLM from NVIDIA&#39;s index (torch already satisfied, so it is not replaced)
+pip install --pre &#39;tensorrt-llm&gt;=1.3.0rc16&#39; \
+    --extra-index-url https://pypi.nvidia.com \
+    --extra-index-url https://download.pytorch.org/whl/cu130
+This resolves to tensorrt-llm 1.3.0rc20 with torch 2.10.0+cu130, cuda-python 13.0.3, and transformers 5.5.4.
+Load the checkpoint directly with trust_remote_code=True. No transformers compatibility overlay is required: v1.3.0rc16+ pins transformers 5.5.4, which provides the symbols Laguna XS 2.1&#39;s config needs (earlier TRT-LLM releases pinned transformers 4.57, which did not).
+from tensorrt_llm import LLM, SamplingParams
+llm = LLM(
+    model=&#34;poolside/Laguna-XS-2.1&#34;,
+    trust_remote_code=True,
+    tensor_parallel_size=1,
+)
+sampling = SamplingParams(max_tokens=1024, temperature=1.0, top_k=20)
+out = llm.generate([&#34;Write a Python retry wrapper with exponential backoff.&#34;], sampling)
+print(out[0].outputs[0].text)
+Or serve with an OpenAI-compatible endpoint:
+trtllm-serve poolside/Laguna-XS-2.1 --port 8000 --trust-remote-code --tool_parser poolside_v1 --reasoning_parser laguna
+The Laguna XS 2.1 tool-call and reasoning parsers are built into TRT-LLM &gt;=1.3.0rc16 (shipped with #13559), so no extra install is needed. Note that the flag names differ from vLLM&#39;s (--tool_parser, and the reasoning parser is laguna, not poolside_v1).
+The same recipe works for the FP8 and NVFP4 variants: quantization is detected automatically from quantization_config, no extra flags required.
+Optional: speculative decoding with DFlash. The DFlash speculator can be paired with Laguna XS 2.1 for lower latency. TRT-LLM support is in progress in NVIDIA/TensorRT-LLM#15666.
+llama.cpp
+Requires building llama.cpp from the upstream PR that adds Laguna XS 2.1 support until it lands (ggml-org/llama.cpp#25165).
+Official GGUF conversions (BF16 and Q4_K_M) are available at poolside/Laguna-XS-2.1-GGUF.
+# Build llama.cpp from the PR branch
+git clone https://github.com/ggml-org/llama.cpp &amp;&amp; cd llama.cpp
+git fetch origin pull/25165/head:laguna &amp;&amp; git checkout laguna
+cmake -B build &amp;&amp; cmake --build build -j
+# Download a GGUF and serve an OpenAI-compatible endpoint
+huggingface-cli download poolside/Laguna-XS-2.1-GGUF Laguna-XS-2.1-Q4_K_M.gguf --local-dir ~/models/Laguna-XS-2.1-GGUF
+./build/bin/llama-server -m ~/models/Laguna-XS-2.1-GGUF/Laguna-XS-2.1-Q4_K_M.gguf --jinja --port 8000
+Ollama
+Available on the Ollama library.
+ollama run laguna-xs-2.1          # default — Q4_K_M (imatrix)
+ollama run laguna-xs-2.1:q8_0     # higher precision
+ollama run laguna-xs-2.1:bf16     # full precision
+Reasoning and tool-calling work out of the box via the built-in laguna template.
+macOS (Metal) users: ollama run may currently return empty output on Apple Silicon (a Metal f16 overflow in the MoE down-projection; fix pending in ggml-org/llama.cpp#25389). Until it ships, use a Linux/CUDA host or the /api/generate endpoint with &#34;raw&#34;: true.
+Atomic Chat
+Laguna XS 2.1 is also available in Atomic Chat, a desktop app for running local models with a simple chat UI. To try it, download Atomic Chat, open the app, and choose Laguna XS 2.1 from the recommended models.
+Controlling reasoning
+Laguna XS 2.1 has native reasoning support and is designed to work best with preserved thinking, where reasoning content from prior assistant messages is preserved in the message history. This model will generally reason before calling tools and between tool calls.
+Reasoning may not be generated in follow-up steps if prior thinking blocks are dropped (i.e., thinking is not preserved) when messages are reconstructed over multiple steps.
+Expand for example
+import json
+from openai import OpenAI
+client = OpenAI(
+  base_url=&#34;https://openrouter.ai/api/v1&#34;,
+  api_key=&#34;...&#34;,
+)
+model = &#34;poolside/laguna-xs-2.1&#34;
+tools = [{&#34;type&#34;: &#34;function&#34;, &#34;function&#34;: {
+  &#34;name&#34;: &#34;shell&#34;,
+  &#34;description&#34;: &#34;Execute a bash command and return the output.&#34;,
+  &#34;parameters&#34;: {&#34;type&#34;: &#34;object&#34;, &#34;properties&#34;: {&#34;cmd&#34;: {&#34;type&#34;: &#34;string&#34;}}, &#34;required&#34;: [&#34;cmd&#34;]},
+}}]
+messages = [
+  {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a coding agent with access to a shell tool.&#34;},
+  {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Run uname -a&#34;},
+]
+# Thinking is enabled by default when the server sets --default-chat-template-kwargs {&#34;enable_thinking&#34;: True}
+# When using OpenRouter&#39;s Chat API (https://openrouter.ai/api/v1), this flag is set by default
+response = client.chat.completions.create(
+  model=model,
+  messages=messages,
+  tools=tools,
+  stream=True,
+)
+reasoning, content, tool_calls = &#34;&#34;, &#34;&#34;, []
+for chunk in response:
+  delta = chunk.choices[0].delta
+  if hasattr(delta, &#34;reasoning_content&#34;) and delta.reasoning_content:
+    reasoning += delta.reasoning_content
+  if hasattr(delta, &#34;content&#34;) and delta.content:
+    content += delta.content
+  if hasattr(delta, &#34;tool_calls&#34;) and delta.tool_calls:
+    for tc in delta.tool_calls:
+      if tc.index &gt;= len(tool_calls):
+        tool_calls.append({&#34;id&#34;: tc.id, &#34;function&#34;: {&#34;name&#34;: &#34;&#34;, &#34;arguments&#34;: &#34;&#34;}})
+      if tc.function.name:
+        tool_calls[tc.index][&#34;function&#34;][&#34;name&#34;] = tc.function.name
+      if tc.function.arguments:
+        tool_calls[tc.index][&#34;function&#34;][&#34;arguments&#34;] += tc.function.arguments
+print(f&#34;Reasoning: {reasoning}\nContent: {content}\nTool calls: {tool_calls}\n&#34;)
+# Return reasoning in the next request for best performance
+messages.append({
+  &#34;role&#34;: &#34;assistant&#34;,
+  &#34;content&#34;: content,
+  &#34;reasoning_content&#34;: reasoning,
+  &#34;tool_calls&#34;: [{&#34;id&#34;: tc[&#34;id&#34;], &#34;type&#34;: &#34;function&#34;, &#34;function&#34;: tc[&#34;function&#34;]} for tc in tool_calls]
+})
+messages.append({
+  &#34;role&#34;: &#34;tool&#34;,
+  &#34;tool_call_id&#34;: tool_calls[0][&#34;id&#34;],
+  &#34;content&#34;: json.dumps({&#34;stdout&#34;: &#34;Darwin arm64&#34;, &#34;exit_code&#34;: &#34;0&#34;})
+})
+response = client.chat.completions.create(
+  model=model,
+  messages=messages,
+  tools=tools,
+  stream=True,
+)
+reasoning, content = &#34;&#34;, &#34;&#34;
+for chunk in response:
+  delta = chunk.choices[0].delta
+  if hasattr(delta, &#34;reasoning_content&#34;) and delta.reasoning_content:
+    reasoning += delta.reasoning_content
+  if hasattr(delta, &#34;content&#34;) and delta.content:
+    content += delta.content
+print(f&#34;Reasoning: {reasoning}\nContent: {content}&#34;)
+Disabling reasoning
+You can disable thinking by setting enable_thinking to False in a request or by not providing --default-chat-template-kwargs {&#34;enable_thinking&#34;: True} or equivalent when starting the server.
+Expand for example
+from openai import OpenAI
+client = OpenAI()
+completion = client.chat.completions.create(
+  model=&#34;poolside/laguna-xs-2.1&#34;,
+  messages=[
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Write a retry wrapper with exponential backoff.&#34;}
+  ],
+  extra_body={
+    &#34;chat_template_kwargs&#34;: { &#34;enable_thinking&#34;: False },
+  },
+  stream=True
+)
+for chunk in completion:
+    print(chunk.choices[0].delta)
+For agentic coding use cases, we recommend enabling thinking and preserving reasoning in message history as outlined in the Controlling reasoning section.
+License
+This model is licensed under the OpenMDW-1.1 License.
+Intended and Responsible Use
+Laguna XS 2.1 is designed for software engineering and agentic coding use cases, and you are responsible for confirming that it is appropriate for your intended application. Laguna XS 2.1 is subject to the OpenMDW-1.1 License, and should be used consistently with Poolside&#39;s Acceptable Use Policy. We advise against circumventing Laguna XS 2.1 safety guardrails without implementing substantially equivalent mitigations appropriate for your use case.
+Please report security vulnerabilities or safety concerns to security@poolside.ai.
+- Downloads last month
+- 55,221
+Model tree for poolside/Laguna-XS-2.1
+Spaces using poolside/Laguna-XS-2.1 10
+Collection including poolside/Laguna-XS-2.1
+Evaluation results
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   70.9
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   47.6
+- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results    leaderboard   37.5</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-15T08:36:17Z</p></footer>
+</body>
+</html>

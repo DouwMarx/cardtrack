@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducing Robostral Navigate — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Introducing Robostral Navigate</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://mistral.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">mistral</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Robostral Navigate</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-08</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge">n/a</span></dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://mistral.ai/news/robostral-navigate/" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://mistral.ai/news/robostral-navigate/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-15T08:32:45Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>has_safety_evals false: capability benchmarks only, no safety, red-team or risk-assessment content. The post links a Robostral Navigate technical report at arxiv.org/abs/2607.20785; arXiv is not an allowlisted publisher surface, so it was not proposed. Openness omitted: no weights repository under huggingface.co/mistralai and no licence stated in the post, so weight availability is unverified. No corresponding card exists at docs.mistral.ai/models/.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20mistral-robostral-navigate-model-card&amp;body=Document%3A%20mistral-robostral-navigate-model-card%0AURL%3A%20https%3A//mistral.ai/news/robostral-navigate/%0AFingerprint%3A%20f7289d7a07e6ae341b4b6124e83c92be533ddb03e6546747d84790697e389151%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-15T08:32:45Z</td>
+          <td>text/html</td>
+          <td>230,849</td>
+          <td><code title="f7289d7a07e6ae341b4b6124e83c92be533ddb03e6546747d84790697e389151">f7289d7a07e6ae34</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-15T08:32:45Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-15T08:22Z-local · agent · lead: agent_search</span>
+          <div class="just">Mistral&#39;s own release documentation for Robostral Navigate, its first embodied-navigation model: an 8B vision-language-action model that drives a robot from a single RGB camera and a natural-language instruction, with no depth sensors or LiDAR. The post documents architecture and training (initialised from Mistral&#39;s grounding-specialised VLM, ~2.4M simulated trajectories across 350k scenes, prefix-caching tree-attention training, CISPO online RL) and reports quantitative results: 76.6% success on R2R-CE validation-unseen and 79.4% validation-seen, plus oracle success rate, SPL and navigation error, beating the best single-camera approach by 9.7 points and the best depth/multi-camera system by 4.5 points. That is capability-evaluation content that would sit in the evaluations section of a model card, and the corpus already treats mistral.ai/news release posts as model cards (mistral-small-4). Date confirmed as 2026-07-08 from Mistral&#39;s own RSS feed. Mistral read 11 days silent but this July release was never catalogued.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://mistral.ai/news/rss" rel="noopener nofollow">https://mistral.ai/news/rss</a> · <a href="https://arxiv.org/abs/2607.20785" rel="noopener nofollow">https://arxiv.org/abs/2607.20785</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://mistral.ai/news/robostral-navigate/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Introducing
+ Robostral Navigate
+Thinking
+Summary
+Robostral Navigate is an 8B model that enables robots to autonomously navigate complex environments using only a single RGB camera, achieving 76.6% success on unseen R2R-CE benchmarks—outperforming multi-sensor approaches while being more efficient. Built entirely in-house with simulated data and token-efficient techniques, it generalizes across robot types and adapts to real-world obstacles unseen during training. The model combines pointing-based navigation with reinforcement learning for continuous improvement, paving the way for unified embodied AI in robotics.
+Today we&#39;re introducing Robostral Navigate, our first model built for embodied navigation. It&#39;s an 8B model that takes RGB images and a plain-language instruction and moves a robot through an environment:
+“Leave the lobby, walk through the corridor, enter the supply room, and stop to face the second shelf.”
+To perform such tasks, other models often employ depth sensors, LiDAR, or several cameras working together. Robostral Navigate uses only one ordinary RGB camera and no depth sensors, yet still achieves 76.6% on R2R-CE (Room-to-Room in Continuous Environments) validation unseen, the benchmark for following instructions in environments held out of training. Consequently, it beats the best single-camera approach by 9.7 points and the best system using depth or multiple cameras by 4.5 points, despite using neither.
+Navigation
+Our model is designed for robotic navigation, enabling robots to autonomously navigate complex environments, including offices, residential and commercial buildings, and outdoor settings.
+Robostral Navigate running fully autonomously in one long-horizon instruction route through a working office.
+This technology unlocks numerous applications across manufacturing, delivery, logistics, and hospitality, making it one of the most in-demand capabilities for our customers today. Give Robostral Navigate one instruction and it completes the entire task on its own, moving through a live space full of people and obstacles it was never shown, capable of adapting to any setting.
+Highlights
+- State-of-the-art performance on R2R-CE
+  - 79.4% Success Rate on validation seen
+  - 76.6% Success Rate on validation unseen
+- Operates from a single RGB camera, with no LiDAR or depth sensors
+- 8B model, built in-house and trained entirely in simulation
+- Runs on wheeled, legged, and flying robots, and generalizes across robot sizes
+- Robust to differences in camera intrinsics
+- Token-efficient training via prefix-caching
+Navigation via pointing
+Given a task and a history of observations, Robostral Navigate predicts where the robot should move next via pointing: it infers the image coordinates of the target location in the robot&#39;s current camera view, together with the desired orientation upon arrival. Unlike commands relying on metric displacements, pointing makes the policy naturally robust to changes in camera intrinsics and world scale.
+However, this method cannot handle cases where the target location lies outside the current field of view. When pointing does not apply, the model falls back to displacements in the robot&#39;s local coordinate frame, such as:
+&#34;Move 2 meters forward, 1.5 meters to the left, and turn 25 degrees left.&#34;
+Built from the ground up
+Robostral Navigate is built entirely in-house and does not rely on existing open-source VLMs.
+The model is initialized from our vision-language model specialized for grounding tasks such as pointing, counting, and object localization. Navigation emerges as a natural extension of these capabilities: once it understands where things are, it learns how to move.
+We built an efficient data generation pipeline entirely in simulation. This enabled rapid iteration on the data, resulting in a dataset of approximately 2.4 million trajectories collected across 350k scenes.
+Efficient supervised training
+A key ingredient of Robostral Navigate is an efficient training algorithm based on prefix-caching. Using a tree-based attention-masking strategy, our method compresses an entire episode into a single sequence, enabling training on all time steps in a single forward pass while preventing information leakage between time steps.
+Compared to training with one sample per time step, our approach reduces the number of training tokens by 22× while preserving all of the learning signals. In practice, this method transforms training runs that would take months into runs that complete in days.
+Online reinforcement learning
+We leverage our knowledge of post-training LLMs at scale, using online reinforcement learning, to boost the performance of Robostral Navigate. After the supervised training stage, we further improve the model&#39;s performance using CISPO, an online reinforcement learning algorithm. This enables the model to learn from trial and error, recover from failures, and acquire exploratory behaviors, effectively mitigating the distribution shift issue of vanilla behavior cloning. This alone improved the success rate by 3.2%. We are not seeing any plateauing, so we are confident that more training and more experiments will continue to push this number up.
+What&#39;s Next
+Robostral Navigate is only the first step toward a unified embodied agent.
+We believe navigation is a foundational capability for general-purpose robotics. By combining large-scale simulation, efficient training, and strong grounding priors, Robostral Navigate demonstrates that state-of-the-art embodied navigation can be achieved with a compact model and a single RGB camera.
+Start your journey to embodied frontier AI, talk with our team.
+BTW, we&#39;re hiring!
+The release of our navigation models marks a significant step forward, but our journey is far from over. Our ambition is to enable robots to autonomously navigate complex environments—offices, homes, commercial buildings, and outdoor spaces—and there&#39;s a lot more work to do. We are actively expanding our robotics team and looking for talented research scientists and engineers who share our ambition.
+If you&#39;re interested in joining us on our mission to bring seamless navigation to robots everywhere, we welcome your applications to join our team!
+By Théo Cachet, Arjun Majumdar, Srijan Mishra, Thomas Chabal, Chris Bamford, Elliot Chane-Sane, Benjamin Tibi, Ludovic Ho Fuh, Olivier Duchenne - AI Science Robotics
+Technical Report
+Read the Robostral Navigate technical report for the full architecture, training setup, and benchmark results.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-15T08:36:17Z</p></footer>
+</body>
+</html>
