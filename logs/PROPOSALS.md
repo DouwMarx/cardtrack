@@ -247,3 +247,125 @@ field rather than an accident of whoever wrote the allowlist entry.
 Evidence: friction lines `index_url_incomplete` ×2 this run; written ids 208–216 (Mistral) and
 218 (Project Deal); `config/sources.yaml` `mistral.index_urls` and `anthropic.index_urls`;
 `logs/state_summary.json` last-publication dates per publisher.
+
+## 2026-08-17 — The candidate list has no triage state, so a link missed on its first day is missed forever
+
+Problem: `logs/candidates.json` is append-only and stateless. Phase A adds new links with a
+`first_seen` stamp and never records what happened to them afterwards — proposed, skipped for a
+stated reason, or never read at all are indistinguishable on disk. The agent-side effect is that
+each run reads the tail (`first_seen == today`) and treats the other 2,577 entries as settled,
+because there is nothing to suggest otherwise.
+
+They are not settled. A keyword scan of the full backlog this morning — model-card /
+system-card / technical-report / evaluation URL patterns, minus everything already in the
+corpus, minus profile, discussion, dataset and asset noise — returned 176 links, and two of them
+were in-scope documents that had been sitting untriaged since the seed sweeps:
+
+- `thinkingmachines.ai/blog/interaction-models/` — **TML-Interaction-Small**, a 276B/12B-active
+  from-scratch audio-video-text interaction model, published 2026-05-11, with a full comparative
+  benchmark table against GPT-realtime, Gemini 3.1 Flash Live and Qwen 3.5 Omni and a safety
+  section reporting Harmbench refusal rates. `first_seen` 2026-08-09T19:39:09Z. **98 days old,
+  seen for 8, written today as id 227.** Thinking Machines is a tier-1 allowlisted publisher and
+  `thinkingmachines.ai/blog/` is a configured `index_url` — the pipeline surfaced this link
+  correctly on day one and every run since has stepped over it.
+- `research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf` — the **Cosmos 3** family
+  technical report, 2026-06-22, 613k characters, whose `has_safety_evals=false` (zero occurrences
+  of "guardrail", "red team", "misuse" or "risk assessment") is exactly the kind of absence this
+  corpus exists to make visible. Seen since 2026-08-10, written today as id 228.
+
+This is a different failure from the `index_url` gap reported on 2026-08-14. That one was "we are
+not looking at the right pages"; this one is "we looked, we saw it, and it fell on the floor."
+Both of today's finds came from pages that are polled and working.
+
+Suggested change: give each candidate a state and let unresolved ones come back.
+
+- Record a per-candidate verdict at proposal time — `proposed:<slug>`, `skipped:<reason>`, or
+  absent — written back to `candidates.json` (or a sibling `candidate_state.json`) by
+  `propose_doc.py` and by an explicit skip call. A skip reason costs the agent one line and turns
+  the backlog from an undifferentiated pile into a work queue.
+- Have Phase A surface, alongside `candidates_new`, a small rotating sample of the oldest
+  untriaged candidates — say 20 per run. At that rate the current backlog drains in a few months
+  and nothing sits invisible for 98 days.
+- Report `candidates_untriaged` in the Phase A JSON line. Today it would have read 2,577, which
+  is the number that would have prompted this scan on 2026-08-10 rather than 2026-08-17.
+
+Evidence: friction line `candidate_backlog_never_resurfaces` this run; written ids 227 and 228;
+`logs/candidates.json` `first_seen` values 2026-08-09T19:39:09Z and 2026-08-10T08:46:59Z against
+those two URLs; `config/sources.yaml` `thinking_machines.index_urls` and `nvidia.index_urls`,
+both polled successfully in today's Phase A (`checked: 222, ok: 222, errors: 0`).
+
+## 2026-08-17 — The run report is the first thing cut when the agent runs out of turns, and it is the only thing that explains the writes
+
+Problem: the 2026-08-15 run wrote seven documents (ids 219–225) and three field updates, then
+exited with `Error: Reached max turns (60)`. Writes had already landed and were committed and
+deployed by Phase C. What never happened was `logs/run_report.md`, any `friction.jsonl` line and
+any entry here. The next run (2026-08-16) hit a total network outage and also produced nothing.
+So this morning the repository contained 225 documents while `logs/run_report.md` described a
+corpus of 218 and a run three days earlier, and `friction.jsonl` ended on 2026-08-14 — two days
+of silent drift between the database and its own audit trail. The only surviving account of why
+ids 219–225 exist is the changelog rows and a one-line commit message.
+
+The ordering is backwards. Proposals are irreversible-ish (a row is live on the public site
+within the same run); the report is cheap and is what makes the row reviewable by a human later.
+Under a turn cap the expensive irreversible half completes and the cheap explanatory half is what
+gets dropped.
+
+Suggested change:
+
+- Write `logs/run_report.md` incrementally rather than once at the end: a stub with the run id
+  and inputs at the start, one appended line per proposal as the validator answers. A truncated
+  run then leaves a partial-but-true report instead of a stale one.
+- Have `run_daily` detect the mismatch — if the changelog has rows for `$CARDTRACK_RUN_ID` but
+  `run_report.md` does not name that run id, say so loudly in the run log instead of committing
+  quietly as if the run were clean.
+- Consider whether 60 turns is the right cap given the contract's seven tasks. It was not
+  obviously wrong on 2026-08-15 — that run did the work — but a cap that truncates the record
+  rather than the work is worth at least an explicit "reserve the last N turns for the report"
+  instruction in the prompt.
+
+Evidence: `logs/run-20260815-082217Z.log` line 9 (`Error: Reached max turns (60)`) against commit
+`66538a4` (`add 7, 3 field update(s)`); `logs/run-20260816-132126Z.log` (`checked: 222, ok: 0,
+errors: 222`); `logs/run_report.md` as found this morning, headed `run 2026-08-14T07:00Z-local`
+and reporting 218 documents; last line of `logs/friction.jsonl` dated 2026-08-14; friction line
+`run_report_lost_to_turn_cap` this run.
+
+## 2026-08-17 — One document, two live URLs, and no field to say so
+
+Problem: publishers routinely serve the same document from two surfaces, and the corpus can only
+hold one. `documents.alt_urls` exists in the schema, `identity.find_doc_by_url` already dedups
+against it, and `propose_doc.py` offers no way to put anything in it. `field_update` accepts
+`title`, `notes`, `model_names`, `publication_date`, `canonical_url`, `safety_evals` and
+`openness`; the only path that touches `alt_urls` is a `canonical_url` move, which demotes the old
+URL — and that path additionally requires the content at the new URL to match a stored version
+fingerprint, which can never hold when the twin is a different format.
+
+Three instances in one run:
+
+- **Gemini 3.7 Flash** (written today as id 226) exists as an HTML card at
+  `deepmind.google/models/model-cards/gemini-3-7-flash/` and as a PDF at
+  `storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf`. Both
+  HTTP 200, verified this run. The same twinning holds for Gemini 3.6 Flash and 3.5 Flash-Lite,
+  and the corpus is split on which surface it treats as canonical — ids 13 and 14 point at PDFs,
+  ids 35–40 at the HTML pages, with no principle distinguishing them.
+- **SecureBio** mirrors every Substack post at `securebio.org/blog/<slug>/index.html`. Four such
+  mirrors of already-catalogued documents are sitting in the candidate backlog right now
+  (Kimi K3 biology assessment, GPT-5.5 pre-release assessment, the Anthropic unredacted CB
+  review, and the biosecurity-safeguard piece).
+- **xAI** serves cards from both `media.x.ai` and `data.x.ai`.
+
+Two costs. Monitoring: only the catalogued URL is link-checked and fingerprinted, so a revision
+published to the twin is invisible — and for the PDF/HTML pairs the PDF is usually the one that
+gets revised. Dedup: the guard is URL-based, so the twin is one plausible proposal away from
+becoming a duplicate row. My own add of id 226 went through without the validator noticing that
+its sibling rows point at the other surface of the same card.
+
+Suggested change: accept `alt_urls` on `add` (a list the agent has actually fetched) and add an
+`alt_url_add` / `alt_url_remove` field action that appends without disturbing `canonical_url`.
+Fingerprint-match should not gate it — an alt URL makes no claim about which surface is
+authoritative, only that both are the same document, which is precisely the claim a curation
+agent is positioned to make and a byte comparison is not. Then link-check every URL a document
+has, not just the canonical one.
+
+Evidence: friction line `no_field_for_alternate_surface` this run; `cardtrack/propose.py`
+`_handle_field_update` (the `canonical_url` branch's `content_fingerprint` requirement) and
+`cardtrack/identity.py:38-45`; `notes` on id 226, where this had to be recorded as prose instead.

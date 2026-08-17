@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:34:05Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos3-edge-model-card&amp;body=Document%3A%20nvidia-cosmos3-edge-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos3-Edge%0AFingerprint%3A%20d406f66befab08333d007d6099ad58567710c4eaeb13e351cdf3676acdaefe02%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos3-edge-model-card&amp;body=Document%3A%20nvidia-cosmos3-edge-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos3-Edge%0AFingerprint%3A%20d6d31bbe6787b9ef698bd606ceeeb058dd0cf3ce54b1d6ed6cb07ec3ce7177f4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-17T06:16:39Z</td>
+          <td>text/html</td>
+          <td>352,749</td>
+          <td><code title="d6d31bbe6787b9ef698bd606ceeeb058dd0cf3ce54b1d6ed6cb07ec3ce7177f4">d6d31bbe6787b9ef</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T20:34:05Z</td>
           <td>text/html</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -96,6 +102,14 @@
         <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
           <div class="just">openness: null → "open_weight_permissive"</div>
           <div class="just">Cosmos3-Edge and its DROID policy / Cosmos3-Super 4-step distilled variants are downloadable on HF under the Linux Foundation OpenMDW-1.1 license, permitting commercial use and derivatives.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Cosmos3-Edge" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Edge</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-17T06:16:39Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-17T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Cosmos3-Edge" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Edge</a>          </div>
       </li>
@@ -476,10 +490,10 @@ data = {
     &#34;size&#34;: &#34;832x480&#34;,
     &#34;num_frames&#34;: &#34;121&#34;,
     &#34;fps&#34;: &#34;24&#34;,
-    &#34;num_inference_steps&#34;: &#34;50&#34;,
-    &#34;guidance_scale&#34;: &#34;5.0&#34;,
+    &#34;num_inference_steps&#34;: &#34;20&#34;,
+    &#34;guidance_scale&#34;: &#34;6.0&#34;,
     &#34;max_sequence_length&#34;: &#34;4096&#34;,
-    &#34;flow_shift&#34;: &#34;3.0&#34;,
+    &#34;flow_shift&#34;: &#34;12.0&#34;,
     &#34;extra_params&#34;: json.dumps(
         {
           &#34;use_resolution_template&#34;: False,
@@ -676,7 +690,7 @@ pipe = Cosmos3OmniPipeline.from_pretrained(
 )
 pipe.to(&#34;cuda&#34;)
 pipe.scheduler = UniPCMultistepScheduler.from_config(
-    pipe.scheduler.config, flow_shift=3.0, use_karras_sigmas=False
+    pipe.scheduler.config, flow_shift=12.0, use_karras_sigmas=False
 )
 result = pipe(
     prompt=json.dumps(json_prompt),
@@ -686,8 +700,8 @@ result = pipe(
     height=480,
     width=832,
     fps=24.0,
-    num_inference_steps=50,
-    guidance_scale=5.0,
+    num_inference_steps=20,
+    guidance_scale=6.0,
     generator=torch.Generator(device=&#34;cuda&#34;).manual_seed(0),
     add_resolution_template=False,
     add_duration_template=False,
@@ -887,11 +901,11 @@ Please make sure you have proper rights and permissions for all input image and 
 Users are responsible for model inputs and outputs. Users are responsible for ensuring safe integration of this model, including implementing guardrails as well as other safety mechanisms, prior to deployment.
 For more detailed information on ethical considerations for this model, please see the Model Card++ Explainability, Bias, Safety &amp; Security, and Privacy subcards. Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 55,393</pre>
+- 397,716</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-16T13:24:53Z</p></footer>
+<footer><p>Built 2026-08-17T06:29:57Z</p></footer>
 </body>
 </html>

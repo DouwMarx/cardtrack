@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:46:00Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-7-other&amp;body=Document%3A%20anthropic-claude-opus-4-7-other%0AURL%3A%20https%3A//www.anthropic.com/news/investigating-incidents-cybersecurity-evals%0AFingerprint%3A%20925641b320c6862aaeb9acb92ce3823cf055b3dc143870394cde8ec4d1bd9434%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-7-other&amp;body=Document%3A%20anthropic-claude-opus-4-7-other%0AURL%3A%20https%3A//www.anthropic.com/news/investigating-incidents-cybersecurity-evals%0AFingerprint%3A%202f138a3968892774c7e3a4eb1c8762cc9869ed0e3328760b5f69d57ef4c6cb84%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-17T06:16:42Z</td>
+          <td>text/html</td>
+          <td>163,820</td>
+          <td><code title="2f138a3968892774c7e3a4eb1c8762cc9869ed0e3328760b5f69d57ef4c6cb84">2f138a3968892774</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T21:46:00Z</td>
           <td>text/html</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +104,14 @@
           <div class="just">Incident write-up on cybersecurity evaluations of Claude Mythos 5 and Claude Opus 4.7. Mythos 5 is limited to approved Project Glasswing partners; Opus 4.7 is API-only.</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/claude/mythos" rel="noopener nofollow">https://www.anthropic.com/claude/mythos</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-17T06:16:42Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-17T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener nofollow">https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals</a>          </div>
       </li>
     </ol>
     </details>
@@ -164,14 +178,11 @@ We began this review after OpenAI disclosed that its models had escaped an isola
 - While there is not a perfectly sharp distinction between the two, we believe these incidents to be closer to a harness and operational failure than a model alignment failure. Our models were told they had no internet access and to capture the flag, while in fact being misconfigured to have internet access. This led them to believe—arguably reasonably—that the real environments they encountered were simulations.
 - Notably, our most recent model, on realizing that it was working in a real environment, stopped its pursuit of the evaluation goal.
 These facts give us cautious optimism that with tighter monitoring and controls around evaluation infrastructure, as well as continued investment in alignment, this type of risk can be overcome.
-Updated Aug 3: Corrected the name of the evaluation in which the OpenAI/Hugging Face incident occurred.
-Footnotes
-- We routinely test internal research prototypes like this one. It is not planned for general release.
-- We generally store traces for benchmark evaluations. We have carefully audited these two benchmarks in particular for signs of harm because the OpenAI/Hugging Face incident occurred during an evaluation of ExploitGym.</pre>
+Updated Aug 3: Corrected the name of the evaluation in which the OpenAI/Hugging Face incident occurred.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-16T13:24:53Z</p></footer>
+<footer><p>Built 2026-08-17T06:29:57Z</p></footer>
 </body>
 </html>
