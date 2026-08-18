@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-17T06:29:57Z",
+ "generated_at": "2026-08-18T07:36:38Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -149,6 +149,31 @@
  },
  "documents": [
   {
+   "slug": "tencent-hunyuan-evie-preview-4-5b-model-card",
+   "title": "EVIE-Preview-4.5B Model Card",
+   "publisher": "tencent_hunyuan",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "EVIE-Preview-4.5B"
+   ],
+   "publication_date": "2026-08-17",
+   "canonical_url": "https://huggingface.co/tencent/EVIE-Preview-4.5B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-18T07:30:04Z",
+   "last_checked": "2026-08-18T07:30:04Z",
+   "last_changed": "2026-08-18T07:30:04Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "693267b5b99062f55546f18d467912ece0ffe6f57bfda98ef25b51088e811139",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-18T07:30:04Z",
+   "content_fingerprint": "46462e6c1df0f61376686ff6e44d19b511fc5f690f11fd6fda8a061d6b61674a",
+   "version_count": 1
+  },
+  {
    "slug": "meta-muse-spark-1-1-other",
    "title": "Addressing an issue involving a third-party cyber evaluation of Muse Spark 1.1",
    "publisher": "meta",
@@ -200,6 +225,32 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-15T08:34:05Z",
    "content_fingerprint": "38066de14eb82a33c8af15320cfd72e4a379c97a381c8ef4549da249e68c7874",
+   "version_count": 1
+  },
+  {
+   "slug": "tencent-hunyuan-ui-mate-27b-model-card",
+   "title": "UI-Mate-27B Model Card",
+   "publisher": "tencent_hunyuan",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "UI-Mate-27B",
+    "UI-Mate-9B"
+   ],
+   "publication_date": "2026-08-14",
+   "canonical_url": "https://huggingface.co/tencent/UI-Mate-27B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-18T07:29:52Z",
+   "last_checked": "2026-08-18T07:29:52Z",
+   "last_changed": "2026-08-18T07:29:52Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "adf678db79b1d5cac8304ae2ef2111ade49fb6d22077cc415cbdc71d6db68dae",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-18T07:29:52Z",
+   "content_fingerprint": "8741ac1eb4213a0520ddd119ed48ffab39712d5f01dd7d7aa49f7da8788bd08a",
    "version_count": 1
   },
   {

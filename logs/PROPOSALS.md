@@ -369,3 +369,44 @@ has, not just the canonical one.
 Evidence: friction line `no_field_for_alternate_surface` this run; `cardtrack/propose.py`
 `_handle_field_update` (the `canonical_url` branch's `content_fingerprint` requirement) and
 `cardtrack/identity.py:38-45`; `notes` on id 226, where this had to be recorded as prose instead.
+
+## 2026-08-18 — The corpus can hold a superseded edition and never find out
+
+Yesterday's entry asked for `alt_urls` on the grounds that one document often lives at two URLs.
+Today's evidence sharpens the problem: for three Anthropic documents the corpus canonical URL is
+not a co-equal surface but an **older edition**, and the publisher's revised edition sits at a
+different URL that the pipeline never fetches. Both URLs return 200, so link-checking sees
+nothing wrong, and fingerprinting compares the stale file against itself forever.
+
+Verified this run by fetching and paginating both copies of each:
+
+| document | corpus URL | live revised URL | difference |
+|---|---|---|---|
+| System Card: Claude Mythos Preview | `www-cdn…/8b838020…pdf` (244 pp) | `www-cdn…/08ab9158…pdf` (245 pp) | changelog Apr 8 2026: model-name typos, a §7.9 quote removed because it was misattributed to Mythos Preview but came from Opus 4.6, corrected Eleos AI Research findings |
+| Alignment Risk Update: Claude Mythos Preview | `www-cdn…/79c2d46d…pdf` (59 pp) | `anthropic.com/claude-mythos-preview-risk-report` (61 pp) | changelog Apr 10 2026: §§1, 10.2, 5.3.2 revised |
+| Risk Report: February 2026 | `www-cdn…/08eca275…pdf` (104 pp) | `anthropic.com/feb-2026-risk-report` (106 pp) | changelog May 26 2026: language METR's pilot external review flagged in §3.4 |
+| Claude Opus 5 System Card | `www-cdn…/c5fbac3f…pdf` (193 pp) | `www-cdn…/b514064a…pdf` (194 pp) | repagination only — full word-diff shows no content change |
+
+The fourth row matters as much as the first three: a curation agent can tell a corrected
+misattribution from a moved page number, and a byte comparison cannot.
+
+Suggested change, in priority order:
+
+1. **Prefer the publisher's stable named URL as canonical when one exists.** Anthropic serves every
+   current system card from `anthropic.com/<slug>-system-card` and redirects it to whichever CDN
+   hash is current; the corpus is split between named URLs (Opus 4.7, Opus 4.8, Sonnet 4.6,
+   Fable 5/Mythos 5) and frozen hashes (Opus 5, Sonnet 5, Mythos Preview ×2, Opus 4.6, Feb risk
+   report). The named URL is self-updating; the hash is a snapshot with a publication date attached
+   to it.
+2. **Let `field_update --field canonical_url` move a document to a verified newer edition without a
+   fingerprint match**, on agent attestation that both URLs are the same document, demoting the old
+   URL into `alt_urls`. The current fingerprint-match requirement makes exactly the case that
+   matters — the content changed — the one case it forbids.
+3. Failing both, at minimum **link-check and fingerprint every URL a document has**, so a revision
+   published to a sibling surface raises a new version rather than silence.
+
+Evidence: friction line `canonical_url_holds_superseded_edition` this run; the four documents above,
+all fetched and page-counted at 07:45Z; `cardtrack/propose.py` `_handle_field_update`
+(`canonical_url` branch) and `_handle_new_version`, which rejects any URL not already on a document
+with `unknown_document: … use action=add` — so the revised edition can only enter as a duplicate row
+or not at all.
