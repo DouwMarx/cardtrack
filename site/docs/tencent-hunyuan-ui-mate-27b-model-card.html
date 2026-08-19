@@ -26,7 +26,7 @@
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
     <dt>Models</dt>
-    <dd>UI-Mate-27B, UI-Mate-9B</dd>
+    <dd>UI-Mate-27B, UI-Mate-9B, UI-Mate-democua-27B</dd>
     <dt>Published</dt>
     <dd><span data-pagefind-meta="date">2026-08-14</span>
         <span data-pagefind-filter="year" hidden>2026</span></dd>
@@ -72,7 +72,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +91,15 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/tencent/UI-Mate-9B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-9B</a> · <a href="https://hf.co/collections/tencent/ui-mate" rel="noopener nofollow">https://hf.co/collections/tencent/ui-mate</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-19T06:25:24Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-08-19T06:17Z-local · agent · lead: phase_a_candidate</span>
+          <div class="just">model_names: ["UI-Mate-27B", "UI-Mate-9B"] → ["UI-Mate-27B", "UI-Mate-9B", "UI-Mate-democua-27B"]</div>
+          <div class="just">The UI-Mate-27B family card&#39;s Model Details table lists three released checkpoints - UI-Mate-27B (general computer use at 27B), UI-Mate-9B (general computer use at 9B) and UI-Mate-democua-27B (demonstration-guided computer use) - but the corpus row records only the first two. UI-Mate-democua-27B surfaced in this run&#39;s huggingface.co/tencent index diff as its own repo (created 2026-08-14, same release day, Apache-2.0, arXiv 2608.15930). It is a demonstration-guided checkpoint of the same model, so under the family rule it does not warrant a separate entry; it belongs in this row&#39;s model_names. Adding it keeps the family card complete and prevents the repo being re-triaged as an uncatalogued release on future runs.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/UI-Mate-27B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-27B</a> · <a href="https://huggingface.co/tencent/UI-Mate-democua-27B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-democua-27B</a>          </div>
       </li>
     </ol>
     </details>
@@ -356,6 +365,6 @@ Qwen/Qwen3.6-27B</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-18T07:36:38Z</p></footer>
+<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
 </body>
 </html>

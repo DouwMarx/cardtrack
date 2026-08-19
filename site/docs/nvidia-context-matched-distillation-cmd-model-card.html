@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context-Matched Distillation (CMD) model card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Context-Matched Distillation (CMD) model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Context-Matched Distillation (CMD)</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-08-13</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/cmd" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/nvidia/cmd</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-19T06:24:53Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>NVIDIA OneWay Noncommercial License; non-commercial research/educational use only. Card carries only limitations and ethical-considerations boilerplate (artifact risks in fine details/text/faces/hands/rapid motion, training-data bias, synthetic-content labelling guidance) - no safety evaluation, red-teaming or risk assessment. Code: https://github.com/nv-tlabs/cmd</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-context-matched-distillation-cmd-model-card&amp;body=Document%3A%20nvidia-context-matched-distillation-cmd-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/cmd%0AFingerprint%3A%20e0853d3e4327953b975db9dee5faea0971655f05a6e4035ad0c590bcb9b84bde%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-19T06:24:53Z</td>
+          <td>text/html</td>
+          <td>145,332</td>
+          <td><code title="e0853d3e4327953b975db9dee5faea0971655f05a6e4035ad0c590bcb9b84bde">e0853d3e4327953b</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-19T06:24:53Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-19T06:17Z-local · agent · lead: phase_a_candidate</span>
+          <div class="just">NVIDIA&#39;s own model card, in NVIDIA&#39;s standard card template (Description / License and Terms of Use / Deployment Geography / Intended Use / Limitations / Ethical Considerations), for Context-Matched Distillation, a causal image-to-video autoregressive distillation of Cosmos-Predict2.5 2B released by NVIDIA Toronto AI Lab with Surrey&#39;s SketchX. Six safetensors checkpoints (chunk-1 and chunk-4, short and long duration, plus camera-control variants) with reference code at github.com/nv-tlabs/cmd and a project page. Repo created 2026-08-13, card revised 2026-08-18, which is when it surfaced in the huggingface.co/nvidia index diff. Not a quantization or re-upload: new weights from a new distillation method with its own paper. Cosmos-Predict2.5 is not itself in the corpus, so this is not a variant of a covered model. Flagging honestly that notability is on the modest side for this one: 0 downloads and 7 likes at time of writing and no NVIDIA blog announcement, so it rests on being an official first-party card with paper and code, in line with corpus precedent for NVIDIA research releases such as LocateAnything-3B and Lyra-2.0. Easy to revert if that reading is too generous.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/cmd/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/nvidia/cmd/raw/main/README.md</a> · <a href="https://github.com/nv-tlabs/cmd" rel="noopener nofollow">https://github.com/nv-tlabs/cmd</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/cmd" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation
+Hmrishav Bandyopadhyay1,2, Xuanchi Ren1, Zijian Huang1, Jay Zhangjie Wu1, Tianshi Cao1, Ruilong Li1, Bryan Chu1, Sanja Fidler1, Yi-Zhe Song2, Zian Wang1
+1NVIDIA
+2SketchX, CVSSP, University of Surrey
+Model Overview
+Description
+Context-Matched Distillation (CMD) is a method for autoregressive video distillation using causal teachers. This repository provides CMD checkpoints based on Cosmos-Predict2.5 2B for causal image-to-video generation.
+The release includes chunk-1 and chunk-4 models for short- and long-duration generation, together with camera-control variants. The models use local temporal attention and generate video autoregressively in causal chunks.
+This model is for research and development only.
+License and Terms of Use
+This model is released under the NVIDIA OneWay Noncommercial License. It may only be used for non-commercial research or educational purposes.
+Deployment Geography
+Global
+Intended Use
+Primary users include researchers and developers studying:
+- Autoregressive video generation.
+- Causal video distillation.
+- Long-duration video generation.
+- Interactive world models.
+- Camera-controlled video generation.
+The checkpoints are not intended for safety-critical applications or uses prohibited by the model license.
+Available Checkpoints
+| Checkpoint | Configuration | Intended use |
+|---|---|---|
+| chunk1_short_t24_l21.safetensors | t24_l21 | Chunk-1 short-duration generation |
+| chunk4_short_t21_l16.safetensors | t21_l16 | Chunk-4 short-duration generation |
+| chunk1_long_t126_l21.safetensors | t126_l21 | Chunk-1 long-duration generation |
+| chunk4_long_t121_l16.safetensors | t121_l16 | Chunk-4 long-duration generation |
+| chunk1_camera_control_t32_l21.safetensors | t32_l21 | Chunk-1 generation with camera control |
+| chunk4_camera_control_t29_l24.safetensors | t29_l24 | Chunk-4 generation with camera control |
+In the configuration names, t denotes frame duration and l denotes local attention. Checkpoint names do not include dataset names or training iteration information.
+Quick Start
+Install the reference implementation:
+git clone https://github.com/nv-tlabs/cmd.git
+cd cmd
+conda create -n causal-cosmos python=3.10 -y
+conda activate causal-cosmos
+python -m pip install -r requirements.txt
+python -m pip install flash-attn --no-build-isolation
+python setup.py develop
+Download the checkpoints:
+hf download nvidia/cmd --local-dir checkpoints
+To download one model only:
+hf download nvidia/cmd \
+  chunk1_short_t24_l21.safetensors \
+  --local-dir checkpoints
+Follow the inference instructions in the CMD repository to select the matching model configuration and run generation.
+Model Architecture
+Architecture type: Causal video diffusion transformer
+Base model: Cosmos-Predict2.5 2B
+Generation strategy: Block-autoregressive video generation
+CMD uses causal temporal attention to generate video sequentially. Chunk-1 and chunk-4 variants provide different autoregressive generation granularities, while the camera-control variants add camera-motion conditioning.
+Inputs
+Standard checkpoints accept:
+- An initial image.
+- A text prompt.
+Camera-control checkpoints additionally accept a camera trajectory in the format expected by the CMD inference pipeline.
+Outputs
+The model produces an RGB video conditioned on the initial image, text prompt, and, when applicable, camera trajectory. Output duration is determined by the selected t configuration.
+Software Integration
+- Framework: PyTorch
+- Checkpoint format: Safetensors
+- Reference implementation: nv-tlabs/cmd
+- Preferred operating system: Linux
+- Recommended hardware: NVIDIA CUDA-capable GPU
+The checkpoints must be used with the corresponding model architecture and configuration supplied by the reference implementation.
+Training Method
+CMD uses a two-stage procedure:
+- Causal teacher pretraining.
+- Context-matched distillation.
+See the CMD repository and project page for the method and evaluation details.
+Limitations
+- Autoregressive errors may accumulate during long rollouts.
+- Visual quality and temporal consistency may degrade over time.
+- Generated motion may be physically implausible.
+- Fine details, text, faces, hands, and rapid motion may contain artifacts.
+- Prompt adherence may vary with scene complexity.
+- Camera-control outputs may deviate from the requested trajectory.
+- Generated content may reflect biases present in the training data.
+Users should evaluate the model on data representative of their intended application before deployment.
+Ethical Considerations
+Generated video may be mistaken for authentic footage. Users should clearly identify synthetic content where appropriate and must not use the model for deception, impersonation, harassment, misinformation, or violations of privacy, intellectual-property, or other applicable rights.
+NVIDIA believes Trustworthy AI is a shared responsibility. Developers should ensure that their use of this model complies with applicable laws, policies, licenses, and safety requirements.
+Please report model quality, risk, security vulnerabilities, or NVIDIA AI concerns through the NVIDIA support portal.
+Citation
+If you find this work useful, please cite:
+@article{bandyopadhyay2026context,
+  title   = {Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation},
+  author  = {Bandyopadhyay, Hmrishav and Ren, Xuanchi and Huang, Zijian
+             and Wu, Jay Zhangjie and Cao, Tianshi and Li, Ruilong
+             and Chu, Bryan and Fidler, Sanja and Song, Yi-Zhe
+             and Wang, Zian},
+  journal = {arXiv preprint arXiv:2608.13391},
+  year    = {2026},
+  eprint  = {2608.13391},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url     = {https://arxiv.org/abs/2608.13391}
+}
+Acknowledgements
+This project builds on Self-Forcing and NVIDIA Cosmos-Predict2.5.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+</body>
+</html>

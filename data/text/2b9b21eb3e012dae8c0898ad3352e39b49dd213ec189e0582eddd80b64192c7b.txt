@@ -1,0 +1,101 @@
+Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation
+Hmrishav Bandyopadhyay1,2, Xuanchi Ren1, Zijian Huang1, Jay Zhangjie Wu1, Tianshi Cao1, Ruilong Li1, Bryan Chu1, Sanja Fidler1, Yi-Zhe Song2, Zian Wang1
+1NVIDIA
+2SketchX, CVSSP, University of Surrey
+Model Overview
+Description
+Context-Matched Distillation (CMD) is a method for autoregressive video distillation using causal teachers. This repository provides CMD checkpoints based on Cosmos-Predict2.5 2B for causal image-to-video generation.
+The release includes chunk-1 and chunk-4 models for short- and long-duration generation, together with camera-control variants. The models use local temporal attention and generate video autoregressively in causal chunks.
+This model is for research and development only.
+License and Terms of Use
+This model is released under the NVIDIA OneWay Noncommercial License. It may only be used for non-commercial research or educational purposes.
+Deployment Geography
+Global
+Intended Use
+Primary users include researchers and developers studying:
+- Autoregressive video generation.
+- Causal video distillation.
+- Long-duration video generation.
+- Interactive world models.
+- Camera-controlled video generation.
+The checkpoints are not intended for safety-critical applications or uses prohibited by the model license.
+Available Checkpoints
+| Checkpoint | Configuration | Intended use |
+|---|---|---|
+| chunk1_short_t24_l21.safetensors | t24_l21 | Chunk-1 short-duration generation |
+| chunk4_short_t21_l16.safetensors | t21_l16 | Chunk-4 short-duration generation |
+| chunk1_long_t126_l21.safetensors | t126_l21 | Chunk-1 long-duration generation |
+| chunk4_long_t121_l16.safetensors | t121_l16 | Chunk-4 long-duration generation |
+| chunk1_camera_control_t32_l21.safetensors | t32_l21 | Chunk-1 generation with camera control |
+| chunk4_camera_control_t29_l24.safetensors | t29_l24 | Chunk-4 generation with camera control |
+In the configuration names, t denotes frame duration and l denotes local attention. Checkpoint names do not include dataset names or training iteration information.
+Quick Start
+Install the reference implementation:
+git clone https://github.com/nv-tlabs/cmd.git
+cd cmd
+conda create -n causal-cosmos python=3.10 -y
+conda activate causal-cosmos
+python -m pip install -r requirements.txt
+python -m pip install flash-attn --no-build-isolation
+python setup.py develop
+Download the checkpoints:
+hf download nvidia/cmd --local-dir checkpoints
+To download one model only:
+hf download nvidia/cmd \
+  chunk1_short_t24_l21.safetensors \
+  --local-dir checkpoints
+Follow the inference instructions in the CMD repository to select the matching model configuration and run generation.
+Model Architecture
+Architecture type: Causal video diffusion transformer
+Base model: Cosmos-Predict2.5 2B
+Generation strategy: Block-autoregressive video generation
+CMD uses causal temporal attention to generate video sequentially. Chunk-1 and chunk-4 variants provide different autoregressive generation granularities, while the camera-control variants add camera-motion conditioning.
+Inputs
+Standard checkpoints accept:
+- An initial image.
+- A text prompt.
+Camera-control checkpoints additionally accept a camera trajectory in the format expected by the CMD inference pipeline.
+Outputs
+The model produces an RGB video conditioned on the initial image, text prompt, and, when applicable, camera trajectory. Output duration is determined by the selected t configuration.
+Software Integration
+- Framework: PyTorch
+- Checkpoint format: Safetensors
+- Reference implementation: nv-tlabs/cmd
+- Preferred operating system: Linux
+- Recommended hardware: NVIDIA CUDA-capable GPU
+The checkpoints must be used with the corresponding model architecture and configuration supplied by the reference implementation.
+Training Method
+CMD uses a two-stage procedure:
+- Causal teacher pretraining.
+- Context-matched distillation.
+See the CMD repository and project page for the method and evaluation details.
+Limitations
+- Autoregressive errors may accumulate during long rollouts.
+- Visual quality and temporal consistency may degrade over time.
+- Generated motion may be physically implausible.
+- Fine details, text, faces, hands, and rapid motion may contain artifacts.
+- Prompt adherence may vary with scene complexity.
+- Camera-control outputs may deviate from the requested trajectory.
+- Generated content may reflect biases present in the training data.
+Users should evaluate the model on data representative of their intended application before deployment.
+Ethical Considerations
+Generated video may be mistaken for authentic footage. Users should clearly identify synthetic content where appropriate and must not use the model for deception, impersonation, harassment, misinformation, or violations of privacy, intellectual-property, or other applicable rights.
+NVIDIA believes Trustworthy AI is a shared responsibility. Developers should ensure that their use of this model complies with applicable laws, policies, licenses, and safety requirements.
+Please report model quality, risk, security vulnerabilities, or NVIDIA AI concerns through the NVIDIA support portal.
+Citation
+If you find this work useful, please cite:
+@article{bandyopadhyay2026context,
+  title   = {Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation},
+  author  = {Bandyopadhyay, Hmrishav and Ren, Xuanchi and Huang, Zijian
+             and Wu, Jay Zhangjie and Cao, Tianshi and Li, Ruilong
+             and Chu, Bryan and Fidler, Sanja and Song, Yi-Zhe
+             and Wang, Zian},
+  journal = {arXiv preprint arXiv:2608.13391},
+  year    = {2026},
+  eprint  = {2608.13391},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url     = {https://arxiv.org/abs/2608.13391}
+}
+Acknowledgements
+This project builds on Self-Forcing and NVIDIA Cosmos-Predict2.5.

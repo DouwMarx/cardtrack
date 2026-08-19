@@ -410,3 +410,94 @@ all fetched and page-counted at 07:45Z; `cardtrack/propose.py` `_handle_field_up
 (`canonical_url` branch) and `_handle_new_version`, which rejects any URL not already on a document
 with `unknown_document: … use action=add` — so the revised edition can only enter as a duplicate row
 or not at all.
+
+## 2026-08-19 — Two gaps this run: row granularity for multi-size families, and no way to detect coverage holes
+
+### 1. Nothing in the pipeline asks "what has this org published that we don't hold?"
+
+Following a base-model citation out of the `tencent/EVIE-Preview-4.5B` card added on 2026-08-17, I
+found that **the entire Qwen3.5 generation is absent from the corpus** — eight post-trained sizes
+released 2026-02-16 to 2026-02-28, each with its own HuggingFace card:
+
+| model | created | downloads | likes |
+|---|---|---|---|
+| Qwen3.5-397B-A17B | 2026-02-16 | 279,886 | 1,552 |
+| Qwen3.5-122B-A10B | 2026-02-24 | 2,152,062 | 609 |
+| Qwen3.5-35B-A3B | 2026-02-24 | 2,396,631 | 1,489 |
+| Qwen3.5-27B | 2026-02-24 | 2,838,192 | 1,029 |
+| Qwen3.5-9B | 2026-02-27 | 13,835,311 | 1,834 |
+| Qwen3.5-4B | 2026-02-27 | 7,643,691 | 830 |
+| Qwen3.5-2B | 2026-02-28 | 3,099,095 | 366 |
+| Qwen3.5-0.8B | 2026-02-28 | 2,948,046 | 668 |
+
+`huggingface.co/Qwen` is a configured `index_url` and has been fetched successfully on every run.
+The generation was missed anyway, because **Phase A diffs index pages for _new_ links**, and a
+February release stopped being a new link in February. Six months of runs, no signal. It surfaced
+only because a card added two days ago happened to cite one of these as its base model.
+
+The corpus is thin in the same way elsewhere: 4 Qwen rows total, jumping from Qwen3-era models
+straight to Qwen3.6-35B-A3B in April.
+
+Suggested change: a periodic **coverage reconciliation** pass, separate from index diffing. For
+each allowlisted org with a machine-readable release surface — the HuggingFace API covers ten of
+them and exposes `createdAt`, `downloads` and `likes` directly — enumerate everything published
+since the scope floor, subtract what the corpus holds, and write the residue into
+`candidates.json` with `source: coverage_gap`. Rank by downloads so the agent triages a
+13.8M-download model card before a 200-download SAE probe. This is a query, not a crawl; it is
+cheap, and it is the only thing that would have caught this.
+
+Evidence: friction line `index_diff_structurally_blind_to_backlog_gaps` this run; the table above,
+from `huggingface.co/api/models?author=Qwen&sort=createdAt`, fetched 08:30Z.
+
+### 2. When each size in a family has its own card, the criteria contradict the corpus
+
+Having found the gap, I could not determine how many rows it should become, and this blocked seven
+of the eight proposals above.
+
+- `config/criteria.yaml` says `distinct_model_release` excludes "a size, quantization, checkpoint,
+  or regional variant of a model already covered", and that "family cards → one entry, all
+  model_names". That reads as **one row** for Qwen3.5.
+- But there *is no family card*. Each of the eight is a distinct card with its own architecture
+  table and its own benchmark tables. The rule's antecedent — one card covering several variants —
+  simply does not hold here.
+- And the corpus's own precedent reads the other way: it holds **Qwen3.8-27B** (2026-08-05) and
+  **Qwen3.8-2.4T-A95B** (2026-08-08) as two separate rows, which is exactly the dense/MoE pairing
+  one generation later. Same for Meta's `muse-glimmer` card/other pair and NVIDIA's Cosmos3 rows.
+
+So the same publisher's releases are being catalogued under two incompatible readings, and a daily
+run has no principled way to pick. I proposed only the Qwen3.5 flagship (id 236) and Qwen3.6-27B
+(id 235, which has the direct Qwen3.8-27B precedent), and left the seven siblings alone rather than
+commit a generation to a guess.
+
+Suggested change: make the rule turn on **documents, not models**, since that is what the database
+catalogues. One distinctly-authored card at its own URL is one row; `model_names` merges only what
+that one card actually covers (hosted aliases, `-Base` twins, checkpoints listed in its own model
+table — the `UI-Mate-27B` case I field-updated this run). Quantizations and re-uploads stay
+excluded because they re-publish a card rather than author one. That rule is mechanical, matches
+what the corpus already does for Qwen3.8, and would have given a clear answer here: eight rows.
+Whatever is chosen, it should be written into `criteria.yaml` explicitly — the current phrasing
+assumes a family card exists, and for most Chinese open-weight labs it does not.
+
+Evidence: friction line `family_row_granularity_ambiguous_for_multi_size_open_weight_releases`;
+corpus rows `alibaba-qwen-qwen3-8-27b-model-card` vs `alibaba-qwen-qwen3-8-2-4t-a95b-model-card`;
+`config/criteria.yaml:12-14`.
+
+### 3. Smaller: `has_safety_evals` asks about framing, not subject matter
+
+Anthropic's protein-design technical report (id 231 this run) reports, with wet-lab validation by
+Adaptyv Bio and Twist Bioscience, that Claude Opus 4.8 and Mythos Preview autonomously designed de
+novo protein binders at a 27% hit rate against a 10–15% field baseline, and beat an open
+competition on RBX1 by 28/90 designs to 9/245. On subject matter that is the strongest bio
+dangerous-capability measurement in the corpus. On the letter of the criterion it scores `false`:
+the 29-page PDF contains no risk framing, no mitigations and no red-teaming — grep finds no
+occurrence of dual-use, biosecurity, misuse, bioweapon or safeguard. The dual-use assessment sits
+in the companion announcement (id 233, `has_safety_evals: true`).
+
+Net effect: the site's safety filter surfaces a four-paragraph blog caveat and hides the document
+with the numbers in it. I attested honestly in both cases, because the criterion asks what the
+document contains — but the split tracks where the publisher put the caveat, not where the safety
+signal is. Worth considering a second soft flag (`measures_dangerous_capability`, by domain:
+bio, cyber, autonomy, persuasion) so subject matter and framing can be recorded separately.
+
+Evidence: friction line `has_safety_evals_undefined_for_dual_use_capability_report`; ids 231 and
+233; `config/criteria.yaml:19-22`.
