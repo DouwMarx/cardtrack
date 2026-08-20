@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:50:32Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-6-other-3&amp;body=Document%3A%20anthropic-claude-opus-4-6-other-3%0AURL%3A%20https%3A//www.anthropic.com/research/automated-alignment-researchers%0AFingerprint%3A%20700081ba005d81be7e7ff17773af25ab7fad7544b36192afd212eb745116990d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-6-other-3&amp;body=Document%3A%20anthropic-claude-opus-4-6-other-3%0AURL%3A%20https%3A//www.anthropic.com/research/automated-alignment-researchers%0AFingerprint%3A%2021a2e7e55be11d2446c6f242f5440efcc1370edbabdf8b6a11a7184d08f6fc47%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-20T06:20:03Z</td>
+          <td>text/html</td>
+          <td>146,150</td>
+          <td><code title="21a2e7e55be11d2446c6f242f5440efcc1370edbabdf8b6a11a7184d08f6fc47">21a2e7e55be11d24</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:50:32Z</td>
           <td>text/html</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +104,14 @@
           <div class="just">Claude Opus 4.6 and Claude Sonnet 4 are Anthropic API/product-only models.</div>
           <div class="evidence">Evidence:
 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="noopener nofollow">https://platform.claude.com/docs/en/about-claude/models/overview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-20T06:20:03Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/automated-alignment-researchers" rel="noopener nofollow">https://www.anthropic.com/research/automated-alignment-researchers</a>          </div>
       </li>
     </ol>
     </details>
@@ -137,20 +151,20 @@ In turn, this means that the core bottleneck in alignment research could become 
 Alien science. This work might have some stranger implications, too. AARs, by their nature, are designed to discover ideas that humans might not have considered. But we still need a way to verify whether their ideas and results are sound. For now, we’re still able to interpret what the AARs have done and why. But that might not always be the case: over time, the models’ ideas could become much harder to verify, or corrupted in ways that are tricky for humans to parse or catch. That could mean creating an “alien science”.
 Preventing hacks. Even in this highly circumscribed environment, we observed the models “reward hacking”—that is, trying to game our set-up. On math tasks, for instance, one AAR noticed that the most common answer to each problem was usually correct, so it skipped the teacher entirely and instructed the strong model to always choose the most common one. On a coding task, where the model had to predict whether a piece of code was right, the AAR realized it could run the code against some tests and simply read off the right answer. Hacks like these don’t invalidate our results (we detected and disqualified these entries), but they clearly do provide a warning. Any deployment of automated researchers will require evaluations that the AARs can&#39;t tamper with—and human inspections of both their results and their methods.
 To read this research in full, see our Alignment Science blog. The code and datasets for this work are publicly available, here.
-Footnotes
-- These are available (along with the rest of our code and data) here.
-- We chose these models for several reasons. There is a substantial performance gap between the two, the small model performs better-than-random on our testbeds, and both models are sufficiently small for fast experimentation. We use open-weights models for all Anthropic Fellows projects.
 Related content
-Discovering cryptographic weaknesses with Claude
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
+How Claude is accelerating protein design and analytical chemistry
+In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested Claude’s ability to design protein binders from scratch, a key step in creating protein-based drugs that has historically taken a specialist weeks or months per target. In the second example, we evaluated whether Claude can accelerate chemical analysis. Claude Opus 5, a generally available model, was given NMR and LC-MS data (the data that allows chemists to assess the identity and purity of the compounds they work with).
 Read more
-Project Pilot: Can AI control a drone?
-Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
+Patterns and problems in emerging multiagent systems
+Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
+Read more
+Reviewing the evidence on worker retraining programs
+We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
 </body>
 </html>

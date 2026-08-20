@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GR00T-H-N1.7 model card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">GR00T-H-N1.7 model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>GR00T-H-N1.7</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-05-30</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/GR00T-H-N1.7" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/nvidia/GR00T-H-N1.7</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-20T06:28:33Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Successor to nvidia/GR00T-H (March 2026, NVIDIA OneWay Noncommercial, base GR00T-N1.6-3B), proposed as a separate row in the same run; the project README lists the two as distinct Model Variants on separate git branches with different base models and different licenses. Companion world model: nvidia/Cosmos-H-Surgical-Simulator, also proposed this run. has_safety_evals false: the card carries only a boilerplate Ethical Considerations paragraph and a Safety &amp; Security subcard that is a four-row questionnaire (&#39;not tested or intended for clinical or mission critical applications that require functional safety&#39;), with no quantitative safety evaluation, red-teaming or risk assessment. openness=open_weight_restrictive: weights are public under the NVIDIA Open Model License, which is a use-restricted community-style license rather than an Apache/MIT/BSD-class one; this matches the corpus&#39;s existing treatment of nvidia/Cosmos-H-Dreams.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-gr00t-h-n1-7-model-card&amp;body=Document%3A%20nvidia-gr00t-h-n1-7-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/GR00T-H-N1.7%0AFingerprint%3A%206770aa892082fe4f6fed4c75ee17d846816b75dcde2d4dd336edfae37310b9b7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-20T06:28:33Z</td>
+          <td>text/html</td>
+          <td>183,026</td>
+          <td><code title="6770aa892082fe4f6fed4c75ee17d846816b75dcde2d4dd336edfae37310b9b7">6770aa892082fe4f</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-20T06:28:33Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · agent · lead: agent_search</span>
+          <div class="just">First-party NVIDIA model card for GR00T-H-N1.7, a vision-language-action model post-trained from Isaac GR00T N1.7 (Cosmos-Reason2-2B backbone) on the Open-H Embodiment surgical dataset for surgical and healthcare robotics. Full standard NVIDIA card: architecture, inputs/outputs, training data (770 h / 124,019 episodes / 119 datasets / 20 robot platforms / 50+ institutions full corpus; 601 h real-world surgical post-training subset across 7 platforms), software integration, and Model Card++ subcards. It is a distinct release rather than a size or quantization variant: a different base backbone from the corpus&#39;s GR00T-N1.7-3B general-purpose row, a different training corpus, and the NVIDIA Open Model License permitting commercial use. Notable: the project&#39;s own GitHub News section announces it (&#39;[June 2026] Released GR00T-H-N1.7, a commercially usable GR00T-H post-trained on the same Open-H data under the NVIDIA Open Model License&#39;), and it was independently covered as the first commercially licensed surgical VLA foundation model. Card fetched and read in full; publication_date is the date of the single HuggingFace commit that published the card (2026-05-30); the project README and press coverage place the public announcement in June 2026.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://github.com/NVIDIA-Medtech/GR00T-H" rel="noopener nofollow">https://github.com/NVIDIA-Medtech/GR00T-H</a> · <a href="https://www.techtimes.com/articles/318583/20260617/surgical-robotics-ai-gets-commercial-foundation-nvidia-gr00t-h-n17-arrives.htm" rel="noopener nofollow">https://www.techtimes.com/articles/318583/20260617/surgical-robotics-ai-gets-commercial-foundation-nvidia-gr00t-h-n17-arrives.htm</a> · <a href="https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Open-H-Embodiment" rel="noopener nofollow">https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Open-H-Embodiment</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/GR00T-H-N1.7" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>GR00T-H-N1.7
+Model Overview
+Description:
+GR00T-H-N1.7 is a post-trained variant of NVIDIA Isaac GR00T N1.7 for surgical robots. It builds on the GR00T N1.7 VLA foundation and adapts it using the Open-H embodiment dataset.
+This model is ready for commercial use.
+The neural network architecture is inherited from the GR00T N1.7 series of models, combining a vision-language foundation model with a diffusion transformer head that denoises continuous actions.
+License/Terms of Use:
+NVIDIA Open Model License
+You are responsible for ensuring that your use of NVIDIA provided models complies with all applicable laws.
+Deployment Geography:
+Global
+Use Case:
+Researchers, Academics, Open-Source Community: Healthcare-focused robotics research and algorithm development.
+Intended Use
+GR00T-H-N1.7 is intended for use in robotics R&amp;D, including exploration of surgical robotics and robotic ultrasound policies, benchmarking, and method development. It is not intended for clinical deployment, patient care, or medical decision-making.
+References(s):
+- Open-H Paper: Open-H-Embodiment: A Large-Scale Dataset for Enabling Foundation Models in Medical Robotics
+- Base Model: GR00T-N1.7-3B
+- GR00T Website: NVIDIA Isaac GR00T
+- GR00T N1 White Paper: https://arxiv.org/abs/2503.14734
+- Cosmos-Reason2: NVIDIA. &#34;Cosmos-Reason2: An Open, Customizable, Reasoning Vision Language Model.&#34; NVIDIA Documentation (2026).
+- Liu, Xingchao, and Chengyue Gong. &#34;Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow.&#34; The Eleventh International Conference on Learning Representations.
+- Flow Matching Policy:
+Black, Kevin, et al. &#34;pi0: A Vision-Language-Action Flow Model for General Robot Control.&#34; arXiv preprint arXiv:2410.24164 (2024).
+Model Architecture:
+Architecture Type: Vision Transformer, Multilayer Perceptron, Flow matching Transformer
+This model was developed based on GR00T N1.7.
+Number of model parameters: 3B
+GR00T-H-N1.7 uses Cosmos-Reason2-2B to encode the robot&#39;s image observations and text instructions. The architecture handles a varying number of views per embodiment by concatenating image token embeddings from all frames into a sequence, followed by language token embeddings.
+To model proprioception and a sequence of actions conditioned on observations, GR00T-H-N1.7 uses a flow matching transformer. The flow matching transformer interleaves self-attention over proprioception and actions with cross-attention to the Cosmos-Reason2-2B vision and language embeddings. During training, the input actions are corrupted by randomly interpolating between the clean action vector and a Gaussian noise vector. At inference time, the policy first samples a Gaussian noise vector and iteratively reconstructs a continuous-value action using its velocity prediction.
+Network Architecture: The schematic diagram is shown in the illustration above. Red, Green, Blue (RGB) camera frames are processed through a pre-trained vision transformer (SigLip2). Robot proprioception is encoded using a multi-layer perceptron (MLP) indexed by the embodiment ID. To handle variable-dimension proprio, inputs are padded to a configurable max length before feeding into the MLP. Actions are encoded and velocity predictions decoded by an MLP, one per unique embodiment. The flow matching transformer is implemented as a diffusion transformer (DiT), in which the diffusion step conditioning is implemented using adaptive layernorm (AdaLN).
+Input(s):
+Input Type(s):
+- Vision: Image Frames
+- State: Robot Proprioception
+- Language Instruction: Text
+Input Format(s):
+- Vision: Variable number of image frames from robot cameras
+- State: Floating Point
+- Language Instruction: String
+Input Parameters:
+- Vision - Two-Dimensional (2D) - Red, Green, Blue (RGB) image, any resolution
+- State: One-Dimensional (1D) - Floating number vector
+- Language Instruction: One-Dimensional (1D) - String
+Output(s)
+Output Type(s): Actions
+Output Format Continuous-value vectors
+Output Parameters: Two-Dimensional (2D)
+Other Properties Related to Output: Continuous-value vectors correspond to different motor controls on a robot, which depends on Degrees of Freedom of the robot embodiment.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA&#39;s hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration:
+Runtime Engine(s): PyTorch, TensorRT
+Supported Hardware Microarchitecture Compatibility: All of the below:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+- NVIDIA Jetson
+- NVIDIA Lovelace
+Supported Operating System:
+- Ubuntu
+Model Version(s):
+GR00T-H-N1.7, post-trained from GR00T N1.7
+Training, Testing, and Evaluation Datasets:
+Dataset Overview:
+- Full Open-H-Embodiment Dataset: 770 hours; 124,019 episodes; 119 datasets; 20 robot platforms; 50+ institutions
+- Post-Training Subset: 601 hours (real-world surgical tasks only); ~63,930 episodes; 58 datasets; 7 robot platforms
+- Dataset partition: Training 98%, Testing N/A (real-world robot evaluation only), Validation 2%
+Training Data Summary
+GR00T-H-N1.7 is adapted from the upstream GR00T N1.7 foundation model using an Open-H post-training phase. The full Open-H-Embodiment dataset contains 770 hours of paired video and kinematic data across 124,019 episodes with synchronized streams such as video, kinematics, force/torque, ultrasound, and domain-specific sensors. For post-training, a 601-hour real-world surgical subset of the full 770-hour corpus is used. Only real-world surgical datasets are used; ultrasound, endoscopy, and simulation data is left for future work. The Versius-500 contribution is capped at 20% of training steps to prevent any single embodiment from dominating the loss signal; remaining datasets are sampled proportionally to their size.
+GR00T-H-N1.7 was trained on 7 robot platforms across 58 datasets: CMR Versius, dVRK, dVRK-Si, Rob Surgical BiTrack, KUKA LBR iiwa, USTC Torin, and UR5e.
+To enable better cross-embodiment transfer, the action space was standardized to relative end-effector (EEF) positioning. Additionally, camera configurations were standardized to include only (A) a single third-person monocular view, or (B) a third-person monocular view with wrist camera(s) and/or additional modalities (e.g., ultrasound images).
+The Open-H dataset was collected by more than 50 institutions across the globe. Data collection took place in various settings, including simulation, benchtop, ex vivo, in vivo, and clinical environments. Depending on the dataset, robots were teleoperated either programmatically or by engineers, researchers, medical students, or professional surgeons.
+For more information, see the Open-H-Embodiment project page.
+Training Dataset:
+- Data Modality: Video, Kinematics
+- Video Training Data Size: 601 hours
+- Kinematic Training Data Size: 601 hours
+- Data Collection Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Labeling Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Properties:
+  - Open-H is a healthcare robotics dataset comprised of time-synchronized video and kinematics, as well as text labels describing the task being completed.
+Evaluation Dataset:
+- Data Collection Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Labeling Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Properties:
+  - 2% of the training dataset was held-out for training-time validation.
+  - Primary evaluations are conducted in the real-world without a dataset.
+Inference:
+Acceleration Engine: TensorRT Test Hardware: NVIDIA Ampere, Ada, and Blackwell GPUs
+Ethical Considerations:
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications.  Developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+
+Please make sure you have proper rights and permissions for all input image and video content; if image or video includes people, personal health information, or intellectual property, the image or video generated will not blur or maintain proportions of image subjects included.
+For more detailed information on ethical considerations for this model, please see the Model Card++ Explainability, Bias, Safety &amp; Security, and Privacy Subcards.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 443</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
+</body>
+</html>

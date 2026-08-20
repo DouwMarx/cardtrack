@@ -501,3 +501,79 @@ bio, cyber, autonomy, persuasion) so subject matter and framing can be recorded 
 
 Evidence: friction line `has_safety_evals_undefined_for_dual_use_capability_report`; ids 231 and
 233; `config/criteria.yaml:19-22`.
+
+## 2026-08-20 — Row granularity is now inconsistent inside the corpus, and the system-card test has an unwritten discriminator
+
+Two items. The first is a follow-up that changes yesterday's §2 from "the criteria are ambiguous" to "the
+corpus has already answered the same question two different ways". The second is new. There is also one
+piece of confirming evidence for yesterday's §1 that asks for nothing beyond what was already proposed.
+
+### 1. The same kind of release is catalogued as one row in one place and two rows in another
+
+Yesterday I reported that `criteria.yaml` gives no answer when each member of a model family has its own
+card. Today the corpus itself contains both answers, and a daily run has no way to tell which is
+authoritative.
+
+- **One row.** NVIDIA's five Nemotron-Labs Teacher models (Chat, Competition-Coding, General-Reasoning,
+  Instruction-Following, STEM; all 2026-08-14) are held as a single row, id 225, with all five names in
+  `model_names`. They have five separately-authored cards of ~83 KB each, with different descriptions,
+  different training narratives and different benchmark tables, and each card says the model is "released
+  as a standalone checkpoint because it is a strong reasoning model in its own right".
+- **Two rows.** NVIDIA's two GR00T-H surgical variants have two cards of exactly that kind, and I
+  proposed them as ids 237 and 238 this run, on the grounds that they differ in base model
+  (GR00T-N1.6-3B vs GR00T-N1.7-3B) and in license (OneWay Noncommercial vs NVIDIA Open Model License).
+
+Both decisions are defensible and they contradict each other. I did not disturb id 225 — re-splitting a
+settled row on a daily run is worse than the inconsistency — but that leaves the contradiction in place.
+
+Note also where the id 225 decision is *recorded*: in that row's `notes`, as prose ("Sibling card URLs
+covered by this entry: …"). It is not derivable from the criteria, not visible in
+`state_summary.json`, and not machine-checkable. The concrete cost this run was a fetch and a diff of all
+five Teacher cards before I found that sentence — and the failure mode if I had not opened the database
+directly was four duplicate proposals.
+
+Suggested change (unchanged from yesterday, now with a second instance behind it): make the rule turn on
+documents rather than models — one distinctly-authored card at its own URL is one row, `model_names`
+merges only what that card itself covers. Under that rule id 225 becomes five rows and GR00T-H stays two,
+consistently. If instead the family-collapse reading is preferred, then `model_names` needs a companion
+field holding the covered sibling URLs, so the decision is queryable rather than buried in prose.
+
+Evidence: friction line `family_row_granularity_ambiguous_for_multi_size_open_weight_releases`
+(2026-08-19 and 2026-08-20); corpus id 225 `notes`; ids 237 and 238 this run.
+
+### 2. The system-card test's carve-out has a discriminator that is not written down
+
+`criteria.yaml` says a document qualifies if it "assesses a NAMED model's capabilities or safety" and that
+"research that merely uses models does not qualify". Two Transluce posts sit on opposite sides of that
+line for reasons the text does not supply.
+
+- **In the corpus:** `transluce.org/weirdchat`, catalogued as an independent eval of DeepSeek-V4-Flash.
+  WeirdChat is a methodology contribution; the named model is where the method was pointed.
+- **Skipped today:** `transluce.org/elicitation-scaling-laws` (2026-08-19), which trains oversight models
+  at five sizes to recover prompts producing exact target responses from Qwen3.6-27B, reports joint power
+  laws, and extrapolates the compute needed to match gold prompts (4×10²⁵ FLOPs ≈ $52M in-distribution,
+  3×10²⁹ ≈ $376B out-of-distribution), with generalisation shown on WeirdChat's harmful-response prompts.
+
+The rule I actually applied: **do the reported numbers describe a property of the named model, or a
+property of the technique applied to it?** WeirdChat's numbers are DeepSeek's behaviours; the scaling
+laws are the elicitor's learning curve, with Qwen3.6-27B as fixed substrate. I am reasonably confident
+that is the intended reading, and I skipped accordingly — but it is inferable only from precedent, and
+precedent is exactly what a daily agent is worst placed to reconstruct. One sentence in `criteria.yaml`
+would settle it. If the opposite reading is intended, the elicitation post should be added and this is
+the row to add.
+
+Evidence: friction line `system_card_test_ambiguous_for_methods_papers_with_named_subject_model`;
+corpus row `transluce-deepseek-v4-flash-independent-eval`; `config/criteria.yaml:8-11`.
+
+### 3. Confirming evidence only — no new ask
+
+Yesterday's §1 (nothing reconciles what an org has published against what the corpus holds) recurred at a
+second publisher within 24 hours. Three NVIDIA-Medtech surgical cards — `GR00T-H` (2026-03-15),
+`GR00T-H-N1.7` (2026-05-30) and `Cosmos-H-Surgical-Simulator` (2026-03-15) — had been missing for three
+to five months and were added this run. None surfaced through a release event: `GR00T-H` entered the
+candidate list only because someone edited its README on 2026-08-19, and the other two were found by
+following that thread by hand. `huggingface.co/nvidia` is a configured `index_url` that has been fetched
+successfully every run, and the corpus already held eight NVIDIA robotics and world-model rows, so this
+was not an unmonitored corner. Two accidental discoveries in two consecutive runs, at different
+publishers, is weak evidence that the accessible-by-accident subset is small relative to what is missing.
+The proposed HuggingFace-API reconciliation pass would have caught all three. Nothing further requested.

@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-13T06:27:28Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Frontier Red Team. Not a new model release - distinct_model_release is attested in the sense that this is a distinct evaluation publication, not a re-release of an already-catalogued document. Cites Anthropic&#39;s earlier multiagent work and Project Glasswing (the Glasswing initial update of 2026-05-22 is already catalogued). Claude Haiku is mentioned once in passing and is NOT among the models evaluated, so it is excluded from model_names.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-5-other&amp;body=Document%3A%20anthropic-claude-mythos-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/multiagent-systems%0AFingerprint%3A%208e6f7404a846edcb37693d6d5505a2b5df6a4f976e26831f63028b95ad4dc347%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-5-other&amp;body=Document%3A%20anthropic-claude-mythos-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/multiagent-systems%0AFingerprint%3A%208655cd012b8f34c92a06fafdd3cf8eecb216ac06cc86d6f2a87ba5e1ef6bfe5b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-20T06:19:32Z</td>
+          <td>text/html</td>
+          <td>182,407</td>
+          <td><code title="8655cd012b8f34c92a06fafdd3cf8eecb216ac06cc86d6f2a87ba5e1ef6bfe5b">8655cd012b8f34c9</code></td>
+        </tr>
         <tr>
           <td>2026-08-13T06:27:28Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -92,6 +98,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research" rel="noopener nofollow">https://www.anthropic.com/research</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-20T06:19:32Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/multiagent-systems" rel="noopener nofollow">https://www.anthropic.com/research/multiagent-systems</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -109,7 +123,7 @@ Models are improving and AI agents are taking on more tasks in shared codebases,
 Agents are unlike people in many ways. They can work for longer, instantly grasp large bodies of information, and exhibit a breadth of knowledge surpassing any person. Yet they are also susceptible to confabulation and reward hacking, and despite progress in alignment, we know very little about how they behave in complex, real-world, multiagent environments. Moreover, benign behavioral quirks at the individual level might compound into unwanted global outcomes. Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
 True multiagent systems are still in their infancy. For some time now, agents have excelled at tool use, and insofar as they are able to treat other agents as tool invocations—that is, with well-defined inputs (prompts) and outputs (responses and artifacts)—they can work together efficiently. Where agents currently stumble, however, is in treating each other as more like distinct, long-lived peers, with their own goals and behaviors, and no clear hierarchy between them. As autonomous agents become more and more prevalent in the world and operate in ever-more demanding settings, it is crucial that they learn how to effectively coordinate.
 There are situations where we can make good use of simple multiagent swarms today. This is particularly true for problems that are highly parallelizable by default (i.e., problems that can be broken into many independent sub-problems) but where agents still have opportunities to specialize or learn from each other. One such problem is software vulnerability detection. The easiest way to use agents to find software vulnerabilities is to point individual agents at individual codebases (or individual files or modules within codebases), and ask them to find vulnerabilities in the code. This can then be run in parallel for many independent agents. This is an approach we use ourselves—in, for example, our work scanning open-source software as part of Project Glasswing.
-But could multiagent cooperation make this process more effective? To find out, we tried a different approach: we initiated 45 different agents and gave each one its own virtual machine, a shared forum on which they could coordinate, and an identical prompt that asked them to find vulnerabilities in a set of 15 open-source software projects. We asked the agents to peer-review each other&#39;s findings, and initiated a separate arbiter agent to make final decisions on whether or not a submitted vulnerability submitted by the agent team was both new and valid.
+But could multiagent cooperation make this process more effective? To find out, we tried a different approach: we initiated 45 different agents and gave each one its own virtual machine, a shared forum on which they could coordinate, and an identical prompt that asked them to find vulnerabilities in a set of 15 open-source software projects. We asked the agents to peer-review each other&#39;s findings, and initiated a separate arbiter agent to make final decisions on whether or not a vulnerability submitted by the agent team was both new and valid.
 The graph below shows how this method (in the solid lines) compares against the standard parallel approach (stars) for two models: Claude Mythos Preview and Opus 4.8. The coordinating swarm of agents was allowed to run for a long time, and found new vulnerabilities at a roughly constant rate. The fully independent parallel agents, in contrast, were directed to find vulnerabilities in a limited set of locations. There is no clear ordering to the parallel agents’ findings, so we report only the total number of tokens spent for them.
 For Mythos Preview, the simple independent parallelized method produces 21 vulnerabilities over a 6.5 million token run, while the coordinating agent swarm found 266 vulnerabilities over a 27 million token run. However, roughly half of these vulnerabilities were found outside of the core directories in which the simple independent parallel agents (stars in the above plot) were told to focus. If we limit the swarm&#39;s outputs to only the vulnerabilities in the core directories, the two methods seem comparable in terms of tokens per vulnerability found.
 The two methods are largely complementary: there were only 12 vulnerabilities in common between them. The coordinating swarm was able to focus its attention wherever it thought it could most easily mine vulnerabilities, whereas the independent agents were pre-assigned where to search. The agents in the swarm built themselves tools and learned to specialize in particular types of vulnerability discovery. In the future, we predict that this sort of specialization and coordination will dominate over uncoordinated brute-force search.
@@ -162,16 +176,16 @@ Every model we tested abstractly understands that information sources have their
 Our social systems are robust in ways that are easy to take for granted. Over many millennia, mechanisms like norms, reputation, costly signaling, and recourse have been refined to make human coordination go well. While language models have inherited the content of that history, they don&#39;t necessarily carry the disposition produced by it. They have a very different relationship to communication itself: for instance, human organizations might spend considerable time in meetings to align on a direction before implementing, and individuals become more specialized over time. But for agents, transmitting context is about as costly as acting on it, and an agent can be forked or repurposed at will. Thus, the assumptions that make coordination successful for us do not obviously hold.
 Nothing above suggests that these failures are permanent—but nothing suggests they will fix themselves, either. Coordination doesn&#39;t naturally emerge from stronger intelligence nor alignment at the individual level. Thus, the work that must be done takes two forms: environments that exert the kinds of social pressure that evolution exerted on us, and social computing systems redesigned for actors that can self-replicate and self-improve. These are open problems in interaction and mechanism design, and our experiments here provide early evidence that new solutions are necessary.
 The conditions that allow multiagent interaction to go well will be discovered one way or another: either deliberately and early, or—and by default—in production, after agents’ interactions far outnumber ours. We would prefer the former.
+In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested Claude’s ability to design protein binders from scratch, a key step in creating protein-based drugs that has historically taken a specialist weeks or months per target. In the second example, we evaluated whether Claude can accelerate chemical analysis. Claude Opus 5, a generally available model, was given NMR and LC-MS data (the data that allows chemists to assess the identity and purity of the compounds they work with).
+Read more
 We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
 Read more
 An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
-Read more
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
 </body>
 </html>

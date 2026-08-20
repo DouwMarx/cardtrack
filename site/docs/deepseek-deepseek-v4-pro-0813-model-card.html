@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-14T07:04:53Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>License: MIT (open_weight_permissive), stated in the card&#39;s License section and the repo LICENSE badge. Supersedes https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro (preview, 2026-04-24), which stays as its own row. No technical-report link beyond the existing arXiv 2606.19348 V4 report.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-0813-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-0813-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813%0AFingerprint%3A%209fba63beb64c58dd82dde7e430714e1248e6b9722058bd11a3c3d324b88df304%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-0813-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-0813-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813%0AFingerprint%3A%203afe89797602ed3312b4ebc29d7de7c9bcaacdbac56d5d8b325b7bafa5057983%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-20T06:20:09Z</td>
+          <td>text/html</td>
+          <td>244,305</td>
+          <td><code title="3afe89797602ed3312b4ebc29d7de7c9bcaacdbac56d5d8b325b7bafa5057983">3afe89797602ed33</code></td>
+        </tr>
         <tr>
           <td>2026-08-14T07:04:53Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +97,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://api-docs.deepseek.com/news/news260813" rel="noopener nofollow">https://api-docs.deepseek.com/news/news260813</a> · <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813/raw/main/README.md</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-20T06:20:09Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813</a>          </div>
       </li>
     </ol>
     </details>
@@ -113,6 +127,8 @@ pipe(messages)# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro-0813&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro-0813&#34;, device_map=&#34;auto&#34;)
+- Inference
+- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -246,11 +262,11 @@ Citation
 Contact
 If you have any questions, please raise an issue or contact us at service@deepseek.com.
 - Downloads last month
-- -</pre>
+- 37,583</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
 </body>
 </html>

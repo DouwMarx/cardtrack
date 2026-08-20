@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:00:24Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audex-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audex-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B%0AFingerprint%3A%20ab16f6330aaa9abe38b133004cd06a1d2c181c8f81b7cfa8aacf9cc37e39844e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audex-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audex-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B%0AFingerprint%3A%20710260b89e7675d89734a82eb96718c85485e1c12c15248e436e641bf0a77359%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-20T06:19:54Z</td>
+          <td>text/html</td>
+          <td>251,876</td>
+          <td><code title="710260b89e7675d89734a82eb96718c85485e1c12c15248e436e641bf0a77359">710260b89e7675d8</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T21:00:24Z</td>
           <td>text/html</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -96,6 +102,14 @@
         <span class="run">run manual-openness-backfill · human · lead: openness_backfill</span>
           <div class="just">openness: null → "open_weight_restrictive"</div>
           <div class="just">Both covered models (Nemotron-Labs-Audex-30B-A3B and Nemotron-Labs-Audex-2B) are ungated but carry license_name nvidia-oneway-noncommercial-license: &#39;Your use of this model is governed by the NVIDIA Oneway Noncommercial License.&#39; Non-commercial, so restrictive.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-20T06:19:54Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B</a>          </div>
       </li>
@@ -175,7 +189,7 @@ Model Architecture
 Templates
 Multi-Stage-SFT and Cascaded-RL Pipelines
 Quick Start
-- Audex-30B-A3B follows the ChatML template and supports both thinking and instruct (non-thinking) modes. Reasoning content is enclosed within &lt;think&gt; and&lt;/think&gt; tags. To activate the instruct (non-thinking) mode, we prepend&lt;think&gt;&lt;/think&gt; to the beginning of the assistant’s response.
+- Audex-30B-A3B follows the ChatML template and supports both thinking and instruct (non-thinking) modes. Reasoning content is enclosed within &lt;think&gt; and&lt;/think&gt; tags. The instruct-mode prefix is task-specific. Prepend one of the following to the assistant&#39;s response, i.e. right after theassistant ChatML header:Task Mode Prefix Note Text thinking &lt;think&gt;\nThe model closes the trace with &lt;/think&gt; and then answers.Text instruct (non-thinking) &lt;/think&gt;\nAudio instruct (non-thinking) &lt;think&gt;&lt;/think&gt;No newline between &lt;/think&gt; and the answer.
 - Audex-30B-A3B supports up to a 1M-token context length.
 - Audex-30B-A3B follows Nemotron-Cascade-2 on text evaluation.
 - Audex-30B-A3B has different recommended inference setups per audio-related task as described below.
@@ -258,6 +272,8 @@ we recommend using the standalone Audex causal speech decoder in audex_causal_sp
 Alternatively, users can download the original XCodec2 via this repo and decode the tokens after full generation; this has better quality but is not streaming.
 Text-Only Reasoning
 The text reasoning follows Nemotron-Cascade-2-30B-A3B.
+- Text thinking mode uses the &lt;think&gt;\n prefix. Text instruct (non-thinking) mode uses&lt;/think&gt;\n . Seerun_text_vllm_example.py which implements both (--disable-thinking selects instruct mode).
+- chat_template.jinja uses&lt;think&gt;&lt;/think&gt; whenenable_thinking=false which is used for audio tasks. To reproduce the reported text instruct-mode results, construct the prompt directly with&lt;/think&gt;\n instead of relying onapply_chat_template .
 - To create the checkpoint that completely matches their setup, run python model_conversion_scripts/convert_full_HF_to_textonly_HF.py to remove the audio-related vocabularies.
 - Then, the text-only inference completely follows Nemotron-Cascade-2-30B-A3B. See a simple reasoning example with cd inference_scripts_vllm/textonly_scripts/; python run_text_vllm_example.py --model-path $(pwd)/../../checkpoint_folder_textonly .
 - Note: you could also avoid model conversion by using sampling_params = SamplingParams(allowed_token_ids=list(range(131072))) in vLLM inference to mask the audio tokens, although we did not thoroughly test this approach.
@@ -287,11 +303,11 @@ Citation
   year={2026}
 }
 - Downloads last month
-- 2,455</pre>
+- 1,139</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
 </body>
 </html>

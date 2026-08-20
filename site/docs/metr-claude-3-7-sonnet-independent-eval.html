@@ -46,10 +46,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:55:58Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-3-7-sonnet-independent-eval&amp;body=Document%3A%20metr-claude-3-7-sonnet-independent-eval%0AURL%3A%20https%3A//metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/%0AFingerprint%3A%2050e50887f29e57fcd66490c30c5555d05df1c0482c04c4044b8e2797b33ef3f4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-3-7-sonnet-independent-eval&amp;body=Document%3A%20metr-claude-3-7-sonnet-independent-eval%0AURL%3A%20https%3A//metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/%0AFingerprint%3A%20f74bb518644eb0cead0128a7029c30f9bc181f3f951c00e4dbd26851697df3d7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -57,6 +57,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-20T06:20:05Z</td>
+          <td>text/html</td>
+          <td>238,279</td>
+          <td><code title="f74bb518644eb0cead0128a7029c30f9bc181f3f951c00e4dbd26851697df3d7">f74bb518644eb0ce</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:55:58Z</td>
           <td>text/html</td>
@@ -71,7 +77,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +105,14 @@
           <div class="just">Covers Claude 3.7 Sonnet, Sonnet 3.5, Opus 4, Sonnet 4.5 and GPT-5. Anthropic&#39;s overview lists every Claude model as API/Bedrock/Vertex/Foundry only; GPT-5 is likewise API-only. Uniform class.</div>
           <div class="evidence">Evidence:
 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="noopener nofollow">https://platform.claude.com/docs/en/about-claude/models/overview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-20T06:20:05Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" rel="noopener nofollow">https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/</a>          </div>
       </li>
     </ol>
     </details>
@@ -223,11 +237,26 @@ A9. Time Horizon Analysis
   We apply the time horizon methodology from Kwa et al. (2025), which converts benchmark scores into a “time horizon”—the human completion time of tasks at which a model achieves 50% success. We use the time-to-complete estimates from SWE-bench directly, though we do not have task families or task weighting as in the original methodology. Note that time-to-complete estimates from SWE-bench come in ranges (e.g., 15min–1hr); we take the geometric mean to get a point estimate.
 Methodology. For each evaluation criterion (automated grader and maintainer merge), we fit logistic regressions of pass rate against log task duration. The time horizon T₅₀ is the task duration at which the fitted model predicts 50% success. Note that these estimates are less stable than in Kwa et al. because the task duration range in SWE-bench Verified is narrower, requiring extrapolation away from the data to estimate a 50% time horizon.
 Results. The automated grader gives substantially higher time horizons than maintainer review. For example, Claude Sonnet 4.5 has an approximately 50-minute time horizon according to the automated grader but only about an 8-minute time horizon according to maintainers—roughly a 7× overstatement. This level difference is our most robust finding from the time horizon analysis.
-Trend. Figure 12 plots time horizons against model release dates. We want to heavily caveat this figure. The only robust conclusion is that the level of time horizon is overstated by a large amount when using the automated grader versus maintainer review. Although it would be tempting to also conclude that the trend is slower under maintainer review, this finding is extremely noisy. The confidence interval for the difference in doubling time ranges from −158 months to 2 months, which is so wide that it is hard to take seriously. Moreover, this result is not very robust to different design decisions. Because SWE-bench data has fairly minimal time horizon dispersion, drawing robust, sufficiently powered conclusions about the rate of improvement is difficult.</pre>
+Trend. Figure 12 plots time horizons against model release dates. We want to heavily caveat this figure. The only robust conclusion is that the level of time horizon is overstated by a large amount when using the automated grader versus maintainer review. Although it would be tempting to also conclude that the trend is slower under maintainer review, this finding is extremely noisy. The confidence interval for the difference in doubling time ranges from −158 months to 2 months, which is so wide that it is hard to take seriously. Moreover, this result is not very robust to different design decisions. Because SWE-bench data has fairly minimal time horizon dispersion, drawing robust, sufficiently powered conclusions about the rate of improvement is difficult.
+Summary. We find strong evidence that the level of time horizon is overstated by a large amount when using the automated grader versus maintainer review. However, we are unable to draw confident conclusions about the rate of improvement.
+-
+      100% of golden patches pass the automated grader, so this adjustment makes no difference for scores given by the automated grader. ↩
+-
+      Note we use runs taken prior to Epoch’s recent harness update. These scores tend to lag the scores given by model providers. Plausibly this implies the Epoch harness is less optimized to high scores on the benchmarks. We guess that this largely affects the automated and the maintainer scores equally, but this is an interesting question for future research. ↩
+-
+      For the first few patches, we included these files but instructed maintainers to ignore them. After that point, we manually edited the patches to exclude the additional files. ↩
+-
+      Note that these 31 patches were not intentionally randomly selected, but rather occurred in the pilot and a secondary check. These patches are not included in the main analysis as they are treated as automated failures. ↩
+-
+      About 2% of the Epoch patches were corrupted and excluded from our analysis ↩
+-
+      We do not claim they cannot figure out the source of the patch. In particular, golden patches were merged into the repo, so that could be a giveaway to the source (although we do not reveal that the human patches are golden). Moreover, AI-written code often makes certain mistakes or employs certain styles that could allow maintainers to guess the source of the patch. ↩
+-
+      The maintainers are not told that these are the golden patches, only that some of the PRs that they will review are from humans. ↩</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
 </body>
 </html>

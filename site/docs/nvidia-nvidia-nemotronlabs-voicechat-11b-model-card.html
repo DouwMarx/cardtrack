@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:00:25Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B%0AFingerprint%3A%20b1738225598bfe90e7d63882f7f8c2aea03d53f56936883c929cfbfcf3b8a0f3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B%0AFingerprint%3A%2054bfc1c5e19f8a03cafcca17514ae0fd7d9171cb1c2a3738945c5ff866e0acf4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-20T06:19:54Z</td>
+          <td>text/html</td>
+          <td>218,147</td>
+          <td><code title="54bfc1c5e19f8a03cafcca17514ae0fd7d9171cb1c2a3738945c5ff866e0acf4">54bfc1c5e19f8a03</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T21:00:25Z</td>
           <td>text/html</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +105,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-20T06:19:54Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -120,7 +134,6 @@ Model Overview
 Description:
 NVIDIA NemotronLabs VoiceChat is a 11B end-to-end, real-time speech full duplex (FD) model for conversational AI that jointly performs streaming speech understanding and speech generation [1, 2]. Unlike traditional cascaded stacks (ASR → LLM → TTS), this model achieves full duplex, real-time, seamless voice interaction in one unified architecture, eliminating the need for multiple models or API handoffs, thus reducing end-to-end latency. It sets new benchmarks by bringing open, robust, and highly natural conversation capabilities. Moreover, NVIDIA NemotronLabs VoiceChat is the first open full-duplex model to support tool calling while maintaining a natural conversation flow during tool execution. For each tool, a specific “on-hold” message can be defined that will be spoken by the agent as soon as the LLM generates the text that will trigger the tool call and response.
 The model operates on audio signals, which are encoded using a fast conformer module. The resulting audio tokens are inputted into a Nemotron Nano V2 9B LLM backbone to predict text tokens, which are fed to a TTS decoder [2] to predict audio codes for generating the agent&#39;s speech. A separate output channel is used to predict tool calling scripts. NemotronLabs VoiceChat offers an unprecedented trade-off between intelligence and latency in the space of open-source voice agents, as highlighted by our benchmarking results below.
-This model is ready for research purposes only.
 Highlights
 | Parameters | Turn-taking latency | VoiceBench (open FD) | Tool calling | Architecture |
 |---|---|---|---|---|
@@ -248,7 +261,7 @@ Benchmark Scores:
 | Metric | Value |
 |---|---|
 | Tool Selection | 82.5% |
-| Argument accuracy | 44.2% |
+| Argument accuracy | 42.2% |
 | Pass@1 | 33% |
 Inference:
 Acceleration Engine: vLLM
@@ -335,7 +348,7 @@ References:
 [3] Audio Flamingo 3: Advancing Audio Intelligence with Fully Open Large Audio Language Models
 [4] PersonaPlex: Voice and role control for full duplex conversational speech models
 - Downloads last month
-- 543
+- 2,198
 Model tree for nvidia/NVIDIA-NemotronLabs-VoiceChat-11B
 Base model
 nvidia/NVIDIA-Nemotron-Nano-12B-v2-Base</pre>
@@ -343,6 +356,6 @@ nvidia/NVIDIA-Nemotron-Nano-12B-v2-Base</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-19T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
 </body>
 </html>

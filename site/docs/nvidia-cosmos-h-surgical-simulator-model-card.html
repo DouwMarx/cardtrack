@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmos-H-Surgical-Simulator model card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Cosmos-H-Surgical-Simulator model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Cosmos-H-Surgical-Simulator</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-03-15</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-20T06:29:08Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Companion model to nvidia/GR00T-H and nvidia/GR00T-H-N1.7 (both proposed this run) from the same NVIDIA-Medtech Open-H programme; distinct from the corpus&#39;s nvidia/Cosmos-H-Dreams row (id 112), which is a separate repo created 2026-07-21. has_safety_evals false: the card reports video-fidelity and tool-tracking metrics but contains no safety or dangerous-capability evaluation, red-teaming or risk assessment beyond the boilerplate Ethical Considerations paragraph and subcard links. openness=open_weight_restrictive per the NVIDIA Open Model License, matching the corpus&#39;s treatment of Cosmos-H-Dreams. Backlog find: released March 2026 and never catalogued; surfaced this run by following the surgical-robotics thread out of the GR00T-H card revision.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos-h-surgical-simulator-model-card&amp;body=Document%3A%20nvidia-cosmos-h-surgical-simulator-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos-H-Surgical-Simulator%0AFingerprint%3A%203a08a4f03cf35562fdef9122dba103d5f869c42930e7b2c3f52d13d56e472f5d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-20T06:29:08Z</td>
+          <td>text/html</td>
+          <td>198,675</td>
+          <td><code title="3a08a4f03cf35562fdef9122dba103d5f869c42930e7b2c3f52d13d56e472f5d">3a08a4f03cf35562</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-20T06:29:08Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-20T06:18Z-local · agent · lead: agent_search</span>
+          <div class="just">First-party NVIDIA model card for Cosmos-H-Surgical-Simulator, a kinematic action-conditioned surgical world foundation model fine-tuned from Cosmos-Predict2.5-2B-Video2World on the Open-H multi-embodiment surgical benchmark. Given a context frame and twelve 44-dimensional action vectors it predicts the next twelve frames, and by autoregressive rollout generates full surgical trajectories, so it functions as an in-silico evaluation environment for surgical robot policies. The card carries the model&#39;s own quantitative evaluation: aggregate Frame Decay Score 0.184, Ground-truth Anchored Tool Consistency 0.472 and Tool Centroid Distance 67.03 px for the April 2026 checkpoint, with a per-procedure breakdown across prostatectomy, inguinal hernia, hysterectomy and cholecystectomy. Distinct release, not a variant of anything in the corpus: its base model Cosmos-Predict2.5-2B is not catalogued (and predates the 2026-01-01 scope floor, created 2025-07-23), and it is a separate model from the corpus&#39;s nvidia/Cosmos-H-Dreams row. Card fetched and read in full; publication_date is the card&#39;s own stated HuggingFace release date, 3/15/2026, consistent with the 2026-03-13 &#39;Create README.md&#39; commit.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://github.com/NVIDIA-Medtech/Cosmos-H-Surgical-Simulator" rel="noopener nofollow">https://github.com/NVIDIA-Medtech/Cosmos-H-Surgical-Simulator</a> · <a href="https://huggingface.co/nvidia/Cosmos-Predict2.5-2B" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos-Predict2.5-2B</a> · <a href="https://www.techtimes.com/articles/321330/20260723/nvidia-cuts-surgical-robot-training-hours-minutes-open-source-simulator.htm" rel="noopener nofollow">https://www.techtimes.com/articles/321330/20260723/nvidia-cuts-surgical-robot-training-hours-minutes-open-source-simulator.htm</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use nvidia/Cosmos-H-Surgical-Simulator with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  NV-MedTech How to use nvidia/Cosmos-H-Surgical-Simulator with NV-MedTech: # No code snippets available yet for this library. # To use this model, check the repository files and the library&#39;s documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
+- Notebooks
+- Google Colab
+- Kaggle
+Cosmos-H-Surgical-Simulator
+Description
+Cosmos-H-Surgical-Simulator is a kinematic action-conditioned surgical world foundation model, built on the public NVIDIA Cosmos-Predict2.5-2B for physical AI and fine-tuned on the Open-H multi-embodiment surgical benchmark. Unlike the text-conditioned base model, it is driven directly by robot kinematics: given a surgical context frame and a sequence of 44-dimensional action vectors encoding end-effector poses and gripper commands (unified across 9 embodiments), it generates future video of the resulting surgical scene.
+The model is intended for evaluating surgical robotics policies in simulation and for synthetic data generation prior to deployment on a physical system. It covers CMR Surgical Versius clinical procedures (cholecystectomy, prostatectomy, inguinal hernia, hysterectomy) as well as dVRK, MITIC, and other surgical platforms across tasks such as suturing, tissue manipulation, and peg transfer.
+This model is for commercial/non-commercial use.
+Updates
+- April 2026 — Released updated checkpoint after fixing an action-embedder MLP initialization bug. Aggregate quality improves on all three metrics: FDS (L1) 0.223 → 0.184 (−17%), GATC 0.417 → 0.472 (+13%), TCD 83.68 → 67.03 (−20%).
+License/Terms of Use
+Use of this model is governed by the NVIDIA Open Model License Agreement.
+Deployment Geography
+Global
+Use Case
+Primarily intended for surgical robotics researchers, healthcare AI developers, academic institutions, and surgical robotics companies, exploring surgical robotics policy evaluation and synthetic data generation.
+Release Date
+- GitHub: 3/13/2026 via https://github.com/NVIDIA-Medtech/Cosmos-H-Surgical-Simulator
+- Huggingface: 3/15/2026 via https://huggingface.co/NVIDIA
+Reference(s)
+Ali, A., Bai, J., Bala, M., Balaji, Y., Blakeman, A., Cai, T., Cao, J., Cao, T., Cha, E., Chao, Y.-W., Chattopadhyay, P., Chen, M., Chen, Y., Cheng, S., Cui, Y., Diamond, J., Ding, Y., Fan, J., Fan, L., Feng, L., Ferroni, F., Fidler, S., Fu, X., Gao, R., Ge, Y., Gu, J., … Zhu, Y. (2025).World Simulation with Video Foundation Models for Physical AI (arXiv:2511.00062) [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2511.00062
+Link to Cosmos’ nvidia/Cosmos-Predict2.5-2B-Video2World Model Card
+Model Architecture
+Architecture Type: Diffusion Transformer Network Architecture: Latent video diffusion transformer (DiT-style denoiser) with cross-attention conditioning.
+This model was developed based on Cosmos-Predict2.5-2B-Video2World.
+The Cosmos-H-Surgical-Simulator model extends Cosmos-Predict2.5-2B-Video2World, a diffusion transformer for video generation in latent space. It incorporates an MLP to condition the model on kinematic actions. The model accepts a 44-dimensional action vector (22 dimensions per arm) alongside the current video frame, and predicts the subsequent 12 frames. Through autoregressive rollout, it can generate videos of complete surgical trajectories from either learned policies or manually designed action sequences.
+Input
+- Input Type(s): Image (camera frame), a sequence of twelve 44-dimensional numerical vectors
+- Input Format(s): Red, Green, Blue (RGB) frame, numeric vector
+- Input Parameters: Image: Two-Dimensional (2D) image frame , Vector: Sequence of 12 forty-four-dimensional (44D) vectors Other Properties Related to Input:
+- Recommended resolution: The model operates at 512x288 resolution. Input frames are automatically resized; a 16:9 aspect ratio is recommended.
+- Pre-processing: The Versius kinematic action is a hybrid relative action as defined here.
+Output
+- Output Type(s): A sequence of 12 video frames
+- Output Format: mp4
+- Output Parameters: Three-Dimensional (3D)
+- Other Properties Related to Output:
+  - By default, the model generates twelve video frames as output, representing the next world states incorporating the input kinematic actions into the current video frame. Through an autoregressive loop, a complete video sequence, representing a complete surgical trajectory, can be generated.
+  - No additional post-processing is strictly required.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA’s hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration
+Runtime Engine(s):
+Supported Hardware Microarchitecture Compatibility:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+Note: Only BF16 precision is tested. Other precisions like FP16 or FP32 are not officially supported.
+Preferred/Supported Operating System(s): Linux (We have not tested on other operating systems.)
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Model Version(s)
+v1.0 (Finetuned on the Open-H Embodiment dataset, which includes clinical procedures data such as cholecystectomy, prostatectomy, inguinal hernia, and hysterectomy)
+Developers may integrate the model into an AI evaluation system by providing video frames as input along with corresponding kinematic actions to evaluate a surgical policy model, such as one for the CMR Surgical Versius robotic system.
+Training, Testing, and Evaluation Datasets
+Dataset: Open-H-Embodiment community generated dataset.
+- Total size: ~26,500+ surgical task demonstrations (plus CMR Versius clinical procedures) spanning 32 datasets, 9 robot embodiments, and 10+ institutions, totaling ~4.9 million synchronized video-kinematics frames.
+- Dataset partition: 95% training and validation, 5% test (approximate).
+Training Dataset
+- Link: Open-H Embodiment dataset
+- Data Collection Method: Human (kinematic action trajectories).
+- Labeling Method: Human
+- Properties:
+  - ~26,500+ surgical task demonstrations (plus CMR Versius clinical procedures) spanning 32 datasets, 9 robot embodiments, and 10+ institutions, totaling ~4.9 million synchronized video-kinematics frames.
+  - Human experts teleoperated the surgical robotic arms, which were recorded as video and kinematics pairs.
+Testing Dataset
+- Link: We tested on the holdout portion for the Open-H Embodiment dataset.
+- Data Collection Method: Human
+- Labeling Method: Human
+- Properties:
+  - ~1K frames for testing (approx).
+Evaluation Dataset
+- Link: We evaluated on the Open-H Embodiment dataset, using the frames never seen during training.
+- Data Collection Method: Human
+- Labeling Method: Human
+- Properties:
+  - ~1K frames for final evaluation (approx).
+Key performance: The model can generate physically accurate surgical robotic videos given an initial frame and a kinematic action trajectory, either recorded from a surgeon or a surgical robotic policy model such as Gr00t-H.
+Quantitative Evaluation
+Evaluated on 4 CMR Versius clinical surgery procedures (prostatectomy, inguinal hernia, hysterectomy, cholecystectomy) at 360p resolution, 2 episodes per procedure, 2 seeds each, 72-frame autoregressive generation (6 chunks × 12 frames).
+Aggregate Metrics
+| Checkpoint | FDS (L1) ↓ | GATC ↑ | TCD (px) ↓ |
+|---|---|---|---|
+| Previous (16k, pre-fix) | 0.223 | 0.417 | 83.68 |
+| Current (12k-v2, post-fix) | 0.184 | 0.472 | 67.03 |
+| Relative change | −17% | +13% | −20% |
+Metrics:
+- FDS (L1): Frame Decay Score - mean L1 distance between generated and ground-truth frames normalized to [-1, 1], averaged across all generated frames (lower is better)
+- GATC: Ground-truth Anchored Tool Consistency - median zero-mean normalized cross-correlation (ZNCC) of grayscale pixels within SAM3-segmented tool regions between generated and ground-truth frames, weighted by a gradient-based tool presence penalty (higher is better)
+- TCD: Tool Centroid Distance - median per-frame average Euclidean distance (in pixels) between Hungarian-matched tool instance centroids in generated vs ground-truth frames, with a half-diagonal penalty for unmatched tools (lower is better)
+Per-Procedure Metrics (current checkpoint)
+| Procedure | FDS (L1) ↓ | GATC ↑ | TCD (px) ↓ |
+|---|---|---|---|
+| Prostatectomy | 0.220 | 0.451 | 122.0 |
+| Inguinal Hernia | 0.199 | 0.429 | 143.2 |
+| Hysterectomy | 0.121 | 0.737 | 12.7 |
+| Cholecystectomy | 0.198 | 0.344 | 28.8 |
+Inference
+Acceleration Engine: PyTorch, Transformer Engine
+Test Hardware: Tested on A100.
+Usage:
+- See Cosmos-Predict2.5 for further details.
+Ethical Considerations
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. When downloaded or used in accordance with our terms of service, developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+Please make sure you have proper rights and permissions for all input image and video content; if image or video includes people, personal health information, or intellectual property, the image or video generated will not blur or maintain proportions of image subjects included.
+For more detailed information on ethical considerations for this model, please see the Model Card++ for Bias, Explainability, Safety &amp; Security, and Privacy Subcards below.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 350</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-20T06:31:49Z</p></footer>
+</body>
+</html>
