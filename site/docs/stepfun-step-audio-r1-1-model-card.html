@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Step-Audio-R1.1 model card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Step-Audio-R1.1 model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.stepfun.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">stepfun</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Step-Audio-R1.1</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-01-14</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/stepfun-ai/Step-Audio-R1.1" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/stepfun-ai/Step-Audio-R1.1</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-21T07:37:26Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Apache-2.0. Successor to Step-Audio-R1; the &#39;Realtime&#39; variant is this same card.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-audio-r1-1-model-card&amp;body=Document%3A%20stepfun-step-audio-r1-1-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-Audio-R1.1%0AFingerprint%3A%20bdf0df508a7ff7f28bfbd5a9fb431c716f846a26a573d2b3f120beba2e653907%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-21T07:37:26Z</td>
+          <td>text/html</td>
+          <td>194,736</td>
+          <td><code title="bdf0df508a7ff7f28bfbd5a9fb431c716f846a26a573d2b3f120beba2e653907">bdf0df508a7ff7f2</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-21T07:37:26Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-21T07:27Z-local · agent · lead: agent_search</span>
+          <div class="just">StepFun&#39;s own HuggingFace card for Step-Audio-R1.1 (Realtime), an audio-text reasoning model for interactive spoken dialogue, fetched and read in full. Repo created 2026-01-14, README written 2026-01-14-15; 9 commits through 2026-02-14. The card documents a Dual-Brain architecture (a Formulation Brain for reasoning and an Articulation Brain for speech generation) that performs chain-of-thought reasoning during speech output for low latency, grounded in the &#39;Mind-Paced Speaking&#39; research included in-repo as MPS.pdf; and Acoustic-Grounded Reasoning, which addresses the inverted-scaling problem where reasoning over transcripts degrades performance, trained by iterative self-distillation, with claimed state-of-the-art and top-ranking AA-benchmark results shown in three result figures. Notable: 189 likes, first-party hosted demos in StepFun Audio Studio and a HuggingFace Space, and API availability on the StepFun Open Platform. Distinct release: a speech model with no counterpart in the corpus and a different modality from both Step-3.7-Flash and Step3-VL-10B. Surfaced by a HuggingFace-org sweep by creation date. has_safety_evals is false: the card is architecture, benchmarks and deployment instructions, with no safety evaluation, red-teaming, voice-cloning-misuse discussion or risk assessment - a notable absence for a real-time speech-generation model, which is precisely what the flag exists to make visible.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.stepfun.com/studio/audio" rel="noopener nofollow">https://www.stepfun.com/studio/audio</a> · <a href="https://huggingface.co/spaces/stepfun-ai/Step-Audio-R1" rel="noopener nofollow">https://huggingface.co/spaces/stepfun-ai/Step-Audio-R1</a> · <a href="https://huggingface.co/api/models/stepfun-ai/Step-Audio-R1.1/commits/main" rel="noopener nofollow">https://huggingface.co/api/models/stepfun-ai/Step-Audio-R1.1/commits/main</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/stepfun-ai/Step-Audio-R1.1" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use stepfun-ai/Step-Audio-R1.1 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use stepfun-ai/Step-Audio-R1.1 with Transformers: # Load model directly
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&#34;stepfun-ai/Step-Audio-R1.1&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+Overview of Step-Audio-R1.1
+Introduction
+Step-Audio R1.1 (Realtime) is a major upgrade to Step-Audio-R1, designed for interactive spoken dialogue with both real-time responsiveness and strong reasoning capability.
+Unlike conventional streaming speech models that trade intelligence for latency, R1.1 enables thinking while speaking, achieving high intelligence without sacrificing speed.
+Mind-Paced Speaking (Low Latency)
+Based on the research Mind-Paced Speaking, the Realtime variant adopts a Dual-Brain Architecture:
+- A Formulation Brain responsible for high-level reasoning
+- An Articulation Brain dedicated to speech generation
+This decoupling allows the model to perform Chain-of-Thought reasoning during speech output, maintaining ultra-low latency while handling complex tasks in real time.
+Acoustic-Grounded Reasoning (High Intelligence)
+To address the inverted scaling issue—where reasoning over transcripts can degrade performance—Step-Audio R1.1 grounds its reasoning directly in acoustic representations rather than text alone.
+Through iterative self-distillation, extended deliberation becomes a strength instead of a liability. This enables effective test-time compute scaling and leads to state-of-the-art performance, including top-ranking results on the AA benchmark.
+Online demonstration
+StepFun Audio Studio
+- Both Step-Audio-R1.1 are available in our StepFun Audio Studio.
+- You will need an API key from the StepFun Open Platform.
+WeChat group
+You can scan the following QR code to join our WeChat group for communication and discussion.
+Model Usage
+📜 Requirements
+- GPU: NVIDIA GPUs with CUDA support (tested on 4×L40S/H100/H800/H20).
+- Operating System: Linux.
+- Python: &gt;= 3.10.0.
+⬇️ Download Model
+First, you need to download the Step-Audio-R1 model weights.
+Method A · Git LFS
+git lfs install
+git clone https://huggingface.co/stepfun-ai/Step-Audio-R1.1
+Method B · Hugging Face CLI
+hf download stepfun-ai/Step-Audio-R1.1 --local-dir ./Step-Audio-R1.1
+🚀 Deployment and Execution
+We provide two ways to serve the model: Docker (recommended) or compiling the customized vLLM backend.
+🐳 Method 1 · Run with Docker (Recommended)
+A customized vLLM image is required.
+- Pull the image:
+docker pull stepfun2025/vllm:step-audio-2-v20250909
+- Start the service: Assuming the model is downloaded in the Step-Audio-R1 folder in the current directory.docker run --rm -ti --gpus all \
+    -v $(pwd)/Step-Audio-R1.1:/Step-Audio-R1.1 \
+    -p 9999:9999 \
+    stepfun2025/vllm:step-audio-2-v20250909 \
+    -- vllm serve /Step-Audio-R1.1 \
+    --served-model-name Step-Audio-R1.1 \
+    --port 9999 \
+    --max-model-len 16384 \
+    --max-num-seqs 32 \
+    --tensor-parallel-size 4 \
+    --chat-template &#39;{%- macro render_content(content) -%}{%- if content is string -%}{{- content.replace(&#34;&lt;audio_patch&gt;\n&#34;, &#34;&lt;audio_patch&gt;&#34;) -}}{%- elif content is mapping -%}{{- content[&#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39;] if &#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39; in content else content[&#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39;] -}}{%- elif content is iterable -%}{%- for item in content -%}{%- if item.type == &#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39; -%}{{- item[&#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39;] if &#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39; in item else item[&#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39;] -}}{%- elif item.type == &#39;&#34;&#39;&#34;&#39;audio&#39;&#34;&#39;&#34;&#39; -%}&lt;audio_patch&gt;{%- endif -%}{%- endfor -%}{%- endif -%}{%- endmacro -%}{%- if tools -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;system\n&#39;&#34;&#39;&#34;&#39; -}}{%- if messages[0][&#39;&#34;&#39;&#34;&#39;role&#39;&#34;&#39;&#34;&#39;] == &#39;&#34;&#39;&#34;&#39;system&#39;&#34;&#39;&#34;&#39; -%}{{- render_content(messages[0][&#39;&#34;&#39;&#34;&#39;content&#39;&#34;&#39;&#34;&#39;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;tool_json_schemas\n&#39;&#34;&#39;&#34;&#39; + tools|tojson + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- else -%}{%- if messages[0][&#39;&#34;&#39;&#34;&#39;role&#39;&#34;&#39;&#34;&#39;] == &#39;&#34;&#39;&#34;&#39;system&#39;&#34;&#39;&#34;&#39; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;system\n&#39;&#34;&#39;&#34;&#39; + render_content(messages[0][&#39;&#34;&#39;&#34;&#39;content&#39;&#34;&#39;&#34;&#39;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- endif -%}{%- for message in messages -%}{%- if message[&#34;role&#34;] == &#34;user&#34; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;human\n&#39;&#34;&#39;&#34;&#39; + render_content(message[&#34;content&#34;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- elif message[&#34;role&#34;] == &#34;assistant&#34; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;assistant\n&#39;&#34;&#39;&#34;&#39; + (render_content(message[&#34;content&#34;]) if message[&#34;content&#34;] else &#39;&#34;&#39;&#34;&#39;&#39;&#34;&#39;&#34;&#39;) -}}{%- set is_last_assistant = true -%}{%- for m in messages[loop.index:] -%}{%- if m[&#34;role&#34;] == &#34;assistant&#34; -%}{%- set is_last_assistant = false -%}{%- endif -%}{%- endfor -%}{%- if not is_last_assistant -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- elif message[&#34;role&#34;] == &#34;function_output&#34; -%}{%- else -%}{%- if not (loop.first and message[&#34;role&#34;] == &#34;system&#34;) -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;&#39;&#34;&#39;&#34;&#39; + message[&#34;role&#34;] + &#39;&#34;&#39;&#34;&#39;\n&#39;&#34;&#39;&#34;&#39; + render_content(message[&#34;content&#34;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;assistant\n&lt;think&gt;\n&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}&#39; \
+    --enable-log-requests \
+    --interleave-mm-strings \
+    --trust-remote-code
+After the service starts, it will listen on localhost:9999.
+🐳 Method 2 · Run from Source (Compile vLLM)
+Step-Audio-R1 requires a customized vLLM backend.
+- Download Source Code: git clone https://github.com/stepfun-ai/vllm.git
+cd vllm
+- Prepare Environment: python3 -m venv .venv
+source .venv/bin/activate
+- Install and Compile: vLLM contains both C++ and Python code. We mainly modified the Python code, so the C++ part can use the pre-compiled version to speed up the process. # Use pre-compiled C++ extensions (Recommended)
+VLLM_USE_PRECOMPILED=1 pip install -e .
+- Switch Branch: After compilation, switch to the branch that supports Step-Audio. git checkout feat/step-audio-support
+- Start the Service: # Ensure you are in the vllm directory and the virtual environment is activated
+source .venv/bin/activate
+python3 -m vllm.entrypoints.openai.api_server \
+    --model ../Step-Audio-R1.1 \
+    --served-model-name Step-Audio-R1.1 \
+    --port 9999 \
+    --host 0.0.0.0 \
+    --max-model-len 65536 \
+    --max-num-seqs 128 \
+    --tensor-parallel-size 4 \
+    --gpu-memory-utilization 0.85 \
+    --trust-remote-code \
+    --enable-log-requests \
+    --interleave-mm-strings \
+    --chat-template &#39;{%- macro render_content(content) -%}{%- if content is string -%}{{- content.replace(&#34;&lt;audio_patch&gt;\n&#34;, &#34;&lt;audio_patch&gt;&#34;) -}}{%- elif content is mapping -%}{{- content[&#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39;] if &#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39; in content else content[&#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39;] -}}{%- elif content is iterable -%}{%- for item in content -%}{%- if item.type == &#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39; -%}{{- item[&#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39;] if &#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39; in item else item[&#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39;] -}}{%- elif item.type == &#39;&#34;&#39;&#34;&#39;audio&#39;&#34;&#39;&#34;&#39; -%}&lt;audio_patch&gt;{%- endif -%}{%- endfor -%}{%- endif -%}{%- endmacro -%}{%- if tools -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;system\n&#39;&#34;&#39;&#34;&#39; -}}{%- if messages[0][&#39;&#34;&#39;&#34;&#39;role&#39;&#34;&#39;&#34;&#39;] == &#39;&#34;&#39;&#34;&#39;system&#39;&#34;&#39;&#34;&#39; -%}{{- render_content(messages[0][&#39;&#34;&#39;&#34;&#39;content&#39;&#34;&#39;&#34;&#39;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;tool_json_schemas\n&#39;&#34;&#39;&#34;&#39; + tools|tojson + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- else -%}{%- if messages[0][&#39;&#34;&#39;&#34;&#39;role&#39;&#34;&#39;&#34;&#39;] == &#39;&#34;&#39;&#34;&#39;system&#39;&#34;&#39;&#34;&#39; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;system\n&#39;&#34;&#39;&#34;&#39; + render_content(messages[0][&#39;&#34;&#39;&#34;&#39;content&#39;&#34;&#39;&#34;&#39;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- endif -%}{%- for message in messages -%}{%- if message[&#34;role&#34;] == &#34;user&#34; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;human\n&#39;&#34;&#39;&#34;&#39; + render_content(message[&#34;content&#34;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- elif message[&#34;role&#34;] == &#34;assistant&#34; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;assistant\n&#39;&#34;&#39;&#34;&#39; + (render_content(message[&#34;content&#34;]) if message[&#34;content&#34;] else &#39;&#34;&#39;&#34;&#39;&#39;&#34;&#39;&#34;&#39;) -}}{%- set is_last_assistant = true -%}{%- for m in messages[loop.index:] -%}{%- if m[&#34;role&#34;] == &#34;assistant&#34; -%}{%- set is_last_assistant = false -%}{%- endif -%}{%- endfor -%}{%- if not is_last_assistant -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- elif message[&#34;role&#34;] == &#34;function_output&#34; -%}{%- else -%}{%- if not (loop.first and message[&#34;role&#34;] == &#34;system&#34;) -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;&#39;&#34;&#39;&#34;&#39; + message[&#34;role&#34;] + &#39;&#34;&#39;&#34;&#39;\n&#39;&#34;&#39;&#34;&#39; + render_content(message[&#34;content&#34;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;assistant\n&lt;think&gt;\n&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}&#39;
+After the service starts, it will listen on localhost:9999.
+- Downloads last month
+- 330</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-21T07:46:26Z</p></footer>
+</body>
+</html>

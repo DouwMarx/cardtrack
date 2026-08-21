@@ -577,3 +577,106 @@ successfully every run, and the corpus already held eight NVIDIA robotics and wo
 was not an unmonitored corner. Two accidental discoveries in two consecutive runs, at different
 publishers, is weak evidence that the accessible-by-accident subset is small relative to what is missing.
 The proposed HuggingFace-API reconciliation pass would have caught all three. Nothing further requested.
+
+## 2026-08-21 — Phase A fails silently in a way that looks like success; and one superseded-edition correction
+
+### 1. `candidates_new: 0` is indistinguishable from `everything errored`, and today it was the latter
+
+Phase A recorded `checked: 237, ok: 0, not_found: 0, blocked: 0, errors: 237, fingerprint_checked: 36,
+new_versions: 0, candidates: 2660, candidates_new: 0` at 07:27:18Z. This is the **fifth** occurrence of
+the pattern first logged 2026-08-14 (previous instances: 08-14, and 08-18 which called it the fourth).
+At 08:05Z I re-swept all 43 configured `index_urls` by hand from the same venv via
+`cardtrack.fetch(max_bytes=…, timeout=…)` and got **43/43 HTTP 200**, and every document fetch inside
+this run's nine proposals succeeded. The fetch layer is healthy; the failure is transient and total.
+
+Previous entries asserted the consequence. This one measured it. I redid the index diff by hand
+against `candidates.json` ∪ corpus URLs and found **94 links present on the index pages and absent
+from both**, of which five were content rather than page furniture:
+
+| link | date | disposition |
+|---|---|---|
+| `research.meta.ai/blog/multimodal-intelligence-of-muse-spark-1-2` | 2026-08-20 | capability showcase — skipped, but it links the item below |
+| `research.meta.ai/static/muse-spark-1-2-multimodal-evaluation-methodology` | 2026-08-20 | **proposed** — 4-page first-party evaluation report, the best find of the run |
+| `transluce.org/scaling-activation-oracles` | 2026-08-20 | skipped (methods research) |
+| `transluce.org/foundation-models-for-oversight` | 2026-07-28 | skipped (research agenda) |
+| `securebio.substack.com/p/securebio-detection-updates-august` | 2026-08-20 | skipped (biosurveillance ops report) |
+| `mistral.ai/news/agentic-search` | 2026-08-20 | skipped (retrieval product, not a model) |
+
+Two further losses are invisible in the log rather than merely unrecorded. `ok: 0` means **no active
+document was link-checked at all today**, so no `dead` or `moved` link could have been detected — the
+run reports `marked_dead: 0` exactly as it would on a clean day. And `fingerprint_checked: 36` with
+`new_versions: 0` cannot be distinguished from 36 failed fetches, so the ~weekly silent-revision sweep
+also did not happen while appearing to.
+
+**Suggested change.** Make total failure loud and non-silent, in decreasing order of value:
+
+1. **If `ok == 0` and `checked > 0`, treat the phase as failed**: do not write `candidates.json`, do not
+   report `candidates_new`, and surface a non-zero exit or an explicit `"phase_a_status": "failed"` key
+   that the agent prompt can read. A zero that means "nothing new" and a zero that means "nothing
+   worked" must not be the same value.
+2. **Retry the whole phase once** after a short backoff before giving up. Five occurrences, all
+   transient, all recovering within forty minutes, is the profile of something a single retry fixes.
+3. Emit `errors` broken down by exception class. Five runs in, nobody knows *what* fails, because the
+   counter is all that survives.
+
+Evidence: `logs/run-20260821-072718Z.log`; friction line `phase_a_total_failure_silent` this run and
+2026-08-18, 2026-08-14; the 94-link hand diff described above; the Muse Spark 1.2 multimodal methodology
+proposal (`outbox:2`), which exists only because the diff was redone by hand.
+
+Related, same root cause of "an empty value that might mean failure": Phase B logged
+`error connecting to api.github.com` twice, so `logs/open_issues.json` is `[]` **unverified** — with the
+API unreachable, the fetch cannot distinguish "no open issues" from "could not ask". Suggest a
+`fetch_status` field on that file so task 4 can be reported honestly. Both of this run's validator-filed
+issues went to `logs/issues_outbox.jsonl` (`outbox:1`, `outbox:2`) rather than to GitHub.
+
+### 2. Correction: the Claude Opus 5 System Card revision is substantive, not cosmetic
+
+The 2026-08-18 entry's table cleared the fourth row — the Opus 5 pair — as "repagination only — full
+word-diff shows no content change", and used it as the contrast case for the argument that "a curation
+agent can tell a corrected misattribution from a moved page number, and a byte comparison cannot."
+**That row was wrong.** Re-diffed today with `pdftotext`, standalone page-number lines stripped, and
+`difflib.SequenceMatcher` over the word streams:
+
+| | corpus edition `c5fbac3f…` (193 pp) | live edition `b514064a…` (194 pp) |
+|---|---|---|
+| Table 8.1.A, FrontierBench v0.1 row | `43.3 \| 18.7 \| 33.7 \| 37.5` | `43.3 \| 21.1 \| 33.8 \| 34.4` |
+| FrontierBench attribution | absent | "FrontierBench results in this table are from Harbor's evaluations." |
+| FrontierCode effort-decline note | absent | new ~128-word note: the grader penalises out-of-scope refactoring; a scope instruction recovers most of it; scores reported without it |
+| §8 opening | "To … it, … used" | "In addition to evaluations by Harbor presented in Table 8.1.A, … our own evaluations on the …" |
+
+The changed row moves Opus 4.8 from 18.7 to 21.1 and competitor GPT-5.6 Sol from 37.5 down to 34.4 in
+the headline capability table. `anthropic.com/transparency/model-report` as fetched today links **only**
+the 194-page edition; the orphaned hash still returns 200, so no link-check will ever notice. The corpus
+and the public site are serving superseded benchmark numbers for a flagship system card.
+
+This makes the 2026-08-18 ask stronger, not weaker, and sharpens it: the argument was "trust agent
+attestation over byte comparison." Today's evidence is that **a naive word-diff is not a reliable
+substitute for reading either** — pagination noise dominated the diff and an earlier run drew the wrong
+conclusion from it. Nothing new is requested beyond item 2 of the 2026-08-18 entry (let
+`field_update --field canonical_url` move a document to a verified newer edition on agent attestation,
+demoting the old URL into `alt_urls`), but it is worth recording that the current gate produced its
+designed outcome — my proposal became needs-review issue `outbox:1` — on a case where the correct answer
+was determinable and determined.
+
+### 3. `find_logical_duplicates` fires on house naming conventions
+
+`research.meta.ai/static/muse-spark-1-2-multimodal-evaluation-methodology` (2026-08-20, 4 pp, covering
+BabyVision / PerceptionBench / ZeroBench / WorldVQA / SimpleVQA / ERQA / OmniSpatial / CharXiv /
+ChartMuseum / ChartQAPro / Wild Artifact Bench / Design Arena) was routed to needs-review as a suspected
+duplicate of `meta-muse-spark-1-2-other` (`/static/muse-spark-1-2-methodology`, 2026-08-05, covering
+Muse Code and the coding suite). Different URL, fifteen days apart, disjoint benchmark suites, both
+linked by Meta from different blog posts, and the content fingerprint — the reliable duplicate test —
+did not fire. What fired was Jaccard title similarity ≈ 5/7 = 0.71 against a 0.6 threshold, on the shared
+tokens `muse spark 1.2 evaluation methodology`: exactly the words any publisher with a house naming
+convention will always share across genuinely distinct documents.
+
+Suggested change: require a third signal before `logical_duplicate` when the fingerprints differ —
+publication dates within a launch window (say 7 days), **or** one URL redirecting to the other. Model
+overlap plus title overlap alone will keep misfiring on well-organised publishers, which are precisely
+the publishers this corpus most wants to track. I proposed the document under its true title rather than
+perturbing it to slip past the check, and note that doing so is the only honest option available, which
+means the check's false-positive rate is paid entirely in human review time.
+
+Evidence: friction lines `logical_duplicate_false_positive_on_sibling_reports` and
+`superseded_edition_misjudged_as_cosmetic` this run; `cardtrack/identity.py:50-91`
+(`title_similarity`, `TITLE_SIMILARITY_THRESHOLD = 0.6`, `find_logical_duplicates`).

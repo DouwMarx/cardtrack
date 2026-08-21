@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLaDA2.2-flash model card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">LLaDA2.2-flash model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://huggingface.co/inclusionAI" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">inclusion_ai</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>LLaDA2.2-flash</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-07-16</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/inclusionAI/LLaDA2.2-flash" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/inclusionAI/LLaDA2.2-flash</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-21T07:37:29Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Apache-2.0. Card notes &#39;more results will be released in the upcoming technical report&#39;, so expect revisions.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada2-2-flash-model-card&amp;body=Document%3A%20inclusion-ai-llada2-2-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA2.2-flash%0AFingerprint%3A%209d94020aee8211ca559cd71d0b307f2ef7df233567e5cb784f8d006dc30b7d28%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-21T07:37:29Z</td>
+          <td>text/html</td>
+          <td>237,377</td>
+          <td><code title="9d94020aee8211ca559cd71d0b307f2ef7df233567e5cb784f8d006dc30b7d28">9d94020aee8211ca</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-21T07:37:29Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-21T07:27Z-local · agent · lead: agent_search</span>
+          <div class="just">InclusionAI&#39;s (Ant Group) own HuggingFace card for LLaDA2.2-flash, an agent-oriented diffusion language model, fetched and read in full. Repo created 2026-07-16; 14 commits through 2026-08-20. The card documents Levenshtein Editing - DELETE and INSERT control tokens that let diffusion decoding edit sequence structure during parallel generation - plus Block Routing for a 128K diffusion context and L-EBPO agentic RL, and carries a head-to-head benchmark table against Ling-2.6-flash with a stated evaluation setup (Claude Code scaffold, 128K context, temperature 1.0, block_length 32, five-run averages): SWE-bench Verified 49.28 vs 61.20, SWE-bench Pro 30.10 vs 31.88, tau2-Bench 80.33 vs 76.36, MCP-Atlas 46.21 vs 41.12, BFCL-V4 60.78 vs 66.81, alongside throughput figures showing roughly 1.7-2.3x higher TPS. Notable: 82 likes and a first-party technical report in the inclusionAI/LLaDA2.X GitHub repository. Distinct release: a diffusion-architecture model line with no counterpart in the corpus, distinct from both Ling and Ring. Surfaced by a HuggingFace-org sweep by creation date. has_safety_evals is false: the card is architecture, agentic benchmarks and throughput, with no safety evaluation, red-teaming or risk assessment.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://github.com/inclusionAI/LLaDA2.X/blob/main/LLaDA2_2_tech_report.pdf" rel="noopener nofollow">https://github.com/inclusionAI/LLaDA2.X/blob/main/LLaDA2_2_tech_report.pdf</a> · <a href="https://huggingface.co/api/models/inclusionAI/LLaDA2.2-flash/commits/main" rel="noopener nofollow">https://huggingface.co/api/models/inclusionAI/LLaDA2.2-flash/commits/main</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/inclusionAI/LLaDA2.2-flash" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use inclusionAI/LLaDA2.2-flash with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use inclusionAI/LLaDA2.2-flash with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;inclusionAI/LLaDA2.2-flash&#34;, trust_remote_code=True)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&#34;inclusionAI/LLaDA2.2-flash&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use inclusionAI/LLaDA2.2-flash with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;inclusionAI/LLaDA2.2-flash&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;inclusionAI/LLaDA2.2-flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/inclusionAI/LLaDA2.2-flash
+-  SGLang  How to use inclusionAI/LLaDA2.2-flash with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;inclusionAI/LLaDA2.2-flash&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;inclusionAI/LLaDA2.2-flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;inclusionAI/LLaDA2.2-flash&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;inclusionAI/LLaDA2.2-flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use inclusionAI/LLaDA2.2-flash with Docker Model Runner: docker model run hf.co/inclusionAI/LLaDA2.2-flash
+LLaDA2.2-flash
+LLaDA2.2-flash is an agent-oriented diffusion language model in the LLaDA2 series. By introducing Levenshtein Editing (with DELETE and INSERT control tokens) to diffusion language modeling, it represents the LLaDA2 series&#39; first step in agentic applications, including long-context tool use, multi-turn interaction, and robust error correction.For more information, please refer to our technical report.
+📊 Benchmarks
+The following tables compare LLaDA2.2-flash and Ling-2.6-flash in terms of agentic benchmark scores and throughput (TPS).
+Agentic benchmark scores
+| Benchmark | LLaDA2.2-flash | Ling-2.6-flash |
+|---|---|---|
+| SWE-bench Verified | 49.28 | 61.20† |
+| SWE-bench Pro | 30.10 | 31.88 |
+| SWE-bench Multilingual | 25.00 | 33.73 |
+| τ²-Bench | 80.33 | 76.36† |
+| Claw-Eval | 64.22 | 64.56† |
+| PinchBench | 81.66 | 81.30† |
+| MCP-Atlas | 46.21 | 41.12 |
+| BFCL-V4 | 60.78 | 66.81 |
+LLaDA2.2-flash evaluation setup: The SWE-bench series was evaluated using the Claude Code scaffold. Across all benchmarks, we used a 128K context window with temperature=1.0, block_length=32, threshold=0.5, and editing_threshold=0.0. Each score represents the average of five runs.
+† The Ling-2.6-flash score on SWE-bench Verified is taken from the Ling and Ring 2.6 Technical Report, where it was obtained using the OpenHands scaffold. The Ling-2.6-flash scores on τ²-Bench, Claw-Eval, and PinchBench are also sourced from the technical report, whereas its SWE-bench Pro and SWE-bench Multilingual scores were evaluated by us using the same Claude Code scaffold as LLaDA2.2-flash.
+Throughput (TPS)
+| Benchmark | LLaDA2.2-flash (TPS) | Ling-2.6-flash (TPS) |
+|---|---|---|
+| SWE-bench Verified | 519.0 | 303.2 |
+| SWE-bench Pro | 485.3 | 283.4 |
+| SWE-bench Multilingual | 459.5 | 200.6 |
+| τ²-Bench | 592.8 | 334.9 |
+| BFCL-V4 | 703.82 | 331.5 |
+Ling-2.6-flash evaluation setup: MTP was enabled with 4 draft tokens.
+More results will be released in the upcoming technical report.
+🚀 Highlights
+- Efficient 128K Diffusion Infrastructure: LLaDA2.2-flash extends the context window to 128K and introduces Block Routing, which bounds MoE expert activation at the diffusion-block level to enable efficient long-context agentic workloads.
+- Levenshtein Editing: We introduces DELETE and INSERT control tokens, allowing diffusion decoding to edit sequence structure, remove redundant content, and create insertion slots during parallel generation.
+- Agentic Reinforcement Learning: We propose Levenshtein Editing ELBO-based Block-level Policy Optimization (L-EBPO), which leverages agentic environmental rewards to train levenshtein editing and error correction in multi-turn tool-use scenarios.
+📦 Model Variants
+| Model ID | Description | Hugging Face Link |
+|---|---|---|
+| inclusionAI/LLaDA2.2-flash | Agent-oriented MoE diffusion language model with Levenshtein Editing. | 🤗 Model Card |
+🔍 Model Overview
+LLaDA2.2-flash has the following specifications:
+- Type: Mixture-of-Experts (MoE) Diffusion Language Model with Levenshtein Editing
+- Context Length: 128K tokens
+- Levenshtein Editing Control Tokens: DELETE ,INSERT
+- Total Parameters (Non-Embedding): 100B
+- Number of Layers: 32
+- Attention Heads: 32
+- Positional Encoding: Rotary Position Embedding (RoPE)
+- Vocabulary Size: 157,184
+🤗 Hugging Face Transformers
+Make sure you have transformers and its dependencies installed.
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+model_path = &#34;inclusionAI/LLaDA2.2-flash&#34;
+device = &#34;auto&#34;
+model = AutoModelForCausalLM.from_pretrained(
+    model_path,
+    trust_remote_code=True,
+    device_map=device,
+)
+model = model.to(torch.bfloat16)
+model.eval()
+tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+prompt = &#34;&#34;&#34;Calculate 1+5-28*0.5-200=?&#34;&#34;&#34;
+input_ids = tokenizer.apply_chat_template(
+    [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: prompt}],
+    add_generation_prompt=True,
+    tokenize=True,
+    return_tensors=&#34;pt&#34;,
+).input_ids
+generated_tokens = model.generate(
+    inputs=input_ids,
+    eos_early_stop=True,
+    gen_length=512,
+    block_length=32,
+    threshold=0.5,
+    editing_threshold=0.0,
+    temperature=0.0,
+)
+generated_answer = tokenizer.decode(
+    generated_tokens[0],
+    skip_special_tokens=True,
+)
+print(generated_answer)
+Best Practices
+To achieve optimal performance, we recommend starting with the following settings:
+- Sampling Parameters: Use block_length=32 ,temperature=0.0 ,top_p=None , andtop_k=None as stable default settings.
+- Denoising Thresholds: Tune threshold ,editing_threshold , andmax_post_steps according to the speed-quality trade-off required by the application. Lower thresholds may improve inference speed but can lead to increased repetition or unstable outputs.
+- Long-Context Agentic Workloads: For long-context tool-use and multi-turn agent applications, we recommend using SGLang as the serving backend. Please ensure that the serving stack is configured for the 128K context window and the model&#39;s MoE diffusion inference requirements.
+🤖 ModelScope
+If you are in mainland China, we strongly recommend accessing our model from 🤖 ModelScope
+Deployment
+SGLang
+SGLang deployment support is coming soon.
+🌐 License
+This project is licensed under the terms of the Apache License 2.0.
+🤝 Contact &amp; Collaboration
+For questions, collaboration opportunities, or feedback, please reach out via Hugging Face or open an issue in the repository.
+Join us in advancing open, efficient, and intelligent diffusion language models for agentic applications.
+- Downloads last month
+- 1,203</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-21T07:46:26Z</p></footer>
+</body>
+</html>

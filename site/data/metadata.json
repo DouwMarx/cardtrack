@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-20T06:31:49Z",
+ "generated_at": "2026-08-21T07:46:26Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -2057,6 +2057,31 @@
    "version_count": 1
   },
   {
+   "slug": "inclusion-ai-llada2-2-flash-model-card",
+   "title": "LLaDA2.2-flash model card",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "LLaDA2.2-flash"
+   ],
+   "publication_date": "2026-07-16",
+   "canonical_url": "https://huggingface.co/inclusionAI/LLaDA2.2-flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:29Z",
+   "last_checked": "2026-08-21T07:37:29Z",
+   "last_changed": "2026-08-21T07:37:29Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "cafea9c3a8bfdc96c0d9a4fe4de8af0daa22a400c1542e0f007e678342dd919c",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:29Z",
+   "content_fingerprint": "9d94020aee8211ca559cd71d0b307f2ef7df233567e5cb784f8d006dc30b7d28",
+   "version_count": 1
+  },
+  {
    "slug": "mistral-mistral-ocr-4-1-model-card",
    "title": "Model Card: OCR 4.1",
    "publisher": "mistral",
@@ -3851,6 +3876,31 @@
    "version_count": 1
   },
   {
+   "slug": "inclusion-ai-ring-2-6-1t-model-card",
+   "title": "Ring-2.6-1T model card",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Ring-2.6-1T"
+   ],
+   "publication_date": "2026-05-14",
+   "canonical_url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:28Z",
+   "last_checked": "2026-08-21T07:37:28Z",
+   "last_changed": "2026-08-21T07:37:28Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "7c00aa76c2520ea0216d18bb661d2ef3693ccc51745007419ceccdcaaddc726f",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:28Z",
+   "content_fingerprint": "08cf76a882353702758268e2ff4e48d74a7193fadb307f7e4fb29e9032fef766",
+   "version_count": 1
+  },
+  {
    "slug": "uk-aisi-claude-mythos-preview-independent-eval-3",
    "title": "How fast is autonomous AI cyber capability advancing?",
    "publisher": "uk_aisi",
@@ -4116,6 +4166,56 @@
    "version_fetched_at": "2026-08-19T06:18:57Z",
    "content_fingerprint": "a1bf53cc7ea448da69e43a3bc9bd2bcb2eb7811f9433e10728ee520a62737162",
    "version_count": 3
+  },
+  {
+   "slug": "inclusion-ai-ling-2-6-1t-model-card",
+   "title": "Ling-2.6-1T model card",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Ling-2.6-1T"
+   ],
+   "publication_date": "2026-04-29",
+   "canonical_url": "https://huggingface.co/inclusionAI/Ling-2.6-1T",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:26Z",
+   "last_checked": "2026-08-21T07:37:26Z",
+   "last_changed": "2026-08-21T07:37:26Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "3c75c745b6d069fa81affaad15ac04386b82764c808203468c6cfb7f904539ac",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:26Z",
+   "content_fingerprint": "cd422deed7ffd4028e715fa7d965d320cc744bfae74612879db0df8db2dbfec3",
+   "version_count": 1
+  },
+  {
+   "slug": "inclusion-ai-ling-2-6-flash-model-card",
+   "title": "Ling-2.6-flash model card",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Ling-2.6-flash"
+   ],
+   "publication_date": "2026-04-28",
+   "canonical_url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:27Z",
+   "last_checked": "2026-08-21T07:37:27Z",
+   "last_changed": "2026-08-21T07:37:27Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "f96c4db07f851eb1c3dc8b48a04ef0e21cb9b90726a91d4e90f08bee83926808",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:27Z",
+   "content_fingerprint": "018b04bbf4c6a30a27dca335779c2306a038d0edfff439b91d86bb8df419d6de",
+   "version_count": 1
   },
   {
    "slug": "mistral-mistral-medium-3-5-model-card",
@@ -6070,6 +6170,31 @@
    "version_count": 1
   },
   {
+   "slug": "stepfun-step-3-5-flash-model-card",
+   "title": "Step 3.5 Flash model card",
+   "publisher": "stepfun",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Step-3.5-Flash"
+   ],
+   "publication_date": "2026-02-01",
+   "canonical_url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:24Z",
+   "last_checked": "2026-08-21T07:37:24Z",
+   "last_changed": "2026-08-21T07:37:24Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "a5c87b57a9159b222c0ec204b55cf60e92a46180c18e8e8db7c5d1680f7a76f4",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:24Z",
+   "content_fingerprint": "8328190e1e5931adb615b5820df849e49fb0c945c145045a836aa1b8fc3866f0",
+   "version_count": 1
+  },
+  {
    "slug": "metr-claude-opus-4-5-independent-eval",
    "title": "Time Horizon 1.1",
    "publisher": "metr",
@@ -6098,6 +6223,33 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T21:30:04Z",
    "content_fingerprint": "b9b7b5c73ecc992ff9784f154962293fb2f3b65a8ccb134cbdcada808066f7c0",
+   "version_count": 1
+  },
+  {
+   "slug": "alibaba-qwen-qwen3-asr-0-6b-model-card",
+   "title": "Qwen3-ASR model card",
+   "publisher": "alibaba_qwen",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Qwen3-ASR-0.6B",
+    "Qwen3-ASR-1.7B",
+    "Qwen3-ForcedAligner-0.6B"
+   ],
+   "publication_date": "2026-01-28",
+   "canonical_url": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:30Z",
+   "last_checked": "2026-08-21T07:37:30Z",
+   "last_changed": "2026-08-21T07:37:30Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "3a26cdf075bfb359dbd5fb7a2796bea492403e825f5580f0633f49c8e12e77c7",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:30Z",
+   "content_fingerprint": "eca76b423fc1deaeb126b9ae31475369c3dbc051abaf9e4799b4f2a18ab1b36e",
    "version_count": 1
   },
   {
@@ -6283,6 +6435,56 @@
    "version_count": 1
   },
   {
+   "slug": "stepfun-step-audio-r1-1-model-card",
+   "title": "Step-Audio-R1.1 model card",
+   "publisher": "stepfun",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Step-Audio-R1.1"
+   ],
+   "publication_date": "2026-01-14",
+   "canonical_url": "https://huggingface.co/stepfun-ai/Step-Audio-R1.1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:26Z",
+   "last_checked": "2026-08-21T07:37:26Z",
+   "last_changed": "2026-08-21T07:37:26Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "0ae8d5708fed655da3b56827b5fd819f1b4cd4bb5e9b3f0c4f2c9dd0879eb445",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:26Z",
+   "content_fingerprint": "bdf0df508a7ff7f28bfbd5a9fb431c716f846a26a573d2b3f120beba2e653907",
+   "version_count": 1
+  },
+  {
+   "slug": "stepfun-step3-vl-10b-model-card",
+   "title": "STEP3-VL-10B model card",
+   "publisher": "stepfun",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Step3-VL-10B"
+   ],
+   "publication_date": "2026-01-13",
+   "canonical_url": "https://huggingface.co/stepfun-ai/Step3-VL-10B",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-21T07:37:25Z",
+   "last_checked": "2026-08-21T07:37:25Z",
+   "last_changed": "2026-08-21T07:37:25Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "840611714b73d8f15665f8129b39409ee5b0157492b07b524dd547ab6c5113ca",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-21T07:37:25Z",
+   "content_fingerprint": "37247910460524d8ef1159e585f642b2c4163fd912fc7e61377cb7c971926514",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-sonnet-4-5-other-2",
    "title": "Next-generation Constitutional Classifiers: More efficient protection against universal jailbreaks",
    "publisher": "anthropic",
@@ -6306,6 +6508,32 @@
    "version_fetched_at": "2026-08-19T06:18:54Z",
    "content_fingerprint": "f793ff7fe9130d2b8be0b18b69794728a435ca77ed45ecd5026d766f916a47ed",
    "version_count": 3
+  },
+  {
+   "slug": "anthropic-claude-mythos-5-other-2",
+   "title": "Risk Report: August 2026 (Redacted)",
+   "publisher": "anthropic",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Fable 5",
+    "Claude Mythos 5"
+   ],
+   "publication_date": null,
+   "canonical_url": "https://www.anthropic.com/aug-2026-risk-report",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-20T09:47:45Z",
+   "last_checked": "2026-08-20T09:48:01Z",
+   "last_changed": "2026-08-20T09:48:01Z",
+   "source_of_lead": "manual",
+   "safety_evals": 1,
+   "openness": "closed",
+   "content_hash": "d76815f8c0bd284a33c7017d642d0734ba903ae63f7c1e6ca7778b35b2c40fa4",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-20T09:47:45Z",
+   "content_fingerprint": "17f3390a6906e83c7814e954f75ebd03badc19e1b828b7826059a80e5ccdc687",
+   "version_count": 1
   },
   {
    "slug": "anthropic-claude-opus-4-6-other-4",

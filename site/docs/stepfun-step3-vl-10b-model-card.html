@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STEP3-VL-10B model card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">STEP3-VL-10B model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.stepfun.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">stepfun</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Step3-VL-10B</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-01-13</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/stepfun-ai/Step3-VL-10B" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/stepfun-ai/Step3-VL-10B</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-21T07:37:25Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Apache-2.0. Step3-VL-10B-Base and Step3-VL-10B-FP8 are the base checkpoint and a quantisation covered by this card; excluded as variants per distinct_model_release, consistent with the 2026-08-20 treatment of the InclusionAI base checkpoints.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step3-vl-10b-model-card&amp;body=Document%3A%20stepfun-step3-vl-10b-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step3-VL-10B%0AFingerprint%3A%2037247910460524d8ef1159e585f642b2c4163fd912fc7e61377cb7c971926514%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-21T07:37:25Z</td>
+          <td>text/html</td>
+          <td>225,639</td>
+          <td><code title="37247910460524d8ef1159e585f642b2c4163fd912fc7e61377cb7c971926514">37247910460524d8</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-21T07:37:25Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-21T07:27Z-local · agent · lead: agent_search</span>
+          <div class="just">StepFun&#39;s own HuggingFace card for STEP3-VL-10B, a 10B-parameter open vision-language foundation model, fetched and read in full. Repo created and README written 2026-01-13; 28 commits through 2026-02-04. The card documents unified single-stage pre-training on a 1.2T-token multimodal corpus over a Perception Encoder plus Qwen3-8B decoder, a two-stage SFT and 1,400+ RL-iteration post-training pipeline with RLVR and RLHF, and Parallel Coordinated Reasoning (PaCoRe); it carries full benchmark tables against GLM-4.6V (106B-A12B), Qwen3-VL (235B-A22B), Gemini 2.5 Pro and Seed-1.5-VL, including MMMU 78.11/80.11, MathVista 83.97/85.50, MathVision 70.81/75.95, MMBench-EN 92.05 and MMStar 77.48. Notable: 91,937 downloads, 413 likes, an arXiv paper (2601.09668), a HuggingFace Space demo, official vLLM integration (PR #32329) and a ModelScope mirror. Distinct release: a vision-language model with no counterpart in the corpus, whose only StepFun row is the text-only Step-3.7-Flash. Worth recording that the card itself carries a first-party correction notice - StepFun apologises for inaccurate Qwen3VL-8B comparison numbers caused by a max_tokens misconfiguration during evaluation and says corrected figures will appear in the next technical report - which is exactly the kind of provenance a version-tracked corpus should hold. Surfaced by a HuggingFace-org sweep by creation date, not by index diff. has_safety_evals is false: the card&#39;s &#39;human-centric alignment&#39; is a capability claim, and there is no safety section, red-teaming, refusal evaluation or risk assessment anywhere in it.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2601.09668" rel="noopener nofollow">https://arxiv.org/abs/2601.09668</a> · <a href="https://huggingface.co/spaces/stepfun-ai/Step3-VL-10B" rel="noopener nofollow">https://huggingface.co/spaces/stepfun-ai/Step3-VL-10B</a> · <a href="https://huggingface.co/api/models/stepfun-ai/Step3-VL-10B/commits/main" rel="noopener nofollow">https://huggingface.co/api/models/stepfun-ai/Step3-VL-10B/commits/main</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/stepfun-ai/Step3-VL-10B" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>📢 News &amp; Updates
+- 🚀 Online Demo: Explore Step3-VL-10B on Hugging Face Spaces !
+- 📢 [Notice] FP8 Quantization Support : FP8 quantized weights are now available. (Download link)
+- 📢 [Notice] vLLM Support: vLLM integration is now officially supported! (PR #32329)
+- ✅ [Fixed] HF Inference: Resolved the eos_token_id misconfiguration inconfig.json that caused infinite generation loops. (PR #abdf3)
+- ✅ [Fixing] Metric Correction: We sincerely apologize for inaccuracies in the Qwen3VL-8B benchmarks (e.g., AIME, HMMT, LCB). The errors were caused by an incorrect max_tokens setting (mistakenly set to 32k) during our large-scale evaluation process. We are re-running the tests and will provide corrected numbers in the next version of technical report.
+🚀 Introduction
+STEP3-VL-10B is a lightweight open-source foundation model designed to redefine the trade-off between compact efficiency and frontier-level multimodal intelligence. Despite its compact 10B parameter footprint, STEP3-VL-10B excels in visual perception, complex reasoning, and human-centric alignment. It consistently outperforms models under the 10B scale and rivals or surpasses significantly larger open-weights models (10×–20× its size), such as GLM-4.6V (106B-A12B), Qwen3-VL-Thinking (235B-A22B), and top-tier proprietary flagships like Gemini 2.5 Pro and Seed-1.5-VL.
+Figure 1: Performance comparison of STEP3-VL-10B against SOTA multimodal foundation models. SeRe: Sequential Reasoning; PaCoRe: Parallel Coordinated Reasoning.
+The success of STEP3-VL-10B is driven by two key strategic designs:
+- Unified Pre-training on High-Quality Multimodal Corpus: A single-stage, fully unfrozen training strategy on a 1.2T token multimodal corpus, focusing on two foundational capabilities: reasoning (e.g., general knowledge and education-centric tasks) and perception (e.g., grounding, counting, OCR, and GUI interactions). By jointly optimizing the Perception Encoder and the Qwen3-8B decoder, STEP3-VL-10B establishes intrinsic vision-language synergy.
+- Scaled Multimodal Reinforcement Learning and Parallel Reasoning: Frontier capabilities are unlocked through a rigorous post-training pipeline comprising two-stage supervised finetuning (SFT) and over 1,400 iterations of RL with both verifiable rewards (RLVR) and human feedback (RLHF). Beyond sequential reasoning, we adopt Parallel Coordinated Reasoning (PaCoRe), which allocates test-time compute to aggregate evidence from parallel visual exploration.
+📥 Model Zoo
+| Model Name | Type | Hugging Face | ModelScope |
+|---|---|---|---|
+| STEP3-VL-10B-Base | Base | 🤗 Download | 🤖 Download |
+| STEP3-VL-10B | Chat | 🤗 Download | 🤖 Download |
+| STEP3-VL-10B-FP8 | Quantized | 🤗 Download | 🤖 Download |
+📊 Performance
+STEP3-VL-10B delivers best-in-class performance across major multimodal benchmarks, establishing a new performance standard for compact models. The results demonstrate that STEP3-VL-10B is the most powerful open-source model in the 10B parameter class.
+Comparison with Larger Models (10×–20× Larger)
+| Benchmark | STEP3-VL-10B (SeRe) | STEP3-VL-10B (PaCoRe) | GLM-4.6V (106B-A12B) | Qwen3-VL (235B-A22B) | Gemini-2.5-Pro | Seed-1.5-VL |
+|---|---|---|---|---|---|---|
+| MMMU | 78.11 | 80.11 | 75.20 | 78.70 | 83.89 | 79.11 |
+| MathVista | 83.97 | 85.50 | 83.51 | 85.10 | 83.88 | 85.60 |
+| MathVision | 70.81 | 75.95 | 63.50 | 72.10 | 73.30 | 68.70 |
+| MMBench (EN) | 92.05 | 92.38 | 92.75 | 92.70 | 93.19 | 92.11 |
+| MMStar | 77.48 | 77.64 | 75.30 | 76.80 | 79.18 | 77.91 |
+| OCRBench | 86.75 | 89.00 | 86.20 | 87.30 | 85.90 | 85.20 |
+| AIME 2025 | 87.66 | 94.43 | 71.88 | 83.59 | 83.96 | 64.06 |
+| HMMT 2025 | 78.18 | 92.14 | 57.29 | 67.71 | 65.68 | 51.30 |
+| LiveCodeBench | 75.77 | 76.43 | 48.71 | 69.45 | 72.01 | 57.10 |
+Note on Inference Modes:
+SeRe (Sequential Reasoning): The standard inference mode using sequential generation (Chain-of-Thought) with a max length of 64K tokens.
+PaCoRe (Parallel Coordinated Reasoning): An advanced mode that scales test-time compute. It aggregates evidence from 16 parallel rollouts to synthesize a final answer, utilizing a max context length of 128K tokens.
+Unless otherwise stated, scores below refer to the standard SeRe mode. Higher scores achieved via PaCoRe are explicitly marked.
+Comparison with Open-Source Models (7B–10B)
+| Category | Benchmark | STEP3-VL-10B | GLM-4.6V-Flash (9B) | Qwen3-VL-Thinking (8B) | InternVL-3.5 (8B) | MiMo-VL-RL-2508 (7B) |
+|---|---|---|---|---|---|---|
+| STEM Reasoning | MMMU | 78.11 | 71.17 | 73.53 | 71.69 | 71.14 |
+|  | MathVision | 70.81 | 54.05 | 59.60 | 52.05 | 59.65 |
+|  | MathVista | 83.97 | 82.85 | 78.50 | 76.78 | 79.86 |
+|  | PhyX | 59.45 | 52.28 | 57.67 | 50.51 | 56.00 |
+| Recognition | MMBench (EN) | 92.05 | 91.04 | 90.55 | 88.20 | 89.91 |
+|  | MMStar | 77.48 | 74.26 | 73.58 | 69.83 | 72.93 |
+|  | ReMI | 67.29 | 60.75 | 57.17 | 52.65 | 63.13 |
+| OCR &amp; Document | OCRBench | 86.75 | 85.97 | 82.85 | 83.70 | 85.40 |
+|  | AI2D | 89.35 | 88.93 | 83.32 | 82.34 | 84.96 |
+| GUI Grounding | ScreenSpot-V2 | 92.61 | 92.14 | 93.60 | 84.02 | 90.82 |
+|  | ScreenSpot-Pro | 51.55 | 45.68 | 46.60 | 15.39 | 34.84 |
+|  | OSWorld-G | 59.02 | 54.71 | 56.70 | 31.91 | 50.54 |
+| Spatial | BLINK | 66.79 | 64.90 | 62.78 | 55.40 | 62.57 |
+|  | All-Angles-Bench | 57.21 | 53.24 | 45.88 | 45.29 | 51.62 |
+| Code | HumanEval-V | 66.05 | 29.26 | 26.94 | 24.31 | 31.96 |
+Key Capabilities
+- STEM Reasoning: Achieves 94.43% on AIME 2025 and 75.95% on MathVision (with PaCoRe), demonstrating exceptional complex reasoning capabilities that outperform models 10×–20× larger.
+- Visual Perception: Records 92.05% on MMBench and 80.11% on MMMU, establishing strong general visual understanding and multimodal reasoning.
+- GUI &amp; OCR: Delivers state-of-the-art performance on ScreenSpot-V2 (92.61%), ScreenSpot-Pro (51.55%), and OCRBench (86.75%), optimized for agentic and document understanding tasks.
+- Spatial Understanding: Demonstrates emergent spatial awareness with 66.79% on BLINK and 57.21% on All-Angles-Bench, establishing strong potential for embodied intelligence applications.
+🏗️ Architecture &amp; Training
+Architecture
+- Visual Encoder: PE-lang (Language-Optimized Perception Encoder), 1.8B parameters.
+- Decoder: Qwen3-8B.
+- Projector: Two consecutive stride-2 layers (resulting in 16× spatial downsampling).
+- Resolution: Multi-crop strategy consisting of a 728×728 global view and multiple 504×504 local crops.
+Training Pipeline
+- Pre-training: Single-stage, fully unfrozen strategy using AdamW optimizer (Total: 1.2T tokens, 370K iterations).
+  - Phase 1: 900B tokens.
+  - Phase 2: 300B tokens.
+- Supervised Finetuning (SFT): Two-stage approach (Total: ~226B tokens).
+  - Stage 1: 9:1 text-to-multimodal ratio (~190B tokens).
+  - Stage 2: 1:1 text-to-multimodal ratio (~36B tokens).
+- Reinforcement Learning: Total &gt;1,400 iterations.
+  - RLVR: 600 iterations (Tasks: mathematics, geometry, physics, perception, grounding).
+  - RLHF: 300 iterations (Task: open-ended generation).
+  - PaCoRe Training: 500 iterations (Context length: 64K max sequence).
+🛠️ Quick Start
+Deployment Resource Specifications
+- Model Weights: 20 GB
+- Runtime Overhead: ~4 GB
+- Minimum VRAM Required: 24 GB (e.g., RTX 4090 or A100)
+Inference with Hugging Face Transformers
+We introduce how to use our model at inference stage using transformers library. It is recommended to use python=3.10, torch&gt;=2.1.0, and transformers=4.57.0 as the development environment.We currently only support bf16 inference, and multi-patch for image preprocessing is supported by default. This behavior is aligned with vllm.
+Note: If you experience infinite generation issues, please check Discussion #9 for the fix.
+from transformers import AutoProcessor, AutoModelForCausalLM
+key_mapping = {
+    &#34;^vision_model&#34;: &#34;model.vision_model&#34;,
+    r&#34;^model(?!\.(language_model|vision_model))&#34;: &#34;model.language_model&#34;,
+    &#34;vit_large_projector&#34;: &#34;model.vit_large_projector&#34;,
+}
+model_path = &#34;stepfun-ai/Step3-VL-10B&#34;
+processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/bee.jpg&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What&#39;s in this picture?&#34;}
+        ]
+    },
+]
+model = AutoModelForCausalLM.from_pretrained(
+    model_path,
+    trust_remote_code=True,
+    device_map=&#34;auto&#34;,
+    torch_dtype=&#34;auto&#34;,
+    key_mapping=key_mapping).eval()
+inputs = processor.apply_chat_template(
+    messages, add_generation_prompt=True, tokenize=True,
+    return_dict=True, return_tensors=&#34;pt&#34;
+).to(model.device)
+generate_ids = model.generate(**inputs, max_new_tokens=1024, do_sample=False)
+decoded = processor.decode(generate_ids[0, inputs[&#34;input_ids&#34;].shape[-1] :], skip_special_tokens=True)
+print(decoded)
+🚀 Deployment with vLLM (OpenAI-compatible API)
+For deployment, you can use vllm to create an OpenAI-compatible API endpoint.
+- Install vLLM nightly (choose one):
+  - Python / pip pip install vllm --pre --extra-index-url https://wheels.vllm.ai/nightly
+Python ≥3.10 is required. Please ensure vLLM version &gt;= 0.14.0rc2.dev143+gc0a350ca7.
+  - Docker (nightly image) docker pull vllm/vllm-openai:nightly-963dc0b865a3b6011fde7e0d938f86245dccbfac
+The tag above pins the nightly build we validated; update to the latest nightly tag if needed.
+- Launch the server: vllm serve --model stepfun-ai/Step3-VL-10B -tp 1 --reasoning-parser deepseek_r1 --enable-auto-tool-choice --tool-call-parser hermes --trust-remote-code
+Crucial Step: You must append the --trust-remote-code flag to your deployment command. This is mandatory for models that utilize custom code for their architecture.
+- Call the endpoint using any OpenAI-compatible SDK (example in Python): from openai import OpenAI
+client = OpenAI(base_url=&#34;http://localhost:8000/v1&#34;, api_key=&#34;dummy&#34;)
+resp = client.chat.completions.create(
+    model=&#34;stepfun-ai/Step3-VL-10B&#34;,
+    messages=[{
+        &#34;role&#34;:
+        &#34;user&#34;,
+        &#34;content&#34;: [{
+            &#34;type&#34;: &#34;image_url&#34;,
+            &#34;image_url&#34;: {
+                &#34;url&#34;:
+                &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/bee.jpg&#34;
+            }
+        }, {
+            &#34;type&#34;: &#34;text&#34;,
+            &#34;text&#34;: &#34;what&#39;s in this picture?&#34;
+        }]
+    }])
+print(resp.choices[0].message.content)
+🚀 Deployment with SGLang (OpenAI-compatible API)
+- Install SGLang latest main (choose one):
+- Python / pip pip install &#34;sglang @ git+https://github.com/sgl-project/sglang.git#subdirectory=python&#34;
+pip install nvidia-cudnn-cu12==9.16.0.29
+- Docker  docker run --gpus all \
+ --shm-size 32g \
+ -p 30000:30000 \
+ -v ~/.cache/huggingface:/root/.cache/huggingface \
+ --ipc=host \
+ lmsysorg/sglang:latest \
+ python3 -m sglang.launch_server --model-path stepfun-ai/Step3-VL-10B --host 0.0.0.0 --port 30000
+- Launch the server: sglang serve --model-path stepfun-ai/Step3-VL-10B --trust-remote-code --port 2345 --reasoning-parser deepseek-r1 --tool-call-parser hermes
+- Call the endpoint using any OpenAI-compatible SDK (example in Python): from openai import OpenAI
+port = 30000
+client = OpenAI(base_url=f&#34;http://localhost:{port}/v1&#34;, api_key=&#34;None&#34;)
+response = client.chat.completions.create(
+    model=&#34;stepfun-ai/Step3-VL-10B&#34;,
+    messages=[
+        {
+            &#34;role&#34;: &#34;user&#34;,
+            &#34;content&#34;: [
+                {
+                    &#34;type&#34;: &#34;text&#34;,
+                    &#34;text&#34;: &#34;What is in this image?&#34;,
+                },
+                {
+                    &#34;type&#34;: &#34;image_url&#34;,
+                    &#34;image_url&#34;: {
+                        &#34;url&#34;: &#34;https://github.com/sgl-project/sglang/blob/main/examples/assets/example_image.png?raw=true&#34;
+                    },
+                },
+            ],
+        }
+    ],
+)
+print(response.choices[0].message.content)
+📜 Citation
+If you find this project useful in your research, please cite our technical report:
+@misc{huang2026step3vl10btechnicalreport,
+      title={STEP3-VL-10B Technical Report},
+      author={Ailin Huang and Chengyuan Yao and Chunrui Han and Fanqi Wan and Hangyu Guo and Haoran Lv and Hongyu Zhou and Jia Wang and Jian Zhou and Jianjian Sun and Jingcheng Hu and Kangheng Lin and Liang Zhao and Mitt Huang and Song Yuan and Wenwen Qu and Xiangfeng Wang and Yanlin Lai and Yingxiu Zhao and Yinmin Zhang and Yukang Shi and Yuyang Chen and Zejia Weng and Ziyang Meng and Ang Li and Aobo Kong and Bo Dong and Changyi Wan and David Wang and Di Qi and Dingming Li and En Yu and Guopeng Li and Haiquan Yin and Han Zhou and Hanshan Zhang and Haolong Yan and Hebin Zhou and Hongbo Peng and Jiaran Zhang and Jiashu Lv and Jiayi Fu and Jie Cheng and Jie Zhou and Jisheng Yin and Jingjing Xie and Jingwei Wu and Jun Zhang and Junfeng Liu and Kaijun Tan and Kaiwen Yan and Liangyu Chen and Lina Chen and Mingliang Li and Qian Zhao and Quan Sun and Shaoliang Pang and Shengjie Fan and Shijie Shang and Siyuan Zhang and Tianhao You and Wei Ji and Wuxun Xie and Xiaobo Yang and Xiaojie Hou and Xiaoran Jiao and Xiaoxiao Ren and Xiangwen Kong and Xin Huang and Xin Wu and Xing Chen and Xinran Wang and Xuelin Zhang and Yana Wei and Yang Li and Yanming Xu and Yeqing Shen and Yuang Peng and Yue Peng and Yu Zhou and Yusheng Li and Yuxiang Yang and Yuyang Zhang and Zhe Xie and Zhewei Huang and Zhenyi Lu and Zhimin Fan and Zihui Cheng and Daxin Jiang and Qi Han and Xiangyu Zhang and Yibo Zhu and Zheng Ge},
+      year={2026},
+      eprint={2601.09668},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2601.09668},
+}
+📄 License
+This project is open-sourced under the Apache 2.0 License.
+- Downloads last month
+- 91,937
+Model tree for stepfun-ai/Step3-VL-10B
+Base model
+stepfun-ai/Step3-VL-10B-Base</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-21T07:46:26Z</p></footer>
+</body>
+</html>
