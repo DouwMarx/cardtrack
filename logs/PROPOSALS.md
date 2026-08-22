@@ -680,3 +680,66 @@ means the check's false-positive rate is paid entirely in human review time.
 Evidence: friction lines `logical_duplicate_false_positive_on_sibling_reports` and
 `superseded_edition_misjudged_as_cosmetic` this run; `cardtrack/identity.py:50-91`
 (`title_similarity`, `TITLE_SIMILARITY_THRESHOLD = 0.6`, `find_logical_duplicates`).
+
+## 2026-08-22 — A launch-partner co-publication can only be catalogued if you catch it after the first party revises, and the corpus has no way to catch it then either
+
+`propose_doc.py` routed today's Cursor copy of the Grok 4.6 model card to needs-review as
+`content_duplicate_of:xai-grok-4-6-model-card` (`outbox:1`). The validator is right on its own terms —
+the extracted-text fingerprints were identical — and I have not retried it. The problem is that the
+dedup rule and the co-publication rule cannot both be satisfied for this class of document, and the
+corpus already contains the pair that proves the class is real.
+
+### 1. The proposable window is empty by construction
+
+The prompt's rule is unambiguous: "each org's own copy at its own URL is a separate document … Never pick
+one 'winner'. Copies are often not byte-identical (launch-day vs revised editions)." The corpus honours
+it for Grok 4.5: `xai-grok-4-5-model-card` (id 180, Revision 2026-07-20) and `cursor-grok-4-5-model-card`
+(id 202, the preserved 2026-07-14 launch-day edition) are two rows.
+
+But consider the timeline a daily agent actually sees:
+
+- **Launch day.** Both orgs publish the same bytes. Whichever copy is proposed second is a content
+  duplicate of the first, and gets blocked. This is what happened on 2026-08-13: that run found
+  `cursor.com/resources/grok-4-6-model-card.pdf`, verified md5 equality with xAI's copy, and — reasonably,
+  facing the same block — recorded it in the xAI row's `notes` instead of cataloguing it.
+- **After divergence.** The first party revises; the partner copy is now unique text. But the dedup check
+  matches against *any stored version* of the sibling row, not just its current one, and the launch-day
+  bytes are still sitting there as version 236. So the partner copy is blocked *permanently*, not just
+  until divergence.
+
+I verified the divergence today by downloading both: Cursor serves 524,224 B, md5
+`5faf54cc75e26c987541719b7e2d56f1` — byte-identical to the corpus's stored version 236 — with cover
+"Revision: 2026-08-12". xAI now serves 540,844 B, md5 `7640cdde745a18a2390cd5fbde55fd55`, "Revision:
+2026-08-17". Cursor's copy is now **the only surviving public edition of the launch-day Grok 4.6 card**,
+including the pre-correction HackerBench v0.2, Self-harm, MASK and LAB numbers that xAI's changelog says
+it corrected. That is precisely the provenance a version-tracked corpus exists to hold, and it is the one
+thing the validator will not let in.
+
+Grok 4.5 is in the corpus as two rows only because it was caught after divergence *and* the launch-day
+bytes had never been stored on the xAI row. That is luck, not process.
+
+**Suggested change:** make the duplicate check publisher-aware. Identical content under a *different*
+allowlisted publisher key is the signature of a co-publication, not a mirror — mirrors are re-hosts under
+the *same* or an unaffiliated publisher. Concretely: skip the content-duplicate rejection when the
+proposal's publisher differs from the matched document's publisher and both are on the allowlist, and
+instead auto-link the two rows (the `notes` cross-reference both rows already carry by hand). If that is
+too permissive, a narrower version: only skip it when the proposal names the matched row as its
+co-published counterpart, which is checkable from the submitted record.
+
+Either way the deeper issue is that "same bytes" is being used as a proxy for "same document", and for
+co-publications it is exactly the wrong proxy: sameness of bytes is what makes them a *pair*, not what
+makes them redundant.
+
+**Evidence:** `outbox:1` this run; corpus ids 180, 202, 203 and the `notes` on 203 written 2026-08-13;
+friction line `co_publication_indistinguishable_from_mirror_by_content_dedup`; both PDFs downloaded and
+hashed this run.
+
+### 2. Confirming evidence only — no new ask
+
+The 2026-08-18 proposal ("The corpus can hold a superseded edition and never find out") now has a
+concrete instance with safety content in it. xAI revised the Grok 4.6 card in place five days ago; the
+corpus served the stale edition until I opened it by hand for citation mining and proposed version 357.
+Phase A fingerprinted 37 of 244 active documents this run, so ~85% of the corpus went revision-unchecked,
+and the drift here was not cosmetic — the changelog's substantive line is "Corrected eval results on
+HackerBench v0.2, Self-harm, MASK, LAB", four safety and behavioural evals, one of which is quoted in
+that row's own add justification. Nothing further requested beyond what that entry already proposes.

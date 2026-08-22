@@ -1,0 +1,165 @@
+Instructions to use nvidia/Lyra-2.0 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Lyra-2.0 How to use nvidia/Lyra-2.0 with Lyra-2.0: # No code snippets available yet for this library. # To use this model, check the repository files and the library's documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
+- Notebooks
+- Google Colab
+- Kaggle
+Lyra 2.0: Explorable Generative 3D Worlds
+Description:
+Lyra 2.0 is a framework for generating persistent, explorable 3D worlds at scale from a single image. The framework consists of two key components: first, it synthesizes a long-range video with strong global geometric consistency; second, it reconstructs the generated sequence into an explicit 3D representation. To address spatial forgetting, we maintain per-frame 3D geometry and use it solely for information routing—retrieving relevant past frames and establishing dense correspondences with the target viewpoints—while relying on the generative prior for appearance synthesis. To address temporal drifting, we train with self-augmented histories that expose the model to its own degraded outputs, teaching it to correct drift rather than propagate it. This two-stage design enables scalable, spatially persistent scene generation while supporting real-time rendering. Lyra 2.0 establishes a new state of the art in single-image 3D scene generation.
+This model is ready for internal scientific research and development use.
+License/Terms of Use
+This model is released under the NVIDIA Internal Scientific Research and Development Model License.
+Important Note: The Model and any Derivative Model may not be distributed, deployed, sublicensed, publicly displayed, publicly performed, or sublicensed. You may not use the Model or a Derivative Model in a production environment or for the purpose of generating works for sale or distribution. If you fail to comply with any of the terms in this Agreement, your rights under the NVIDIA Internal Scientific Research and Development Model License will automatically terminate.
+Deployment Geography:
+Global
+
+		Use Case:
+
+This model is intended for researchers developing 3D world model techniques, and it allows them to generate a 3D scene from a single image.
+
+		Release Date:
+
+Github 04/14/2026 via https://github.com/nv-tlabs/lyra/tree/main/Lyra-2
+
+References(s):
+Lyra 2.0: Explorable Generative 3D Worlds
+Model Architecture:
+Architecture Type: Convolutional Neural Network (CNN), Transformer
+Network Architecture: Transformer
+This model was developed based on WAN-14B.
+Number of model parameters: 14B
+
+		Input:
+
+Input Type(s): Camera Parameters, Image
+Input Format(s): One-Dimensional (1D) Array of Camera Poses, Two-Dimensional (2D) Array of Images.
+Input Parameters: Camera Poses (1D), Images (2D)
+Other Properties Related to Input: The input image should be 480 * 832 resolution, and we recommend using 81 frames for the camera parameters.
+
+		Output:
+
+Output Type(s): Three-Dimensional (3D) Gaussian Scene
+Output Format: Point cloud file (e.g., .ply)
+Output Parameters: A set of 3D Gaussians, where each Gaussian is defined by a collection of attributes.
+Other Properties Related to Output:
+The output is not a sequence of 2D images but a set of 3D primitives used to render a scene. For each of the M Gaussians, the key properties are:
+- Position (Mean): A 3D vector (x,y,z) defining the center of the Gaussian in 3D space.
+- Covariance (Shape & Orientation): This defines the ellipsoid's shape and rotation. It's typically stored as a 3D scale vector (s_x, s_y, s_z) and a 4D rotation quaternion (r_w, r_x, r_y, r_z).
+- Color: A 3-vector (R,G,B) representing the color of the Gaussian. This can also be represented by more complex Spherical Harmonics (SH) coefficients for view-dependent color effects.
+- Opacity: A scalar value (α) that controls the transparency of the Gaussian.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems H100 and GB200. By leveraging NVIDIA's hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+
+Software Integration:
+Runtime Engine(s):
+Supported Hardware Microarchitecture Compatibility:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+Preferred/Supported Operating System(s):
+- [Linux]
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Model Version(s):
+-V1.0
+Training, Testing, and Evaluation Datasets:
+Training Dataset:
+- Open-domain video-text corpora (research use only)
+Data Modality:
+Text, Video, Depth of Video
+Video Training Data Size:
+- Less than 10,000 Hours
+Data Collection Method by dataset:
+- Hybrid: Synthetic, Automated, Human
+Labeling Method by dataset:
+- Synthetic, Automated, Human
+Properties:
+- Modalities: 100k image frames and text pair with 3D annotations
+- Nature of the content: World exploration data
+- Linguistic characteristics: Natural Language
+Testing Dataset:
+- Open-domain video-text corpora (research use only)
+Data Modality:
+Text, Video, Depth of Video
+Video Training Data Size:
+- Less than 10,000 Hours
+Data Collection Method by dataset:
+- Hybrid: Synthetic, Automated, Human
+Labeling Method by dataset:
+- Synthetic, Automated, Human
+Properties:
+- Modalities: 1k image frames and text pair with 3D annotations
+- Nature of the content: World exploration data
+- Linguistic characteristics: Natural Language
+Evaluation Dataset:
+- Open-domain video-text corpora (research use only)
+Data Modality:
+Text, Video, Depth of Video
+Video Training Data Size:
+- Less than 10,000 Hours
+Data Collection Method by dataset:
+- Hybrid: Synthetic, Automated, Human
+Labeling Method by dataset:
+- Synthetic, Automated, Human
+Properties:
+- Modalities: 1k image frames and text pair with 3D annotations
+- Nature of the content: World exploration data
+- Linguistic characteristics: Natural Language
+Inference:
+Acceleration Engine: WAN-2.1 Test Hardware:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+Computational Load:
+The model is trained on 32 nodes of H100 for 4000 iterations. The estimated training token consumption is ~24 billion.
+Ethical Considerations:
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications.  When downloaded or used in accordance with our terms of service, developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, Explainability, Safety & Security, and Privacy Subcards.
+Users are responsible for model inputs and outputs. Users are responsible for ensuring safe integration of this model, including implementing guardrails as well as other safety mechanisms, prior to deployment.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+Plus Plus (++) Promise
+We value you, the datasets, the diversity they represent, and what we have been entrusted with. This model and its associated data have been:
+- Verified to comply with current applicable disclosure laws, regulations, and industry standards.
+- Verified to comply with applicable privacy labeling requirements.
+- Annotated to describe the collector/source (NVIDIA or a third-party).
+- Characterized for technical limitations.
+- Reviewed to ensure proper disclosure is accessible to, maintained for, and in compliance with NVIDIA data subjects and their requests.
+- Reviewed before release.
+- Tagged for known restrictions and potential safety implications.
+Bias
+| Field | Response |
+|---|---|
+| Participation considerations from adversely impacted groups protected classes in model design and testing: | None |
+| Measures taken to mitigate against unwanted bias: | None |
+Explainability
+| Field | Response |
+|---|---|
+| Intended Task/Domain: | Novel view synthesis, video generation |
+| Model Type: | Transformer |
+| Intended Users: | Physical AI developers. |
+| Output: | Three-Dimensional (3D) Gaussian Scene. |
+| Describe how the model works: | We take a single image as input and synthesize a long-range video with global geometric consistency using a WAN-14B-based model. The generated video is then reconstructed into an explicit 3D Gaussian representation for real-time rendering. |
+| Name the adversely impacted groups this has been tested to deliver comparable outcomes regardless of: | Not Applicable. |
+| Technical Limitations & Mitigation: | The proposed method relies on synthetic data for training, which might limit the generalization ability if the target scenario is not in the pre-generated dataset. |
+| Verified to have met prescribed NVIDIA quality standards: | Yes |
+| Performance Metrics: | Qualitative and Quantitative Evaluation including PSNR, SSIM, LPIPS metrics. |
+| Potential Known Risks: | This model is trained on synthetic data, and may inaccurately reconstruct an out-of-distribution video that is not in the synthetic data domain. |
+| Licensing: | NVIDIA Internal Scientific Research and Development Model License |
+Privacy
+| Field | Response |
+|---|---|
+| Generatable or reverse engineerable personal data? | No |
+| Personal data used to create this model? | [None Known] |
+| Is there provenance for all datasets used in training? | Yes |
+| How often is dataset reviewed? | Before Release |
+| Does data labeling (annotation, metadata) comply with privacy laws? | Not Applicable |
+| Is data compliant with data subject requests for data correction or removal, if such a request was made? | No, not possible with externally-sourced data. |
+| Applicable Privacy Policy | https://www.nvidia.com/en-us/about-nvidia/privacy-policy/ |
+Safety
+| Field | Response |
+|---|---|
+| Model Application Field(s): | World Generation |
+| Describe the life critical impact (if present). | Not Applicable |
+| Use Case Restrictions: | Abide by NVIDIA Internal Scientific Research and Development Model License |
+| Model and dataset restrictions: | The Principle of least privilege (PoLP) is applied limiting access for dataset generation and model development. Restrictions enforce dataset access during training, and dataset license constraints adhered to. |
+- Downloads last month
+- 2,801

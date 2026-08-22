@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-15T08:32:11Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>has_safety_evals false: capability benchmarks only, no safety/red-team/risk section. Derived artefacts deliberately not proposed: Laguna-S-2.1-DFlash (draft model), -FP8, -NVFP4, -INT4, -GGUF, -base. Sibling Laguna XS 2.1 (33B-A3B, 2026-06-20) proposed separately as a distinct model with its own card.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20poolside-laguna-s-2-1-model-card&amp;body=Document%3A%20poolside-laguna-s-2-1-model-card%0AURL%3A%20https%3A//huggingface.co/poolside/Laguna-S-2.1%0AFingerprint%3A%20bc0dee12b777af4d525722166c8a9a15620a2362d9e4cc8d45e70cf1420c1031%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20poolside-laguna-s-2-1-model-card&amp;body=Document%3A%20poolside-laguna-s-2-1-model-card%0AURL%3A%20https%3A//huggingface.co/poolside/Laguna-S-2.1%0AFingerprint%3A%207cddfa78e179c2ed166dcb44107c3cd7873962971b6180ec5bdedc8c222011a6%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-22T06:19:03Z</td>
+          <td>text/html</td>
+          <td>296,502</td>
+          <td><code title="7cddfa78e179c2ed166dcb44107c3cd7873962971b6180ec5bdedc8c222011a6">7cddfa78e179c2ed</code></td>
+        </tr>
         <tr>
           <td>2026-08-15T08:32:11Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +97,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://poolside.ai/blog/introducing-laguna-s-2-1" rel="noopener nofollow">https://poolside.ai/blog/introducing-laguna-s-2-1</a> · <a href="https://huggingface.co/poolside/Laguna-S-2.1/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/poolside/Laguna-S-2.1/raw/main/README.md</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-22T06:19:03Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-22T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/poolside/Laguna-S-2.1" rel="noopener nofollow">https://huggingface.co/poolside/Laguna-S-2.1</a>          </div>
       </li>
     </ol>
     </details>
@@ -191,6 +205,7 @@ curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 Use on OpenRouter · Use on Vercel AI Gateway · Release blog post
 Laguna S 2.1
 Laguna S 2.1 is a 118B total parameter Mixture-of-Experts model with 8B activated parameters per token, designed for agentic coding and long-horizon work. It sits between Laguna XS 2.1 (33B-A3B) and Laguna M.1 (225B-A23B) in the Laguna series and shares the family recipe: a token-choice router with softplus gating over 256 routed experts plus one shared expert, grouped-query attention, and interleaved full/sliding-window attention.
+Laguna S 2.1 is released under OpenMDW-1.1, a fully permissive license. Use it, modify it, and build commercial products on it. No permission required. If you want more than the weights: production support, latency and cost optimization, or output indemnification, talk to us.
 Highlights
 - Mixed SWA and global attention layout: 48 layers in a 1:3 global-to-SWA ratio (12 global attention layers, 36 sliding-window layers, window 512), with softplus attention gating and per-layer-type rotary scales
 - 1M context: 1,048,576-token context window
@@ -291,9 +306,9 @@ Intended and Responsible Use
 Laguna S 2.1 is designed for software engineering and agentic coding use cases, and you are responsible for confirming that it is appropriate for your intended application. Laguna S 2.1 is subject to the OpenMDW-1.1 License, and should be used consistently with Poolside&#39;s Acceptable Use Policy. We advise against circumventing Laguna S 2.1 safety guardrails without implementing substantially equivalent mitigations appropriate for your use case.
 Please report security vulnerabilities or safety concerns to security@poolside.ai.
 - Downloads last month
-- 119,909
+- 113,981
 Model tree for poolside/Laguna-S-2.1
-Spaces using poolside/Laguna-S-2.1 15
+Spaces using poolside/Laguna-S-2.1 17
 Collection including poolside/Laguna-S-2.1
 Evaluation results
 - datacurve/deep-swe · Deep Swe View evaluation results leaderboard
@@ -303,6 +318,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Built 2026-08-21T07:46:26Z</p></footer>
+<footer><p>Built 2026-08-22T06:36:54Z</p></footer>
 </body>
 </html>

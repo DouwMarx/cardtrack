@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-15T08:32:30Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>has_safety_evals false: capability benchmarks only, no safety/red-team/risk section. Quantized and draft variants (-FP8, -NVFP4, -INT4, -GGUF, -DFlash) deliberately not proposed. The card cites a poolside technical report at poolside.ai/assets/laguna/laguna-m1-xs2-technical-report.pdf covering Laguna M1 and XS.2, which is not yet in the corpus.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20poolside-laguna-xs-2-1-model-card&amp;body=Document%3A%20poolside-laguna-xs-2-1-model-card%0AURL%3A%20https%3A//huggingface.co/poolside/Laguna-XS-2.1%0AFingerprint%3A%209c4c2bad77b61dd1811d741e510c6c6da0c52baf350c85fa1203cfa482438f8f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20poolside-laguna-xs-2-1-model-card&amp;body=Document%3A%20poolside-laguna-xs-2-1-model-card%0AURL%3A%20https%3A//huggingface.co/poolside/Laguna-XS-2.1%0AFingerprint%3A%20077497852a280b6cb71e64b4d109c209a22fa10c2428f6da8c159f86425c4135%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-22T06:19:04Z</td>
+          <td>text/html</td>
+          <td>299,771</td>
+          <td><code title="077497852a280b6cb71e64b4d109c209a22fa10c2428f6da8c159f86425c4135">077497852a280b6c</code></td>
+        </tr>
         <tr>
           <td>2026-08-15T08:32:30Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +97,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/poolside/Laguna-XS-2.1/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/poolside/Laguna-XS-2.1/raw/main/README.md</a> · <a href="https://huggingface.co/collections/poolside/laguna-xs-21" rel="noopener nofollow">https://huggingface.co/collections/poolside/laguna-xs-21</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-22T06:19:04Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-22T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/poolside/Laguna-XS-2.1" rel="noopener nofollow">https://huggingface.co/poolside/Laguna-XS-2.1</a>          </div>
       </li>
     </ol>
     </details>
@@ -191,6 +205,7 @@ Use on OpenRouter · Release blog post
 Laguna XS 2.1
 Laguna XS 2.1 is a 33B total parameter Mixture-of-Experts model with 3B activated parameters per token designed for agentic coding and long-horizon work on a local machine. This model is an upgraded version of our Laguna XS.2 model with a +5.4% jump on SWE-bench Multilingual as well as stronger performance on terminal-style tasks.
 For more details on how we train, including on data automixing and async off-policy agent RL, check out our recent technical report.
+Laguna XS 2.1 is released under OpenMDW-1.1, a fully permissive license. Use it, modify it, and build commercial products on it. No permission required. If you want more than the weights: production support, latency and cost optimization, or output indemnification, talk to us.
 Highlights
 - Mixed SWA and global attention layout: Laguna XS 2.1 uses sigmoid gating with per-layer rotary scales, enabling mixed SWA (Sliding Window Attention) and global attention layers in a 3:1 ratio (across 40 total layers)
 - KV cache in FP8: KV cache quantized to FP8, reducing memory per token
@@ -441,18 +456,18 @@ Intended and Responsible Use
 Laguna XS 2.1 is designed for software engineering and agentic coding use cases, and you are responsible for confirming that it is appropriate for your intended application. Laguna XS 2.1 is subject to the OpenMDW-1.1 License, and should be used consistently with Poolside&#39;s Acceptable Use Policy. We advise against circumventing Laguna XS 2.1 safety guardrails without implementing substantially equivalent mitigations appropriate for your use case.
 Please report security vulnerabilities or safety concerns to security@poolside.ai.
 - Downloads last month
-- 55,221
+- 61,548
 Model tree for poolside/Laguna-XS-2.1
 Spaces using poolside/Laguna-XS-2.1 10
 Collection including poolside/Laguna-XS-2.1
 Evaluation results
-- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   70.9
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   47.6
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   70.9
 - harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results    leaderboard   37.5</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-21T07:46:26Z</p></footer>
+<footer><p>Built 2026-08-22T06:36:54Z</p></footer>
 </body>
 </html>

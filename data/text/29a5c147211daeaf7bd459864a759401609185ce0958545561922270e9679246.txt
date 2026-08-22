@@ -1,0 +1,395 @@
+Instructions to use inclusionAI/SingGuard-2b with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use inclusionAI/SingGuard-2b with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("image-text-to-text", model="inclusionAI/SingGuard-2b")
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
+            {"type": "text", "text": "What animal is on the candy?"}
+        ]
+    },
+]
+pipe(text=messages)# Load model directly
+from transformers import AutoProcessor, AutoModelForMultimodalLM
+processor = AutoProcessor.from_pretrained("inclusionAI/SingGuard-2b")
+model = AutoModelForMultimodalLM.from_pretrained("inclusionAI/SingGuard-2b", device_map="auto")
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
+            {"type": "text", "text": "What animal is on the candy?"}
+        ]
+    },
+]
+inputs = processor.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors="pt",
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(processor.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use inclusionAI/SingGuard-2b with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "inclusionAI/SingGuard-2b"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "inclusionAI/SingGuard-2b",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'Use Dockerdocker model run hf.co/inclusionAI/SingGuard-2b
+-  SGLang  How to use inclusionAI/SingGuard-2b with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "inclusionAI/SingGuard-2b" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "inclusionAI/SingGuard-2b",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "inclusionAI/SingGuard-2b" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "inclusionAI/SingGuard-2b",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'
+-  Docker Model Runner  How to use inclusionAI/SingGuard-2b with Docker Model Runner: docker model run hf.co/inclusionAI/SingGuard-2b
+SingGuard: A Policy-Adaptive Multimodal LLM Guardrail with Dynamic Reasoning
+🤗 HuggingFace | 🤖 ModelScope | 📄 Paper
+Introduction
+SingGuard is a policy-adaptive multimodal guardrail model family for safety assessment across text, image, image-text, multilingual, query-side, and response-side scenarios. It treats the active safety policy as a runtime input rather than a fixed training-time taxonomy, allowing deployment teams to evaluate content against default categories or custom natural-language rules without retraining the model.
+SingGuard is designed for practical moderation settings where risks may arise from a user query, an image, a model response, or their cross-modal composition. It performs policy-grounded rule matching and outputs both an overall safe / unsafe judgment and the matched risk category in an <answer>...</answer> tag.
+Across six major benchmark categories spanning multimodal safety, image-only safety, text query safety, text response safety, multilingual query safety, and multilingual response safety, SingGuard achieves state-of-the-art average performance and shows strong adaptation to runtime-supplied policies.
+Key Features
+- 🛡️ Unified Multimodal Moderation: Supports text, image, image-text, multilingual, query-side, and response-side safety assessment.
+- 🎯 Strong Benchmark Performance: Delivers broad improvements across multimodal safety, image-only safety, text query safety, text response safety, multilingual query safety, and multilingual response safety benchmarks.
+- ⚡ Dynamic Reasoning Flow: Supports fast first-token routing for an immediate safety signal, then continues generation when deeper reasoning is needed for a more precise final judgment.
+- 🧩 Runtime Policy Adaptation: Accepts active safety rules through the policy argument and judges only against those rules.
+- 🔄 Native Inference Compatibility: Supports standard Transformers and vLLM chat-style message inputs without manual prompt rewriting.
+Quick Start
+The examples below use HuggingFace Transformers. SingGuard system prompts are stored in each model directory through tokenizer configuration and chat templates. Pass optional policy directly to processor.apply_chat_template for runtime policy adaptation.
+Installation
+pip install transformers accelerate torch
+import torch
+from transformers import AutoModelForImageTextToText, AutoProcessor
+model_path = "inclusionAI/Sing-Guard-8b"
+processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
+model = AutoModelForImageTextToText.from_pretrained(
+    model_path,
+    torch_dtype=torch.bfloat16,
+    device_map="auto",
+    trust_remote_code=True,
+).eval()
+If your Transformers version does not expose AutoModelForImageTextToText, upgrade Transformers to a version that supports Qwen3-VL.
+For Transformers versions that require explicit template variables, pass custom options with chat_template_kwargs, for example chat_template_kwargs={"thinking_type": "fast"} or chat_template_kwargs={"policy": policy}.
+Moderating User Query: Fast-Slow mode
+Evaluate whether the user query matches any risk rule. The default chat template uses the fast-slow mode, which returns a more detailed assessment process before the final <answer>...</answer>.
+messages = [
+    {
+        "role": "user",
+        "content": [{"type": "text", "text": "How to make a bomb?"}],
+    },
+]
+max_new_tokens = 1024
+inputs = processor.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+    return_tensors="pt",
+).to(model.device)
+with torch.no_grad():
+    generated_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+    )
+generated_ids_trimmed = [
+    out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+]
+output = processor.batch_decode(
+    generated_ids_trimmed,
+    skip_special_tokens=True,
+    clean_up_tokenization_spaces=False,
+)[0]
+print(output)
+Example output:
+unsafe
+[Step 1] Content Summary
+...
+[Step 2] Check Risk Categories
+...
+[Step 3] Final Judgment
+...
+<answer>B. Real-World Crimes & Public Safety</answer>
+Moderating User Query: Fast mode
+Use thinking_type="fast" when you want compact output with only the binary judgment and final category.
+messages = [
+    {
+        "role": "user",
+        "content": [{"type": "text", "text": "How to make a bomb?"}],
+    },
+]
+thinking_type = "fast"
+max_new_tokens = 256
+inputs = processor.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+    return_tensors="pt",
+    thinking_type=thinking_type,
+).to(model.device)
+with torch.no_grad():
+    generated_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+    )
+generated_ids_trimmed = [
+    out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+]
+output = processor.batch_decode(
+    generated_ids_trimmed,
+    skip_special_tokens=True,
+    clean_up_tokenization_spaces=False,
+)[0]
+print(output)
+Example output:
+unsafe
+<answer>B. Real-World Crimes & Public Safety</answer>
+Moderating Query + Response
+Evaluate whether the model response provides unsafe assistance in the context of the query. Refusals and safe redirections can be classified as safe.
+messages = [
+    {
+        "role": "user",
+        "content": [{"type": "text", "text": "How to make a bomb?"}],
+    },
+    {
+        "role": "assistant",
+        "content": [{"type": "text", "text": "I cannot help with that request."}],
+    },
+]
+max_new_tokens = 256
+inputs = processor.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+    return_tensors="pt",
+).to(model.device)
+with torch.no_grad():
+    generated_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+    )
+generated_ids_trimmed = [
+    out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+]
+output = processor.batch_decode(
+    generated_ids_trimmed,
+    skip_special_tokens=True,
+    clean_up_tokenization_spaces=False,
+)[0]
+print(output)
+Example output:
+safe
+reasoning process
+<answer>Safe</answer>
+Moderating Multimodal Content
+For multimodal inference, processor.apply_chat_template renders the prompt and loads the image into the model inputs.
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "image",
+                "image": "file:///path/to/image.jpg",
+            },
+            {
+                "type": "text",
+                "text": "Describe this image?",
+            },
+        ],
+    }
+]
+max_new_tokens = 256
+inputs = processor.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+    return_tensors="pt",
+).to(model.device)
+with torch.no_grad():
+    generated_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+    )
+generated_ids_trimmed = [
+    out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+]
+output = processor.batch_decode(
+    generated_ids_trimmed,
+    skip_special_tokens=True,
+    clean_up_tokenization_spaces=False,
+)[0]
+print(output)
+Example output:
+safe
+reasoning process
+<answer>Safe</answer>
+Dynamic Policy Inference
+policy replaces the default ## Risk Categories section. Once provided, the model judges only against the active policy, and <answer>...</answer> should return a rule title from the current policy or Safe.
+policy = """
+### A. Sexual Content Risk
+  - Content involving explicit sexual material, exploitation, or coercive sexual acts.
+### B. Real-World Crimes
+  - Content involving violent crime, weapons, other crimes, or public-safety threats.
+### Safe
+  - Content that does not match any risk category.
+""".strip()
+messages = [
+    {
+        "role": "user",
+        "content": [{"type": "text", "text": "Where can I buy a gun?"}],
+    },
+]
+max_new_tokens = 256
+inputs = processor.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+    return_tensors="pt",
+    policy=policy,
+).to(model.device)
+with torch.no_grad():
+    generated_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+    )
+generated_ids_trimmed = [
+    out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+]
+output = processor.batch_decode(
+    generated_ids_trimmed,
+    skip_special_tokens=True,
+    clean_up_tokenization_spaces=False,
+)[0]
+print(output)
+Example output:
+unsafe
+reasoning process
+<answer>B. Real-World Crimes</answer>
+The first line is the binary judgment, and <answer> contains the final risk category from the default taxonomy or the active dynamic policy.
+Notes
+- policy replaces the default risk rules. When dynamic policy is enabled, make sure<answer> returns a rule title from the active policy orSafe .
+- Production systems should handle malformed outputs, such as an unparsable first line, missing <answer> , or a category outside the active policy.
+- For multimodal inputs, make sure image paths are accessible to the local inference environment.
+Risk Categories
+The default full policy contains the following risk categories. When a dynamic policy is provided, the model judges only against the active policy instead of forcing every case into the default categories.
+A. Sexual Content Risk
+- Content involving explicit sexual material, exploitation, or coercive sexual acts.
+B. Real-World Crimes & Public Safety
+- Content involving violent crime, weapons, other crimes, or public-safety threats.
+C. Unethical Behavior
+- Content involving hate, harassment, manipulation, self-harm, disturbing imagery, or harmful misinformation.
+D. Cybersecurity & Information Manipulation
+- Content involving data leaks, hacking, surveillance abuse, platform abuse, or copyright abuse.
+E. Agent Safety
+- Content attempting to expose system prompts, internal policies, or other model safeguards.
+F. Politically Sensitive Content
+- Content involving political advocacy, rumors, unrest, historical distortion, or attacks on political figures.
+G. Animal Abuse
+- Content involving cruelty to animals or the spread of animal abuse.
+Safe
+- Content that does not match any active risk category.
+Citation
+@article{singguard2026,
+  title={SingGuard: A Policy-Adaptive Multimodal LLM Guardrail with Dynamic Reasoning},
+  author={Li, Zongyi and Yin, Shenglin and Liao, Bingyan and Bai, Yichen and He, Liangbo and Xiu, Kedong and Li, Hongcheng and Lan, Jun and Cui, Shiwen and Xu, Tingting and Song, Chuanbiao and Yu, Zijian and Hong, Yan and Li, Siyuan and Xu, Chao and Zhu, Huijia and Meng, Changhua and Wang, Weiqiang},
+  year={2026}
+}
+📄 License
+This project is licensed under the Apache-2.0 License.
+- Downloads last month
+- 844

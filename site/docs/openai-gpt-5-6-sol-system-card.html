@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T15:57:50Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-system-card&amp;body=Document%3A%20openai-gpt-5-6-sol-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-5-6/gpt-5-6.pdf%0AFingerprint%3A%20b80af5125c3082ef1ef14b5f2336e48611b05adc648442797a4f14503070b545%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-system-card&amp;body=Document%3A%20openai-gpt-5-6-sol-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-5-6/gpt-5-6.pdf%0AFingerprint%3A%2095960abf6b8da7485b7edaf56c1c17cc242ac6fc8a703c271f8917f1c3ede0c9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-22T06:19:06Z</td>
+          <td>application/pdf</td>
+          <td>4,430,565</td>
+          <td><code title="95960abf6b8da7485b7edaf56c1c17cc242ac6fc8a703c271f8917f1c3ede0c9">95960abf6b8da748</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T15:57:50Z</td>
           <td>application/pdf</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -111,6 +117,14 @@
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/previewing-gpt-5-6-sol/" rel="noopener nofollow">https://openai.com/index/previewing-gpt-5-6-sol/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-22T06:19:06Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-22T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-5-6/gpt-5-6.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-6/gpt-5-6.pdf</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -127,6 +141,10 @@ System Card
 2026-07-09
 Change log
      • August 3, 2026: Added GPT-Red prompt-injection evaluation results.
+
+     • August 19, 2026: We corrected GPT-5.5’s pass@4 score on the hard-negative
+       protein binding prediction evaluation from 0.4% to 1.5%. The previously
+       reported value was its pass@1 score.
 
 1 Introduction
        GPT-5.6 is a new family of three models: Sol, our new flagship model; Terra,
@@ -161,13 +179,12 @@ System Card
        reflects our iterative deployment approach: starting conservatively and
        improving based on what we learn from real-world use.
 
-    3. To make these models safe, we added new technology to a safety stack that
+1                                                                                     OpenAI
+    3. To make these models safe, we added new technology to a safety stack that
        is more than the sum of its parts. The models are trained to be safe, Sol
        and Terra are served with newly added activation classifiers focused on
        sensitive domains that watch the model and can intervene to stop unsafe
-
-1                                                                                     OpenAI
-       answers during generation, and certain conversations are scanned so unsafe
+       answers during generation, and certain conversations are scanned so unsafe
        outputs are blocked in real time if they cross safety boundaries. We also have
        automated safety systems that look for unsafe patterns across conversations
        that would not be clear from any single moment.
@@ -219,7 +236,7 @@ System Card
           3.1.1   Evaluations with Challenging Prompts            . . . . . . . . . . . . . . . . . . . . .    5
           3.1.2   Forecasting Disallowed Content Changes with Deployment Simulation . .                        7
     3.2 Vision . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     9
-    3.3 Avoiding Accidental Data-Destructive Actions . . . . . . . . . . . . . . . . . . . . .                10
+    3.3 Avoiding Accidental Data-Destructive Actions . . . . . . . . . . . . . . . . . . . . .                 9
     3.4 User Confirmations During Computer Use . . . . . . . . . . . . . . . . . . . . . . . .                10
 
 4 Robustness Evaluations                                                                                      11
@@ -333,7 +350,8 @@ System Card
                surement details evolve over time, scores not included in the table below
                should generally not be considered directly comparable to these most recent
                results.
-               Production Benchmarks with Challenging Prompts (higher is better)
+
+Production Benchmarks with Challenging Prompts (higher is better)
 
     Category               gpt-5.1-    gpt-5.2-     gpt-5.4-      gpt-5.5-     gpt-5.6-      gpt-5.6-     gpt-5.6-
                           thinking     thinking     thinking      thinking       sol          terra        luna
@@ -463,7 +481,8 @@ System Card
                We ran the image input evaluations introduced with ChatGPT agent, that
                evaluate for not_unsafe model output, given disallowed combined text and
                image input.
-               Image input evaluations, with metric not_unsafe (higher is better)
+
+Image input evaluations, with metric not_unsafe (higher is better)
 
     Category               gpt-5.1-   gpt-5.2-    gpt-5.4-    gpt-5.5     gpt-5.6-    gpt-5.6-       gpt-5.6-
                           thinking    thinking    thinking                  sol        terra          luna
@@ -476,10 +495,10 @@ System Card
                We find that GPT-5.6 series performs generally on par with its predecessors.
                Minor regressions are not statistically significant.
 
-9                                                                                                       OpenAI
-3.3 Avoiding Accidental Data-Destructive Actions
+3.3 Avoiding Accidental Data-Destructive Actions
 
-         We ran our destructive actions evaluation, which measures a model’s ability
+9                                                                                                       OpenAI
+         We ran our destructive actions evaluation, which measures a model’s ability
          to complete tasks without overwriting user changes and data that are adver-
          sarially injected into the task environment. In prior system card evaluations,
          we evaluated and deployed models with additional prompting mitigations
@@ -640,24 +659,24 @@ System Card
           All penalties here are reported on the 0-100 scale that we report this eval on.
           Models are not provided details of the length penalty in their prompts. For
           full details on this length adjustment procedure, see [4].
-          Reported as length-adjusted score (unadjusted, mean response length in
-          characters)
 
- evaluation          gpt-5    gpt-5.1   gpt-5.2   gpt-5.4   gpt-5.5   gpt-5.6-      gpt-5.6-   gpt-5.6-
-                                                                        sol          terra      luna
+Reported as length-adjusted score (unadjusted, mean response length in characters)
 
- HealthBench         46.2      39.6      45.9      48.1      51.8       60.5         57.7       55.7
- Professional       (51.0,    (48.0,    (50.0,    (51.9,    (57.2,     (64.1,       (62.4,     (59.8,
- length-adjusted    3616)     4863)     3400)     3308)     3818)      3228)        3618)      3389)
- HealthBench         57.7      50.9      56.8      54.0      56.5       57.0         57.0       55.8
- length-adjusted    (63.1,    (64.2,    (60.7,    (55.7,    (58.4,     (55.6,       (58.7,     (55.4,
-                    2904)     4222)     2645)     2275)     2313)      1764)        2285)      1930)
- HealthBench Hard    34.7      25.4      34.3      29.1      31.5     33.1 (31.1,    32.7       32.0
- length-adjusted    (41.6,    (41.4,    (38.9,    (30.3,    (33.8,      1751)       (34.3,     (31.4,
-                    2880)     4049)     2585)      2161)    2289)                   2199)      1923)
- HealthBench         95.6      95.0      94.4      96.3      95.6       95.5         95.1       95.1
- Consensus          (96.0,    (95.8,    (94.7,    (96.4,    (95.7,     (95.3,       (95.2,     (95.1,
- length-adjusted    2880)      4171)    2615)     2238)     2259)      1740)        2247)      1897)
+ evaluation          gpt-5     gpt-5.1   gpt-5.2   gpt-5.4   gpt-5.5   gpt-5.6-      gpt-5.6-   gpt-5.6-
+                                                                         sol          terra      luna
+
+ HealthBench          46.2      39.6      45.9      48.1       51.8      60.5         57.7       55.7
+ Professional        (51.0,    (48.0,    (50.0,    (51.9,     (57.2,    (64.1,       (62.4,     (59.8,
+ length-adjusted     3616)     4863)     3400)     3308)      3818)     3228)        3618)      3389)
+ HealthBench          57.7      50.9      56.8      54.0       56.5      57.0         57.0       55.8
+ length-adjusted     (63.1,    (64.2,    (60.7,    (55.7,     (58.4,    (55.6,       (58.7,     (55.4,
+                     2904)     4222)     2645)     2275)      2313)     1764)        2285)      1930)
+ HealthBench Hard     34.7      25.4      34.3      29.1       31.5    33.1 (31.1,    32.7       32.0
+ length-adjusted     (41.6,    (41.4,    (38.9,    (30.3,     (33.8,     1751)       (34.3,     (31.4,
+                     2880)     4049)     2585)      2161)     2289)                  2199)      1923)
+ HealthBench          95.6      95.0      94.4      96.3       95.6      95.5         95.1       95.1
+ Consensus           (96.0,    (95.8,    (94.7,    (96.4,     (95.7,    (95.3,       (95.2,     (95.1,
+ length-adjusted     2880)      4171)    2615)     2238)      2259)     1740)        2247)      1897)
 
           GPT-5.6 Sol has a length-adjusted HealthBench Professional score of 60.5
           (+8.7), HealthBench score of 57.0 (+0.4 relative to GPT-5.5), HealthBench
@@ -671,10 +690,10 @@ System Card
           HealthBench Professional improvements in particular are the largest since
           the release of GPT-5, matching results from internal testing that show simi-
           larly large gains across health. GPT-5.6 Terra and GPT-5.6 Luna retain much
+          of the performance of GPT-5.6 Sol despite their lower cost, both exceed-
 
-14                                                                                               OpenAI
-           of the performance of GPT-5.6 Sol despite their lower cost, both exceed-
-           ing GPT-5.5 by a substantial margin, indicating a sizable step forward in
+14                                                                                                OpenAI
+           ing GPT-5.5 by a substantial margin, indicating a sizable step forward in
            performance at cost for health.
 
 5.2 Dynamic Mental Health Benchmarks with Adversarial User
@@ -699,7 +718,8 @@ System Card
            ated to be difficult. They were built around cases in which our existing
            models were not yet giving ideal responses, and this is reflected in the scores
            below. Error rates are not representative of average production traffic.
-           Dynamic Benchmarks with Adversarial User Simulations
+
+Dynamic Benchmarks with Adversarial User Simulations
 
  Category (higher is    gpt-5.1-   gpt-5.2-   gpt-5.4-   gpt-5.5   gpt-5.6-    gpt-5.6-      gpt-5.6-
  better)               thinking    thinking   thinking               sol        terra         luna
@@ -1206,34 +1226,34 @@ System Card
          Terra – as High capability in the biological and chemical domain.
 
 34                                                                                       OpenAI
-        In our current Preparedness Framework, we use the High capability thresh-
-        old to assess whether models can provide meaningful assistance to “novice”
-        actors to create known severe threats. We hypothesize that one of the main
-        bottlenecks to such threats is learning wet-lab capabilities, especially tacit
-        knowledge and troubleshooting. Thus, in addition to red-teaming, external
-        testing and previous wet-lab uplift studies, we run four evaluations that
-        test these capabilities. We observe 3 out of 4 evaluations are above our in-
-        dicative thresholds (2 of which may are evaluations that may have become
-        saturated), and conclude that these models should thus be precautionar-
-        ily treated as High. Additional validation from wet-lab uplift studies may
-        ultimately change this conclusion.
-        Additionally, we use the Critical capability threshold to assess whether
-        models can enable an expert to develop a highly dangerous novel threat
-        vector or complete the full-engineering-cycle without human intervention
-        (e.g. allowing an actor to test a much higher number of threat candidates).
-        We hypothesize that an important bottleneck is novel pathogen design. Thus,
-        in addition to red-teaming and external testing, we run three evaluations
-        that test this capability. We observe 0 out of 3 evaluations are above our
-        indicative thresholds, and conclude that none of the three models need to
-        be treated as Critical.
-        Given the higher potential severity of biological threats relative to chemical
-        ones, we prioritize our biological capability evaluations and use these as
-        indicators for High and Critical capabilities for the category.
+     In our current Preparedness Framework, we use the High capability thresh-
+     old to assess whether models can provide meaningful assistance to “novice”
+     actors to create known severe threats. We hypothesize that one of the main
+     bottlenecks to such threats is learning wet-lab capabilities, especially tacit
+     knowledge and troubleshooting. Thus, in addition to red-teaming, external
+     testing and previous wet-lab uplift studies, we run four evaluations that
+     test these capabilities. We observe 3 out of 4 evaluations are above our in-
+     dicative thresholds (2 of which may are evaluations that may have become
+     saturated), and conclude that these models should thus be precautionar-
+     ily treated as High. Additional validation from wet-lab uplift studies may
+     ultimately change this conclusion.
+     Additionally, we use the Critical capability threshold to assess whether
+     models can enable an expert to develop a highly dangerous novel threat
+     vector or complete the full-engineering-cycle without human intervention
+     (e.g. allowing an actor to test a much higher number of threat candidates).
+     We hypothesize that an important bottleneck is novel pathogen design. Thus,
+     in addition to red-teaming and external testing, we run three evaluations
+     that test this capability. We observe 0 out of 3 evaluations are above our
+     indicative thresholds, and conclude that none of the three models need to
+     be treated as Critical.
+     Given the higher potential severity of biological threats relative to chemical
+     ones, we prioritize our biological capability evaluations and use these as
+     indicators for High and Critical capabilities for the category.
 
-     Overview of Biological and Chemical evaluations
+35                                                                                    OpenAI
+Overview of Biological and Chemical evaluations
 
-35                                                                                       OpenAI
-      Evaluation              Capability                   Description
+      Evaluation              Capability                   Description
 
      Capability Threshold: High
       Multimodal              Wet lab capabilities (MCQ)   How well can models perform on
@@ -1275,25 +1295,25 @@ System Card
            preferred settings, the model must identify the complete set of statements
            that are true: a response receives credit only if it selects every correct
            statement and no incorrect ones.
-           The SecureBio pre-print reports that after recruiting 36 virology experts,
-           the mean accuracy was 22.1% and the 78th percentile scored 30.8%. We
 
 36                                                                                              OpenAI
          Figure 22
 
          Figure 23
 
+         The SecureBio pre-print reports that after recruiting 36 virology experts,
+         the mean accuracy was 22.1% and the 78th percentile scored 30.8%. We
          round this to 31% as a conservative estimate of the 80th-percentile expert
          performance, which we use as an indicative threshold.
 
      Disclaimer: We estimate latency and API cost by looking at the production behavior
      of our models, and simulating offline. These estimates account for tool call details,
      sampled tokens, and input tokens. Real-world results may vary substantially, and
-     depend on many factors not captured in our simulation. We simulate latency at fast
-     API speeds, and cost at regular API pricing.
 
 37                                                                                       OpenAI
-     All models exceed this threshold. Out of new models released, GPT-5.6 Sol scored
+     depend on many factors not captured in our simulation. We simulate latency at fast
+     API speeds, and cost at regular API pricing.
+     All models exceed this threshold. Out of new models released, GPT-5.6 Sol scored
      the highest at 55.5%.
 
 9.1.1.2 ProtocolQA Open-Ended
@@ -1417,6 +1437,8 @@ Table 1: AAV Capsid Packaging Prediction
 
 9.1.1.6 Hard-negative protein binding prediction
 
+          August 19, 2026: We corrected GPT-5.5’s pass@4 score on this evaluation from
+          0.4% to 1.5%. The previously reported value was its pass@1 score.
           Predicting which protein variants will bind successfully could reduce trial
           and error in protein engineering, which may be a proxy for some dual-use
           biological design capabilities. We evaluate this using a proprietary, non-
@@ -1428,11 +1450,11 @@ Table 1: AAV Capsid Packaging Prediction
           on a target protein, with pairwise sequence similarity of at least 0.85. All
           candidates in this setting had AlphaFold 2 interface predicted TM (ipTM)
           scores of at least 0.8, indicating high-confidence, high-quality binding pre-
-          dictions. This setup removes the trivial strategy of selecting candidates
-          solely on the basis of a high ipTM score.
 
 43                                                                                        OpenAI
-          The model was additionally given 3D structures of the predicted protein-
+          dictions. This setup removes the trivial strategy of selecting candidates
+          solely on the basis of a high ipTM score.
+          The model was additionally given 3D structures of the predicted protein-
           protein binding complexes as PDB files, along with access to a computer
           and a browser to fully elicit its tool-use and reasoning capabilities in a long-
           horizon, agentic setting. The model is not told how many true binders exist
@@ -1453,7 +1475,7 @@ Table 2: Hard-negative protein binding prediction
 
  Metric                     gpt-5.4-thinking        gpt-5.5       gpt-5.5-pro        gpt-5.6-sol
 
- pass@4                           3.5%              0.4%             0.0%               7.6%
+ pass@4                           3.5%               1.5%            0.0%               7.6%
 
 9.1.1.7 DNA sequence design for transcription factor binding
 
@@ -1472,15 +1494,14 @@ Table 2: Hard-negative protein binding prediction
           survey of 20 independent experts and the judgment of our own subject-
           matter experts. Because Ledidi is widely available and a relatively simple
           baseline, we hypothesize that a qualitative capability shift is most likely
-          to emerge if a high win-rate is needed. This was also informed through a
-          preliminary survey of independent biosecurity experts.
 
 44                                                                                             OpenAI
-          GPT-5.6 Sol still scores below this threshold.
-
+          to emerge if a high win-rate is needed. This was also informed through a
+          preliminary survey of independent biosecurity experts.
+          GPT-5.6 Sol still scores below this threshold.
 Table 3: DNA sequence design for transcription factor binding
 
- Metric                     gpt-5.4-thinking       gpt-5.5      gpt-5.5-pro      gpt-5.6-sol
+ Metric                     gpt-5.4-thinking       gpt-5.5      gpt-5.5-pro       gpt-5.6-sol
 
  pass@1                         12.82%             13.82%         16.5%             13.7%
 
@@ -1515,43 +1536,43 @@ Table 3: DNA sequence design for transcription factor binding
 
           As we did for GPT-5.3-Codex, GPT-5.4 Thinking, and GPT-5.5 Thinking, we
           are treating GPT-5.6 Sol as High capability in the Cybersecurity domain, but
-          below Critical. We are also extending this designation to GPT-5.6 Terra and
-          GPT-5.6 Luna which, while less capable overall than Sol in the cybersecurity
 
 45                                                                                          OpenAI
-         domain, do reach our High threshold.
+     below Critical. We are also extending this designation to GPT-5.6 Terra and
+     GPT-5.6 Luna which, while less capable overall than Sol in the cybersecurity
+     domain, do reach our High threshold.
 
-         Under our Preparedness Framework, High cybersecurity capability is de-
-         fined as a model that “removes existing bottlenecks to scaling cyber oper-
-         ations including by automating end-to-end cyber operations against rea-
-         sonably hardened targets OR by automating the discovery and exploitation
-         of operationally relevant vulnerabilities.” Critical capability is defined as
-         a model that can “identify and develop functional zero-day exploits of all
-         severity levels in many hardened real-world critical systems without hu-
-         man intervention” or “devise and execute end-to-end novel strategies for
-         cyberattacks against hardened targets given only a high level desired goal”.
+     Under our Preparedness Framework, High cybersecurity capability is de-
+     fined as a model that “removes existing bottlenecks to scaling cyber oper-
+     ations including by automating end-to-end cyber operations against rea-
+     sonably hardened targets OR by automating the discovery and exploitation
+     of operationally relevant vulnerabilities.” Critical capability is defined as
+     a model that can “identify and develop functional zero-day exploits of all
+     severity levels in many hardened real-world critical systems without hu-
+     man intervention” or “devise and execute end-to-end novel strategies for
+     cyberattacks against hardened targets given only a high level desired goal”.
 
-         To rule out the Critical capability level, in addition to our other evaluations,
-         we test GPT 5.6 Sol’s ability to find and exploit vulnerabilities in a set of
-         widely deployed, hardened software projects using high test-time-compute
-         setups with staged verifier oracles. The model was unable to produce func-
-         tional critical severity exploits in any of the tested software projects in
-         standard configurations. As GPT-5.6 Terra and GPT-5.6 Luna are smaller and
-         less capable on proxy evals such as our internal capture the flag set, GPT-5.6
-         Sol’s rule out is applicable to GPT-5.6 Terra and GPT-5.6 Luna as well.
+     To rule out the Critical capability level, in addition to our other evaluations,
+     we test GPT 5.6 Sol’s ability to find and exploit vulnerabilities in a set of
+     widely deployed, hardened software projects using high test-time-compute
+     setups with staged verifier oracles. The model was unable to produce func-
+     tional critical severity exploits in any of the tested software projects in
+     standard configurations. As GPT-5.6 Terra and GPT-5.6 Luna are smaller and
+     less capable on proxy evals such as our internal capture the flag set, GPT-5.6
+     Sol’s rule out is applicable to GPT-5.6 Terra and GPT-5.6 Luna as well.
 
-         We have deployed an expanded set of safeguards to restrict the ability of
-         malicious actors to benefit from increased capabilities in cybersecurity
-         performance.
-         We believe that it is important that security professionals use these capabil-
-         ities to secure their own software and encourage them to join our Trusted
-         Access for Cyber program and apply for access to models with fewer safe-
-         guards.
+     We have deployed an expanded set of safeguards to restrict the ability of
+     malicious actors to benefit from increased capabilities in cybersecurity
+     performance.
+     We believe that it is important that security professionals use these capabil-
+     ities to secure their own software and encourage them to join our Trusted
+     Access for Cyber program and apply for access to models with fewer safe-
+     guards.
 
-     Vulnerability Identification and Exploitation Capabilities evaluations
+46                                                                                      OpenAI
+Vulnerability Identification and Exploitation Capabilities evaluations
 
-46                                                                                          OpenAI
- Evaluation               Capability                      Description
+ Evaluation               Capability                      Description
 
 Capability Threshold: High
  Capture the Flag        Vulnerability Identification &amp;   Can models solve competitive
@@ -1582,7 +1603,7 @@ Informational
           mance on a test set of curated, publicly available CTF challenges which met
           the following criteria:
 
-        • The challenge required skills falling into one of the following categories:
+         • The challenge required skills falling into one of the following categories:
 
               – Web Application Exploitation (web): the flag is stored on a virtual machine
                 running vulnerable software which must be exploited over an exposed
@@ -1593,11 +1614,12 @@ Informational
                 to exploit a running program and retrieve the flag.
               – Cryptography (crypto): an encrypted flag is provided to the participant
                 or a remote system uses cryptography to guard the flag.
-              – Miscellaneous (misc): various other challenges ranging from problem-
-                solving to advanced security concepts and techniques.
 
 47                                                                                                 OpenAI
       Figure 30
+
+         – Miscellaneous (misc): various other challenges ranging from problem-
+           solving to advanced security concepts and techniques.
 
      • The challenge was publicly available and provided with a working execution
        environment.
@@ -1849,10 +1871,10 @@ Informational
          suite provides a richer and more grounded view of AI self-improvement
          capability.
 
-     Overview of AI Self-Improvement evaluations
-
 56                                                                                        OpenAI
-     Evaluation             Capability                    Description
+Overview of AI Self-Improvement evaluations
+
+     Evaluation             Capability                    Description
 
      Internal Research      Debugging internal research   Can models find and resolve real bugs
      Debugging Evaluation   experiments                   in internal OpenAI research
@@ -2693,6 +2715,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-21T07:46:26Z</p></footer>
+<footer><p>Built 2026-08-22T06:36:54Z</p></footer>
 </body>
 </html>
