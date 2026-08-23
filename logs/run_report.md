@@ -1,236 +1,145 @@
-# cardtrack run report — 2026-08-22T06:17Z-local
+# cardtrack run report — 2026-08-23T06:22Z-local
 
-**Corpus at start:** 248 documents (244 active, 3 removed, 1 moved). **Written this run:** 2 adds
-(ids 249–250) and 1 new version (id 203, version 357). **Filed as needs-review:** 1 (`outbox:1`).
-**Rejected:** none beyond that. **Open issues:** `[]`, but that value is not verifiable from inside the
-sandbox — see task 4 below. **Blocked-URL escalations:** none in `candidates.json`.
+**Corpus at start:** 250 documents (246 active, 3 removed, 1 moved). **Written this run:** nothing.
+**Proposed this run:** nothing — `propose_doc.py` was not invoked, so there are no validator verdicts to
+report. **Filed as needs-review:** none. **Open issues:** `[]`, again not verifiable from inside the
+sandbox — see task 4. **Blocked-URL escalations:** none in `candidates.json`.
 
-Phase A worked today: `checked: 245, ok: 245, not_found: 0, blocked: 0, errors: 0, moved: 0,
-marked_dead: 0, fingerprint_checked: 37, new_versions: 16, candidates: 2690, candidates_new: 33`.
-A clean sweep after yesterday's total failure, and the 33 new links were real links.
+A zero-write run. The finding is that it is a *verified* zero rather than an assumed one: Phase A failed
+totally today, so the run began with no usable input, and I rebuilt the sweep by hand to establish that
+there was genuinely nothing to add.
 
-## The headline: the corpus was serving corrected-away safety numbers, and the fix for that is blocked
+## Phase A failed totally, for the sixth time and the second in three runs
 
-Both of this run's most substantive findings are about **a document the corpus already held**, not about
-anything new on the internet. Neither surfaced from the candidate list.
+```
+checked: 247, ok: 0, not_found: 0, blocked: 0, errors: 247, moved: 0, marked_dead: 0,
+fingerprint_checked: 38, new_versions: 0, candidates: 2688, budget_exhausted: false, candidates_new: 0
+```
 
-### xAI revised the Grok 4.6 model card in place, five days ago (fixed)
+`ok: 0` against `checked: 247`. `candidates_new: 0` here does not mean "a quiet day"; it means the phase
+never ran. This is the failure the 2026-08-21 proposal describes in full, recurring unchanged — and the
+three derived zeros are as uninformative as that entry predicted: `marked_dead: 0` and `blocked: 0` are
+not observations because no active document was link-checked, and `fingerprint_checked: 38 /
+new_versions: 0` cannot be distinguished from 38 failed fetches, so the silent-revision sweep also did not
+happen while appearing to.
 
-I opened `media.x.ai/v1/website/card-4p6-4cd2dc57.pdf` for citation mining and found the cover now reads
-**`Revision: 2026-08-17`** against the stored `Revision: 2026-08-12`. The revision opens with a changelog
-whose substantive line is:
+The fetch layer itself was healthy. Between 08:25Z and 08:38Z I made **39 successful fetches across 24
+hosts** from my own tools without a single transport failure. Whatever breaks Phase A is inside Phase A.
 
-> Corrected eval results on HackerBench v0.2, Self-harm, MASK, LAB.
+`candidates.json` was still written, and still reports 2688 candidates — all of them previously
+adjudicated links, newest `first_seen` 2026-08-22. There was nothing in it to triage (task 1) and
+`blocked_escalations` is empty (task 5).
 
-Those are four safety and behavioural evaluations. The corpus had been serving the pre-correction numbers
-for five days, including the HackerBench v0.2 harmful/dual-use compliance figure quoted in that row's own
-add justification. The revision also restructures the card: it adds §4.3 PartBench, §4.4 CADGenBench,
-§4.5 CADBench and a new §6 "Search capabilities and factuality" (Factuality/Hallucination, DeepSearchQA),
-updates KernelBenchInternal to v1.1 on a harder task split, drops "Vals Index", and grows the card from
-34 to 40+ pages. I downloaded and read both editions and compared them page by page.
+## What I did instead: the index sweep, redone by hand
 
-| | stored (v236) | live today |
+I re-checked **every publisher and evaluator on the allowlist** — 17 publishers, 12 evaluators, 29 orgs —
+against 29 index pages, and read 10 documents in full where an index entry looked like it might qualify.
+
+**Fetched clean and found nothing new (25 orgs).** Anthropic (`/news`, `/research`,
+`/transparency/model-report`), OpenAI (`deploymentsafety.openai.com`), Google DeepMind (`/models/model-cards/`,
+`/discover/blog/`), Meta, Mistral, Cursor, Alibaba Qwen, DeepSeek, Tencent Hunyuan, NVIDIA, Xiaomi,
+Moonshot AI, StepFun, InclusionAI, poolside, Thinking Machines, METR, UK AISI, Apollo Research, Epoch AI,
+SecureBio, Transluce, US CAISI, SaferAI, FAR.AI, Palisade, Redwood.
+
+**Bot-blocked to me as well as to the pipeline (3 orgs).** `x.ai/news` (403, both with and without the
+trailing slash), `openai.com/news/` (403), and RAND's Project Canary page (403). Covered by
+site-restricted search instead, which is index-lagged rather than direct — a document published at any of
+these three in the last day or two would be invisible to Phase A *and* to me. Logged to friction.
+Incidentally, `sources.yaml`'s note that Meta's blog bot-blocks scripted fetches is now stale: it served
+me fine.
+
+Everything the sweep surfaced was already in the corpus. The near-misses, and why each was skipped:
+
+| surfaced | date | disposition |
 |---|---|---|
-| bytes | 524,224 | 540,844 |
-| md5 | `5faf54cc75e26c987541719b7e2d56f1` | `7640cdde745a18a2390cd5fbde55fd55` |
-| cover | Revision: 2026-08-12 | Revision: 2026-08-17 |
+| `transluce.org/scaling-activation-oracles` | 08-20 | **skipped** — methods research; the oracles are the thing evaluated, the named models are activation donors |
+| `transluce.org/elicitation-scaling-laws` | 08-19 | **skipped** — same; safety-relevant results *about a method*, on a named subject model (Qwen3.6-27B) |
+| `securebio.substack.com/p/building-a-three-day-early-warning` | 08-21 | skipped — grant announcement, no model |
+| `securebio.substack.com/p/securebio-detection-updates-august` | 08-20 | skipped — biosurveillance ops, no model (also skipped 08-21) |
+| `mistral.ai/news/agentic-search` | 08-20 | skipped — retrieval product, not a model (also skipped 08-21) |
+| `anthropic.com/research/riemann-zeta` | 08-10 | **skipped** — capability showcase, and the model is "an unreleased research version of Claude", unnamed |
+| `anthropic.com/news/claude-text-watermark` | 08-14 | skipped — product/feature explainer, not model-specific |
+| `blog.redwoodresearch.org/p/ai-swarms-are-starting-to-pose-indirect` | 08-12 | skipped — takeover-risk essay, no named model assessed |
+| `metr.org/blog/2026-08-14-funding-update` | 08-14 | skipped — org funding announcement |
+| `cursor.com/blog/joining-spacex` | 08-14 | skipped — corporate announcement |
+| `epoch.ai` — 5 August items | 08-06→08-14 | skipped — labour-market and chip-economics data insights; no named-model evals |
+| `huggingface.co/tencent/UI-Mate-9B`, `UI-Mate-democua-27B` | 08-14 | already covered — the existing `ui-mate-27b` row lists all three names |
+| `huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0` | 08-03 | already in corpus (id from 08-03) |
+| `huggingface.co/moonshotai/Kimi-K3` | 07-27 | already in corpus; HF "updated 3 days ago" is a repo revision, i.e. fingerprint-sweep work that did not run today |
+| `huggingface.co/inclusionAI/*` — Ling-3.0 base/midtrain/30T, `-dspark`, `SingGuard-2b` | 08-20/21 | already covered, or excluded as checkpoint/draft variants (draft-model gap logged 08-22) |
+| `huggingface.co/XiaomiMiMo/MiMo-V2-Flash` | — | **out of scope** — HF API `createdAt` 2025-12-16, before the 2026-01-01 floor. See below. |
 
-Proposed as a new version — verdict:
-`{"status": "written", "slug": "xai-grok-4-6-model-card", "document_id": 203, "version_id": 357}`.
+**Third-party releases I could not propose:** Z.ai GLM-5.2 Turbo (2026-08-17) and ByteDance Seedance 2.5
+(2026-08-08). Neither publisher is allowlisted. Noted, not proposed — same disposition as the GLM card
+Mistral serves, recorded on 08-22.
 
-**Why the monitor did not catch it:** `fingerprint_checked: 37` against 244 active documents. About 85% of
-the corpus went revision-unchecked this run, and this PDF was in the unchecked 85%. This is the failure
-mode of the 2026-08-18 proposal, now with corrected safety numbers on a frontier model as the payload.
+### The one thing that looked like a real coverage hole, and was not
 
-### Cursor's launch-day copy is now the only surviving edition of it — and cannot be added (blocked)
+Xiaomi is the corpus's longest-silent publisher at 118 days, and two live repos in its HF org —
+`MiMo-V2-Flash` and `MiMo-V2-Flash-Base` — have no row. Both show "Updated Jul 9", the same bulk
+org-wide touch as the four catalogued MiMo-V2.5 repos, so from the index they look exactly like the
+coverage hole the 2026-08-19 proposal asks for a detector for. They are not: the HF API gives
+`createdAt: 2025-12-16T08:47:02Z` and the card's technical report is dated 2025. Correctly out of scope,
+and the corpus is right to be silent on Xiaomi.
 
-The 2026-08-13 run found `cursor.com/resources/grok-4-6-model-card.pdf`, verified it byte-identical to
-xAI's, and recorded it in the xAI row's `notes` rather than cataloguing it. I downloaded it today: it is
-**still the launch-day bytes** — 524,224 B, md5 `5faf54cc75e26c987541719b7e2d56f1`, byte-for-byte the
-version 236 the corpus stored. Cursor now hosts the only public copy of the pre-correction Grok 4.6 card;
-xAI's URL no longer serves it.
+Worth flagging for whoever builds that detector: `lastModified` (2026-07-09) is what the HF index pages
+display and what a detector built on them would key off; `createdAt` (2025-12-16) is what actually decides
+scope. They are seven months apart here, and no part of the pipeline currently reads the latter.
 
-I proposed it as its own row per the co-publication rule, mirroring the Grok 4.5 pair the corpus already
-holds (ids 180 and 202). Verdict:
-`{"status": "issue_filed", "reason": "content_duplicate_of:xai-grok-4-6-model-card", "issue_ref": "outbox:1"}`.
+## Citation mining (task 3)
 
-The validator is right on its own terms — the fingerprints *are* identical — and I have not retried it.
-But the two rules cannot both be satisfied here, and not by accident: launch partners publish identical
-bytes **on launch day**, so the window in which a co-publication is proposable is exactly the window in
-which it is indistinguishable from a mirror; and because the dedup check matches *any stored version* of
-the sibling row, once the launch-day bytes are stored the partner copy is blocked permanently rather than
-until divergence. Grok 4.5 is two rows only because it was caught after divergence and the launch-day
-bytes had never been stored. Filed to `logs/PROPOSALS.md` with a suggested fix: make the duplicate check
-publisher-aware, since identical content under a *different* allowlisted publisher is the signature of a
-co-publication, not a re-host.
+Mined the five most recent adds and near-adds — the two SingGuard cards written on 08-22, Tencent
+EVIE-Preview-4.5B (08-17), and Anthropic's `/research/Claude-accelerates-protein-design` (08-18) and
+`/research/multiagent-systems` (08-13). **No leads.** The multiagent post cites no external evaluator at
+all. The protein-design post cites Adaptyv Bio, Twist Bioscience and ProteinBase — wet-lab validation
+partners, not model evaluators, and none allowlisted. EVIE-Preview cites the ViDoRe benchmark family and
+Illuin's ColPali engine; SingGuard cites only its own arXiv paper (2606.22873) and its Qwen3-VL base.
 
-## Added (2) — an InclusionAI guardrail line that has been missing since May
-
-Both cards fetched and read in full, dated from HuggingFace commit history rather than repo metadata.
-
-| id | document | date | verdict |
-|---|---|---|---|
-| 249 | [SingGuard 0.8b/2b/4b/8b](https://huggingface.co/inclusionAI/SingGuard-2b) | 2026-05-29 | `{"status": "written", "slug": "inclusion-ai-singguard-0-8b-model-card", "document_id": 249, "version_id": 355}` |
-| 250 | [SingGuard-NSFA 0.8B/2B/4B/9B](https://huggingface.co/inclusionAI/SingGuard-NSFA-9B) | 2026-07-13 | `{"status": "written", "slug": "inclusion-ai-singguard-nsfa-0-8b-model-card", "document_id": 250, "version_id": 356}` |
-
-**SingGuard** is a policy-adaptive multimodal guardrail family (base: Qwen3-VL Instruct) that takes a
-natural-language safety policy at runtime and returns a binary judgement plus a matched risk category
-across text, image and mixed inputs; paper arXiv 2606.22873, which also introduces SingGuard-Bench (56k+
-examples, 80+ risk categories). **SingGuard-NSFA** is a separate line, not a size variant: different base
-(Qwen3.5), different taxonomy ("Not-Secure-For-Agents", 185 risk variants against CIA-triad and OWASP),
-different paper (arXiv 2607.13081), six weeks later, with MLP classification heads for ~50ms detection
-alongside the generative reasoning path. Both Apache-2.0 with public weights → `open_weight_permissive`
-(verified on the cards and in repo metadata).
-
-**How they surfaced, and why that matters.** Not from a release event. `SingGuard-2b` entered the
-candidate list because someone edited its README on 2026-08-21 — the repo is from **25 May**. The NSFA
-line never entered the candidate list at all; I found it by walking the family through the HuggingFace
-API. `huggingface.co/inclusionAI` is a configured `index_url` fetched successfully every run, and the
-corpus already held six InclusionAI rows. This is the fifth instance in four runs of the backlog
-blindness first proposed on 2026-08-13: a May release stops being a new link in May.
-
-**Granularity call, flagged for reversal if wrong.** Each size has its own separately-authored card
-(differing in base model and numbers), but I proposed one row per family listing all sizes, per the family
-rule — under which adding `SingGuard-2b` makes `SingGuard-8b` a size variant of something already in the
-corpus. Sibling URLs are recorded in each row's `notes`; GGUF conversions excluded as format variants.
-This cuts against the "one distinctly-authored card = one row" reading proposed on 2026-08-20; that
-ambiguity is still live and I applied the prompt's rule.
-
-**`has_safety_evals` attested FALSE on both, and it is the least obvious call I made.** These cards are
-almost entirely safety benchmark tables (>94% F1 across the NSFA taxonomy; SOTA across six safety
-categories for SingGuard). But for a guardrail the safety benchmark *is* the capability benchmark, and the
-flag marks documents that assess a model as a risk *subject*. I followed corpus precedent:
-`mistral-shieldstral-1-0-model-card` and `nvidia-nemotron-3-5-content-safety-model-card` both carry
-`safety_evals = 0`. Consequence worth stating plainly: the site's safety filter now hides four of the
-documents most densely populated with safety evaluations. Logged to friction.
-
-## Candidates triaged (33 new links) — 4 pursued, 29 skipped
-
-Skipped as index furniture or non-documents (17): HuggingFace user profiles (`aldjalkdf`, `leiwx52`,
-`emelryan`, `nigeln`, `michael-qiu`), `substack.com/@jefftk`, HF *discussion* threads (two Qwen3.8
-"Add Terminal-Bench evaluation results" threads, plus `dlesym-v1-era5` and `Ling-3.0-flash-dspark`
-discussions), NVIDIA dataset cards (`PhysicalAI-Robotics-Open-H-Embodiment`,
-`video-to-data-robot-dexterity-task-library-and-dataset`), `huggingface.co/papers/2608.19758`
-(FlashPrefill V2 — a serving-attention paper, no named-model assessment), the duplicate
-`mistral.ai/news/agentic-search` trailing-slash pair, and `transluce.org/oversight-foundations` (an index
-page).
-
-Fetched, read and skipped on judgement (12):
-
-- **`research.meta.ai/blog/multimodal-intelligence-of-muse-spark-1-2`** (2026-08-20) — the closest call of
-  the run. It reports ZeroBench, SimpleVQA, CharXiv Reasoning and Design Arena results for Muse Spark 1.2
-  against GPT-5.6 Sol, Opus 5, Gemini 3.7 Flash, Claude Fable 5, Kimi K3 and Grok 4.6, plus a preview of
-  WildArtifactBench. The system-card test says admit — those numbers would sit in a model card's
-  evaluations section unedited. The `doc_type: other` scope discipline says skip — "capability demos and
-  showcases", "when in doubt, skip". `criteria.yaml`'s `when_uncertain: admit_and_flag` points back the
-  other way. I skipped on the narrower, more specific rule; precedent does not settle it either
-  (`google-deepmind-sl2t-other` is an admitted first-party capability blog; `meta-tribe-v2-other` was
-  admitted and later removed). Logged to friction — **this is the row to add if my reading is wrong.**
-- **`transluce.org/scaling-activation-oracles`** (2026-08-20) — methods research: the reported numbers
-  describe the oracle's detection ability, with Qwen3-8B/14B/32B, Qwen3.6-27B, GLM-4.5 and Kimi-K2.6 as
-  fixed substrate. Skipped. Note: **yesterday's run already found, evaluated and skipped this exact post
-  by hand**; it arrived today as a fresh candidate with `first_seen: 2026-08-22` carrying none of that
-  history, so I re-adjudicated it from scratch and independently reached the same answer. That is the
-  2026-08-17 "no triage state" proposal seen from the other side.
-- **`api-docs.deepseek.com/news/news260821`** (2026-08-21) — DeepSeek launched
-  **DeepSeek-V4-Flash-Vision-Exp**, a distinct experimental multimodal model, API-only. There is no card:
-  no repo under `huggingface.co/deepseek-ai` (checked — latest are V4-Pro-0813 and V4-Flash-0731), no tech
-  report; the post is availability plus image-token pricing plus a link to a developer vision guide.
-  Skipped as a product announcement, but flagged: the corpus will read this as DeepSeek silence since
-  2026-08-13, which is wrong in substance. A cardless launch is a finding the schema cannot hold.
-- **`huggingface.co/inclusionAI/Ling-3.0-flash-dspark`** — a 1.36B speculative-decoding draft model for
-  the catalogued Ling-3.0-flash. Not one of the four things `distinct_model_release` excludes, but not
-  independently useful either. Skipped on precedent: DeepSeek's own V4-Flash-DSpark and V4-Pro-DSpark have
-  been public since 2026-07-04 and are not catalogued.
-- **`huggingface.co/nvidia/dlesym-v1-era5`** — ensemble earth-system forecast model; the card states
-  release "NGC 05/12/2025" and carries no evaluations. Pre-scope-floor re-upload; skipped.
-- **`huggingface.co/inclusionAI/ArmorOCR`** — README.md exists but is empty. No document to catalog.
-- **`securebio.substack.com/p/securebio-detection-updates-august`** (2026-08-20) and the three-day
-  early-warning post (both copies, Substack and `securebio.org/blog/`) — biosurveillance infrastructure
-  (CASPER wastewater sequencing, Zephyr nasal swabs). Claude Managed Agents and GPT Rosalind appear as
-  tools SecureBio *uses*, not as subjects. Fails the system-card test.
-- **`rand.org/pubs/external_publications/EP71466.html`** — "Realising the 100 Days Mission", vaccine
-  development speed. Not a model evaluation; RAND is allowlisted narrowly for CAST / Project Canary output.
-- **`deepmind.google/blog/from-atari-to-eve-online-…`** (2026-08-21) — a 15-year research retrospective
-  plus a partnership announcement with the EVE Online developer. No named-model evaluation results.
-- **`mistral.ai/news/agentic-search`** (2026-08-20) — a retrieval feature, not a model. Its FinanceBench
-  and OfficeQA Pro numbers measure the retrieval system's effect using Mistral Medium 3.5 and GLM-5.2 as
-  substrate; same discriminator as the Transluce skip.
-- **Three xAI posts** (`grok-bot-more-plans`, `grok-4-6-vertex-ai`, `grok-build-for-everyone`) — plan
-  availability, platform availability, product launch.
-
-## Targeted search and silence checks
-
-Nothing new from the frontier labs in the ~72h window. `deploymentsafety.openai.com` still ends at the
-2026-08-06 GPT-5.6 August Updates (already catalogued); `anthropic.com/news` ends at 2026-08-14. Searches
-run: "system card August 2026 model card release AI lab"; "AI model release August 20 21 2026 new model
-announced"; "METR evaluation report August 2026"; "UK AI Security Institute evaluation report August
-2026"; "Apollo Research scheming evaluation August 2026"; "Epoch AI OR Thinking Machines OR Transluce new
-report August 2026 model evaluation"; "Xiaomi MiMo new model release 2026"; `"Muse Spark 1.2" OR "Grok
-4.6" OR "Gemini 3.7" model card system card published August 2026`; `Cursor "Grok 4.6" model card`.
-
-Orgs silent >14 days, checked beyond the index diff:
-
-- **Xiaomi (117d)** — checked `mimo.mi.com/docs/en-US/updates/model`, the release page that is *not* a
-  configured `index_url`. Newest entry is mimo-v2.5-asr; the corpus already holds MiMo-V2.5-ASR,
-  MiMo-V2.5 and MiMo-V2.5-Pro. The silence is real.
-- **Mistral (18d)** — checked `docs.mistral.ai/models/model-cards/`, the blind spot recorded in the
-  2026-08-14 proposal. Nothing after Shieldstral 1.0 (2026-08-04). Incidental: that index also carries a
-  card for **Z.ai GLM 5.2**, a third-party model Mistral serves — not proposable, since GLM is not
-  Mistral's model and Z.ai is not allowlisted.
-- **METR (32d), Apollo (32d), UK AISI (18d), US CAISI (30d), Epoch (22d), Thinking Machines (22d),
-  Palisade (107d), StepFun (91d)** — searched; nothing published after the newest rows already held. The
-  UK AISI material dominating current coverage is the 2026-08-04 incident report, already catalogued.
-
-**Co-publication check on the pair I touched:** Cursor's `cursor.com/grok` links its FAQ "Grok 4.6 Model
-Card" to the media.x.ai PDF, and `cursor.com/blog/grok-4-6` (2026-08-12) is a launch announcement rather
-than a card. Neither proposed.
-
-## Citation mining
-
-Mined the Grok 4.6 card (which produced both headline findings above) and the Anthropic August 2026
-redacted risk report. The Grok 4.6 card's §7 says third-party evaluators independently validated the cyber
-results **without naming them** — a dead end for lead generation, and the same observation the 2026-08-13
-run recorded. Both Anthropic PDFs resisted text extraction through the fetch tool; the risk report's
-landing URL 307-redirects to `www-cdn.anthropic.com/f61d49fa…/Redacted Risk Report August 2026 .pdf`.
-That row (id 240) still carries a null `publication_date`; I could not establish a day-level date from the
-cover, so I did not propose a `field_update` — inventing a date to satisfy a null is worse than the null.
+The pattern across the last several runs is consistent: HuggingFace cards cite benchmarks and base
+models, first-party research posts cite their own prior work, and the third-party evaluator references
+that citation mining is designed to catch appear almost exclusively in frontier-lab system cards — of
+which none were published in this window.
 
 ## Issues (task 4)
 
-`logs/open_issues.json` is `[]` and **I cannot verify what that means.** `run_daily.sh:37-42` pipes each
-`gh issue list` through `|| echo "[]"`, and the merge step swallows exceptions, so auth failure, network
-failure and an empty backlog are indistinguishable. New this run: `gh` inside the agent sandbox is
-unauthenticated (it prints the `gh auth login` prompt), so if the Phase B fetch ran in this environment
-then `[]` was the fallback rather than an observation — though yesterday's outbox drained successfully at
-2026-08-21T09:46Z, so an authenticated path exists somewhere in the harness. **Task 4 is therefore
-reported as completed against unverifiable input for the second consecutive run**, not as
-completed-with-nothing-found. No issues were investigated and no `comment_issue.py` calls were made.
-Logged to friction; not filed as a new proposal, because the 2026-08-14 remedy — distinguish "checked,
-found nothing" from "could not check" in the artifacts themselves — covers it unchanged.
+`logs/open_issues.json` is `[]` for the **third consecutive run**, and for the third consecutive run I
+cannot tell whether that means "no open issues" or "could not ask". Re-confirmed today that `gh` in this
+sandbox is unauthenticated (`You are not logged into any GitHub hosts`), so I have no independent read on
+the backlog. The aggravating detail specific to today: total Phase A failure is the same condition under
+which the 08-21 run logged `error connecting to api.github.com` twice, so the run in which the issue
+fetch is most likely to have failed is also one where its failure leaves no trace.
+
+**Task 4 is reported as completed against unverifiable input, not as completed-with-nothing-found.** No
+issues were investigated and `comment_issue.py` was not called. Logged to friction; not re-proposed, since
+the 2026-08-14 proposal and the closing paragraph of the 2026-08-21 entry already ask for exactly the
+right fix (a `fetch_status` field distinguishing the two cases).
 
 ## Blocked-URL escalations (task 5)
 
-`blocked_escalations` is empty and Phase A recorded `blocked: 0, not_found: 0, errors: 0` across 245 link
-checks. Nothing to escalate. Incidental: `huggingface.co` returned HTTP 429 to three of my fetches mid-run
-(SingGuard-8b, ArmorOCR); all succeeded on retry, so no document was recorded as unreachable on that basis.
+`blocked_escalations` is empty. Note that this is *not* evidence of health today: with `ok: 0`, no
+document link-check ran, so nothing could have been escalated. The three 403s I hit are index pages, not
+corpus documents, and none of them indicate a dead document.
 
-## Friction logged (9 lines)
+## Friction logged (6 lines)
 
-`co_publication_indistinguishable_from_mirror_by_content_dedup` ·
-`superseded_edition_found_by_hand_not_by_the_fingerprint_sweep` ·
-`candidate_list_replays_previously_adjudicated_links` ·
-`guardrail_model_safety_evals_flag_has_no_stable_reading` ·
-`first_party_capability_showcase_with_named_model_benchmarks` ·
-`model_launched_with_no_documentation_of_any_kind` ·
-`pre_scope_floor_model_republished_under_a_new_repo` ·
-`no_criteria_answer_for_speculative_decoding_draft_models` ·
-`empty_open_issues_list_is_indistinguishable_from_a_failed_issue_fetch`
+`phase_a_total_failure_silent` · `empty_open_issues_list_is_indistinguishable_from_a_failed_issue_fetch` ·
+`methods_research_with_named_model_harmful_elicitation_results` ·
+`first_party_capability_showcase_with_no_named_model` ·
+`pre_scope_floor_model_absent_from_corpus_reads_as_a_coverage_hole` ·
+`allowlisted_publisher_index_bot_blocks_the_agent_fetch_too`
 
 ## Proposals filed
 
-One entry appended to `logs/PROPOSALS.md`: the co-publication/dedup deadlock (§1, with a suggested
-publisher-aware duplicate check), plus a §2 confirming-evidence note on the 2026-08-18 superseded-edition
-proposal that asks for nothing new.
+**None.** Every obstacle this run maps onto an entry already in `logs/PROPOSALS.md`: the Phase A failure
+onto 2026-08-21 §1, the unverifiable issue list onto 2026-08-14 and 2026-08-21 §1's closing paragraph,
+the Transluce judgement calls onto 2026-08-20's "unwritten discriminator", the draft-model and
+pre-floor-re-upload cases onto 2026-08-22 and 2026-08-19, and the bot-blocked indexes onto 2026-08-14.
+Re-filing any of them would add a dated restatement and no new ask. The 08-21 entry's three requested
+fixes — fail loudly when `ok == 0 and checked > 0`, retry the phase once, break `errors` down by
+exception class — are unchanged by today, except that the recurrence rate is now two runs in three.
 
-**Corpus at end:** 250 documents (246 active, 3 removed, 1 moved).
+One honest qualification on that entry's cost argument: on 08-21 the hand-redone sweep recovered a real
+document that would otherwise have been lost. Today it recovered nothing. The silent failure cost zero
+documents this run, and the case for fixing it rests on the days when it does not.
+
+**Corpus at end:** 250 documents (246 active, 3 removed, 1 moved) — unchanged.
