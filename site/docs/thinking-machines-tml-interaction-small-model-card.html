@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-17T06:24:20Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Research preview; no public weights. openness=closed verified two ways: huggingface.co/thinkingmachines carries only Inkling, Inkling-Small and their NVFP4 quantizations (no TML-Interaction repo), and a site-wide HF search for &#39;TML-Interaction&#39; returns zero repos, while the post itself describes a gated research preview collecting feedback and research-grant applications. Backlog find, not a new link: this URL has been sitting in logs/candidates.json with first_seen 2026-08-09T19:39:09Z, unproposed across every run since.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-tml-interaction-small-model-card&amp;body=Document%3A%20thinking-machines-tml-interaction-small-model-card%0AURL%3A%20https%3A//thinkingmachines.ai/blog/interaction-models/%0AFingerprint%3A%20a97c7ccc1539d4d01f5f0f5bf4e6e84ae51aa37cf8a76a02f54fd56e9ddb9eb9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-tml-interaction-small-model-card&amp;body=Document%3A%20thinking-machines-tml-interaction-small-model-card%0AURL%3A%20https%3A//thinkingmachines.ai/blog/interaction-models/%0AFingerprint%3A%20a5f7b01011b6fb9dba008c77faa47cc947a3f9da3e744091f66716523898773b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-24T06:22:03Z</td>
+          <td>text/html</td>
+          <td>148,810</td>
+          <td><code title="a5f7b01011b6fb9dba008c77faa47cc947a3f9da3e744091f66716523898773b">a5f7b01011b6fb9d</code></td>
+        </tr>
         <tr>
           <td>2026-08-17T06:24:20Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +97,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://thinkingmachines.ai/blog/" rel="noopener nofollow">https://thinkingmachines.ai/blog/</a> · <a href="https://huggingface.co/thinkingmachines" rel="noopener nofollow">https://huggingface.co/thinkingmachines</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-24T06:22:03Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-24T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener nofollow">https://thinkingmachines.ai/blog/interaction-models/</a>          </div>
       </li>
     </ol>
     </details>
@@ -122,7 +136,7 @@ Time-awareness. The model has a direct sense of elapsed time.
 -
 Simultaneous tools calls, search, and generative UI. While speaking and listening to the user, the model can concurrently search, browse the web, or generate UI—weaving back results into the conversation as needed.
 In a longer real session, all of this happens continuously, creating an experience that feels more like collaborating and less like prompting.
-None of the brands or products appearing in these videos are associated with Thinking Machines Labs. These videos are to demonstrate the model&#39;s capabilities and do not indicate sponsorship or partnership.
+None of the brands or products appearing in these videos are associated with Thinking Machines Labs. These videos are to demonstrate the model’s capabilities and do not indicate sponsorship or partnership.
 Our approach
 An interaction model is in constant two-way exchange with the user—perceiving and responding at the same time. Some domains take such interactivity as a given—the physical world demands that robotics and autonomous vehicles operate in real time. Audio full-duplex modelsMoshi, PersonaPlex, nemotron-voicechat, Seeduplex. are another example where interaction is bidirectional and continuous.
 Applying the same principle, we set out to build an interaction model native to this regime—one that perceives and responds in the same continuous loop, across audio, video, and text. The result is a system architected around two ideas: a time-aware interaction model that maintains real-time presence, and an asynchronous background model that handles sustained reasoning, tool use, and longer-horizon work.
@@ -148,22 +162,22 @@ For more intelligence, safety, and interactivity/latency results please see the 
 | Instant |  |  |  |  | Thinking |  |  |  |
 |---|---|---|---|---|---|---|---|---|
 | TML-interaction -small | GPT-realtime-2.0 (minimal) | GPT-realtime-1.5 | Gemini-3.1-flash-live (minimal) | Qwen 3.5 OMNI-plus-realtime | GPT-realtime-2.0 (xhigh) | Gemini-3.1-flash-live (high) |  |  |
-| Streaming | FD-bench V1 Turn-taking latency (s) · Audio | 0.40 | 1.18 | 0.59 | 0.57 | 2.14 | 1.63 | 0.94 |
-|  | FD-bench V1.5 Average · Audio | 77.8 | 46.8 | 48.3 | 54.3 | 39.0 | 47.8 | 45.5 |
-|  | FD-bench V3           Response Quality (%) / Pass@1 (%) · Audio + Tools | 82.8* / 68.0* | 80.0 / 52.0 | 77.9 / 55.0 | 68.5 / 48.0 | 60.0 / 50.0 | 81.0 / 58.0 | 71.4 / 48.0 |
-|  | QIVD** Accuracy (%) · Video + Audio | 54.0 | 57.5 | 41.2 | 54.7 | 59.0 | 58.2 | 56.1 |
-| Turn-based | Audio MultiChallenge APR (%) · Audio | 43.4 | 37.6 | 34.7 | 26.8 | -*** | 48.5 | 36.1 |
-|  | BigBench Audio Accuracy (%) · Audio | 75.7 / 96.5* | 71.8 | 81.4 | 71.3 | 73.0 | 96.6**** | 96.6 |
-|  | IFEval (VoiceBench) Accuracy (%) · Audio | 82.1 | 81.7 | 68.1 | 67.6 | 80.3 | 83.2 | 82.8 |
-|  | IFEval Accuracy (%) · Text | 89.7 | 89.6 | 87.5 | 85.8 | 83.4 | 95.2 | 90.0 |
-|  | Harmbench Refusal rate (%) · Text | 99.0 | 99.5 | 100.0 | 99.0 | 99.5 | 100.0 | 98.0 |
+| Streaming | FD-bench V1Turn-taking latency (s) · Audio | 0.40 | 1.18 | 0.59 | 0.57 | 2.14 | 1.63 | 0.94 |
+|  | FD-bench V1.5Average · Audio | 77.8 | 46.8 | 48.3 | 54.3 | 39.0 | 47.8 | 45.5 |
+|  | FD-bench V3Response Quality (%) / Pass@1 (%) · Audio + Tools | 82.8* / 68.0* | 80.0 / 52.0 | 77.9 / 55.0 | 68.5 / 48.0 | 60.0 / 50.0 | 81.0 / 58.0 | 71.4 / 48.0 |
+|  | QIVD**Accuracy (%) · Video + Audio | 54.0 | 57.5 | 41.2 | 54.7 | 59.0 | 58.2 | 56.1 |
+| Turn-based | Audio MultiChallengeAPR (%) · Audio | 43.4 | 37.6 | 34.7 | 26.8 | -*** | 48.5 | 36.1 |
+|  | BigBench AudioAccuracy (%) · Audio | 75.7 / 96.5* | 71.8 | 81.4 | 71.3 | 73.0 | 96.6**** | 96.6 |
+|  | IFEval (VoiceBench)Accuracy (%) · Audio | 82.1 | 81.7 | 68.1 | 67.6 | 80.3 | 83.2 | 82.8 |
+|  | IFEvalAccuracy (%) · Text | 89.7 | 89.6 | 87.5 | 85.8 | 83.4 | 95.2 | 90.0 |
+|  | HarmbenchRefusal rate (%) · Text | 99.0 | 99.5 | 100.0 | 99.0 | 99.5 | 100.0 | 98.0 |
 * For benchmarks that require reasoning or tool calls we report our results with background agent enabled.
 ** We evaluate Qualcomm IVD in a streaming setting – is a video-audio QA benchmark. In each video clip,  somebody performs an action and speaks a question.  We evaluate in a streaming setting, sending the raw clip from the beginning and grading the model’s transcript. Following Qwen 3.5 Omni we use a GPT-4o-mini grader.
 *** Audio MultiChallenge metrics for all the baseline models are reported by Scale AI, where Qwen 3.5 OMNI-plus-realtime is not listed.
 **** Bigbench Audio metrics for all the baseline models are reported by Artificial Analysis, where GPT-realtime-2.0 thinking is on high.
 New dimensions of interactivity
 The existing interactivity-oriented benchmarks above do not adequately capture the qualitative jumps in interaction capabilities we notice. To that end, we have some early work aimed at quantifying these capabilities.
-Time awareness and simultaneous speech. Turn-based models with a dialog management system do not support accurate time estimation or simultaneous speech. Examples include: “How long did it take me to run one mile?”, “Correct my mispronunciations as you hear them” or “How long did it take me to write this function?&#34;
+Time awareness and simultaneous speech. Turn-based models with a dialog management system do not support accurate time estimation or simultaneous speech. Examples include: “How long did it take me to run one mile?”, “Correct my mispronunciations as you hear them” or “How long did it take me to write this function?”
 We created two internal benchmarks to measure these proactive audio capabilities:
 - TimeSpeak: Tests whether the model can initiate speech at user-specified times while producing the correct content. For example: “I want to practice my breathing, remind me to breathe in and out every 4 seconds until I ask you to stop.”
 - CueSpeak: Tests whether the model speaks at the appropriate moment with the expected semantically correct response. Dataset entries are created to ensure that the model needs to speak at the same time as the user to get a full score. For example: “Everytime I codeswitch and use another language, give me the correct word in the original language.”
@@ -202,6 +216,6 @@ Or use the BibTeX citation:
   </section>
 </article>
 
-<footer><p>Built 2026-08-23T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-24T06:26:01Z</p></footer>
 </body>
 </html>

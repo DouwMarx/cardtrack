@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T16:01:25Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-preview-system-card&amp;body=Document%3A%20openai-gpt-5-6-sol-preview-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf%0AFingerprint%3A%205838b4fd2153f69f55b847485942b76385c2ecd1da1ca45e15d38fd8be415d9e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-preview-system-card&amp;body=Document%3A%20openai-gpt-5-6-sol-preview-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf%0AFingerprint%3A%20bfa75bbca749f3b044994b1e724749e92500f76c1d6bf80f246a04ad7d19e568%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-24T06:22:09Z</td>
+          <td>application/pdf</td>
+          <td>4,411,218</td>
+          <td><code title="bfa75bbca749f3b044994b1e724749e92500f76c1d6bf80f246a04ad7d19e568">bfa75bbca749f3b0</code></td>
+        </tr>
         <tr>
           <td>2026-08-12T06:18:10Z</td>
           <td>application/pdf</td>
@@ -76,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -125,6 +131,14 @@
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/previewing-gpt-5-6-sol/" rel="noopener nofollow">https://openai.com/index/previewing-gpt-5-6-sol/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-24T06:22:09Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-24T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -139,7 +153,12 @@
 GPT-5.6 Preview
 System Card
 2026-06-25
-1 Introduction
+Change log
+     • August 19, 2026: We corrected GPT-5.5’s pass@4 score on the hard-negative
+       protein binding prediction evaluation from 0.4% to 1.5%. The previously
+       reported value was its pass@1 score.
+
+1 Introduction
        GPT-5.6 is a new family of three models: Sol, our new flagship model; Terra,
        a capable lower-cost option; and Luna, our fastest and most cost-efficient
        model. The safeguards we have built for this launch—our most robust yet—
@@ -157,9 +176,9 @@ System Card
        None of them reach our High threshold in AI Self-Improvement. We have
        implemented a tailored set of safeguards, adapted to each model’s capability
        profile, to sufficiently minimize the associated risks.
-       This system card is a detailed report of the work we did to understand and
-       mitigate GPT-5.6’s safety risks before deployment. The five most important
-       things to know are that:
+      This system card is a detailed report of the work we did to understand and
+      mitigate GPT-5.6’s safety risks before deployment. The five most important
+      things to know are that:
 
     1. These models are a meaningful step up in cybersecurity capability, but
        they do not reach our risk framework’s highest level (Critical). GPT-5.6 Sol
@@ -173,7 +192,9 @@ System Card
     2. To make these models safe, we added new technology to a safety stack that
        is more than the sum of its parts. The models are trained to be safe, Sol
        and Terra are served with newly added activation classifiers focused on
-       sensitive domains that watch the model and can intervene to stop unsafe
+
+1                                                                                      OpenAI
+       sensitive domains that watch the model and can intervene to stop unsafe
        answers during generation, and certain conversations are scanned so unsafe
        outputs are blocked in real time if they cross safety boundaries. We also have
        automated safety systems that look for unsafe patterns across conversations
@@ -181,9 +202,7 @@ System Card
 
     3. Severe harm requires a chain of successful steps, and our safeguards place
        barriers throughout that chain. Based on our threat modelling in cyberse-
-
-1                                                                                       OpenAI
-       curity and biology, we’ve designed our safety stack so that even if an attacker
+       curity and biology, we’ve designed our safety stack so that even if an attacker
        does complete one step on the path to harm, safeguards will still stop the
        model from allowing severe harm. We also have programs in place so that
        when GPT-5.6 models are broadly available to the public, we can continue
@@ -216,8 +235,8 @@ System Card
        from previously-launched models are from recent snapshots of those mod-
        els, and may vary slightly from values published in previous cards.
 
-      We plan to publish an updated version of this system card when making the
-      GPT-5.6 family of models generally available.
+       We plan to publish an updated version of this system card when making the
+       GPT-5.6 family of models generally available.
 
 2                                                                                        OpenAI
 Contents
@@ -1392,6 +1411,8 @@ Table 1: AAV Capsid Packaging Prediction
 
 9.1.1.6 Hard-negative protein binding prediction
 
+          August 19, 2026: We corrected GPT-5.5’s pass@4 score on this evaluation from
+          0.4% to 1.5%. The previously reported value was its pass@1 score.
           Predicting which protein variants will bind successfully could reduce trial
           and error in protein engineering, which may be a proxy for some dual-use
           biological design capabilities. We evaluate this using a proprietary, non-
@@ -1403,11 +1424,11 @@ Table 1: AAV Capsid Packaging Prediction
           on a target protein, with pairwise sequence similarity of at least 0.85. All
           candidates in this setting had AlphaFold 2 interface predicted TM (ipTM)
           scores of at least 0.8, indicating high-confidence, high-quality binding pre-
-          dictions. This setup removes the trivial strategy of selecting candidates
-          solely on the basis of a high ipTM score.
 
 42                                                                                        OpenAI
-          The model was additionally given 3D structures of the predicted protein-
+          dictions. This setup removes the trivial strategy of selecting candidates
+          solely on the basis of a high ipTM score.
+          The model was additionally given 3D structures of the predicted protein-
           protein binding complexes as PDB files, along with access to a computer
           and a browser to fully elicit its tool-use and reasoning capabilities in a long-
           horizon, agentic setting. The model is not told how many true binders exist
@@ -1428,7 +1449,7 @@ Table 2: Hard-negative protein binding prediction
 
  Metric                     gpt-5.4-thinking        gpt-5.5       gpt-5.5-pro        gpt-5.6-sol
 
- pass@4                           3.5%              0.4%             0.0%               7.6%
+ pass@4                           3.5%               1.5%            0.0%               7.6%
 
 9.1.1.7 DNA sequence design for transcription factor binding
 
@@ -1447,15 +1468,14 @@ Table 2: Hard-negative protein binding prediction
           survey of 20 independent experts and the judgment of our own subject-
           matter experts. Because Ledidi is widely available and a relatively simple
           baseline, we hypothesize that a qualitative capability shift is most likely
-          to emerge if a high win-rate is needed. This was also informed through a
-          preliminary survey of independent biosecurity experts.
 
 43                                                                                             OpenAI
-          GPT-5.6 Sol still scores below this threshold.
-
+          to emerge if a high win-rate is needed. This was also informed through a
+          preliminary survey of independent biosecurity experts.
+          GPT-5.6 Sol still scores below this threshold.
 Table 3: DNA sequence design for transcription factor binding
 
- Metric                     gpt-5.4-thinking       gpt-5.5      gpt-5.5-pro      gpt-5.6-sol
+ Metric                     gpt-5.4-thinking       gpt-5.5      gpt-5.5-pro       gpt-5.6-sol
 
  pass@1                         12.82%             13.82%         16.5%             13.7%
 
@@ -1490,11 +1510,11 @@ Table 3: DNA sequence design for transcription factor binding
 
           As we did for GPT-5.3-Codex, GPT-5.4 Thinking, and GPT-5.5 Thinking, we
           are treating GPT-5.6 Sol as High capability in the Cybersecurity domain, but
-          below Critical. We are also extending this designation to GPT-5.6 Terra and
-          GPT-5.6 Luna which, while less capable overall than Sol in the cybersecurity
 
 44                                                                                          OpenAI
-     domain, do reach our High threshold.
+     below Critical. We are also extending this designation to GPT-5.6 Terra and
+     GPT-5.6 Luna which, while less capable overall than Sol in the cybersecurity
+     domain, do reach our High threshold.
 
      Under our Preparedness Framework, High cybersecurity capability is de-
      fined as a model that “removes existing bottlenecks to scaling cyber oper-
@@ -2499,6 +2519,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-23T06:31:30Z</p></footer>
+<footer><p>Built 2026-08-24T06:26:01Z</p></footer>
 </body>
 </html>
