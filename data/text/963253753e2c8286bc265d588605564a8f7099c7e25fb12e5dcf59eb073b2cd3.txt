@@ -1,0 +1,25 @@
+The Multimodal Intelligence of Muse Spark 1.2
+This month, we launched Muse Spark 1.2, a coding-focused update to Muse Spark 1.1. In our announcement, we also previewed the model’s improved multimodal capabilities. Today, ahead of the open-weights release, we’re sharing new evaluation results and demonstrations that illustrate the breadth of its visual understanding and reasoning capabilities.
+Our earlier demo showed some of these capabilities in action: Muse Spark 1.2 turned a video uploaded through the terminal into a functional home-booking page. Beyond visual coding, the results below show how our model performs across visual reasoning, chart understanding, and knowledge-intensive tasks.
+Muse Spark 1.2’s multimodal gains are most pronounced when the model can use tools. It can inspect visual inputs more closely and incorporate what it finds into its reasoning.
+For more details about our evaluations, see our report.
+Multimodal Capabilities
+Muse Spark 1.2 supports a broad range of multimodal tasks, from turning visuals into working code to translating perception into physical action. It also brings robust audio-visual understanding to enable video-heavy workflows common in real-world enterprise use.
+Visual Coding
+Muse Spark 1.2 creates digital artifacts such as web pages and games, where correctness is judged by whether the result renders and behaves as intended. Given an image or video, the model must translate its layout, hierarchy, and style into working code. By re-examining the artifacts it generates, it drives a continuous self-improvement loop.
+The model shows strengths in converting images or videos for web development, as shown on Design Arena. Model inclusion and rankings as of August 18, 2026.
+Robotics
+Spatial intelligence bridges the gap between digital perception and physical action, connecting what a model sees to what it can do in a 3D physical space. A specialized variant of Muse Spark acts as the robot brain and orchestrator – taking user instruction, decoding tool calls, observing results, and looping over until the task is done. For manipulation, we use a two-level system: Given a single abstract goal, the high-level planner model performs scene understanding, disambiguates similar objects, and decomposes the goal into subtasks, each executed by a low-level Muse Spark Vision-Language-Action (VLA) policy.
+Below, see how the model plans the subtasks for a bimanual robot distinguishing a hair brush from a makeup brush, packing lunch, and finding various objects.
+Audio-Visual Understanding
+Muse Spark 1.2 combines deep video understanding and dense captioning with a powerful suite of agentic tools, including web development, real-time search, and spatial grounding. This integration allows the model to move beyond passive observation and towards autonomous orchestration of complex workflows that translate audio-visual input into actionable solutions.
+WildArtifactBench: Measuring Utility in Real-World Agentic Tasks
+While strong performance on public benchmarks show us one side of the story, frontier models today still struggle to execute real-world agentic tasks such as making production-level games. We want the ability to evaluate an agent’s capability across a wide spectrum of multimodal tasks with practical utility.
+Today, we are previewing WildArtifactBench, our internal evaluation used to evaluate agents on any task, with any deliverable format, and any level of verifiability.
+Here are some of the design principles of WildArtifactBench:
+Win rate and Elo scores are obtained by comparing the deliverables of the tested and baseline agents. Both agentic judges and human judges can do the comparison and choose a preference. This approach greatly broadens our task coverage and diversity by removing the need for ground-truth deliverables and objective rubrics.
+As a preview, we’re releasing 10 tasks from WildArtifactBench. This is a step forward in our ability to measure the real practical utility delivered by multimodal agents.
+The Future of Muse Spark at Meta
+Muse Spark is used in several areas at Meta, including powering our media generation efforts. Muse Spark works together with Muse Image for agentic media generation, where Muse Spark produces highly detailed captions as training data for Muse Image and Video. Muse Spark is also able to translate raw text, image, and video content into signals and insights that can be used in downstream applications.
+Try Muse Spark 1.2 Today
+Muse Spark 1.2 is available in Meta Model API and Muse Code.

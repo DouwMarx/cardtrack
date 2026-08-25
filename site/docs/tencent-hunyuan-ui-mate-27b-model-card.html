@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-18T07:29:52Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Family release: UI-Mate-9B is the same card content at https://huggingface.co/tencent/UI-Mate-9B (created 2026-08-14T04:55Z, one entry per the size-variant rule). Repo createdAt 2026-08-14T04:55:07Z, lastModified 2026-08-17T00:19Z per the HF API.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-ui-mate-27b-model-card&amp;body=Document%3A%20tencent-hunyuan-ui-mate-27b-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/UI-Mate-27B%0AFingerprint%3A%208741ac1eb4213a0520ddd119ed48ffab39712d5f01dd7d7aa49f7da8788bd08a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-ui-mate-27b-model-card&amp;body=Document%3A%20tencent-hunyuan-ui-mate-27b-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/UI-Mate-27B%0AFingerprint%3A%203348b13b634acefe6c49db4a6d878ac05a7c3e96e45248f3501684e1f4ca777f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-25T06:18:30Z</td>
+          <td>text/html</td>
+          <td>266,398</td>
+          <td><code title="3348b13b634acefe6c49db4a6d878ac05a7c3e96e45248f3501684e1f4ca777f">3348b13b634acefe</code></td>
+        </tr>
         <tr>
           <td>2026-08-18T07:29:52Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -100,6 +106,14 @@
           <div class="just">The UI-Mate-27B family card&#39;s Model Details table lists three released checkpoints - UI-Mate-27B (general computer use at 27B), UI-Mate-9B (general computer use at 9B) and UI-Mate-democua-27B (demonstration-guided computer use) - but the corpus row records only the first two. UI-Mate-democua-27B surfaced in this run&#39;s huggingface.co/tencent index diff as its own repo (created 2026-08-14, same release day, Apache-2.0, arXiv 2608.15930). It is a demonstration-guided checkpoint of the same model, so under the family rule it does not warrant a separate entry; it belongs in this row&#39;s model_names. Adding it keeps the family card complete and prevents the repo being re-triaged as an uncatalogued release on future runs.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/tencent/UI-Mate-27B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-27B</a> · <a href="https://huggingface.co/tencent/UI-Mate-democua-27B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-democua-27B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-25T06:18:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-25T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/UI-Mate-27B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-27B</a>          </div>
       </li>
     </ol>
     </details>
@@ -244,46 +258,39 @@ curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 UI-Mate-27B
 UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations
 Show the workflow once. Let the agent adapt it to the task at hand.
-Tencent HY Frontier · Multimodal Agent Team
+Tencent HY Frontier
+Project Page · GitHub · arXiv
 Overview
 UI-Mate-27B is an open-weight foundation GUI agent for long-horizon work across applications and operating systems. It observes live screenshots, reasons over the visible state, and produces structured keyboard and mouse actions for native desktop interaction.
-UI-Mate supports two complementary modes:
-- General computer use: execute tasks from natural-language instructions and live screenshots.
-- Demonstration-guided computer use: adapt a reusable workflow extracted from one successful demonstration to a new task.
-A demonstration is treated as guidance rather than a fixed action script. The model continues to re-plan from the live interface when the content, layout, or application state differs.
+It executes a task from a natural-language instruction and live screenshots alone, planning from what is currently on screen and re-planning as the interface changes.
 Model Details
 - Parameters: 27B
 - Base model: Qwen3.6-27B
-- Input: task instruction, screenshots, interaction history, and optional demonstration context
+- Input: task instruction, screenshots, and interaction history
 - Output: reasoning, a concise action description, and structured computer-use tool calls
 - Action space: mouse, keyboard, scrolling, waiting, user interaction, and task completion
 - Training: supervised fine-tuning followed by online reinforcement learning in executable GUI environments
 - License: Apache-2.0
 UI-Mate is an agent checkpoint rather than a standalone visual-chat model. We recommend using the official prompt, response parser, and interaction harness from the UI-Mate repository.
+| Checkpoint | Intended use |
+|---|---|
+| UI-Mate-27B | General computer use at 27B |
+| UI-Mate-9B | General computer use at 9B |
+| UI-Mate-democua-27B | Demonstration-guided computer use |
 Highlights
 - Strong general computer-use performance across Ubuntu and Windows benchmarks.
 - Long-horizon execution across multiple applications.
-- One-shot procedural learning from demonstrations.
 - Live-screen grounding instead of coordinate replay.
 - Structured actions compatible with pyautogui .
 - OpenAI-compatible serving and client interface.
 Evaluation
-Instruction-only execution
 | Benchmark | UI-Mate-27B |
 |---|---|
 | OSWorld-Verified · average score | 77.0 |
 | WindowsAgentArena · average score | 66.2 |
 | OSWorkerBench · strict success | 41.00 |
 | OSWorkerBench · progress | 76.86 |
-Demonstration-guided execution
-| Evaluation set · metric | Instruction only | + one demonstration | Change |
-|---|---|---|---|
-| OSWorkerBench-Subset (33) · strict success | 17.17 | 35.35 | +18.18 pp |
-| OSWorkerBench-Subset (33) · progress | 67.85 | 81.14 | +13.29 pp |
-| OSWorld-Subset (30) · progress | 40.27 | 65.75 | +25.48 pp |
-| GameDev (10) · average score | 76.76 | 81.15 | +4.39 pp |
-On GameDev, demonstration guidance also reduces the average trajectory length from 303.6 to 253.1 steps.
-Results are averaged over three runs per target on OSWorkerBench-Subset and five runs elsewhere. See the project page for evaluation details and updates.
+See the project page for evaluation details and updates.
 Quick Start
 1. Serve the model with vLLM
 vLLM automatically downloads the checkpoint from Hugging Face Hub on first launch.
@@ -328,14 +335,6 @@ print(response)
 print(actions)
 # Reset the interaction history before starting a new task.
 agent.reset()
-The model reasons in a normalized 1000 × 1000 coordinate space. The reference agent automatically rescales predicted coordinates to the original screenshot resolution.
-Demonstration-Guided Execution
-A UI-Mate demonstration records screenshots immediately before and after each keyboard or pointer action. The trace is then:
-- normalized into a consistent action-and-frame representation;
-- annotated with observations, intent, actions, and verification evidence;
-- segmented into named subtasks with completion criteria; and
-- injected at inference time as a compact workflow for the active subtask.
-The live screenshot remains authoritative throughout execution. For demonstration recording and management, see the UI-Mate project page.
 Intended Use and Limitations
 UI-Mate-27B is intended for research and development of screenshot-based GUI agents in controlled desktop environments.
 Its behavior can be affected by application versions, screen layouts, display scaling, latency, and unexpected UI state. Benchmark performance does not guarantee reliable execution in arbitrary environments, and the model requires an external runtime to execute its predicted actions.
@@ -349,22 +348,18 @@ Computer-use agents can make mistakes, encounter prompt injection, or trigger co
 License
 UI-Mate is released under the Apache License 2.0. Third-party components remain subject to their respective licenses. See the repository LICENSE for details.
 Citation
-Citation details will be updated when the technical report is publicly released.
 @article{uimate2026,
-  title   = {UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations},
-  author  = {{Tencent HY Frontier Multimodal Agent Team}},
-  journal = {arXiv preprint},
-  year    = {2026}
+  title         = {UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations},
+  author        = {Tencent HY Frontier Team},
+  journal       = {arXiv preprint arXiv:2608.15930},
+  year          = {2026},
 }
 - Downloads last month
-- -
-Model tree for tencent/UI-Mate-27B
-Base model
-Qwen/Qwen3.6-27B</pre>
+- 421</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-24T06:26:01Z</p></footer>
+<footer><p>Built 2026-08-25T06:33:55Z</p></footer>
 </body>
 </html>

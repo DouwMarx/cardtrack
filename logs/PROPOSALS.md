@@ -743,3 +743,105 @@ Phase A fingerprinted 37 of 244 active documents this run, so ~85% of the corpus
 and the drift here was not cosmetic — the changelog's substantive line is "Corrected eval results on
 HackerBench v0.2, Self-harm, MASK, LAB", four safety and behavioural evals, one of which is quoted in
 that row's own add justification. Nothing further requested beyond what that entry already proposes.
+
+## 2026-08-25 — `max_new_versions_per_run` is not per run, and this run silently dropped 10 revision detections
+
+**Problem.** Phase A detected 26 changed documents this morning, wrote 16, and had 10 rejected with
+`reason: "cap_exceeded: max_new_versions_per_run (rolling 24h)"` — document ids 123–131 and 133, all
+Anthropic research/news pages, because the cap fell at a publisher boundary in fetch order.
+
+This is a cadence/window mismatch, not a burst of publisher editing. `config/settings.yaml` sets
+`max_new_versions_per_run: 30`; the validator enforces it over a **rolling 24 h window**; and the
+daily run drifts *earlier* each day. Yesterday's run wrote its versions at 06:22:03–06:22:20Z and
+today's Phase A wrote its at 06:18:27–06:19:08Z — about three minutes short of 24 h, so all 14 of
+yesterday's were still inside the window. I counted the rows directly: exactly 30 in
+`document_versions` in the 24 h ending at the first rejection (14 from 08-24, 16 from today). A cap
+whose name says "per run" can therefore be 47% spent before a run begins, and the fraction it starts
+with depends on nothing more principled than cron drift.
+
+**Why it matters, beyond the arithmetic.** Two distinct harms.
+
+1. *It reports as a clean run.* The Phase A summary line is
+   `{"checked": 247, "ok": 247, ..., "new_versions": 16, ...}`. There is no drop count, no
+   `cap_exceeded` field, nothing. A run that lost 38% of its revision detections is indistinguishable
+   in the log from one where only 16 documents changed. This is the 2026-08-14 proposal's disease
+   ("a whole-sweep failure is indistinguishable from a quiet day") one layer down, and it is worse
+   here because the run genuinely *did* work — the zeros that would tip an agent off are absent.
+
+2. *Deferral is not the same as safety.* On this occasion the drops are recoverable: ids 123 and 124
+   still carry `last_changed 2026-08-19T06:18:54Z` against `last_checked 2026-08-25T06:17:54Z`, so
+   the stored fingerprint is still the old one and the next run will re-detect. But recovery is not
+   guaranteed to converge. If the daily change rate sits near the cap, the same tail is re-rejected
+   every run and which documents survive is decided by fetch order, not by importance. And if a page
+   changes *twice* before its retry lands, the intermediate edition is gone with no record anywhere —
+   which is precisely the silent-supersession failure the 2026-08-18 entry is about, arriving this
+   time through the cap rather than through a missed check. The corpus would jump from the 08-19
+   edition to whatever it eventually caught, and nothing would mark the gap.
+
+**Suggested change**, cheapest first:
+
+- **Report the drops.** Add `versions_rejected_by_cap` (or a general `rejected` breakdown by reason)
+  to the Phase A summary JSON. One field, and the failure stops being invisible. Do this even if
+  nothing else here is adopted.
+- **Make the window match the cadence.** Either measure the cap from the previous run's start rather
+  than a fixed 24 h clock, or make it genuinely per-run. If the rolling window is deliberate
+  anti-runaway protection, size it for two runs (60) so a normal pair of runs cannot collide.
+- **Defer instead of reject.** A cap-exceeded revision is not a bad proposal, it is a good one that
+  arrived late. Persist the dropped document ids and have the next Phase A fetch them first, so the
+  backlog drains deterministically instead of racing on fetch order.
+
+Worth noting the cap did its job in one respect: nothing was corrupted and no bad data was written.
+The complaint is only that it discarded work silently and non-deterministically.
+
+**Evidence:** changelog rows for run `2026-08-25T06:17Z-local`, 10 with `action=reject` and
+`reason=cap_exceeded: max_new_versions_per_run (rolling 24h)`, document ids 123–131, 133;
+`select count(*) from document_versions where fetched_at > '2026-08-24T06:19:09Z' and fetched_at <=
+'2026-08-25T06:19:09Z'` → 30; `config/settings.yaml` `caps.max_new_versions_per_run: 30`;
+`logs/run-20260825-061717Z.log` Phase A line showing `new_versions: 16` and no drop count; friction
+line `rolling_cap_silently_discards_revision_detections`.
+
+## 2026-08-25 — Skip decisions live only in a prose log nothing reads, and today that flipped two published verdicts
+
+**Problem.** The 2026-08-17 entry ("the candidate list has no triage state") and the 2026-08-22
+friction line `candidate_list_replays_previously_adjudicated_links` both describe re-adjudication as
+*wasted work*. Today it stopped being merely wasteful and started producing contradictions in the
+public corpus.
+
+Two links — `research.meta.ai/blog/multimodal-intelligence-of-muse-spark-1-2` and
+`api-docs.deepseek.com/news/news260821` — were fetched, reasoned about at length, and **skipped** by
+the 2026-08-22 run, which wrote its reasoning to `friction.jsonl` (lines 69 and 70; the Meta one even
+records that "the two rules point opposite ways and both are on point"). Nothing in
+`candidates.json` or `state_summary.json` carries a trace of either decision. So this morning I
+triaged both from scratch, reached **admit** on both, and wrote ids 252 and 253 — reversing a
+three-day-old editorial judgement without knowing one existed. I discovered the prior decisions only
+afterwards, while reading `friction.jsonl` to draft today's entries: by accident, and after the rows
+were live.
+
+I resolved the two differently and I want the asymmetry on the record, because it is the argument for
+the fix rather than a tidy ending. Id 253 (DeepSeek) I removed — the 08-22 call was simply right, the
+page is a product announcement with its only numbers inside a chart image. Id 252 (Meta) I kept, with
+the disagreement flagged in its notes and in the run report: the post carries head-to-head benchmark
+tables for a named model that exist nowhere else, and `criteria.yaml` policy is
+`when_uncertain: admit_and_flag`. Both calls are defensible. That is the problem — the corpus's line
+on "capability showcase carrying real benchmark tables" currently depends on which agent instance
+woke up that morning, and a human reviewer has no way to see that a reversal happened.
+
+**Suggested change.** The information already exists; it is just in the wrong format. In rough order
+of cost:
+
+- **Record skips where triage happens.** Add a `decisions` map to `candidates.json` (or a sibling
+  `logs/decisions.jsonl`) keyed by URL: `{verdict: skip|added|deferred, run_id, rule, one_line}`.
+  Phase A carries it forward across runs. The agent is then instructed to read it before triaging a
+  link it has seen before, and to state explicitly when it is overturning a prior verdict.
+- **Make reversal visible in the write path.** If a proposal's URL has a recorded `skip` verdict,
+  have `propose_doc.py` still write it but stamp the changelog detail with
+  `reverses: <run_id>`. Cheap, and it turns an invisible flip into a reviewable event.
+- **Settle the underlying rule while you are in there.** This specific boundary — a first-party
+  announcement post that is majority demo but carries substantive named-model benchmark tables — has
+  now been decided three times across three runs (`google-deepmind-sl2t-other` admitted,
+  `meta-tribe-v2-other` admitted then removed, this one skipped on 08-22 and admitted on 08-25). It
+  wants one sentence in `criteria.yaml`, not a fourth adjudication.
+
+**Evidence:** `friction.jsonl` lines 69–70 (2026-08-22) against changelog `add` rows for ids 252 and
+253 in run `2026-08-25T06:17Z-local` and the `status_change` to `removed` on 253 later in the same
+run; friction line `prior_adjudication_reversed_because_skip_decisions_are_not_machine_readable`.

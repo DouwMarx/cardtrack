@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-12T06:25:06Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Quantized/derived siblings deliberately NOT proposed: -NVFP4, -NVFP4-DSpark, -NVFP4-DFlash, -Base-BF16. has_safety_evals=false: the card documents training-data bias analysis and deployment guidance and points to separate Model Card++ safety/bias/privacy/explainability subcards (safety.md), but the card itself reports no safety or dangerous-capability eval results.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16%0AFingerprint%3A%203e74d5dd2342af9cdd12fc7c75f51dc3a80890c88411437ef3788c1d7365c657%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16%0AFingerprint%3A%20259b1b19599b0397c22db2d52d754cf8ea9eeb238bcfe9e8146e45e8cc16c98c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-25T06:18:32Z</td>
+          <td>text/html</td>
+          <td>499,687</td>
+          <td><code title="259b1b19599b0397c22db2d52d754cf8ea9eeb238bcfe9e8146e45e8cc16c98c">259b1b19599b0397</code></td>
+        </tr>
         <tr>
           <td>2026-08-19T06:18:21Z</td>
           <td>text/html</td>
@@ -78,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -111,6 +117,14 @@
         <span class="ts">2026-08-19T06:18:21Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-08-19T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-25T06:18:32Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-25T06:17Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16</a>          </div>
@@ -519,6 +533,7 @@ These datasets, such as FinePDFs, EssentialWeb, HotpotQA, SQuAD, and HelpSteer3,
 During post-training, we generate synthetic data by distilling trajectories, solutions, and translations from strong teacher models and agent systems, often grounded in real tasks or documents and aggressively filtered for quality. For math, code, and science, we start from curated problem sets and use open source permissive models such as GPT-OSS-120B to produce step-by-step reasoning traces, candidate solutions, best-of-n selection traces, and verified CUDA kernels. For long-context and science, we build synthetic QA and reasoning data by retrieving passages from long documents, generating MCQ/OpenQA questions and answers, and paraphrasing them into multiple prompt/response formats to ensure diversity. Across all pipelines we stack automated verification—compilers, numerical checks, language identification—to ensure our data is high quality.
 For all domains, we apply a unified data filtering pipeline to ensure that only high-quality, license-compliant, and verifiable samples are used for post-training. We first discard malformed examples using structural checks (e.g., missing tool definitions when tool calls are present). We then aggressively filter reasoning traces exhibiting pathological repetition, such as repeated n-grams within a sliding window or across the entire trajectory, which we found to be a strong indicator of malformed or low-quality reasoning. Finally, based on internal audits of synthetically generated datasets, we observed that some teacher models occasionally produce reasoning traces and final responses that implicitly align with specific political entities or promote nationalistic narratives. To mitigate this, we apply targeted keyword- and regex-based filters and remove all trajectories matching such behavior.
 Alongside the model, we release our final pre-training and post-training data, as outlined in this section. For ease of analysis, there is a sample set that is ungated. For all remaining code, math and multilingual data, gating and approval is required, and the dataset is permissively licensed for model training purposes.
+For more information about the datasets used to train this model, please see the Public Summary of Training Content
 For Detailed Dataset Information: Click here!
 Base Pre-Training Corpus (Nemotron 3 Foundation)
 The foundation of the model is trained on the Nemotron 3 corpus, comprising the following datasets from the Nemotron Pretraining Datasets collection:
@@ -761,13 +776,14 @@ We advise against circumvention of any provided safety guardrails contained in t
 For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, and Privacy Subcards.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 78,254
+- 141,338
 Model tree for nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16
 Space using nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16 1
 Collection including nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16
 Evaluation results
-- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   51.56
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   75.44 *
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   51.56
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results    leaderboard   24.58 *
 - TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results leaderboard
 - cais/hle · Hle View evaluation results      11.72 *
 - SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   39.33</pre>
@@ -775,6 +791,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Built 2026-08-24T06:26:01Z</p></footer>
+<footer><p>Built 2026-08-25T06:33:55Z</p></footer>
 </body>
 </html>

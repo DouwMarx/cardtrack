@@ -1,0 +1,232 @@
+Instructions to use tencent/UI-Mate-27B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use tencent/UI-Mate-27B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("image-text-to-text", model="tencent/UI-Mate-27B")
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
+            {"type": "text", "text": "What animal is on the candy?"}
+        ]
+    },
+]
+pipe(text=messages)# Load model directly
+from transformers import AutoProcessor, AutoModelForMultimodalLM
+processor = AutoProcessor.from_pretrained("tencent/UI-Mate-27B")
+model = AutoModelForMultimodalLM.from_pretrained("tencent/UI-Mate-27B", device_map="auto")
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
+            {"type": "text", "text": "What animal is on the candy?"}
+        ]
+    },
+]
+inputs = processor.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors="pt",
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(processor.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use tencent/UI-Mate-27B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "tencent/UI-Mate-27B"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "tencent/UI-Mate-27B",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'Use Dockerdocker model run hf.co/tencent/UI-Mate-27B
+-  SGLang  How to use tencent/UI-Mate-27B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "tencent/UI-Mate-27B" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "tencent/UI-Mate-27B",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "tencent/UI-Mate-27B" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "tencent/UI-Mate-27B",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'
+-  Docker Model Runner  How to use tencent/UI-Mate-27B with Docker Model Runner: docker model run hf.co/tencent/UI-Mate-27B
+UI-Mate-27B
+UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations
+Show the workflow once. Let the agent adapt it to the task at hand.
+Tencent HY Frontier
+Project Page · GitHub · arXiv
+Overview
+UI-Mate-27B is an open-weight foundation GUI agent for long-horizon work across applications and operating systems. It observes live screenshots, reasons over the visible state, and produces structured keyboard and mouse actions for native desktop interaction.
+It executes a task from a natural-language instruction and live screenshots alone, planning from what is currently on screen and re-planning as the interface changes.
+Model Details
+- Parameters: 27B
+- Base model: Qwen3.6-27B
+- Input: task instruction, screenshots, and interaction history
+- Output: reasoning, a concise action description, and structured computer-use tool calls
+- Action space: mouse, keyboard, scrolling, waiting, user interaction, and task completion
+- Training: supervised fine-tuning followed by online reinforcement learning in executable GUI environments
+- License: Apache-2.0
+UI-Mate is an agent checkpoint rather than a standalone visual-chat model. We recommend using the official prompt, response parser, and interaction harness from the UI-Mate repository.
+| Checkpoint | Intended use |
+|---|---|
+| UI-Mate-27B | General computer use at 27B |
+| UI-Mate-9B | General computer use at 9B |
+| UI-Mate-democua-27B | Demonstration-guided computer use |
+Highlights
+- Strong general computer-use performance across Ubuntu and Windows benchmarks.
+- Long-horizon execution across multiple applications.
+- Live-screen grounding instead of coordinate replay.
+- Structured actions compatible with pyautogui .
+- OpenAI-compatible serving and client interface.
+Evaluation
+| Benchmark | UI-Mate-27B |
+|---|---|
+| OSWorld-Verified · average score | 77.0 |
+| WindowsAgentArena · average score | 66.2 |
+| OSWorkerBench · strict success | 41.00 |
+| OSWorkerBench · progress | 76.86 |
+See the project page for evaluation details and updates.
+Quick Start
+1. Serve the model with vLLM
+vLLM automatically downloads the checkpoint from Hugging Face Hub on first launch.
+pip install -U vllm openai pillow
+vllm serve tencent/UI-Mate-27B \
+    --trust-remote-code \
+    --served-model-name UI_Mate \
+    --port 8000 \
+    --tensor-parallel-size 2 \
+    --gpu-memory-utilization 0.85 \
+    --mm-encoder-tp-mode data \
+    --chat-template-content-format openai \
+    --limit-mm-per-prompt '{"image":6,"video":0}'
+The default agent retains five screenshots in context. The server must therefore admit at least six images because the newest screenshot arrives before the oldest one is collapsed.
+Confirm that the endpoint exposes the expected model name:
+curl -s http://127.0.0.1:8000/v1/models
+2. Run the reference examples
+git clone https://github.com/Tencent/UI-Mate.git
+cd UI-Mate
+python examples/run_agent.py \
+    --base-url http://127.0.0.1:8000/v1
+Run a complete recorded trajectory:
+python examples/run_agent.py \
+    --replay \
+    --base-url http://127.0.0.1:8000/v1
+Or provide your own screenshot:
+python examples/run_agent.py \
+    --image /path/to/screen.png \
+    --instruction "Export this spreadsheet as HTML and open it in Chrome"
+3. Use the Python agent
+from agents.ui_mate_agent import UIMateAgent
+agent = UIMateAgent(
+    base_url="http://127.0.0.1:8000/v1",
+    model="UI_Mate",
+)
+with open("screen.png", "rb") as f:
+    response, actions = agent.predict(
+        "Install the autoDocstring extension in VS Code.",
+        {"screenshot": f.read()},
+    )
+print(response)
+print(actions)
+# Reset the interaction history before starting a new task.
+agent.reset()
+Intended Use and Limitations
+UI-Mate-27B is intended for research and development of screenshot-based GUI agents in controlled desktop environments.
+Its behavior can be affected by application versions, screen layouts, display scaling, latency, and unexpected UI state. Benchmark performance does not guarantee reliable execution in arbitrary environments, and the model requires an external runtime to execute its predicted actions.
+Safety
+Computer-use agents can make mistakes, encounter prompt injection, or trigger consequential actions.
+- Prefer isolated or disposable environments.
+- Avoid unattended, high-stakes, or destructive workflows.
+- Require human confirmation before sensitive operations.
+- Monitor the interaction trajectory and verify the resulting application state.
+- Do not treat a model-reported success as proof that the intended outcome was achieved.
+License
+UI-Mate is released under the Apache License 2.0. Third-party components remain subject to their respective licenses. See the repository LICENSE for details.
+Citation
+@article{uimate2026,
+  title         = {UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations},
+  author        = {Tencent HY Frontier Team},
+  journal       = {arXiv preprint arXiv:2608.15930},
+  year          = {2026},
+}
+- Downloads last month
+- 421
