@@ -1,0 +1,284 @@
+Instructions to use nvidia/Nemotron-Cascade-2-30B-A3B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use nvidia/Nemotron-Cascade-2-30B-A3B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("text-generation", model="nvidia/Nemotron-Cascade-2-30B-A3B", trust_remote_code=True)
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained("nvidia/Nemotron-Cascade-2-30B-A3B", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("nvidia/Nemotron-Cascade-2-30B-A3B", trust_remote_code=True, device_map="auto")
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors="pt",
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use nvidia/Nemotron-Cascade-2-30B-A3B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "nvidia/Nemotron-Cascade-2-30B-A3B"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "nvidia/Nemotron-Cascade-2-30B-A3B",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Dockerdocker model run hf.co/nvidia/Nemotron-Cascade-2-30B-A3B
+-  SGLang  How to use nvidia/Nemotron-Cascade-2-30B-A3B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "nvidia/Nemotron-Cascade-2-30B-A3B" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "nvidia/Nemotron-Cascade-2-30B-A3B",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "nvidia/Nemotron-Cascade-2-30B-A3B" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "nvidia/Nemotron-Cascade-2-30B-A3B",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'
+-  Docker Model Runner  How to use nvidia/Nemotron-Cascade-2-30B-A3B with Docker Model Runner: docker model run hf.co/nvidia/Nemotron-Cascade-2-30B-A3B
+Nemotron-Cascade-2-30B-A3B
+Introduction
+We're excited to introduce Nemotron-Cascade-2-30B-A3B, an open 30B MoE model with 3B activated parameters that delivers strong reasoning and agentic capabilities. It is post-trained from the Nemotron-3-Nano-30B-A3B-Base. Nemotron-Cascade-2-30B-A3B achieves gold medal performance in both the 2025 International Mathematical Olympiad (IMO) and the International Olympiad in Informatics (IOI). It operates in both thinking and instruct (non-thinking) modes.
+Benchmark Results
+| Benchmark | Nemotron-3-Nano-30B-A3B | Nemotron-3-Super-120B-A12B | Qwen3.5-35B-A3B | Nemotron-Cascade-2-30B-A3B |
+|---|---|---|---|---|
+| Math |  |  |  |  |
+| IMO 2025 | - | - | - | 🏅 35 pts |
+| IMO AnswerBench | 70.4‡ | 77.2‡ | 74.8‡ | 79.3 |
+| IMO ProofBench | - | - | - | 72.9 |
+| AIME 2025 | 89.1 | 90.2 | 91.9‡ | 92.4 (98.6)† |
+| AIME 2026 | 89.9‡ | 89.8‡ | 91.1‡ | 90.9 (95.0)† |
+| HMMT Feb25 | 84.6‡ | 93.7 | 89.0 | 94.6 |
+| Code Reasoning |  |  |  |  |
+| IOI 2025 | - | - | 348.6‡ | 🏅 439.3 |
+| ICPC World Finals 2025 | - | - | - | 🏅 10/12 |
+| LiveCodeBench v6 (2408-2505) | 68.3 | 78.7 | 74.6 | 87.2 (88.4)† |
+| LiveCodeBenchPro 25Q2 (Easy) | 54.5‡ | 81.7‡ | 81.1‡ | 87.0 (89.3)† |
+| LiveCodeBenchPro 25Q2 (Med) | 3.50‡ | 23.2‡ | 17.8‡ | 27.6 (36.8)† |
+| SciCode | 33.3 | 42.1 | 38.0 | 36.4 |
+| Knowledge & STEM |  |  |  |  |
+| MMLU-Redux | - | - | 93.3 | 86.3 |
+| MMLU-Pro | 78.3 | 83.7 | 85.3 | 79.8 |
+| GPQA-Diamond | 73.0 | 79.2 | 84.2 | 76.1 |
+| HLE (no tool) | 10.6 | 18.3 | 22.4 | 17.7 |
+| Alignment & Instruction Following |  |  |  |  |
+| ArenaHard v2 (Avg.) | 67.7 | - | 65.4‡ | 83.5 |
+| – Hard Prompt | 72.1 | 73.9 | 64.5‡ | 88.2 |
+| – Creative Writing | 63.2 | - | 66.3‡ | 78.7 |
+| IFBench (prompt) | 71.5 | 72.6 | 70.2 | 82.9 |
+| Scale AI Multi-Challenge | 38.5 | 55.2 | 60.0 | 45.3 |
+| Long Context & Context Learning |  |  |  |  |
+| AA-LCR | 35.9 | 58.3 | 58.5 | 39.1 |
+| LongBench v2 | 39.6 | - | 59.0 | 40.3 |
+| NIAH@1M (RULER Subset) | 94.8 | 98.3 | 94.3‡ | 99.0 |
+| CL-Bench | 12.0‡ | - | 15.5‡ | 12.2 |
+| Agentic |  |  |  |  |
+| BFCL v4 | 53.8 | - | 67.3 | 52.9 |
+| 𝜏²-Bench | 49.0 | 61.2 | 81.2 | 58.9 |
+| Terminal Bench 2.0 | 8.5 | 31.0 | 40.5 | 21.1 |
+| SWE Verified (OpenHands) | 38.8 | 60.5 | 69.2 | 50.2 |
+| Multilingual |  |  |  |  |
+| MMLU-ProX | 59.5 | 79.4 | 81.0 | 72.5 |
+| WMT24++ (en -> xx) | 86.2 | 86.7 | 87.6‡ | 84.1 |
+* † Numbers in brackets refers to Tool-Integrated Reasoning (TIR) results.
+* ‡ For the baseline models, we evaluate them using the recommended settings when official numbers are unavailable; otherwise, we report the official numbers directly.
+Quick Start
+- Nemotron-Cascade-2-30B-A3B follows the ChatML template and supports both thinking and instruct (non-thinking) modes. Reasoning content is enclosed within <think> and</think> tags. To activate the instruct (non-thinking) mode, we prepend<think></think> to the beginning of the assistant’s response.
+- Nemotron-Cascade-2-30B-A3B supports up to a 1M-token context length.
+- Nemotron-Cascade-2-30B-A3B does not currently support OpenCode; it primarily supports OpenHands for agentic coding and SWE tasks.
+- To reduce the context length in a multi-turn conversation, when the previous user turn involves thinking mode, only the final summary of the model's output will be added to the conversation history.
+- Note that we do not define a separate tool role for tool responses; instead, we place them under theuser role and warp them with<tool_response> and</tool_response> .
+- We recommend setting the sampling parameters to temperature = 1.0 and top_p = 0.95.
+vLLM setup
+Requires vLLM version >= 0.17.1. The following will create API endpoints at http://localhost:8000/v1:
+- Standard version: Use the following command to create an API endpoint with a maximum context length of 1M tokens. vllm serve nvidia/Nemotron-Cascade-2-30B-A3B --port 8000 --tensor-parallel-size 1 --gpu-memory-utilization 0.9 --max-model-len 262144 --reasoning-parser nano_v3 --mamba-ssm-cache-dtype float32 --port 8000 --trust_remote_code
+- Tool Call: Use the following command to enable tool support. vllm serve nvidia/Nemotron-Cascade-2-30B-A3B --port 8000 --tensor-parallel-size 1 --gpu-memory-utilization 0.9 --max-model-len 262144 --reasoning-parser nano_v3 --mamba-ssm-cache-dtype float32 --port 8000 --trust_remote_code --enable-auto-tool-choice --tool-call-parser qwen3_coder
+UPDATE (July 9, 2026): We changed --reasoning-parser from nemotron_v3 to nano_v3. The nano_v3 parser simply splits the output on </think>: content before </think> is treated as reasoning content, and content after it is treated as summary content. If </think> is not present, the entire output remains in reasoning content. In contrast, the nemotron_v3 parser treats <tool_call> or <function= inside <think> as an implicit end-of-reasoning boundary when </think> is missing. This difference affects tool-calling scenarios.
+Chat Template
+from transformers import AutoTokenizer
+model_name = 'nvidia/Nemotron-Cascade-2-30B-A3B'
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+'''
+single-turn example
+'''
+messages = [
+  {"role": "system", "content": "You are a helpful and harmless assistant.\n\nYou are not allowed to use any tools"},
+  {"role": "user", "content": "calculate 1+1?"}
+]
+# thinking mode
+prompt_thinking = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+# prompt_thinking = '<|im_start|>system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools<|im_end|>\n<|im_start|>user\ncalculate 1+1?<|im_end|>\n<|im_start|>assistant\n<think>\n'
+# instruct mode
+prompt_instruct = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+# prompt_instruct = '<|im_start|>system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools<|im_end|>\n<|im_start|>user\ncalculate 1+1?<|im_end|>\n<|im_start|>assistant\n<think></think>'
+'''
+multi-turn example
+'''
+messages = [
+    {"role": "system", "content": "You are a helpful and harmless assistant.\n\nYou are not allowed to use any tools"},
+    {"role": "user", "content": "calculate 1+1?"},
+    {"role": "assistant", "content": "<think>THINKING_CONTENT</think>\nTo calculate :\n\n1. **Identify the operation**: This is a basic addition problem involving two integers.\n2. **Perform the addition**:  \n   .\n\n**Result**: ",},
+    {"role": "user", "content": "what about 2+2"}
+]
+# thinking mode
+prompt_thinking = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+# prompt_thinking = '<|im_start|>system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools<|im_end|>\n<|im_start|>user\ncalculate 1+1?<|im_end|>\n<|im_start|>assistant\n<think></think>\nTo calculate :\n\n1. **Identify the operation**: This is a basic addition problem involving two integers.\n2. **Perform the addition**:  \n   .\n\n**Result**: <|im_end|>\n<|im_start|>user\nwhat about 2+2<|im_end|>\n<|im_start|>assistant\n<think>\n'
+# instruct mode
+prompt_instruct = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+# prompt_instruct = '<|im_start|>system\nYou are a helpful and harmless assistant.\n\nYou are not allowed to use any tools<|im_end|>\n<|im_start|>user\ncalculate 1+1?<|im_end|>\n<|im_start|>assistant\n<think></think>\nTo calculate :\n\n1. **Identify the operation**: This is a basic addition problem involving two integers.\n2. **Perform the addition**:  \n   .\n\n**Result**: <|im_end|>\n<|im_start|>user\nwhat about 2+2<|im_end|>\n<|im_start|>assistant\n<think></think>'
+Python Tool Use
+model_name = 'nvidia/Nemotron-Cascade-2-30B-A3B'
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+SYSTEM_PROMPT = """# Tools
+You have access to the following functions:
+<tools>
+<function>
+<name>stateful_python_code_exec</name>
+<description>Call this function to execute Python code in a stateful Jupyter notebook environment. Python will respond with the output of the execution or time out after 120.0 seconds.</description>
+<parameters>
+<parameter>
+<name>code</name>
+<type>string</type>
+<description>Code to execute</description>
+</parameter>
+<required>["code"]</required>
+</parameters>
+</function>
+</tools>
+If you choose to call a function ONLY reply in the following format with NO suffix:
+<tool_call>
+<function=example_function_name>
+<parameter=example_parameter_1>
+value_1
+</parameter>
+<parameter=example_parameter_2>
+This is the value for the second parameter
+that can span
+multiple lines
+</parameter>
+</function>
+</tool_call>
+<IMPORTANT>
+Reminder:
+- Function calls MUST follow the specified format: an inner <function=...></function> block must be nested within <tool_call></tool_call> XML tags
+- Required parameters MUST be specified
+- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after
+- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls
+</IMPORTANT>"""
+messages = [
+  {"role": "system", "content": SYSTEM_PROMPT},
+  {"role": "user", "content": "Solve the following math problem. Put your answer inside \\boxed{}.\n\nIn a school with 2008 students, each student is a member of certain committees. Each committee has at most 1004 members, and every two students are in at least one common committee. Determine the smallest possible number of committees in the school."}
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+print(prompt)
+Agentic Usage
+model_name = 'nvidia/Nemotron-Cascade-2-30B-A3B'
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+SYSTEM_PROMPT = """You are a customer service agent that helps the user.  The policy that determines how you should respond to requests from users is described below between the <policy> and </policy> tags.
+In each turn you can either:
+- Send a message to the user.
+- Make a tool call.
+You cannot do both at the same time.
+<policy>
+_NEED_TO_ADD_POLICY_HERE_
+</policy>
+Try to be helpful and always follow the policy.
+# Tools
+You have access to the following functions:
+<tools>
+<function>
+<name>_NEED_TO_ADD_FUNCTION_NAME_1_</name>
+<description>_FUNCTION_DESCRIPTION_</description>
+<parameters>
+<parameter>
+<name>_NEED_TO_ADD_PARAMETER_NAME_1_</name>
+<type>_PARAMETER_TYPE_</type>
+<description>_PARAMETER_DESCRIPTION_</description>
+<title>_PARAMETER_TITLE_</title>
+</parameter>
+<parameter>
+<name>_NEED_TO_ADD_PARAMETER_NAME_2_</name>
+<type>_PARAMETER_TYPE_</type>
+<description>_PARAMETER_DESCRIPTION_</description>
+<title>_PARAMETER_TITLE_</title>
+</parameter>
+...... (_MORE_PARAMETERS_TO_ADD_)
+<parameters>
+</function>
+...... (_MORE_FUNCTIONS_TO_ADD_)
+</tools>
+"""
+messages = [
+  {"role": "system", "content": SYSTEM_PROMPT},
+  {"role": "user", "content": "Hello, I'm calling regarding my upcoming stay at your hotel. My guest ID is G90920 and booking ID is B11246 for a Deluxe room on June 5th. I'm traveling with three 6-month-old triplets and need to request three infant cribs for our room. It's currently 30 hours before check-in—could you please confirm if this is feasible and if there are quiet room options available for families with infants?"}
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+print(prompt)
+Release Date
+Mar 19, 2026
+License
+Your use of this model is governed by the NVIDIA Open Model License.
+Citation
+@article{Nemotron_Cascade_2,
+  title={Nemotron-Cascade 2: Post-Training LLMs with Cascade RL and Multi-Domain On-Policy Distillation},
+  author={Yang, Zhuolin and Liu, Zihan and Chen, Yang and Dai, Wenliang and Wang, Boxin and Lin, Sheng-Chieh and Lee, Chankyu and Chen, Yangyi and Jiang, Dongfu and He, Jiafan and Pi, Renjie and Lam, Grace and Lee, Nayeon and Bukharin, Alexander and Shoeybi, Mohammad and Catanzaro, Bryan and Ping, Wei},
+  year={2026}
+}
+- Downloads last month
+- 51,275
+Model tree for nvidia/Nemotron-Cascade-2-30B-A3B
+Spaces using nvidia/Nemotron-Cascade-2-30B-A3B 3
+Collection including nvidia/Nemotron-Cascade-2-30B-A3B
+Paper for nvidia/Nemotron-Cascade-2-30B-A3B
+Evaluation results
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   76.1
+- .eval_results/hle.yaml error
+- .eval_results/mmlu_pro.yaml error

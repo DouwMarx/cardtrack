@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-19T06:24:38Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Announcement for two companion technical reports catalogued separately: protein design at https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf and analytical chemistry at https://www-cdn.anthropic.com/9f08da5189ac269b3242ca760de9823805c3f5f6.pdf . Claude Fable 5 is named only as the model in which these capabilities are withheld, not as an evaluated model.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-8-other-2&amp;body=Document%3A%20anthropic-claude-opus-4-8-other-2%0AURL%3A%20https%3A//www.anthropic.com/research/Claude-accelerates-protein-design%0AFingerprint%3A%2031d43c79426aba3a1a311efbfcc572bad12075d104dc29e3fd3802d1c165cb45%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-8-other-2&amp;body=Document%3A%20anthropic-claude-opus-4-8-other-2%0AURL%3A%20https%3A//www.anthropic.com/research/Claude-accelerates-protein-design%0AFingerprint%3A%20de3a0d58f7e8ac28b4f41e50165703c9394547460458ba419299186b94f77e49%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-26T06:51:27Z</td>
+          <td>text/html</td>
+          <td>227,248</td>
+          <td><code title="de3a0d58f7e8ac28b4f41e50165703c9394547460458ba419299186b94f77e49">de3a0d58f7e8ac28</code></td>
+        </tr>
         <tr>
           <td>2026-08-19T06:24:38Z</td>
           <td>text/html</td>
@@ -72,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +97,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf" rel="noopener nofollow">https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf</a> · <a href="https://www.anthropic.com/research" rel="noopener nofollow">https://www.anthropic.com/research</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-26T06:51:27Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-26T06:50Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/Claude-accelerates-protein-design" rel="noopener nofollow">https://www.anthropic.com/research/Claude-accelerates-protein-design</a>          </div>
       </li>
     </ol>
     </details>
@@ -130,11 +144,11 @@ Our only involvement was granting access approvals (such as network access reque
 For each of the 15 targets, we asked Claude to design 30 protein binders. Claude did this by operating publicly available specialist protein design and co-folding models that the field already uses. Claude’s designs were then sent to Adaptyv Bio and Twist Bioscience to validate.
 By the end of this effort, we produced 354 binders against 14 of 15 targets using a total of 1,320 designs. This represents a significant contribution to the total corpus of publicly available de novo protein designs; for example, the two largest collections, proteinbase.com and the collection curated by Overath et al., consist of approximately 770 binders out of 5,700 designs against 40 targets. Below, we share three examples highlighting Claude’s capabilities, and one showing its limitations. You can find more detail in our technical report (link).
 We found that for the targets Adaptyv Bio has run competitions for, Claude performs at or beyond the level of the top participants on both hit rate and affinity. Against RBX1 (a small protein that drives the targeted destruction of specific regulatory proteins), Mythos Preview in single-target mode achieved a 40% hit rate, compared to a 3.7% hit rate among participants. Its top-ranked design was a high-affinity binder that outperformed the winning design, which was among 245 designs entered.
-Interestingly, Opus 4.8, and not Mythos Preview, succeeds on TNFα, a target multiple expert groups have struggled with. TNFα is a signaling protein released by the immune system to trigger inflammation, and blocking it is the therapeutic basis for some of the most impactful drugs ever made, including Humira. It’s a challenging target to design against because of its multimeric structure, which requires targeting a binding site in the groove formed by two proteins. Although Mythos Preview was unsuccessful, Opus 4.8 designed multiple binders, including some that worked across species, binding human, cynomolgus monkey, and mouse TNFα, which is important for conducting animal studies. We’re not sure why Opus 4.8 was successful on this target and Mythos Preview was not. When we assess our models capabilities, we do so holistically. Given the inherent complexity of protein design, it’s unsurprising that there would be specific areas where an overall less capable model could still outperform one that was generally more capable.
+Interestingly, Opus 4.8, and not Mythos Preview, succeeds on TNFα, a target multiple expert groups have struggled with. TNFα is a signaling protein released by the immune system to trigger inflammation, and blocking it is the therapeutic basis for some of the most impactful drugs ever made, including Humira. It’s a challenging target to design against because of its multimeric structure, which requires targeting a binding site in the groove formed by two proteins. Although Mythos Preview was unsuccessful, Opus 4.8 designed multiple binders, including some that worked across species, binding human, cynomolgus monkey, and mouse TNFα, which is important for conducting animal studies. We’re not sure why Opus 4.8 was successful on this target and Mythos Preview was not. When we assess our models&#39; capabilities, we do so holistically. Given the inherent complexity of protein design, it’s unsurprising that there would be specific areas where an overall less capable model could still outperform one that was generally more capable.
 Most computationally designed binders are bundles of α-helices, a protein secondary structure consisting of coils. β-sheets, in which extended strands of amino acids must line up side by side, are harder to design and more prone to misfolding and aggregation (when protein molecules stick to each other instead of staying separate and properly folded). Claude designed 15 confirmed binders across six targets that contain at least 20% β-strand, demonstrating its ability to reason about protein structure.
 Certain targets remained a challenge for Claude, including BBF-14 and maltose-binding protein (MBP). BBF-14 is a β-barrel-shaped protein that does not exist in nature: it was itself de novo designed, and it is now used as a benchmark for binder design precisely because of its novelty. MBP’s structure is also especially difficult. MBP is a large, flexible bacterial protein with a smooth, water-loving surface that makes it a good lab reagent. This leaves a binder very little to grab on to. Claude still managed to produce three independent BBF-14 binders—one from each design arm, and each built on a different backbone—with modest (sub-micromolar to micromolar) affinities. Against MBP, however, none of the 90 designs was confirmed to have bound to the target, although one demonstrated a weak, reproducible binding signal.
 To better understand how well Claude performed across these design campaigns, we intend to follow our experiments with more extensive characterization to confirm our hit rates and affinity measurements. In the meantime, we are sharing the prompts we used for these campaigns, as well as all in vitro and in silico data we generated.7
-The uplift provided by the increasingly autonomous research capabilities of AI models will undoubtedly speed the development of human therapies and fundamental scientific discoveries. However, such capabilities are also dual-use: without robust safety measures, they could enable bad actors to perform dangerous research, such as the development of bioweapons. As we work to deliver these capabilities safely via trusted access programs, protein design and other dual-use research biology capabilities remain unavailable for general access in Claude Fable 5. However, as you’ll see below, our Opus class models are capable of remarkable scientific work.
+The uplift provided by the increasingly autonomous research capabilities of AI models will undoubtedly speed the development of human therapies and fundamental scientific discoveries. However, such capabilities are also dual-use: without robust safety measures, they could enable bad actors to perform dangerous research, such as the development of bioweapons. As we work to deliver these capabilities safely via trusted access programs, protein design and other dual-use research biology capabilities remain unavailable for general access in Claude Fable 5. However, as you’ll see below, our Opus-class models are capable of remarkable scientific work.
 Where the protein binder campaign tested Claude’s ability to design new molecules, the second experiment tested its ability to interpret measurements of molecules already made. Characterizing a compound is cumbersome work; much like protein design, it requires chemists to perform many rounds of measurement, analysis, and iteration. For example, every time a chemist creates a molecule, they must establish whether it is what they intended to produce and how pure it is. This is typically done with nuclear magnetic resonance (NMR) spectroscopy. An NMR spectrum is a series of peaks, each corresponding to a hydrogen atom, or a group of equivalent hydrogens, somewhere in the molecule. The location of the peaks shows chemists what each hydrogen atom is attached to, and the size of the peak shows how many hydrogens it represents. Confirming a structure is one of the most time-consuming steps in synthetic chemistry; for every compound, a chemist has to match each peak in the spectrum to an atom in the proposed structure by hand.
 The other technique, used mainly to assess purity, is liquid chromatography–mass spectrometry (LC-MS), which first separates the sample into its individual components as they flow through a column, then records how much of each is present based on its ultraviolet absorbance, before measuring the molecular mass of each one. For both techniques, the instrument run itself takes only a few minutes (two to three for a routine proton NMR spectrum; about 10 for an LC-MS run). The tedious part is analyzing the output. After NMR and LC-MS are run, each instrument produces a raw file in the manufacturer’s own format that is meant to be opened in that manufacturer’s (or other specialist) software.8
 Given how painstaking it is to process and interpret these files, we wanted to see how a generally available model such as Claude Opus 5 would perform at this task.9 Supplied with only a contract lab’s raw files for a routine quality-control sample and a short plain-language prompt,10 with no vendor software and no operator, Claude, working within Claude Science, returned processed NMR and LC-MS results in 23 and 19 minutes, respectively, working in parallel. Its results matched the lab’s own processing—hydrogen counts per peak were within 0.08 ¹H of the lab’s, and its purity was measured at 96.4% versus the 96.33% of the lab.
@@ -169,6 +183,6 @@ Read more</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-25T06:33:55Z</p></footer>
+<footer><p>Built 2026-08-26T07:07:55Z</p></footer>
 </body>
 </html>

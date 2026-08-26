@@ -845,3 +845,66 @@ of cost:
 **Evidence:** `friction.jsonl` lines 69–70 (2026-08-22) against changelog `add` rows for ids 252 and
 253 in run `2026-08-25T06:17Z-local` and the `status_change` to `removed` on 253 later in the same
 run; friction line `prior_adjudication_reversed_because_skip_decisions_are_not_machine_readable`.
+
+## 2026-08-26 — `openness` has no rule for derivative licences, and the corpus has already split the same licence tag eleven ways
+
+**Problem.** `openness` is the one field on a document that makes a legal claim, and it is the only
+attested field with no written definition of how to evaluate it. `criteria.yaml` does not mention it
+at all; the guidance the agent works from defines the three values and says "omit when you cannot
+verify the license" — which is sound as far as it goes, but it gives no answer to the question that
+actually arises, which is *whose* licence governs a derivative.
+
+I hit it head-on today on id 258, `nvidia/Ising-Calibration-1.5-31B-BF16`:
+
+- The card's **Governing Terms** name only "the OpenMDW License Agreement, version 1.1", with
+  "ADDITIONAL INFORMATION: Apache License, Version 2.0". Gemma is never mentioned in the licence
+  section. Read literally, that is `open_weight_permissive`.
+- The same card's **Model Architecture** section states the model "was developed based on
+  `google/gemma-4-31b`". The Gemma Terms of Use are a use-restricted community licence of exactly
+  the kind the `open_weight_restrictive` value exists to capture, and they normally flow through to
+  derivatives regardless of what the derivative's own card says.
+
+Both readings are defensible from the document alone, they produce opposite values, and nothing in
+the schema records which one was applied. I left the field unset and explained why in `notes` —
+correct under the stated rule, but it means the site's openness filter now silently omits a row whose
+weights are in fact public, which is its own kind of wrong answer.
+
+**This is not a one-off.** The corpus has already answered the identical question both ways without
+recording that it did. Rows whose HF licence metadata is `openmdw-1.1` and nothing else:
+
+| openness recorded | rows |
+|---|---|
+| `open_weight_permissive` | `NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16`, `Cosmos3-Super`, `Cosmos3-Edge`, `Nemotron-3-Embed-8B-BF16`, `NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16`, `Alpamayo2-Super`, `NVIDIA-NemotronLabs-VoiceChat-11B`, `nemotron-3.5-asr-streaming-0.6b`, `NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16`, `NVIDIA-Nemotron-Labs-Teacher-General-Reasoning` |
+| `open_weight_restrictive` | `Alpamayo-1.5-10B`, `NVIDIA-Nemotron-Parse-2.0`, `Nemotron-3.5-Content-Safety` |
+
+Same licence tag, opposite values, no field saying why. The restrictive three are most likely
+base-model flowthrough calls — i.e. some past run applied the rule I could not find written down —
+but that is an inference from the outside, which is the whole complaint.
+
+**Suggested change**, cheapest first:
+
+- **Write the flowthrough rule into `criteria.yaml`.** One sentence settles every case above: *the
+  most restrictive licence that a user must accept to use the released weights governs, including a
+  base model's terms where they flow through; where the card's own terms and an identified base
+  model's terms conflict and the flowthrough cannot be confirmed, record the more restrictive value
+  and say so in `notes`.* I would rather the corpus be consistently conservative than sporadically
+  silent — an unset field is indistinguishable from "nobody looked", and today's row now reads that
+  way.
+- **Record the basis, not just the verdict.** A companion `openness_basis` (`card_terms` /
+  `base_model_flowthrough` / `repo_license_file` / `unverified`) makes the eleven rows above
+  auditable and makes disagreement visible instead of invisible. This is the same argument the
+  2026-08-25 entry makes for skip decisions, applied to the one field that carries legal weight.
+- **Backfill the three restrictive OpenMDW rows** with whatever the rule turns out to be, so the
+  next run has a precedent it can actually read rather than a 13-row split it has to guess at.
+
+Worth being explicit that the corpus is not wrong today in any provable way — `openness` gates a
+display filter, not a merge — but it is the field most likely to be quoted back at this project by
+someone who cares about licence terms, and it is currently the least specified thing in the schema.
+
+**Evidence:** id 258 written this run with `openness` deliberately unset, rationale in its `notes`;
+the card's Governing Terms and Model Architecture sections at
+`https://huggingface.co/nvidia/Ising-Calibration-1.5-31B-BF16`; the table above from
+`select openness, canonical_url from documents where publisher='nvidia'` joined against
+`cardData.license` / `license_name` from the HuggingFace API for each repo; `config/criteria.yaml`
+(no `openness` key anywhere); friction line
+`openness_has_no_rule_for_base_model_license_flowthrough_and_the_corpus_is_already_split`.

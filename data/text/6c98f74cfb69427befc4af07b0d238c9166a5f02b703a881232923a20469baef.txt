@@ -1,0 +1,119 @@
+Instructions to use nvidia/Ising-Decoder-SurfaceCode-1-Fast with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Ising Decoding How to use nvidia/Ising-Decoder-SurfaceCode-1-Fast with Ising Decoding: # No code snippets available yet for this library. # To use this model, check the repository files and the library's documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
+- Notebooks
+- Google Colab
+- Kaggle
+Ising-Decoder-SurfaceCode-1-Fast Overview
+Model Summary
+| Total Parameters | ~9.1x10^5 |
+| Architecture | Convolutional Neural Network (CNN) |
+| Minimum GPU Requirement | NVIDIA Ampere (validated: A100) |
+| Best For | processing quantum error correction syndrome volumes across space and time |
+| License | NVIDIA Open Model License |
+| Release Date | April 14, 2026 |
+Description:
+Ising-Decoder-SurfaceCode-1-Fast predicts local corrections for rotated surface-code quantum error correction syndromes, reducing logical error rates by at least 2x when combined with a standard decoder. Ising-Decoder-SurfaceCode-1-Fast v0.1.0 was developed by NVIDIA.
+This model is ready for commercial/non-commercial use.
+Publication
+This implementation accompanies the paper:
+Christopher Chamberland, Jan Olle, Muyuan Li, Scott Thornton, and Igor Baratta, "Fast and accurate AI-based pre-decoders for surface codes," arXiv:2604.12841, 2026. doi:10.48550/arXiv.2604.12841
+Please cite the paper if you use this repository in research or published work.
+Governing Terms:
+Use of the model is governed by the NVIDIA Open Model License.
+Deployment Geography:
+Global
+Use Case:
+Quantum computing researchers and engineers building rotated surface-code QEC systems who need a lightweight predecoder to reduce logical error rates by 2–4× and accelerate decoding throughput alongside standard decoders (e.g., MWPM/PyMatching).
+Reference(s):
+Model Architecture:
+Architecture Type: Convolutional Neural Network (CNN)
+Network Architecture: Custom 3D CNN — sequential stack of same-padded 3D convolutions
+Number of model parameters: ~9.1x10^5
+The pre-decoder is a lightweight 3D convolutional neural network (CNN) that processes syndrome volumes across space and time.
+Layers Both checkpoints use a sequential stack of 3D convolutions with same-padding (padding = kernel_size // 2), so the spatial and temporal dimensions are preserved through every layer. An intermediate dropout layer follows each convolution except the last. No batch normalization is applied.
+| Checkpoint | Layers | Channel widths | Kernel size | Receptive field |
+|---|---|---|---|---|
+| R=9 fast * | 4 | 4 -> 128 -> 128 -> 128 -> 4 | 3x3x3 | R = 9 |
+| R=13 accurate | 6 | 4 -> 128 (x5) -> 4 | 3x3x3 | R = 13 |
+(* this checkpoint)
+Receptive field formula: where is the number of layers.
+Activation GELU (configurable at training time; GELU used for both public checkpoints).
+Parameter count (approximate)
+- R=9 fast (this checkpoint): ~913 K parameters
+- R=13 accurate: ~1.8 M parameters
+Precision Both checkpoints are stored in fp16 (half precision). The runner automatically sets cfg.enable_fp16 = True on load.
+
+		Input(s):
+
+Input Type(s): Quantum Error Correction Syndrome Tensor
+Input Format(s):
+- Tensor: float32 NumPy array or PyTorch tensor of shape (B, 4, T, D, D)
+Input Parameters: Five-Dimensional (5D) — (Batch, Channels, Time, Distance, Distance)
+Other Properties Related to Input:
+- Shape: (B, 4, T, D, D) — batch x 4 syndrome channels x T rounds x D x D qubit grid
+- The 4 channels encode X- and Z-basis detector outcomes for the two Pauli frame components (XL and ZL) of the surface code, and geometric representation of X and Z detectors with normalized weights
+- dtype: float32 (cast to fp16 internally at inference time)
+- Range: binary {0, 1} per element — 0 = no syndrome, 1 = syndrome fired
+- Constraints: D and T must not exceed the model's receptive field (<= 9); during training D = T = 9 (best performance, not a strict requirement); during inference D and T can be any odd number >= 3
+- The circuit must use one of the four supported surface-code orientations: O1, O2, O3, O4
+- The noise model must be a circuit-level Pauli channel consistent with the 25-parameter training distribution
+Output(s)
+Output Type(s): Quantum Error Correction Prediction Tensor
+Output Format(s):
+- Tensor: float32 PyTorch tensor of shape (B, 4, T, D, D)
+Output Parameters: Five-Dimensional (5D) — (Batch, Channels, Time, Distance, Distance)
+Other Properties Related to Output:
+- Shape: (B, 4, T, D, D) — same shape as input
+- 4 correction channels: predicted X-frame and Z-frame spacelike corrections per qubit site and round, and X and Z timelike stabilizer flips for each round
+- dtype: float32 (logits; not binary — thresholding or downstream decoding is applied by the runner)
+- The corrections are consumed by the downstream global decoder such as MWPM (PyMatching) to produce the final logical decision. The model output alone is not a logical correction.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA's hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration:
+Runtime Engine(s):
+- Not Applicable (N/A) — NVIDIA Quantum Predecoder framework
+Supported Hardware Microarchitecture Compatibility:
+| Microarchitecture | Notes / Validated Hardware |
+|---|---|
+| NVIDIA Blackwell | (validated: RTX Pro 6000) |
+| NVIDIA Hopper | (validated: H100) |
+| NVIDIA Lovelace |  |
+| NVIDIA Ampere | (validated: A100) |
+| NVIDIA Turing |  |
+| NVIDIA Volta | or newer (compute capability >= 7.0) |
+Supported Operating System(s):
+- Linux (x86-64; Ubuntu 24.04 tested in CI)
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Model Version(s):
+0.1.0
+Training, Testing, and Evaluation Datasets:
+Training Dataset:
+Data Modality:
+- Other: Synthetic quantum error correction syndrome data
+Training Data Size:
+- Other: 6.3×10^9 synthetic examples (generated on-the-fly; not stored persistently)
+Data Collection Method by dataset:
+- Synthetic
+Labeling Method by dataset:
+- Synthetic
+Properties: Synthetically generated circuit-level syndrome data from rotated surface-code memory simulations (Stim); generated on-the-fly during training and immediately destroyed. No persistent dataset exists.
+Testing Dataset:
+Data Collection Method by dataset:
+- Synthetic
+Labeling Method by dataset:
+- Synthetic
+Properties: Synthetically generated; same distribution as training data.
+Evaluation Dataset:
+Benchmark Score: At least 2x LER reduction vs PyMatching baseline; up to 4x at distance-31.
+Data Collection Method by dataset:
+- Synthetic
+Labeling Method by dataset:
+- Synthetic
+Properties: Synthetically generated circuit-level syndrome data from rotated surface-code memory simulations (Stim).
+Inference:
+Acceleration Engine: PyTorch (primary runtime). Optional ONNX Runtime or NVIDIA TensorRT via ONNX export (ONNX_WORKFLOW environment variable). FP16 precision supported natively in SafeTensors format; INT8/FP8 quantization available via NVIDIA ModelOpt export pipeline.
+Test Hardware: NVIDIA GPU (CUDA-capable, compute capability >= 7.0 recommended for FP16 tensor core utilization). Models were validated on NVIDIA A100 and H100 GPUs. CPU-only inference is supported through PyTorch but is significantly slower and not recommended for production throughput requirements.
+Ethical Considerations:
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. When downloaded or used in accordance with our terms of service, developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse. For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, Explainability, Safety & Security, and Privacy Subcards. Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 170

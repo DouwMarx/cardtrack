@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:01:12Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-parse-2-0-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-parse-2-0-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0%0AFingerprint%3A%2014e3dac10cc6f491556b22cb57129a5dd825f5ca5d959bd2a8615d9e0eae4194%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-parse-2-0-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-parse-2-0-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0%0AFingerprint%3A%203c086a8ba256f2904906fbc18fbd5d5111c721929f83582542c765aa7536ee03%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-26T06:51:45Z</td>
+          <td>text/html</td>
+          <td>254,960</td>
+          <td><code title="3c086a8ba256f2904906fbc18fbd5d5111c721929f83582542c765aa7536ee03">3c086a8ba256f290</code></td>
+        </tr>
         <tr>
           <td>2026-08-20T06:19:56Z</td>
           <td>text/html</td>
@@ -76,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -109,6 +115,14 @@
         <span class="ts">2026-08-20T06:19:56Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-08-20T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-26T06:51:45Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-26T06:50Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-Parse-2.0</a>          </div>
@@ -239,7 +253,8 @@ Description:
 NVIDIA Nemotron Parse 2.0 transforms document images into structured, machine-readable representations with text, layout classes, bounding boxes, and reading-order information. Given a Red, Green, Blue (RGB) document image and a task prompt, the model produces formatted text and spatial annotations for document elements such as titles, paragraphs, captions, tables, charts, page headers, page footers, footnotes, pictures, and bibliography entries. Compared with NVIDIA Nemotron Parse v1.2, NVIDIA Nemotron Parse 2.0 adds an approximately 20k-token vocabulary expansion for more efficient multilingual support, chart-aware document parsing with the &lt;class_Chart&gt; class token, and updated training coverage for chart/table-heavy documents. NVIDIA Nemotron Parse 2.0 is intended for document understanding, information retrieval, data extraction, and multimodal data-curation workflows.
 This model is ready for commercial or non-commercial use.
 License/Terms of Use:
-Governing Terms: Your use of this model is governed by the NVIDIA Open Model License Agreement. Use of the tokenizer included in this model is governed by the CC-BY-4.0 license.
+This model and its associated configuration files are licensed under the OpenMDW License Agreement, version 1.1 (OpenMDW-1.1). Use of the tokenizer included in this model is governed by the CC-BY-4.0 license.
+This project will download and install additional third-party open source software projects. Review the license terms of these open source projects before use. Contributions are accepted under the policy in CONTRIBUTING.md.
 Deployment Geography:
 Global
 
@@ -256,7 +271,7 @@ NVIDIA Nemotron Parse 2.0 is designed for developers and teams building document
 
 		Release Date:
 
-Hugging Face August 3, 2026 via URL
+Hugging Face August 3, 2026 on the NVIDIA Nemotron Parse 2.0 model page
 References(s):
 Model Architecture:
 Architecture Type: Transformer-based vision-encoder-decoder model
@@ -291,14 +306,15 @@ Output Parameters: One-Dimensional (1D)
 Other Properties Related to Output: Nemotron Parse 2.0 returns a string encoding document text, semantic element classes, and bounding boxes. Postprocessing utilities in this repository can transform generated bounding boxes back to original image coordinates and convert table or chart-associated text into LaTeX, HTML, markdown, JSON, or CSV where supported.
 Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA hardware and software frameworks, the model achieves faster training and inference times compared to CPU-only solutions.
 Quick Start
-Install dependencies in your environment
-You can use a public image nvcr.io/nvidia/pytorch:25.03-py3 with the following library versions installed on top:
+Direct Transformers inference dependencies
+This installation is only for the direct Transformers example in the next section. It is not needed for the vLLM container workflow below. You can use the public image nvcr.io/nvidia/pytorch:25.03-py3 with the following library versions installed on top:
 pip install accelerate==1.12.0
-pip install albumentations==2.0.8
 pip install transformers==5.6.1
 pip install timm==1.0.22
 pip install open_clip_torch==3.2.0
 pip install einops==0.8.1
+pip install beautifulsoup4
+open_clip_torch is currently needed only by the direct Transformers path because C-RADIO&#39;s remote-code validation inspects an optional OpenCLIP adaptor. Nemotron Parse does not configure or execute that adaptor. Albumentations is not used by the Nemotron Parse 2.0 processor.
 Usage example
 import torch
 from PIL import Image, ImageDraw
@@ -312,10 +328,10 @@ model = AutoModel.from_pretrained(
     trust_remote_code=True,
     torch_dtype=torch.bfloat16
 ).to(device).eval()
-tokenizer = AutoTokenizer.from_pretrained(model_path)
+tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
 processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
 # Load image
-image = Image.open(&#34;path/to/your/image.jpg&#34;)
+image = Image.open(&#34;document.png&#34;)
 task_prompt = &#34;&lt;/s&gt;&lt;s&gt;&lt;predict_bbox&gt;&lt;predict_classes&gt;&lt;output_markdown&gt;&lt;predict_no_text_in_pic&gt;&#34;
 # task_prompt = &#34;&lt;/s&gt;&lt;s&gt;&lt;predict_bbox&gt;&lt;predict_classes&gt;&lt;output_markdown&gt;&lt;predict_text_in_pic&gt;&#34;
 # Process image
@@ -352,10 +368,8 @@ for bbox in bboxes:
 Table output formats
 Supported values for table_format: latex | HTML | markdown | json | json_hierarchical | csv
 Inference with vLLM
-Tested vLLM versions: v0.20-v0.26.
-Nemotron Parse 2.0 can be served with vLLM when using a vLLM build that includes Nemotron Parse remote-code support. On A100 and A10 systems, we recommend running vllm serve with --attention-backend=TRITON_ATTN.
-Install the following dependencies on top of the serving image:
-pip install albumentations timm open_clip_torch einops
+Supported vLLM versions: v0.20-v0.26. The container-only examples below were validated with v0.20.0.
+Nemotron Parse 2.0 can be served directly from a standard vLLM container that includes Nemotron Parse support. No additional albumentations or open_clip_torch installation is required for this vLLM path. The model&#39;s lightweight encoder configuration prevents vLLM startup from recursively importing C-RADIO&#39;s unused OpenCLIP adaptor. This container-only dependency path was validated with vLLM v0.20. On A100 and A10 systems, we recommend running vllm serve with --attention-backend=TRITON_ATTN.
 This export keeps lm_head.weight tied to decoder.embed_tokens.weight and does not materialize a duplicate output-head tensor. Current vLLM 0.20 Nemotron Parse builds create a separate output head unless patched. If your vLLM build does not already support tied Nemotron Parse output embeddings, fetch the included runtime patch and add it to PYTHONPATH before starting vLLM:
 PATCH_ROOT=$(python - &lt;&lt;&#39;PY&#39;
 from huggingface_hub import snapshot_download
@@ -385,7 +399,7 @@ def main():
         dtype=&#34;bfloat16&#34;,
         trust_remote_code=True,
     )
-    image = Image.open(&#34;&lt;YOUR-IMAGE-PATH&gt;&#34;)
+    image = Image.open(&#34;document.png&#34;)
     prompts = [
         {
             &#34;prompt&#34;: &#34;&lt;/s&gt;&lt;s&gt;&lt;predict_bbox&gt;&lt;predict_classes&gt;&lt;output_markdown&gt;&lt;predict_no_text_in_pic&gt;&#34;,
@@ -416,15 +430,15 @@ vllm serve nvidia/NVIDIA-Nemotron-Parse-2.0 \
     --max-num-seqs 8 \
     --limit-mm-per-prompt &#39;{&#34;image&#34;: 1}&#39; \
     --trust-remote-code \
-    --port 8000 \
-    --chat-template chat_template.jinja
+    --port 8000
 Then run inference through the OpenAI-compatible API:
 import base64
 from openai import OpenAI
 client = OpenAI(
     base_url=&#34;http://localhost:8000/v1&#34;,
+    api_key=&#34;EMPTY&#34;,
 )
-with open(&#34;&lt;YOUR-IMAGE-PATH&gt;&#34;, &#34;rb&#34;) as f:
+with open(&#34;document.png&#34;, &#34;rb&#34;) as f:
     img_b64 = base64.b64encode(f.read()).decode(&#34;utf-8&#34;)
 prompt_text = &#34;&lt;/s&gt;&lt;s&gt;&lt;predict_bbox&gt;&lt;predict_classes&gt;&lt;output_markdown&gt;&lt;predict_no_text_in_pic&gt;&#34;
 resp = client.chat.completions.create(
@@ -446,7 +460,7 @@ resp = client.chat.completions.create(
             ],
         }
     ],
-    max_tokens=9000,
+    max_tokens=8192,
     temperature=0.0,
     extra_body={
         &#34;repetition_penalty&#34;: 1.1,
@@ -465,7 +479,16 @@ If only bounding boxes and classes are needed, use:
 This repository includes two optional logits processors:
 - NemotronParseRepetitionStopProcessor : detects repeating n-grams during generation and forces the model to close the coordinate block when repeated structured output suggests a potential hallucination.
 - NemotronParseTableInsertionLogitsProcessor : forces every block to follow a table structure, which can be useful when running the model on table image crops.
-Please refer to example_with_processor.py for Python-model usage. With vLLM, export logitsprocs/ to PYTHONPATH and pass the desired processor to vllm serve, for example:
+Please refer to example_with_processor.py for Python-model usage. With vLLM, add the model repository&#39;s logitsprocs/ directory to PYTHONPATH and pass the desired processor to vllm serve:
+PROCESSOR_ROOT=$(python - &lt;&lt;&#39;PY&#39;
+from huggingface_hub import snapshot_download
+print(snapshot_download(
+    &#34;nvidia/NVIDIA-Nemotron-Parse-2.0&#34;,
+    allow_patterns=&#34;logitsprocs/nemotron_parse_vllm_logitprocs.py&#34;,
+))
+PY
+)
+export PYTHONPATH=&#34;${PROCESSOR_ROOT}/logitsprocs:${PYTHONPATH}&#34;
 vllm serve nvidia/NVIDIA-Nemotron-Parse-2.0 \
   --dtype bfloat16 \
   --max-num-seqs 4 \
@@ -529,11 +552,11 @@ Please make sure you have proper rights and permissions for all input image and 
 For more detailed information on ethical considerations for this model, please see the Model Card++ subcards: Bias, Explainability, Safety &amp; Security, and Privacy.
 Please report model quality, risk, security vulnerabilities, or NVIDIA AI Concerns here.
 - Downloads last month
-- 13,064</pre>
+- 22,351</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-25T06:33:55Z</p></footer>
+<footer><p>Built 2026-08-26T07:07:55Z</p></footer>
 </body>
 </html>

@@ -1,0 +1,128 @@
+Instructions to use nvidia/Ising-Decoder-ColorCode-1-Fast with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Ising Decoding How to use nvidia/Ising-Decoder-ColorCode-1-Fast with Ising Decoding: # No code snippets available yet for this library. # To use this model, check the repository files and the library's documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
+- Notebooks
+- Google Colab
+- Kaggle
+Ising-Decoder-ColorCode-1-Fast Overview
+Description:
+Ising-Decoder-ColorCode-1-Fast predicts physical space-time corrections that sparsify the input syndrome (producing a residual syndrome) for triangular color code quantum error correction circuits, reducing logical error rates by at least 2x when combined with a standard global color code decoder. Ising-Decoder-ColorCode-1-Fast v0.1.0 was developed by NVIDIA.
+This model is ready for commercial or non-commercial use.
+Publication
+This implementation accompanies the paper:
+Jan Olle, Christopher Chamberland, Muyuan Li, Igor Baratta, "Fast and accurate AI-based pre-decoders for color codes" arXiv:2607.10058, 2026. doi:10.48550/arXiv.2607.10058
+Please cite the paper if you use this repository in research or published work.
+License/Terms of Use:
+GOVERNING TERMS: Use of this model is governed by the OpenMDW-1.1 License.
+Deployment Geography:
+Global
+Use Case:
+Quantum computing researchers and engineers building triangular color code QEC systems who need a lightweight predecoder to reduce logical error rates and accelerate decoding throughput alongside any standard global color code decoder (we use Chromobius as an open-source example).
+Release Date:
+Hugging Face 07/21/2026 via https://huggingface.co/nvidia/Ising-Decoder-ColorCode-1-Fast
+Reference(s):
+Model Architecture:
+Architecture Type: Convolutional Neural Network (CNN)
+Network Architecture: Custom 3D CNN — bottleneck residual cascade of same-padded 3D convolutions (predecoder_memory_cascade)
+Number of model parameters: ~2.94x10^6 (2,936,580)
+The pre-decoder is a lightweight 3D fully-convolutional neural network (CNN) that processes color code syndrome volumes across space and time.
+Layers The network is a bottleneck residual cascade of same-padded 3D convolutions (padding = kernel_size // 2), so the spatial and temporal dimensions are preserved through every layer. A plain 3D-convolution stem lifts the 4 input channels to an embedding width of 512; a cascade of residual bottleneck blocks (bottleneck ratio 4, i.e. a 128-wide inner projection) then operates at that width, and a final 3D-convolution head projects back to 4 output channels. Each residual bottleneck block applies a pre-activation BatchNorm3d → SiLU pair before each of its three convolutions (the 1×1×1 reduce, the k×k×k message-passing, and the 1×1×1 restore), so the released checkpoint carries the corresponding BatchNorm parameters and running statistics; the plain input stem has no batch normalization. Dropout (p = 0.01) is applied inside the cascade.
+| Checkpoint | Stem | num_blocks | Embedding width | Bottleneck ratio | Kernel size | Receptive field |
+|---|---|---|---|---|---|---|
+| ColorCode-1-Fast (d=13) * | plain Conv3d 4->512 | 6 | 512 | 4 | 3x3x3 | R = 13 |
+(* this checkpoint)
+Activation
+SiLU. The predecoder_memory_cascade architecture uses SiLU internally; the
+training-time activation config field is inert for this model.
+Parameter count (approximate)
+- ColorCode-1-Fast (this checkpoint): ~2.94 M parameters (2,936,580)
+Precision The released checkpoint is stored in fp16 (half precision); the runner automatically sets cfg.enable_fp16 = True on load. (Training was performed in fp32 — see the Training Configuration section.)
+
+		Input(s):
+
+Input Type(s): Quantum Error Correction Syndrome Tensor
+Input Format(s):
+- Tensor: float32 NumPy array or PyTorch tensor of shape (B, 4, T, H, W)
+Input Parameters: Five-Dimensional (5D) — (Batch, Channels, Time, Height, Width)
+Other Properties Related to Input:
+- Shape: (B, 4, T, H, W) — batch x 4 syndrome channels x T rounds x an H x W rectangular embedding of the triangular color code lattice, with H = d + (d − 1) // 2 rows and W = d columns for code distance d. Example: d = 13, T = 13 → (B, 4, 13, 19, 13)
+- The 4 channels encode the X- and Z-basis color code detector data (color partitions of the triangular color code) over the space-time syndrome volume
+- dtype: float32 (cast to fp16 internally at inference time)
+- Range: binary {0, 1} per element — 0 = no syndrome, 1 = detector fired
+- Constraints: d and T may exceed the receptive field (RF = 13) — because the network is fully convolutional, a single d=13 checkpoint is evaluated at distances up to d=31 (H and W scale with d as above); training used d = T = 13 (distance == RF), which gave the best performance
+- The network is fully convolutional and does not validate the spatial embedding: a tensor with a different spatial shape (e.g. a square d x d grid) is accepted silently and produces incorrectly mapped predictions. Always build inputs with the H x W embedding above (the repository's data generator emits it)
+- The circuit must be a triangular color code using the superdense (nearest-neighbor) circuit schedule with Z feed-forward, consistent with the training distribution
+- The noise model must be a circuit-level depolarizing channel consistent with the training distribution
+Output(s)
+Output Type(s): Quantum Error Correction Prediction Tensor
+Output Format(s):
+- Tensor: PyTorch tensor of shape (B, 4, T, H, W); dtype matches the checkpoint precision — fp16 for the released checkpoint
+Output Parameters: Five-Dimensional (5D) — (Batch, Channels, Time, Height, Width)
+Other Properties Related to Output:
+- Shape: (B, 4, T, H, W) — same shape as input
+- 4 correction channels: predicted space-time physical corrections (X- and Z-basis detector predictions across the color partitions) per lattice site and round
+- dtype: precision-dependent logits — the released fp16 checkpoint returns fp16 logits (the evaluation path autocasts float32 inputs but does not cast the logits back to fp32); cast the logits to float32 explicitly if downstream buffers, ONNX/TensorRT bindings, or numerical post-processing require it. Logits are not binary — thresholding or downstream decoding is applied by the runner
+- The predicted correction sparsifies the syndrome into a residual that is consumed by a downstream global decoder (e.g. Chromobius) to produce the final logical decision. The model can be run as a standalone decoder, but performs poorly alone; pairing it with a global decoder delivers the reported results.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA's hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration:
+Runtime Engine(s):
+- Not Applicable (N/A) — NVIDIA Quantum Predecoder framework
+Supported Hardware Microarchitecture Compatibility:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+- NVIDIA Lovelace
+- NVIDIA Turing
+- NVIDIA Volta or newer (compute capability >= 7.0)
+Supported Operating System(s):
+- Linux (x86-64; tested in CI)
+- Linux (ARM64/aarch64; validated on NVIDIA Grace-based systems — trained on GB200, benchmarked on GB300 with Grace CPU)
+The integration of foundation and fine-tuned models into AI systems requires additional testing using use-case-specific data to ensure safe and effective deployment. Following the V-model methodology, iterative testing and validation at both unit and system levels are essential to mitigate risks, meet technical and functional requirements, and ensure compliance with safety and ethical standards before deployment.
+Model Version(s):
+0.1.0 — Model B (paper "Fast" variant, predecoder_memory_cascade, plain stem), 2,936,580 parameters. Released snapshot: the final epoch of the 400-epoch run — validation LER improved through the last epoch, so the best checkpoint is the final one (best validation LER 0.004358 at d=13, n_rounds=13, p≈4×10⁻³). Trained in fp32; released as an fp16 export. Checkpoint file: ising_decoder_color_code_1_fast_r13_v1.0.400_fp16.safetensors.
+Training, Testing, and Evaluation Datasets:
+Training Dataset:
+Data Modality:
+- Other: Synthetic quantum error correction syndrome data
+Training Data Size:
+- Other: Procedurally generated color code syndromes; 16,777,216 samples per epoch × 400 epochs ≈ 6.71×10⁹ samples total, generated on-the-fly and not stored persistently. No persistent dataset exists.
+Data Collection Method by dataset:
+- Synthetic
+Labeling Method by dataset:
+- Synthetic
+Properties: Synthetically generated circuit-level color code syndrome data from triangular color code memory simulations (superdense / nearest-neighbor schedule with Z feed-forward, circuit-level depolarizing noise); generated on-the-fly during training with cuStabilizer (Stim is used only to parse circuits into our internal representation, not to generate data), then immediately destroyed. No persistent dataset exists.
+Training Configuration:
+- Objective: predict the physical space-time correction that sparsifies the input syndrome (residual-syndrome training) for triangular color code memory circuits.
+- Training distribution: color code, distance d = 13, n_rounds = 13, both measurement bases; superdense (nearest-neighbor) schedule with Z feed-forward; circuit-level color code depolarizing noise, i.i.d. sampling at p ≈ 4×10⁻³ (p ∈ [0.0039, 0.0041]); no timelike hyper-edges, Y errors not decomposed.
+- Optimizer: Lion — learning rate 1×10⁻⁵, weight decay 1×10⁻⁷, β₂ = 0.95.
+- LR schedule: warmup-then-decay — 100 warmup steps, decay milestones at [0.25, 0.5, 1.0] of the run, γ = 0.7, minimum LR 1×10⁻⁶.
+- EMA: enabled, decay 1×10⁻⁴.
+- Batch schedule: per-step batch ramps 256 → 1024 over the first epoch; gradient accumulation ×2 across 8 GPUs → effective global batch 16,384.
+- Epochs / samples: 400 epochs × 16,777,216 samples per epoch ≈ 6.71×10⁹ samples total (generated on-the-fly).
+- Validation: loss validation every epoch (65,536 samples); logical-error-rate (LER) validation every 20 epochs. Best validation LER 0.004358 at the final (epoch-400) snapshot.
+- Precision / compilation: fp32 weights (fp16/bf16 disabled); TF32 matmul and cuDNN paths enabled; torch.compile enabled (default mode).
+- Infrastructure: 8× NVIDIA GB200 (2 nodes × 4), multi-node DDP; container nvcr.io/nvidia/pytorch:26.04-py3 (PyTorch 2.12); source revisionbebe858c .
+Testing Dataset:
+Data Collection Method by dataset:
+- Synthetic
+Labeling Method by dataset:
+- Synthetic
+Properties: Synthetically generated; same distribution as training data.
+Evaluation Dataset:
+Benchmark Score: At least 2x logical-error-rate reduction vs Chromobius baseline; up to ~356x at distance-31, p = 0.002 (X basis). Evaluations use n_rounds = d and report both X and Z bases over d ∈ {5, 9, 13, 17, 21, 31}.
+Data Collection Method by dataset:
+- Synthetic
+Labeling Method by dataset:
+- Synthetic
+Properties: Synthetically generated circuit-level color code syndrome data from triangular color code memory simulations (Stim / Chromobius detector-error-model conventions).
+Evaluation Results:
+End-to-end per-round logical error rate vs. single-shot (batch size 1) decode runtime for the pre-decoder + Chromobius pipeline compared with standalone Chromobius, across code distances at physical error rate p = 0.1 % (X basis). The pre-decoder runs at FP8 precision on a single NVIDIA GB300 GPU; Chromobius is timed on a single Grace Neoverse-V2 CPU.
+Inference:
+Acceleration Engine: PyTorch (primary runtime). Optional ONNX Runtime or NVIDIA TensorRT via ONNX export. FP16 precision is supported natively in SafeTensors format; INT8/FP8 quantization is available via the NVIDIA ModelOpt export pipeline.
+Test Hardware: NVIDIA GPU (CUDA-capable, compute capability >= 7.0 recommended). CPU-only inference is supported through PyTorch but is significantly slower and not recommended for production throughput requirements.
+Quantization:
+The released checkpoint is fp16. As with the surface-code models, INT8/FP8 quantization is available via the NVIDIA ModelOpt export pipeline (ONNX export and TensorRT). Quantization does not change the model's parameters or training data — it is an inference-time deployment optimization.
+Ethical Considerations:
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. Developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse. For more detailed information on ethical considerations for this model, please see the Bias, Explainability, Safety & Security, and Privacy Subcards. Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 17
