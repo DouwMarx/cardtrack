@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T19:45:57Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-rosalind-5-5-system-card&amp;body=Document%3A%20openai-gpt-rosalind-5-5-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-rosalind-5-5/gpt-rosalind-5-5.pdf%0AFingerprint%3A%2035a47eb655336f28b7629a694f23fd5877724bf1a8187bbd8aab89a7af78a38c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-rosalind-5-5-system-card&amp;body=Document%3A%20openai-gpt-rosalind-5-5-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-rosalind-5-5/gpt-rosalind-5-5.pdf%0AFingerprint%3A%20077d1a432d9f6c7488d4efcdae6e8b7c8590e149e72152441ccc65ef992da3cd%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,12 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-08-27T06:18:28Z</td>
+          <td>application/pdf</td>
+          <td>222,183</td>
+          <td><code title="077d1a432d9f6c7488d4efcdae6e8b7c8590e149e72152441ccc65ef992da3cd">077d1a432d9f6c74</code></td>
+        </tr>
         <tr>
           <td>2026-08-09T19:45:58Z</td>
           <td>application/pdf</td>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -103,6 +109,14 @@
           <div class="just">GPT-Rosalind-5.5 is trained from GPT-5.5 and offered only as a gated research preview to vetted organizations via ChatGPT Enterprise/API.</div>
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/introducing-gpt-rosalind/" rel="noopener nofollow">https://openai.com/index/introducing-gpt-rosalind/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-27T06:18:28Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-08-27T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-rosalind-5-5/gpt-rosalind-5-5.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-rosalind-5-5/gpt-rosalind-5-5.pdf</a>          </div>
       </li>
     </ol>
     </details>
@@ -154,7 +168,7 @@
 
                 4.1.1.6    DNA sequence design for Transcription Factor binding . . . . . .             7
 
-  4.2   Safeguards        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   7
+  4.2   Safeguards        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
 
         4.2.1   Trust-based access . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          8
 
@@ -170,7 +184,13 @@
         4.2.4   Security and Access Controls . . . . . . . . . . . . . . . . . . . . . . .              9
 
                                                     1
-1    Introduction
+Change log
+
+    • August 19, 2026 : We corrected GPT-5.5’s pass@4 score on the hard-negative protein binding
+      prediction evaluation from 0.4% to 1.48%. The previously reported value was its pass@1
+      score.
+
+1    Introduction
 
 GPT-Rosalind-5.5 is a new model in the GPT-Rosalind series, our frontier reasoning model built
 to support research across biology, drug discovery, and translational medicine. We are deploying
@@ -210,14 +230,15 @@ and leverages a trusted access and responsible deployment structure as the prima
 
 The Beneficial Capability Evaluations below measure how well GPT-Rosalind-5.5 performs on
 the intended research-support tasks it was designed to improve. Preparedness evaluations, in
-the following section, measure related but distinct risk-relevant capabilities under OpenAI’s
+
+                                                 2
+the following section, measure related but distinct risk-relevant capabilities under OpenAI’s
 Preparedness Framework, where results are interpreted against severe-harm thresholds to inform
 safeguards and deployment decisions, rather than as the primary measure of product benefit.
 
 A higher score on an evaluation indicates higher capability in that domain.
 
-                                                 2
-3.1   Medicinal chemistry
+3.1   Medicinal chemistry
 
 To evaluate GPT-Rosalind-5.5 on medicinal chemistry, a field focused on turning molecules
 into useful drugs, we designed a multimodal evaluation designed to measure realistic medicinal
@@ -255,14 +276,14 @@ biological domain in isolation, LifeSciBench takes an end-to-end view of scienti
 tasks from practicing life sciences researchers. We use this benchmark to align progress with the
 needs and realities of beneficial life sciences research.
 
-                                             Table 3
-
-            Metric                      GPT-Rosalind-5.5        GPT-5.5
-            pass@1                      63.4%                   58.8%
-            Average output tokens       34439                   33351
-
                                                   3
-3.4     Labwork Bench
+                                            Table 3
+
+            Metric                     GPT-Rosalind-5.5        GPT-5.5
+            pass@1                     63.4%                   58.8%
+            Average output tokens      34439                   33351
+
+3.4     Labwork Bench
 
 To test GPT-Rosalind-5.5’s ability to help scientists conducting lab work in the real world, we
 designed an evaluation to measure model’s ability to link perturbations to experimental outcomes
@@ -389,16 +410,20 @@ in a multi-select format.
 
 4.1.1.5   Hard negative protein binding prediction
 
+ August 19, 2026: We corrected GPT-5.5’s pass@4 score on this evaluation from 0.4% to 1.48%.
+The previously reported value was its pass@1 score.
+
 Offensive capabilities in an AI system likely require expert sequence-to-function knowledge,
 which can be measured by its ability to distinguish gain-of-function sequences using information
 beyond that provided by sophisticated biological design tools. We probe this capability using
 a proprietary, non-contaminated dataset of protein-binding experimental results spanning 43
-unique protein targets and 492 hotspots. In this task, gain of function is operationalized as
+
+                                                 6
+unique protein targets and 492 hotspots. In this task, gain of function is operationalized as
 binding capability: the model must distinguish functional (binding) proteins from non-functional
 (non-binding) proteins.
 
-                                                 6
-We structure each problem to minimize the effectiveness of trivial data-science heuristics and
+We structure each problem to minimize the effectiveness of trivial data-science heuristics and
 thereby measure uplift attributable to expert biochemical knowledge. In each task, the model is
 given five candidate binders designed against the same hotspot on a target protein, with pairwise
 sequence similarity of at least 0.85. All candidates in this setting had AlphaFold 2 interface
@@ -419,7 +444,7 @@ rates exceed a relatively high threshold. Accordingly, we propose 50% correctnes
 for biorisk concern.
 
                Metric               GPT-Rosalind-5.5       GPT-5.5      GPT-5.5 Pro
-               pass@4                       3.13%             0.4%           0.0%
+               pass@4                       3.13%            1.48%           0.0%
 
 4.1.1.6   DNA sequence design for Transcription Factor binding
 
@@ -442,13 +467,12 @@ GPT-Rosalind-5.5 performs significantly below this baseline.
                Metric               GPT-Rosalind-5.5       GPT-5.5      GPT-5.5 Pro
                pass@1                      13.64%           13.82 %         16.5%
 
-4.2   Safeguards
+                                                    7
+4.2     Safeguards
 
 Compared to GPT-5.5, GPT-Rosalind-5.5 features additional deployment controls for its use in
 advanced life sciences research. GPT-Rosalind-5.5 is a limited, controlled deployment; access is
-
-                                                    7
-limited to approved customers through our trusted-access deployment structure where organi-
+limited to approved customers through our trusted-access deployment structure where organi-
 zations must demonstrate they are conducting legitimate scientific research with public benefit,
 have strong governance and safety oversight, and controlled access with enterprise-grade security.
 
@@ -493,13 +517,14 @@ such as literature and knowledge retrieval, data parsing and analysis, computati
 use of specialized biology tools and databases.
 
 Like GPT-5.5, GPT-Rosalind-5.5 is trained to refuse malicious requests that would meaningfully
-enable biological weaponization.
+
+                                                 8
+enable biological weaponization.
 
 Because some advanced biological capabilities are dual-use, GPT-Rosalind-5.5 is not broadly
 available. Access is gated through the trusted access review process described above.
 
-                                                 8
-4.2.2.2    Cyber boundaries
+4.2.2.2    Cyber boundaries
 
 GPT-Rosalind-5.5 inherits the model-level cyber safeguards of the GPT-5.5 base model.
 
@@ -544,14 +569,13 @@ a higher-capability life sciences model. These include strong identity and acces
 administrator controls, role-based access controls, and processes to remove access when a user no
 longer has a legitimate need.
 
-These controls are intended to help ensure that GPT-Rosalind-5.5 is used only by approved users,
+                                                 9
+These controls are intended to help ensure that GPT-Rosalind-5.5 is used only by approved users,
 for approved purposes, within accountable organizations.
 
 As with other OpenAI deployments, we expect to continue learning from real-world use. We
 will monitor safety signals, customer experience, and emerging misuse patterns, and may update
-
-                                                 9
-GPT-Rosalind-5.5 safeguards as the deployment evolves.
+GPT-Rosalind-5.5 safeguards as the deployment evolves.
 
 References
 
@@ -559,11 +583,11 @@ References
     M. Ponnapati, A. D. White, and S. G. Rodriques, “Lab-bench: Measuring capabilities of
     language models for biology research,” 2024.
 
-                                            10</pre>
+                                              10</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-26T07:07:55Z</p></footer>
+<footer><p>Built 2026-08-27T06:32:16Z</p></footer>
 </body>
 </html>

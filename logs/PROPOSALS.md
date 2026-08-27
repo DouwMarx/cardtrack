@@ -908,3 +908,60 @@ the card's Governing Terms and Model Architecture sections at
 `cardData.license` / `license_name` from the HuggingFace API for each repo; `config/criteria.yaml`
 (no `openness` key anywhere); friction line
 `openness_has_no_rule_for_base_model_license_flowthrough_and_the_corpus_is_already_split`.
+
+## 2026-08-27 — Family rows get a public slug naming the smallest variant, which is usually not the document
+
+The corpus is now good at family rows and bad at naming them. Since the 2026-08-19 ruling that a
+multi-size release is **one row listing all `model_names`**, the slug for such a row has been derived
+from the first entry of the sorted name list — which, for a size family, is the smallest variant.
+The canonical URL points somewhere else.
+
+Written this run:
+
+- `inclusion-ai-ui-venus-1-5-2b-model-card` → `https://huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B`
+
+The public page for the UI-Venus 1.5 family is therefore `/inclusion-ai-ui-venus-1-5-2b-model-card`,
+naming a repo I never fetched and that is not the card's subject. This is not new; it is the third
+friction entry on it (`slug_derivation_misnames_family_documents`, 2026-08-19 and 2026-08-20) and the
+first with the whole set counted. Every `model_card` row whose slug encodes a sibling other than its
+own canonical URL:
+
+| slug | canonical URL | model_names |
+|---|---|---|
+| `alibaba-qwen-qwen3-asr-0-6b-model-card` | `…/Qwen/Qwen3-ASR-1.7B` | 0.6B, **1.7B**, ForcedAligner-0.6B |
+| `inclusion-ai-singguard-0-8b-model-card` | `…/inclusionAI/SingGuard-2b` | 0.8b, **2b**, 4b, 8b |
+| `inclusion-ai-singguard-nsfa-0-8b-model-card` | `…/inclusionAI/SingGuard-NSFA-9B` | 0.8B, 2B, 4B, **9B** |
+| `inclusion-ai-ui-venus-1-5-2b-model-card` | `…/inclusionAI/UI-Venus-1.5-30B-A3B` | 2B, 8B, **30B-A3B** |
+| `tencent-hunyuan-hy-mt2-1-8b-model-card` | `…/tencent/Hy-MT2-30B-A3B` | 1.8B, 7B, **30B-A3B** |
+| `tencent-hunyuan-wemm-embedding-2b-model-card` | `…/tencent/WeMM-Embedding-9B` | 2B, 4B, **9B** |
+| `nvidia-af-next-captioner-model-card` | `…/nvidia/audio-flamingo-next-hf` | **Captioner**, Instruct, Think |
+| `google-deepmind-gemma-4-e2b-model-card` | `ai.google.dev/gemma/docs/core/model_card_4` | 12B, 26B-A4B, 31B, **E2B**, E4B |
+
+Eight of 117 `model_card` rows, and the rate is rising because the family rule is being applied more
+consistently, not less. Note the failure is specific to *documents named after their subject model*:
+`independent_eval` rows legitimately slug on the subject rather than the URL (`rand-gpt-5-…` at an
+`RRA3892-1.html` URL is correct and should stay), so this is not an argument for slugging everything
+off the URL.
+
+**Suggested change**, cheapest first:
+
+- **For `model_card` / `system_card` / `addendum`, derive the slug from the model name that best
+  matches the canonical URL, falling back to the first name only when none matches.** For all eight
+  rows above the URL's last path segment contains the right variant string verbatim; a substring test
+  against each `model_names` entry picks it. One function, no schema change, no re-decision.
+- **Or: prefer a family stem.** `inclusion-ai-ui-venus-1-5-model-card`, `tencent-hunyuan-wemm-embedding-model-card`
+  — strip the size token when a row carries ≥2 names sharing a stem. Arguably the most honest name for
+  a document that covers all of them, and it is what a reader searching for the family would type.
+- **Either way, backfill the eight and leave redirects.** Slugs are public URLs
+  (`cards.douwmarx.com/<slug>`), so silent renames break links; whatever the fix, these eight need it
+  applied at once rather than drifting as new family rows land.
+
+I would take the first option. It is the smaller change, it needs no judgment about what a "stem" is,
+and it makes the slug agree with the one thing about the row that is not a curation call — the URL
+that was actually fetched.
+
+**Evidence:** id 264 written this run (`inclusion-ai-ui-venus-1-5-2b-model-card` at the 30B-A3B URL);
+the table above from `state_summary.json`, filtering `doc_type='model_card'` rows with ≥2
+`model_names` for a slug encoding a name other than the canonical URL's target; friction lines
+`slug_derivation_misnames_family_documents` (2026-08-19, 2026-08-20, 2026-08-27); the family-row
+ruling in the 2026-08-19 PROPOSALS entry.

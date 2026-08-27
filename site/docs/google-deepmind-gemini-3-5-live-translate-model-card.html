@@ -26,7 +26,7 @@
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
     <dt>Models</dt>
-    <dd>Gemini 3.5 Live Translate</dd>
+    <dd>Gemini 3.5 Live Translate, Gemini 3.5 Transcribe, Gemini 3.5 Transcribe Live</dd>
     <dt>Published</dt>
     <dd><span data-pagefind-meta="date">2026-06-09</span>
         <span data-pagefind-filter="year" hidden>2026</span></dd>
@@ -70,7 +70,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -103,6 +103,15 @@
           <div class="just">Gemini 3.5 Live Translate (based on Gemini 3 Pro) ships through the Gemini Live API preview, Google Translate and Google Meet; API/product-only.</div>
           <div class="evidence">Evidence:
 <a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview" rel="noopener nofollow">https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-27T06:24:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-08-27T06:17Z-local · agent · lead: phase_a_candidate</span>
+          <div class="just">model_names: ["Gemini 3.5 Live Translate"] → ["Gemini 3.5 Live Translate", "Gemini 3.5 Transcribe", "Gemini 3.5 Transcribe Live"]</div>
+          <div class="just">The Gemini 3.5 Audio model card at this URL was republished on 2026-08-26 and now covers three variants, not one. Its title is verbatim &#39;Gemini 3.5 Audio (Live Translate, Transcribe, Transcribe Live)&#39; and the body states &#39;Gemini 3.5 Transcribe and Gemini 3.5 Transcribe Live: Audio and text with a token context window of up to 96K.&#39; Google announced Gemini 3.5 Transcribe the same day on the Google blog, and the DeepMind model-cards index lists this card as updated 26 August 2026. The database row still lists only &#39;Gemini 3.5 Live Translate&#39;, so the two new variants are currently invisible to model-name search. This is a family card, so per the distinct_model_release rule the correct fix is to extend model_names on the existing entry rather than add a separate document. publication_date is deliberately left at 2026-06-09 (the card&#39;s original Live Translate publication); the 2026-08-26 revision is a new version of the same document.</div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/gemini-3-5-audio/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-3-5-audio/</a> · <a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a> · <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/" rel="noopener nofollow">https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/</a>          </div>
       </li>
     </ol>
     </details>
@@ -173,6 +182,6 @@ For more information about the risks and mitigations for Gemini 3.5 Live Transla
   </section>
 </article>
 
-<footer><p>Built 2026-08-26T07:07:55Z</p></footer>
+<footer><p>Built 2026-08-27T06:32:16Z</p></footer>
 </body>
 </html>

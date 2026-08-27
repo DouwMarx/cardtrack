@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-Venus-1.5 — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">UI-Venus-1.5</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://huggingface.co/inclusionAI" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">inclusion_ai</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>UI-Venus-1.5-2B, UI-Venus-1.5-30B-A3B, UI-Venus-1.5-8B</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-02-09</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-27T06:27:54Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Apache-2.0. Family card; sibling repos UI-Venus-1.5-2B and UI-Venus-1.5-8B covered by this entry. No safety, red-teaming or risk-assessment section -- capability benchmarks only (contrast the successor UI-Venus-2-9B, which does report OSBlind attack-success-rate results). Technical report is on arXiv (2602.09082), which the corpus does not currently catalogue; see friction entry first_party_technical_reports_on_arxiv_invisible (2026-08-21).</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-1-5-2b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-1-5-2b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B%0AFingerprint%3A%206338704a911db6597f817eae0540f516aa533e3dd2cc56c385aeb632a9d3defc%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-27T06:27:54Z</td>
+          <td>text/html</td>
+          <td>385,565</td>
+          <td><code title="6338704a911db6597f817eae0540f516aa533e3dd2cc56c385aeb632a9d3defc">6338704a911db659</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-27T06:27:54Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-27T06:17Z-local · agent · lead: citation</span>
+          <div class="just">Backlog gap found by following the predecessor citation out of the UI-Venus-2-9B card added earlier in this run. UI-Venus-1.5 is Ant Group / InclusionAI&#39;s end-to-end GUI agent family -- two dense variants (2B, 8B) and one MoE variant (30B-A3B) -- released 2026-02-09 (repo createdAt 2026-02-09T07:55:59Z), well inside the 2026-01-01 scope floor, and absent from the corpus for six months even though huggingface.co/inclusionAI is a polled index_url; this is the same structural blindness logged on 2026-08-19 and 2026-08-20 (Phase A diffs for new links, so a February release stopped being new in February). It is a distinct generation, not a variant of anything catalogued: no UI-Venus row existed before today. The card documents the models directly with extensive quantitative results (ScreenSpot-Pro 69.6, VenusBench-GD 75.0, OSWorld-G 70.6, UI-Vision 54.7, AndroidWorld 77.6, AndroidLab 55.1/68.1, WebVoyager 76.0) and the release is canonical -- own technical report (arXiv 2602.09082), public project page and GitHub repo, and wide third-party citation. Per the family-card rule this is one entry listing all three sizes.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/api/models/inclusionAI/UI-Venus-1.5-30B-A3B" rel="noopener nofollow">https://huggingface.co/api/models/inclusionAI/UI-Venus-1.5-30B-A3B</a> · <a href="https://ui-venus.github.io/UI-Venus-1.5/" rel="noopener nofollow">https://ui-venus.github.io/UI-Venus-1.5/</a> · <a href="https://arxiv.org/abs/2602.09082" rel="noopener nofollow">https://arxiv.org/abs/2602.09082</a> · <a href="https://github.com/inclusionAI/UI-Venus" rel="noopener nofollow">https://github.com/inclusionAI/UI-Venus</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use inclusionAI/UI-Venus-1.5-30B-A3B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use inclusionAI/UI-Venus-1.5-30B-A3B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+pipe(text=messages)# Load model directly
+from transformers import AutoProcessor, AutoModelForMultimodalLM
+processor = AutoProcessor.from_pretrained(&#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;)
+model = AutoModelForMultimodalLM.from_pretrained(&#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;, device_map=&#34;auto&#34;)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+inputs = processor.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use inclusionAI/UI-Venus-1.5-30B-A3B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/inclusionAI/UI-Venus-1.5-30B-A3B
+-  SGLang  How to use inclusionAI/UI-Venus-1.5-30B-A3B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use inclusionAI/UI-Venus-1.5-30B-A3B with Docker Model Runner: docker model run hf.co/inclusionAI/UI-Venus-1.5-30B-A3B
+UI-Venus-1.5 model
+This repository contains the UI-Venus model from the report UI-Venus-1.5 Technical Report. UI-Venus 1.5 is a unified, end-to-end GUI Agent designed for robust real-world applications. The model family includes two dense (2B/8B) and one MoE (30B-A3B) variants to meet various downstream scenarios.
+📈 UI-Venus-1.5 Benchmark Performance
+Figure: Performance of UI-Venus 1.5 across multiple benchmarks. UI-Venus-1.5 achieves State-of-the-Art (SOTA) results on key grounding benchmarks (ScreenSpot-Pro, VenusBench-GD, OSWorld-G, UI-Vision) and agent benchmarks (AndroidWorld, AndroidLab, VenusBench-Mobile).
+Model Description
+📈 UI-Venus-1.5 Training Pipeline
+Figure: The Four-Stage Training Pipeline of UI-Venus-1.5. Starting from the Qwen3-VL Series, the model undergoes a progressive training curriculum comprising: (1) Mid-Training with large-scale GUI data for domain knowledge injection; (2) Offline-RL with task-specific optimization across grounding, mobile, and web objectives; (3) Online-RL to further enhance navigation capabilities in complex, real-world scenarios; and (4) Model Merge to unify the specialized models into the final UI-Venus-1.5.
+Compared to our previous version(UI-Venus 1.0), UI-Venus-1.5 introduces three key technical advances:
+- Mid-Training Stage: 10B tokens across 30+ datasets for foundational GUI semantics
+- Online RL: Full-trajectory rollouts for long-horizon dynamic navigation
+- Model Merging: Unified agent combining grounding, web, and mobile specialists
+Extensive evaluations demonstrate that UI-Venus-1.5 establishes new state-of-the-art performance on benchmarks such as ScreenSpot-Pro (69.6), VenusBench-GD (75.0), and AndroidWorld (77.6), significantly outperforming previous strong baselines. In addition, UI-Venus-1.5 demonstrates robust navigation capabilities across 40+ Chinese mobile apps, effectively executing user instructions in real-world scenarios.
+Quick Start
+You can deploy the model using vLLM (requires vllm&gt;=0.11.0 and transformers&gt;=4.57.0):
+# Install vLLM
+pip install vllm
+# Start vLLM API server
+python -m vllm.entrypoints.openai.api_server \
+    --model inclusionAI/UI-Venus-1.5-30B-A3B \
+    --served-model-name UI-Venus-1.5-30B-A3B \
+    --host 0.0.0.0 \
+    --port 8000 \
+    --tensor-parallel-size 2 \
+    --trust-remote-code
+The model will be served at http://localhost:8000/v1.
+Results
+Grounding
+- Strong Overall Grounding: UI-Venus-1.5-30B-A3B achieves state-of-the-art results on most benchmarks, leading VenusBench-GD (75.0%), ScreenSpot-Pro (69.6%), OSWorld-G-R (76.4%), OSWorld-G (70.6%), and UI-Vision (54.7%), while remaining highly competitive on ScreenSpot-V2 (96.2%, second-best, 0.3% behind MAI-UI-32B).
+- Consistent Scaling Gains: Increasing model scale yields steady improvements across all benchmarks (e.g., ScreenSpot-Pro: 57.7% -&gt; 68.4% -&gt; 69.6% for 2B/8B/30B-A3B).
+- Broad Generalization Across Tasks: UI-Venus shows robust performance on diverse grounding settings, from refusal-aware evaluation in VenusBench-GD to fine-grained professional UI layouts in ScreenSpot-Pro, and remains competitive on instruction-intensive MMBench (88.6%).
+Mobile Navigation
+- Superior End-to-End Performance: UI-Venus-1.5-30B-A3B achieves state-of-the-art or comparable results across a diverse range of GUI agent benchmarks, including Android World (77.6%), Android Lab (55.1%/68.1%), VenusBench-Mobile (21.5%), and WebVoyager (76.0%). It consistently outperforms both specialized GUI models (e.g., MAI-UI-32B) and leading general-purpose VLMs (e.g., GPT-4o, Qwen3-VL), establishing a new performance ceiling for autonomous agents.
+- Significant Architectural Efficiency and Scaling: Increasing the model scale leads to consistent performance gains across all benchmarks. Notably, the UI-Venus-1.5 family exhibits remarkable efficiency; our 8B model already surpasses the previous generation&#39;s 72B variant on both Android Lab (up to 5.8% improvement) and VenusBench-Mobile (16.1% vs. 15.4%), demonstrating the effectiveness of our updated training methodology.
+- Robust Cross-Platform Generalization: UI-Venus demonstrates exceptional adaptability across different operating systems and input modalities. It excels not only in programmatic Android environments but also in dynamic web navigation (WebVoyager). Furthermore, the models show strong visual-only reasoning capabilities, outperforming XML-augmented baselines in Android Lab even when relying solely on raw screenshots.
+Browser Navigation
+Citation
+Please consider citing if you find our work useful:
+@misc{venusteam2026uivenus15technicalreport,
+      title={UI-Venus-1.5 Technical Report},
+      author={Venus Team and Changlong Gao and Zhangxuan Gu and Yulin Liu and Xinyu Qiu and Shuheng Shen and Yue Wen and Tianyu Xia and Zhenyu Xu and Zhengwen Zeng and Beitong Zhou and Xingran Zhou and Weizhi Chen and Sunhao Dai and Jingya Dou and Yichen Gong and Yuan Guo and Zhenlin Guo and Feng Li and Qian Li and Jinzhen Lin and Yuqi Zhou and Linchao Zhu and Liang Chen and Zhenyu Guo and Changhua Meng and Weiqiang Wang},
+      year={2026},
+      eprint={2602.09082},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.09082},
+}
+@misc{gu2025uivenustechnicalreportbuilding,
+      title={UI-Venus Technical Report: Building High-performance UI Agents with RFT},
+      author={Zhangxuan Gu and Zhengwen Zeng and Zhenyu Xu and Xingran Zhou and Shuheng Shen and Yunfei Liu and Beitong Zhou and Changhua Meng and Tianyu Xia and Weizhi Chen and Yue Wen and Jingya Dou and Fei Tang and Jinzhen Lin and Yulin Liu and Zhenlin Guo and Yichen Gong and Heng Jia and Changlong Gao and Yuan Guo and Yong Deng and Zhenyu Guo and Liang Chen and Weiqiang Wang},
+      year={2025},
+      eprint={2508.10833},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2508.10833},
+}
+- Downloads last month
+- 2,221
+Model tree for inclusionAI/UI-Venus-1.5-30B-A3B
+Collection including inclusionAI/UI-Venus-1.5-30B-A3B
+Papers for inclusionAI/UI-Venus-1.5-30B-A3B
+UI-Venus-1.5 Technical Report
+UI-Venus Technical Report: Building High-performance UI Agents with RFT
+Evaluation results
+- likaixin/ScreenSpot-Pro leaderboard
+- Overall View evaluation resultssource
+- Android Studio Macos View evaluation resultssource
+- Autocad Windows View evaluation resultssource</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-27T06:32:16Z</p></footer>
+</body>
+</html>

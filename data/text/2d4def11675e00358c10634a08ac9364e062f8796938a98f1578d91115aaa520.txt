@@ -1,0 +1,97 @@
+GR00T-H-N1.7
+Model Overview
+Description:
+GR00T-H-N1.7 is a post-trained variant of NVIDIA Isaac GR00T N1.7 for surgical robots. It builds on the GR00T N1.7 VLA foundation and adapts it using the Open-H embodiment dataset.
+This model is ready for commercial use.
+The neural network architecture is inherited from the GR00T N1.7 series of models, combining a vision-language foundation model with a diffusion transformer head that denoises continuous actions.
+License/Terms of Use:
+NVIDIA Open Model License
+You are responsible for ensuring that your use of NVIDIA provided models complies with all applicable laws.
+Deployment Geography:
+Global
+Use Case:
+Researchers, Academics, Open-Source Community: Healthcare-focused robotics research and algorithm development.
+Intended Use
+GR00T-H-N1.7 is intended for use in robotics R&D, including exploration of surgical robotics and robotic ultrasound policies, benchmarking, and method development. It is not intended for clinical deployment, patient care, or medical decision-making.
+References(s):
+- Open-H Paper: Open-H-Embodiment: A Large-Scale Dataset for Enabling Foundation Models in Medical Robotics
+- Base Model: GR00T-N1.7-3B
+- GR00T Website: NVIDIA Isaac GR00T
+- GR00T N1 White Paper: https://arxiv.org/abs/2503.14734
+- Cosmos-Reason2: NVIDIA. "Cosmos-Reason2: An Open, Customizable, Reasoning Vision Language Model." NVIDIA Documentation (2026).
+- Liu, Xingchao, and Chengyue Gong. "Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow." The Eleventh International Conference on Learning Representations.
+- Flow Matching Policy:
+Black, Kevin, et al. "pi0: A Vision-Language-Action Flow Model for General Robot Control." arXiv preprint arXiv:2410.24164 (2024).
+Model Architecture:
+Architecture Type: Vision Transformer, Multilayer Perceptron, Flow matching Transformer
+This model was developed based on GR00T N1.7.
+Number of model parameters: 3B
+GR00T-H-N1.7 uses Cosmos-Reason2-2B to encode the robot's image observations and text instructions. The architecture handles a varying number of views per embodiment by concatenating image token embeddings from all frames into a sequence, followed by language token embeddings.
+To model proprioception and a sequence of actions conditioned on observations, GR00T-H-N1.7 uses a flow matching transformer. The flow matching transformer interleaves self-attention over proprioception and actions with cross-attention to the Cosmos-Reason2-2B vision and language embeddings. During training, the input actions are corrupted by randomly interpolating between the clean action vector and a Gaussian noise vector. At inference time, the policy first samples a Gaussian noise vector and iteratively reconstructs a continuous-value action using its velocity prediction.
+Network Architecture: The schematic diagram is shown in the illustration above. Red, Green, Blue (RGB) camera frames are processed through a pre-trained vision transformer (SigLip2). Robot proprioception is encoded using a multi-layer perceptron (MLP) indexed by the embodiment ID. To handle variable-dimension proprio, inputs are padded to a configurable max length before feeding into the MLP. Actions are encoded and velocity predictions decoded by an MLP, one per unique embodiment. The flow matching transformer is implemented as a diffusion transformer (DiT), in which the diffusion step conditioning is implemented using adaptive layernorm (AdaLN).
+Input(s):
+Input Type(s):
+- Vision: Image Frames
+- State: Robot Proprioception
+- Language Instruction: Text
+Input Format(s):
+- Vision: Variable number of image frames from robot cameras
+- State: Floating Point
+- Language Instruction: String
+Input Parameters:
+- Vision - Two-Dimensional (2D) - Red, Green, Blue (RGB) image, any resolution
+- State: One-Dimensional (1D) - Floating number vector
+- Language Instruction: One-Dimensional (1D) - String
+Output(s)
+Output Type(s): Actions
+Output Format Continuous-value vectors
+Output Parameters: Two-Dimensional (2D)
+Other Properties Related to Output: Continuous-value vectors correspond to different motor controls on a robot, which depends on Degrees of Freedom of the robot embodiment.
+Our AI models are designed and/or optimized to run on NVIDIA GPU-accelerated systems. By leveraging NVIDIA's hardware (e.g. GPU cores) and software frameworks (e.g., CUDA libraries), the model achieves faster training and inference times compared to CPU-only solutions.
+Software Integration:
+Runtime Engine(s): PyTorch, TensorRT
+Supported Hardware Microarchitecture Compatibility: All of the below:
+- NVIDIA Ampere
+- NVIDIA Blackwell
+- NVIDIA Hopper
+- NVIDIA Jetson
+- NVIDIA Lovelace
+Supported Operating System:
+- Ubuntu
+Model Version(s):
+GR00T-H-N1.7, post-trained from GR00T N1.7
+Training, Testing, and Evaluation Datasets:
+Dataset Overview:
+- Full Open-H-Embodiment Dataset: 770 hours; 124,019 episodes; 119 datasets; 20 robot platforms; 50+ institutions
+- Post-Training Subset: 601 hours (real-world surgical tasks only); ~63,930 episodes; 58 datasets; 7 robot platforms
+- Dataset partition: Training 98%, Testing N/A (real-world robot evaluation only), Validation 2%
+Training Data Summary
+GR00T-H-N1.7 is adapted from the upstream GR00T N1.7 foundation model using an Open-H post-training phase. The full Open-H-Embodiment dataset contains 770 hours of paired video and kinematic data across 124,019 episodes with synchronized streams such as video, kinematics, force/torque, ultrasound, and domain-specific sensors. For post-training, a 601-hour real-world surgical subset of the full 770-hour corpus is used. Only real-world surgical datasets are used; ultrasound, endoscopy, and simulation data is left for future work. The Versius-500 contribution is capped at 20% of training steps to prevent any single embodiment from dominating the loss signal; remaining datasets are sampled proportionally to their size.
+GR00T-H-N1.7 was trained on 7 robot platforms across 58 datasets: CMR Versius, dVRK, dVRK-Si, Rob Surgical BiTrack, KUKA LBR iiwa, USTC Torin, and UR5e.
+To enable better cross-embodiment transfer, the action space was standardized to relative end-effector (EEF) positioning. Additionally, camera configurations were standardized to include only (A) a single third-person monocular view, or (B) a third-person monocular view with wrist camera(s) and/or additional modalities (e.g., ultrasound images).
+The Open-H dataset was collected by more than 50 institutions across the globe. Data collection took place in various settings, including simulation, benchtop, ex vivo, in vivo, and clinical environments. Depending on the dataset, robots were teleoperated either programmatically or by engineers, researchers, medical students, or professional surgeons.
+For more information, see the Open-H-Embodiment project page.
+Training Dataset:
+- Data Modality: Video, Kinematics
+- Video Training Data Size: 601 hours
+- Kinematic Training Data Size: 601 hours
+- Data Collection Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Labeling Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Properties:
+  - Open-H is a healthcare robotics dataset comprised of time-synchronized video and kinematics, as well as text labels describing the task being completed.
+Evaluation Dataset:
+- Data Collection Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Labeling Method: Hybrid: Automatic/Sensors, Human, Synthetic
+- Properties:
+  - 2% of the training dataset was held-out for training-time validation.
+  - Primary evaluations are conducted in the real-world without a dataset.
+Inference:
+Acceleration Engine: TensorRT Test Hardware: NVIDIA Ampere, Ada, and Blackwell GPUs
+Ethical Considerations:
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications.  Developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+
+Please make sure you have proper rights and permissions for all input image and video content; if image or video includes people, personal health information, or intellectual property, the image or video generated will not blur or maintain proportions of image subjects included.
+For more detailed information on ethical considerations for this model, please see the Model Card++ Explainability, Bias, Safety & Security, and Privacy Subcards.
+Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
+- Downloads last month
+- 417
