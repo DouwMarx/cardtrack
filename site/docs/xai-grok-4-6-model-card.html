@@ -47,7 +47,7 @@
     <dt>Versions</dt>
     <dd>2</dd>
     <dt>Notes</dt>
-    <dd>Co-published: Cursor hosts a byte-identical copy of this PDF at https://cursor.com/resources/grok-4-6-model-card.pdf (md5 5faf54cc75e26c987541719b7e2d56f1 for both, verified 2026-08-13), announced at cursor.com/blog/grok-4-6-model-card. The card states Grok 4.6 was &#39;developed in collaboration with Cursor&#39; and &#39;received supplemental training on anonymized Cursor workflow data&#39;. Mirrors the Grok 4.5 pair already in the corpus (media.x.ai 4p5 PDF + cursor.com/resources/grok-4-5-model-card.pdf). Section 7 says third-party evaluators independently validated the cyber results but does not name them.</dd>
+    <dd>Co-published: Cursor hosts its own copy of this PDF at https://cursor.com/resources/grok-4-6-model-card.pdf. The two were byte-identical on 2026-08-13 (md5 5faf54cc75e26c987541719b7e2d56f1 for both) but have since diverged: xAI revised this card in place to Revision 2026-08-17 (md5 7640cdde745a18a2390cd5fbde55fd55, fetched 2026-08-28; changelog: renumbered sections, added PartBench and DeepSearchQA results, KernelBenchInternal v1.1, corrected results on HackerBench v0.2, Self-harm, MASK and LAB), while Cursor still serves the unchanged launch-day Revision 2026-08-12. Cursor&#39;s copy is therefore the only surviving public edition of the launch-day card, including the pre-correction numbers. Proposals to catalogue it separately were routed to needs-review as content_duplicate_of this row on 2026-08-22 and again on 2026-08-28, announced at cursor.com/blog/grok-4-6-model-card. The card states Grok 4.6 was &#39;developed in collaboration with Cursor&#39; and &#39;received supplemental training on anonymized Cursor workflow data&#39;. Mirrors the Grok 4.5 pair already in the corpus (media.x.ai 4p5 PDF + cursor.com/resources/grok-4-5-model-card.pdf). Section 7 says third-party evaluators independently validated the cyber results but does not name them.</dd>
   </dl>
 
   <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20xai-grok-4-6-model-card&amp;body=Document%3A%20xai-grok-4-6-model-card%0AURL%3A%20https%3A//media.x.ai/v1/website/card-4p6-4cd2dc57.pdf%0AFingerprint%3A%201a6748d17def11ae6817cc866e167e552066dbdc27862406d9d51af348edc422%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
@@ -78,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -105,6 +105,15 @@
           <div class="just">xAI has revised the Grok 4.6 model card in place at its canonical URL. The corpus holds the launch-day bytes (sha256 4644ad7b..., 524,224 B, captured 2026-08-13); the live PDF is now sha256 1fbb3ab6... / md5 7640cdde..., 540,844 B, and its cover reads &#39;Revision: 2026-08-17&#39; against an unchanged cover date of August 12, 2026. The new edition opens with a Changelog page dated August 17, 2026 listing: updated section numbering for consistency across the card inventory; added PartBench results and graph; new DeepSearchQA results; KernelBenchInternal updated to v1.1 reporting results on a more difficult task split; clarity updates to prose and figures; and -- the substantive item -- &#39;Corrected eval results on HackerBench v0.2, Self-harm, MASK, LAB.&#39; Those are four safety and behavioural evaluations whose numbers the corpus currently serves from the superseded edition, including the HackerBench v0.2 harmful/dual-use compliance figure quoted in this row&#39;s own add justification. The table of contents also changed structurally: the revision adds sections 4.3 PartBench, 4.4 CADGenBench, 4.5 CADBench and 6 &#39;Search capabilities and factuality&#39; (6.1 Factuality/Hallucination, 6.2 DeepSearchQA), and drops &#39;Vals Index&#39;; the card grew from 34 to 40+ pages. I fetched and read both editions and compared them page by page. Detected by hand, not by the monitor: Phase A fingerprinted only 37 of 244 active documents this run and this PDF was not among them.</div>
           <div class="evidence">Evidence:
 <a href="https://cursor.com/resources/grok-4-6-model-card.pdf" rel="noopener nofollow">https://cursor.com/resources/grok-4-6-model-card.pdf</a> · <a href="https://cursor.com/grok" rel="noopener nofollow">https://cursor.com/grok</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-28T07:39:54Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-08-28T07:28Z-local · agent · lead: agent_search</span>
+          <div class="just">notes: "Co-published: Cursor hosts a byte-identical copy of this PDF at https://cursor.com/resources/grok-4-6-model-card.pdf (md5 5faf54cc75e26c987541719b7e2d56f1 for both, verified 2026-08-13), announced at cursor.com/blog/grok-4-6-model-card. The card states Grok 4.6 was \u0027developed in collaboration with Cursor\u0027 and \u0027received supplemental training on anonymized Cursor workflow data\u0027. Mirrors the Grok 4.5 pair already in the corpus (media.x.ai 4p5 PDF + cursor.com/resources/grok-4-5-model-card.pdf). Section 7 says third-party evaluators independently validated the cyber results but does not name them." → "Co-published: Cursor hosts its own copy of this PDF at https://cursor.com/resources/grok-4-6-model-card.pdf. The two were byte-identical on 2026-08-13 (md5 5faf54cc75e26c987541719b7e2d56f1 for both) but have since diverged: xAI revised this card in place to Revision 2026-08-17 (md5 7640cdde745a18a2390cd5fbde55fd55, fetched 2026-08-28; changelog: renumbered sections, added PartBench and DeepSearchQA results, KernelBenchInternal v1.1, corrected results on HackerBench v0.2, Self-harm, MASK and LAB), while Cursor still serves the unchanged launch-day Revision 2026-08-12. Cursor\u0027s copy is therefore the only surviving public edition of the launch-day card, including the pre-correction numbers. Proposals to catalogue it separately were routed to needs-review as content_duplicate_of this row on 2026-08-22 and again on 2026-08-28, announced at cursor.com/blog/grok-4-6-model-card. The card states Grok 4.6 was \u0027developed in collaboration with Cursor\u0027 and \u0027received supplemental training on anonymized Cursor workflow data\u0027. Mirrors the Grok 4.5 pair already in the corpus (media.x.ai 4p5 PDF + cursor.com/resources/grok-4-5-model-card.pdf). Section 7 says third-party evaluators independently validated the cyber results but does not name them."</div>
+          <div class="just">The row&#39;s notes assert that Cursor&#39;s copy is byte-identical to this PDF, verified 2026-08-13. That is no longer true: I downloaded both today and xAI&#39;s canonical copy is now Revision 2026-08-17 (md5 7640cdde745a18a2390cd5fbde55fd55) against Cursor&#39;s unchanged Revision 2026-08-12 (md5 5faf54cc75e26c987541719b7e2d56f1), word-level diff similarity 0.705. The note is public on the site and now misstates the relationship between the two copies; this corrects it and records that the launch-day edition survives only at Cursor.</div>
+          <div class="evidence">Evidence:
+<a href="https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf" rel="noopener nofollow">https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf</a> · <a href="https://cursor.com/resources/grok-4-6-model-card.pdf" rel="noopener nofollow">https://cursor.com/resources/grok-4-6-model-card.pdf</a>          </div>
       </li>
     </ol>
     </details>
@@ -1457,6 +1466,6 @@ main text and link to a primary source. Internal evaluations are not listed.
   </section>
 </article>
 
-<footer><p>Built 2026-08-27T06:32:16Z</p></footer>
+<footer><p>Built 2026-08-28T07:46:36Z</p></footer>
 </body>
 </html>

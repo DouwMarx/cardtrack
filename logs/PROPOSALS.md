@@ -965,3 +965,60 @@ the table above from `state_summary.json`, filtering `doc_type='model_card'` row
 `model_names` for a slug encoding a name other than the canonical URL's target; friction lines
 `slug_derivation_misnames_family_documents` (2026-08-19, 2026-08-20, 2026-08-27); the family-row
 ruling in the 2026-08-19 PROPOSALS entry.
+
+## 2026-08-28 — The agent cannot see what the validator already refused, and today that cost a third review issue on one URL
+
+**Problem.** This morning I proposed `cursor.com/resources/grok-4-6-model-card.pdf` as an `add`. The
+validator routed it to needs-review as `content_duplicate_of:xai-grok-4-6-model-card` — the same URL,
+the same verdict, and the same reasoning as the 2026-08-22 run, which wrote the entry six sections up
+and recorded explicitly that it had *not* retried. I retried it anyway. Not from disagreement: from
+ignorance. There are now three needs-review issues about one URL — #28 (2026-08-13), #31 (2026-08-22)
+and today's outbox entry — each asking a human to adjudicate the identical question from cold.
+
+Human review time is the one resource this system says it cannot spare, and the daily agent has no way
+to avoid spending it twice. Every input it is handed describes what *is* in the corpus, never what was
+refused:
+
+- `state_summary.json` — documents only: slug, publisher, doc_type, model_names, canonical_url, status,
+  publication_date, last_checked. No rejections, no filed issues.
+- `candidates.json` — no triage state (2026-08-17 entry, still open).
+- `open_issues.json` — `[]` this run, because Phase B could not reach `api.github.com`. There were in
+  fact four open issues. An empty array and a failed fetch are the same file, and the prompt says to
+  trust it. Had it been populated, #28 and #31 would have stopped me cold.
+- `PROPOSALS.md` — 900+ lines of prose. The answer *was* in here. Reading it end to end before every
+  triage decision is not a workable protocol, and it is not what the prompt asks for.
+
+The information already exists and is already structured: `changelog` holds every `rejected` and
+`issue_filed` row with its reason, and `issues_outbox.jsonl` holds every filed issue.
+
+**Suggested change**, cheapest first:
+
+1. **Add a `recent_rejections` block to `state_summary.json`** — the last ~60 days of non-`written`
+   proposal outcomes as `{url, action, reason, run_id, issue_ref}`. One query against `changelog`,
+   no schema change, and it makes "has this been refused before?" a lookup instead of an act of memory.
+   Instruct the agent to check a URL against it before proposing.
+2. **Make a failed fetch look like a failure.** `open_issues.json` should carry `{"fetch_ok": false}`
+   or not be written at all when the GitHub call errors, so the agent can say "I could not check" instead
+   of "there is nothing to check". Same ask as the 2026-08-21 Phase A entry, different file — today both
+   failure modes fired in the same run and compounded.
+3. **Optional, and it subsumes 1 for this case:** have `propose_doc.py` refuse a proposal whose
+   (url, action) already has an open `issue_filed` outcome, with `reason: already_under_review:#31`.
+   That is a hard stop rather than a hint, and it costs one indexed lookup on the write path.
+
+Note this is *not* the 2026-08-25 entry ("skip decisions live only in a prose log"). That one asks for
+the agent's own skips to be recorded. This one is about outcomes the system itself produced, wrote to its
+own database, and then did not show back to the only actor that could act on them.
+
+**Evidence:** today's `outbox:1` against issues #28 and #31 on `DouwMarx/cardtrack`, both titled
+"needs-review: proposed URL duplicates content of xai-grok-4-6-model-card"; the 2026-08-22 PROPOSALS
+entry recording the prior rejection and the decision not to retry; `logs/open_issues.json` = `[]` this
+run against a live `api.github.com` query returning four open issues; friction lines
+`rejected_proposal_re_filed_because_prior_validator_rejections_are_invisible_to_the_next_run` and
+`open_issues_json_empty_because_the_github_fetch_failed_not_because_there_are_no_issues`.
+
+**One thing that did work, for the record:** the divergence I re-proposed on is real and new — xAI
+revised its Grok 4.6 card in place to Revision 2026-08-17 (md5 `7640cdde…`, correcting HackerBench v0.2,
+Self-harm, MASK and LAB results) while Cursor still serves the launch-day Revision 2026-08-12 (md5
+`5faf54cc…`), word-diff similarity 0.705. I corrected the `notes` on `xai-grok-4-6-model-card`, which
+still asserted byte-identity, and commented the evidence on #31. The 2026-08-22 ask — make the
+content-duplicate check publisher-aware — stands unchanged and is not re-argued here.

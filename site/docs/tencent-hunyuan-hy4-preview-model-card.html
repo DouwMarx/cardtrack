@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hy4 preview Model Card — cardtrack</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=570f0bec74">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">cardtrack</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Hy4 preview Model Card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://hunyuan.tencent.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">tencent_hunyuan</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Hy4 preview</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-08-27</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/tencent/Hy4-preview" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/tencent/Hy4-preview</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-08-28T07:39:38Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>HF createdAt 2026-08-27T08:52:40Z, lastModified 2026-08-28T07:15Z per the HF API. Hy4-preview-FP8 (https://huggingface.co/tencent/Hy4-preview-FP8, created the same day) is the FP8 quantization of this release and is covered by this entry per the size/quantization rule. Tencent also mirrors the same card on ModelScope, GitCode and CNB - same publisher, other platforms, so mirrors rather than co-publications. Found by querying the HuggingFace API by creation date, not by index diffing: Phase A returned errors on all 260 documents this run and surfaced 0 new candidates, and this release is absent from candidates.json. has_safety_evals=false: no safety, red-team, misuse or risk content anywhere in the card.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy4-preview-model-card&amp;body=Document%3A%20tencent-hunyuan-hy4-preview-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy4-preview%0AFingerprint%3A%20e7af8c03d66e585b42f24a5ae31456534a87ba582b78ba589defec403f28c33d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-08-28T07:39:38Z</td>
+          <td>text/html</td>
+          <td>306,907</td>
+          <td><code title="e7af8c03d66e585b42f24a5ae31456534a87ba582b78ba589defec403f28c33d">e7af8c03d66e585b</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-08-28T07:39:38Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-08-28T07:28Z-local · agent · lead: agent_search</span>
+          <div class="just">Tencent&#39;s new flagship open-weight generation, released 2026-08-27 (HF createdAt 2026-08-27T08:52:40Z, 113 likes within a day) and the successor to Hy3 preview and Hy3, both already in the corpus. I fetched and read the full card: a 770B-total / 49B-activated MoE with 78 layers, 256 routed experts, Gated DeepSeek Sparse Attention with IndexCache, identity Hyper-Connections, a native MTP layer and 1M context. The card is a first-party model card on Tencent&#39;s own HF org (a configured index_url), not press coverage, and it is a distinct model release rather than a variant of anything held: the Hy4-preview-FP8 repo is a quantization of this same release and is covered by this entry, per the size/quantization rule. Notability is not in doubt - Tencent announced it as its new open-source flagship, it is covered independently in the Chinese tech press, and the card reports a blind side-by-side evaluation in which 163 internal Tencent experts rated 203 engineering tasks, putting Hy4 preview at 2.99 against GLM 5.3 at 2.92 and Kimi K3 at 2.94. has_safety_evals is false and I checked for it specifically: the card carries architecture, benchmark-image appendix, a &#39;Known Limitations&#39; paragraph about over-long reasoning and over-verification, deployment and quantization instructions, and nothing on safety, red-teaming, misuse, refusals or risk - a grep of the full README for safety/red-team/risk/jailbreak/harm/bio/cyber returns no matches. openness is open_weight_permissive: the HF metadata and the card both give Apache-2.0.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/Hy4-preview" rel="noopener nofollow">https://huggingface.co/tencent/Hy4-preview</a> · <a href="https://github.com/Tencent-Hunyuan/Hy4-preview" rel="noopener nofollow">https://github.com/Tencent-Hunyuan/Hy4-preview</a> · <a href="https://modelscope.cn/models/Tencent-Hunyuan/Hy4-preview" rel="noopener nofollow">https://modelscope.cn/models/Tencent-Hunyuan/Hy4-preview</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/tencent/Hy4-preview" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use tencent/Hy4-preview with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use tencent/Hy4-preview with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;tencent/Hy4-preview&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+pipe(messages)# Load model directly
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&#34;tencent/Hy4-preview&#34;, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use tencent/Hy4-preview with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;tencent/Hy4-preview&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;tencent/Hy4-preview&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/tencent/Hy4-preview
+-  SGLang  How to use tencent/Hy4-preview with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;tencent/Hy4-preview&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;tencent/Hy4-preview&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;tencent/Hy4-preview&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;tencent/Hy4-preview&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: &#34;What is the capital of France?&#34;
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use tencent/Hy4-preview with Docker Model Runner: docker model run hf.co/tencent/Hy4-preview
+中文 ｜ English
+
+🖥️ Official Website | 💬 GitHub
+Table of Contents
+Model Introduction
+Hy4 preview is a new-generation Mixture-of-Experts (MoE) flagship model developed by the Tencent Hy Team. The model comprises 770B total parameters, of which 49B are activated per token. The backbone consists of 78 layers, where the first layer uses a standard dense FFN and the remaining 77 layers replace it with MoE, each containing 256 routed experts and 1 shared expert; every token activates the top-8 routed experts along with the shared expert. In addition to the backbone, 1 native MTP layer (10B total parameters, 0.7B activated) is built in for speculative decoding.
+On the architecture side, inspired by DeepSeek and GLM, the attention module employs Gated DeepSeek Sparse Attention (Gated DSA) with IndexCache for cross-layer sparse index reuse. The residual pathway uses iHC (identity Hyper-Connections) to expand inter-layer information flow.
+Model Specifications
+The table below lists backbone parameters only, excluding the MTP layer.
+| Property | Value |
+|---|---|
+| Architecture | Mixture-of-Experts (MoE) |
+| Total Parameters | 770B |
+| Activated Parameters | 49B |
+| Layers | 78 |
+| Hidden Size | 6144 |
+| Attention Type | Gated DSA |
+| Attention Heads | 64 |
+| Query Compression Dimension | 2048 |
+| Key-Value Compression Dimension | 512 |
+| Indexer Heads / Head Dimension | 32 / 128 |
+| Indexer top-k | 2048 |
+| Residual Streams | 4 |
+| Routed Experts | 256 |
+| Shared Experts | 1 |
+| Activated Routed Experts per Token | 8 |
+| MoE Intermediate Size | 2048 |
+| FFN Intermediate Size | 18432 |
+| Context Length | 1M |
+| Vocabulary Size | 120832 |
+A New Flagship Generation
+We scaled Hy4 preview on three fronts: model size, context length, and training data. Stronger pre-training and a substantially larger post-training run compound into another step change in capability — the largest generation-over-generation gain we&#39;ve measured, and enough to put Hy4 preview at the open-source frontier.
+Built for Productivity
+We partnered with top experts inside Tencent — such as software engineers, game developers, finance analysts, and security experts — and built training data around the work they ship. The result is a model that gets meaningfully further on the tasks these teams run every day:
+Software engineering: Better at understanding, planning, debugging, and verifying long-horizon development tasks, with further gains in the visual taste and interaction quality of front-end work.
+Office and analysis: Takes messy context spread across many files and converts it into shareable artifacts — documents, spreadsheets, and presentations — handling data analysis, equations, and financial models with greater precision.
+Game development: Turns a single prompt into a playable prototype and works fluently with game engines, so developers can keep refining complex projects over multiple turns.
+Scientific research: Stronger understanding, reasoning, and problem-solving on hard research questions, with solid progress across AI research, molecular dynamics, condensed matter physics, and pure mathematics.
+We also continue to co-design Hy4 preview with Tencent products like CodeBuddy and WorkBuddy, so that gains in the model show up in the work people actually do with it. To check that, we ran a blind side-by-side evaluation: 163 internal experts rated model outputs on 203 engineering tasks. Hy4 preview came out slightly ahead of both GLM 5.3 (2.99 vs. 2.92 average, 46.8% wins / 12.8% ties / 40.4% losses) and Kimi K3 (2.99 vs. 2.94, 51.2% wins / 7.9% ties / 40.9% losses).
+Benchmark Appendix
+Known Limitations
+This is an early version of Hy4. There is real headroom left in both pre-training and post-training, and we are shipping with known issues — among them, spending longer than necessary reasoning through complex tasks, and a tendency to over-verify its own work. We&#39;ll keep iterating quickly on these. As with Hy3 preview, we would rather ship early and hear what breaks — that&#39;s what made Hy3 substantially better, and it&#39;s how we will get Hy4 right. We will also keep collaborating closely with Tencent&#39;s products and in-house experts to push the boundaries of model intelligence while making it more abundant and affordable.
+News
+- 🔥 We open-source Hy4 preview and Hy4 preview-FP8 model weights on Hugging Face, ModelScope, GitCode, and CNB.
+Model Links
+| Model Name | Description | Hugging Face | ModelScope | GitCode | CNB |
+|---|---|---|---|---|---|
+| Hy4 preview | Instruct model | 🤗 Model | Model | Model | Model |
+| Hy4 preview-FP8 | FP8 quantized instruct model | 🤗 Model | Model | Model | Model |
+Quickstart
+Deploy Hy4 preview with vLLM or SGLang first, then call the OpenAI-compatible API:
+from openai import OpenAI
+client = OpenAI(base_url=&#34;http://127.0.0.1:8000/v1&#34;, api_key=&#34;EMPTY&#34;)
+response = client.chat.completions.create(
+    model=&#34;hy4-preview&#34;,
+    messages=[
+        {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello! Can you briefly introduce yourself?&#34;},
+    ],
+    temperature=0.9,
+    top_p=1.0,
+)
+print(response.choices[0].message.content)
+Recommended parameters: temperature=0.9, top_p=1.0.
+Reasoning mode: Defaults to &#34;high&#34; (deep chain-of-thought), which suits complex tasks such as math, coding, and reasoning. For direct responses, pass extra_body={&#34;chat_template_kwargs&#34;: {&#34;reasoning_effort&#34;: &#34;no_think&#34;}}.
+See the Deployment section below for how to start the API server.
+Deployment
+For production serving, we recommend using vLLM or SGLang.
+vLLM
+Build vLLM from source:
+uv venv --python 3.12 --seed --managed-python
+source .venv/bin/activate
+git clone https://github.com/vllm-project/vllm.git
+cd vllm
+uv pip install --editable . --torch-backend=auto
+Start the vLLM server with MTP enabled:
+vllm serve tencent/Hy4-preview-FP8 \
+  --tensor-parallel-size 8 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --attention-backend FLASHMLA_SPARSE \
+  --tool-call-parser hy_v4 \
+  --reasoning-parser hy_v4 \
+  --enable-auto-tool-choice \
+  --port 8000 \
+  --served-model-name hy4-preview
+Or use official prebuilt image vllm/vllm-openai:hy4-preview:
+docker run --gpus all \
+  -p 8000:8000 \
+  --ipc=host \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  vllm/vllm-openai:hy4-preview tencent/Hy4-preview-FP8 \
+    --tensor-parallel-size 8 \
+    --speculative-config &#39;{&#34;num_speculative_tokens&#34;:3,&#34;method&#34;:&#34;mtp&#34;}&#39; \
+    --attention-backend FLASHMLA_SPARSE \
+    --tool-call-parser hy_v4 \
+    --reasoning-parser hy_v4 \
+    --enable-auto-tool-choice \
+    --port 8000 \
+    --served-model-name hy4-preview
+SGLang
+Use the official prebuilt image lmsysorg/sglang:hy4-preview (multi-arch, x86 and Arm):
+docker pull lmsysorg/sglang:hy4-preview
+docker run --gpus all --ipc=host -p 8000:8000 lmsysorg/sglang:hy4-preview \
+  python3 -m sglang.launch_server \
+    --model tencent/Hy4-preview-FP8 \
+    --tp-size 8 \
+    --reasoning-parser auto \
+    --tool-call-parser auto \
+    --speculative-algorithm NEXTN \
+    --speculative-num-steps 3 \
+    --speculative-eagle-topk 1 \
+    --speculative-num-draft-tokens 4 \
+    --port 8000 \
+    --served-model-name hy4-preview
+Finetuning
+Hy4 preview provides a complete model finetuning pipeline. For detailed documentation, please refer to: Finetuning Guide
+Quantization
+We provide AngelSlim, a more accessible, comprehensive, and efficient toolkit for large model compression. AngelSlim supports a comprehensive suite of compression tools for large-scale multimodal models, including common quantization algorithms, low-bit quantization, and speculative sampling.
+License
+Hy4 preview is released under the Apache License 2.0. See LICENSE for details.
+Contact Us
+If you have any questions or suggestions, feel free to reach out to our R&amp;D and product teams via email:
+📧 hunyuan_opensource@tencent.com
+Hy4 preview is developed by the Tencent Hy Team.
+- Downloads last month
+- -
+Collection including tencent/Hy4-preview
+Papers for tencent/Hy4-preview
+IndexCache: Accelerating Sparse Attention via Cross-Layer Index Reuse
+DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models
+Evaluation results
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   92.3
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
+- benchflow/skillsbench · Skillsbench V1 1 View evaluation results leaderboard
+- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results leaderboard
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Built 2026-08-28T07:46:36Z</p></footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-27T06:32:16Z",
+ "generated_at": "2026-08-28T07:46:36Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -148,6 +148,31 @@
   }
  },
  "documents": [
+  {
+   "slug": "tencent-hunyuan-hy4-preview-model-card",
+   "title": "Hy4 preview Model Card",
+   "publisher": "tencent_hunyuan",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Hy4 preview"
+   ],
+   "publication_date": "2026-08-27",
+   "canonical_url": "https://huggingface.co/tencent/Hy4-preview",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-28T07:39:38Z",
+   "last_checked": "2026-08-28T07:39:38Z",
+   "last_changed": "2026-08-28T07:39:38Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "content_hash": "315e6e36f854393a7d4b87438ac533e783d930dc2dd1ad3cd10c608bbda50c8f",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-28T07:39:38Z",
+   "content_fingerprint": "e7af8c03d66e585b42f24a5ae31456534a87ba582b78ba589defec403f28c33d",
+   "version_count": 1
+  },
   {
    "slug": "alibaba-qwen-qwen3-8-flash-next-model-card",
    "title": "Qwen3.8-Flash-Next",
@@ -682,8 +707,8 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-13T06:25:01Z",
-   "last_checked": "2026-08-27T06:18:05Z",
-   "last_changed": "2026-08-22T06:29:30Z",
+   "last_checked": "2026-08-28T07:39:54Z",
+   "last_changed": "2026-08-28T07:39:54Z",
    "source_of_lead": "phase_a_candidate",
    "safety_evals": 1,
    "openness": "closed",
@@ -2742,7 +2767,7 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-09T15:57:50Z",
-   "last_checked": "2026-08-27T06:17:09Z",
+   "last_checked": "2026-08-28T07:41:31Z",
    "last_changed": "2026-08-22T06:19:06Z",
    "source_of_lead": "agent_search",
    "safety_evals": 1,
@@ -3114,7 +3139,7 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-09T16:01:25Z",
-   "last_checked": "2026-08-27T06:17:12Z",
+   "last_checked": "2026-08-28T07:41:29Z",
    "last_changed": "2026-08-24T06:22:09Z",
    "source_of_lead": "agent_search",
    "safety_evals": 1,
@@ -4112,6 +4137,7 @@
    "doc_type": "model_card",
    "is_independent": 0,
    "model_names": [
+    "Gemini Omni 1.1 Flash",
     "Gemini Omni Flash"
    ],
    "publication_date": "2026-05-19",
@@ -4119,16 +4145,16 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-09T19:47:44Z",
-   "last_checked": "2026-08-27T06:17:16Z",
-   "last_changed": "2026-08-12T10:02:30Z",
+   "last_checked": "2026-08-28T07:39:19Z",
+   "last_changed": "2026-08-28T07:39:19Z",
    "source_of_lead": "index_diff",
    "safety_evals": 0,
    "openness": "closed",
-   "content_hash": "7a987833c84dfefa04878f331e5717b44b860c62f8c71437cd755775b405c499",
+   "content_hash": "9ae24c604b0076e5890fd6601d08f1b92000f53c95fbeb1a26629a8ba0537f34",
    "content_type": "text/html",
-   "version_fetched_at": "2026-08-09T19:47:44Z",
-   "content_fingerprint": "453cde44ae26dfab7898d156bff19e5eae0a98da66a4e2c0a9639a74b6fe1d27",
-   "version_count": 1
+   "version_fetched_at": "2026-08-28T07:39:11Z",
+   "content_fingerprint": "272a18a14d415ffa88839f0d0b765597d500c869eb5b0f3fcb3b8a567f698d12",
+   "version_count": 2
   },
   {
    "slug": "metr-claude-opus-4-6-independent-eval",
@@ -4832,7 +4858,7 @@
    "alt_urls": [],
    "status": "active",
    "first_seen": "2026-08-09T15:57:51Z",
-   "last_checked": "2026-08-27T06:17:09Z",
+   "last_checked": "2026-08-28T07:41:30Z",
    "last_changed": "2026-08-25T06:19:08Z",
    "source_of_lead": "agent_search",
    "safety_evals": 1,
