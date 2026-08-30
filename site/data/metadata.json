@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-29T09:12:42Z",
+ "generated_at": "2026-08-30T09:54:14Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -148,6 +148,33 @@
   }
  },
  "documents": [
+  {
+   "slug": "anthropic-claude-opus-4-8-other-3",
+   "title": "Automated researchers can reliably mitigate alignment failures",
+   "publisher": "anthropic",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Opus 4.8",
+    "Claude Sonnet 5",
+    "Gemma-2-2B"
+   ],
+   "publication_date": "2026-08-28",
+   "canonical_url": "https://www.anthropic.com/research/automated-researchers-mitigate-alignment-failures",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-30T09:46:07Z",
+   "last_checked": "2026-08-30T09:46:07Z",
+   "last_changed": "2026-08-30T09:46:07Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 1,
+   "openness": null,
+   "content_hash": "eb2c2e8d9245bfe876b410763aac3d4934663f6706bc6a1a74d76959d6bbc316",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-08-30T09:46:07Z",
+   "content_fingerprint": "2ca27ee077c761ab01ed7c314f208f0fafbcf5afd00872ec623474309df06ee3",
+   "version_count": 1
+  },
   {
    "slug": "tencent-hunyuan-hy4-preview-model-card",
    "title": "Hy4 preview Model Card",

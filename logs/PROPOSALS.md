@@ -1022,3 +1022,63 @@ Self-harm, MASK and LAB results) while Cursor still serves the launch-day Revisi
 `5faf54cc…`), word-diff similarity 0.705. I corrected the `notes` on `xai-grok-4-6-model-card`, which
 still asserted byte-identity, and commented the evidence on #31. The 2026-08-22 ask — make the
 content-duplicate check publisher-aware — stands unchanged and is not re-argued here.
+
+## 2026-08-30 — The same post-plus-report pair is admitted one week and refused the next, and the rule that decides is unwritten
+
+**Problem.** Labs publish a study as two artefacts: a short announcement page on the org's site, and the
+full technical report as a PDF. The corpus has no stated position on whether that is one document or two,
+and in practice it has answered both ways within twelve days.
+
+- **2026-08-18 — admitted as two.** `anthropic-claude-opus-4-8-other-2` is the post at
+  `anthropic.com/research/Claude-accelerates-protein-design`; `anthropic-claude-opus-4-8-other` and
+  `anthropic-claude-opus-5-other` are its two `www-cdn.anthropic.com` PDFs. Three rows, one study.
+- **2026-08-30 — refused as one.** I added the 08-28 post
+  (`anthropic-claude-opus-4-8-other-3`, id 266, `written`) and proposed its full report at
+  `www-cdn.anthropic.com/7b1c44894e.../automated-alignment-researchers-august-2026.pdf`. Verdict:
+  `{"status": "issue_filed", "reason": "logical_duplicate_of:anthropic-claude-opus-4-8-other-3"}`.
+
+I did not retry, and I am not asking for the verdict to be reversed. I am asking for *a* rule, because
+the absence of one is now costing documents. The two artefacts are not interchangeable: the refused PDF
+is 1.6 MB and 5,175 extracted lines, with per-failure results across ten alignment failures against
+Gemma-2-2B/9B, Qwen3.5-2B/4B, Qwen2.5-72B-Instruct, Llama-3.2-3B and Llama-3-8B-Instruct, Petri audit
+scores, capability-preservation filters and a 28-researcher human baseline. The post is a page of prose.
+A reader who wants the evaluations gets them from exactly one of the two.
+
+The cost is not hypothetical and not limited to this pair. Applying today's verdict consistently, I
+also did **not** propose `alignment.anthropic.com/2026/automated-w2s-researcher/` — the full writeup
+(PGR 0.97 within 5 days across 9 AARs, ~$18,000 of compute, plus a section on how the researcher
+reward-hacked) whose one-paragraph summary is already held as `anthropic-claude-opus-4-6-other-3`.
+That document is uncatalogued today purely because I could not tell which way the rule would fall, and
+guessing wrong files another review issue against a question no one has answered.
+
+**Suggested change.** Pick one and write it into `criteria.yaml`:
+
+1. **Two rows, related.** Treat announcement and full report as distinct documents when the report is
+   not reachable as the same bytes — they have different URLs, different lengths and different audiences.
+   Add a `relates_to` / `summary_of` field so the site can render "full report" next to the post instead
+   of the dedup check guessing. This matches the 2026-08-18 precedent and how the corpus already looks.
+2. **One row, canonical = the report.** If the pair is one document, then say so *and* make the
+   announcement's URL an alias of it, so the row points at the artefact carrying the evaluations. Today's
+   outcome is the worst of both: the corpus kept the summary and turned the evidence away.
+
+Either is fine. What does not work is deciding per-run, because the agent cannot predict it and every
+wrong guess spends human review time on a policy question rather than on a document.
+
+**Secondary ask, same root.** `logical_duplicate_of` currently fires on publisher + doc_type +
+overlapping `model_names`. That is the same signal a publisher emits when it deliberately splits one
+study across artefacts, or one model's evaluations across modalities. Issue #30 is the clean
+demonstration: Meta's `muse-spark-1-2-methodology` (3 pp, Terminal-Bench 2.1 / DeepSWE v1.1 / GDPVal-AA
+v2) and `muse-spark-1-2-multimodal-evaluation-methodology` (4 pp, BabyVision / PerceptionBench /
+ZeroBench / WorldVQA / SimpleVQA / ERQA / OmniSpatial / CharXiv / ChartMuseum / ChartQAPro / Wild
+Artifact Bench / Design Arena) share **zero** benchmarks and score 0.128 word-level similarity, and the
+check called them possible duplicates anyway. A cheap discriminator exists and I ran it by hand in
+about a second: if extracted-text similarity is below some floor, it is not a duplicate, whatever the
+metadata says. That would have cleared #30 on 2026-08-21 without a human.
+
+**Evidence.** This run's verdicts on ids 266 and `outbox:1`; the three 2026-08-18 rows above;
+`logs/comments.jsonl` entries on #29 and #30 dated 2026-08-30; friction lines
+`announcement_post_plus_full_report_pair_admitted_on_08_18_refused_as_logical_duplicate_on_08_30` and
+`validator_filed_review_issues_sit_unattended_for_more_than_a_week`. Related but distinct: the
+2026-08-22 ask (make the content-duplicate check publisher-aware) and the 2026-08-28 ask (show the agent
+what was already refused) both still stand; neither would have prevented today's case, because this pair
+had never been proposed before.
