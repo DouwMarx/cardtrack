@@ -193,6 +193,12 @@ def write_test_config(root: Path, server: TestServer, *, caps: dict | None = Non
             "about_a_specific_model_or_eval": True,
             "distinct_model_release": True,
             "notable_release": True,
+            "covered_model_class": True,
+        },
+        "risk_domains": {
+            "cbrn": {"display": "CBRN"},
+            "cyber": {"display": "Cyber offence"},
+            "loss_of_control": {"display": "Loss of control"},
         },
         "policy": {"when_uncertain": "file_issue"},
     }
@@ -219,7 +225,8 @@ def repo(repo_root: Path):
 # ---------------------------------------------------------------- helpers
 
 ATTESTED = {"primary_source": True, "about_a_specific_model_or_eval": True,
-            "distinct_model_release": True, "notable_release": True}
+            "distinct_model_release": True, "notable_release": True,
+            "covered_model_class": True}
 
 
 def make_proposal(server: TestServer, path: str = "/doc1", **overrides) -> dict:

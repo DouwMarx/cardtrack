@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -39,15 +40,24 @@ def main(argv: list[str] | None = None) -> int:
     if not body.strip():
         print(json.dumps({"status": "error", "reason": "empty body"}))
         return 2
+    if len(body) > 8000:
+        # tripwire, not a style rule: a paragraph never hits this; a dumped file does
+        print(json.dumps({"status": "error", "reason": "body exceeds 8000 characters"}))
+        return 2
 
     repo = Repo.locate(args.root)
     repo.logs_dir.mkdir(parents=True, exist_ok=True)
     gh_repo = repo.setting("github.repo") or ""
     use_gh = bool(repo.setting("github.use_gh", True))
 
+    # Agent-authored comments NEVER post directly, even where gh happens to be
+    # authenticated (human terminal, or CARDTRACK_NO_SANDBOX=1): they queue to the
+    # outbox and pass flush_outbox.py's secret scan first. The gate is the actor,
+    # not the sandbox, so a relaxed sandbox can't open an unscanned channel.
+    is_agent = os.environ.get("CARDTRACK_ACTOR") == "agent"
     delivered = False
     detail = ""
-    if gh_repo and use_gh and shutil.which("gh"):
+    if gh_repo and use_gh and shutil.which("gh") and not is_agent:
         cmd = ["gh", "issue", "comment", str(args.issue), "-R", gh_repo, "--body-file", "-"]
         proc = subprocess.run(cmd, input=body, capture_output=True, text=True, timeout=60)
         delivered = proc.returncode == 0
@@ -58,7 +68,6 @@ def main(argv: list[str] | None = None) -> int:
                            capture_output=True, text=True, timeout=60)
 
     if delivered and args.resolve:
-        import os
         conn = connect(repo.db_path)
         try:
             changelog_log(conn, os.environ.get("CARDTRACK_RUN_ID", "manual"),
@@ -69,12 +78,21 @@ def main(argv: list[str] | None = None) -> int:
         finally:
             conn.close()
 
+    if not delivered:
+        # gh is unauthenticated inside the sandbox by design: queue for
+        # flush_outbox.py, which posts OUTSIDE the sandbox after the secret scan.
+        # (Before 2026-08-31 undelivered comments were only logged and silently
+        # never reached GitHub.)
+        with open(repo.logs_dir / "comments_outbox.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({"ts": utcnow(), "issue": args.issue, "body": body,
+                                "resolve": args.resolve}, ensure_ascii=False) + "\n")
+
     with open(repo.logs_dir / "comments.jsonl", "a", encoding="utf-8") as f:
         f.write(json.dumps({"ts": utcnow(), "issue": args.issue, "body": body,
                             "delivered": delivered, "resolve": args.resolve,
                             "detail": detail}, ensure_ascii=False) + "\n")
 
-    print(json.dumps({"status": "commented" if delivered else "logged_only",
+    print(json.dumps({"status": "commented" if delivered else "queued",
                       "issue": args.issue}))
     return 0
 

@@ -21,10 +21,14 @@ def build_summary(repo: Repo) -> dict:
         docs = []
         for row in conn.execute(
             "SELECT slug, publisher, doc_type, model_names, canonical_url, status, "
-            "publication_date, last_checked FROM documents ORDER BY publisher, slug"
+            "publication_date, last_checked, risk_domains, related_urls "
+            "FROM documents ORDER BY publisher, slug"
         ):
             d = dict(row)
             d["model_names"] = json.loads(d["model_names"])
+            d["risk_domains"] = json.loads(d["risk_domains"] or "[]")
+            # urls only: enough for the agent's dedup reasoning, keeps the file small
+            d["related_urls"] = [r["url"] for r in json.loads(d["related_urls"] or "[]")]
             docs.append(d)
         by_status: dict[str, int] = {}
         for d in docs:

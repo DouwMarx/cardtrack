@@ -34,8 +34,8 @@ def export_metadata(conn: sqlite3.Connection) -> list[dict]:
     out = []
     for r in rows:
         d = dict(r)
-        d["model_names"] = json.loads(d["model_names"])
-        d["alt_urls"] = json.loads(d["alt_urls"])
+        for json_col in ("model_names", "alt_urls", "risk_domains", "related_urls"):
+            d[json_col] = json.loads(d.get(json_col) or "[]")
         for drop in ("id", "text_path", "notes"):
             d.pop(drop, None)
         out.append(d)
@@ -96,10 +96,13 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
     site_title = repo.setting("site.title", "cardtrack")
     docs = export_metadata(conn)
     publishers = _publishers_map(repo)
+    # controlled tag vocabulary (config/criteria.yaml) → display labels for UI
+    risk_labels = {k: (v or {}).get("display", k)
+                   for k, v in (repo.criteria.get("risk_domains") or {}).items()}
 
     (site / "data" / "metadata.json").write_text(
         json.dumps({"generated_at": utcnow(), "publishers": publishers,
-                    "documents": docs},
+                    "risk_domains": risk_labels, "documents": docs},
                    ensure_ascii=False, indent=1),
         encoding="utf-8",
     )
@@ -111,7 +114,8 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
                for f in static_src.iterdir() if f.is_file()}
 
     ctx_common = {"site_title": site_title, "gh_repo": gh_repo,
-                  "generated_at": utcnow(), "asset_v": asset_v}
+                  "generated_at": utcnow(), "asset_v": asset_v,
+                  "risk_labels": risk_labels}
 
     # explicit cache policy; without it the CDN default (4 h browser TTL)
     # serves stale assets after every deploy

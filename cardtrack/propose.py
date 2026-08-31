@@ -6,6 +6,7 @@ and caps, and only then writes. Agent proposes; this code disposes.
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 from dataclasses import asdict, dataclass
 from datetime import UTC, date, datetime, timedelta
@@ -13,6 +14,7 @@ from urllib.parse import urlsplit
 
 from . import changelog as changelog_mod
 from .canonical import canonicalize_url
+from .db import DOC_TYPES as _DOC_TYPES_TUPLE
 from .db import connect
 from .extract import (
     ext_for,
@@ -28,12 +30,22 @@ from .identity import derive_slug, find_doc_by_url, find_logical_duplicates
 from .issues import file_issue
 from .repo import Repo, utcnow
 
-ACTIONS = {"add", "new_version", "status_change", "field_update"}
+ACTIONS = {"add", "new_version", "status_change", "field_update", "annotate_version"}
 STATUSES = {"active", "moved", "dead", "superseded", "removed"}
-DOC_TYPES = {"model_card", "system_card", "independent_eval", "addendum", "other"}
+DOC_TYPES = set(_DOC_TYPES_TUPLE)  # single source of truth: cardtrack.db.DOC_TYPES
 FIELD_UPDATE_FIELDS = {"title", "publication_date", "model_names", "notes", "canonical_url",
-                       "safety_evals", "openness"}
-OPENNESS_VALUES = {"closed", "open_weight_restrictive", "open_weight_permissive"}
+                       "safety_evals", "openness", "doc_type", "risk_domains",
+                       "related_urls"}
+OPENNESS_VALUES = {"restricted", "closed", "open_weight_restrictive",
+                   "open_weight_permissive"}
+RELATED_URL_KINDS = {"announcement", "full_document", "web_version", "paper", "code",
+                     "weights", "thread", "dataset", "video", "co_published", "other"}
+# Free-text fields the agent authors end up on the public site and in the public
+# repo. Caps are tripwires, not style rules: a paragraph never hits them, a dumped
+# credential file or base64 blob does.
+MAX_FREETEXT_CHARS = 8000
+MAX_TITLE_CHARS = 500
+MAX_SUMMARY_CHARS = 500
 
 
 @dataclass
@@ -116,6 +128,8 @@ def _dispatch(ctx: _Ctx, proposal: dict) -> ProposalResult:
         return _handle_new_version(ctx, proposal)
     if action == "status_change":
         return _handle_status_change(ctx, proposal)
+    if action == "annotate_version":
+        return _handle_annotate_version(ctx, proposal)
     return _handle_field_update(ctx, proposal)
 
 
@@ -129,6 +143,10 @@ def _validate_schema(p: dict) -> str | None:
         return f"action must be one of {sorted(ACTIONS)}"
     if not isinstance(p.get("justification"), str) or not p["justification"].strip():
         return "justification (non-empty string) is required"
+    if len(p["justification"]) > MAX_FREETEXT_CHARS:
+        return f"justification exceeds {MAX_FREETEXT_CHARS} characters"
+    if isinstance(p.get("notes"), str) and len(p["notes"]) > MAX_FREETEXT_CHARS:
+        return f"notes exceeds {MAX_FREETEXT_CHARS} characters"
     ev = p.get("evidence_urls")
     if not isinstance(ev, list) or not all(isinstance(u, str) for u in ev):
         return "evidence_urls (list of strings) is required"
@@ -138,6 +156,8 @@ def _validate_schema(p: dict) -> str | None:
     if action == "add":
         if not isinstance(p.get("title"), str) or not p["title"].strip():
             return "title is required"
+        if len(p["title"]) > MAX_TITLE_CHARS:
+            return f"title exceeds {MAX_TITLE_CHARS} characters"
         if not isinstance(p.get("publisher"), str) or not p["publisher"].strip():
             return "publisher is required"
         if p.get("doc_type") not in DOC_TYPES:
@@ -164,6 +184,13 @@ def _validate_schema(p: dict) -> str | None:
             return f"field must be one of {sorted(FIELD_UPDATE_FIELDS)}"
         if "new" not in p:
             return "new (value) is required"
+    if action == "annotate_version":
+        if not p.get("slug"):
+            return "slug is required"
+        if not isinstance(p.get("version_id"), int):
+            return "version_id (integer) is required"
+        if not isinstance(p.get("summary"), str) or not p["summary"].strip():
+            return "summary (non-empty string) is required"
     return None
 
 
@@ -172,6 +199,63 @@ def _parse_date(value) -> date | None:
         return date.fromisoformat(str(value))
     except (ValueError, TypeError):
         return None
+
+
+def _risk_vocab(repo: Repo) -> set[str]:
+    """Controlled tag vocabulary. Lives in config/criteria.yaml (risk_domains:
+    key -> definition) so adding a tag is a config change, not a code change;
+    the validator still gates deterministically against it."""
+    return set((repo.criteria.get("risk_domains") or {}).keys())
+
+
+def _validate_risk_domains(repo: Repo, value) -> tuple[list[str] | None, str | None]:
+    """Returns (sorted deduped list, None) or (None, reason)."""
+    if not isinstance(value, list) or not all(isinstance(t, str) for t in value):
+        return None, "risk_domains must be a list of strings"
+    vocab = _risk_vocab(repo)
+    unknown = sorted(set(value) - vocab)
+    if unknown:
+        return None, (f"unknown risk_domains {unknown}; allowed: {sorted(vocab)} "
+                      "(config/criteria.yaml)")
+    return sorted(set(value)), None
+
+
+def _validate_related_urls(value, canonical_url: str | None,
+                           alt_urls: list[str] | None) -> tuple[list[dict] | None,
+                                                                str | None]:
+    """Deterministic, no-fetch validation of [{"url","kind","note"?}]. related_urls
+    are companions that are NOT this document; alt_urls stays identity-bearing
+    (dedup), so a related url must never equal the document's own URLs."""
+    if not isinstance(value, list):
+        return None, "related_urls must be a list of objects"
+    own = {canonical_url, *(alt_urls or [])}
+    out, seen = [], set()
+    for item in value:
+        if not isinstance(item, dict):
+            return None, "related_urls entries must be objects"
+        if set(item) - {"url", "kind", "note"}:
+            return None, "related_urls entries allow only url/kind/note"
+        raw_url = item.get("url", "")
+        if not isinstance(raw_url, str):
+            return None, "related_urls url must be a string"
+        try:
+            url = canonicalize_url(raw_url)
+        except (ValueError, TypeError) as e:
+            return None, f"related_urls url invalid: {e}"
+        kind = item.get("kind")
+        if kind not in RELATED_URL_KINDS:
+            return None, f"related_urls kind must be one of {sorted(RELATED_URL_KINDS)}"
+        note = item.get("note")
+        if note is not None and (not isinstance(note, str) or len(note) > MAX_SUMMARY_CHARS):
+            return None, f"related_urls note must be a string <= {MAX_SUMMARY_CHARS} chars"
+        if url in own:
+            return None, (f"related_urls must not contain the document's own URL {url}; "
+                          "use alt_urls semantics (same content) vs related (companion)")
+        if url in seen:
+            continue
+        seen.add(url)
+        out.append({"url": url, "kind": kind, **({"note": note} if note else {})})
+    return out, None
 
 
 # ---------- shared helpers ----------
@@ -252,7 +336,17 @@ def _fetch_document(ctx: _Ctx, url: str) -> tuple[object | None, str | None]:
     return result, None
 
 
+# Multi-tenant hosts where a same-host match proves nothing: anyone can put content
+# on them, so a canonical move ONTO them always routes to review (an attacker can
+# mirror content byte-for-byte and pass the fingerprint gate, which is why the host
+# check must not vouch for a shared host at all — not even an exact-host match).
+# huggingface.co is the single most common host in the corpus and is deliberately
+# here: many publishers legitimately canonicalize on it, so moves onto it are the
+# highest-value bypass and correctly get human review rather than an auto-write.
 # Shared-hosting suffixes where a same-registrable-domain match proves nothing.
+# The agent cannot move canonical_url at all (operator-only, see _handle_field_update),
+# so this list only ever guards operator edits against fat-fingering onto a co-tenant
+# of a known host — it is not a prompt-injection boundary and stays deliberately small.
 SHARED_SUFFIXES = {"github.io", "pages.dev", "netlify.app", "vercel.app", "web.app"}
 
 
@@ -275,20 +369,22 @@ def _host_known_for_publisher(ctx: _Ctx, publisher: str, url: str) -> bool:
             h = (urlsplit(u).hostname or "").lower()
             if h:
                 known.add(h)
-    if host in known:
-        return True
     apex = ".".join(host.rsplit(".", 2)[-2:])
     if apex in SHARED_SUFFIXES:
         return False
+    if host in known:
+        return True
     return any(k == apex or k.endswith("." + apex) for k in known)
 
 
-def _content_identity(content: bytes, content_type: str | None, url: str):
+def _content_identity(content: bytes, content_type: str | None, url: str,
+                      ignore_patterns: tuple[str, ...] = ()):
     """Returns (content_hash, fingerprint, text, kind, method)."""
     content_hash = sha256_bytes(content)
     kind = sniff_kind(content, content_type, url)
     text, method = extract_text(content, content_type, url)
-    fp = fingerprint_text(text) if text else content_hash  # extraction failed → raw hash
+    fp = (fingerprint_text(text, ignore_patterns) if text
+          else content_hash)  # extraction failed → raw hash
     return content_hash, fp, text, kind, method
 
 
@@ -373,7 +469,8 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
     canonical = final_canonical
 
     content_hash, fp, text, kind, method = _content_identity(
-        fetched.content, fetched.content_type, canonical)
+        fetched.content, fetched.content_type, canonical,
+        repo.fingerprint_ignore_patterns)
 
     # Content identity: identical extracted text already stored under another document
     # (mirror / same doc at a different URL) → needs_review, never an automatic merge.
@@ -442,7 +539,7 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
     openness = p.get("openness")
     if openness is not None and openness not in OPENNESS_VALUES:
         return _reject(ctx, p, "invalid_value: openness must be one of "
-                       "closed|open_weight_restrictive|open_weight_permissive")
+                       "restricted|closed|open_weight_restrictive|open_weight_permissive")
     # required: every catalogued doc is either assessed yes or no — a NULL here
     # would be invisible to the site's yes/no safety filters
     safety = (p.get("soft") or {}).get("has_safety_evals")
@@ -450,6 +547,12 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
         return _reject(ctx, p, "invalid_schema: soft.has_safety_evals (true/false) is "
                        "required — attest honestly whether the document contains "
                        "safety or dangerous-capability evals")
+    risk_domains, err = _validate_risk_domains(repo, p.get("risk_domains", []))
+    if err:
+        return _reject(ctx, p, f"invalid_value: {err}")
+    related_urls, err = _validate_related_urls(p.get("related_urls", []), canonical, [])
+    if err:
+        return _reject(ctx, p, f"invalid_value: {err}")
     slug = derive_slug(conn, p["publisher"], p["model_names"], p["doc_type"])
     now = utcnow()
     safety_db = int(bool(safety))
@@ -457,12 +560,13 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
         """INSERT INTO documents
            (slug, title, publisher, doc_type, is_independent, model_names,
             publication_date, canonical_url, alt_urls, status, first_seen,
-            last_checked, last_changed, source_of_lead, notes, safety_evals, openness)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, '[]', 'active', ?, ?, ?, ?, ?, ?, ?)""",
+            last_checked, last_changed, source_of_lead, notes, safety_evals, openness,
+            risk_domains, related_urls)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, '[]', 'active', ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (slug, p["title"].strip(), p["publisher"], p["doc_type"], is_independent,
          json.dumps(sorted(p["model_names"])), p.get("publication_date"), canonical,
          now, now, now, p.get("source_of_lead", "manual"), p.get("notes"), safety_db,
-         openness),
+         openness, json.dumps(risk_domains), json.dumps(related_urls)),
     )
     document_id = cur.lastrowid
     version_id = _insert_version(ctx, document_id, fetched, content_hash, fp, text, kind,
@@ -524,7 +628,8 @@ def _version_check(ctx: _Ctx, p: dict, doc: sqlite3.Row, routed_from: str | None
             return _reject(ctx, p, err, document_id=doc["id"])
 
     content_hash, fp, text, kind, method = _content_identity(
-        fetched.content, fetched.content_type, doc["canonical_url"])
+        fetched.content, fetched.content_type, doc["canonical_url"],
+        repo.fingerprint_ignore_patterns)
 
     # Byte identity first: identical raw bytes can never be a
     # new version, even if extraction wobbles across environments.
@@ -622,6 +727,16 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
                            document_id=doc["id"])
         current_cmp, new_db = current, new
     elif field == "canonical_url":
+        # Operator-only: the agent flags a better source via a related_urls update
+        # (kind full_document) and the operator promotes it (prompts/TASK.md). This
+        # removes the only prompt-injection path that could silently repoint a
+        # document's public "source" link, with no human-review queue — consistent
+        # with detect-and-revert and the operator-only --content-file ingestion.
+        if ctx.actor == "agent":
+            return _reject(ctx, p, "canonical_url is operator-only: propose a "
+                           "related_urls update (kind full_document) so the operator "
+                           "sweep can promote it — see prompts/TASK.md",
+                           document_id=doc["id"])
         if not isinstance(new, str):
             return _reject(ctx, p, "invalid_value: canonical_url must be a string",
                            document_id=doc["id"])
@@ -651,7 +766,8 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
         if err:
             return _reject(ctx, p, err, document_id=doc["id"])
         _hash, fp, _text, _kind, _m = _content_identity(
-            fetched.content, fetched.content_type, new_db)
+            fetched.content, fetched.content_type, new_db,
+            ctx.repo.fingerprint_ignore_patterns)
         match = conn.execute(
             "SELECT 1 FROM document_versions WHERE document_id = ? AND "
             "content_fingerprint = ?", (doc["id"], fp)).fetchone()
@@ -676,9 +792,30 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
     elif field == "openness":
         if new is not None and new not in OPENNESS_VALUES:
             return _reject(ctx, p, "invalid_value: openness must be one of "
-                           "closed|open_weight_restrictive|open_weight_permissive|null",
+                           "restricted|closed|open_weight_restrictive|"
+                           "open_weight_permissive|null",
                            document_id=doc["id"])
         current_cmp, new_db = current, new
+    elif field == "doc_type":
+        if new not in DOC_TYPES:
+            return _reject(ctx, p, f"invalid_value: doc_type must be one of "
+                           f"{sorted(DOC_TYPES)}", document_id=doc["id"])
+        # slugs are derived at add time and stay stable across relabels — they are
+        # public URLs; a doc_type correction must not break inbound links
+        current_cmp, new_db = current, new
+    elif field == "risk_domains":
+        validated, err = _validate_risk_domains(ctx.repo, new)
+        if err:
+            return _reject(ctx, p, f"invalid_value: {err}", document_id=doc["id"])
+        current_cmp = json.loads(current or "[]")
+        new_db = json.dumps(validated)
+    elif field == "related_urls":
+        validated, err = _validate_related_urls(
+            new, doc["canonical_url"], json.loads(doc["alt_urls"]))
+        if err:
+            return _reject(ctx, p, f"invalid_value: {err}", document_id=doc["id"])
+        current_cmp = json.loads(current or "[]")
+        new_db = json.dumps(validated)
     else:  # title, notes
         if field == "title" and (not isinstance(new, str) or not new.strip()):
             return _reject(ctx, p, "invalid_value: title must be a non-empty string",
@@ -686,11 +823,15 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
         if new is not None and not isinstance(new, str):
             return _reject(ctx, p, f"invalid_value: {field} must be a string",
                            document_id=doc["id"])
+        cap = MAX_TITLE_CHARS if field == "title" else MAX_FREETEXT_CHARS
+        if isinstance(new, str) and len(new) > cap:
+            return _reject(ctx, p, f"invalid_value: {field} exceeds {cap} characters",
+                           document_id=doc["id"])
         current_cmp, new_db = current, new
 
     if "old" in p:
         old_given = p["old"]
-        if field == "model_names" and isinstance(old_given, list):
+        if field in ("model_names", "risk_domains") and isinstance(old_given, list):
             stale = sorted(old_given) != sorted(current_cmp)
         else:
             stale = old_given != current_cmp
@@ -714,9 +855,57 @@ def _handle_field_update(ctx: _Ctx, p: dict) -> ProposalResult:
             (new_db, now, now, doc["id"]),
         )
     old_rec = current_cmp if isinstance(current_cmp, str | int | None) else list(current_cmp)
+    json_fields = {"model_names", "risk_domains", "related_urls"}
     detail = {**p, "old": old_rec,
-              "new": new_db if field != "model_names" else sorted(new),
+              "new": json.loads(new_db) if field in json_fields else new_db,
               "outcome": "written", "actor": ctx.actor}
     changelog_mod.log(conn, ctx.run_id, "field_update", doc["id"], detail)
     return ProposalResult(status="written", slug=doc["slug"], document_id=doc["id"],
                           run_id=ctx.run_id)
+
+
+# ---------- annotate_version ----------
+
+_SUMMARY_FORBIDDEN = re.compile(r"https?://|<[a-zA-Z!/]", re.IGNORECASE)
+
+
+def _handle_annotate_version(ctx: _Ctx, p: dict) -> ProposalResult:
+    """Attach a human-readable "what changed vs the previous version" note to a
+    stored version. Agent prose that renders on the public site, so the gates are
+    the spam/XSS boundary: plain text only, no URLs or markup, hard length cap."""
+    conn = ctx.conn
+    doc = conn.execute("SELECT * FROM documents WHERE slug = ?", (p["slug"],)).fetchone()
+    if doc is None:
+        return _reject(ctx, p, f"unknown_document: no document with slug {p['slug']!r}")
+    ver = conn.execute(
+        "SELECT * FROM document_versions WHERE id = ? AND document_id = ?",
+        (p["version_id"], doc["id"])).fetchone()
+    if ver is None:
+        return _reject(ctx, p, f"unknown_version: no version {p['version_id']} for "
+                       f"{p['slug']!r}", document_id=doc["id"])
+    first = conn.execute(
+        "SELECT id FROM document_versions WHERE document_id = ? "
+        "ORDER BY fetched_at ASC, id ASC LIMIT 1", (doc["id"],)).fetchone()
+    if ver["id"] == first["id"]:
+        return _reject(ctx, p, "first_version_has_no_predecessor: change summaries "
+                       "describe a delta; the initial version has none",
+                       document_id=doc["id"])
+    summary = p["summary"].strip()
+    if len(summary) > MAX_SUMMARY_CHARS:
+        return _reject(ctx, p, f"invalid_value: summary exceeds {MAX_SUMMARY_CHARS} "
+                       "characters", document_id=doc["id"])
+    if _SUMMARY_FORBIDDEN.search(summary):
+        return _reject(ctx, p, "invalid_value: summary must be plain text without "
+                       "URLs or markup", document_id=doc["id"])
+    if "old" in p and p["old"] != ver["change_summary"]:
+        return _reject(ctx, p, f"stale_old_value: current change_summary is "
+                       f"{ver['change_summary']!r}", document_id=doc["id"])
+    conn.execute("UPDATE document_versions SET change_summary = ? WHERE id = ?",
+                 (summary, ver["id"]))
+    # logged as field_update (changelog.action has a CHECK constraint predating this
+    # action); detail.field/version_id make the record unambiguous
+    detail = {**p, "field": "change_summary", "old": ver["change_summary"],
+              "new": summary, "outcome": "written", "actor": ctx.actor}
+    changelog_mod.log(conn, ctx.run_id, "field_update", doc["id"], detail)
+    return ProposalResult(status="written", slug=doc["slug"], document_id=doc["id"],
+                          version_id=ver["id"], run_id=ctx.run_id)

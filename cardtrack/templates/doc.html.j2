@@ -40,8 +40,14 @@
     <dd>{% if doc.safety_evals == 1 %}<span class="badge safety-yes">yes</span>
         {% elif doc.safety_evals == 0 %}<span class="badge safety-no">none found</span>
         {% else %}<span class="badge">unassessed</span>{% endif %}</dd>
+    {% if doc.risk_domains %}
+    <dt>Risk domains</dt>
+    <dd>{% for r in doc.risk_domains %}<span class="badge risk-domain">{{ risk_labels.get(r, r) }}</span>
+        <span hidden data-pagefind-filter="risk:{{ r }}"></span>{% endfor %}</dd>
+    {% endif %}
     <dt>Openness</dt>
-    <dd>{% if doc.openness == 'closed' %}<span class="badge openness-closed">closed weights</span>
+    <dd>{% if doc.openness == 'restricted' %}<span class="badge openness-restricted">restricted access</span>
+        {% elif doc.openness == 'closed' %}<span class="badge openness-closed">closed weights</span>
         {% elif doc.openness == 'open_weight_restrictive' %}<span class="badge openness-restrictive">open weights (restrictive license)</span>
         {% elif doc.openness == 'open_weight_permissive' %}<span class="badge openness-permissive">open weights (permissive license)</span>
         {% else %}<span class="badge">n/a</span>{% endif %}</dd>
@@ -56,6 +62,15 @@
     {% if doc.alt_urls %}
     <dt>Previous URLs</dt>
     <dd>{% for u in doc.alt_urls %}<a href="{{ u }}" rel="noopener nofollow">{{ u }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</dd>
+    {% endif %}
+    {% if doc.related_urls %}
+    <dt>Related</dt>
+    <dd>{% for r in doc.related_urls %}
+        {% if r.url.startswith('http://') or r.url.startswith('https://') %}
+        <span class="related-item"><span class="badge">{{ r.kind | replace('_', ' ') }}</span>
+        <a href="{{ r.url }}" rel="noopener nofollow">{{ r.url }}</a>{% if r.note %} — {{ r.note }}{% endif %}</span>{% if not loop.last %}<br>{% endif %}
+        {% endif %}
+    {% endfor %}</dd>
     {% endif %}
     <dt>First seen</dt>
     <dd>{{ doc.first_seen }}</dd>
@@ -75,7 +90,7 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
       {% for v in versions %}
         <tr>
@@ -83,6 +98,9 @@
           <td>{{ v.content_type or "?" }}</td>
           <td>{{ "{:,}".format(v.byte_size) if v.byte_size else "?" }}</td>
           <td><code title="{{ v.content_fingerprint }}">{{ v.content_fingerprint[:16] }}</code></td>
+          <td class="change-summary">{% if v.change_summary %}{{ v.change_summary }}
+              {% elif loop.last %}<span class="muted">initial version</span>
+              {% else %}<span class="muted">—</span>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>

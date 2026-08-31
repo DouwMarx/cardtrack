@@ -10,6 +10,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+from functools import lru_cache
 from html.parser import HTMLParser
 from io import BytesIO
 from pathlib import Path
@@ -116,7 +117,10 @@ def extract_text(content: bytes, content_type: str | None, url: str = "") -> tup
         text = _html_text(content, url)
         return (clean_display_text(text) if text else None, "html")
     if kind == "text":
-        return clean_display_text(content.decode("utf-8", errors="replace")), "text"
+        # empty after cleaning == failed extraction, per the contract above, so every
+        # consumer (fingerprint raw-hash fallback, NULL text_path) stays consistent
+        return (clean_display_text(content.decode("utf-8", errors="replace")) or None,
+                "text")
     return None, "binary"
 
 
@@ -128,12 +132,48 @@ def clean_display_text(text: str) -> str:
     return cleaned.strip()
 
 
-def normalize_for_fingerprint(text: str) -> str:
+@lru_cache(maxsize=8)
+def _compiled_ignores(patterns: tuple[str, ...]) -> list[re.Pattern]:
+    return [re.compile(p) for p in patterns]
+
+
+# Rotating recommendation footers, excluded from the fingerprint two ways:
+# (a) trailing alternating (blurb, "Read more") pairs are stripped from the end —
+# blog pages append 3 rotating post teasers with no heading before them;
+# (b) a "Related content" heading in the LAST QUARTER truncates there. Both are
+# bounded to the last quarter so a same-shaped line mid-document can never blind
+# change detection to real content below it.
+FOOTER_PAIR_MARKER = "^Read more$"
+FOOTER_HEADING = "^Related content$"
+
+
+def normalize_for_fingerprint(text: str, ignore_patterns: tuple[str, ...] = ()) -> str:
+    """Whitespace-collapse, minus dynamic page furniture. `ignore_patterns`
+    (settings.yaml fingerprint.ignore_line_patterns) drop matching lines — download
+    counters, access-date stamps — and the footer rules above truncate rotating
+    recommendation footers, so furniture-only churn never mints a new document
+    version. Display text is never filtered; empty patterns = plain collapse."""
+    if ignore_patterns:
+        lines = text.split("\n")
+        floor = int(len(lines) * 0.75)
+        pair = _compiled_ignores((FOOTER_PAIR_MARKER,))[0]
+        while len(lines) >= 2 and len(lines) > floor and pair.search(lines[-1]):
+            del lines[-2:]  # "Read more" plus the rotating teaser line above it
+        heading = _compiled_ignores((FOOTER_HEADING,))[0]
+        for i in range(floor, len(lines)):
+            if heading.search(lines[i]):
+                lines = lines[:i]
+                break
+        regexes = _compiled_ignores(ignore_patterns)
+        lines = [line for line in lines
+                 if not any(r.search(line) for r in regexes)]
+        text = "\n".join(lines)
     return " ".join(text.split())
 
 
-def fingerprint_text(text: str) -> str:
-    return hashlib.sha256(normalize_for_fingerprint(text).encode("utf-8")).hexdigest()
+def fingerprint_text(text: str, ignore_patterns: tuple[str, ...] = ()) -> str:
+    return hashlib.sha256(
+        normalize_for_fingerprint(text, ignore_patterns).encode("utf-8")).hexdigest()
 
 
 def sha256_bytes(content: bytes) -> str:

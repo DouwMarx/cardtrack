@@ -34,6 +34,9 @@
     <option value="yes">has safety evals</option>
     <option value="no">no safety evals</option>
   </select>
+  <details class="msel" id="sf-risk">
+    <summary>risk: all</summary><div class="msel-panel"></div>
+  </details>
   <details class="msel" id="sf-openness">
     <summary>openness: all</summary><div class="msel-panel"></div>
   </details>
@@ -63,9 +66,11 @@ const esc = s => String(s).replace(/[&<>"']/g,
   c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 const state = { publisher: new Set(), type: new Set(), openness: new Set(),
-                source: "", safety: "" };
-const OPENNESS_LABELS = { closed: "closed", open_weight_restrictive: "open (restrictive)",
+                risk: new Set(), source: "", safety: "" };
+const OPENNESS_LABELS = { restricted: "restricted access", closed: "closed",
+                          open_weight_restrictive: "open (restrictive)",
                           open_weight_permissive: "open (permissive)", na: "n/a" };
+const RISK_LABELS = {{ risk_labels | tojson }};
 let pagefind = null, ready = false, indexed = 0;
 let msels = {};
 let timer, token = 0, hits = [], shown = 0, chain = Promise.resolve();
@@ -81,6 +86,7 @@ $("s-clear").addEventListener("click", () => {
   $("sf-safety").value = ""; state.safety = "";
   for (const m of Object.values(msels)) m.clear();
   state.publisher = new Set(); state.type = new Set(); state.openness = new Set();
+  state.risk = new Set();
   run();
 });
 more.addEventListener("click", () => renderMore());
@@ -110,9 +116,15 @@ try {
   msels.openness = createMsel($("sf-openness"), { label: "openness",
     onChange: v => { state.openness = v; run(); } });
   msels.openness.setOptions(
-    ["closed", "open_weight_restrictive", "open_weight_permissive", "na"]
+    ["restricted", "closed", "open_weight_restrictive", "open_weight_permissive", "na"]
       .filter(v => (facets.openness || {})[v] != null)
       .map(v => ({ value: v, label: OPENNESS_LABELS[v], count: facets.openness[v] })));
+  msels.risk = createMsel($("sf-risk"), { label: "risk",
+    onChange: v => { state.risk = v; run(); } });
+  msels.risk.setOptions(
+    Object.keys(RISK_LABELS)
+      .filter(v => (facets.risk || {})[v] != null)
+      .map(v => ({ value: v, label: RISK_LABELS[v], count: facets.risk[v] })));
   indexed = Object.values(facets.publisher || {}).reduce((a, b) => a + b, 0);
   count.textContent = `${indexed} documents indexed. Type to search, or pick a filter.`;
   ready = true;
@@ -129,6 +141,7 @@ async function run() {
   if (state.publisher.size) filters.publisher = { any: [...state.publisher] };
   if (state.type.size) filters.type = { any: [...state.type] };
   if (state.openness.size) filters.openness = { any: [...state.openness] };
+  if (state.risk.size) filters.risk = { any: [...state.risk] };
   if (state.source) filters.source = state.source;
   if (state.safety) filters.safety = state.safety;
   const mine = ++token;

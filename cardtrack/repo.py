@@ -96,6 +96,11 @@ class Repo:
             node = node[key]
         return node
 
+    @property
+    def fingerprint_ignore_patterns(self) -> tuple[str, ...]:
+        """Line regexes excluded from content fingerprints (page furniture)."""
+        return tuple(self.setting("fingerprint.ignore_line_patterns", []) or [])
+
     def publisher_info(self, publisher: str) -> tuple[dict, str] | None:
         """Return (entry, category) for a publisher key, category in {'publishers','evaluators'}."""
         for category in ("publishers", "evaluators"):

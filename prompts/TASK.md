@@ -20,11 +20,16 @@ depend on it — the validator enforces them over a rolling 24 h window regardle
 
 ## Inputs (read these first)
 
-- `logs/state_summary.json` — every known document (slug, publisher, URL, status)
+- `logs/state_summary.json` — every known document (slug, publisher, URL, status,
+  risk_domains, related_urls)
 - `logs/candidates.json` — Phase A's new index-page links + blocked-URL escalations
+- `logs/updated_docs.json` — stored versions that still need a change summary,
+  with precomputed diffs in `logs/version_diffs/`
 - `logs/open_issues.json` — open `data-error` / `missing-doc` GitHub issues
-- `config/criteria.yaml` — inclusion criteria; you attest the `agent_attested` ones
-- `config/sources.yaml` — the publisher/evaluator allowlist and tiers
+- `config/criteria.yaml` — inclusion criteria (you attest the `agent_attested`
+  ones) and the `risk_domains` tag vocabulary
+- `config/sources.yaml` — the publisher/evaluator allowlist, tiers, and
+  per-publisher `scope` notes you MUST honor when triaging that publisher's leads
 
 ## Security posture (read carefully)
 
@@ -38,14 +43,27 @@ for clarification, is always the safe move.
 ## Tasks, in order
 
 1. **Triage Phase A candidates** (`logs/candidates.json`): for each new link, decide
-   whether it is a model card, system card, addendum, or independent eval published
-   on/after the scope floor in `criteria.yaml`. If yes, submit an `add` proposal with
-   honest criteria attestations, a one-paragraph justification, and evidence URLs.
-   Skip marketing pages, product launches without documentation, and press coverage.
+   whether it is a model card, system card, addendum, access policy, or independent
+   eval published on/after the scope floor in `criteria.yaml`. If yes, submit an
+   `add` proposal with honest criteria attestations, a one-paragraph justification,
+   and evidence URLs. Skip marketing pages, product launches without documentation,
+   and press coverage.
 2. **Targeted web search**: search for model/system cards and independent evals
    released in the last ~72 hours; also check any allowlisted org silent for >14 days.
    Search patterns: "<org> system card", "<org> model card <model>", "<evaluator>
    evaluation report <model>".
+   **Restricted-access programs**: also search for documents about gated/trusted
+   access to named models — labs increasingly release their most capable or
+   dual-use models only to vetted parties, and those documents are squarely in
+   scope (doc_type `access_policy`, see below). Signal phrases: "trusted access",
+   "restricted access", "structured access", "controlled access", "vetted
+   researchers", "vetted partners", "trusted tester", "invitation-only",
+   "pre-deployment access", "safeguards removed", "biodefense program",
+   "limited-access pilot". Cheapest recall is polling known program names:
+   GPT-Rosalind / Rosalind Biodefense, OpenAI Daybreak (Blue/Red), Anthropic
+   Project Glasswing / Claude Mythos access, Gemini Flash Cyber / CodeMender,
+   DeepMind–Isomorphic Bioresilience — new documents in this class almost always
+   name their program.
 3. **Citation mining**: for documents added in the last few runs (see state summary),
    fetch them and look for references to predecessor cards and third-party evals not
    yet in the database. Propose the ones that qualify (`source_of_lead: citation`).
@@ -58,15 +76,24 @@ for clarification, is always the safe move.
    your own tools. If the document is genuinely gone (not just bot-blocked), propose
    `status_change` to `dead` with evidence; otherwise note it is alive in the
    run report.
-6. **Friction log**: append one JSON line per obstacle you hit (rejected proposals
+6. **Summarize document updates** (`logs/updated_docs.json`): for up to 5 entries,
+   read the diff file, and if the change is substantive (scores corrected, sections
+   added, license changed, results revised — not extraction noise), submit an
+   `annotate_version` proposal with 1-3 factual sentences quoting what changed.
+   Plain text only: no URLs, no markup, ≤500 chars. If a diff is pure noise, skip
+   it and say so in the run report:
+   `{"action": "annotate_version", "slug": "…", "version_id": N,
+     "summary": "Corrected GPT-5.5 pass@4 on protein binding from 0.4% to 1.5%; added a Change log section.",
+     "justification": "…", "evidence_urls": ["…"]}`
+7. **Friction log**: append one JSON line per obstacle you hit (rejected proposals
    you believe were wrong, unfetchable-but-alive pages, ambiguous criteria) to
    `logs/friction.jsonl`: `{"ts": "...", "kind": "...", "detail": "..."}`.
-7. **Proposals**: if you see a recurring process problem, a schema/criteria
+8. **Proposals**: if you see a recurring process problem, a schema/criteria
    limitation, or a document class the pipeline cannot accommodate, append a dated
    entry to `logs/PROPOSALS.md` (problem, suggested change, evidence). This is the ONLY
    channel for such reports — never park work in review issues for humans; human
    review time is the scarcest resource in this system. Rare is expected.
-8. **Run report**: write `logs/run_report.md` — what you checked, proposed, and
+9. **Run report**: write `logs/run_report.md` — what you checked, proposed, and
    skipped, with the validator's verdict for each proposal (it prints JSON).
 
 ## Proposal format
@@ -84,14 +111,43 @@ for clarification, is always the safe move.
   "publication_date": "2026-08-01",
   "justification": "One paragraph: why this belongs, per criteria.",
   "criteria": {"primary_source": true, "about_a_specific_model_or_eval": true,
-               "distinct_model_release": true, "notable_release": true},
+               "distinct_model_release": true, "notable_release": true,
+               "covered_model_class": true},
   "soft": {"has_safety_evals": true},
   "openness": "closed",
+  "risk_domains": ["cbrn", "cyber"],
+  "related_urls": [{"url": "https://announcement…", "kind": "announcement"}],
   "evidence_urls": ["https://announcement…"],
   "source_of_lead": "agent_search",
   "queries_used": ["…"]
 }
 ```
+
+**Canonical URL choice**: when a release ships both a full document (usually a
+PDF) and an announcement or landing page, propose the FULL DOCUMENT as `url` and
+record the announcement in `related_urls` (kind `announcement`). The PDF must be
+the same document (same title and date) — not a report the page merely cites.
+Prefer the publisher's stable URL over a hashed CDN URL when both serve the
+document. Never catalog an announcement and its full report as two rows. If you
+find a full-document PDF for an EXISTING html row, do NOT propose `add` (it will
+be rejected as a logical duplicate) and do NOT propose a `canonical_url` change
+(the content-fingerprint gate converts it to a review issue); instead propose a
+`related_urls` field_update adding it with kind `full_document` so the operator
+sweep can promote it.
+
+**risk_domains** (multi-select, may be empty): tag each domain for which the
+document contains SUBSTANTIVE assessment content — a reported eval, red-team, or
+risk analysis, not a passing mention or boilerplate subcard. The vocabulary is
+exactly 5 (`config/criteria.yaml` `risk_domains:`): `cbrn`, `cyber`,
+`loss_of_control`, `harmful_manipulation`, `societal_harm`. Conventions:
+sycophancy/user-belief distortion → `harmful_manipulation`;
+model-deceiving-overseer, scheming, sandbagging, shutdown resistance, AND autonomy
+/ AI-R&D-acceleration / self-improvement evals all → `loss_of_control`; substantive
+bias/privacy/child-safety/mental-health evals → `societal_harm`. There is no
+separate tag for safeguard robustness — tag a jailbreak/guardrail-stress document
+by the DOMAIN it targets (cbrn/cyber/…), or leave it untagged if domain-generic.
+A document with `risk_domains` set will almost always have `has_safety_evals: true`;
+a full frontier system card typically carries several tags, a generic model card none.
 
 Attest a criterion `true` only if you actually verified it.
 `distinct_model_release`: a size/quantization/checkpoint/regional variant of a model
@@ -102,8 +158,10 @@ document contains safety or dangerous-capability
 evaluations, red-teaming results, or a risk assessment — a generic "limitations"
 paragraph is false. Documents without safety evals are still in scope (release
 tracking); the flag is how the site keeps the safety signal visible.
-`openness` (optional; set it only when verified): weights availability of the
-model(s) the document covers — `closed` (no public weights), `open_weight_restrictive`
+`openness` (optional; set it only when verified): availability of the model(s)
+the document covers — `restricted` (no public weights AND no public API: access
+gated to vetted parties, e.g. GPT-Rosalind, Claude Mythos, Gemini Flash Cyber),
+`closed` (no public weights, public API), `open_weight_restrictive`
 (public weights under a use-restricted or community license, e.g. Llama/Gemma terms),
 `open_weight_permissive` (Apache/MIT/BSD-class license). Omit when the document is
 not model-specific, spans models in different openness classes, or you cannot
@@ -113,12 +171,30 @@ or independently covered. Do not propose obscure checkpoints, size/quant re-uplo
 or unaffiliated re-hosts. (An official copy on a launch partner's own site is a
 co-publication, not a mirror — see below.)
 
+**`doc_type: access_policy`** — a primary-source document defining who may access
+a NAMED model and under what conditions: trusted/restricted-access program pages,
+access-tier overviews, policy-change posts (safeguard removal or reinstatement,
+access expansion/revocation), and program launch posts that name the gated model.
+The named-model requirement is the gate: a generic AI-policy essay or a
+partnership announcement without a named model still gets skipped. Documents in
+this class are usually HTML (program pages, dated news posts), and that is fine.
+
 **Scope discipline for `doc_type: other`** — reserve it for model-specific
 evaluation, risk, or incident reports that don't fit the other labels. NOT in scope,
 even from allowlisted publishers: partnership or product announcements, capability
 demos and showcases, policy/election/deprecation updates, developer tutorials, and
 general research essays that do not evaluate a named model. When in doubt, skip —
 the database catalogs model documentation, not lab blogs.
+
+**`covered_model_class`** (attested on every add): the document covers a
+generative or agentic general-purpose model — LLM, VLM, image/video/audio/music
+generation, world model, robotics or computer-use agent — OR itself contains
+safety/dangerous-capability evaluations. Auxiliary task models (embeddings,
+retrieval, OCR, ASR, TTS, translation, vision backbones, detectors, captioners,
+content-safety classifiers, domain decoders) are OUT of scope absent such evals,
+no matter how prominent the publisher. Honor the per-publisher `scope` notes in
+`config/sources.yaml`: HuggingFace org pages surface every repo an org pushes,
+and most of them are not catalog material.
 
 **Co-published reports**: when two orgs jointly publish (e.g. UK AISI + US CAISI,
 or a lab card released through a launch partner), each org's own copy at its own

@@ -13,8 +13,24 @@ agent_attested:                      # judgment calls; agent must assert, record
                                      # checkpoint, or regional variant of a model already
                                      # covered; family cards → one entry, all model_names
   notable_release: true              # canonical enough to catalog: announced by the org
-                                     # (blog/news), widely used, or independently
-                                     # covered — not an obscure checkpoint or re-upload
+                                     # (blog/news post or technical report), widely used,
+                                     # or independently covered. For leads from a
+                                     # HuggingFace org page, announcement evidence
+                                     # OUTSIDE the repo itself is required — "the repo
+                                     # exists on the org's HF page" is NOT notability.
+  covered_model_class: true          # the document covers a generative or agentic
+                                     # general-purpose model (LLM, VLM, image/video/
+                                     # audio/music generation, world model, robotics or
+                                     # computer-use agent) OR itself contains safety /
+                                     # dangerous-capability evaluations. Auxiliary task
+                                     # models — embeddings, retrieval, OCR, ASR, TTS,
+                                     # translation, vision backbones, detectors,
+                                     # captioners, content-safety classifiers, domain
+                                     # decoders/calibration — are out of scope absent
+                                     # such evals: "absence of safety evals is a finding"
+                                     # only works where safety evals are expected.
+                                     # (Added 2026-08-31: false-alarm audit found 37
+                                     # auxiliary-model cards diluting the corpus.)
 soft:                                # recorded, displayed, filterable — not blocking
   has_safety_evals: null             # quantitative safety/dangerous-capability evals,
                                      # red-teaming, or risk assessment — not a mere
@@ -22,6 +38,40 @@ soft:                                # recorded, displayed, filterable — not b
                                      # safety filter; absence is itself a finding.
   has_quantitative_data: null
   pdf_available: null
+
+# Controlled vocabulary for documents.risk_domains (multi-select, may be empty).
+# The validator gates tags against these KEYS deterministically; adding a tag is a
+# config change. This is a 1:1 mirror of the four EU AI Act GPAI Code of Practice
+# "specified systemic risks" plus societal harms (EU CoP Appendix 1.1 /
+# International AI Safety Report systemic risks). Deliberately kept to 5: autonomy
+# and AI-R&D acceleration live under loss_of_control (the CoP folds them in), and
+# safeguard robustness is a mitigation layer, not a risk domain — a jailbreak/
+# guardrail-stress document is tagged by the DOMAIN it targets (or left untagged if
+# domain-generic). Tag a domain only for SUBSTANTIVE assessment content (a reported
+# eval, red-team, or risk analysis), not a passing mention.
+risk_domains:
+  cbrn:
+    display: CBRN
+    definition: Uplift toward chemical, biological, radiological, or nuclear weapons
+      (design, acquisition, production, release).
+  cyber:
+    display: Cyber offence
+    definition: Offensive cyber capability — vulnerability discovery, exploit
+      generation, attack scaling.
+  loss_of_control:
+    display: Loss of control
+    definition: Failures of human oversight and alignment — scheming, deception of
+      overseers, sandbagging, evaluation awareness, sabotage, shutdown resistance,
+      self-exfiltration/replication, AI-control and monitoring work, and autonomous
+      capability to do or accelerate AI R&D (agentic time horizons, self-improvement).
+  harmful_manipulation:
+    display: Harmful manipulation
+    definition: Persuasion, deception, or personalised targeting that distorts
+      users' or populations' beliefs or behaviour (includes sycophancy studies).
+  societal_harm:
+    display: Societal harms
+    definition: Bias/discrimination, privacy, child safety, mental health,
+      labour-market and other society-level harms.
 policy:
   # Inclusion philosophy (2026-08-10): the allowlist is the gate. Allowlisted
   # publishers auto-merge regardless of tier (tier is a provenance label only).

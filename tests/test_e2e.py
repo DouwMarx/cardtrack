@@ -37,6 +37,7 @@ def test_full_pipeline_via_clis(repo_root, http_server, pdf_bytes):
         "--safety-evals", "yes",
         "--attest", "primary_source", "--attest", "about_a_specific_model_or_eval",
         "--attest", "distinct_model_release", "--attest", "notable_release",
+        "--attest", "covered_model_class",
         root=repo_root)
     assert code == 0 and res_b["status"] == "written", (res_b, err)
     assert res_b["slug"] == "testeval-model-b-independent-eval"
@@ -76,12 +77,43 @@ def test_full_pipeline_via_clis(repo_root, http_server, pdf_bytes):
 
 
 def test_comment_issue_outbox_mode(repo_root):
+    """Undelivered comments queue for flush_outbox.py — before 2026-08-31 they were
+    only logged and silently never reached GitHub (gh is unauth in the sandbox)."""
     code, res, err = run_cli("comment_issue.py", "--issue", "7",
                              "--body", "Verified: the link is alive again.",
                              root=repo_root)
-    assert code == 0 and res["status"] == "logged_only"
+    assert code == 0 and res["status"] == "queued"
     logged = (repo_root / "logs" / "comments.jsonl").read_text()
     assert "alive again" in logged
+    queued = json.loads((repo_root / "logs" / "comments_outbox.jsonl").read_text())
+    assert queued["issue"] == 7 and "alive again" in queued["body"]
+    assert queued["resolve"] is False
+
+
+@pytest.mark.skipif(shutil.which("uv") is None or shutil.which("flock") is None
+                    or shutil.which("timeout") is None,
+                    reason="run_daily.sh needs uv, flock and coreutils timeout")
+@pytest.mark.parametrize("cmd,expected", [
+    ('echo "AGENT SAW max-turns=$CARDTRACK_MAX_TURNS"', "AGENT SAW max-turns=123"),
+    ("sleep 30", "wall-clock backstop"),
+])
+def test_run_daily_agent_phase_guards(repo_root, http_server, cmd, expected):
+    """The turn cap has exactly one source of truth, and wall clock — not turns —
+    is what stops a runaway agent from holding the lock into the next run."""
+    import yaml
+
+    settings_path = repo_root / "config" / "settings.yaml"
+    settings = yaml.safe_load(settings_path.read_text())
+    settings["agent"] = {"enabled": True, "max_turns": 123, "timeout_seconds": 1, "cmd": cmd}
+    settings_path.write_text(yaml.safe_dump(settings))
+
+    env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="agent-guard",
+               CARDTRACK_NO_SANDBOX="1")
+    proc = subprocess.run(["bash", str(PROJECT_ROOT / "scripts" / "run_daily.sh")],
+                          capture_output=True, text=True, timeout=600, env=env)
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    assert expected in proc.stdout, proc.stdout
+    assert "Phase C" in proc.stdout, "a failed agent never blocks build & publish"
 
 
 @pytest.mark.skipif(shutil.which("uv") is None or shutil.which("flock") is None,
@@ -104,3 +136,57 @@ def test_run_daily_orchestration(repo_root, http_server):
     assert (repo_root / "site" / "index.html").exists()
     logs = list((repo_root / "logs").glob("run-*.log"))
     assert logs, "run log written"
+
+
+@pytest.mark.skipif(shutil.which("uv") is None or shutil.which("flock") is None
+                    or shutil.which("git") is None,
+                    reason="run_daily.sh needs uv, flock, git")
+def test_run_daily_security_hold_blocks_publish(repo_root, http_server):
+    """A planted secret holds the whole run: no commit, outbox not flushed, exit 1;
+    the quarantine exclusion lets a cleaned rerun pass (does not re-trip forever)."""
+    import yaml
+
+    settings_path = repo_root / "config" / "settings.yaml"
+    settings = yaml.safe_load(settings_path.read_text())
+    settings["publish"]["git_commit"] = True   # commit path on; push/deploy stay off
+    settings_path.write_text(yaml.safe_dump(settings))
+
+    http_server.set_html("/card-a", "Held run content.")
+    run_cli("propose_doc.py", "--json", "-", "--run-id", "seed", root=repo_root,
+            stdin=json.dumps(make_proposal(http_server, path="/card-a",
+                                           model_names=["HeldModel"])))
+    subprocess.run(["git", "init", "-q", str(repo_root)], check=True)
+    subprocess.run(["git", "-C", str(repo_root), "add", "-A"], check=True)
+    subprocess.run(["git", "-C", str(repo_root), "-c", "user.email=t@t", "-c",
+                    "user.name=t", "commit", "-qm", "init"], check=True)
+    base = subprocess.run(["git", "-C", str(repo_root), "rev-parse", "HEAD"],
+                          capture_output=True, text=True).stdout.strip()
+
+    token = "ghp_" + "a1B2c3D4" * 5  # 40 alnum chars: matches github_token
+    (repo_root / "logs" / "run_report.md").write_text(f"leak {token} end\n")
+    run_cli("comment_issue.py", "--issue", "9", "--body", f"leak {token}", root=repo_root)
+
+    env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="held")
+    proc = subprocess.run(["bash", str(PROJECT_ROOT / "scripts" / "run_daily.sh")],
+                          capture_output=True, text=True, timeout=600, env=env)
+    assert proc.returncode == 1, proc.stdout
+    assert "SECURITY HOLD" in proc.stdout
+    head = subprocess.run(["git", "-C", str(repo_root), "rev-parse", "HEAD"],
+                          capture_output=True, text=True).stdout.strip()
+    assert head == base, "held run must not commit"
+    assert (repo_root / "logs" / "comments_outbox.jsonl").exists(), "outbox not flushed"
+    assert not (repo_root / "logs" / "comments_outbox.sent.jsonl").exists()
+    assert (repo_root / "logs" / "SECURITY_HOLD.md").exists()
+
+    # clean up and rerun: the cleared hold must let publishing proceed. The token
+    # persists in every log that captured it — run_report, both comment logs,
+    # SECURITY_HOLD — and each is correctly scanned, so all must be cleaned.
+    (repo_root / "logs" / "run_report.md").write_text("clean report\n")
+    (repo_root / "logs" / "comments_outbox.jsonl").unlink()
+    (repo_root / "logs" / "comments.jsonl").unlink()
+    (repo_root / "logs" / "SECURITY_HOLD.md").unlink()
+    proc2 = subprocess.run(["bash", str(PROJECT_ROOT / "scripts" / "run_daily.sh")],
+                           capture_output=True, text=True, timeout=600,
+                           env=dict(env, RUN_ID="cleared"))
+    assert proc2.returncode == 0, proc2.stdout + proc2.stderr
+    assert "SECURITY HOLD" not in proc2.stdout

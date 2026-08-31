@@ -202,7 +202,8 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
             bytes_used += len(result.content)
             text, _method = extract_text(result.content, result.content_type,
                                          doc["canonical_url"])
-            fp = fingerprint_text(text) if text else sha256_bytes(result.content)
+            fp = (fingerprint_text(text, repo.fingerprint_ignore_patterns) if text
+                  else sha256_bytes(result.content))
             known = conn.execute(
                 "SELECT 1 FROM document_versions WHERE document_id = ? AND "
                 "content_fingerprint = ?", (doc["id"], fp)).fetchone()
@@ -306,6 +307,68 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
             }, ensure_ascii=False, indent=1),
             encoding="utf-8")
         conn.commit()
+
+        # ---- 4. surface unsummarized versions to the agent ----
+        summary["updated_docs"] = emit_updated_docs(repo, conn, run_id)
     finally:
         conn.close()
     return summary
+
+
+UPDATED_DOCS_CAP = 20
+DIFF_CHAR_CAP = 20000
+
+
+def emit_updated_docs(repo: Repo, conn: sqlite3.Connection, run_id: str) -> int:
+    """Write logs/updated_docs.json: every stored version that has a predecessor but
+    no change_summary yet, with a capped unified diff on disk. The agent reads this,
+    writes 1-3 factual sentences per entry via the annotate_version proposal. Listing
+    ALL unsummarized versions (not just today's) makes the loop self-healing when the
+    agent skips a day."""
+    import difflib
+
+    rows = conn.execute(
+        """SELECT dv.id, dv.document_id, dv.fetched_at, dv.text_path, dv.change_summary,
+                  d.slug
+           FROM document_versions dv JOIN documents d ON d.id = dv.document_id
+           WHERE d.status != 'removed'
+           ORDER BY dv.document_id, dv.fetched_at, dv.id""").fetchall()
+    by_doc: dict[int, list] = {}
+    for r in rows:
+        by_doc.setdefault(r["document_id"], []).append(r)
+
+    entries = []
+    diff_dir = repo.logs_dir / "version_diffs"
+    for versions in by_doc.values():
+        for prev, cur in zip(versions, versions[1:], strict=False):
+            if cur["change_summary"] is not None:
+                continue
+            if not prev["text_path"] or not cur["text_path"]:
+                continue
+            prev_path = repo.root / prev["text_path"]
+            cur_path = repo.root / cur["text_path"]
+            if not prev_path.exists() or not cur_path.exists():
+                continue
+            a = prev_path.read_text(encoding="utf-8").splitlines()
+            b = cur_path.read_text(encoding="utf-8").splitlines()
+            diff_lines = list(difflib.unified_diff(a, b, lineterm="", n=2))
+            added = sum(1 for line in diff_lines if line.startswith("+") and
+                        not line.startswith("+++"))
+            removed = sum(1 for line in diff_lines if line.startswith("-") and
+                          not line.startswith("---"))
+            diff_dir.mkdir(parents=True, exist_ok=True)
+            diff_path = diff_dir / f"{cur['slug']}-v{cur['id']}.diff"
+            diff_path.write_text("\n".join(diff_lines)[:DIFF_CHAR_CAP], encoding="utf-8")
+            entries.append({
+                "slug": cur["slug"], "version_id": cur["id"],
+                "prev_version_id": prev["id"], "fetched_at": cur["fetched_at"],
+                "added_lines": added, "removed_lines": removed,
+                "diff_path": str(diff_path.relative_to(repo.root)),
+            })
+    entries.sort(key=lambda e: e["fetched_at"], reverse=True)
+    entries = entries[:UPDATED_DOCS_CAP]
+    (repo.logs_dir / "updated_docs.json").write_text(
+        json.dumps({"run_id": run_id, "generated_at": utcnow(),
+                    "updated_docs": entries}, ensure_ascii=False, indent=1),
+        encoding="utf-8")
+    return len(entries)

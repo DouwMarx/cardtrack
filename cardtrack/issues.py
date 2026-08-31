@@ -7,6 +7,7 @@ functional before the public repo exists, and in tests.
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 
@@ -17,7 +18,11 @@ def file_issue(repo: Repo, title: str, body: str, labels: list[str]) -> str:
     """Returns an issue reference: a GitHub URL, or 'outbox:<line>' in outbox mode."""
     gh_repo = repo.setting("github.repo") or ""
     use_gh = bool(repo.setting("github.use_gh", True))
-    if gh_repo and use_gh and shutil.which("gh"):
+    # Agent-filed issues always queue to the outbox (scanned by flush_outbox before
+    # delivery); only non-agent callers may post directly. Gate on actor, not
+    # sandbox, so a relaxed sandbox never opens an unscanned channel.
+    is_agent = os.environ.get("CARDTRACK_ACTOR") == "agent"
+    if gh_repo and use_gh and shutil.which("gh") and not is_agent:
         cmd = ["gh", "issue", "create", "-R", gh_repo, "--title", title, "--body", body]
         for label in labels:
             cmd += ["--label", label]

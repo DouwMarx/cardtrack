@@ -17,6 +17,48 @@ fetch:
                                        # a real-browser TLS fingerprint (curl_cffi) so
                                        # bot-walled publishers don't bias the corpus
 
+fingerprint:
+  # Lines dropped from the CONTENT FINGERPRINT only (display text untouched).
+  # Measured 2026-08-31 over all 168 stored version pairs: ~85% of "new versions"
+  # were dynamic page furniture (HF download counters/sidebars, rotating blog
+  # footers, citation access-dates), not document revisions. These patterns kill
+  # that churn; substantive edits (scores, sections, licenses) live in lines the
+  # filter never touches. Changing this list changes fingerprints — run
+  # scripts/recompute_fingerprints.py afterwards or every doc mints a bogus version.
+  # trafilatura renders HF sidebar items as "- " bullets; patterns are kept
+  # bullet-anchored so they can never match a document's own prose or a
+  # standalone numeric table cell (verified against all stored versions 2026-08-31).
+  ignore_line_patterns:
+    - '^- [\d,.]+\s*$'                   # HF download-counter bullet ("- 658,360")
+    - '^(- )?Downloads last month'
+    - '^(- )?Spaces using '
+    - '^(- )?Model tree for '
+    - '^(- )?Collections? including '
+    - '^(- )?View evaluation results'
+    - '^- \S+/\S+.*[Ll]eaderboard\s*$'   # HF eval-widget bullet ("- org/dataset ... leaderboard")
+    - '^Read more$'
+    - '^(- )?Copy as [Mm]arkdown$'
+    - '^Share this article$'
+    # NB: no "As of <date>" pattern — RAND access-date stamps appear mid-line or
+    # indented-with-colon (never at a bare line start), so an anchored pattern
+    # matched zero furniture and only erased real prose ("As of June 5, 2026, the
+    # bug bounty received ~100,000 attempts"). Left out deliberately.
+
+review:
+  # Outbound review gate (runs OUTSIDE the sandbox, Phase C, fail-closed):
+  # 1) scripts/secret_scan.py — DETERMINISTIC. Exact-match against your live secret
+  #    values (zero false positives) plus high-precision key-shape regexes over the
+  #    agent-authored surface only. This is the real protection and is always on;
+  #    a false alarm is rare, reproducible, and cleared by deleting the offending
+  #    text — it does not silently mis-hold a good run.
+  # 2) scripts/review_outbound.py — an LLM judgment pass. OFF by default: it is the
+  #    only non-deterministic gate, so it is the one thing that could hold a
+  #    legitimate daily run over a wrong call and leave the site a day stale. It
+  #    only adds coverage for paraphrased/encoded exfil that dodges (1), an exotic
+  #    threat. Turn it on if you want that belt-and-braces; on = hard gate.
+  llm_screen: false
+  llm_screen_model: haiku
+
 github:
   repo: "DouwMarx/cardtrack"
   use_gh: true
@@ -34,7 +76,17 @@ publish:
 
 agent:
   enabled: true
-  max_turns: 60
+  # Backstops against a runaway loop, NOT a work budget. Real runs spend 34–55
+  # turns and 11–16 minutes. The 2026-08-15 run died at exactly turn 60 while
+  # verifying Anthropic's August 2026 Risk Report and the lead died with it —
+  # the document stayed missing for five days. A cap set near typical usage
+  # silently truncates curation, so both numbers now sit an order of magnitude
+  # above it. run_daily.sh exports max_turns into the agent command; nothing
+  # hardcodes it twice.
+  max_turns: 600
+  timeout_seconds: 7200        # wall-clock kill; must stay well under 24 h so an
+                               # overrunning agent never holds the lock past the
+                               # next day's trigger
   # The vendor-agnosticism seam: swapping in another CLI agent edits this one string.
   # CARDTRACK_RUN_ID/CARDTRACK_ACTOR are exported by run_daily.sh purely for
   # changelog grouping/provenance; caps are enforced inside the validator over a
@@ -47,7 +99,8 @@ agent:
   # and PROPOSALS.md anyway (tool scoping is ergonomics, bwrap is the boundary).
   cmd: >-
     env -u ANTHROPIC_API_KEY
-    claude -p "$(cat prompts/TASK.md)" --model opus --max-turns 60 --output-format text
+    claude -p "$(cat prompts/TASK.md)" --model opus
+    --max-turns "$CARDTRACK_MAX_TURNS" --output-format text
     --allowedTools "Read" "Glob" "Grep" "WebSearch" "WebFetch" "Write" "Edit"
     "Bash(.venv/bin/python scripts/propose_doc.py *)"
     "Bash(.venv/bin/python scripts/comment_issue.py *)"

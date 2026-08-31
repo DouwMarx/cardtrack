@@ -147,7 +147,8 @@ def test_canonical_url_repoint_to_unknown_host_files_issue(repo_root, http_serve
     evil = f"http://localhost:{port}/home-doc"
     r = process_proposal(repo, {
         "action": "field_update", "slug": added.slug, "field": "canonical_url",
-        "new": evil, "justification": "totally legit move", "evidence_urls": []}, "r2")
+        "new": evil, "justification": "totally legit move", "evidence_urls": []},
+        "r2", actor="human")  # canonical_url is operator-only
     assert r.status == "issue_filed"
     assert "canonical_url_host_unknown" in r.reason
     conn = connect(repo.db_path)
@@ -166,7 +167,7 @@ def test_canonical_url_repoint_with_different_content_files_issue(repo_root, htt
     r = process_proposal(repo, {
         "action": "field_update", "slug": added.slug, "field": "canonical_url",
         "new": http_server.url("/other-doc"),
-        "justification": "move", "evidence_urls": []}, "r2")
+        "justification": "move", "evidence_urls": []}, "r2", actor="human")
     assert r.status == "issue_filed"
     assert "canonical_url_content_mismatch" in r.reason
 
@@ -181,7 +182,8 @@ def test_url_conflict_on_repoint_rejected(repo_root, http_server):
                                              model_names=["ConflictB"]), "r1")
     r = process_proposal(repo, {
         "action": "field_update", "slug": b.slug, "field": "canonical_url",
-        "new": http_server.url("/own-a"), "justification": "j", "evidence_urls": []}, "r2")
+        "new": http_server.url("/own-a"), "justification": "j", "evidence_urls": []},
+        "r2", actor="human")
     assert r.status == "rejected" and "url_conflict" in r.reason
     assert a.slug in r.reason
 
@@ -196,7 +198,7 @@ def test_alt_url_still_routes_to_document(repo_root, http_server):
     moved = process_proposal(repo, {
         "action": "field_update", "slug": added.slug, "field": "canonical_url",
         "new": http_server.url("/new-home"), "justification": "move",
-        "evidence_urls": []}, "r2")
+        "evidence_urls": []}, "r2", actor="human")
     assert moved.status == "written"
     again = process_proposal(repo, make_proposal(http_server, path="/old-home",
                                                  model_names=["AltModel"]), "r3")

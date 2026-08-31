@@ -32,13 +32,47 @@ fi
 mkdir -p "$ROOT/data" "$ROOT/logs"
 touch "$ROOT/logs/PROPOSALS.md" "$ROOT/logs/friction.jsonl"
 
-# Ephemeral agent home: credentials in, nothing out.
+# Ephemeral agent home: credentials in, nothing out. Seed ONLY the credential
+# file — the host settings.json (permission modes, hooks) must not shape the
+# sandboxed agent's permission posture; the CLI runs on its defaults + the
+# explicit --allowedTools list in settings.yaml.
 AGENT_HOME="$ROOT/.agent-home"
 rm -rf "$AGENT_HOME"
 mkdir -p "$AGENT_HOME/.claude"
-for f in .credentials.json settings.json; do
-  [ -f "$HOME/.claude/$f" ] && cp "$HOME/.claude/$f" "$AGENT_HOME/.claude/$f"
-done
+if [ -f "$HOME/.claude/.credentials.json" ]; then
+  # Blast-radius reduction: the -p session needs only the short-lived access
+  # token. Strip the long-lived refresh token and any MCP OAuth tokens (they
+  # grant personal-data access far beyond this repo) so a prompt-injected agent
+  # that reads its own credential file has the least to steal. If the access
+  # token has expired, Phase B fails cleanly and any interactive `claude` use
+  # refreshes it for the next run.
+  PYBIN="$ROOT/.venv/bin/python"
+  [ -x "$PYBIN" ] || PYBIN="$SCRIPT_ROOT/.venv/bin/python"
+  [ -x "$PYBIN" ] || PYBIN="$(command -v python3)"
+  "$PYBIN" - "$HOME/.claude/.credentials.json" \
+      "$AGENT_HOME/.claude/.credentials.json" <<'PYEOF'
+import json, sys
+src, dst = sys.argv[1], sys.argv[2]
+try:
+    creds = json.load(open(src))
+    oauth = creds.get("claudeAiOauth")
+    if isinstance(oauth, dict):
+        oauth.pop("refreshToken", None)
+        oauth.pop("refreshTokenExpiresAt", None)
+    for key in [k for k in creds if "mcp" in k.lower()]:
+        creds.pop(key)
+    out = json.dumps(creds)
+    # fail closed: never seed a file that still carries the high-value tokens
+    if "refreshToken" in out or any("mcp" in k.lower() for k in creds):
+        raise ValueError("sensitive keys survived slimming")
+    open(dst, "w").write(out)
+except Exception as e:
+    print(f"[agent_sandbox] ERROR: credential slimming failed ({e}); refusing to seed",
+          file=sys.stderr)
+    sys.exit(1)
+PYEOF
+  chmod 600 "$AGENT_HOME/.claude/.credentials.json"
+fi
 
 ENV_MASK=()
 [ -f "$ROOT/.env" ] && ENV_MASK=(--ro-bind /dev/null "$ROOT/.env")
@@ -63,6 +97,8 @@ exec bwrap \
   --bind "$AGENT_HOME/.claude" "$HOME/.claude" \
   --setenv HOME "$HOME" \
   --setenv CARDTRACK_SANDBOX 1 \
+  --unsetenv GH_TOKEN \
+  --unsetenv GITHUB_TOKEN \
   --unshare-pid \
   --die-with-parent \
   "$@"

@@ -57,6 +57,7 @@ uv run python scripts/propose_doc.py \
   --evidence-url "https://www.anthropic.com/news/…" \
   --attest primary_source --attest about_a_specific_model_or_eval \
   --attest distinct_model_release --attest notable_release \
+  --attest covered_model_class \
   --source-of-lead manual
 ```
 
@@ -109,7 +110,18 @@ switching to API billing). Swapping in another CLI agent is a one-line change to
   for suspected duplicates; visitors file data-error/missing-doc reports. The agent
   reports pipeline limitations to `PROPOSALS.md`, not issues.
 - **Caps and criteria** live in `config/settings.yaml` / `config/criteria.yaml`;
-  the allowlist in `config/sources.yaml`. The agent cannot modify any of them.
+  the allowlist (with per-publisher `scope` notes) in `config/sources.yaml`. The
+  agent cannot modify any of them. The `risk_domains` tag vocabulary is defined in
+  `criteria.yaml` and gated by the validator.
+- **Canonical URLs favor the full document** (usually the PDF) over announcement
+  pages; companions live in the structured `related_urls` field, same-document
+  mirrors in `alt_urls` (identity-bearing, drives dedup). Version rows carry
+  agent-written `change_summary` notes (validated `annotate_version` action);
+  Phase A emits `logs/updated_docs.json` + diffs for versions still needing one.
+- **Fingerprints ignore page furniture** (`fingerprint.ignore_line_patterns` in
+  settings.yaml — HF download counters, rotating blog footers, access-date stamps).
+  If you change the patterns, run `scripts/recompute_fingerprints.py --apply`
+  or every unchanged document mints a bogus version on its next fetch.
 
 ## Security model
 
@@ -123,10 +135,25 @@ entries but can never reset limits. (Backfills: temporarily raise the caps in
 Phase B runs inside `scripts/agent_sandbox.sh` (bwrap): the filesystem is read-only,
 `$HOME` is a tmpfs (no `~/.ssh`, no `~/.config/secrets.env`, no gh auth), the
 repo-local `.env` is masked with `/dev/null`, and the only writable paths are
-`data/`, `logs/`, `PROPOSALS.md`, plus an **ephemeral** `~/.claude` seeded with just
-the CLI credentials and discarded after the run (a poisoned settings/hooks file
-never reaches the host). Issues the sandboxed agent files land in the outbox;
+`data/`, `logs/`, `PROPOSALS.md`, plus an **ephemeral** `~/.claude` seeded with a
+**slimmed** credential file — the long-lived refresh token and any MCP OAuth tokens
+are stripped at seed time, so the worst a prompt-injected agent can exfiltrate is a
+short-lived access token (verified empirically 2026-08-31: headless `--allowedTools`
+does deny unlisted tools, and runs authenticate fine on the slimmed file). The host
+`settings.json` is deliberately NOT seeded. Issues and issue comments the sandboxed
+agent writes land in outboxes (`issues_outbox.jsonl`, `comments_outbox.jsonl`);
 `scripts/flush_outbox.py` delivers them to GitHub *outside* the sandbox.
+
+**Outbound review gate** (Phase C, outside the sandbox, fail-closed): before
+anything is flushed, committed, pushed, or deployed, `scripts/secret_scan.py` runs
+high-precision secret patterns plus exact-match against the machine's live secret
+values over `docs.sqlite` + `logs/`, and `scripts/review_outbound.py` (settings
+`review.llm_screen`) runs one cheap LLM pass over agent-authored outbound text with
+a narrow hold-only-clear-leaks charter. On any finding the run publishes nothing,
+writes `logs/SECURITY_HOLD.md`, and exits non-zero; quarantined records go to
+`logs/*.held.jsonl` (gitignored). Accepted residual: the agent's own WebFetch/
+WebSearch request URLs are an un-gateable exfil channel — bounded by the credential
+slimming above, per "some risk is acceptable".
 
 Known residual gaps at MVP, accepted deliberately: (1) the validator runs inside
 the sandbox, so `data/` itself is agent-writable and a fully compromised agent

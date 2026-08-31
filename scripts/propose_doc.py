@@ -44,7 +44,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--json", dest="json_src",
                    help="proposal record as JSON: a file path, or '-' for stdin")
     # flag-based construction
-    p.add_argument("--action", choices=["add", "new_version", "status_change", "field_update"])
+    p.add_argument("--action", choices=["add", "new_version", "status_change",
+                                        "field_update", "annotate_version"])
     p.add_argument("--url")
     p.add_argument("--title")
     p.add_argument("--publisher")
@@ -61,6 +62,14 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--safety-evals", dest="safety_evals", choices=["yes", "no"],
                    help="required for adds: whether the document contains safety "
                         "or dangerous-capability evals")
+    p.add_argument("--openness", help="restricted | closed | open_weight_restrictive "
+                                      "| open_weight_permissive")
+    p.add_argument("--risk-domain", action="append", default=[], dest="risk_domains",
+                   help="repeatable: risk domain tag (see config/criteria.yaml)")
+    p.add_argument("--version-id", dest="version_id", type=int,
+                   help="target version (annotate_version)")
+    p.add_argument("--summary", help="what changed vs the previous version "
+                                     "(annotate_version; plain text, <=500 chars)")
     p.add_argument("--content-file",
                    help="operator-supplied document bytes for bot-walled/offline "
                         "sources; recorded as transport=manual_upload. Human use "
@@ -98,6 +107,13 @@ def proposal_from_args(args: argparse.Namespace) -> dict:
         proposal["criteria"] = {k: True for k in args.attested}
         if args.safety_evals:
             proposal["soft"] = {"has_safety_evals": args.safety_evals == "yes"}
+        if args.openness:
+            proposal["openness"] = args.openness
+        if args.risk_domains:
+            proposal["risk_domains"] = args.risk_domains
+    if args.action == "annotate_version":
+        proposal["version_id"] = args.version_id
+        proposal["summary"] = args.summary
     if args.notes:
         proposal["notes"] = args.notes
     if args.slug:

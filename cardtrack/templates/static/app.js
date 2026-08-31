@@ -9,6 +9,7 @@ const COLUMNS = [
   { key: "model_names", label: "Models", show: true },
   { key: "publication_date", label: "Published", show: true },
   { key: "safety_evals", label: "Safety evals", show: true },
+  { key: "risk_domains", label: "Risk domains", show: true },
   { key: "openness", label: "Openness", show: true },
   { key: "canonical_url", label: "Source", show: true },
   { key: "status", label: "Status", show: false },
@@ -17,6 +18,7 @@ const COLUMNS = [
 ];
 
 const OPENNESS_LABELS = {
+  restricted: "restricted access",
   closed: "closed",
   open_weight_restrictive: "open (restrictive)",
   open_weight_permissive: "open (permissive)",
@@ -26,9 +28,10 @@ const OPENNESS_LABELS = {
 const state = {
   docs: [],
   publishers: {},
+  riskLabels: {},   // key -> display, from metadata.json (config-defined vocabulary)
   q: "",
   facets: { publisher: new Set(), doc_type: new Set(), openness: new Set(),
-            is_independent: "", safety: "" },
+            risk: new Set(), is_independent: "", safety: "" },
   sort: { key: "publication_date", dir: -1 },
   visible: new Set(COLUMNS.filter(c => c.show).map(c => c.key)),
 };
@@ -54,6 +57,8 @@ function matches(d) {
   if (f.is_independent !== "" && String(d.is_independent) !== f.is_independent) return false;
   if (f.safety !== "" && String(d.safety_evals) !== f.safety) return false;
   if (f.openness.size && !f.openness.has(d.openness || "na")) return false;
+  // array-valued facet: any selected tag present on the doc matches
+  if (f.risk.size && !(d.risk_domains || []).some(r => f.risk.has(r))) return false;
   return true;
 }
 
@@ -87,6 +92,12 @@ function cellHtml(d, key) {
       return `<td class="title"><a href="./docs/${esc(d.slug)}.html">${esc(d.title)}</a></td>`;
     case "model_names":
       return `<td class="models">${esc((d.model_names || []).join(", "))}</td>`;
+    case "risk_domains": {
+      const tags = d.risk_domains || [];
+      if (!tags.length) return "<td></td>";
+      return `<td>${tags.map(r =>
+        `<span class="badge risk-domain">${esc(state.riskLabels[r] || r)}</span>`).join(" ")}</td>`;
+    }
     case "status":
       return `<td><span class="badge status-${esc(d.status)}">${esc(d.status)}</span></td>`;
     case "safety_evals": {
@@ -162,6 +173,7 @@ function setupControls() {
     state.facets.publisher = new Set();
     state.facets.doc_type = new Set();
     state.facets.openness = new Set();
+    state.facets.risk = new Set();
     render();
   });
 
@@ -213,6 +225,7 @@ async function main() {
     const data = await resp.json();
     state.docs = data.documents || [];
     state.publishers = data.publishers || {};
+    state.riskLabels = data.risk_domains || {};
     loaded = true;
   } catch (e) {
     $("count").textContent = "Failed to load metadata.json";
@@ -242,9 +255,21 @@ async function main() {
   msels.openness = createMsel($("f-openness"), { label: "openness",
     onChange: v => { state.facets.openness = v; render(); } });
   msels.openness.setOptions(
-    ["closed", "open_weight_restrictive", "open_weight_permissive", "na"]
+    ["restricted", "closed", "open_weight_restrictive", "open_weight_permissive", "na"]
       .filter(v => opennessCounts.has(v))
       .map(v => ({ value: v, label: OPENNESS_LABELS[v], count: opennessCounts.get(v) })));
+
+  const riskCounts = new Map();
+  for (const d of state.docs) {
+    for (const r of d.risk_domains || []) riskCounts.set(r, (riskCounts.get(r) || 0) + 1);
+  }
+  msels.risk = createMsel($("f-risk"), { label: "risk",
+    onChange: v => { state.facets.risk = v; render(); } });
+  // vocabulary order from config, not alphabetical; only tags actually in use
+  msels.risk.setOptions(
+    Object.keys(state.riskLabels)
+      .filter(r => riskCounts.has(r))
+      .map(r => ({ value: r, label: state.riskLabels[r], count: riskCounts.get(r) })));
   render();
 }
 

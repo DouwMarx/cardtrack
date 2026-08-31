@@ -6,6 +6,10 @@
 # scripted fetches (OpenAI /news, Meta blog); index diffing quietly skips
 # failures and agent web search covers the gap.
 # Verified reachable with a browser UA on 2026-08-09.
+# scope (optional): what of this publisher's output is in scope. The agent MUST
+# honor it when triaging leads from that publisher's index pages — HF org pages
+# surface every repo the org pushes, and criteria.yaml covered_model_class plus
+# these notes are what keep auxiliary-model noise out.
 
 publishers:            # first-party
   anthropic:
@@ -39,6 +43,8 @@ publishers:            # first-party
   mistral:
     tier: 2
     display_name: Mistral AI
+    scope: >-
+      Frontier LLM/VLM releases (Mistral Large/Small/Medium, Magistral, Pixtral, Devstral). NOT: OCR, moderation/guardrail, transcription/TTS point releases from the docs product pages.
     homepage: https://mistral.ai
     index_urls:
       - https://mistral.ai/news/
@@ -58,6 +64,8 @@ publishers:            # first-party
   alibaba_qwen:
     tier: 2
     display_name: Alibaba Qwen
+    scope: >-
+      Qwen LLM/VLM/generative lines. NOT: ASR, embeddings, forced aligners.
     homepage: https://qwen.ai
     index_urls:            # qwen.ai renders client-side (unfetchable); HF org covers releases
       - https://huggingface.co/Qwen
@@ -77,18 +85,24 @@ publishers:            # first-party
   tencent_hunyuan:
     tier: 1
     display_name: Tencent Hunyuan
+    scope: >-
+      Hunyuan (Hy) LLM/VLM line, HY-World, flagship embodied/UI agents. NOT: embeddings, retrieval, machine translation, minor checkpoint drops.
     homepage: https://hunyuan.tencent.com
     index_urls:
       - https://huggingface.co/tencent
   xiaomi:
     tier: 1
     display_name: Xiaomi MiMo
+    scope: >-
+      MiMo LLM/VLM line. NOT: ASR variants.
     homepage: https://huggingface.co/XiaomiMiMo
     index_urls:
       - https://huggingface.co/XiaomiMiMo
   nvidia:
     tier: 1
     display_name: NVIDIA
+    scope: >-
+      Nemotron LLM/VLM family, Cosmos world models, GR00T robotics. NOT: embeddings, OCR/parse, ASR/TTS, vision backbones, detectors, content-safety classifiers, distillation artifacts, quantum decoders/calibration.
     homepage: https://www.nvidia.com
     index_urls:
       - https://huggingface.co/nvidia
@@ -114,6 +128,8 @@ publishers:            # first-party
   inclusion_ai:
     tier: 2
     display_name: InclusionAI (Ant Group)
+    scope: >-
+      Ling/LLaDA LLM lines, flagship agents. NOT: OCR fine-tunes, guardrail classifiers, tiny size variants.
     homepage: https://huggingface.co/inclusionAI
     index_urls:
       - https://huggingface.co/inclusionAI

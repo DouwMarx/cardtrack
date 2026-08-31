@@ -293,13 +293,31 @@ def test_canonical_url_update_appends_alt(repo, http_server):
         "action": "field_update", "slug": added.slug, "field": "canonical_url",
         "new": http_server.url("/doc1-new-home"),
         "justification": "publisher moved the card", "evidence_urls": [old_url],
-    }, "run2")
+    }, "run2", actor="human")
     assert r.status == "written"
     conn = connect(repo.db_path)
     doc = conn.execute("SELECT * FROM documents WHERE slug=?", (added.slug,)).fetchone()
     conn.close()
     assert doc["canonical_url"].endswith("/doc1-new-home")
     assert old_url in json.loads(doc["alt_urls"])
+
+
+def test_canonical_url_is_operator_only(repo, http_server):
+    """The agent cannot repoint a public source link; it must go through the
+    operator (related_urls kind full_document -> operator promotes)."""
+    http_server.set_html("/doc1", "content here")
+    http_server.set_html("/doc1-new-home", "content here")
+    added = process_proposal(repo, make_proposal(http_server), "run1")
+    r = process_proposal(repo, {
+        "action": "field_update", "slug": added.slug, "field": "canonical_url",
+        "new": http_server.url("/doc1-new-home"),
+        "justification": "move", "evidence_urls": []}, "run2", actor="agent")
+    assert r.status == "rejected" and "operator-only" in r.reason
+    conn = connect(repo.db_path)
+    url = conn.execute("SELECT canonical_url FROM documents WHERE slug=?",
+                       (added.slug,)).fetchone()[0]
+    conn.close()
+    assert url.endswith("/doc1"), "the agent proposal must not repoint the link"
 
 
 def test_invalid_schema_rejected(repo):
