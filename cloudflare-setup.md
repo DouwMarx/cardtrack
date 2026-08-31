@@ -1,11 +1,26 @@
 # Cloudflare setup
 
-## Moving to systemcards.org (planned)
+## systemcards.org (done 2026-08-31)
 
-`systemcards.org` is unregistered (verified via RDAP 2026-08-31). The site itself is
-domain-agnostic (all internal URLs are relative), so the move is registrar + DNS work
-only; deploys keep going to the same Pages project throughout and the old domain keeps
-working until the redirect flips.
+Live at https://systemcards.org and https://www.systemcards.org. Both are custom
+domains on the `cardtrack` Pages project (proxied CNAMEs → `cardtrack-aar.pages.dev`,
+edge HTTPS active); `cards.douwmarx.com` stays attached and serving, so old links keep
+working. `site.base_url` is now `https://systemcards.org`. Daily deploys update all
+three domains automatically (same Pages project).
+
+**One optional manual step — the 301 from the old domain.** Automation couldn't create
+it: the `cardtrack-deploy` API token lacks `Zone | Dynamic Redirect | Edit`. Both domains
+serve today, so this is purely canonicalization. To add it (≈2 min, no token change):
+Cloudflare dashboard → **douwmarx.com** → **Rules → Redirect Rules → Create rule** →
+When incoming requests match **Hostname equals `cards.douwmarx.com`** → Then **Static/
+Dynamic redirect**, type **301**, target `https://systemcards.org` with **Preserve path
+and query string** enabled. (Or grant the token that permission and tell Claude to create
+it via the Rulesets API — the exact call is in the session history.)
+
+## Original move plan (for reference)
+
+The site is domain-agnostic (all internal URLs relative), so the move was registrar +
+DNS only; deploys kept going to the same Pages project throughout.
 
 ### Steps required from you (~10 minutes)
 

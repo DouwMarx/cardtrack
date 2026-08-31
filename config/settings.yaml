@@ -65,7 +65,7 @@ github:
 
 site:
   title: cardtrack
-  base_url: https://cards.douwmarx.com
+  base_url: https://systemcards.org
   run_pagefind: true
 
 publish:

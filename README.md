@@ -5,7 +5,7 @@ first-party model/system cards and independent evaluation reports — with chang
 tracking, provenance, and full-text search. Curated daily by an LLM agent behind
 deterministic guardrails; published as a static site.
 
-Original design document: `cardtrack-spec.md` (historical). Live site: https://cards.douwmarx.com
+Live site: https://systemcards.org (also reachable at https://cards.douwmarx.com).
 
 ## Setup (clean clone)
 
@@ -170,7 +170,8 @@ Everything the agent reads (web pages, issue text) is treated as untrusted input
 ## Status
 
 1. ✅ Schema + validator + extraction + 76-test suite; 23 documents seeded through the tool
-2. ✅ Site live at https://cards.douwmarx.com (Pages project `cardtrack`, CNAME + custom domain attached)
+2. ✅ Site live at https://systemcards.org (Pages project `cardtrack`; systemcards.org +
+   www + cards.douwmarx.com all attached, CNAMEs → cardtrack-aar.pages.dev, HTTPS active)
 3. ✅ Daily schedule live (systemd user timer, 06:15 UTC, linger enabled)
 4. ✅ Agent enabled and battle-tested (backfill drain + audits, 2026-08-09/10)
 5. ✅ 2026 corpus backfilled (supervised session, 2026-08-09); deepen later by lowering `min_publication_date`
