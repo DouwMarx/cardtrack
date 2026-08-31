@@ -1,0 +1,25 @@
+March 16, 2026
+GAv26.03
+Mistral Small 4
+Our powerful hybrid model unifying instruct, reasoning, and coding capabilities in a single model. 119B parameters with 6.5B active.
+Speed
+Performance
+Modalities
+Context
+256k
+Price
+$0.15
+/M Tokens
+$0.6
+/M Tokens
+Speed
+Performance
+Modalities
+Context
+256k
+Price
+$0.15
+/M Tokens
+$0.6
+/M Tokens
+Other Models

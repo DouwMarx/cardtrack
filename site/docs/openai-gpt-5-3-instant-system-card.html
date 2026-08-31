@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GPT-5.3 Instant System Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +57,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T21:05:13Z</td>
           <td>application/pdf</td>
           <td>179,838</td>
           <td><code title="6ff9411529b17c5bd705774f3bf96fbf10df6cd58382534f46a2a0c5cd0554bf">6ff9411529b17c5b</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -105,6 +110,13 @@
           <div class="just">GPT-5.3 Instant ships only in ChatGPT and via the API as gpt-5.3-chat-latest.</div>
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/gpt-5-3-instant-system-card/" rel="noopener nofollow">https://openai.com/index/gpt-5-3-instant-system-card/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100835Z · human</span>
+          <div class="just">risk_domains: [] → ["societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Dynamic multi-turn mental health/emotional reliance/self-harm evals with numbers plus disallowed-content benchmarks; no jailbreak, preparedness, or alignment sections.</div>
       </li>
     </ol>
     </details>
@@ -279,6 +291,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Measuring Reward-Seeking via Contrastive Belief Updates — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge">n/a</span></dd>
     <dt>Source</dt>
@@ -45,34 +48,24 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:49:20Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>1</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-openai-o3-independent-eval&amp;body=Document%3A%20apollo-research-openai-o3-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates%0AFingerprint%3A%20b764d13e9d53a201c7282f4950ef5412495307fb6679009f73e5350b86d5cc69%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-openai-o3-independent-eval&amp;body=Document%3A%20apollo-research-openai-o3-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates%0AFingerprint%3A%205234c47dc20069404eab59ab9d68496936773800883124ba7957b02c4335f9fc%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-19T06:18:50Z</td>
-          <td>text/html</td>
-          <td>142,936</td>
-          <td><code title="b764d13e9d53a201c7282f4950ef5412495307fb6679009f73e5350b86d5cc69">b764d13e9d53a201</code></td>
-        </tr>
-        <tr>
-          <td>2026-08-13T06:21:31Z</td>
-          <td>text/html</td>
-          <td>142,776</td>
-          <td><code title="9e8bcdec992a1f2606103330a5031da2fcec3d1c312958235ef0fc1a595542b8">9e8bcdec992a1f26</code></td>
-        </tr>
         <tr>
           <td>2026-08-09T20:49:20Z</td>
           <td>text/html</td>
           <td>127,761</td>
-          <td><code title="ba2e53c0ddbd184ee9fdd674b59878143914be0ad1e1169ea2d458918da5c7ff">ba2e53c0ddbd184e</code></td>
+          <td><code title="5234c47dc20069404eab59ab9d68496936773800883124ba7957b02c4335f9fc">5234c47dc2006940</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -136,6 +129,13 @@
           <div class="evidence">Evidence:
 <a href="https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates" rel="noopener nofollow">https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100823Z · human</span>
+          <div class="just">risk_domains: [] → ["loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Measures reward-seeking via contrastive belief updates: models siding with grader over developers/users, reward hacking, scheming science — oversight/alignment failure eval.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -156,7 +156,6 @@ Learn more at rewardseeking.ai
 Watch a short explainer video: Measuring Reward Seeking in AI Models (Apollo Research x OpenAI)
 Watch the author roundtable: Is AI doing the right thing for the wrong reasons?
 Share this article
-Copy as Markdown
 oUR FINDINGS
 More papers
 17 March 2025
@@ -180,6 +179,6 @@ Evaluations</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reverse engineering Claude&#39;s CVE-2026-2796 exploit — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -48,25 +51,29 @@
     <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-6-other-5&amp;body=Document%3A%20anthropic-claude-opus-4-6-other-5%0AURL%3A%20https%3A//www.anthropic.com/research/exploit%0AFingerprint%3A%206b7ee75bc964d30f6dd943f6d62b72033463b1c3ac5b00d430e5330871bd1253%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-6-other-5&amp;body=Document%3A%20anthropic-claude-opus-4-6-other-5%0AURL%3A%20https%3A//www.anthropic.com/research/exploit%0AFingerprint%3A%20c055519dcf5c91da717cb1a03c263b6f42541bdf890931e168798f0e66e60e2b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-17T06:16:21Z</td>
           <td>text/html</td>
           <td>205,923</td>
-          <td><code title="6b7ee75bc964d30f6dd943f6d62b72033463b1c3ac5b00d430e5330871bd1253">6b7ee75bc964d30f</code></td>
+          <td><code title="c055519dcf5c91da717cb1a03c263b6f42541bdf890931e168798f0e66e60e2b">c055519dcf5c91da</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-10T09:48:29Z</td>
           <td>text/html</td>
           <td>206,460</td>
-          <td><code title="851375be0a0e2bf854bcee97324717039225748e2c5c086d852870307b16a980">851375be0a0e2bf8</code></td>
+          <td><code title="74adb930ea03a93e1a9d928672655d44fa195390382776183377185362173ff5">74adb930ea03a93e</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +119,20 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/exploit" rel="noopener nofollow">https://www.anthropic.com/research/exploit</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:06Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101405Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Frontier Red Team case study of Claude Opus 4.6 authoring a working exploit for CVE-2026-2796 (Firefox JIT/WebAssembly bug) after finding 22 vulnerabilities: reports success rate over ~350 attempts, benchmark trajectory (Cybench, CyberGym), and limits (no full-chain sandbox escape). Substantive offensive-cyber capability assessment only; no other domain evaluated.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:04Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101604Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -342,6 +363,6 @@ Read more</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

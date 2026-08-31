@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Introducing Gemini 3.5 Flash Cyber — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -21,10 +21,10 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://deepmind.google" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:restricted"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
-    <dd><span data-pagefind-filter="type">other</span></dd>
+    <dd><span data-pagefind-filter="type">access_policy</span></dd>
     <dt>Models</dt>
     <dd>Gemini 3.5 Flash Cyber</dd>
     <dt>Published</dt>
@@ -35,8 +35,11 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge openness-closed">closed weights</span>
+    <dd><span class="badge openness-restricted">restricted access</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -54,13 +57,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T21:46:49Z</td>
           <td>text/html</td>
           <td>142,551</td>
           <td><code title="602e91feb05c5a0373cdc0858e9959cb2025fcfa67005b3307a78cd590e79b21">602e91feb05c5a03</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +103,31 @@
           <div class="just">The cyber-specialized model is deliberately restricted to governments and trusted partners via CodeMender; no public API or weights.</div>
           <div class="evidence">Evidence:
 <a href="https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/" rel="noopener nofollow">https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">openness: "closed" → "restricted"</div>
+          <div class="just">Openness backfill: Gemini 3.5 Flash Cyber is exclusively available to governments and trusted partners via the CodeMender pilot.</div>
+          <div class="evidence">Evidence:
+<a href="https://cards.douwmarx.com/docs/google-deepmind-gemini-3-5-flash-cyber-other.html" rel="noopener nofollow">https://cards.douwmarx.com/docs/google-deepmind-gemini-3-5-flash-cyber-other.html</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:48Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">doc_type: "other" → "access_policy"</div>
+          <div class="just">Relabel to access_policy: the post defines who may access Gemini 3.5 Flash Cyber (governments and trusted partners via the CodeMender limited-access pilot).</div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber" rel="noopener nofollow">https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:27Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100827Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Vulnerability-discovery and exploit-generation evaluations (CyberGym, Big Sleep, Chrome commit scanning, working RCE exploit) tested without guardrails, with dual-use risk analysis and restricted-access deployment.</div>
       </li>
     </ol>
     </details>
@@ -143,6 +173,6 @@ By powering CodeMender with 3.5 Flash Cyber, we’re providing a highly capable,
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

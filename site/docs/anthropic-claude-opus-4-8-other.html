@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Autonomous de novo protein binder design with Claude (Technical Report) — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -42,6 +45,10 @@
     <dd>
       <a href="https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://www-cdn.anthropic.com/30bf50e22a01388bb29bf077ee3f244531594b7a.pdf</a>
     </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">announcement</span>
+        <a href="https://www.anthropic.com/research/Claude-accelerates-protein-design" rel="noopener nofollow">https://www.anthropic.com/research/Claude-accelerates-protein-design</a> — Joint announcement covering this report and the NMR/LC-MS report</span><br>        <span class="related-item"><span class="badge">other</span>
+        <a href="https://www-cdn.anthropic.com/9f08da5189ac269b3242ca760de9823805c3f5f6.pdf" rel="noopener nofollow">https://www-cdn.anthropic.com/9f08da5189ac269b3242ca760de9823805c3f5f6.pdf</a> — Sibling analytical-chemistry technical report (NMR/LC-MS), catalogued separately</span></dd>
     <dt>First seen</dt>
     <dd>2026-08-19T06:24:08Z</dd>
     <dt>Versions</dt>
@@ -56,13 +63,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-19T06:24:08Z</td>
           <td>application/pdf</td>
           <td>9,614,562</td>
           <td><code title="ef4581e463b23f6d406b041faebcefbfee6239efef422403a0110271ac367f8b">ef4581e463b23f6d</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -72,7 +81,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +100,36 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/Claude-accelerates-protein-design" rel="noopener nofollow">https://www.anthropic.com/research/Claude-accelerates-protein-design</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:56:56Z</span>
+        <strong>field_update</strong>
+        <span class="run">run pdf-migration-20260831 · human · lead: manual</span>
+          <div class="just">related_urls: [] → [{"kind": "announcement", "note": "Joint announcement covering this report and the NMR/LC-MS report", "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design"}]</div>
+          <div class="just">Structured cross-link: the protein-design/chemistry announcement post covers this technical report; recorded as related_urls now that the field exists.</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/Claude-accelerates-protein-design" rel="noopener nofollow">https://www.anthropic.com/research/Claude-accelerates-protein-design</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:10:00Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101000Z · human</span>
+          <div class="just">related_urls: [{"kind": "announcement", "note": "Joint announcement covering this report and the NMR/LC-MS report", "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design"}] → [{"kind": "announcement", "note": "Joint announcement covering this report and the NMR/LC-MS report", "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design"}, {"kind": "other", "note": "Sibling analytical-chemistry technical report (NMR/LC-MS), catalogued separately", "url": "https://www-cdn.anthropic.com/9f08da5189ac269b3242ca760de9823805c3f5f6.pdf"}]</div>
+          <div class="just">Structured related-resources backfill: companion URLs previously stashed in free-text notes, verified live 2026-08-31.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:07Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101407Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Technical report on Claude Opus 4.8 and Mythos Preview running fully autonomous 24-48 hour de novo protein binder design campaigns against 16 targets with no human input into any design decision, wet-lab validated by two CROs (27% hit rate). Tagged ai_rnd for the long-horizon agentic autonomy demonstration (multi-day unsupervised tool installation, optimisation and delivery). Deliberately not tagged cbrn: despite the dual-use adjacency of biological sequence design, the report contains no biosecurity, misuse, screening-policy or uplift analysis -- capability results only.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:39Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152039Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -1098,6 +1137,6 @@ from the released tables, and the structural statistics from the released struct
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

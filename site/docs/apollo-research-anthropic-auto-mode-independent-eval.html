@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Red-teaming auto mode: lessons from our first external monitor campaign with Anthropic — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -46,28 +49,24 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:57:52Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>1</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-anthropic-auto-mode-independent-eval&amp;body=Document%3A%20apollo-research-anthropic-auto-mode-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/monitoring/pilot-automode-campaign%0AFingerprint%3A%201996beca13624535a6e996f086cefbcc2ef1a4eaf5c5a893b40d6a566ae4aff0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-anthropic-auto-mode-independent-eval&amp;body=Document%3A%20apollo-research-anthropic-auto-mode-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/monitoring/pilot-automode-campaign%0AFingerprint%3A%20a1e26a092ca3f56168c1d14bd5ffa2d2db2a0ace55528fc1f3d7f4779d6edf2e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-27T06:18:30Z</td>
-          <td>text/html</td>
-          <td>164,305</td>
-          <td><code title="1996beca13624535a6e996f086cefbcc2ef1a4eaf5c5a893b40d6a566ae4aff0">1996beca13624535</code></td>
-        </tr>
         <tr>
           <td>2026-08-09T22:57:52Z</td>
           <td>text/html</td>
           <td>128,417</td>
-          <td><code title="6e8206ec9928b521cb3343ab87e10ea089a8488f440d8768ef3655ae5f19ea32">6e8206ec9928b521</code></td>
+          <td><code title="a1e26a092ca3f56168c1d14bd5ffa2d2db2a0ace55528fc1f3d7f4779d6edf2e">a1e26a092ca3f561</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -114,6 +113,20 @@
           <div class="evidence">Evidence:
 <a href="https://www.apolloresearch.ai/monitoring/pilot-automode-campaign" rel="noopener nofollow">https://www.apolloresearch.ai/monitoring/pilot-automode-campaign</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:22Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100822Z · human</span>
+          <div class="just">risk_domains: [] → ["loss_of_control", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Red-team campaign against Anthropic&#39;s auto-mode blocking monitor: adversarial stress test of a deployed safeguard, and AI-control/monitoring research (co-tagged target domain).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:34Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152034Z · human</span>
+          <div class="just">risk_domains: ["loss_of_control", "safeguard_robustness"] → ["loss_of_control"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -144,7 +157,6 @@ Apollo Research will build on their pre-deployment testing experience and start 
 If you are a monitor developer interested in red-teaming campaigns for your monitors, please reach out.
 If you&#39;d like to work on this, the monitoring research team is hiring AI Security and Control Engineers and Control Research Scientists.
 Share this article
-Copy as Markdown
 oUR FINDINGS
 More papers
 July 23, 2026
@@ -167,6 +179,6 @@ Product</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

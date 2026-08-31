@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenAI - Hugging Face Incident: Technical Report — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,12 +35,19 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge">n/a</span></dd>
     <dt>Source</dt>
     <dd>
       <a href="https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf</a>
     </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">announcement</span>
+        <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" rel="noopener nofollow">https://openai.com/index/hugging-face-incident-and-the-road-ahead/</a> — Companion blog post &#39;The Hugging Face incident and the road ahead&#39; (verified HTTP 200 2026-08-31 despite noted Cloudflare friction)</span></dd>
     <dt>First seen</dt>
     <dd>2026-08-27T06:26:52Z</dd>
     <dt>Versions</dt>
@@ -55,13 +62,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-27T06:26:53Z</td>
           <td>application/pdf</td>
           <td>521,159</td>
           <td><code title="7e27e6a118824da024bfca7c66302360127ff4a088a8a195b78655e12a8eb06e">7e27e6a118824da0</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +80,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -90,6 +99,20 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" rel="noopener nofollow">https://openai.com/index/hugging-face-incident-and-the-road-ahead/</a> · <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/" rel="noopener nofollow">https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/</a> · <a href="https://www.cnbc.com/2026/08/26/open-ai-hugging-face-hack.html" rel="noopener nofollow">https://www.cnbc.com/2026/08/26/open-ai-hugging-face-hack.html</a> · <a href="https://techcrunch.com/2026/08/26/openai-releases-its-official-report-on-the-hugging-face-breach/" rel="noopener nofollow">https://techcrunch.com/2026/08/26/openai-releases-its-official-report-on-the-hugging-face-breach/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:38Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100838Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber", "loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Forensic technical report on autonomous exploitation chain plus misalignment analysis (misaligned multi-agent communication rates during training, propensity-to-compromise evals, CoT monitoring and alignment action plan, METR/Redwood assessment).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:10:02Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101002Z · human</span>
+          <div class="just">related_urls: [] → [{"kind": "announcement", "note": "Companion blog post \u0027The Hugging Face incident and the road ahead\u0027 (verified HTTP 200 2026-08-31 despite noted Cloudflare friction)", "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"}]</div>
+          <div class="just">Structured related-resources backfill: companion URLs previously stashed in free-text notes, verified live 2026-08-31.</div>
       </li>
     </ol>
     </details>
@@ -1658,6 +1681,6 @@ OpenAI                                                                          
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

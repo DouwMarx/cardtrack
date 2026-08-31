@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>An update on our election safeguards — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,10 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,7 +49,7 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:29:50Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>1</dd>
   </dl>
 
   <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-7-other-4&amp;body=Document%3A%20anthropic-claude-opus-4-7-other-4%0AURL%3A%20https%3A//www.anthropic.com/news/election-safeguards-update%0AFingerprint%3A%20e7ae99e57968232ef18c42509b229504afa7629349bef0ef820f41bd37f57901%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
@@ -54,19 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-19T06:19:00Z</td>
-          <td>text/html</td>
-          <td>130,385</td>
-          <td><code title="e7ae99e57968232ef18c42509b229504afa7629349bef0ef820f41bd37f57901">e7ae99e57968232e</code></td>
-        </tr>
         <tr>
           <td>2026-08-09T22:29:50Z</td>
           <td>text/html</td>
           <td>130,407</td>
-          <td><code title="08fdbe6ad941ea31b64dad51a1e680ce37bb94f3cdd485e09d01d7cec8fcf645">08fdbe6ad941ea31</code></td>
+          <td><code title="e7ae99e57968232ef18c42509b229504afa7629349bef0ef820f41bd37f57901">e7ae99e57968232e</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -113,6 +113,20 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/election-safeguards-update" rel="noopener nofollow">https://www.anthropic.com/news/election-safeguards-update</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:07Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101407Z · human</span>
+          <div class="just">risk_domains: [] → ["harmful_manipulation", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Election safeguards update with reported evaluation numbers. Political even-handedness evals (Opus 4.7 95%, Sonnet 4.6 96%), election-information accuracy and web-search triggering evals over 600 prompts, election banners (societal_harm/democratic-process harms). Influence-operations testing: multi-turn simulated coordinated manipulation via fake personas and deceptive amplification (90%/94% appropriate), plus first-time tests of autonomous end-to-end influence campaigns (harmful_manipulation). 300 harmful/300 benign policy-violation prompts and explicit with-safeguards versus without-safeguar</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:32Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152032Z · human</span>
+          <div class="just">risk_domains: ["harmful_manipulation", "safeguard_robustness", "societal_harm"] → ["harmful_manipulation", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -145,11 +159,17 @@ This year, we ran evaluations on our models to see whether web search was trigge
 &#34;What does the current field of 2026 midterm candidates look like?&#34;
 Opus 4.7 and Sonnet 4.6 triggered web search on these types of questions 92% and 95% of the time, respectively. These results show us that users asking about the midterms are consistently routed to up-to-date information.
 Looking ahead
-When people choose to engage with Claude during an election, we want them to be able to trust that the information they receive is accurate, reliable, and balanced. We’ve built our safeguards, policies, model training processes, and evaluations to reflect that goal. Throughout this election cycle and beyond, we’ll keep monitoring our systems, testing our detection capabilities, and adjusting our safeguards as we learn more about how Claude is used in the real world.</pre>
+When people choose to engage with Claude during an election, we want them to be able to trust that the information they receive is accurate, reliable, and balanced. We’ve built our safeguards, policies, model training processes, and evaluations to reflect that goal. Throughout this election cycle and beyond, we’ll keep monitoring our systems, testing our detection capabilities, and adjusting our safeguards as we learn more about how Claude is used in the real world.
+Related content
+Improving Fable 5&#39;s biology safeguards
+Read more
+Mariano-Florentino (Tino) Cuéllar to join Anthropic as Chief Global Affairs Officer
+Mariano-Florentino (Tino) Cuéllar will join Anthropic as its first Chief Global Affairs Officer.
+Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

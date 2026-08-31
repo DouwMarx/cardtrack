@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Introducing the AI Security Leaderboard: Frontier AI Is Only as Safe as Its Weakest Model — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,10 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,13 +59,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-10T09:47:49Z</td>
           <td>text/html</td>
           <td>98,003</td>
           <td><code title="0553c2fdd23442b8d88b2d0de9c694569e8309ed182b67a9f9357fbeec9f2a9c">0553c2fdd23442b8</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +77,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +105,20 @@
           <div class="just">Verified by fetching the leaderboard: exactly four models evaluated — Claude Fable 5, GPT-5.6 Sol, Gemini 3.1 Pro, Grok 4.5 — and no open-weight model (no DeepSeek/Qwen/Kimi/GLM/Llama/gpt-oss) appears. All four are closed API-only frontier models, so closed rather than mixed.</div>
           <div class="evidence">Evidence:
 <a href="https://www.far.ai/blog/ai-security-leaderboard" rel="noopener nofollow">https://www.far.ai/blog/ai-security-leaderboard</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:25Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100825Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "cyber", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): AI Security Leaderboard: cost-to-universal-jailbreak testing of four frontier models&#39; safeguards, targeting chemical/biological/radiological/nuclear and cyber misuse domains (co-tagged per criteria).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:37Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152037Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "cyber", "safeguard_robustness"] → ["cbrn", "cyber"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -151,6 +171,6 @@ Members of the media can contact us at media@far.ai.</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

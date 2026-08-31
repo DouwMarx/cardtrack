@@ -1082,3 +1082,29 @@ metadata says. That would have cleared #30 on 2026-08-21 without a human.
 2026-08-22 ask (make the content-duplicate check publisher-aware) and the 2026-08-28 ask (show the agent
 what was already refused) both still stand; neither would have prevented today's case, because this pair
 had never been proposed before.
+
+---
+
+## 2026-08-31 — Maintainer response: the announcement-vs-report rule now exists (option 2, with a related_urls escape hatch)
+
+Answering the 2026-08-30 entry (and the 2026-08-22/28 asks it references):
+
+1. **The rule** (now in `prompts/TASK.md`, "Canonical URL choice"): one row per study;
+   `canonical_url` = the full document; the announcement goes into the new structured
+   `documents.related_urls` field (kind `announcement`). Never two rows for a
+   post+report pair. If you find a full document for an EXISTING html row, propose a
+   `related_urls` update with kind `full_document` — the operator sweep promotes it
+   (the fingerprint gate on canonical moves is deliberate and stays).
+2. **The 2026-08-18 precedent is cleaned up**: `anthropic-claude-opus-4-8-other-2`
+   (the announcement row) is removed; both report rows cross-link the announcement.
+   The refused 08-30 PDF is now the canonical of `anthropic-claude-opus-4-8-other-3`,
+   and the stranded `alignment.anthropic.com/2026/automated-w2s-researcher/` writeup
+   is now the canonical of `anthropic-claude-opus-4-6-other-3`. 27 more blog-canonical
+   rows were migrated to their full documents the same way.
+3. **Secondary ask** (text-similarity floor for `logical_duplicate_of`): agreed in
+   principle, on the roadmap — not implemented today to keep the dedup gate simple.
+
+Also new since your last run, read TASK.md before proposing: `risk_domains` tags,
+`doc_type: access_policy`, `openness: restricted`, `annotate_version` for
+`logs/updated_docs.json` entries, the `covered_model_class` criterion, and
+per-publisher `scope` notes in sources.yaml.

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenAI and Hugging Face partner to address security incident during model evaluation — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,10 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T21:46:13Z</td>
           <td>text/html</td>
           <td>431,241</td>
           <td><code title="f7628aa071e4c413eb751ed734b7961e098faac30cfc8fe88f836b1a7d82142f">f7628aa071e4c413</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +104,13 @@
           <div class="just">Concerns GPT-5.6 Sol plus an unreleased OpenAI model escaping a cyber-eval sandbox; both proprietary closed models. Hugging Face appears as the incident target, not a weights release.</div>
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" rel="noopener nofollow">https://openai.com/index/hugging-face-model-evaluation-security-incident/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:37Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100837Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber", "loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Hugging Face incident analysis: models escaped sandbox via zero-day, escalated privileges, stole credentials to cheat an eval; METR/Redwood third-party model-behavior assessment; demonstrates real-world cyber capability and oversight/containment failure.</div>
       </li>
     </ol>
     </details>
@@ -142,6 +155,6 @@ We believe advanced cyber capable models need to help security teams find weakne
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project Deal: our Claude-run marketplace experiment — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -56,13 +59,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-14T07:11:28Z</td>
           <td>text/html</td>
           <td>287,769</td>
           <td><code title="f67107cfeb0ccd238e372bb9a40d4decec74fd29c73ef652e8f17eef9fb63019">f67107cfeb0ccd23</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -72,7 +77,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +96,13 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/multiagent-systems" rel="noopener nofollow">https://www.anthropic.com/research/multiagent-systems</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:20Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100820Z · human</span>
+          <div class="just">risk_domains: [] → ["societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Borderline: secret controlled experiment quantifying agent-quality inequality (Opus vs Haiku outcomes, p-values) and its imperceptibility, framed as economic-inequality risk.</div>
       </li>
     </ol>
     </details>
@@ -188,6 +200,6 @@ Kevin K. Troy, Dylan Shields, Keir Bradwell, and Peter McCrory
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

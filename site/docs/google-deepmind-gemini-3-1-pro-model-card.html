@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gemini 3.1 Pro Model Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,13 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +61,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T15:57:54Z</td>
           <td>application/pdf</td>
           <td>875,842</td>
           <td><code title="6583c020c1a4a2e05f9f25bbdc950fdd902016787419d4d7347fd31203149a6a">6583c020c1a4a2e0</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -110,6 +119,20 @@
           <div class="just">Distribution limited to Gemini App, Vertex AI, AI Studio, Gemini API, Antigravity, Gemini Enterprise, NotebookLM; proprietary hosted model.</div>
           <div class="evidence">Evidence:
 <a href="https://deepmind.google/models/model-cards/gemini-3-1-pro/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-3-1-pro/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:26Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100826Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Full FSF results table (CBRN uplift, cyber alert threshold, manipulation odds ratios, RE-Bench ML R&amp;D, misalignment stealth/situational-awareness) plus numeric content-safety table and child-safety red-team results.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:26Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152026Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -379,6 +402,6 @@ Misalignment    (Deep Think mode) On stealth evaluations, the      Instrumental 
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

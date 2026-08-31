@@ -110,6 +110,10 @@ td.models, td.title { max-width: 24rem; }
 .badge.openness-permissive { color: var(--ok); border-color: var(--ok); }
 .badge.openness-restrictive { color: var(--warn); border-color: var(--warn); }
 .badge.openness-closed { color: var(--muted); }
+.badge.openness-restricted { color: var(--bad); border-color: var(--bad); }
+.badge.risk-domain { color: var(--warn); border-color: var(--warn); }
+.muted { color: var(--muted); }
+td.change-summary { max-width: 28rem; white-space: normal; }
 
 .doc .meta { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; }
 .doc .meta dt { color: var(--muted); }

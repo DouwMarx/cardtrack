@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How frontier AI models perform on viral DNA assembly tasks (ABC-Bench) — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-10T08:44:53Z</td>
           <td>text/html</td>
           <td>181,700</td>
           <td><code title="12839224ffd4a2a3770867afb3f69b0b7579184336e91d8c54dd77322d0c678c">12839224ffd4a2a3</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +104,13 @@
           <div class="just">All four evaluated models are API-only: Claude Opus 4.6 and Sonnet 4.6, Gemini 3.1 Pro Preview, and o4-mini-high. No open weights in the set, so not mixed.</div>
           <div class="evidence">Evidence:
 <a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview" rel="noopener nofollow">https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:44Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100844Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): ABC-Bench measures agentic bioweapon-pathway capability (viral DNA fragment design, synthesis-screening evasion, liquid-handling robot code) against PhD-biologist baselines plus a wet-lab validation run; purely a bio dangerous-capability eval, no model-guardrail stress test.</div>
       </li>
     </ol>
     </details>
@@ -140,6 +152,6 @@ If you are an AI developer, safety researcher, or policymaker interested in lear
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

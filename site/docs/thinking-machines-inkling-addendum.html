@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Safe Path to Open Weights — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,12 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-permissive">open weights (permissive license)</span>
 </dd>
@@ -54,19 +60,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-22T06:19:09Z</td>
           <td>text/html</td>
           <td>33,866</td>
           <td><code title="fc63eb5e528a8dc63e12520e9116fd360645fcc5da3bfd7084d8695139566cd3">fc63eb5e528a8dc6</code></td>
+          <td class="change-summary">Corrected external pre-deployment safety tester names in the ecosystem section: Scale is now Scale AI and FAR AI is now FAR.AI. No other content changed.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T21:27:56Z</td>
           <td>text/html</td>
           <td>33,678</td>
           <td><code title="c2de829b840e19b2409f154f1b30e78a77e16e94bf7b59b315780c98797488bf">c2de829b840e19b2</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +86,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +122,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/" rel="noopener nofollow">https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:45Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100845Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Release risk analysis: internal CBRN/cyber evals, Apollo loss-of-control red-team (scheming, eval awareness, sabotage), Handshake vulnerable-user testing (suicide/self-harm/child safety), adversarial fine-tuning to strip safeguards</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:54Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101554Z · human</span>
+          <div class="just">change_summary: null → "Corrected external pre-deployment safety tester names in the ecosystem section: Scale is now Scale AI and FAR AI is now FAR.AI. No other content changed."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:30Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152030Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -173,6 +204,6 @@ We will shortly launch Tinker safety grants: funding for the community to streng
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

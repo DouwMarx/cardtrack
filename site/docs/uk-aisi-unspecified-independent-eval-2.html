@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How do environmental factors impact AI behaviour? — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge">n/a</span></dd>
     <dt>Source</dt>
@@ -54,13 +57,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T22:51:10Z</td>
           <td>text/html</td>
           <td>34,150</td>
           <td><code title="6f90ae13c7bc3eb36df9b578a4c010be3f149be6186f1a8dc986a81285eafbc6">6f90ae13c7bc3eb3</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -89,6 +94,13 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.aisi.gov.uk/blog" rel="noopener nofollow">https://www.aisi.gov.uk/blog</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:51Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100851Z · human</span>
+          <div class="just">risk_domains: [] → ["loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): 600k-run propensity study of unsanctioned behaviour, goal conflict, monitoring sensitivity, and misalignment evidence across 23 models.</div>
       </li>
     </ol>
     </details>
@@ -128,6 +140,6 @@ You can read more in the full paper.</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

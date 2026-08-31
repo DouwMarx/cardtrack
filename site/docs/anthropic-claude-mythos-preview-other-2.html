@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Discovering cryptographic weaknesses with Claude — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,34 +48,32 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:06:06Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-2&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-2%0AURL%3A%20https%3A//www.anthropic.com/research/discovering-cryptographic-weaknesses%0AFingerprint%3A%20036ac53cd6215624e7870d7d7a569454790829b9536f2d1809fb3866323a3d29%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-2&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-2%0AURL%3A%20https%3A//www.anthropic.com/research/discovering-cryptographic-weaknesses%0AFingerprint%3A%20aabc74a148006a740de248395b146d8859bc968c8ba37aebc397fc27551cc48f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-24T06:22:18Z</td>
-          <td>text/html</td>
-          <td>188,910</td>
-          <td><code title="036ac53cd6215624e7870d7d7a569454790829b9536f2d1809fb3866323a3d29">036ac53cd6215624</code></td>
-        </tr>
         <tr>
           <td>2026-08-12T06:18:04Z</td>
           <td>text/html</td>
           <td>186,809</td>
-          <td><code title="023ec22bb83ac3209d92b95072f7fc66c5f8d97015e685d1738a0c56e9e937de">023ec22bb83ac320</code></td>
+          <td><code title="aabc74a148006a740de248395b146d8859bc968c8ba37aebc397fc27551cc48f">aabc74a148006a74</code></td>
+          <td class="change-summary">Added an announcement that an unreleased research version of Claude improved a longstanding lower bound related to the Riemann hypothesis, raising the fraction of zeta-function zeros satisfying it from 41.6% to 67.2%. Removed six explanatory footnotes about the cryptanalysis work, covering vulnerabilities found in OpenSSL/wolfSSL, non-impact on other NIST post-quantum schemes, attack cost estimates, the scaffold description, and the HAWK re-discovery test.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T22:06:06Z</td>
           <td>text/html</td>
           <td>186,813</td>
-          <td><code title="e7b9e998bea82ed11a2d24a669cb72eed10af31102eae81d6ed19f13b2e2b322">e7b9e998bea82ed1</code></td>
+          <td><code title="e14479e86d5e7f21b8d63fc29dbc6c812e84941a5b924674e8bbfcf541abb40e">e14479e86d5e7f21</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +127,20 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/discovering-cryptographic-weaknesses" rel="noopener nofollow">https://www.anthropic.com/research/discovering-cryptographic-weaknesses</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:19Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100819Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Cryptanalytic attack capability assessment (HAWK, reduced-round AES, LEA key recovery) with CryptanalysisBench; vulnerability discovery in crypto algorithms.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:07Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101607Z · human</span>
+          <div class="just">change_summary: null → "Added an announcement that an unreleased research version of Claude improved a longstanding lower bound related to the Riemann hypothesis, raising the fraction of zeta-function zeros satisfying it from 41.6% to 67.2%. Removed six explanatory footnotes about the cryptanalysis work, covering vulnerabilities found in OpenSSL/wolfSSL, non-impact on other NIST post-quantum schemes, attack cost estimates, the scaffold description, and the HAWK re-discovery test."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -196,16 +211,14 @@ Read the full paper on HAWK.
 Read the full paper on AES, and the associated chain of thought.
 Read the paper introducing CryptanalysisBench.
 Edit 29 July: Updated an academic affiliation.
-In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested Claude’s ability to design protein binders from scratch, a key step in creating protein-based drugs that has historically taken a specialist weeks or months per target. In the second example, we evaluated whether Claude can accelerate chemical analysis. Claude Opus 5, a generally available model, was given NMR and LC-MS data (the data that allows chemists to assess the identity and purity of the compounds they work with).
+An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
 Read more
-Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
-Read more
-We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
+Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

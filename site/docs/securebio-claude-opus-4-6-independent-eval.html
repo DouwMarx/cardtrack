@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Review of Anthropic&#39;s Unredacted Chemical and Biological Risk Report: Claude Opus 4.6 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,19 +58,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-27T06:18:31Z</td>
           <td>text/html</td>
           <td>135,569</td>
           <td><code title="1d01e5e9c095e3d74a47ed8d3295ed468f4c8dd395d52afc8c484a11cbe80423">1d01e5e9c095e3d7</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-10T08:44:51Z</td>
           <td>text/html</td>
           <td>145,924</td>
           <td><code title="9c0905daa40626a7a413081cd62a6753ac7aaee7f895bad8760b53ebd6f1c376">9c0905daa40626a7</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -113,6 +120,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://securebio.substack.com/p/review-of-anthropics-unredacted-chemical" rel="noopener nofollow">https://securebio.substack.com/p/review-of-anthropics-unredacted-chemical</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:43Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100843Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Third-party review of Anthropic&#39;s unredacted chemical/biological risk report, agreeing on CB risk levels, plus a substantive safeguard section on refusal-classifier robustness (94.2% on BioTIER-refuse), classifier-exemption vetting, and residual jailbreak risk (UK AISI BPJ) with remediation-time concerns.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101547Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152035Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "safeguard_robustness"] → ["cbrn"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -150,6 +178,6 @@ Anthropic’s ZDR removal for Fable 5 and Mythos 5: https://platform.claude.com/
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

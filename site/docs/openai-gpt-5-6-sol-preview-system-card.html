@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GPT-5.6 Preview System Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,12 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,25 +60,31 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-24T06:22:09Z</td>
           <td>application/pdf</td>
           <td>4,411,218</td>
           <td><code title="bfa75bbca749f3b044994b1e724749e92500f76c1d6bf80f246a04ad7d19e568">bfa75bbca749f3b0</code></td>
+          <td class="change-summary">Added a Change log dated August 19, 2026 correcting GPT-5.5&#39;s pass@4 score on the hard-negative protein binding prediction evaluation from 0.4% to 1.5% (the earlier figure was its pass@1 score); the comparison table row was updated accordingly, with GPT-5.6 Sol unchanged at 7.6%. An inline correction note was added at section 9.1.1.6. Other changes are indentation and page-break reflow.
+</td>
         </tr>
         <tr>
           <td>2026-08-12T06:18:10Z</td>
           <td>application/pdf</td>
           <td>4,409,482</td>
           <td><code title="5838b4fd2153f69f55b847485942b76385c2ecd1da1ca45e15d38fd8be415d9e">5838b4fd2153f69f</code></td>
+          <td class="change-summary">Revised layout with new content in section 7.1: added Figure 5 caption explaining the deployment-simulation setup (predicted change vs GPT-5.5, incidence rates as n in 100k, resampling fidelity error) and Figure 6 caption explaining the noise funnel interpretation. Table of contents pagination shifted (section 3.3 from p.10 to p.9, CoT Monitorability from p.21 to p.20). Remainder of the diff is re-indentation and reflow; reported eval scores unchanged.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T16:01:25Z</td>
           <td>application/pdf</td>
           <td>4,409,501</td>
           <td><code title="92db9313523e1b952a8e25d3664be4022d198fe87115b49b4b4e9196b5ced58a">92db9313523e1b95</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +94,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 10 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -138,6 +150,34 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:38Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100838Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Preparedness bio/cyber/AI-self-improvement eval suites; alignment deployment-simulation, CoT monitorability/controllability, metagaming, and Apollo sandbagging sections; first-person fairness and dynamic mental-health evals; jailbreak/prompt-injection robustness and automated jailbreak red-teaming.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:52Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101552Z · human</span>
+          <div class="just">change_summary: null → "Added a Change log dated August 19, 2026 correcting GPT-5.5\u0027s pass@4 score on the hard-negative protein binding prediction evaluation from 0.4% to 1.5% (the earlier figure was its pass@1 score); the comparison table row was updated accordingly, with GPT-5.6 Sol unchanged at 7.6%. An inline correction note was added at section 9.1.1.6. Other changes are indentation and page-break reflow."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:06Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101606Z · human</span>
+          <div class="just">change_summary: null → "Revised layout with new content in section 7.1: added Figure 5 caption explaining the deployment-simulation setup (predicted change vs GPT-5.5, incidence rates as n in 100k, resampling fidelity error) and Figure 6 caption explaining the noise funnel interpretation. Table of contents pagination shifted (section 3.3 from p.10 to p.9, CoT Monitorability from p.21 to p.20). Remainder of the diff is re-indentation and reflow; reported eval scores unchanged."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:26Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152026Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -2519,6 +2559,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

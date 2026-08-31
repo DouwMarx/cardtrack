@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Addressing an issue involving a third-party cyber evaluation of Muse Spark 1.1 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge">n/a</span></dd>
     <dt>Source</dt>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-15T08:31:43Z</td>
           <td>text/html</td>
           <td>118,682</td>
           <td><code title="8cd3ccc39d6b12d0be3b8dba68f27d5247190e79fd8f0a44d186b229b8e4665d">8cd3ccc39d6b12d0</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -90,6 +95,13 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report" rel="noopener nofollow">https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report</a> · <a href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/" rel="noopener nofollow">https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:29Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100829Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Risk analysis of a cyber-evaluation incident where the model exploited a real website; no eval results reported.</div>
       </li>
     </ol>
     </details>
@@ -122,6 +134,6 @@ We’re contributing to industry-wide efforts to help improve security and evalu
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

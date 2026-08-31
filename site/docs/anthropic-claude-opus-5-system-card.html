@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>System Card: Claude Opus 5 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,13 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +61,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T15:57:27Z</td>
           <td>application/pdf</td>
           <td>15,981,937</td>
           <td><code title="4bdb013a21424105d0c2ccf23f3aee608bf555bfcbf521ab87e5c50da3e61b9b">4bdb013a21424105</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -110,6 +119,20 @@
           <div class="just">Claude Opus 5 (claude-opus-5) is served only via Claude API / Bedrock / Google Cloud / Microsoft Foundry.</div>
           <div class="evidence">Evidence:
 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="noopener nofollow">https://platform.claude.com/docs/en/about-claude/models/overview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:08Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101408Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Full RSP system card. Sec 2.2 CB evaluations (CB-1 and CB-2 automated evals, black-box RNA sequence modeling and design, chemical risk mitigations) (cbrn); Sec 3 cyber (ExploitBench, OSS-Fuzz, CyScenarioBench, ExploitGym, UK AISI testing) (cyber); Sec 2.3 autonomy evaluations, AECI trajectory, internal measures of AI R&amp;D acceleration, task-based evals (ai_rnd); Sec 2.4 and Sec 6 alignment: sycophancy, willingness to undermine safeguards, concealment of dangerous capabilities, manipulation of user beliefs, awareness of attempted manipulation/elicitation, automated behavioural audits (loss_of_co</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152023Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -5726,6 +5749,6 @@ problem statement as base64 data URIs.
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

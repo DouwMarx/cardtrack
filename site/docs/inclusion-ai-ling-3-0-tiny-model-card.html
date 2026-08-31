@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ling-3.0-tiny Model Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -50,31 +50,37 @@
     <dd>Quantized variants -fp8 and -int4 deliberately not proposed. Publication date taken from HF repo creation (2026-08-10); the card itself states no release date. Flagging the judgment call: if the project treats same-family size variants as non-distinct, this entry is the one to revert.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-3-0-tiny-model-card&amp;body=Document%3A%20inclusion-ai-ling-3-0-tiny-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-3.0-tiny%0AFingerprint%3A%2052512fcdcfcbc2450a226b33ff37a76c7d38e9aa0b68e801d6fcba5d3ff1f223%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-3-0-tiny-model-card&amp;body=Document%3A%20inclusion-ai-ling-3-0-tiny-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-3.0-tiny%0AFingerprint%3A%209093babf4383b38db5c35e5e83d3f3edcdcfaaa88bff47aa85edc525c9f8d95d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-25T06:18:34Z</td>
           <td>text/html</td>
           <td>201,850</td>
-          <td><code title="52512fcdcfcbc2450a226b33ff37a76c7d38e9aa0b68e801d6fcba5d3ff1f223">52512fcdcfcbc245</code></td>
+          <td><code title="9093babf4383b38db5c35e5e83d3f3edcdcfaaa88bff47aa85edc525c9f8d95d">9093babf4383b38d</code></td>
+          <td class="change-summary">Revised the stated activated parameter count from 1.4B (non-embedding 1.14B) to 1.3B per token throughout the card, in the introduction, model overview, MoE architecture description, and evaluation discussion. Total parameter count stays 7.9B.
+</td>
         </tr>
         <tr>
           <td>2026-08-19T06:18:21Z</td>
           <td>text/html</td>
           <td>201,843</td>
-          <td><code title="33c782c8bb56afc366249ec5ab4f7e7182879fd2efaba6aada6c227f7b720c69">33c782c8bb56afc3</code></td>
+          <td><code title="0487a40696b4857d84c8bbee4b4ce9f7cbf6849bc1c4414bc0ff5cb377cd291e">0487a40696b4857d</code></td>
+          <td class="change-summary">Corrected activated parameter count from 1.3B to 1.4B (Non-emb 1.14B) in four places (intro, model overview, architecture bullet, evaluation text).
+</td>
         </tr>
         <tr>
           <td>2026-08-12T06:25:21Z</td>
           <td>text/html</td>
           <td>177,425</td>
-          <td><code title="3852c62ba9b9a2c24b3682f82918eebd695ca88295b89de5823d0d3821bd985e">3852c62ba9b9a2c2</code></td>
+          <td><code title="832badaea0984eec05392f2f634902104048368a68f2eddf37a1bf25f36c5f30">832badaea0984eec</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -84,7 +90,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -128,6 +134,20 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ling-3.0-tiny" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-tiny</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:50Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101550Z · human</span>
+          <div class="just">change_summary: null → "Revised the stated activated parameter count from 1.4B (non-embedding 1.14B) to 1.3B per token throughout the card, in the introduction, model overview, MoE architecture description, and evaluation discussion. Total parameter count stays 7.9B."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:01Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101601Z · human</span>
+          <div class="just">change_summary: null → "Corrected activated parameter count from 1.3B to 1.4B (Non-emb 1.14B) in four places (intro, model overview, architecture bullet, evaluation text)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -267,6 +287,6 @@ curl -sS http://127.0.0.1:11434/api/generate -d &#39;{
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project Glasswing: An initial update — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -24,7 +24,7 @@
 <span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
-    <dd><span data-pagefind-filter="type">other</span></dd>
+    <dd><span data-pagefind-filter="type">access_policy</span></dd>
     <dt>Models</dt>
     <dd>Claude Mythos Preview, Claude Opus 4.6</dd>
     <dt>Published</dt>
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,28 +48,24 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:48:29Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>1</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-8&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-8%0AURL%3A%20https%3A//www.anthropic.com/research/glasswing-initial-update%0AFingerprint%3A%2022f229aefc345a4c92cf98d0b78cefc71a7077c94c9a2caaea4c735b3582d95e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-8&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-8%0AURL%3A%20https%3A//www.anthropic.com/research/glasswing-initial-update%0AFingerprint%3A%205c462877d745880c5dd75d4183689a7db53456df474ee4d7aeba97ebf7468617%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-17T06:16:22Z</td>
-          <td>text/html</td>
-          <td>162,619</td>
-          <td><code title="22f229aefc345a4c92cf98d0b78cefc71a7077c94c9a2caaea4c735b3582d95e">22f229aefc345a4c</code></td>
-        </tr>
         <tr>
           <td>2026-08-10T09:48:29Z</td>
           <td>text/html</td>
           <td>163,156</td>
-          <td><code title="e51255615477868e6dc297c0c74a5f50ac7178b0daf7003f7646a59c3505fb9d">e51255615477868e</code></td>
+          <td><code title="5c462877d745880c5dd75d4183689a7db53456df474ee4d7aeba97ebf7468617">5c462877d745880c</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +111,22 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/glasswing-initial-update" rel="noopener nofollow">https://www.anthropic.com/research/glasswing-initial-update</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:48Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">doc_type: "other" → "access_policy"</div>
+          <div class="just">Relabel to access_policy: Project Glasswing program update defining invitation-only access to Claude Mythos Preview.</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/news/project-glasswing-initial-update" rel="noopener nofollow">https://www.anthropic.com/news/project-glasswing-initial-update</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:20Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100820Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Glasswing update: aggregate vulnerability-discovery statistics, exploit example (wolfSSL cert forgery), UK AISI cyber ranges, misuse-risk analysis.</div>
       </li>
     </ol>
     </details>
@@ -175,19 +190,16 @@ Glasswing helps the most systemically important cyber defenders gain an asymmetr
 Next, we will work with critical partners—including US and allied governments—to expand Project Glasswing to additional partners. And in the near future, once we’ve developed the far stronger safeguards we need, we look forward to making Mythos-class models available through a general release.
 On the far side of these risks, there’s an encouraging world available to us: one in which important code is hardened far better than it is today, and in which hacking is far less prevalent. There are many obstacles, but we’re nonetheless confident that Project Glasswing can help get us there.
 Related content
-Patterns and problems in emerging multiagent systems
-Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
+Discovering cryptographic weaknesses with Claude
+cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
 Read more
-Reviewing the evidence on worker retraining programs
-We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
-Read more
-Learning more about Claude&#39;s mathematical capabilities
-An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
+Project Pilot: Can AI control a drone?
+Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

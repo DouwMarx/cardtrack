@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>System Card: Claude Sonnet 4.6 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,13 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +61,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T19:45:34Z</td>
           <td>application/pdf</td>
           <td>8,503,340</td>
           <td><code title="409ed83ae09c14e413e45b2a20e7bd123361210895006521de408868949e58af">409ed83ae09c14e4</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -103,6 +112,20 @@
           <div class="just">Claude Sonnet 4.6 (claude-sonnet-4-6) is API/cloud-platform only.</div>
           <div class="evidence">Evidence:
 <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="noopener nofollow">https://platform.claude.com/docs/en/about-claude/models/overview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:09Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101409Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Full frontier system card with substantive evals in every domain: RSP CBRN/biological evaluations incl. virology and DNA-synthesis screening evasion (Sec 6.2); cyber evaluations incl. CyberGym and Cybench (Sec 6.4, 2.15); autonomy/AI R&amp;D evaluation suite (Sec 6.3); alignment assessment covering sabotage risk, sandbagging, deception, and targeted sabotage capability (Sec 1.2.4, 4.x) for loss_of_control; sycophancy and user-delusion metrics in the automated behavioral audit for harmful_manipulation; child safety, suicide/self-harm, eating-disorder, and bias evaluations (Sec 3.4-3.5) for societal</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:27Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152027Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -3990,6 +4013,6 @@ future-for-ai​
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

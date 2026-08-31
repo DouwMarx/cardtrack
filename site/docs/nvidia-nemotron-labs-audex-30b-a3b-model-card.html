@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nemotron-Labs-Audex Model Card (30B-A3B and 2B) — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -45,34 +45,32 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:00:24Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audex-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audex-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B%0AFingerprint%3A%2086e327638537255d7fe7cb95b92c908e0147256ae0ed6459d91d61e7317c9f01%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audex-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audex-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B%0AFingerprint%3A%20e29eb1608a30d32def1452fc39837916bc5ae550bb101f71a2568abe2b8f9478%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-26T06:51:43Z</td>
-          <td>text/html</td>
-          <td>251,881</td>
-          <td><code title="86e327638537255d7fe7cb95b92c908e0147256ae0ed6459d91d61e7317c9f01">86e327638537255d</code></td>
-        </tr>
         <tr>
           <td>2026-08-20T06:19:54Z</td>
           <td>text/html</td>
           <td>251,876</td>
-          <td><code title="710260b89e7675d89734a82eb96718c85485e1c12c15248e436e641bf0a77359">710260b89e7675d8</code></td>
+          <td><code title="e29eb1608a30d32def1452fc39837916bc5ae550bb101f71a2568abe2b8f9478">e29eb1608a30d32d</code></td>
+          <td class="change-summary">Rewrote the Quick Start instruct (non-thinking) mode instructions: the prefix is now documented as task-specific, with different think-tag prefixes for text versus audio tasks, and added notes that chat_template.jinja&#39;s enable_thinking=false path applies to audio tasks, so reproducing the reported text instruct-mode results requires constructing the prompt directly rather than using apply_chat_template.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T21:00:24Z</td>
           <td>text/html</td>
           <td>250,666</td>
-          <td><code title="ab16f6330aaa9abe38b133004cd06a1d2c181c8f81b7cfa8aacf9cc37e39844e">ab16f6330aaa9abe</code></td>
+          <td><code title="f8fda4d3417894cfbc5d7365ff34e24fcf8337d42e67e105e6e15f9b2b963897">f8fda4d3417894cf</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +80,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +124,13 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:58Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101558Z · human</span>
+          <div class="just">change_summary: null → "Rewrote the Quick Start instruct (non-thinking) mode instructions: the prefix is now documented as task-specific, with different think-tag prefixes for text versus audio tasks, and added notes that chat_template.jinja\u0027s enable_thinking=false path applies to audio tasks, so reproducing the reported text instruct-mode results requires constructing the prompt directly rather than using apply_chat_template."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -317,11 +322,11 @@ Citation
   year={2026}
 }
 - Downloads last month
-- 1,072</pre>
+- 1,139</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WeirdChat — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-permissive">open weights (permissive license)</span>
 </dd>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-10T08:44:55Z</td>
           <td>text/html</td>
           <td>106,108</td>
           <td><code title="c607575931ae27131ea06a638b006f1a4dc5665f75d6d6602fb7505ff4f33f98">c607575931ae2713</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +104,20 @@
           <div class="just">WeirdChat evaluates six open-weight models, all permissively licensed: DeepSeek-V4-Flash (MIT), Gemma 4 31B (Apache-2.0), Inkling (Apache-2.0), Nemotron 3 Ultra (OpenMDW-1.1), Qwen3.6-27B and Qwen3.6-35B-A3B (Apache-2.0). No closed or restrictive model in the set, so permissive rather than mixed.</div>
           <div class="evidence">Evidence:
 <a href="https://transluce.org/weirdchat" rel="noopener nofollow">https://transluce.org/weirdchat</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:46Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100846Z · human</span>
+          <div class="just">risk_domains: [] → ["safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Automated adversarial elicitation (PRBO/Bloom) stress-testing safety behavior of open models, surfacing self-harm and suicide encouragement, sexual content, harmful/illegal advice</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152035Z · human</span>
+          <div class="just">risk_domains: ["safeguard_robustness", "societal_harm"] → ["societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -180,6 +199,6 @@ We conduct a Swiss tournament with several rounds in which behavior patterns are
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

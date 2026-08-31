@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Many SWE-bench-Passing PRs Would Not Be Merged into Main — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-no">none found</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,19 +58,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-20T06:20:05Z</td>
           <td>text/html</td>
           <td>238,279</td>
           <td><code title="f74bb518644eb0cead0128a7029c30f9bc181f3f951c00e4dbd26851697df3d7">f74bb518644eb0ce</code></td>
+          <td class="change-summary">Added a Summary paragraph concluding there is strong evidence the automated grader overstates time-horizon levels versus maintainer review while rate-of-improvement conclusions remain unsupported, plus eight methodological footnotes (100% of golden patches pass the automated grader, runs predate Epoch&#39;s harness update, about 2% of Epoch patches corrupted and excluded, 31 pilot patches treated as automated failures, maintainer blinding caveats).
+</td>
         </tr>
         <tr>
           <td>2026-08-09T22:55:58Z</td>
           <td>text/html</td>
           <td>196,608</td>
           <td><code title="50e50887f29e57fcd66490c30c5555d05df1c0482c04c4044b8e2797b33ef3f4">50e50887f29e57fc</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -113,6 +120,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" rel="noopener nofollow">https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:30Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100830Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Autonomous coding-agent usefulness study with a dedicated time-horizon analysis (Appendix A9, T50 estimates); agentic time horizons map to ai_rnd.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:57Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101557Z · human</span>
+          <div class="just">change_summary: null → "Added a Summary paragraph concluding there is strong evidence the automated grader overstates time-horizon levels versus maintainer review while rate-of-improvement conclusions remain unsupported, plus eight methodological footnotes (100% of golden patches pass the automated grader, runs predate Epoch\u0027s harness update, about 2% of Epoch patches corrupted and excluded, 31 pilot patches treated as automated failures, maintainer blinding caveats)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:33Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152033Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -257,6 +285,6 @@ Summary. We find strong evidence that the level of time horizon is overstated by
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

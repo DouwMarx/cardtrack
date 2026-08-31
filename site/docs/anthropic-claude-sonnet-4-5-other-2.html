@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Next-generation Constitutional Classifiers: More efficient protection against universal jailbreaks — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -48,31 +51,37 @@
     <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-sonnet-4-5-other-2&amp;body=Document%3A%20anthropic-claude-sonnet-4-5-other-2%0AURL%3A%20https%3A//www.anthropic.com/research/next-generation-constitutional-classifiers%0AFingerprint%3A%20f793ff7fe9130d2b8be0b18b69794728a435ca77ed45ecd5026d766f916a47ed%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-sonnet-4-5-other-2&amp;body=Document%3A%20anthropic-claude-sonnet-4-5-other-2%0AURL%3A%20https%3A//www.anthropic.com/research/next-generation-constitutional-classifiers%0AFingerprint%3A%20a20eb5833a89f85d91cece887d89fb0123c009a7029544d49cda98735e7962b2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-19T06:18:54Z</td>
           <td>text/html</td>
           <td>131,996</td>
-          <td><code title="f793ff7fe9130d2b8be0b18b69794728a435ca77ed45ecd5026d766f916a47ed">f793ff7fe9130d2b</code></td>
+          <td><code title="a20eb5833a89f85d91cece887d89fb0123c009a7029544d49cda98735e7962b2">a20eb5833a89f85d</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-13T06:21:37Z</td>
           <td>text/html</td>
           <td>131,076</td>
-          <td><code title="ca78286dd4171d9cbdbfaad9ce37011ef24526b49303e2c28a8f87a99aece3d1">ca78286dd4171d9c</code></td>
+          <td><code title="e336b3d32e61b1cb70368c913cc15ffdab437ecb9819ec9edb7ea66945cb8122">e336b3d32e61b1cb</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-09T22:26:54Z</td>
           <td>text/html</td>
           <td>131,849</td>
-          <td><code title="7bf8c2d2526f22968dd3616051fb485eeeeff94f85e5366cd2b83fa5b9d1a960">7bf8c2d2526f2296</code></td>
+          <td><code title="d4609ca20d3ddab1d872d0909daf1d15281b9fc921fb8c1bffad421b9b16140a">d4609ca20d3ddab1</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +91,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +135,34 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers" rel="noopener nofollow">https://www.anthropic.com/research/next-generation-constitutional-classifiers</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:09Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101409Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Reports substantive adversarial evaluation of the Constitutional Classifiers++ jailbreak defense: 1,700+ hours of human red-teaming across 198,000 attempts, bug-bounty universal-jailbreak testing, refusal-rate and attack-success metrics, and analysis of reconstruction/output-obfuscation attack classes. The safeguard&#39;s explicitly stated target domain is CBRN uplift (Schedule 1 chemistry, chemical-reagent obfuscation), so cbrn is co-tagged per the safeguard_robustness convention.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:00Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101600Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:05Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101605Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152031Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "safeguard_robustness"] → ["cbrn"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -176,6 +213,6 @@ Read more</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

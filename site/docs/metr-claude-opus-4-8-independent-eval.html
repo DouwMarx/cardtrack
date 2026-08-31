@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Expenditure Horizon: Measuring Optimization Ability, with an Application to NanoGPT — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,19 +58,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-20T06:20:00Z</td>
           <td>text/html</td>
           <td>153,318</td>
           <td><code title="56ba33a2086851aded19773bbdb598d3ccfad8260fa136f5a17ba4a19f5e85fa">56ba33a2086851ad</code></td>
+          <td class="change-summary">Added a large new analysis (about 200 lines): estimated returns to human labor on the NanoGPT speedrun (about 16 hours, or $2,500, per 1% speedup; roughly $250,000 total), contributor interviews, LLM-judge effort estimates with a 1.58 calibration factor, and agent runs yielding expenditure horizons of $600 to $3,300; re-validated speedups of about 1.5% for Opus-4.8 and 1% for GPT-5.5, with per-change maintainer mergeability review.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T22:36:07Z</td>
           <td>text/html</td>
           <td>65,536</td>
           <td><code title="d83d1fdcdf54a5b5a26e7c19a4277a6f7bf1d1436ba26088577d2864ea59d52f">d83d1fdcdf54a5b5</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -113,6 +120,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" rel="noopener nofollow">https://metr.org/blog/2026-07-21-expenditure-horizon/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:33Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100833Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Expenditure-horizon metric for AI acceleration of AI R&amp;D with agentic NanoGPT optimization runs and human-effort baselines.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:58Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101558Z · human</span>
+          <div class="just">change_summary: null → "Added a large new analysis (about 200 lines): estimated returns to human labor on the NanoGPT speedrun (about 16 hours, or $2,500, per 1% speedup; roughly $250,000 total), contributor interviews, LLM-judge effort estimates with a 1.58 calibration factor, and agent runs yielding expenditure horizons of $600 to $3,300; re-validated speedups of about 1.5% for Opus-4.8 and 1% for GPT-5.5, with per-change maintainer mergeability review."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:33Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152032Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -421,6 +449,6 @@ These hardening decisions were made after multiple rounds of elicitation and obs
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

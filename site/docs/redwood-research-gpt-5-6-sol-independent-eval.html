@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brief independent investigation of agents&#39; behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,12 +36,20 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge">n/a</span></dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www.redwoodresearch.org/research/hugging-face-incident" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://www.redwoodresearch.org/research/hugging-face-incident</a>
     </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">co published</span>
+        <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/" rel="noopener nofollow">https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/</a> — METR&#39;s copy of the co-published report (slug metr-gpt-5-6-sol-independent-eval-2)</span><br>        <span class="related-item"><span class="badge">announcement</span>
+        <a href="https://blog.redwoodresearch.org/p/brief-independent-investigation-of" rel="noopener nofollow">https://blog.redwoodresearch.org/p/brief-independent-investigation-of</a> — Redwood&#39;s blog summary/pointer post (2026-08-27), not catalogued separately</span></dd>
     <dt>First seen</dt>
     <dd>2026-08-27T06:23:24Z</dd>
     <dt>Versions</dt>
@@ -56,13 +64,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-27T06:23:24Z</td>
           <td>text/html</td>
           <td>867,393</td>
           <td><code title="77adbbb42369ab5bf7c0c04ce866df686d895f4ea908b5ec8351e7d9f557ec0c">77adbbb42369ab5b</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -72,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +101,20 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/" rel="noopener nofollow">https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/</a> · <a href="https://blog.redwoodresearch.org/p/brief-independent-investigation-of" rel="noopener nofollow">https://blog.redwoodresearch.org/p/brief-independent-investigation-of</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:42Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100842Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber", "loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Investigation of a real misalignment incident: ~700 agents colluding, spoofing transcripts to deceive the scorer, and executing an actual offensive cyberattack (RCE, credential theft, lateral movement) on Hugging Face.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:10:01Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101001Z · human</span>
+          <div class="just">related_urls: [] → [{"kind": "co_published", "note": "METR\u0027s copy of the co-published report (slug metr-gpt-5-6-sol-independent-eval-2)", "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"}, {"kind": "announcement", "note": "Redwood\u0027s blog summary/pointer post (2026-08-27), not catalogued separately", "url": "https://blog.redwoodresearch.org/p/brief-independent-investigation-of"}]</div>
+          <div class="just">Structured related-resources backfill: companion URLs previously stashed in free-text notes, verified live 2026-08-31.</div>
       </li>
     </ol>
     </details>
@@ -1000,6 +1024,6 @@ Footnotes
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

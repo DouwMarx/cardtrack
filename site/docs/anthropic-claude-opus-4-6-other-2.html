@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Partnering with Mozilla to improve Firefox&#39;s security — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,7 +48,7 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:27:12Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>2</dd>
   </dl>
 
   <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-6-other-2&amp;body=Document%3A%20anthropic-claude-opus-4-6-other-2%0AURL%3A%20https%3A//www.anthropic.com/news/mozilla-firefox-security%0AFingerprint%3A%20fa9ea264cc73bd81dd8211d3cd610c417607a2571d126dc79b880ea9e62a7bae%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
@@ -54,25 +57,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-19T06:18:56Z</td>
-          <td>text/html</td>
-          <td>143,602</td>
-          <td><code title="fa9ea264cc73bd81dd8211d3cd610c417607a2571d126dc79b880ea9e62a7bae">fa9ea264cc73bd81</code></td>
-        </tr>
         <tr>
           <td>2026-08-13T06:21:39Z</td>
           <td>text/html</td>
           <td>143,392</td>
-          <td><code title="c0d90e10db5eefe3c8b323dfa4efdf1703111b742147c0273d7f30555ece46f1">c0d90e10db5eefe3</code></td>
+          <td><code title="fa9ea264cc73bd81dd8211d3cd610c417607a2571d126dc79b880ea9e62a7bae">fa9ea264cc73bd81</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-09T22:27:12Z</td>
           <td>text/html</td>
           <td>143,624</td>
-          <td><code title="b66d2dc9d40439e4019bbedb1526dfe4a57bac768f30d94f625d19692cecc913">b66d2dc9d40439e4</code></td>
+          <td><code title="5019543d69b0274a0a65897baa275f3db5f90d0143c3b4dd64dd7b2294dfac5e">5019543d69b0274a</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -127,6 +128,20 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/mozilla-firefox-security" rel="noopener nofollow">https://www.anthropic.com/news/mozilla-firefox-security</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:21Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100821Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Firefox vulnerability discovery (22 CVEs) plus dedicated exploit-development evaluation (several hundred runs, 2 working exploits) and risk outlook.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:05Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101605Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -169,11 +184,13 @@ Frontier language models are now world-class vulnerability researchers. On top o
 Opus 4.6 is currently far better at identifying and fixing vulnerabilities than at exploiting them. This gives defenders the advantage. And with the recent release of Claude Code Security in limited research preview, we’re bringing vulnerability-discovery (and patching) capabilities directly to customers and open-source maintainers.
 But looking at the rate of progress, it is unlikely that the gap between frontier models’ vulnerability discovery and exploitation abilities will last very long. If and when future language models break through this exploitation barrier, we will need to consider additional safeguards or other actions to prevent our models from being misused by malicious actors.
 We urge developers to take advantage of this window to redouble their efforts to make their software more secure. For our part, we plan to significantly expand our cybersecurity efforts, including by working with developers to search for vulnerabilities (following the CVD process outlined above), developing tools to help maintainers triage bug reports, and directly proposing patches.
-If you’re interested in supporting our security efforts—writing new scaffolds to identify vulnerabilities in open-source software; triaging, patching, and reporting vulnerabilities; and developing a robust CVD process for the AI era—apply to work at Anthropic here.</pre>
+If you’re interested in supporting our security efforts—writing new scaffolds to identify vulnerabilities in open-source software; triaging, patching, and reporting vulnerabilities; and developing a robust CVD process for the AI era—apply to work at Anthropic here.
+Mariano-Florentino (Tino) Cuéllar will join Anthropic as its first Chief Global Affairs Officer.
+Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

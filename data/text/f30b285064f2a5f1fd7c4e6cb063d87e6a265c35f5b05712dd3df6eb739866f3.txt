@@ -1,0 +1,84 @@
+Veo 3.1 Lite
+Model Card
+Model Cards are intended to provide developers with essential, summarized information on
+models, including overviews of known limitations and mitigation approaches. Model cards may be
+updated from time to time; for example, to include updated evaluations as the model is improved
+or revised.
+
+Published: April, 2026
+
+                                      Model Information
+
+Description: Veo 3.1 Lite is an addition to the Veo 3 series of video generation systems capable of
+synthesizing high-quality, high-resolution video with audio from a text prompt or input image.
+
+Inputs: Natural-language text strings, such as instructions for creating a synthetic video using a
+visual description, and images.
+
+Outputs: High-quality, high-resolution video with audio.
+
+Architecture: Veo 3.1 Lite is based on Veo 3. For more information about the model architecture
+for Veo 3.1 Lite, see the Veo 3 model card.
+
+                                           Model Data
+
+Training Dataset: Veo 3.1 Lite is based on Veo 3. For more information about the training dataset
+for Veo 3.1 Lite, see the Veo 3 model card.
+
+Training Data Processing: For more information about the training data processing for Veo 3.1
+Lite, see the Veo 3 model card.
+
+                           Implementation and Sustainability
+
+Hardware: Veo 3.1 Lite is based on Veo 3. For more information about the hardware used to train
+for Veo 3.1 Lite and Google’s continued commitment to operate sustainably for Veo 3.1 Lite, see the
+Veo 3 model card.
+
+Software: Veo 3.1 Lite is based on Veo 3. For more information about the software for Veo 3.1 Lite,
+see the Veo 3 model card.
+
+                                                                                                      1
+                                           Distribution
+Veo 3.1 Lite is distributed in the following channels; respective documentation shared in line:
+
+   ●​   Gemini API
+   ●​   Gemini AI Studio
+   ●​   Google Cloud / Vertex AI
+   ●​   Google Flow
+   ●​   Google Workspace
+
+Our models are available to downstream providers via an application program interface (API) and
+subject to relevant terms of use. There is no required hardware or software to use the model. For
+AI Studio and Gemini API, see the Gemini API Additional Terms of Service. For more information, see
+Gemini Model API instructions.
+
+                                             Evaluation
+
+Evaluation Approach: We evaluated Veo 3.1 Lite vs Veo 3.1 Fast across both T2V (prompt-to-video
+generation) and I2V (image-to-video generation).
+
+Results: Veo 3.1 Lite T2V achieved 54.6% overall win-rate across 1000 prompts and I2V achieved
+47.2% overall win-rate across 646 prompts.
+
+Veo 3.1 Lite is based on Veo 3. For more information about the evaluation approach for Veo 3.1 Lite,
+see the Veo 3 model card.
+
+                             Intended Usage and Limitations
+
+Benefit and Intended Usage: For more information about the benefit and intended usage for Veo
+3.1 Lite, see the Veo 3 model card.
+
+Known Limitations: For more information about the known limitations for Veo 3.1 Lite, see the
+Veo 3 model card.
+
+Acceptable Usage: For more information about the acceptable usage for Veo 3.1 Lite, see the Veo
+3 model card.
+
+                                                                                                      2
+                                      Ethics and Safety
+
+For more information about the responsibility and safety evaluation approach for Veo 3.1 Lite, see
+the Veo 3 model card. Based on our safety evals, we did not see safety regression in Veo 3.1 Lite
+compared to Veo 3.1.
+
+                                                                                                     3

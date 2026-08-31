@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Model Card: Grok 4.6 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,13 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -42,6 +49,9 @@
     <dd>
       <a href="https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf</a>
     </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">co published</span>
+        <a href="https://cursor.com/resources/grok-4-6-model-card.pdf" rel="noopener nofollow">https://cursor.com/resources/grok-4-6-model-card.pdf</a> — Cursor&#39;s own copy of the card; byte-identical on 2026-08-13, diverged after xAI&#39;s in-place Revision 2026-08-17</span></dd>
     <dt>First seen</dt>
     <dd>2026-08-13T06:25:01Z</dd>
     <dt>Versions</dt>
@@ -56,19 +66,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-22T06:29:30Z</td>
           <td>application/pdf</td>
           <td>540,844</td>
           <td><code title="1a6748d17def11ae6817cc866e167e552066dbdc27862406d9d51af348edc422">1a6748d17def11ae</code></td>
+          <td class="change-summary">Revision bumped from 2026-08-12 to 2026-08-17 with a new Changelog: added PartBench results and graph, new DeepSearchQA results, KernelBenchInternal updated to v1.1 on a harder task split, and corrected eval results on HackerBench v0.2, Self-harm, MASK, and LAB. Sections renumbered; office-use content reorganized as Knowledge-work capabilities; BixBench zero-shot MCQ added; training note now states supplemental data extends to June 2026.
+</td>
         </tr>
         <tr>
           <td>2026-08-13T06:25:02Z</td>
           <td>application/pdf</td>
           <td>524,224</td>
           <td><code title="651958db081f882372ea1220794306ff07f412c738df633bc6f617d83af26145">651958db081f8823</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -78,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -114,6 +128,34 @@
           <div class="just">The row&#39;s notes assert that Cursor&#39;s copy is byte-identical to this PDF, verified 2026-08-13. That is no longer true: I downloaded both today and xAI&#39;s canonical copy is now Revision 2026-08-17 (md5 7640cdde745a18a2390cd5fbde55fd55) against Cursor&#39;s unchanged Revision 2026-08-12 (md5 5faf54cc75e26c987541719b7e2d56f1), word-level diff similarity 0.705. The note is public on the site and now misstates the relationship between the two copies; this corrects it and records that the launch-day edition survives only at Cursor.</div>
           <div class="evidence">Evidence:
 <a href="https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf" rel="noopener nofollow">https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf</a> · <a href="https://cursor.com/resources/grok-4-6-model-card.pdf" rel="noopener nofollow">https://cursor.com/resources/grok-4-6-model-card.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:52Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100852Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Sections 7-12: CyberGym/CVE-Bench/HackerBench, VCT/BioUseBench/WMDP and CBRN refusals, jailbreak suites (StrongReject, Crescendo), child safety and self-harm evals, sycophancy/MASK, and R&amp;D enablement incl. self-inference optimization.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:09:59Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100959Z · human</span>
+          <div class="just">related_urls: [] → [{"kind": "co_published", "note": "Cursor\u0027s own copy of the card; byte-identical on 2026-08-13, diverged after xAI\u0027s in-place Revision 2026-08-17", "url": "https://cursor.com/resources/grok-4-6-model-card.pdf"}]</div>
+          <div class="just">Structured related-resources backfill: companion URLs previously stashed in free-text notes, verified live 2026-08-31.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:53Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101553Z · human</span>
+          <div class="just">change_summary: null → "Revision bumped from 2026-08-12 to 2026-08-17 with a new Changelog: added PartBench results and graph, new DeepSearchQA results, KernelBenchInternal updated to v1.1 on a harder task split, and corrected eval results on HackerBench v0.2, Self-harm, MASK, and LAB. Sections renumbered; office-use content reorganized as Knowledge-work capabilities; BixBench zero-shot MCQ added; training note now states supplemental data extends to June 2026."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:39Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152039Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -1466,6 +1508,6 @@ main text and link to a primary source. Internal evaluations are not listed.
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

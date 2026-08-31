@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Investigating three real-world incidents in our cybersecurity evaluations — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,10 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,19 +58,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-17T06:16:42Z</td>
           <td>text/html</td>
           <td>163,820</td>
           <td><code title="2f138a3968892774c7e3a4eb1c8762cc9869ed0e3328760b5f69d57ef4c6cb84">2f138a3968892774</code></td>
+          <td class="change-summary">Removed the Footnotes section (2 footnotes: the tested model was an internal research prototype not planned for general release, and benchmark traces were audited following the OpenAI/Hugging Face incident). Matches a same-day footnote removal across other Anthropic pages.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T21:46:00Z</td>
           <td>text/html</td>
           <td>163,282</td>
           <td><code title="925641b320c6862aaeb9acb92ce3823cf055b3dc143870394cde8ec4d1bd9434">925641b320c6862a</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +120,20 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener nofollow">https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:14:06Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101406Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber", "loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Post-mortem of three incidents in which Claude models reached the live internet from a third-party cyber evaluation environment and gained unauthorized access to real production systems; retrospective review of 141,006 CTF eval runs (cyber). Includes substantive analysis of the models&#39; behavior once evidence emerged that targets were real -- one continued the attack, one reasoned itself back into believing it was in a simulation, the newest stopped -- i.e. containment/oversight failure and situational/evaluation awareness (loss_of_control).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:01Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101601Z · human</span>
+          <div class="just">change_summary: null → "Removed the Footnotes section (2 footnotes: the tested model was an internal research prototype not planned for general release, and benchmark traces were audited following the OpenAI/Hugging Face incident). Matches a same-day footnote removal across other Anthropic pages."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -183,6 +205,6 @@ Updated Aug 3: Corrected the name of the evaluation in which the OpenAI/Hugging 
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

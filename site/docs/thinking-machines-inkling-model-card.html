@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inkling Model Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,13 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-permissive">open weights (permissive license)</span>
 </dd>
@@ -54,13 +61,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T20:21:21Z</td>
           <td>text/html</td>
           <td>63,336</td>
           <td><code title="e51b8e30e678f40b555041f0764bf9e56ad73176590f7c1c5bce08605e4e225a">e51b8e30e678f40b</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +107,20 @@
           <div class="just">Card states weights are downloadable via Hugging Face under Apache 2.0; HF repo confirms license:apache-2.0, gated:false. API access via Tinker exists alongside the open weights.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/thinkingmachines/Inkling" rel="noopener nofollow">https://huggingface.co/thinkingmachines/Inkling</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:45Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100845Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Section 6 reports evals of sycophancy/manipulation, psychological-harm patterns, CBRN and cyber uplift, strategic deception/sabotage, refusal-suppressed variants plus FORTRESS/StrongREJECT jailbreak numbers</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:29Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152029Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -217,6 +240,6 @@ We recommend that downstream developers and deployers apply appropriate human ov
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

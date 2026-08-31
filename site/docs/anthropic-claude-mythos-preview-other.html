@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assessing Claude Mythos Preview&#39;s cybersecurity capabilities — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,34 +48,32 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:06:05Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other&amp;body=Document%3A%20anthropic-claude-mythos-preview-other%0AURL%3A%20https%3A//www.anthropic.com/research/mythos-preview%0AFingerprint%3A%20ba0cf8dcda069859d674390a81b70d08c2536bb6182f081fbeff680ef1fd7781%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other&amp;body=Document%3A%20anthropic-claude-mythos-preview-other%0AURL%3A%20https%3A//www.anthropic.com/research/mythos-preview%0AFingerprint%3A%206710615d4528c99f2e865558d6813b22f7be1dfaa2e505e86415c81eb30a196c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-24T06:22:17Z</td>
-          <td>text/html</td>
-          <td>433,772</td>
-          <td><code title="ba0cf8dcda069859d674390a81b70d08c2536bb6182f081fbeff680ef1fd7781">ba0cf8dcda069859</code></td>
-        </tr>
         <tr>
           <td>2026-08-12T06:18:04Z</td>
           <td>text/html</td>
           <td>432,121</td>
-          <td><code title="6dd3d2e530bad82584caec2b4683f85951758aecb617e947beadadd4ef37e120">6dd3d2e530bad825</code></td>
+          <td><code title="6710615d4528c99f2e865558d6813b22f7be1dfaa2e505e86415c81eb30a196c">6710615d4528c99f</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-09T22:06:05Z</td>
           <td>text/html</td>
           <td>432,234</td>
-          <td><code title="c3dc7d8b8a5af299d89047e8e754ca883beeea75a59ae6dfd91c0d33bf63ab5c">c3dc7d8b8a5af299</code></td>
+          <td><code title="c4dd9783ee2d41434c6884a40027aabb5be99e1df96193a80f375f473bf31f71">c4dd9783ee2d4143</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +127,20 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/mythos-preview" rel="noopener nofollow">https://www.anthropic.com/research/mythos-preview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:18Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100818Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Detailed offensive-cyber evaluation: autonomous 0-day discovery, browser/kernel exploit development, quantified Firefox exploit benchmark (181 working exploits).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:07Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101607Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -343,16 +358,16 @@ Linux kernel logic bug:
 - Report: 4fa6abd24d24a0e2afda47f29244720fee33025be48f48de946e3d27
 Edited April 9, 2026:
 - Updated the author list
-In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested Claude’s ability to design protein binders from scratch, a key step in creating protein-based drugs that has historically taken a specialist weeks or months per target. In the second example, we evaluated whether Claude can accelerate chemical analysis. Claude Opus 5, a generally available model, was given NMR and LC-MS data (the data that allows chemists to assess the identity and purity of the compounds they work with).
+An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
 Read more
-Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
+cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
 Read more
-We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
+Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

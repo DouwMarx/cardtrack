@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Statement on the US government directive to suspend access to Fable 5 and Mythos 5 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -24,7 +24,7 @@
 <span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
-    <dd><span data-pagefind-filter="type">addendum</span></dd>
+    <dd><span data-pagefind-filter="type">access_policy</span></dd>
     <dt>Models</dt>
     <dd>Claude Fable 5, Claude Mythos 5</dd>
     <dt>Published</dt>
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,7 +48,7 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:28:37Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>1</dd>
   </dl>
 
   <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-addendum-4&amp;body=Document%3A%20anthropic-claude-fable-5-addendum-4%0AURL%3A%20https%3A//www.anthropic.com/news/fable-mythos-access%0AFingerprint%3A%20559c53eb6796b49f348d1762e99515c99be107d217e047a664b4f787f1fa28de%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
@@ -54,19 +57,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-19T06:18:59Z</td>
-          <td>text/html</td>
-          <td>119,186</td>
-          <td><code title="559c53eb6796b49f348d1762e99515c99be107d217e047a664b4f787f1fa28de">559c53eb6796b49f</code></td>
-        </tr>
         <tr>
           <td>2026-08-09T22:28:37Z</td>
           <td>text/html</td>
           <td>119,208</td>
-          <td><code title="950b0b8c2f2981dbdf1ad3776534e0aedec89c7130aded94336d3615e0e8ec27">950b0b8c2f2981db</code></td>
+          <td><code title="559c53eb6796b49f348d1762e99515c99be107d217e047a664b4f787f1fa28de">559c53eb6796b49f</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -113,6 +112,29 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener nofollow">https://www.anthropic.com/news/fable-mythos-access</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">doc_type: "addendum" → "access_policy"</div>
+          <div class="just">Relabel to the new access_policy doc_type: this post documents an access-policy change (US government directive suspending Fable/Mythos access tiers) rather than a model addendum.</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener nofollow">https://www.anthropic.com/news/fable-mythos-access</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:16Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100816Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Reports thousands of hours of USG/UK-AISI safeguard red-teaming, no-universal-jailbreak finding, and analysis of a specific cyber jailbreak vs other-model baselines</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:32Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152032Z · human</span>
+          <div class="just">risk_domains: ["cyber", "safeguard_robustness"] → ["cyber"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -137,11 +159,17 @@ Anthropic’s posture with respect to Fable’s safeguards, as laid out in our l
 To date, the government has only given us verbal evidence of a potential narrow, non-universal jailbreak, which essentially consists of asking the model to read a specific codebase and fix any software flaws. Our understanding is that one potential jailbreak was shared with the government. We have reviewed a report that we believe is the basis of the government&#39;s directive and validated that the level of capability displayed there is widely available from other models (including OpenAI’s GPT-5.5), and is used every day by the defenders who keep systems safe. We will share more details over the next 24 hours.
 We are complying with the government’s legal directive and are removing access to Fable 5 and Mythos 5 for all users. However, we disagree that the finding of a narrow potential jailbreak should be cause for recalling a commercial model deployed to hundreds of millions of people. If this standard was applied across the industry, we believe it would essentially halt all new model deployments for all frontier model providers.
 As we have stated publicly, we believe the government should have the ability to block unsafe deployments, as part of a statutory process that is transparent, fair, clear, and grounded in technical facts. This action does not adhere to those principles.
-We apologize for this disruption to our customers. We believe this is a misunderstanding and are working to restore access as soon as possible.</pre>
+We apologize for this disruption to our customers. We believe this is a misunderstanding and are working to restore access as soon as possible.
+Related content
+Improving Fable 5&#39;s biology safeguards
+Read more
+Mariano-Florentino (Tino) Cuéllar to join Anthropic as Chief Global Affairs Officer
+Mariano-Florentino (Tino) Cuéllar will join Anthropic as its first Chief Global Affairs Officer.
+Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

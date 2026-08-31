@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ChatGPT Images 2.0 System Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +57,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T19:45:58Z</td>
           <td>application/pdf</td>
           <td>163,720</td>
           <td><code title="584141669d47e338ce0ea47920f015fa2a885bcd240780cd15805040c6d939b9">584141669d47e338</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -103,6 +108,20 @@
           <div class="just">ChatGPT-deployed image generation system with a server-side safety stack (upstream text classifiers, downstream multimodal monitor). Product-only, no weight release for ChatGPT Images 2.0 or its Thinking mode.</div>
           <div class="evidence">Evidence:
 <a href="https://deploymentsafety.openai.com/chatgpt-images-2-0/chatgpt-images-2-0.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/chatgpt-images-2-0/chatgpt-images-2-0.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100835Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Sec 2.3 quantitative adversarial stress test of prompt/image safety stack (detection-rate tables); Sec 2.4 bio/chem image uplift testing with bioweapons-expert validation and 772-image monitor eval, treated as High bio capability.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:28Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152028Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "safeguard_robustness"] → ["cbrn"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -327,6 +346,6 @@ society, and helping build context and transparency to content created from Chat
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

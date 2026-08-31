@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GPT-5.5 System Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,12 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,19 +60,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-25T06:19:08Z</td>
           <td>application/pdf</td>
           <td>2,370,043</td>
           <td><code title="98b98d95ee135f755fecaf8c0f8269f76929d8373c651be81451b208ae180a85">98b98d95ee135f75</code></td>
+          <td class="change-summary">Added a Change log dated August 19, 2026 correcting GPT-5.5&#39;s pass@4 score on the hard-negative protein binding prediction evaluation from 0.4% to 1.48%; the previously reported value was its pass@1 score. The comparison table was updated from 0.4% to 1.48% and an inline correction note was added to section 9.1.1.6. Remaining changes are repagination, table-of-contents page-number shifts, and indentation reflow.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T15:57:51Z</td>
           <td>application/pdf</td>
           <td>2,367,063</td>
           <td><code title="dcc6d61c9c6997808f112d8073f75739f06c71c6063977007f8e2f878021bd57">dcc6d61c9c699780</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +86,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -124,6 +134,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:36Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100836Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Full preparedness bio (incl. SecureBio/US CAISI/bug bounty) and cyber (incl. UK AISI/Irregular) evals; AI Self-Improvement suite; alignment/misalignment resampling, CoT monitorability, Apollo sandbagging; bias and dynamic mental health sections; jailbreaks, prompt injection, and UK AISI cyber safeguard testing.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:50Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101550Z · human</span>
+          <div class="just">change_summary: null → "Added a Change log dated August 19, 2026 correcting GPT-5.5\u0027s pass@4 score on the hard-negative protein binding prediction evaluation from 0.4% to 1.48%; the previously reported value was its pass@1 score. The comparison table was updated from 0.4% to 1.48% and an inline correction note was added to section 9.1.1.6. Remaining changes are repagination, table-of-contents page-number shifts, and indentation reflow."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:25Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152025Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -1824,6 +1855,6 @@ References
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fine-tuning experiments on chain-of-thought controllability — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-permissive">open weights (permissive license)</span>
 </dd>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T22:55:46Z</td>
           <td>text/html</td>
           <td>71,463</td>
           <td><code title="9d87e598d474bd67fe780c04d1c2bbc645bb1c1ca51896eddc9e0953e97f1402">9d87e598d474bd67</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +104,13 @@
           <div class="just">Fine-tuning study on GPT-OSS-120B/20B (Apache-2.0 on HF) and Qwen3-32B / Qwen3-8B (both Apache-2.0); all four downloadable under permissive licenses.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/openai/gpt-oss-120b" rel="noopener nofollow">https://huggingface.co/openai/gpt-oss-120b</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:34Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100834Z · human</span>
+          <div class="just">risk_domains: [] → ["loss_of_control"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Fine-tuning stress test of CoT controllability motivated by models evading CoT monitors; quantitative ReasonIF/CoTControl results — monitorability/control research per conventions</div>
       </li>
     </ol>
     </details>
@@ -190,6 +202,6 @@ Second, we show an SFT example for Qwen3-32B with a multilinguality ReasonIF ins
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

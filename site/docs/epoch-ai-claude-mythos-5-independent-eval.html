@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Are Mythos&#39; cyber capabilities overhyped? — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-10T08:44:47Z</td>
           <td>text/html</td>
           <td>143,608</td>
           <td><code title="66b969696c379f21580ced482bc082c54bb9e0d1a70449dd73ffb34a99c4d90a">66b969696c379f21</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +104,13 @@
           <div class="just">Cyber-capability analysis of Claude Mythos 5, Claude Opus 4.8, GPT-5.5, Gemini 3 Pro. Mythos 5 is invite-only; the rest are proprietary API models.</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/claude/mythos" rel="noopener nofollow">https://www.anthropic.com/claude/mythos</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100823Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Substantive cyber capability risk analysis: Cyber-ECI aggregation of ~15 cyber benchmarks, exploit-development vs vulnerability-discovery assessment of Mythos family.</div>
       </li>
     </ol>
     </details>
@@ -246,6 +258,6 @@ Though note that the companies taking part in Project Glasswing weren’t necess
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

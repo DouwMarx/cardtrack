@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UI-Venus-2-9B — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -50,19 +50,21 @@
     <dd>Apache-2.0. A UI-Venus-2-27B is named in the card&#39;s comparison tables but is not yet released; only the 9B weights are published. UI-Venus-2 technical report arXiv id is still a placeholder on the card. Predecessor UI-Venus-1.5 (Feb 2026) is not yet in the database.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%2053ce33afa8f3e34b929281b77530dae72b392dfb42f629b1c4b9995fc320ad69%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%208ddba87d41b9718373eb5ea95a1336649ccf30621bffa4a7c859c328af79bd58%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-27T06:24:25Z</td>
           <td>text/html</td>
           <td>238,034</td>
-          <td><code title="53ce33afa8f3e34b929281b77530dae72b392dfb42f629b1c4b9995fc320ad69">53ce33afa8f3e34b</code></td>
+          <td><code title="8ddba87d41b9718373eb5ea95a1336649ccf30621bffa4a7c859c328af79bd58">8ddba87d41b97183</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -72,7 +74,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +93,20 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/collections/inclusionAI/ui-venus" rel="noopener nofollow">https://huggingface.co/collections/inclusionAI/ui-venus</a> · <a href="https://github.com/inclusionAI/UI-Venus" rel="noopener nofollow">https://github.com/inclusionAI/UI-Venus</a> · <a href="https://huggingface.co/api/models/inclusionAI/UI-Venus-2-9B" rel="noopener nofollow">https://huggingface.co/api/models/inclusionAI/UI-Venus-2-9B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:28Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100828Z · human</span>
+          <div class="just">risk_domains: [] → ["safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Dedicated Safety section with quantitative OSBlind attack-success-rate table (adversarial benign-looking instructions vs the agent&#39;s safety mechanisms, ASR 18.5% vs 90%+ baselines); no specific targeted domain to co-tag; CAPTCHA solving is a capability demo, not tagged.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:40Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152039Z · human</span>
+          <div class="just">risk_domains: ["safeguard_robustness"] → []</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -364,6 +380,6 @@ If you find UI-Venus-2 useful, please cite our technical reports:
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

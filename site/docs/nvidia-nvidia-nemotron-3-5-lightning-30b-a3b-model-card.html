@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16 Model Card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -50,31 +50,37 @@
     <dd>Quantized/derived siblings deliberately NOT proposed: -NVFP4, -NVFP4-DSpark, -NVFP4-DFlash, -Base-BF16. has_safety_evals=false: the card documents training-data bias analysis and deployment guidance and points to separate Model Card++ safety/bias/privacy/explainability subcards (safety.md), but the card itself reports no safety or dangerous-capability eval results.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16%0AFingerprint%3A%20259b1b19599b0397c22db2d52d754cf8ea9eeb238bcfe9e8146e45e8cc16c98c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16%0AFingerprint%3A%20ac97e4c40b497a94a102b6e0c54724e301911b367ddb2adcb30e94542ce5cb12%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-25T06:18:32Z</td>
           <td>text/html</td>
           <td>499,687</td>
-          <td><code title="259b1b19599b0397c22db2d52d754cf8ea9eeb238bcfe9e8146e45e8cc16c98c">259b1b19599b0397</code></td>
+          <td><code title="ac97e4c40b497a94a102b6e0c54724e301911b367ddb2adcb30e94542ce5cb12">ac97e4c40b497a94</code></td>
+          <td class="change-summary">Added a sentence in the training-data section pointing readers to the Public Summary of Training Content for dataset information. The evaluation-results sidebar also gained a Terminal-Bench 2.1 leaderboard entry (24.58); download-counter and listing-order changes are noise.
+</td>
         </tr>
         <tr>
           <td>2026-08-19T06:18:21Z</td>
           <td>text/html</td>
           <td>492,203</td>
-          <td><code title="3e74d5dd2342af9cdd12fc7c75f51dc3a80890c88411437ef3788c1d7365c657">3e74d5dd2342af9c</code></td>
+          <td><code title="5c117ad9f43fe86f263f0c010a76a03251a6821d2bc4774211d256dee7b054d5">5c117ad9f43fe86f</code></td>
+          <td class="change-summary">Major deployment-guide expansion: added a Hardware Matrix and a Choose-your-deployment table, full SGLang recipes (B200 and H100) with MTP, DFlash, and DSpark speculative-decoding flags, and validated-context notes (256K on 1x H100, 1M on 8x H100, GB200, B200). Supported hardware swapped GeForce RTX 5090 for B200; a runtime thinking-budget claim was dropped. Sidebar eval results appeared: SWE-bench Verified 51.56, GPQA Diamond 75.44, HLE 11.72, SWE-bench Multilingual 39.33.
+</td>
         </tr>
         <tr>
           <td>2026-08-12T06:25:06Z</td>
           <td>text/html</td>
           <td>428,110</td>
-          <td><code title="c03fe82a3feb6042c32e64987656ad73ec32cad0f51760e968be9eb85b812b24">c03fe82a3feb6042</code></td>
+          <td><code title="741059c42ed1e63eb9c8784ca34ff44bc846c37488b80e69f6cc994a5adefd3d">741059c42ed1e63e</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -84,7 +90,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -128,6 +134,20 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:51Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101551Z · human</span>
+          <div class="just">change_summary: null → "Added a sentence in the training-data section pointing readers to the Public Summary of Training Content for dataset information. The evaluation-results sidebar also gained a Terminal-Bench 2.1 leaderboard entry (24.58); download-counter and listing-order changes are noise."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:00Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101600Z · human</span>
+          <div class="just">change_summary: null → "Major deployment-guide expansion: added a Hardware Matrix and a Choose-your-deployment table, full SGLang recipes (B200 and H100) with MTP, DFlash, and DSpark speculative-decoding flags, and validated-context notes (256K on 1x H100, 1M on 8x H100, GB200, B200). Supported hardware swapped GeForce RTX 5090 for B200; a runtime thinking-budget claim was dropped. Sidebar eval results appeared: SWE-bench Verified 51.56, GPQA Diamond 75.44, HLE 11.72, SWE-bench Multilingual 39.33."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
     </ol>
     </details>
@@ -791,6 +811,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

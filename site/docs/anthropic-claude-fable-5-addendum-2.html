@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Redeploying Fable 5 — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,19 +57,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-17T06:16:42Z</td>
           <td>text/html</td>
           <td>170,546</td>
           <td><code title="abd53a0dd7bfbd9d0036448b57c1d379a3e7b7cc7b8abe7974cd6f4f7a1fa0b1">abd53a0dd7bfbd9d</code></td>
+          <td class="change-summary">Removed the entire Footnotes section (4 footnotes, including Enterprise seat access terms for Fable 5 through July 7 and notes on jailbreak vs bypass terminology, software vulnerabilities, and CVSS) plus the Related content block. Same-day footnote removals on other Anthropic pages suggest a site-wide layout change.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T21:45:50Z</td>
           <td>text/html</td>
           <td>170,785</td>
-          <td><code title="59304fe66bb1abe82d8ef3abc9ec9ff4a783b0457a1b5da8d04c1ba4fe7443e7">59304fe66bb1abe8</code></td>
+          <td><code title="f963ed90c38bf518d1014f47b74333f648c68d899f599724ee214b91c70bd37c">f963ed90c38bf518</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +119,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/redeploying-fable-5" rel="noopener nofollow">https://www.anthropic.com/news/redeploying-fable-5</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:16Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100815Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Cross-model vulnerability-identification testing, retrained cyber classifier (&gt;99% block rate, CAISI-tested), safety-margin analysis, and jailbreak severity framework</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:01Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101601Z · human</span>
+          <div class="just">change_summary: null → "Removed the entire Footnotes section (4 footnotes, including Enterprise seat access terms for Fable 5 through July 7 and notes on jailbreak vs bypass terminology, software vulnerabilities, and CVSS) plus the Related content block. Same-day footnote removals on other Anthropic pages suggest a site-wide layout change."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152031Z · human</span>
+          <div class="just">risk_domains: ["cyber", "safeguard_robustness"] → ["cyber"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -179,6 +207,6 @@ We look forward to deepening our government collaboration in the ways we’ve de
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

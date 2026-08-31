@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Improving Fable 5&#39;s biology safeguards — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -48,25 +51,29 @@
     <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-addendum&amp;body=Document%3A%20anthropic-claude-fable-5-addendum%0AURL%3A%20https%3A//www.anthropic.com/news/improving-fable-5-s-biology-safeguards%0AFingerprint%3A%207ce3617c4fcc9335b20b396c80230066a8c0a6e0609cd4c55de8a9f62db2a067%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-addendum&amp;body=Document%3A%20anthropic-claude-fable-5-addendum%0AURL%3A%20https%3A//www.anthropic.com/news/improving-fable-5-s-biology-safeguards%0AFingerprint%3A%20c64eeb516a5b748368cea6095a0b4a5aeb6127e120c7866e4c518ed484000838%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-17T06:16:41Z</td>
           <td>text/html</td>
           <td>127,466</td>
-          <td><code title="7ce3617c4fcc9335b20b396c80230066a8c0a6e0609cd4c55de8a9f62db2a067">7ce3617c4fcc9335</code></td>
+          <td><code title="c64eeb516a5b748368cea6095a0b4a5aeb6127e120c7866e4c518ed484000838">c64eeb516a5b7483</code></td>
+          <td class="change-summary">Removed footnote 1 giving expected fallback reductions by surface (roughly 67% on Claude.ai, 55% on Cowork, 17% on Claude Code, 7% on the Claude Platform); a Related content link to a text-watermark article was added. Footnote removal matches a same-day site-wide change on Anthropic pages.
+</td>
         </tr>
         <tr>
           <td>2026-08-09T21:45:40Z</td>
           <td>text/html</td>
           <td>126,928</td>
-          <td><code title="b3f7244020a80e108a60be870a84563a556f87db05cf25d390026060a4db5599">b3f7244020a80e10</code></td>
+          <td><code title="1388fb3ce6819a946d036303876a83f14161c688c650bc15ff0c56336bc8a39e">1388fb3ce6819a94</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +119,27 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards" rel="noopener nofollow">https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:15Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100815Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Bio-uplift capability assessment (significant uplift to bioweapon actors) plus classifier constitution rewrite/retraining analysis with 85% false-positive reduction and jailbreak-robustness requirements</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:16:02Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101602Z · human</span>
+          <div class="just">change_summary: null → "Removed footnote 1 giving expected fallback reductions by surface (roughly 67% on Claude.ai, 55% on Cowork, 17% on Claude Code, 7% on the Claude Platform); a Related content link to a text-watermark article was added. Footnote removal matches a same-day site-wide change on Anthropic pages."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152031Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "safeguard_robustness"] → ["cbrn"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -152,6 +180,6 @@ Read more</pre>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

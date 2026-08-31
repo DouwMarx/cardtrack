@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>System Card: Claude Mythos Preview — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -21,7 +21,7 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://www.anthropic.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">anthropic</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:restricted"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">system_card</span></dd>
@@ -35,8 +35,15 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
+        <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge openness-closed">closed weights</span>
+    <dd><span class="badge openness-restricted">restricted access</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -54,13 +61,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T15:57:45Z</td>
           <td>application/pdf</td>
           <td>23,733,776</td>
           <td><code title="5aa28a71a4ce582d4e6e913d931f81c4154a0e08fe0a4797f9244899206e0d74">5aa28a71a4ce582d</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -110,6 +119,29 @@
           <div class="just">System card for Claude Mythos Preview, a restricted-access Anthropic frontier model; weights never released.</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/claude/mythos" rel="noopener nofollow">https://www.anthropic.com/claude/mythos</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:46Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">openness: "closed" → "restricted"</div>
+          <div class="just">Openness backfill: Claude Mythos Preview is withheld from general availability; deployed via invitation-only Project Glasswing.</div>
+          <div class="evidence">Evidence:
+<a href="https://cards.douwmarx.com/docs/anthropic-claude-mythos-preview-system-card.html" rel="noopener nofollow">https://cards.douwmarx.com/docs/anthropic-claude-mythos-preview-system-card.html</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:20Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100820Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Sections: CB uplift trials/red teaming (2.2), cyber (3), autonomy/AI-R&amp;D evals (2.3), alignment incl. sandbagging/SHADE-Arena/eval awareness (4), influence-campaign eval with completion rates (8.3.1.3), bias/child safety/self-harm evals (8.1.4, 8.2), safeguards and adaptive prompt-injection robustness testing (8.1, 8.3.2).</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:24Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152024Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -7836,6 +7868,6 @@ problem statement as base64 data URIs.
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

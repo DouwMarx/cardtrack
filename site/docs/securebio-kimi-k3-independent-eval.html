@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kimi K3 Biology Capabilities Assessment — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
 </dd>
@@ -55,19 +58,23 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-27T06:18:31Z</td>
           <td>text/html</td>
           <td>171,868</td>
           <td><code title="42e3bf395a460a9470ebc5942114a0ee13047ef522a0154ddcdb9a0f1072c0c7">42e3bf395a460a94</code></td>
+          <td class="change-summary">No substantive change detected (page furniture or extraction noise).
+</td>
         </tr>
         <tr>
           <td>2026-08-10T08:44:50Z</td>
           <td>text/html</td>
           <td>182,224</td>
           <td><code title="c8f70babf9f16831d8312251340b7d1183f4e30f9e8a09a7f33994ba2e11f85a">c8f70babf9f16831</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -114,6 +121,27 @@
           <div class="evidence">Evidence:
 <a href="https://securebio.substack.com/p/kimi-k3-biology-capabilities-assessment" rel="noopener nofollow">https://securebio.substack.com/p/kimi-k3-biology-capabilities-assessment</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:45Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100845Z · human</span>
+          <div class="just">risk_domains: [] → ["cbrn", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Biology knowledge benchmarks (VCT/MBCT/WCB/HPCT, Bio Capabilities Index) for an open-weights model plus a dedicated safeguard section reporting BioTIER-refuse 26.9% vs &gt;90% for closed frontier models.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:15:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T101547Z · human</span>
+          <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
+          <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152034Z · human</span>
+          <div class="just">risk_domains: ["cbrn", "safeguard_robustness"] → ["cbrn"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -147,6 +175,6 @@ This includes Kimi K2.5 and K2.6, GLM-5 and GLM-5.2, Qwen3.5-397B and Qwen3.7-Ma
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

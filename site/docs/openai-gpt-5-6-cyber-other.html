@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Expanding Daybreak as the Cyber Defense Window Narrows — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -21,10 +21,10 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://openai.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">openai</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:restricted"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
-    <dd><span data-pagefind-filter="type">other</span></dd>
+    <dd><span data-pagefind-filter="type">access_policy</span></dd>
     <dt>Models</dt>
     <dd>GPT-5.5-Cyber, GPT-5.6 Sol, GPT-5.6-Cyber</dd>
     <dt>Published</dt>
@@ -35,8 +35,11 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge openness-closed">closed weights</span>
+    <dd><span class="badge openness-restricted">restricted access</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -56,13 +59,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-14T07:10:52Z</td>
           <td>text/html</td>
           <td>540,072</td>
           <td><code title="106e7745fc22b2a47c5fdfffbc7c7568c4e7bbeb5b2f26f76ebf8a0c355e75b7">106e7745fc22b2a4</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -72,7 +77,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -91,6 +96,31 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.axios.com/2026/08/10/openai-gpt-astra-restrictions-safety-hacking-defenders" rel="noopener nofollow">https://www.axios.com/2026/08/10/openai-gpt-astra-restrictions-safety-hacking-defenders</a> · <a href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/" rel="noopener nofollow">https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">openness: "closed" → "restricted"</div>
+          <div class="just">Openness backfill: GPT-5.6-Cyber is available only through Daybreak Red trusted access for vetted cyber defenders.</div>
+          <div class="evidence">Evidence:
+<a href="https://cards.douwmarx.com/docs/openai-gpt-5-6-cyber-other.html" rel="noopener nofollow">https://cards.douwmarx.com/docs/openai-gpt-5-6-cyber-other.html</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T09:52:48Z</span>
+        <strong>field_update</strong>
+        <span class="run">run restricted-access-20260831 · human · lead: manual</span>
+          <div class="just">doc_type: "other" → "access_policy"</div>
+          <div class="just">Relabel to access_policy: the post defines the Daybreak trusted-access tiers (Blue/Red) and who may access GPT-5.6 Sol unguarded and GPT-5.6-Cyber.</div>
+          <div class="evidence">Evidence:
+<a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/" rel="noopener nofollow">https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:37Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100836Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Quantitative cyber capability evals (ExploitGym, ExploitBench, vuln discovery, real CVE findings) and Preparedness High determination for GPT-5.6-Cyber; refusal-reduction metric reflects intentional guardrail removal, not robustness testing.</div>
       </li>
     </ol>
     </details>
@@ -161,6 +191,6 @@ We recommend Daybreak Blue as the starting point for most defenders. Teams whose
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

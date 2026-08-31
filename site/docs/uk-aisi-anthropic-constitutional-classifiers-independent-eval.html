@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Boundary Point Jailbreaking: A new way to break the strongest AI defences — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -55,13 +55,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T22:34:04Z</td>
           <td>text/html</td>
           <td>34,923</td>
           <td><code title="6f057cd909599b38e9b947884e214b481836e90381a71f6306af4f2849176fb4">6f057cd909599b38</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +73,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +101,20 @@
           <div class="just">Targets Anthropic&#39;s Constitutional Classifiers (proprietary deployed safeguard) and OpenAI&#39;s GPT-5 input classifier (API/product-only). No open-weight system tested.</div>
           <div class="evidence">Evidence:
 <a href="https://www.aisi.gov.uk/blog/boundary-point-jailbreaking-a-new-way-to-break-the-strongest-ai-defences" rel="noopener nofollow">https://www.aisi.gov.uk/blog/boundary-point-jailbreaking-a-new-way-to-break-the-strongest-ai-defences</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100847Z · human</span>
+          <div class="just">risk_domains: [] → ["safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Automated universal jailbreak (BPJ) breaking Constitutional Classifiers and GPT-5 input classifier; pure safeguard stress test, no single targeted domain named</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:32Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152032Z · human</span>
+          <div class="just">risk_domains: ["safeguard_robustness"] → []</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -146,6 +162,6 @@ Authors: Xander Davies, Giorgi Giglemiani, Edmund Lau, Eric Winsor, Geoffrey Irv
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

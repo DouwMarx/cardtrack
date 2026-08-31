@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Measuring LLMs&#39; impact on N-day exploits — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -45,34 +48,24 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:08:29Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>1</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-5&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-5%0AURL%3A%20https%3A//www.anthropic.com/research/n-days%0AFingerprint%3A%2016f6ca6ff18289fa66421b4d990f3b9ab0a6d4acb71db5c99bc3aea6040e0fd0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-5&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-5%0AURL%3A%20https%3A//www.anthropic.com/research/n-days%0AFingerprint%3A%20675eed602ed98a9552e27430bef650d6fc8de5cca4c2ce7d9e6ac6c2ffacfae8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
-        <tr>
-          <td>2026-08-25T06:18:27Z</td>
-          <td>text/html</td>
-          <td>168,554</td>
-          <td><code title="16f6ca6ff18289fa66421b4d990f3b9ab0a6d4acb71db5c99bc3aea6040e0fd0">16f6ca6ff18289fa</code></td>
-        </tr>
-        <tr>
-          <td>2026-08-12T06:18:08Z</td>
-          <td>text/html</td>
-          <td>167,587</td>
-          <td><code title="8641c1d187d94af1734de96d6ebe6718955324aafeef8d763a7e353c648d4d78">8641c1d187d94af1</code></td>
-        </tr>
         <tr>
           <td>2026-08-09T22:08:29Z</td>
           <td>text/html</td>
           <td>167,700</td>
-          <td><code title="e5fde1ccffb71f538e556eeeaf700e7ae425cf5546d96daa1827afee94df94b1">e5fde1ccffb71f53</code></td>
+          <td><code title="675eed602ed98a9552e27430bef650d6fc8de5cca4c2ce7d9e6ac6c2ffacfae8">675eed602ed98a95</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +75,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +119,13 @@
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/n-days" rel="noopener nofollow">https://www.anthropic.com/research/n-days</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:19Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100819Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Quantified N-day exploit evaluation: Firefox and Windows kernel exploit chains, PoC/exploit success rates, patch-gap threat analysis.</div>
       </li>
     </ol>
     </details>
@@ -174,16 +174,14 @@ This means that the typical patching playbook that software developers use today
 N-days have historically caused most harm to systems that are slow or difficult to patch. Industrial control systems, medical devices, and “internet of things” devices often run on fixed maintenance windows, vendor-locked firmware, or have uptime guarantees. As the cost of weaponizing any given patch falls toward zero, these devices and systems will become even more exposed. And even systems operating on an established, “responsible” patch cadence are now far easier targets than before.
 Vendors are already moving to shrink the patch gap. Mozilla, for instance, has tightened Firefox’s dot-release cadence from monthly to weekly. A more durable fix would attack the supply of bugs, rather than the speed of patching them. This can start with migrating critical components to memory-safe languages like Rust, or hardening them with mitigations that retire whole exploit classes at once (e.g. Control Flow Guard, hardware shadow stacks). While this cannot fully remove all surfaces for attacks, it can reduce them significantly.
 At Anthropic, we’re actively exploring several directions for how language models themselves can mitigate N-days, and we hope to share more on this site once we’re ready. If you’re interested in helping us with our efforts, we have job openings available for research scientists and engineers, threat investigators, policy managers, offensive security researchers, security engineers, among many other roles.
-In this post, we share two results that show how Claude can help life scientists increase the pace of their research.
+cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
 Read more
-Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
-Read more
-We&#39;re sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic&#39;s Maxim Massenkoff.
+Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

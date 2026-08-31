@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gemma 4 model card — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -21,7 +21,7 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://deepmind.google" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">google_deepmind</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
@@ -33,7 +33,7 @@
     <dt>Status</dt>
     <dd><span class="badge status-active">active</span></dd>
     <dt>Safety evals</dt>
-    <dd><span class="badge safety-no">none found</span>
+    <dd><span class="badge safety-yes">yes</span>
 </dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-permissive">open weights (permissive license)</span>
@@ -54,13 +54,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T15:57:59Z</td>
           <td>text/html</td>
           <td>167,366</td>
           <td><code title="0a9ff611052e820e95b006a2d0109a507ff7a9ec484c1381d8a0f502336b850a">0a9ff611052e820e</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +72,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -110,6 +112,13 @@
           <div class="just">Verified on HF: license tag apache-2.0, ungated (no terms click-through), card states &#39;License: Apache 2.0&#39; linking ai.google.dev/gemma/docs/gemma_4_license. All five Gemma 4 variants (E2B, E4B, 12B, 26B-A4B, 31B) match — a change from the Gemma Terms used for Gemma 1-3. A separate prohibited-use policy exists but is not incorporated as a license condition.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/google/gemma-4-E2B" rel="noopener nofollow">https://huggingface.co/google/gemma-4-E2B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:15Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100815Z · human</span>
+          <div class="just">safety_evals: 0 → 1</div>
+          <div class="just">safety_evals correction from the 2026-08-31 risk-domain classification pass: Card has a dedicated safety Evaluation Approach/Results section with automated and human content-safety evals.</div>
       </li>
     </ol>
     </details>
@@ -331,6 +340,6 @@ If you find our work helpful, please consider citing it:
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Disclosed CVEs: July Reached 5x the Pre-Mythos Record — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-10T08:44:49Z</td>
           <td>text/html</td>
           <td>125,510</td>
           <td><code title="5f8cccf303953d1a19da31082d4aecaf5dcfd35c94926accb714cfb5e11014b9">5f8cccf303953d1a</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -100,6 +105,13 @@
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/previewing-gpt-5-6-sol/" rel="noopener nofollow">https://openai.com/index/previewing-gpt-5-6-sol/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:24Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100823Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Data insight on CVE disclosure spike attributed to frontier model cyber capabilities (Mythos, GPT-5.6 Sol) with autonomous-hacking context.</div>
+      </li>
     </ol>
     </details>
   </section>
@@ -123,6 +135,6 @@ Explore trends in software and hardware vulnerabilities (CVEs) since 2020 — ho
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

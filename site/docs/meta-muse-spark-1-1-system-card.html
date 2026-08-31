@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Muse Spark 1.1 Evaluation Report — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -35,6 +35,12 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">CBRN</span>
+        <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-closed">closed weights</span>
 </dd>
@@ -54,13 +60,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-09T19:12:18Z</td>
           <td>application/pdf</td>
           <td>1,752,174</td>
           <td><code title="57f32a6f20d528c435a7ae3f70cf33ebbe965e414d8584fe4e3e671d8ec6cbf2">57f32a6f20d528c4</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -103,6 +111,20 @@
           <div class="just">Muse Spark 1.1 is a closed-weights hosted model served through the Meta Model API and metered per token. No downloadable weights.</div>
           <div class="evidence">Evidence:
 <a href="https://www.deeplearning.ai/the-batch/with-muse-spark-meta-pivots-away-from-its-open-weights-llama-strategy" rel="noopener nofollow">https://www.deeplearning.ai/the-batch/with-muse-spark-meta-pivots-away-from-its-open-weights-llama-strategy</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:29Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100829Z · human</span>
+          <div class="just">risk_domains: [] → ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Preparedness sections 2.1-2.3 (chem/bio, cyber, sandbagging/monitorability/alignment faking), 2.3.1.1 AI R&amp;D acceleration evals, Section 3 jailbreak/prompt-injection red teaming, 4.1.4 sycophancy eval with numbers.</div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T15:20:27Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T152027Z · human</span>
+          <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "safeguard_robustness"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control"]</div>
+          <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
     </ol>
     </details>
@@ -4853,6 +4875,6 @@ Safety &amp; Preparedness Report.
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>

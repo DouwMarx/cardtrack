@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UK AISI / CAISI Preliminary Assessment of Kimi K3&#39;s Cyber Capabilities — cardtrack</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=570f0bec74">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
 </head>
 <body>
 <header class="masthead">
@@ -36,6 +36,9 @@
     <dt>Safety evals</dt>
     <dd><span class="badge safety-yes">yes</span>
 </dd>
+    <dt>Risk domains</dt>
+    <dd><span class="badge risk-domain">Cyber offence</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span></dd>
     <dt>Openness</dt>
     <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
 </dd>
@@ -55,13 +58,15 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
         <tr>
           <td>2026-08-10T08:44:57Z</td>
           <td>text/html</td>
           <td>91,684</td>
           <td><code title="0e9474a758da424b9437acd40e8e83baf829933f7b07c47791bc7a065a347840">0e9474a758da424b</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +76,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +104,13 @@
           <div class="just">NIST/CAISI mirror of the same joint UK AISI/CAISI Kimi K3 cyber assessment; identical evaluated model and class as the UK AISI entry.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/moonshotai/Kimi-K3/blob/main/LICENSE" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K3/blob/main/LICENSE</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-08-31T10:08:52Z</span>
+        <strong>field_update</strong>
+        <span class="run">run manual-20260831T100852Z · human</span>
+          <div class="just">risk_domains: [] → ["cyber"]</div>
+          <div class="just">Risk-domain backfill (2026-08-31 classification pass): Joint UK AISI/CAISI cyber evaluation (ExploitBench, TLO cyber range) with quantitative results; same content as UK version.</div>
       </li>
     </ol>
     </details>
@@ -139,6 +151,6 @@ Solves of TLO are no longer exclusive to a small set of models. In prior testing
   </section>
 </article>
 
-<footer><p>Built 2026-08-31T07:11:44Z</p></footer>
+<footer><p>Built 2026-08-31T15:24:47Z</p></footer>
 </body>
 </html>
