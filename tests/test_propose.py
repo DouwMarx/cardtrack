@@ -152,17 +152,40 @@ def test_tier2_writes_row_with_tier_recorded(repo, http_server):
     assert detail["tier"] == 2, "tier recorded in provenance"
 
 
-def test_logical_duplicate_files_issue(repo, http_server):
-    http_server.set_html("/doc1", "First location content.")
-    http_server.set_html("/doc1-mirror", "Different content, same logical identity.")
+def test_logical_duplicate_same_text_skipped(repo, http_server):
+    """Same publisher/title/model AND near-identical text at a new URL = a genuine
+    re-post → skipped as a duplicate (no review issue, no new row)."""
+    body = ("The model was evaluated across cyber, bio and autonomy benchmarks with "
+            "detailed results and methodology for each capability area covered.")
+    http_server.set_html("/doc1", body)
+    http_server.set_html("/doc1-mirror", body + " Minor trailing edit.")
     assert process_proposal(repo, make_proposal(http_server), "run1").status == "written"
     result = process_proposal(
         repo, make_proposal(http_server, path="/doc1-mirror",
                             model_names=["testmodel 1"]),  # normalized-equal name
         "run1")
-    assert result.status == "issue_filed"
+    assert result.status == "duplicate"
     assert "logical_duplicate" in result.reason
     assert counts(repo)["documents"] == 1
+
+
+def test_logical_title_collision_distinct_text_admitted(repo, http_server):
+    """Same publisher/title/model but DIFFERENT text (e.g. two methodology reports
+    named alike) is a distinct document → admitted, not flagged for review."""
+    http_server.set_html("/method-a",
+                         "Coding and general evaluation methodology: SWE-bench, "
+                         "terminal tasks, agentic tool use, grading rules for code.")
+    http_server.set_html("/method-b",
+                         "Multimodal evaluation methodology: visual perception, "
+                         "chart understanding, spatial reasoning, image QA protocols.")
+    assert process_proposal(repo, make_proposal(
+        http_server, path="/method-a", title="Muse Eval Methodology",
+        model_names=["MuseModel"]), "run1").status == "written"
+    r2 = process_proposal(repo, make_proposal(
+        http_server, path="/method-b", title="Muse Eval Methodology",
+        model_names=["MuseModel"]), "run1")
+    assert r2.status == "written", (r2.status, r2.reason)
+    assert counts(repo)["documents"] == 2
 
 
 def test_distinct_evaluator_reports_same_model_not_flagged(repo, http_server):
@@ -182,15 +205,37 @@ def test_distinct_evaluator_reports_same_model_not_flagged(repo, http_server):
     assert r2.status == "written", (r2.status, r2.reason)
 
 
-def test_content_duplicate_at_new_url_files_issue(repo, http_server):
+def test_content_duplicate_same_publisher_skipped(repo, http_server):
+    """Identical content at a new URL under the SAME publisher = a mirror/moved
+    copy → skipped (no new row, no review issue)."""
     http_server.set_html("/doc1", "Identical bytes served twice.")
     http_server.set_html("/doc1-copy", "Identical bytes served twice.")
     assert process_proposal(repo, make_proposal(http_server), "run1").status == "written"
     result = process_proposal(
         repo, make_proposal(http_server, path="/doc1-copy", title="Other Title",
                             model_names=["OtherModel"]), "run1")
-    assert result.status == "issue_filed"
-    assert "content_duplicate" in result.reason
+    assert result.status == "duplicate"
+    assert "content_duplicate" in result.reason and "same-publisher" in result.reason
+    assert counts(repo)["documents"] == 1
+
+
+def test_content_duplicate_cross_publisher_admitted_as_copublication(repo, http_server):
+    """Identical content under a DIFFERENT allowlisted publisher = a co-publication
+    (e.g. a launch partner's own copy) → admitted and flagged, not filed for review."""
+    http_server.set_html("/doc1", "Identical launch-day card bytes.")
+    http_server.set_html("/copub", "Identical launch-day card bytes.")
+    first = process_proposal(repo, make_proposal(http_server), "run1")
+    assert first.status == "written"
+    r2 = process_proposal(repo, make_proposal(
+        http_server, path="/copub", publisher="tier2lab",
+        model_names=["TestModel 1"]), "run1")
+    assert r2.status == "written", (r2.status, r2.reason)
+    assert counts(repo)["documents"] == 2
+    conn = connect(repo.db_path)
+    detail = conn.execute("SELECT detail FROM changelog WHERE document_id=? AND "
+                          "action='add'", (r2.document_id,)).fetchone()[0]
+    conn.close()
+    assert json.loads(detail).get("cross_publisher_copy_of") == first.slug
 
 
 def test_caps_enforced(repo_root, http_server):

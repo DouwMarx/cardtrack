@@ -64,7 +64,7 @@ github:
   use_gh: true
 
 site:
-  title: cardtrack
+  title: systemcards.org
   base_url: https://systemcards.org
   run_pagefind: true
 

@@ -75,6 +75,11 @@ def build_parser() -> argparse.ArgumentParser:
                         "sources; recorded as transport=manual_upload. Human use "
                         "only — refused inside the agent sandbox.")
     p.add_argument("--content-type", help="content type hint for --content-file")
+    p.add_argument("--override-duplicate-review", action="store_true",
+                   help="operator adjudication of a needs-review issue: admit an add "
+                        "that would otherwise file a content/logical-duplicate issue "
+                        "(e.g. a co-published copy, or a distinct doc with a similar "
+                        "title). Human use only — refused inside the agent sandbox.")
     p.add_argument("--slug", help="target document (status_change / field_update)")
     p.add_argument("--field", help="field to update (field_update)")
     p.add_argument("--old", help="expected current value (field_update, JSON or string)")
@@ -158,9 +163,16 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         local_content = Path(args.content_file).read_bytes()
         local_content_type = args.content_type
+    if args.override_duplicate_review and (os.environ.get("CARDTRACK_SANDBOX")
+                                           or actor == "agent"):
+        print(json.dumps({"status": "error",
+                          "reason": "override-duplicate-review is human-only "
+                                    "(refused for sandboxed/agent callers)"}))
+        return 2
     result = process_proposal(repo, proposal, run_id=run_id, actor=actor,
                               local_content=local_content,
-                              local_content_type=local_content_type)
+                              local_content_type=local_content_type,
+                              override_review=args.override_duplicate_review)
     print(json.dumps(result.to_dict(), ensure_ascii=False))
     return 0
 

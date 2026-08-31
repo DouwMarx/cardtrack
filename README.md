@@ -106,9 +106,13 @@ switching to API billing). Swapping in another CLI agent is a one-line change to
   `uv run poe build && npx -y wrangler pages deploy site --project-name cardtrack`.
   The raw store is append-only and untouched by reverts.
 - **Issues loop**: issues are for EXCLUSION, never pre-approval — every allowlisted
-  publisher auto-merges (tier is a provenance label). The validator files issues only
-  for suspected duplicates; visitors file data-error/missing-doc reports. The agent
-  reports pipeline limitations to `PROPOSALS.md`, not issues.
+  publisher auto-merges (tier is a provenance label). The validator no longer files
+  review issues for duplicates: it resolves them deterministically (same-publisher
+  identical content = mirror → skip; cross-publisher identical content = co-publication
+  → admit and flag; a similar title is a duplicate only if the extracted text is also
+  similar). GitHub issues are now just visitor-filed data-error/missing-doc reports;
+  the operator can force a skipped add with `propose_doc.py --override-duplicate-review`.
+  The agent reports pipeline limitations to `PROPOSALS.md`, not issues.
 - **Caps and criteria** live in `config/settings.yaml` / `config/criteria.yaml`;
   the allowlist (with per-publisher `scope` notes) in `config/sources.yaml`. The
   agent cannot modify any of them. The `risk_domains` tag vocabulary is defined in

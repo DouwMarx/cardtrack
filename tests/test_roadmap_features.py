@@ -468,6 +468,40 @@ def test_freetext_length_caps(repo, http_server):
     assert long_related_note.status == "rejected"
 
 
+def test_review_override_admits_same_publisher_duplicate_operator_only(repo, http_server):
+    """Same-publisher identical content is skipped as a mirror by default; an
+    operator can override to admit it, the agent cannot (override ignored for agent)."""
+    http_server.set_html("/orig", "Identical body text under one publisher.")
+    http_server.set_html("/mirror", "Identical body text under one publisher.")
+    first = process_proposal(repo, make_proposal(http_server, path="/orig"), "r1")
+    assert first.status == "written"
+
+    # same publisher + identical content at a new URL → skipped (mirror), no issue
+    dup = process_proposal(
+        repo, make_proposal(http_server, path="/mirror", title="Other",
+                            model_names=["OtherModel"]), "r2")
+    assert dup.status == "duplicate" and "content_duplicate" in dup.reason
+
+    # the agent's override is ignored (still skipped)
+    agent_try = process_proposal(
+        repo, make_proposal(http_server, path="/mirror", title="Other",
+                            model_names=["OtherModel"]),
+        "r3", actor="agent", override_review=True)
+    assert agent_try.status == "duplicate"
+
+    # the operator's override admits it
+    ok = process_proposal(
+        repo, make_proposal(http_server, path="/mirror", title="Other",
+                            model_names=["OtherModel"]),
+        "r4", actor="human", override_review=True)
+    assert ok.status == "written"
+    conn = connect(repo.db_path)
+    detail = conn.execute("SELECT detail FROM changelog WHERE document_id=? AND "
+                          "action='add'", (ok.document_id,)).fetchone()[0]
+    conn.close()
+    assert json.loads(detail).get("review_override") is True
+
+
 def test_related_urls_nonstring_url_rejects_cleanly(repo, http_server):
     """A non-string url must produce a clean reject, not an uncaught AttributeError."""
     http_server.set_html("/doc1", "content")

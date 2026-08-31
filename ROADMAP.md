@@ -32,6 +32,10 @@
   the domain a jailbreak targets.)
 - False alarms: `covered_model_class` criterion + tightened `notable_release` +
   per-publisher `scope` notes; verified auxiliary-model cards removed.
+- No more duplicate review-issue queue: the validator resolves duplicates
+  deterministically (mirror → skip, co-publication → admit+flag, title collision
+  confirmed by text similarity), per the stated admit_and_flag policy; operator
+  escape hatch is `--override-duplicate-review`.
 - Version-diff summaries: fingerprint furniture filter (85% of stored "versions"
   were page furniture; recomputed + pruned), `change_summary` on versions,
   `annotate_version` action, Phase A `updated_docs.json` + diffs, site column.
@@ -56,9 +60,5 @@
 - **related_urls link rot**: periodic HEAD checks for related urls (kept out of
   link_checks deliberately — its per-run MAX(id) dead-strike logic assumes one
   canonical check per doc per run; needs its own table or a url column first).
-- **Dedup similarity floor** (agent's 2026-08-30 proposal): `logical_duplicate_of`
-  fires on metadata alone; add an extracted-text-similarity floor so deliberately
-  split reports (e.g. Meta muse-spark methodology pair, issue #30) stop
-  false-alarming into review issues.
 - Add the categories from Jane's risk monitoring report; consider getting the
   maintenance funded.

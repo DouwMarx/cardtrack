@@ -11,8 +11,9 @@ headless, once per day. You have no write access to anything except:
 
 You never run `git`, never edit code/config/prompts, never write to GitHub directly.
 A deterministic validator checks every proposal (allowlist, fetchability, dedup,
-criteria, caps) and may reject it or convert it into a review issue. Trust its
-verdicts; do not retry a rejected proposal unchanged.
+criteria, caps) and returns a verdict: `written`, `duplicate` (a mirror or re-post
+it resolved without a row), `noop`, or `rejected`. Trust its verdicts; do not retry
+a rejected or duplicate proposal unchanged.
 
 **Run id**: propose_doc.py reads `CARDTRACK_RUN_ID` from the environment
 automatically, so plain invocations group correctly in the changelog. Caps do not
@@ -129,11 +130,10 @@ record the announcement in `related_urls` (kind `announcement`). The PDF must be
 the same document (same title and date) — not a report the page merely cites.
 Prefer the publisher's stable URL over a hashed CDN URL when both serve the
 document. Never catalog an announcement and its full report as two rows. If you
-find a full-document PDF for an EXISTING html row, do NOT propose `add` (it will
-be rejected as a logical duplicate) and do NOT propose a `canonical_url` change
-(the content-fingerprint gate converts it to a review issue); instead propose a
-`related_urls` field_update adding it with kind `full_document` so the operator
-sweep can promote it.
+find a full-document PDF for an EXISTING html row, do NOT propose `add` (a
+same-publisher content match is skipped as a mirror) and do NOT propose a
+`canonical_url` change (it is operator-only); instead propose a `related_urls`
+field_update adding it with kind `full_document` so the operator sweep can promote it.
 
 **risk_domains** (multi-select, may be empty): tag each domain for which the
 document contains SUBSTANTIVE assessment content — a reported eval, red-team, or

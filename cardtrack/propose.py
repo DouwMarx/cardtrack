@@ -67,13 +67,19 @@ class _Ctx:
 
     def __init__(self, repo: Repo, conn: sqlite3.Connection, run_id: str, actor: str,
                  local_content: bytes | None = None,
-                 local_content_type: str | None = None):
+                 local_content_type: str | None = None,
+                 override_review: bool = False):
         self.repo = repo
         self.conn = conn
         self.run_id = run_id
         self.actor = actor
         self.local_content = local_content
         self.local_content_type = local_content_type
+        # Operator-only adjudication of a needs-review issue: admit an add that
+        # would otherwise file a content_duplicate / logical_duplicate issue. Never
+        # honored for the agent (enforced at the CLI, like --content-file). The hard
+        # gates (allowlist, fetchability, date floor, schema) always still apply.
+        self.override_review = override_review and actor != "agent"
 
 
 class _LocalContent:
@@ -100,11 +106,13 @@ def process_proposal(
     conn: sqlite3.Connection | None = None,
     local_content: bytes | None = None,
     local_content_type: str | None = None,
+    override_review: bool = False,
 ) -> ProposalResult:
     repo.ensure_dirs()
     own_conn = conn is None
     conn = conn or connect(repo.db_path)
-    ctx = _Ctx(repo, conn, run_id, actor, local_content, local_content_type)
+    ctx = _Ctx(repo, conn, run_id, actor, local_content, local_content_type,
+               override_review)
     try:
         result = _dispatch(ctx, proposal)
         conn.commit()
@@ -377,6 +385,38 @@ def _host_known_for_publisher(ctx: _Ctx, publisher: str, url: str) -> bool:
     return any(k == apex or k.endswith("." + apex) for k in known)
 
 
+# A title collision counts as a logical duplicate only if the extracted texts are
+# at least this Jaccard-similar. Distinct reports that share a naming convention
+# (Meta's Muse Spark methodology pair scores ~0.13) fall well below it; a genuine
+# re-post of the same document scores near 1.0.
+TEXT_DUP_THRESHOLD = 0.7
+
+
+def _token_jaccard(a: str, b: str) -> float:
+    ta, tb = set(a.lower().split()), set(b.lower().split())
+    if not ta or not tb:
+        return 0.0
+    return len(ta & tb) / len(ta | tb)
+
+
+def _texts_similar(ctx: _Ctx, existing_doc_id: int, proposed_text: str | None) -> bool:
+    """Is the proposed text close enough to the existing doc's latest text to call
+    them the same document? Conservative when it cannot compare (missing/failed
+    extraction) → False, i.e. admit rather than skip (admit_and_flag)."""
+    if not proposed_text:
+        return False
+    row = ctx.conn.execute(
+        "SELECT text_path FROM document_versions WHERE document_id = ? "
+        "ORDER BY fetched_at DESC, id DESC LIMIT 1", (existing_doc_id,)).fetchone()
+    if not row or not row["text_path"]:
+        return False
+    path = ctx.repo.root / row["text_path"]
+    if not path.exists():
+        return False
+    return _token_jaccard(proposed_text, path.read_text(encoding="utf-8")) \
+        >= TEXT_DUP_THRESHOLD
+
+
 def _content_identity(content: bytes, content_type: str | None, url: str,
                       ignore_patterns: tuple[str, ...] = ()):
     """Returns (content_hash, fingerprint, text, kind, method)."""
@@ -472,25 +512,28 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
         fetched.content, fetched.content_type, canonical,
         repo.fingerprint_ignore_patterns)
 
-    # Content identity: identical extracted text already stored under another document
-    # (mirror / same doc at a different URL) → needs_review, never an automatic merge.
+    # Content identity: identical extracted text already stored under another
+    # document. Resolved deterministically (no review queue — admit_and_flag policy):
+    #   same publisher   → a mirror / moved copy, not a new document → skip
+    #   other publisher  → a co-publication (both are allowlisted; a launch partner's
+    #                       own copy) → admit and flag the counterpart
     other = conn.execute(
-        """SELECT d.slug, d.canonical_url FROM document_versions dv
+        """SELECT d.slug, d.canonical_url, d.publisher FROM document_versions dv
            JOIN documents d ON d.id = dv.document_id
            WHERE dv.content_fingerprint = ? LIMIT 1""", (fp,)
     ).fetchone()
     nbytes = {"byte_size": len(fetched.content)}
-    if other:
-        return _file_issue(
-            ctx, p, f"content_duplicate_of:{other['slug']}",
-            title=f"needs-review: proposed URL duplicates content of {other['slug']}",
-            body=_issue_body(ctx, p, [
-                f"Proposed URL: {canonical}",
-                f"Existing document: {other['slug']} ({other['canonical_url']})",
-                "Extracted-text fingerprints are identical. Likely a mirror or moved copy.",
-            ]),
-            labels=["needs-review"], extra=nbytes,
-        )
+    cross_publisher_copy = None
+    if other and not ctx.override_review:
+        if other["publisher"] == p["publisher"]:
+            return ProposalResult(
+                status="duplicate",
+                reason=f"content_duplicate_of:{other['slug']} (same-publisher mirror)",
+                slug=other["slug"], run_id=ctx.run_id)
+        cross_publisher_copy = other["slug"]
+    elif other:
+        cross_publisher_copy = (other["slug"]
+                                if other["publisher"] != p["publisher"] else None)
 
     # Validator-checked criteria (config/criteria.yaml)
     vc = repo.criteria.get("validator_checked", {})
@@ -520,20 +563,20 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
 
     # Tier is provenance metadata, not a write gate (policy change 2026-08-10:
     # the allowlist is the gate; issues are for exclusion, not inclusion).
+    # A similar TITLE (same publisher/doc_type/models) is only a duplicate if the
+    # actual document TEXT is also similar — otherwise it is a distinct report that
+    # merely follows the publisher's naming convention (e.g. Meta's coding vs
+    # multimodal "… Evaluation Methodology"). Confirm with text, don't file a review
+    # issue: a title-only collision is admitted, a genuine re-post is skipped.
     dups = find_logical_duplicates(conn, p["publisher"], p["doc_type"], p["model_names"],
                                    title=p["title"],
                                    exclude_canonical_url=canonical)
-    if dups:
-        return _file_issue(
-            ctx, p, f"logical_duplicate_of:{dups[0]['slug']}",
-            title=f"needs-review: possible duplicate of {dups[0]['slug']}",
-            body=_issue_body(ctx, p, [
-                f"Proposed: {p['title']!r} at {canonical}",
-                f"Existing: {dups[0]['slug']} at {dups[0]['canonical_url']}",
-                "Same publisher + doc_type + overlapping model names at a different URL.",
-            ]),
-            labels=["needs-review"], extra=nbytes,
-        )
+    if dups and not ctx.override_review:
+        confirmed = next((d for d in dups if _texts_similar(ctx, d["id"], text)), None)
+        if confirmed:
+            return ProposalResult(
+                status="duplicate", reason=f"logical_duplicate_of:{confirmed['slug']}",
+                slug=confirmed["slug"], run_id=ctx.run_id)
 
     # All gates passed → write.
     openness = p.get("openness")
@@ -582,6 +625,10 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
             "min_publication_date": not date_unknown,
         },
         **({"date_unknown": True} if date_unknown else {}),
+        **({"review_override": True} if ctx.override_review and (other or dups)
+           else {}),
+        **({"cross_publisher_copy_of": cross_publisher_copy}
+           if cross_publisher_copy else {}),
     }
     changelog_mod.log(conn, ctx.run_id, "add", document_id, detail)
     return ProposalResult(status="written", slug=slug, document_id=document_id,
