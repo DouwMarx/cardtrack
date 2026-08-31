@@ -9,7 +9,7 @@ const COLUMNS = [
   { key: "model_names", label: "Models", show: true },
   { key: "publication_date", label: "Published", show: true },
   { key: "safety_evals", label: "Safety evals", show: true },
-  { key: "risk_domains", label: "Risk domains", show: true },
+  { key: "risk_domains", label: "Risk domains", show: false },
   { key: "openness", label: "Openness", show: true },
   { key: "canonical_url", label: "Source", show: true },
   { key: "status", label: "Status", show: false },

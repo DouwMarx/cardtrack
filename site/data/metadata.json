@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-31T15:49:03Z",
+ "generated_at": "2026-08-31T16:13:33Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -433,6 +433,33 @@
    "version_count": 1
   },
   {
+   "slug": "meta-muse-spark-1-2-other-3",
+   "title": "Muse Spark 1.2 Multimodal Evaluation Methodology",
+   "publisher": "meta",
+   "doc_type": "other",
+   "is_independent": 0,
+   "model_names": [
+    "Muse Spark 1.2"
+   ],
+   "publication_date": "2026-08-20",
+   "canonical_url": "https://research.meta.ai/static/muse-spark-1-2-multimodal-evaluation-methodology",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-31T16:12:41Z",
+   "last_checked": "2026-08-31T16:12:41Z",
+   "last_changed": "2026-08-31T16:12:41Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": null,
+   "risk_domains": [],
+   "related_urls": [],
+   "content_hash": "e4ff82b752def8cfd42e89eef49e9145fde088fea6e95716ce28cb21343362bb",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-31T16:12:42Z",
+   "content_fingerprint": "a697a77471e9bfdc05ae21bcd0f5fa9c1cc3510e40268a67c12b8796a1eef442",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-opus-4-8-other",
    "title": "Autonomous de novo protein binder design with Claude (Technical Report)",
    "publisher": "anthropic",
@@ -742,6 +769,37 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-19T06:24:53Z",
    "content_fingerprint": "e0853d3e4327953b975db9dee5faea0971655f05a6e4035ad0c590bcb9b84bde",
+   "version_count": 1
+  },
+  {
+   "slug": "cursor-grok-4-6-model-card",
+   "title": "Grok 4.6 Model Card",
+   "publisher": "cursor",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "Grok 4.6"
+   ],
+   "publication_date": "2026-08-12",
+   "canonical_url": "https://cursor.com/resources/grok-4-6-model-card.pdf",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-08-31T16:12:26Z",
+   "last_checked": "2026-08-31T16:12:26Z",
+   "last_changed": "2026-08-31T16:12:26Z",
+   "source_of_lead": "citation",
+   "safety_evals": 1,
+   "openness": "closed",
+   "risk_domains": [
+    "cbrn",
+    "cyber",
+    "societal_harm"
+   ],
+   "related_urls": [],
+   "content_hash": "4644ad7bf7b8ed169cef4908fb818f8c31a7988a9614917abae7350e52176f7b",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-08-31T16:12:27Z",
+   "content_fingerprint": "651958db081f882372ea1220794306ff07f412c738df633bc6f617d83af26145",
    "version_count": 1
   },
   {
@@ -1966,12 +2024,14 @@
     "Claude Opus 5"
    ],
    "publication_date": "2026-07-24",
-   "canonical_url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
-   "alt_urls": [],
+   "canonical_url": "https://www-cdn.anthropic.com/b514064af1408018e64b1ad24e7d5e75850b4ffd/Claude%20Opus%205%20System%20Card.pdf",
+   "alt_urls": [
+    "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+   ],
    "status": "active",
    "first_seen": "2026-08-09T15:57:27Z",
-   "last_checked": "2026-08-31T15:20:23Z",
-   "last_changed": "2026-08-31T15:20:23Z",
+   "last_checked": "2026-08-31T16:12:07Z",
+   "last_changed": "2026-08-31T16:12:07Z",
    "source_of_lead": "agent_search",
    "safety_evals": 1,
    "openness": "closed",
@@ -1983,11 +2043,11 @@
     "societal_harm"
    ],
    "related_urls": [],
-   "content_hash": "fed3c0e6d150a6ba855f0f117a632d2b27dbb5886fd42815caa92e3e20db1d25",
+   "content_hash": "897768f0f6f1724f3109279ab3f6458c9fbf496b56d5d2be14cab3a4f91ca472",
    "content_type": "application/pdf",
-   "version_fetched_at": "2026-08-09T15:57:27Z",
-   "content_fingerprint": "4bdb013a21424105d0c2ccf23f3aee608bf555bfcbf521ab87e5c50da3e61b9b",
-   "version_count": 1
+   "version_fetched_at": "2026-08-31T16:12:05Z",
+   "content_fingerprint": "4bdf9f5b58c3b17274f0bfe90e3b95daa5ee34a928e08b835a7518af5438200e",
+   "version_count": 2
   },
   {
    "slug": "nvidia-cosmos-h-dreams-model-card",
