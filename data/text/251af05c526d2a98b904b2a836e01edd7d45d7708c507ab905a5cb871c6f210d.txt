@@ -1,0 +1,126 @@
+Instructions to use deepseek-ai/DeepSeek-V4-Flash-Vision-Exp with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use deepseek-ai/DeepSeek-V4-Flash-Vision-Exp with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("image-text-to-text", model="deepseek-ai/DeepSeek-V4-Flash-Vision-Exp")# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained("deepseek-ai/DeepSeek-V4-Flash-Vision-Exp")
+model = AutoModelForCausalLM.from_pretrained("deepseek-ai/DeepSeek-V4-Flash-Vision-Exp", device_map="auto")
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use deepseek-ai/DeepSeek-V4-Flash-Vision-Exp with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp
+-  SGLang  How to use deepseek-ai/DeepSeek-V4-Flash-Vision-Exp with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+		"prompt": "Once upon a time,",
+		"max_tokens": 512,
+		"temperature": 0.5
+	}'
+-  Docker Model Runner  How to use deepseek-ai/DeepSeek-V4-Flash-Vision-Exp with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp
+DeepSeek-V4-Flash-Vision-Exp
+Introduction
+We are excited to introduce DeepSeek-V4-Flash-Vision-Exp, our first experimental multimodal model in the DeepSeek-V4 family. It builds on the DeepSeek-V4-Flash architecture by incorporating visual modules and undergoing continued training to unlock visual understanding capabilities.
+Compared to DeepSeek-V4-Flash-0731, DeepSeek-V4-Flash-Vision-Exp achieves substantial improvements on its multimodal agent capabilities, while maintaining comparable performance on text-only agent tasks.
+| Benchmark | DeepSeek-V4-Flash-Vision-Exp | DeepSeek-V4-Flash-0731 | Opus-4.8 |
+|---|---|---|---|
+| Text Agent Capabilities |  |  |  |
+| Terminal Bench 2.1 | 83.9 | 82.7 | 85.0 |
+| NL2Repo | 57.7 | 54.2 | 69.7 |
+| Cybergym | 75.3 | 76.7 | 78.3 |
+| DeepSWE | 59.3 | 54.4 | 58.0 |
+| Toolathlon-Verified | 75.9 | 70.3 | 76.2 |
+| DSBench-Hard | 63.6 | 59.6 | 71.7 |
+| AutomationBench (Public) | 25.7 | 25.1 | 27.2 |
+| Multimodal Agent Capabilities |  |  |  |
+| ApexBench (Pass@1) | 36.5 | 26.2† | 39.4 |
+| Agents' Last Exam | 27.3 | 25.2† | 25.7 |
+| Chartography | 64.3 | - | 65.0 |
+| ZeroBench (Pass@5) | 35.0 | - | 34.0 |
+Notes:
+- For the text agent benchmarks above, DeepSeek models are evaluated with the minimal mode of DeepSeek Harness as the agent framework, using the max reasoning effort level withtemperature = 1.0, top_p = 0.95 .
+- † For ApexBench and Agents' Last Exam, DeepSeek-V4-Flash-0731 ignores the multimodal elements in the input.
+Repository layout
+This repository contains the tokenizer, prompt encoding reference, and a minimal PyTorch inference implementation for DeepSeek-V4 Flash Vision. The reference inference covers the vision encoder and aligner, DFlash attention, MoE, Hyper-Connections, and the DSpark forward path.
+.
+├── encoding/                  # OpenAI-style messages -> model prompt
+├── inference/                 # weight conversion and minimal inference
+│   └── examples/              # equivalent TXT and JSON vision prompts
+├── config.json                # Hugging Face model metadata
+├── generation_config.json
+├── model.safetensors.index.json
+├── tokenizer.json
+└── tokenizer_config.json
+encoding/ and inference/ deliberately remain separate: prompt formatting
+does not depend on PyTorch, while inference imports the sibling encoding module
+with an explicit Python path. No symlinks are required.
+The tokenizer files are regular files so that the repository can be uploaded
+to Hugging Face without relying on local filesystem symlinks. The large model
+shards are described by model.safetensors.index.json and are not duplicated
+inside the source checkout used to assemble this repository.
+Prompt encoding
+See encoding/README.md. Both OpenAI-style JSON content
+blocks and the compact <image>path</image> TXT notation are supported. The two
+examples under inference/examples/ encode to identical prompts and token IDs.
+Minimal inference
+See inference/README.md for dependency installation,
+checkpoint conversion, and TXT/JSON inference commands.
+How to Run with SGLang
+Enable DSpark with --speculative-algorithm DSPARK and do not set a separate --speculative-draft-model-path as the target and draft weights therefore come from the same checkpoint. See the SGLang cookbook for detailed instructions, benchmarks and other hardwares configurations.
+sglang serve \
+  --model-path deepseek-ai/DeepSeek-V4-Flash-Vision-Exp \
+  --tp 4 \
+  --speculative-algorithm DSPARK \
+  --mem-fraction-static 0.85 \
+  --host 0.0.0.0 \
+  --port 30000
+License
+This repository is licensed under the MIT License.
+- Downloads last month
+- -
+Model tree for deepseek-ai/DeepSeek-V4-Flash-Vision-Exp
+Collection including deepseek-ai/DeepSeek-V4-Flash-Vision-Exp
+Evaluation results
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard

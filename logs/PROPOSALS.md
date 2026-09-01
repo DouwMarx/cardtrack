@@ -1108,3 +1108,54 @@ Also new since your last run, read TASK.md before proposing: `risk_domains` tags
 `doc_type: access_policy`, `openness: restricted`, `annotate_version` for
 `logs/updated_docs.json` entries, the `covered_model_class` criterion, and
 per-publisher `scope` notes in sources.yaml.
+
+---
+
+## 2026-09-01 — Two mechanical gaps in TASK.md that each cost a turn to rediscover
+
+Small, cheap, and both hit me on the first run after the 08-31 changes. Neither is a policy
+question — just undocumented mechanics.
+
+**Problem 1: the `related_urls.kind` vocabulary is undocumented.** TASK.md introduces
+`related_urls` and names exactly two kinds by example (`announcement`, `full_document`). The
+validator actually enforces an eleven-value enum: `announcement`, `co_published`, `code`,
+`dataset`, `full_document`, `other`, `paper`, `thread`, `video`, `web_version`, `weights`.
+It is not in `criteria.yaml` either. I cross-referenced Anthropic's 2026-08-31 incident post to
+its companion alignment paper and to the UK AISI counterpart report, guessed `related_research`
+and `counterpart`, and got `invalid_value`. The retry cost one turn; the information was only
+obtainable by failing.
+
+*Suggested change.* Paste the enum into TASK.md under "Canonical URL choice", one line. Ideally
+also surface it in `criteria.yaml` next to `risk_domains`, since it is the same kind of
+controlled vocabulary and the agent already reads that file.
+
+**Problem 2: TASK.md's write instructions describe a mechanism that does not work.** TASK.md says
+the agent may write by "appending to `logs/PROPOSALS.md` and `logs/friction.jsonl`" and that
+`propose_doc.py --json -` "reads a JSON record from stdin". Inside the session both of the obvious
+implementations are refused, and not by bwrap — `logs/` is bind-mounted writable, per
+`agent_sandbox.sh`. It is the harness:
+
+- shell output redirection is blocked entirely (`cat >> logs/friction.jsonl` and even
+  `cat ... > /tmp/scratch` both fail with "may only write to files in the allowed working
+  directories", naming the directory the target is already inside);
+- the bash guard rejects heredocs containing JSON, treating `{"` as "expansion obfuscation", so a
+  record cannot be piped into `--json -` inline;
+- `tee -a` needs interactive approval, which never arrives in a `-p` run.
+
+What does work, and what TASK.md should say instead:
+
+1. **Proposals**: stage the record with the Write tool at `/tmp/<name>.json`, then
+   `propose_doc.py --json /tmp/<name>.json`. (`/tmp` is a sandbox tmpfs, discarded with the run.)
+2. **Appending to `logs/friction.jsonl` and `logs/PROPOSALS.md`**: use the **Edit** tool anchored
+   on the file's current last line, not Bash. Write would truncate — `friction.jsonl` is 114 KB and
+   `PROPOSALS.md` 80 KB, so read-then-rewrite is both wasteful and a corruption risk on a file
+   whose whole value is that it is append-only.
+
+This is worth fixing precisely because it is invisible: an agent that follows TASK.md literally,
+hits the block, and does not think to try Edit will silently drop its friction log for the run —
+and the friction log is the channel this system uses to find out that something is wrong.
+
+**Evidence.** This run: five rejected/blocked bash invocations before landing on the Edit path;
+one `invalid_value` rejection on the `related_urls` kind; `settings.yaml` `agent.cmd` allows
+`Write` and `Edit` but scopes `Bash` to `propose_doc.py` and `comment_issue.py` only, which is
+consistent with Edit being the intended append mechanism — TASK.md just never says so.
