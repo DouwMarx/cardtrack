@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-27T06:24:25Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. A UI-Venus-2-27B is named in the card&#39;s comparison tables but is not yet released; only the 9B weights are published. UI-Venus-2 technical report arXiv id is still a placeholder on the card. Predecessor UI-Venus-1.5 (Feb 2026) is not yet in the database.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%208ddba87d41b9718373eb5ea95a1336649ccf30621bffa4a7c859c328af79bd58%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%20af506d5b399c6a73a957a0ffcd9b5c5192be263892f81e090a9081ec897331e6%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-03T06:18:05Z</td>
+          <td>text/html</td>
+          <td>288,933</td>
+          <td><code title="af506d5b399c6a73a957a0ffcd9b5c5192be263892f81e090a9081ec897331e6">af506d5b399c6a73</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-27T06:24:25Z</td>
           <td>text/html</td>
@@ -74,7 +81,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -107,6 +114,14 @@
         <span class="run">run manual-20260831T152039Z · human</span>
           <div class="just">risk_domains: ["safeguard_robustness"] → []</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-03T06:18:05Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-03T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/UI-Venus-2-9B" rel="noopener nofollow">https://huggingface.co/inclusionAI/UI-Venus-2-9B</a>          </div>
       </li>
     </ol>
     </details>
@@ -251,24 +266,25 @@ curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 UI-Venus-2-9B
 UI-Venus-2 is a general-purpose foundation GUI agent designed to operate across mobile applications, web platforms, and desktop operating systems through a unified closed-loop reasoning–action framework: the agent observes the current interface, reasons about the task state, executes an action, and incorporates environmental feedback into its next decision.
 To bridge the gap from benchmark-oriented models toward dependable real-world applications, UI-Venus-2 jointly scales three critical dimensions:
-- Environments — expanding coverage to 170+ multilingual mobile apps (100+ Chinese and 70+ English), 50k+ live websites, and native desktop OS with 50+ professional applications;
+- Environments — expanding the executable mobile pool to 170+ multilingual apps (100+ Chinese and 70+ English), alongside a curated web pool of 4,000+ domains across 19 categories and native desktop operating systems;
 - Tasks — a deep-research pipeline that grounds generated instructions in the actual functionality of each application, improving the accuracy, validity, and executability of task queries;
 - Verification — trace-level and sample-level evaluators based on task-relevant visual keypoints and multi-model voting, providing reliable RL reward signals that are robust to reward hacking.
-UI-Venus-2 further integrates safety-aware mechanisms to ensure controlled execution of consequential actions, bringing the attack success rate on OSBlind down from 90%+ (typical of prior GUI agents) to 12.3%.
+UI-Venus-2 is evaluated for consequential-action safety on OSHarm and OSBlind. UI-Venus-2-9B achieves an Attack Success Rate (ASR, lower is better) of 11.3% on OSHarm and 48.8% on OSBlind, compared with 25.3% and 79.4%, respectively, for its Qwen3.5-9B base model.
 This repository releases the full-parameter weights of UI-Venus-2-9B, initialized from Qwen3.5-9B, which achieves near state-of-the-art performance among models of comparable scale across GUI grounding, mobile, web, computer-use, and CAPTCHA benchmarks.
 Highlights
 - Scaled multilingual mobile-use environments with reliable task generation. A substantially expanded executable mobile pool covering Chinese and English app ecosystems, paired with a deep-research-driven query-generation strategy grounded in real application functionality.
 - Computer-use capability built from the ground up. Dedicated desktop operating-system capabilities constructed from scratch through computer-use data collection and task-specific training, extending the UI-Venus family to mobile, web, and OS interaction in one unified end-to-end agent.
 - Keypoint-grounded verification. Task completion is judged on task-relevant visual keypoints rather than a coarse holistic look at the final screen, with multi-model voting aggregating heterogeneous judges — reducing single-judge bias and making the reward signal robust to reward hacking.
-- Verification-augmented reflection. Verified feedback is distilled back into training as reflection supervision, so the agent can distinguish partial progress from true completion, avoid premature termination, and recover during long-horizon interaction.
+- Multi-teacher on-policy distillation. Domain-specialized teachers are consolidated with structured, action-aware supervision that concentrates the distillation signal on the executable behaviors governing environment interaction.
 Training Pipeline
 UI-Venus-2 is trained on a deliberately complementary mixture of five task families — Grounding, CAPTCHA, Mobile, Web, and Computer — through three stages:
-- Multimodal Mid-Training — large-scale trajectory-based mid-training over simulated mobile, web, and OS environments, with human–discriminator collaborative verification filtering invalid or ambiguous interactions, plus programmatically synthesized grounding and CAPTCHA supervision.
-- Offline RL — step-level RL trajectories for Mobile, OS, and Web optimize state-aware action selection and execution reliability, while verified CAPTCHA and grounding instances embedded in realistic interfaces teach precise localization under visual clutter.
+- Multimodal Mid-Training — large-scale trajectory-based training over simulated mobile, web, and OS environments, with navigation data as the dominant component and human–discriminator collaborative verification filtering invalid or ambiguous interactions.
+- Offline RL — independent step-level optimization across Grounding, CAPTCHA, Mobile, Web, and Computer tasks develops domain-specialized policies.
 - Multi-teacher On-policy Distillation — domain-specialized teachers are consolidated into a single unified policy that preserves the broad multimodal reasoning of the base model while composing spatial grounding, verified interaction, and long-horizon navigation.
-The training data is produced by a deep-research-driven task-generation pipeline and collected at scale across mobile (ADB, 200+ apps), browser (Playwright, 50k+ websites), and computer (PyAutoGUI / VM, 50+ desktop applications) environments:
+The training data is produced by a deep-research-driven task-generation pipeline spanning mobile, browser, and computer environments. The active report describes a curated web pool of 4,000+ domains across 19 categories, seeded with 45,000 tasks selected from InSTA-150k-v3; synthetic grounding and CAPTCHA records are exported for task-specific SFT and RL.
 Quick Start
 Serving with vLLM
+The following is the intended serving configuration. It was not live-canary-validated as part of this model-card update, so pin and verify a vLLM version appropriate for Qwen3.5 before deployment.
 pip install -U vllm
 vllm serve inclusionAI/UI-Venus-2-9B \
     --port 8000 \
@@ -276,91 +292,103 @@ vllm serve inclusionAI/UI-Venus-2-9B \
     --max-model-len 262144 \
     --reasoning-parser qwen3
 The server exposes an OpenAI-compatible API at http://localhost:8000/v1.
-For the full agent scaffolding — grounding / navigation prompts, the action space, ADB / Playwright / VM deployment, and evaluation infrastructure — please refer to our GitHub repository.
+Inference Configuration
+The evaluation settings depend on the task family:
+- General agentic tasks: use temperature 1.0 , enable reasoning, and retain the complete reasoning history in the multi-step context.
+- GUI grounding: disable reasoning and use temperature 0 for direct point localization.
+- CAPTCHA: use the CAPTCHA-specific prompt and a parser/executor that supports multiple actions in one model turn.
+Starting the vLLM server alone does not provide the complete closed-loop GUI agent. Reference prompts, action parsers, and runnable examples for Mobile, Computer, Browser, Grounding, and CAPTCHA are available in the UI-Venus code repository. Environment coverage differs by domain: the included Mobile and Computer examples support multi-turn inference over prerecorded screenshots, while real-device ADB automation, browser interaction, and benchmark-specific setup are documented separately in the repository.
+Release Status
+- Model weights: included in this repository.
+- Code: available in the UI-Venus GitHub repository.
+- Project page: available at ui-venus.github.io/UI-Venus-2.
+- Technical report: available at arXiv:2609.00028.
+- License: the model-weight license is pending final confirmation and will be added before public release. The Apache-2.0 declaration has intentionally not been carried over because the current upstream materials contain conflicting license statements.
 Results
-Key results per domain, with strong published baselines for context. A dash denotes a result not currently reported. Best result per benchmark in bold. Full comparison tables and metric definitions are available in the technical report.
+The tables below compare the released 9B checkpoint and the 27B family checkpoint with a representative subset of general-purpose and GUI-specialized baselines from the technical report. – denotes an unreported result, and * denotes a baseline evaluated or reproduced by the UI-Venus authors under the stated protocol. Full comparisons, source citations, and metric definitions are provided in the technical report. Live-environment results may vary with evaluation date and environment state.
 Mobile Use
-Success rate (%) on online, interactive mobile-agent benchmarks.
-| Model | AndroidWorld | MobileWorld | VenusBench-Mobile |
-|---|---|---|---|
-| UI-Venus-2-9B (ours) | 80.2 | 65.8 | 46.5 |
-| UI-Venus-2-27B | 84.0 | 76.1 | 48.7 |
-| UI-Venus-1.5-30B-A3B | 77.6 | — | 21.5 |
-| Qwen-UI-Agent-27B | — | 82.1 | — |
-| Qwen3.6-27B | 70.3 | — | 28.0 |
-| MAI-UI-8B | 70.7 | — | — |
-| GUI-Owl-1.5-32B-Instruct | 69.8 | — | — |
-| Claude Opus 4.6 | — | 44.5 | 36.5 |
-| Kimi K2.6 | — | 55.6 | 31.2 |
-| Seed2.0 Pro | — | 63.2 | — |
+Reported score (%) across interactive mobile-agent benchmarks, including controlled simulations and real-application environments.
+| Model | MobileGym | VenusBench-Mobile | AndroidWorld | MobileWorld | KnowUBench | MemGUI |
+|---|---|---|---|---|---|---|
+| Qwen3.5-9B | 9.0* | 15.3* | 57.8 | 18.0 (18.0)* | 33.3 | 6.2* |
+| Qwen3.6-27B | 24.6* | 28.0* | 70.3 | 36.8 (41.9)* | – | 25.7* |
+| Seed-2.0-Pro | 52.0 | 20.1* | – | 63.2 | 51.6 | 65.6* |
+| UI-Venus-1.5-30B-A3B | 21.5* | 21.5 | 77.6 | 17.1 | – | 10.9* |
+| Qwen-UI-Agent-27B | – | – | – | 82.1 (85.5) | – | – |
+| UI-Venus-2-9B (released) | 52.7 | 46.5 | 80.2 | 65.8 (75.2) | 56.5 | 62.6 |
+| UI-Venus-2-27B | 60.5 | 48.7 | 84.0 | 76.1 (82.9) | 59.7 | 70.3 |
+MobileWorld reports GUI-only success rate on 117 tasks: the primary value uses a 50-step budget and the value in parentheses uses 100 steps. VenusBench-Mobile uses its 149-task primary pool. MemGUI reports Main Results pass@1.
 Computer Use
-Success rate (%) on open-ended tasks in real desktop environments.
-| Model | OSWorld-Verified | DeskCraft |
-|---|---|---|
-| UI-Venus-2-9B (ours) | 70.8 | 48.0 |
-| UI-Venus-2-27B | 80.5 | 55.5 |
-| Qwen-UI-Agent-27B | 79.5 | — |
-| Kimi K2.6 | 73.1 | 41.4 |
-| Qwen3.6-27B | 62.0 | 28.7 |
-| GUI-Owl-1.5-32B-Instruct | 56.5 | — |
-| Seed2.0 Pro | — | 40.0 |
-| Qwen3.5-9B | — | 14.6 |
+Reported score (%) on open-ended tasks in desktop environments; benchmark-specific definitions follow the table.
+| Model | OSWorld-Verified | OSWorld 2.0 Binary Acc. | OSWorld 2.0 Partial Score | DeskCraft |
+|---|---|---|---|---|
+| Qwen3.5-9B | 41.8 | 0.0* | 2.5* | 14.6* |
+| Qwen3.6-27B | 62.0 | 0.0* | 3.8* | 28.7* |
+| Kimi-K2.6 | 73.1 | 1.9 | 7.1 | 41.4* |
+| GPT-5.5 | 78.7 | 13.0 | 46.7 | – |
+| Claude-Opus-4.8 | 83.4 | – | – | – |
+| Qwen-UI-Agent-27B | 79.5 | – | – | – |
+| UI-Venus-2-9B (released) | 70.8 | 0.0 | 7.5 | 48.0 |
+| UI-Venus-2-27B | 80.5 | 2.8 | 13.2 | 55.5 |
+OSWorld-Verified comparisons use the 361-task setting reported by their cited sources and may use model-specific action scaffolds, so they should be interpreted as benchmark-level references rather than controlled ablations. OSWorld 2.0 reports the official Binary Accuracy and Partial Score metrics over 108 tasks under a 150-step budget. DeskCraft is an author-evaluated aggregate over the 538-task union of the Standard and Interactive splits and differs from official split-level reporting.
 Web Navigation
 Success rate (%) on end-to-end web navigation; Odysseys reports the average rubric score (%).
-| Model | WebVoyager | Online-Mind2Web | REAL | Odysseys |
-|---|---|---|---|---|
-| UI-Venus-2-9B (ours) | 90.8 | 74.0 | 76.9 | 77.3 |
-| UI-Venus-2-27B | 93.4 | 78.3 | 80.2 | 80.4 |
-| UI-Venus-1.5-30B-A3B | — | — | 38.0 | — |
-| Fara-1.5-27B | 89.3 | 72.3 | — | — |
-| GLM-5V-Turbo | 88.5 | — | — | — |
-| Claude Opus 4.6 | 88.0 | — | — | 68.9 |
-| Seed-2.0 | 85.1 | 68.5 | 74.4 | 60.2 |
-| UI-TARS-1.5 | — | 75.8 | — | — |
-| OpenAI Operator | — | 61.3 | — | — |
-| Kimi K2.6 | — | — | 74.4 | — |
+| Model | WebVoyager | Online-Mind2Web | REAL | Odysseys Avg. | Odysseys Perfect |
+|---|---|---|---|---|---|
+| Qwen3.5-9B | 46.9* | 27.3* | 18.2* | 42.6* | 13.5* |
+| Qwen3.6-27B | 84.3* | 55.3* | 27.3* | 39.5* | 18.5* |
+| Seed-2.0-Pro | 85.1* | 68.5* | 74.4* | 60.2* | 30.1* |
+| Claude-Opus-4.6 | 88.0 | – | – | 68.9 | 44.5 |
+| Fara1.5-27B | 89.3 | 72.3 | – | – | – |
+| UI-Venus-2-9B (released) | 90.8 | 74.0 | 76.9 | 77.3 | 62.0 |
+| UI-Venus-2-27B | 93.4 | 78.3 | 80.2 | 80.4 | 66.3 |
+WebVoyager uses the refreshed 595-task split; live-site states may vary by evaluation date. Odysseys evaluates 200 live-web tasks with gemini-3.1-flash-lite-preview as the rubric judge and reports both the average fraction of satisfied rubric items and the percentage of tasks for which every rubric item is satisfied.
 GUI Grounding
 Accuracy (%) on element localization across high-resolution professional software, mobile / web / desktop interfaces, and reasoning-heavy instructions.
 | Model | ScreenSpot-Pro | VenusBench-GD | OSWorld-G-R | UI-Vision |
 |---|---|---|---|---|
-| UI-Venus-2-9B (ours) | 73.0 | 77.1 | 78.5 | 53.2 |
+| Qwen3.6-27B | 65.2* | 67.7* | 76.9* | 58.3* |
+| Qwen 3.7 Plus | 68.9 | 75.2* | 78.2 | 68.0 |
+| Seed 2.1 Pro | 65.3 | 73.9* | 78.0 | 62.0 |
+| UI-Venus-1.5-30B-A3B | 69.6 | 75.0 | 76.4 | 54.7 |
+| Qwen-UI-Agent-27B | 76.6 | – | 78.5 | 70.0 |
+| UI-Venus-2-9B (released) | 73.0 | 77.1 | 78.5 | 53.2 |
 | UI-Venus-2-27B | 74.1 | 80.1 | 79.1 | 66.9 |
-| UI-Venus-1.5-30B-A3B | — | 75.0 | 76.4 | 54.7 |
-| UI-Venus-1.0-72B | — | 70.2 | — | — |
-| Qwen-UI-Agent-27B | — | — | 78.5 | 70.0 |
-| Qwen 3.7 Plus | 68.9 | — | 78.2 | 68.0 |
-| MAI-UI-32B | 67.9 | — | — | — |
-| Holo2-30B-A3B | 66.1 | 59.5 | — | — |
-| Seed 2.1 Pro | 65.3 | — | 78.0 | 62.0 |
-| Step-GUI-4B | — | 54.6 | — | — |
+VenusBench-GD reports English-instruction micro-average point-in-box accuracy.
 CAPTCHA Solving
-Pass@1 (%) across eight real-world CAPTCHA families — slider puzzles, image rotation, text and icon click, OCR entry, and visual reasoning — emitting the full multi-action sequence in a single turn.
-| Model | Spatial-CAPTCHA-Bench | MCA-Bench | NextGen-CAPTCHAs | OpenCaptcha |
-|---|---|---|---|---|
-| UI-Venus-2-9B (ours) | 42.8 | 75.7 | 47.6 | 50.7 |
-| UI-Venus-2-27B | 48.6 | 79.6 | 54.5 | 56.3 |
-| Doubao-Seed-2.0-Pro | 43.6 | 35.5 | 20.4 | 55.6 |
-| Qwen3.6-27B | 31.0 | 51.7 | 14.1 | 47.7 |
-| Kimi K2.6 | 24.8 | 38.7 | 7.2 | 47.8 |
-| Claude Opus 4.6 | 9.5 | — | — | — |
-| Qwen3.5-9B | — | 30.4 | 2.8 | 36.4 |
+Pass@1 (%) across five CAPTCHA benchmarks. VenusBench-CAPTCHA spans eight real-world interaction types—including slider puzzles, image rotation, text and icon click, OCR entry, and visual reasoning—and requires the full multi-action sequence in a single turn.
+| Model | VenusBench-CAPTCHA | MCA-Bench | Spatial-CAPTCHA-Bench | NextGen-CAPTCHAs | Open CaptchaWorld |
+|---|---|---|---|---|---|
+| Qwen3.5-9B | 28.3 | 30.4 | 4.9 | 2.8 | 36.4 |
+| Qwen3.6-27B | 53.0 | 51.7 | 31.0 | 14.1 | 47.7 |
+| Seed-2.0-Pro | 47.9 | 36.5 | 43.8 | 20.4 | 55.6 |
+| Kimi-K2.6 | 39.7 | 38.7 | 24.8 | 7.2 | 47.8 |
+| UI-Venus-2-9B (released) | 78.1 | 75.7 | 42.8 | 47.6 | 50.7 |
+| UI-Venus-2-27B | 79.9 | 79.6 | 48.6 | 54.5 | 56.3 |
+All values are Pass@1. VenusBench-CAPTCHA reports the micro-average over all 219 fixed examples. The public-benchmark evaluation uses 1,000 sampled MCA-Bench examples, 15 retained NextGen-CAPTCHAs task types, and 16 retained Open CaptchaWorld task types.
 Safety
-OSBlind evaluates susceptibility to safety blind spots: benign-looking instructions in realistic desktop environments that can lead to unintended harmful outcomes, measured by Attack Success Rate (ASR, lower is better).
-| Model | OSBlind ASR (%) ↓ |
-|---|---|
-| UI-Venus-2-27B | 12.3 |
-| UI-Venus-2-9B (ours) | 18.5 |
-| Claude 4.5 Sonnet | 73.0 |
-| OpenCUA-32B | 91.8 |
-| GPT-4o | 93.3 |
-| UI-TARS-1.5-7B | 95.2 |
+OSHarm covers explicit safety threats including deliberate misuse, prompt injection, and model misbehavior. OSBlind tests benign-looking instructions whose execution context can produce harmful outcomes. Both report Attack Success Rate (ASR, lower is better).
+| Model | OSHarm ASR (%) ↓ | OSBlind ASR (%) ↓ |
+|---|---|---|
+| Qwen3.5-9B | 25.3 | 79.4 |
+| Qwen3.5-27B | 18.0 | 89.3 |
+| Kimi-K2.6 | 32.0 | 93.6 |
+| EvoCUA-8B | 39.3 | 85.3 |
+| UI-TARS-1.5 | 36.0 | 83.3 |
+| ScaleCUA | 25.3 | 84.7 |
+| UI-Venus-2-9B (released) | 11.3 | 48.8 |
+| UI-Venus-2-27B | 15.3 | 47.9 |
+These results do not make harmful-action risk negligible. Deployments should keep human confirmation and application-level safeguards around consequential operations, and CAPTCHA capabilities should only be used in authorized environments.
 Citation
-If you find UI-Venus-2 useful, please cite our technical reports:
-@article{uivenus2026,
-  title   = {UI-Venus-2 Technical Report},
-  author  = {{Venus Team, Ant Group}},
-  journal = {arXiv preprint arXiv:XXXX.XXXXX},
-  year    = {2026}
+Please cite the UI-Venus-2 technical report as follows:
+@misc{venusteam2026uivenus2technicalreport,
+  title         = {UI-Venus-2 Technical Report},
+  author        = {Venus Team and Zhuohan Cai and Haoxing Chen and Jiaxuan Chen and Weizhi Chen and Changlong Gao and Zhangxuan Gu and Yuan Guo and Yusong Hu and Jianrong Jiang and Jianguo Li and Runze Li and Jinzhen Lin and Zhenyu Ma and Changhua Meng and Han Peng and Xinyu Qiu and Shuheng Shen and Zhongyi Shui and Weiqiang Wang and Ming Wen and Zhuoer Xu and Hang Yan and Kaiwen Yang and Ruilin Yao and Nanjun Yu and Zhengwen Zeng and Lianrui Zhang and Yunzhu Zhang and Zhe Zhao and Beitong Zhou},
+  year          = {2026},
+  eprint        = {2609.00028},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2609.00028}
 }
 @article{uivenus15,
   title   = {UI-Venus-1.5 Technical Report},
@@ -375,11 +403,14 @@ If you find UI-Venus-2 useful, please cite our technical reports:
   year    = {2025}
 }
 - Downloads last month
-- -</pre>
+- 2,067
+Model tree for inclusionAI/UI-Venus-2-9B
+Base model
+Qwen/Qwen3.5-9B-Base</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Built 2026-09-02T07:03:55Z</p></footer>
+<footer><p>Built 2026-09-03T06:18:47Z</p></footer>
 </body>
 </html>
