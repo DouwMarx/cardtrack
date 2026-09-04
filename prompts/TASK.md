@@ -60,11 +60,18 @@ for clarification, is always the safe move.
    "restricted access", "structured access", "controlled access", "vetted
    researchers", "vetted partners", "trusted tester", "invitation-only",
    "pre-deployment access", "safeguards removed", "biodefense program",
-   "limited-access pilot". Cheapest recall is polling known program names:
-   GPT-Rosalind / Rosalind Biodefense, OpenAI Daybreak (Blue/Red), Anthropic
-   Project Glasswing / Claude Mythos access, Gemini Flash Cyber / CodeMender,
-   DeepMind–Isomorphic Bioresilience — new documents in this class almost always
-   name their program.
+   "limited-access pilot", "verification program", "open enrollment".
+   Science-access programs count too: a program gating a lab's scientific-research
+   platform or capability tier is an `access_policy` even when it names a model
+   FAMILY (e.g. "Claude") rather than one checkpoint — record the family in
+   `model_names` and say so in `notes`. Cheapest recall is polling known program
+   names: GPT-Rosalind / Rosalind Biodefense, OpenAI Daybreak (Blue/Red), Anthropic
+   Project Glasswing / Claude Mythos access, Anthropic Life Sciences Verification
+   Program (LSVP, the US-government-partnered biology access program — watch for
+   its enrollment opening) / Cyber Verification Program, Claude Science (AI
+   workbench for scientists), Gemini for Science / Co-Scientist / labs.google
+   science experiments, Gemini Flash Cyber / CodeMender, DeepMind–Isomorphic
+   Bioresilience — new documents in this class almost always name their program.
 3. **Citation mining**: for documents added in the last few runs (see state summary),
    fetch them and look for references to predecessor cards and third-party evals not
    yet in the database. Propose the ones that qualify (`source_of_lead: citation`).
@@ -124,6 +131,10 @@ for clarification, is always the safe move.
 }
 ```
 
+`related_urls[].kind` must be one of: `announcement`, `full_document`,
+`web_version`, `paper`, `code`, `weights`, `thread`, `dataset`, `video`,
+`co_published`, `other` — anything else is rejected.
+
 **Canonical URL choice**: when a release ships both a full document (usually a
 PDF) and an announcement or landing page, propose the FULL DOCUMENT as `url` and
 record the announcement in `related_urls` (kind `announcement`). The PDF must be
@@ -175,8 +186,10 @@ co-publication, not a mirror — see below.)
 a NAMED model and under what conditions: trusted/restricted-access program pages,
 access-tier overviews, policy-change posts (safeguard removal or reinstatement,
 access expansion/revocation), and program launch posts that name the gated model.
-The named-model requirement is the gate: a generic AI-policy essay or a
-partnership announcement without a named model still gets skipped. Documents in
+A named model FAMILY qualifies when the program gates the family's capabilities as
+a whole (science-workbench and trusted-access programs often do). The named-model
+requirement is still the gate: a generic AI-policy essay or a partnership
+announcement without a named model or family still gets skipped. Documents in
 this class are usually HTML (program pages, dated news posts), and that is fine.
 
 **Scope discipline for `doc_type: other`** — reserve it for model-specific
@@ -186,14 +199,11 @@ demos and showcases, policy/election/deprecation updates, developer tutorials, a
 general research essays that do not evaluate a named model. When in doubt, skip —
 the database catalogs model documentation, not lab blogs.
 
-**`covered_model_class`** (attested on every add): the document covers a
-generative or agentic general-purpose model — LLM, VLM, image/video/audio/music
-generation, world model, robotics or computer-use agent — OR itself contains
-safety/dangerous-capability evaluations. Auxiliary task models (embeddings,
-retrieval, OCR, ASR, TTS, translation, vision backbones, detectors, captioners,
-content-safety classifiers, domain decoders) are OUT of scope absent such evals,
-no matter how prominent the publisher. Honor the per-publisher `scope` notes in
-`config/sources.yaml`: HuggingFace org pages surface every repo an org pushes,
+**`covered_model_class`** (attested on every add): defined authoritatively in
+`config/criteria.yaml` — read it there; do not rely on memory. Operationally:
+auxiliary task models are OUT of scope absent safety evals no matter how
+prominent the publisher, and you must honor the per-publisher `scope` notes in
+`config/sources.yaml` — HuggingFace org pages surface every repo an org pushes,
 and most of them are not catalog material.
 
 **Co-published reports**: when two orgs jointly publish (e.g. UK AISI + US CAISI,
@@ -204,10 +214,10 @@ When adding a model card, spend one search checking for co-published copies; if 
 co-publishing org is not an allowlisted publisher, record it in `logs/PROPOSALS.md`
 instead of proposing — never propose one org's copy under another org's publisher key.
 
-The test for independent evaluations is the **system-card test**: would this
-content fit in the evaluations section of a system/model card? A report assessing
-a named model's capabilities or safety qualifies; a research paper that merely
-uses models as subjects or tools does not. `publication_date` must
+The test for independent evaluations is the **system-card test** (authoritative
+wording under `about_a_specific_model_or_eval` in `config/criteria.yaml`): would
+this content fit in the evaluations section of a system/model card? A research
+paper that merely uses models as subjects or tools does not. `publication_date` must
 be the document's own publication date (null if you truly cannot determine it — the
 validator will route it to review). Do not invent URLs; only propose documents you
 fetched and read.

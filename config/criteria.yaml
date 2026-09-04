@@ -9,6 +9,9 @@ agent_attested:                      # judgment calls; agent must assert, record
                                      # the evals section of a system/model card — it
                                      # assesses a NAMED model's capabilities or safety.
                                      # Research that merely uses models does not qualify.
+                                     # For doc_type access_policy, a named model FAMILY
+                                     # counts when the program gates the family's
+                                     # capabilities as a whole (see TASK.md).
   distinct_model_release: true       # a distinct release/eval — NOT a size, quantization,
                                      # checkpoint, or regional variant of a model already
                                      # covered; family cards → one entry, all model_names

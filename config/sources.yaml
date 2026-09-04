@@ -29,10 +29,14 @@ publishers:            # first-party
   google_deepmind:
     tier: 1
     display_name: Google DeepMind
+    scope: >-
+      From the ai.google / labs.google index pages, only gated-program and access pages (science/trusted-tester programs) qualify — skip product marketing, nav, and consumer-feature links they surface in bulk.
     homepage: https://deepmind.google
     index_urls:
       - https://deepmind.google/discover/blog/
       - https://deepmind.google/models/model-cards/
+      - https://ai.google/gemini-for-science    # science access program (Co-Scientist etc.);
+      - https://labs.google/science             # gated-experiment registration portal
   meta:
     tier: 1
     display_name: Meta AI
