@@ -56,16 +56,24 @@ src, dst = sys.argv[1], sys.argv[2]
 try:
     creds = json.load(open(src))
     oauth = creds.get("claudeAiOauth")
-    if isinstance(oauth, dict):
-        oauth.pop("refreshToken", None)
-        oauth.pop("refreshTokenExpiresAt", None)
-    for key in [k for k in creds if "mcp" in k.lower()]:
-        creds.pop(key)
-    out = json.dumps(creds)
-    # fail closed: never seed a file that still carries the high-value tokens
-    if "refreshToken" in out or any("mcp" in k.lower() for k in creds):
+    if not isinstance(oauth, dict):
+        raise ValueError("no claudeAiOauth block to seed")
+    # Whitelist, not blacklist: seed ONLY the oauth block, minus refresh material,
+    # so new top-level entries (MCP tokens, extra accounts) can never leak in.
+    # "refresh" substring (not refreshToken) so a snake_case schema drift still trips.
+    slim = {"claudeAiOauth": {k: v for k, v in oauth.items()
+                              if "refresh" not in k.lower()}}
+    out = json.dumps(slim)
+    # Tripwire for FUTURE edits, not a live check: today the filter above makes
+    # this unreachable, but it catches anyone later loosening the filter without
+    # matching intent (e.g. narrowing it to startswith("refreshToken")).
+    if any("refresh" in k.lower() or "mcp" in k.lower()
+           for k in slim["claudeAiOauth"]):
         raise ValueError("sensitive keys survived slimming")
-    open(dst, "w").write(out)
+    import os
+    fd = os.open(dst, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w") as f:
+        f.write(out)
 except Exception as e:
     print(f"[agent_sandbox] ERROR: credential slimming failed ({e}); refusing to seed",
           file=sys.stderr)

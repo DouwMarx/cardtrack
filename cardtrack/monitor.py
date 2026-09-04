@@ -26,6 +26,8 @@ from .repo import Repo, utcnow
 DEAD_STRIKES = 3
 BLOCKED_ESCALATION_RUNS = 3
 CANDIDATE_TTL_DAYS = 14
+# Absolute backstop so the backlog stays bounded even if Phase B never succeeds.
+CANDIDATE_HARD_TTL_DAYS = 8 * CANDIDATE_TTL_DAYS
 
 NOISE_SUFFIXES = (
     ".css", ".js", ".mjs", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico",
@@ -286,13 +288,30 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                 backlog = []
         cutoff = (datetime.now(UTC) - timedelta(days=CANDIDATE_TTL_DAYS)
                   ).strftime("%Y-%m-%dT%H:%M:%SZ")
+        # A candidate only "had its chance" if the agent actually ran after it
+        # appeared — expiring leads during an agent outage silently loses them
+        # (this is how the Fable 5.1 announcement nearly slipped through in
+        # 2026-09). run_daily.sh stamps this file after each successful Phase B;
+        # a hard cap keeps the backlog bounded even if the agent never runs.
+        # A total link-check outage (network down: everything errored) must not
+        # burn TTL either — freeze expiry entirely on such runs.
+        total_outage = summary["checked"] > 0 and summary["ok"] == 0
+        hard_cutoff = (datetime.now(UTC) - timedelta(days=CANDIDATE_HARD_TTL_DAYS)
+                       ).strftime("%Y-%m-%dT%H:%M:%SZ")
+        try:
+            agent_last_success = (repo.logs_dir / ".agent_last_success"
+                                  ).read_text().strip()
+        except OSError:
+            agent_last_success = ""
         merged: dict[str, dict] = {}
         for entry in backlog + new_candidates:
             url = entry.get("url")
             if not url or url in merged:
                 continue
             entry.setdefault("first_seen", utcnow())
-            if entry["first_seen"] < cutoff:
+            if not total_outage and entry["first_seen"] < cutoff and (
+                    agent_last_success > entry["first_seen"]
+                    or entry["first_seen"] < hard_cutoff):
                 continue
             if find_doc_by_url(conn, url):
                 continue  # became a document; drop from backlog

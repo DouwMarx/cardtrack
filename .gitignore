@@ -15,6 +15,9 @@ __pycache__/
 # run state
 .run.lock
 .agent-home/
+logs/.phase_b_started
+logs/.agent_last_success
+logs/.agent_failstreak
 
 # raw logs are noise; run_report.md, friction.jsonl, issues_outbox.jsonl stay tracked
 logs/*.log
@@ -30,3 +33,9 @@ logs/version_diffs/
 logs/*.held.jsonl
 logs/SECURITY_HOLD.md
 .wrangler/
+
+# pagefind output is derived from the (tracked) rendered pages AND is
+# nondeterministic between identical builds — tracked, it reshuffles ~250
+# content-hashed shards every run. Deploy uses the working tree, not git;
+# a clean clone regenerates it with `poe build`.
+site/pagefind/

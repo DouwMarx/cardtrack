@@ -4,10 +4,13 @@ fingerprint rotation, index-page diffing."""
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime, timedelta
 
+from cardtrack import monitor as monitor_mod
 from cardtrack.db import connect
 from cardtrack.monitor import run_monitor
 from cardtrack.propose import process_proposal
+from cardtrack.repo import utcnow
 
 from .conftest import Route, make_proposal
 
@@ -127,6 +130,50 @@ def test_index_diff_finds_new_links_once(repo, http_server):
     run_monitor(repo, "r3")
     candidates3 = json.loads((repo.logs_dir / "candidates.json").read_text())
     assert candidates3["candidates"] == []
+
+
+def test_candidate_expiry_requires_agent_run(repo, http_server):
+    """Leads must not expire during an agent outage: past-TTL candidates stay in
+    the backlog until a successful Phase B run postdates them (hard cap aside)."""
+    def stale(days_old):
+        ts = (datetime.now(UTC) - timedelta(days=days_old)
+              ).strftime("%Y-%m-%dT%H:%M:%SZ")
+        repo.logs_dir.mkdir(parents=True, exist_ok=True)
+        (repo.logs_dir / "candidates.json").write_text(json.dumps({
+            "candidates": [{"url": "https://x.test/stale-lead", "publisher": "p",
+                            "index_url": "https://x.test/", "link_text": "",
+                            "first_seen": ts}]}))
+        return ts
+
+    # past TTL, agent never ran → survives
+    stale(monitor_mod.CANDIDATE_TTL_DAYS + 1)
+    run_monitor(repo, "r1")
+    backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
+    assert [c["url"] for c in backlog] == ["https://x.test/stale-lead"], \
+        "agent outage must not expire untriaged leads"
+
+    # agent succeeded BEFORE the lead appeared → still survives
+    first_seen = stale(monitor_mod.CANDIDATE_TTL_DAYS + 1)
+    earlier = (datetime.now(UTC) - timedelta(
+        days=monitor_mod.CANDIDATE_TTL_DAYS + 2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    (repo.logs_dir / ".agent_last_success").write_text(earlier)
+    run_monitor(repo, "r2")
+    backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
+    assert [c["url"] for c in backlog] == ["https://x.test/stale-lead"]
+
+    # agent succeeded after the lead appeared → normal TTL expiry applies
+    assert first_seen < utcnow()
+    (repo.logs_dir / ".agent_last_success").write_text(utcnow())
+    run_monitor(repo, "r3")
+    backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
+    assert backlog == []
+
+    # hard cap: with no agent success at all, an 8x-TTL-old lead is dropped
+    (repo.logs_dir / ".agent_last_success").unlink()
+    stale(8 * monitor_mod.CANDIDATE_TTL_DAYS + 1)
+    run_monitor(repo, "r4")
+    backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
+    assert backlog == []
 
 
 def test_dead_doc_self_heals_when_url_returns(repo, http_server):

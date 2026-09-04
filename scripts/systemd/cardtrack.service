@@ -7,3 +7,6 @@ Type=oneshot
 WorkingDirectory=%h/projects/ais/system_card_db
 ExecStart=%h/projects/ais/system_card_db/scripts/run_daily.sh
 # run_daily.sh sets its own PATH and holds its own lock
+# Hang backstop: Type=oneshot has NO default timeout, and a wedged run would
+# hold the flock forever — every later run would then exit 0 silently.
+RuntimeMaxSec=4h

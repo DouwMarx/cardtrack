@@ -93,27 +93,38 @@ def test_comment_issue_outbox_mode(repo_root):
 @pytest.mark.skipif(shutil.which("uv") is None or shutil.which("flock") is None
                     or shutil.which("timeout") is None,
                     reason="run_daily.sh needs uv, flock and coreutils timeout")
-@pytest.mark.parametrize("cmd,expected", [
-    ('echo "AGENT SAW max-turns=$CARDTRACK_MAX_TURNS"', "AGENT SAW max-turns=123"),
-    ("sleep 30", "wall-clock backstop"),
+@pytest.mark.parametrize("cmd,expected,rc", [
+    # healthy agent: exits 0 AND writes the run report → heartbeat success, exit 0
+    ('echo "AGENT SAW max-turns=$CARDTRACK_MAX_TURNS" '
+     '&& date -u > "$CARDTRACK_ROOT/logs/run_report.md"',
+     "AGENT SAW max-turns=123", 0),
+    # wedged agent: killed by the backstop → run still publishes but exits 3
+    ("sleep 30", "wall-clock backstop", 3),
 ])
-def test_run_daily_agent_phase_guards(repo_root, http_server, cmd, expected):
-    """The turn cap has exactly one source of truth, and wall clock — not turns —
-    is what stops a runaway agent from holding the lock into the next run."""
+def test_run_daily_agent_phase_guards(repo_root, http_server, cmd, expected, rc):
+    """The turn cap has exactly one source of truth; wall clock — not turns —
+    stops a runaway agent; and the heartbeat makes agent failure loud (exit 3,
+    failure streak) without ever blocking build & publish."""
     import yaml
 
     settings_path = repo_root / "config" / "settings.yaml"
     settings = yaml.safe_load(settings_path.read_text())
-    settings["agent"] = {"enabled": True, "max_turns": 123, "timeout_seconds": 1, "cmd": cmd}
+    settings["agent"] = {"enabled": True, "max_turns": 123, "timeout_seconds": 2, "cmd": cmd}
     settings_path.write_text(yaml.safe_dump(settings))
 
     env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="agent-guard",
-               CARDTRACK_NO_SANDBOX="1")
+               CARDTRACK_NO_SANDBOX="1", CARDTRACK_SKIP_TOKEN_REFRESH="1")
     proc = subprocess.run(["bash", str(PROJECT_ROOT / "scripts" / "run_daily.sh")],
                           capture_output=True, text=True, timeout=600, env=env)
-    assert proc.returncode == 0, proc.stdout + proc.stderr
+    assert proc.returncode == rc, proc.stdout + proc.stderr
     assert expected in proc.stdout, proc.stdout
     assert "Phase C" in proc.stdout, "a failed agent never blocks build & publish"
+    if rc == 0:
+        assert (repo_root / "logs" / ".agent_last_success").exists()
+        assert not (repo_root / "logs" / ".agent_failstreak").exists()
+    else:
+        assert (repo_root / "logs" / ".agent_failstreak").read_text().strip() == "1"
+        assert "AGENT PHASE FAILED" in proc.stdout
 
 
 @pytest.mark.skipif(shutil.which("uv") is None or shutil.which("flock") is None,

@@ -1,0 +1,31 @@
+name: dead-man
+# The daily pipeline commits every run (even "no changes"). If commits stop, the
+# machine/timer/lock is wedged in a way the local detectors cannot report — this
+# is the only monitor that lives OUTSIDE the machine being monitored.
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: file an issue if no commit landed in 48h
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          age=$(( $(date +%s) - $(git log -1 --format=%ct) ))
+          echo "last commit ${age}s ago"
+          [ "$age" -le 172800 ] && exit 0
+          title="pipeline-failure: no commits in 48h (dead-man's switch)"
+          if [ -z "$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number // empty')" ]; then
+            gh issue create --title "$title" --body \
+              "No commit has reached this repository for over 48 hours. The daily run commits even on no-change days, so the timer is not firing, the machine is down, a run is wedged holding the lock, or pushes are failing. Check \`systemctl --user status cardtrack.service cardtrack.timer\` and the latest logs/run-*.log on the host."
+          fi

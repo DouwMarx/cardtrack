@@ -14,6 +14,7 @@ export PATH="$HOME/.local/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USE
 
 RUN_ID="${RUN_ID:-$(date -u +%Y-%m-%dT%H:%MZ)-local}"
 mkdir -p "$ROOT/logs"
+AGENT_FAILED=0
 
 exec 9>"$ROOT/.run.lock"
 flock -n 9 || { echo "[run_daily] another run holds the lock; exiting"; exit 0; }
@@ -27,7 +28,20 @@ setting() { "${PY[@]}" scripts/get_setting.py "$1" --default "${2:-}" --root "$R
 echo "== cardtrack run $RUN_ID ($(date -u +%FT%TZ)) =="
 
 echo "-- Phase A: monitor"
-"${PY[@]}" scripts/monitor.py --run-id "$RUN_ID" --root "$ROOT"
+MON_JSON="$("${PY[@]}" scripts/monitor.py --run-id "$RUN_ID" --root "$ROOT")"
+echo "$MON_JSON"
+# Total link-check outage (network down): monitor.py freezes candidate expiry
+# itself; here we just make the day visibly abnormal in git log.
+MONITOR_OUTAGE="$(printf '%s' "$MON_JSON" | "${PY[@]}" - <<'PYEOF'
+import json, sys
+try:
+    s = json.loads(sys.stdin.read().strip().splitlines()[-1])
+    print(1 if s.get("checked", 0) > 0 and s.get("ok", 0) == 0 else 0)
+except Exception:
+    print(0)
+PYEOF
+)"
+[ "$MONITOR_OUTAGE" = "1" ] && echo "[run_daily] MONITOR OUTAGE: all link checks errored (network down?)"
 
 echo "-- Phase B: agent"
 if [ "$(setting agent.enabled false)" = "true" ]; then
@@ -66,6 +80,33 @@ MERGE
     export CARDTRACK_MAX_TURNS="$(setting agent.max_turns 600)"
     # Wall clock, not turns, is what must never run into tomorrow's trigger.
     AGENT_TIMEOUT="$(setting agent.timeout_seconds 7200)"
+    # Self-heal the most common Phase B outage: an expired OAuth access token.
+    # The sandbox strips the refresh token (see agent_sandbox.sh), so refresh can
+    # only happen out here on the host — one trivial headless call does it, and
+    # only runs when the token would expire before the agent could finish.
+    if [ "${CARDTRACK_SKIP_TOKEN_REFRESH:-}" != "1" ] \
+        && command -v claude >/dev/null && [ -f "$HOME/.claude/.credentials.json" ]; then
+      NEED_REFRESH="$("${PY[@]}" - "$HOME/.claude/.credentials.json" "$AGENT_TIMEOUT" <<'PYEOF'
+import json, sys, time
+try:  # expiresAt is epoch-ms metadata, not a secret value
+    exp = json.load(open(sys.argv[1])).get("claudeAiOauth", {}).get("expiresAt", 0)
+    print("yes" if exp / 1000 < time.time() + int(sys.argv[2]) else "no")
+except Exception:
+    print("no")
+PYEOF
+)"
+      if [ "$NEED_REFRESH" = "yes" ]; then
+        echo "[run_daily] access token expires within the agent window; refreshing"
+        REFRESH_GUARD=()
+        command -v timeout >/dev/null && REFRESH_GUARD=(timeout 120)
+        "${REFRESH_GUARD[@]}" claude -p "ok" --max-turns 1 >/dev/null 2>&1 \
+          || echo "[run_daily] WARNING: token refresh failed; run any interactive claude command"
+      fi
+    fi
+    # Heartbeat: the agent must both exit 0 AND have written this run's report —
+    # exit status alone can lie (a wedged CLI can exit 0 having done nothing).
+    PHASE_B_MARK="$ROOT/logs/.phase_b_started"
+    touch "$PHASE_B_MARK"
     GUARD=()
     if command -v timeout >/dev/null; then
       GUARD=(timeout --kill-after=60 "$AGENT_TIMEOUT")
@@ -79,6 +120,34 @@ MERGE
     elif [ "$RC" -ne 0 ]; then
       echo "[run_daily] agent exited $RC (continuing to Phase C)"
     fi
+    if [ "$RC" -eq 0 ] && [ "$ROOT/logs/run_report.md" -nt "$PHASE_B_MARK" ]; then
+      date -u +%FT%TZ > "$ROOT/logs/.agent_last_success"
+      rm -f "$ROOT/logs/.agent_failstreak"
+    else
+      [ "$RC" -eq 0 ] && echo "[run_daily] agent exited 0 but wrote no run report; treating as FAILED"
+      AGENT_FAILED=1
+      STREAK=$(( $(cat "$ROOT/logs/.agent_failstreak" 2>/dev/null || echo 0) + 1 ))
+      echo "$STREAK" > "$ROOT/logs/.agent_failstreak"
+      echo "[run_daily] AGENT PHASE FAILED (consecutive day $STREAK)"
+      if [ "$STREAK" -eq 2 ]; then
+        # Two days down = an outage, not a blip: file one issue per episode
+        # through the existing outbox (delivered by flush_outbox below).
+        "${PY[@]}" - "$ROOT/logs/issues_outbox.jsonl" "$RUN_ID" "$RC" <<'PYEOF' \
+          || echo "[run_daily] WARNING: could not queue outage issue"
+import json, sys, datetime
+rec = {"ts": datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+       "title": f"pipeline-failure: agent phase down 2 consecutive runs (as of {sys.argv[2]})",
+       "body": ("The Phase B curation agent has failed two runs in a row "
+                f"(latest exit code {sys.argv[3]}). Candidates are piling up untriaged "
+                "(they will not expire while the agent is down, but discovery is stalled).\n\n"
+                "Check the latest logs/run-*.log. If the error is a 401/expired token, "
+                "run any interactive claude command on the host to refresh credentials."),
+       "labels": []}
+open(sys.argv[1], "a", encoding="utf-8").write(json.dumps(rec) + "\n")
+PYEOF
+      fi
+    fi
+    rm -f "$PHASE_B_MARK"
     unset CARDTRACK_ACTOR CARDTRACK_MAX_TURNS
     # preserve the session transcript before the next run's sandbox wipes it
     # (local-only audit trail: which tool calls the agent actually made)
@@ -92,6 +161,9 @@ MERGE
   fi
 else
   echo "agent disabled (agent.enabled=false)"
+  # Deliberately agent-less deployments still get normal candidate TTL expiry
+  # (the guard in monitor.py would otherwise stretch it to the hard cap).
+  date -u +%FT%TZ > "$ROOT/logs/.agent_last_success"
 fi
 
 echo "-- Phase C: build & publish"
@@ -137,6 +209,13 @@ if [ "$HOLD" -eq 0 ] && [ "$(setting publish.git_commit false)" = "true" ]; then
   # render the message BEFORE staging: --emit-commit-msg opens the DB, and
   # connect() rewrites views, which would leave docs.sqlite perpetually dirty
   MSG="$("${PY[@]}" scripts/build_site.py --root "$ROOT" --emit-commit-msg "$RUN_ID")"
+  # Outages must be visible where the operator actually looks: git log.
+  if [ "$AGENT_FAILED" -ne 0 ]; then
+    MSG="[agent down, day $(cat "$ROOT/logs/.agent_failstreak" 2>/dev/null || echo '?')] $MSG"
+  fi
+  if [ "$MONITOR_OUTAGE" = "1" ]; then
+    MSG="[monitor outage] $MSG"
+  fi
   # scoped add: never sweep unrelated working-tree changes into an automated commit
   git -C "$ROOT" add data site logs 2>/dev/null || true
   if git -C "$ROOT" diff --cached --quiet; then
@@ -144,7 +223,9 @@ if [ "$HOLD" -eq 0 ] && [ "$(setting publish.git_commit false)" = "true" ]; then
   else
     git -C "$ROOT" commit -m "$MSG"
     if [ "$(setting publish.git_push false)" = "true" ]; then
-      git -C "$ROOT" push
+      # A push flake must not abort the run (wrangler deploy and the exit-code
+      # report come after); the commit is local and the next run pushes both.
+      git -C "$ROOT" push || echo "[run_daily] WARNING: push failed; next run retries"
     fi
   fi
 fi
@@ -159,5 +240,11 @@ fi
 if [ "$HOLD" -ne 0 ]; then
   echo "== run $RUN_ID HELD (nothing published; see logs/SECURITY_HOLD.md) =="
   exit 1
+fi
+if [ "$AGENT_FAILED" -ne 0 ]; then
+  # Publishing still happened; the nonzero exit marks the systemd unit failed so
+  # the outage is visible in `systemctl --user --failed` too.
+  echo "== run $RUN_ID complete BUT AGENT PHASE FAILED (see above) =="
+  exit 3
 fi
 echo "== run $RUN_ID complete =="
