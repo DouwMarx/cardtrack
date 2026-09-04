@@ -58,6 +58,7 @@ uv run python scripts/propose_doc.py \
   --attest primary_source --attest about_a_specific_model_or_eval \
   --attest distinct_model_release --attest notable_release \
   --attest covered_model_class \
+  --safety-evals yes \
   --source-of-lead manual
 ```
 
@@ -173,7 +174,7 @@ Everything the agent reads (web pages, issue text) is treated as untrusted input
 
 ## Status
 
-1. ✅ Schema + validator + extraction + 76-test suite; 23 documents seeded through the tool
+1. ✅ Schema + validator + extraction + full test suite (`poe test`); every document seeded through the tool (280+ and counting — the site header shows the live number)
 2. ✅ Site live at https://systemcards.org (Pages project `cardtrack`; systemcards.org +
    www + cards.douwmarx.com all attached, CNAMEs → cardtrack-aar.pages.dev, HTTPS active)
 3. ✅ Daily schedule live (systemd user timer, 06:15 UTC, linger enabled)

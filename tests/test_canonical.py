@@ -1,6 +1,6 @@
 import pytest
 
-from cardtrack.canonical import canonicalize_url, is_http_url
+from cardtrack.canonical import canonicalize_url
 
 CASES = [
     # (input, expected)
@@ -33,6 +33,5 @@ def test_canonicalize_is_idempotent():
 @pytest.mark.parametrize("bad", ["ftp://example.com/x", "javascript:alert(1)",
                                  "mailto:a@b.c", "file:///etc/passwd", "not a url"])
 def test_non_http_rejected(bad):
-    assert not is_http_url(bad)
     with pytest.raises(ValueError):
         canonicalize_url(bad)

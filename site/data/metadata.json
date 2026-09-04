@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-04T07:26:09Z",
+ "generated_at": "2026-09-04T14:00:09Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -155,6 +155,89 @@
   "societal_harm": "Societal harms"
  },
  "documents": [
+  {
+   "slug": "anthropic-claude-fable-5-1-access-policy",
+   "title": "Introducing Claude Fable 5.1 and Claude Mythos 5.1",
+   "publisher": "anthropic",
+   "doc_type": "access_policy",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Fable 5.1",
+    "Claude Mythos 5.1"
+   ],
+   "publication_date": "2026-09-01",
+   "canonical_url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-04T13:59:21Z",
+   "last_checked": "2026-09-04T13:59:21Z",
+   "last_changed": "2026-09-04T13:59:21Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": null,
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+     "kind": "full_document",
+     "note": "System card for the models this post gates"
+    },
+    {
+     "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+     "kind": "other",
+     "note": "Enterprise Frontier Safeguards program linked from the post"
+    },
+    {
+     "url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards",
+     "kind": "other",
+     "note": "Biology safeguards background linked from the post"
+    }
+   ],
+   "content_hash": "932aa80c7ddb880afb124ea178e67e04246c7c8cf5cc68ea3a612ea97f9727ff",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-04T13:59:21Z",
+   "content_fingerprint": "97784236c75fc4cb1e2e8b9c0a5ed939ee5ad9fc2922979a9650cadff8ebef65",
+   "version_count": 1
+  },
+  {
+   "slug": "anthropic-claude-fable-5-1-system-card",
+   "title": "Claude Fable 5.1 & Claude Mythos 5.1 System Card",
+   "publisher": "anthropic",
+   "doc_type": "system_card",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Fable 5.1",
+    "Claude Mythos 5.1"
+   ],
+   "publication_date": "2026-09-01",
+   "canonical_url": "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-04T13:59:06Z",
+   "last_checked": "2026-09-04T13:59:06Z",
+   "last_changed": "2026-09-04T13:59:06Z",
+   "source_of_lead": "manual",
+   "safety_evals": 1,
+   "openness": null,
+   "risk_domains": [
+    "cbrn",
+    "cyber",
+    "harmful_manipulation",
+    "loss_of_control",
+    "societal_harm"
+   ],
+   "related_urls": [
+    {
+     "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+     "kind": "announcement"
+    }
+   ],
+   "content_hash": "b0d59edc7a60eef32a879c13d713cce60c3fefd7e6b5183afdc8b835af3c8c39",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-09-04T13:59:06Z",
+   "content_fingerprint": "f997664c68e2b9316ecb8c1915ae1773485cbd8505852bbbe87c51778959abb2",
+   "version_count": 1
+  },
   {
    "slug": "anthropic-claude-mythos-5-other-3",
    "title": "Improving our alignment and security efforts",
@@ -3502,6 +3585,44 @@
    "version_count": 1
   },
   {
+   "slug": "anthropic-claude-access-policy",
+   "title": "Claude Science, an AI workbench for scientists",
+   "publisher": "anthropic",
+   "doc_type": "access_policy",
+   "is_independent": 0,
+   "model_names": [
+    "Claude"
+   ],
+   "publication_date": "2026-06-30",
+   "canonical_url": "https://www.anthropic.com/news/claude-science-ai-workbench",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-04T13:59:35Z",
+   "last_checked": "2026-09-04T13:59:35Z",
+   "last_changed": "2026-09-04T13:59:35Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": null,
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://claude.com/product/claude-science",
+     "kind": "other",
+     "note": "Product page"
+    },
+    {
+     "url": "https://www.anthropic.com/news/expanding-support-for-scientists",
+     "kind": "other",
+     "note": "Successor access expansion (Mythos 5 life-sciences pathway)"
+    }
+   ],
+   "content_hash": "815f1056fa929e4eacff23d4975912d49ce5c0316eb54e7c43ebd874dc842ecd",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-04T13:59:35Z",
+   "content_fingerprint": "c5f64a997dc3a5ecb44ee2b8e58db32b95a9ed8b1de64fdac0878df967f93496",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-fable-5-addendum-2",
    "title": "Redeploying Fable 5",
    "publisher": "anthropic",
@@ -4697,6 +4818,46 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-09T15:57:56Z",
    "content_fingerprint": "1c209ba17d62d3bb378e32749c397fc259a023a3bd8f679b64ec266f9d17403d",
+   "version_count": 1
+  },
+  {
+   "slug": "google-deepmind-gemini-co-scientist-access-policy",
+   "title": "Gemini for Science: AI experiments and tools for a new era of discovery",
+   "publisher": "google_deepmind",
+   "doc_type": "access_policy",
+   "is_independent": 0,
+   "model_names": [
+    "AlphaEvolve",
+    "Gemini Co-Scientist",
+    "Gemini Deep Think"
+   ],
+   "publication_date": "2026-05-19",
+   "canonical_url": "https://blog.google/innovation-and-ai/technology/research/gemini-for-science-io-2026/",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-04T14:00:09Z",
+   "last_checked": "2026-09-04T14:00:09Z",
+   "last_changed": "2026-09-04T14:00:09Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": null,
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://ai.google/gemini-for-science",
+     "kind": "other",
+     "note": "Living program page (now index-monitored)"
+    },
+    {
+     "url": "https://labs.google/science",
+     "kind": "other",
+     "note": "Registration portal for the gated experiments"
+    }
+   ],
+   "content_hash": "a18ee798d815026a6627535b2a9bc5f5d6af41d3232f935ee14fbf98e3d0937a",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-04T14:00:09Z",
+   "content_fingerprint": "8ae5a47513aec15920bb37561f1ef4e116e29e705dee2f23a6bcb7109674a97b",
    "version_count": 1
   },
   {

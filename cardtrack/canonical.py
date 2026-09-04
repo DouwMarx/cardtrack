@@ -18,13 +18,6 @@ TRACKING_PREFIXES = ("utm_",)
 DEFAULT_PORTS = {"http": 80, "https": 443}
 
 
-def is_http_url(url: str) -> bool:
-    try:
-        return urlsplit(url.strip()).scheme.lower() in ("http", "https")
-    except ValueError:
-        return False
-
-
 def _is_tracking(param: str) -> bool:
     p = param.lower()
     return p in TRACKING_EXACT or p.startswith(TRACKING_PREFIXES)

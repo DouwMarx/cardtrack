@@ -28,9 +28,6 @@ packages = ["cardtrack"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = [
-    "network: hits the real internet; opt in with CARDTRACK_NET=1",
-]
 
 [tool.ruff]
 line-length = 100

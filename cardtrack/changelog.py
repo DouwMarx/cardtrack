@@ -24,12 +24,6 @@ def entries_for_run(conn: sqlite3.Connection, run_id: str) -> list[sqlite3.Row]:
     ).fetchall()
 
 
-def entries_for_document(conn: sqlite3.Connection, document_id: int) -> list[sqlite3.Row]:
-    return conn.execute(
-        "SELECT * FROM changelog WHERE document_id = ? ORDER BY id", (document_id,)
-    ).fetchall()
-
-
 def render_commit_message(conn: sqlite3.Connection, run_id: str) -> str:
     """Human-readable summary of one run's changelog rows (the JSON stays canonical)."""
     entries = entries_for_run(conn, run_id)

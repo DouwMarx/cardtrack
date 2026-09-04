@@ -94,6 +94,11 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
 
     gh_repo = repo.setting("github.repo") or ""
     site_title = repo.setting("site.title", "cardtrack")
+    # Data-derived, not wall-clock: stamping build time rewrote every page (and
+    # thus the whole pagefind index) daily, turning "no changes" runs into
+    # 250-file commits. The site is only as fresh as its last data change anyway.
+    generated_at = conn.execute(
+        "SELECT COALESCE(MAX(ts), '') FROM changelog").fetchone()[0] or utcnow()
     docs = export_metadata(conn)
     publishers = _publishers_map(repo)
     # controlled tag vocabulary (config/criteria.yaml) → display labels for UI
@@ -101,7 +106,7 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
                    for k, v in (repo.criteria.get("risk_domains") or {}).items()}
 
     (site / "data" / "metadata.json").write_text(
-        json.dumps({"generated_at": utcnow(), "publishers": publishers,
+        json.dumps({"generated_at": generated_at, "publishers": publishers,
                     "risk_domains": risk_labels, "documents": docs},
                    ensure_ascii=False, indent=1),
         encoding="utf-8",
@@ -114,7 +119,7 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
                for f in static_src.iterdir() if f.is_file()}
 
     ctx_common = {"site_title": site_title, "gh_repo": gh_repo,
-                  "generated_at": utcnow(), "asset_v": asset_v,
+                  "generated_at": generated_at, "asset_v": asset_v,
                   "risk_labels": risk_labels}
 
     # explicit cache policy; without it the CDN default (4 h browser TTL)

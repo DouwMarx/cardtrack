@@ -8,7 +8,6 @@ caps:
   fetch_timeout_seconds: 60
 
 cadence:
-  linkcheck: all_active_every_run
   fingerprint_fraction: 0.15           # ~weekly full coverage of silent updates
 
 fetch:
@@ -65,7 +64,6 @@ github:
 
 site:
   title: systemcards.org
-  base_url: https://systemcards.org
   run_pagefind: true
 
 publish:

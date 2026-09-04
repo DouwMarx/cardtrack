@@ -2,13 +2,6 @@
 
 ## Next session
 
-- Buy `systemcards.org` and finish the domain move: user steps + automated follow-up
-  are in `cloudflare-setup.md` ("Moving to systemcards.org"). Verified unregistered
-  2026-08-31.
-- Watch the first few daily runs under the new gates (secret scan + LLM screen +
-  comment outbox flush): confirm nothing legitimate gets held, comments actually
-  land on GitHub issues, and the agent uses `annotate_version` / risk_domains /
-  access_policy sanely. Tune the TASK.md wording if the first run misapplies them.
 - Family-row granularity ruling (raised twice in logs/PROPOSALS.md and by the
   2026-08-31 false-alarm audit): decide "one row per model generation per product
   line, sizes folded into model_names", then merge the ~8 borderline sibling rows
