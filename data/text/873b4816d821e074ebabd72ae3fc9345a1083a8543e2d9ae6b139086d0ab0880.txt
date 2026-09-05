@@ -1,0 +1,232 @@
+Instructions to use Qwen/Qwen-Drive-1.0-4B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use Qwen/Qwen-Drive-1.0-4B with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("image-text-to-text", model="Qwen/Qwen-Drive-1.0-4B")
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
+            {"type": "text", "text": "What animal is on the candy?"}
+        ]
+    },
+]
+pipe(text=messages)# Load model directly
+from transformers import QwenDriveForPlanning
+model = QwenDriveForPlanning.from_pretrained("Qwen/Qwen-Drive-1.0-4B", device_map="auto")
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use Qwen/Qwen-Drive-1.0-4B with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "Qwen/Qwen-Drive-1.0-4B"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "Qwen/Qwen-Drive-1.0-4B",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'Use Dockerdocker model run hf.co/Qwen/Qwen-Drive-1.0-4B
+-  SGLang  How to use Qwen/Qwen-Drive-1.0-4B with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "Qwen/Qwen-Drive-1.0-4B" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "Qwen/Qwen-Drive-1.0-4B",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "Qwen/Qwen-Drive-1.0-4B" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "Qwen/Qwen-Drive-1.0-4B",
+		"messages": [
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "Describe this image in one sentence."
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+						}
+					}
+				]
+			}
+		]
+	}'
+-  Docker Model Runner  How to use Qwen/Qwen-Drive-1.0-4B with Docker Model Runner: docker model run hf.co/Qwen/Qwen-Drive-1.0-4B
+Qwen-Drive-1.0-4B
+This repository contains the weights and configurations of Qwen-Drive-1.0 in the Hugging Face format. The accompanying code, demo data and documentation are released at QwenLM/Qwen-Drive-1.0.
+Qwen-Drive-1.0 retains the architecture of the pretrained Qwen3.5 vision-language model and integrates 3D perception, visual question answering, and motion planning within a unified framework. The natively multimodal Qwen3.5-4B serves as the shared VLM, with two external modules attached: a BEV perception head jointly performing 3D object detection, semantic occupancy prediction and BEV map segmentation, and a Planning Expert that conditions on the shared VLM representations to generate future ego trajectories through flow matching. The unchanged VLM answers free-form questions about driving scenes. A staged training recipe combines driving supervision with general-purpose vision-language data, so the model acquires driving-specific competence while preserving broad visual understanding and instruction-following capability.
+For more details, please refer to our Technical Report: Qwen-Drive-1.0.
+Highlights
+- Qwen-Drive-1.0 is the first vision-language foundation model for autonomous driving that unifies 3D perception and visual question answering at the pretraining stage and further extends to motion planning, while keeping the pretrained VLM architecture entirely untouched.
+- An external BEV perception head serves as an explicit, inspectable 3D probe, jointly learning 3D detection, semantic occupancy prediction, and BEV map segmentation, equipping the same pretrained VLM with clear perception outputs while preserving highly competitive vision-language performance.
+- A staged training and data recipe unifies cross-dataset labels, rewrites responses, filters samples for consistency, and combines driving data with general-purpose vision-language supervision, supporting domain adaptation while mitigating catastrophic forgetting.
+- A Planning Expert tailored to pretrained VLM representations generates future ego trajectories with flow matching. Unified trajectory annotations enable joint training across multiple public driving datasets and yield highly competitive results across open-loop, pseudo-closed-loop, and closed-loop evaluations.
+- Two Planning Experts are released: planner-sft supports both direct and reasoning
+planning;planner-rl is further reward-optimized on NAVSIM PDMS, WOD-E2E RFS and a
+displacement term, and runs best in the reasoning planning mode.
+Motion planning
+|  | AutoVLA | SpanVLA | MindVLA-U1 | Alpamayo-1.5 | SimWAMIL | Qwen-Drive-1.0-SFT | Qwen-Drive-1.0-RL |
+|---|---|---|---|---|---|---|---|
+| Open-loop |  |  |  |  |  |  |  |
+| WOD-E2E (RFS val/test ↑) | --/7.56 | -- | 8.20/7.87 | -- | -- | 7.95/7.78 | 8.45/7.91 |
+| WOD-E2E (ADE 5s val/test ↓) | --/2.96 | -- | 2.28/2.66 | -- | -- | 2.31/2.65 | 1.27/2.67 |
+| PAI-AV (Avg. ADE 3s ↓) | -- | -- | -- | 0.35 | 0.41 | 0.37 | 0.42 |
+| PAI-AV (Avg. ADE 5s ↓) | -- | -- | -- | 1.05 | -- | 1.07 | 1.11 |
+| Pseudo-closed-loop |  |  |  |  |  |  |  |
+| NAVSIM (PDMS ↑) | 89.6 | 90.3 | -- | -- | 90.3 | 88.2 | 90.7 |
+| NAVSIM best-of-6 (PDMS ↑) | -- | -- | -- | -- | -- | 89.3 | 91.4 |
+| Closed-loop |  |  |  |  |  |  |  |
+| AlpaSim (at-fault score ↑) | -- | -- | -- | 0.45 | 0.30 | 0.27 | 0.37 |
+* AutoVLA and SimWAM train a separate model on each dataset.
+* The SFT column reports Qwen-Drive-1.0-SFT conditioned on planning reasoning.
+* IL denotes imitation learning.
+* -- indicates that the method does not report a result on the corresponding benchmark.
+With planning samples assembled purely from public sources, Qwen-Drive-1.0 unifies the trajectory format across datasets and evaluates from open-loop prediction to closed-loop driving. The SFT model is already competitive across all benchmarks. After reinforcement learning, the model trades only a marginal open-loop displacement for comprehensive gains in human-preference alignment and closed-loop safety.
+Vision-language understanding
+|  | InternVL3.5-8B-Instruct | LLaVA-OV2-8B | Qwen3.5-4B | Cosmos-Reason1-7B | Cosmos-Reason2-8B | Cosmos3-nano | MiMo-Embodied-7B | Alpamayo-1.5-10B | Qwen-Drive-1.0-SFT |
+|---|---|---|---|---|---|---|---|---|---|
+| Driving VQA |  |  |  |  |  |  |  |  |  |
+| LingoQA | 46.4 | 41.2 | 70.4 | 45.2 | 59.6 | 65.0 | 72.0 | 64.0 | 77.8 |
+| Ego3D RMSE ↓ | 23.01 | 24.97 | 13.17 | 26.71 | 12.62 | 22.41 | 9.85 | 25.31 | 7.78 |
+| VLAD | 54.5 | 58.7 | 65.4 | 33.6 | 56.4 | 57.7 | 50.3 | 9.1 | 66.5 |
+| SURDS | 32.8 | 38.6 | 53.0 | 8.5 | 19.5 | 39.7 | 43.1 | 3.1 | 66.1 |
+| WaymoQA safety | 54.5 | 49.7 | 62.5 | 39.5 | 57.7 | 56.9 | 66.5 | 42.6 | 70.7 |
+| WaymoQA all | 58.1 | 55.2 | 67.1 | 43.9 | 57.9 | 58.4 | 69.6 | 44.4 | 74.5 |
+| CoC all | – | 0.6 | 2.6 | 3.2 | 1.7 | 4.0 | – | 3.4 | 41.3 |
+| IH | 47.5 | 54.0 | 59.0 | 30.5 | 56.0 | 2.0 | 61.0 | 3.0 | 71.0 |
+| Knowledge, Reasoning, and Recognition |  |  |  |  |  |  |  |  |  |
+| MMBench | 80.0 | 82.7 | 87.1 | 80.0 | 82.8 | 79.6 | – | 7.5 | 85.5 |
+| MMStar | 64.1 | 64.9 | 75.3 | 63.5 | 65.3 | 66.7 | 22.4 | 26.1 | 75.9 |
+| MMMU | 62.0 | 54.7 | 73.4 | 54.2 | 59.1 | 60.9 | – | 27.4 | 72.7 |
+| MMMU-Pro std | 46.4 | 36.3 | 64.9 | 38.4 | 36.1 | 46.4 | 27.4 | 15.6 | 62.7 |
+| MMMU-Pro vis | 42.3 | 26.0 | 61.3 | 35.8 | 43.5 | 40.8 | 28.1 | 13.5 | 59.7 |
+| CharXiv | 41.7 | 40.1 | 65.1 | 39.7 | 42.5 | 42.1 | 57.5 | 1.5 | 64.4 |
+| OCRBench | 83.2 | 79.3 | 86.9 | 85.2 | 87.0 | 85.2 | 78.8 | 3.2 | 86.4 |
+| RealWorldQA | 66.9 | 71.8 | 76.3 | 67.5 | 67.5 | 69.7 | 28.5 | 46.9 | 79.0 |
+| SimpleVQA | 40.8 | 36.7 | 47.8 | 45.0 | 45.3 | 45.0 | – | – | 46.1 |
+| CountQA | 20.9 | 22.6 | 35.9 | 18.5 | 22.3 | 23.6 | 22.6 | 4.7 | 31.7 |
+| Spatial Understanding and Grounding |  |  |  |  |  |  |  |  |  |
+| EmbSpatial | 74.2 | 78.4 | 76.0 | 68.8 | 77.6 | 77.9 | 45.1 | 20.6 | 78.9 |
+| ERQA | 42.0 | 42.3 | 46.3 | 38.5 | 43.3 | 41.3 | 39.8 | 27.5 | 48.5 |
+| RefSpatial | – | – | 54.5 | 0.4 | 51.8 | – | 2.2 | – | 50.8 |
+| Omni3D | – | – | 47.4 | – | 32.9 | 32.3 | – | – | 45.8 |
+| ODinW13 | – | – | 40.8 | 4.8 | 40.2 | 35.9 | – | – | 45.9 |
+* All benchmarks use the same high-certainty decoding settings (greedy=false, top-p=0.001, top-k=1, temperature=0.01, repetition_penalty=1.0, presence_penalty=0.0) to more directly reflect model capability.
+* LingoQA is scored with Qwen-Plus as the judge instead of the official LingoJudge, which we found to score leniently and inconsistently across scenarios. Under the official LingoJudge protocol, Qwen-Drive-1.0-SFT obtains a LingoScore of 79.4.
+* The same judge scores every method on each benchmark.
+* -- marks an invalid or unparsable response.
+Driving VQA. Qwen-Drive-1.0-SFT leads both general-purpose VLMs and driving or embodied specialists on driving question answering, with the sharpest spatial understanding and a more accurate sense of physical scale. The gain in causal reasoning is the most pronounced, and its driving-decision capability generalizes from broad driving data rather than memorizing specific scenarios.
+General vision-language understanding. Large-scale driving training causes no evident catastrophic forgetting. Qwen-Drive-1.0-SFT largely preserves its general vision-language capability, performing on par with the base Qwen3.5-4B across the knowledge, reasoning, recognition and spatial understanding benchmarks, while well preserving its instruction-following capability.
+3D perception
+A single Qwen-Drive-1.0-SFT model produces coherent 3D detection, semantic occupancy, and BEV map segmentation that reflect genuine 3D structure rather than inheriting label noise. The BEV perception head is deliberately kept simple, so that it serves as an explicit, inspectable 3D probe of the shared VLM representations rather than a specialist aimed at advanced perception benchmarks.
+Repository Contents
+Everything ships in one directory. The VLM sits at its root, shared by every task, and each task head in a subfolder beside it.
+Qwen-Drive-1.0-4B/          9.1 GB  the VLM, which on its own serves the VQA mode
+├── planner-sft/            2.1 GB  Planning Expert, imitation-trained
+├── planner-rl/             2.1 GB  Planning Expert after reward optimization
+└── perception/             0.5 GB  BEV perception head
+Quickstart
+Install the inference code from the GitHub repository:
+git clone https://github.com/QwenLM/Qwen-Drive-1.0 qwen-drive && cd qwen-drive
+pip install -e . --no-build-isolation
+Download the weights (the VLM at the root plus every task head in its subfolder):
+hf download Qwen/Qwen-Drive-1.0-4B --local-dir Qwen-Drive-1.0-4B
+Load the VLM with a Planning Expert attached and predict trajectories:
+import torch
+from qwen_drive import InferenceMode, QwenDriveForPlanning
+from qwen_drive.benchmarks import read_scene_file
+from qwen_drive.images import ImageArchive
+model = QwenDriveForPlanning.from_pretrained(
+    "Qwen-Drive-1.0-4B",
+    planner="Qwen-Drive-1.0-4B/planner-rl",
+    dtype=torch.bfloat16,
+    attn_implementation="flash_attention_2",
+).to("cuda").eval()
+scene = next(
+    read_scene_file(
+        "data/demo/planning_scenes.jsonl",
+        image_archive=ImageArchive.open("data/demo/frames.parquet"),
+    )
+).scene
+result = model.run(InferenceMode.REASONING_PLANNING, scene=scene, num_samples=6)
+print(result.reasoning)
+print(result.trajectories.shape)   # (6, 50, 3) -> (x, y, heading), 5 s at 10 Hz
+- VQA. Load the root directory without a planner and the VLM answers free-form driving questions on its own.
+- Perception. Attach the BEV head with
+QwenDrivePerception.from_pretrained("Qwen-Drive-1.0-4B/perception") ; it binds the same
+VLM and outputs 3D detections, occupancy and BEV map segmentation.
+- planner-rl was reward-optimized only on reasoning-conditioned rollouts, so run it in the
+reasoning planning mode.planner-sft covers both direct and reasoning planning.
+scripts/demo.py in the GitHub repository runs four bundled planning scenes and six
+perception frames end to end without any extra data.
+Citation
+If you find our work helpful, feel free to give us a cite.
+@misc{zhou2026qwendrive10initialstepvisionlanguage,
+      title={Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving},
+      author={Xin Zhou and Zongchuang Zhao and Zhibo Yang and Mingsheng Li and Humen Zhong and Shuai Bai and Du Chu and Ruizhe Chen and Zhaohai Li and Jun Tang and Qiuyue Wang and Mingkun Yang and Jiazhao Zhang and Dayiheng Liu and Dingkang Liang and Xiang Bai},
+      year={2026},
+      eprint={2609.00111},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2609.00111},
+}
+- Downloads last month
+- 361

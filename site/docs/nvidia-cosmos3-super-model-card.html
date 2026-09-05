@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:34:04Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos3-super-model-card&amp;body=Document%3A%20nvidia-cosmos3-super-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos3-Super%0AFingerprint%3A%205154588cd61267b327d2a2ece22387c033f1c38a0b7944fc810a9290c184bf93%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos3-super-model-card&amp;body=Document%3A%20nvidia-cosmos3-super-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos3-Super%0AFingerprint%3A%20610c26c74d10d429ecf4d6a19a84fdd6049661d3376288765797f7ed828dabda%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-05T06:21:18Z</td>
+          <td>text/html</td>
+          <td>324,770</td>
+          <td><code title="610c26c74d10d429ecf4d6a19a84fdd6049661d3376288765797f7ed828dabda">610c26c74d10d429</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T20:34:04Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -105,6 +112,14 @@
         <span class="ts">2026-08-17T06:16:38Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-08-17T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Cosmos3-Super" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Super</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-05T06:21:18Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-05T06:19Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Cosmos3-Super" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Super</a>          </div>
@@ -264,6 +279,7 @@ Dataset Overview
 - Time period for validation data collection: N/A (standard public benchmarks)
 Raw data from internal and external sources is transformed into training-ready data through multiple stages of curation, filtering, and quality review. Data acquisition spans diverse multimodal sources — robotics, autonomous driving, industrial environments, indoor and outdoor scenes, varied lighting and weather conditions, camera viewpoints, object categories, and human activities — to broaden coverage across Physical AI operating environments. Automated filtering pipelines remove corrupted, duplicate, low-quality, and restricted content. Metadata analysis, heuristic rules, and model-assisted classifiers are applied during preprocessing to flag anomalous distributions and low-diversity subsets. Human review supplements automated filtering for selected datasets, benchmark construction, and targeted quality analysis. Datasets are balanced across modalities and task categories — visual reasoning, text-to-image, text-to-video, image-to-video, audio generation, video transfer, action-conditioned generation, and action command generation — to reduce overrepresentation of narrow domains. Synthetic and simulation-based augmentation supplements coverage of rare physical interactions and edge-case scenarios. Deduplication and provenance tracking are applied across the corpus. The resulting processed data is converted into model-ready tokenized or encoded representations through modality-specific preprocessors before training begins.
 Training datasets passed through multiple layers of automated and manual safeguards designed to reduce the presence of harmful or policy-violating content across categories including weapons and weapons-related instructional content, criminal planning, child sexual abuse material (CSAM), non-consensual intimate imagery (NCII), sexual content involving minors, harassment, hate speech, profanity, threats and incitement to violence, self-harm or suicide-related content, and graphic violence. Data sources are reviewed for licensing compatibility, provenance, and alignment with internal data governance and safety policies before admission into training corpora. Automated filtering pipelines combine multiple detection strategies: hash-matching against known CSAM and NCII reference databases; classifier-based moderation models trained for explicit sexual content, hate speech, violence, weapons imagery, and other restricted categories; keyword and regex-based screening for criminal-planning, threats, and self-harm phrases in text data; metadata and provenance heuristics for source-level risk signals; and embedding-based anomaly detection to surface samples that fall outside expected distributions. Human review and targeted audits supplement automated filtering for selected datasets, benchmark construction, and safety-sensitive evaluation. For multimodal Physical AI data (robotics, autonomous driving, industrial scenes), additional filtering targets invalid action trajectories, physically implausible interactions, and unsafe control sequences. Synthetic and simulation-generated data are evaluated through internal validation before inclusion. Benchmark evaluations and red-team testing are applied post-training to surface remaining safety gaps across world generation, reasoning, audio, and action tasks. No large-scale data-filtering process can guarantee complete removal of all harmful content; residual risks may remain, particularly in rare edge cases or open-world deployment settings. Ongoing monitoring and dataset review continue post-release.
+- For more information about the datasets used to train this model, please see the Public Summary of Training Content.
 Data Modality and Training Data Size
 | Modality | Reasoning Data Sample Count | Generation Data Sample Count |
 |---|---|---|
@@ -830,11 +846,11 @@ Please make sure you have proper rights and permissions for all input image and 
 Users are responsible for model inputs and outputs. Users are responsible for ensuring safe integration of this model, including implementing guardrails as well as other safety mechanisms, prior to deployment.
 For more detailed information on ethical considerations for this model, please see the Model Card++ Explainability, Bias, Safety &amp; Security, and Privacy subcards. Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 120,406</pre>
+- 117,575</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

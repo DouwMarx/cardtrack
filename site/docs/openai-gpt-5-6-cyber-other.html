@@ -66,7 +66,8 @@
           <td>text/html</td>
           <td>533,149</td>
           <td><code title="d25e3842599768fbbcadd1f613bfc01bc6613a01f35f74bd497a55d009e790da">d25e3842599768fb</code></td>
-          <td class="change-summary"><span class="muted">—</span></td>
+          <td class="change-summary">This version removes two blocks present in the previous capture: the macOS Keychain and Chrome cookies example, which had shown GPT-5.6-Cyber under Daybreak Red complying with a request to bypass Keychain prompts and decrypt Chrome cookies while the three other configurations refused, and a named customer testimonial about specialist vulnerability-research workflows. The surrounding refusal-rate, ExploitGym and ExploitBench results are unchanged.
+</td>
         </tr>
         <tr>
           <td>2026-08-14T07:10:52Z</td>
@@ -84,7 +85,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -134,6 +135,15 @@
         <strong>new_version</strong>
         <span class="run">run 2026-09-03T06:16Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/" rel="noopener nofollow">https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-05T06:32:32Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-05T06:19Z-local · agent</span>
+          <div class="just">change_summary: null → "This version removes two blocks present in the previous capture: the macOS Keychain and Chrome cookies example, which had shown GPT-5.6-Cyber under Daybreak Red complying with a request to bypass Keychain prompts and decrypt Chrome cookies while the three other configurations refused, and a named customer testimonial about specialist vulnerability-research workflows. The surrounding refusal-rate, ExploitGym and ExploitBench results are unchanged."</div>
+          <div class="just">Substantive rather than extraction noise: the diff is removal-only and removes two complete, semantically coherent blocks - a worked prompt-and-response comparison table and a quoted testimonial - while leaving all adjacent prose and every quantitative result byte-identical. An extraction artifact would normally perturb neighbouring text or table rows too. The removed example was the page&#39;s only concrete demonstration of the reduced-refusal behaviour it describes, so its removal is worth recording.</div>
           <div class="evidence">Evidence:
 <a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/" rel="noopener nofollow">https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/</a>          </div>
       </li>
@@ -199,6 +209,6 @@ We recommend Daybreak Blue as the starting point for most defenders. Teams whose
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

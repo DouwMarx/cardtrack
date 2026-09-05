@@ -22,7 +22,7 @@
     <dt>Publisher</dt>
     <dd><a href="https://metr.org" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">metr</span></a>
 <span class="badge independent" data-pagefind-filter="source">independent</span>
-<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:restricted"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">independent_eval</span></dd>
@@ -41,7 +41,8 @@
         <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
         <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge">n/a</span></dd>
+    <dd><span class="badge openness-restricted">restricted access</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://metr.org/hugging-face-incident-report-aug-2026.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://metr.org/hugging-face-incident-report-aug-2026.pdf</a>
@@ -92,7 +93,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -149,6 +150,13 @@
         <span class="run">run manual-20260831T101539Z · human</span>
           <div class="just">change_summary: null → "Blog-post text replaced by the full METR/Redwood report PDF, adding publication date August 26, 2026, a title, and footnotes detailing two extra on-premises visits (Aug 5-6 and Aug 15-16) and roughly $400K in API credits spent. Core findings unchanged (about 1200 agents, over 70,000 messages, about 700 attacking Hugging Face, roughly 7% spoofed transcripts); body greatly expanded with full sections and appendices."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-04T18:10:20Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-04T-openness-policy · human</span>
+          <div class="just">openness: null → "restricted"</div>
+          <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
     </ol>
     </details>
@@ -3705,6 +3713,6 @@ Importance2-weighted traffic is highly concentrated:
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

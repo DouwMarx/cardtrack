@@ -21,7 +21,7 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://www.anthropic.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">anthropic</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:restricted"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">other</span></dd>
@@ -41,7 +41,7 @@
         <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
         <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge openness-closed">closed weights</span>
+    <dd><span class="badge openness-restricted">restricted access</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -79,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -121,6 +121,13 @@
         <span class="run">run manual-20260831T152039Z · human</span>
           <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "loss_of_control", "safeguard_robustness"] → ["cbrn", "cyber", "loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-04T18:10:14Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-04T-openness-policy · human</span>
+          <div class="just">openness: "closed" → "restricted"</div>
+          <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
     </ol>
     </details>
@@ -7241,6 +7248,6 @@ purposes      preventing                                                   model
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

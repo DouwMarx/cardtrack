@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:32:41Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16%0AFingerprint%3A%20d48a971925ca4601b60aefa294eaf836d0a6fcacefb7309a18700464569e91e0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16%0AFingerprint%3A%20d22ac9ccf86eb78a5cb86f26de97244e30b1769474ed791773d851975eb2e7b4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-05T06:21:17Z</td>
+          <td>text/html</td>
+          <td>529,192</td>
+          <td><code title="d22ac9ccf86eb78a5cb86f26de97244e30b1769474ed791773d851975eb2e7b4">d22ac9ccf86eb78a</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-17T06:16:36Z</td>
           <td>text/html</td>
@@ -80,7 +87,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -123,6 +130,14 @@
         <span class="run">run manual-20260831T101602Z · human</span>
           <div class="just">change_summary: null → "Added a SWE-bench Multilingual score of 67.7 to the sidebar evaluation results."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-05T06:21:17Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-05T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16</a>          </div>
       </li>
     </ol>
     </details>
@@ -722,6 +737,7 @@ During post-training, we generate synthetic data by distilling trajectories, sol
 For all domains, we apply a unified data filtering pipeline to ensure that only high-quality, license-compliant, and verifiable samples are used for post-training. We first discard malformed examples using structural checks (e.g., missing tool definitions when tool calls are present). We then aggressively filter reasoning traces exhibiting pathological repetition, such as repeated n-grams within a sliding window or across the entire trajectory, which we found to be a strong indicator of malformed or low-quality reasoning. Finally, based on internal audits of synthetically generated datasets, we observed that some teacher models occasionally produce reasoning traces and final responses that implicitly align with specific political entities or promote nationalistic narratives. To mitigate this, we apply targeted keyword- and regex-based filters and remove all trajectories matching such behavior.
 Alongside the model, we release our final pre-training and post-training data, as outlined in this section. For ease of analysis, there is a sample set that is ungated. For all remaining code, math and multilingual data, gating and approval is required, and the dataset is permissively licensed for model training purposes.
 More details on the datasets and synthetic data generation methods can be found in the technical report NVIDIA Nemotron 3 Ultra.
+For more information about the datasets used to train this model, please see the Public Summary of Training Content
 For Detailed Dataset Information: Click here!
 Base Pre-Training Corpus (Nemotron 3 Foundation)
 The foundation of the model is trained on the Nemotron-3-Ultra corpus, comprising the following datasets from the Nemotron Pretraining Datasets collection:
@@ -974,23 +990,24 @@ Citation
   note   = {White Paper}
 }
 - Downloads last month
-- 448,199
+- 238,253
 Model tree for nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
-Space using nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 1
+Spaces using nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 3
 Collection including nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
 Article mentioning nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
 Evaluation results
-- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   71.9
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   87 *
-- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   86.8
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results    leaderboard   56.4 *
 - SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   67.7
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   71.9
 - cais/hle · Hle
 - No tools View evaluation results26.7 *
-- With tools View evaluation results37.4 *</pre>
+- With tools View evaluation results37.4 *
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   86.8</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

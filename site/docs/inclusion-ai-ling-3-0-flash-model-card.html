@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:47:45Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-3-0-flash-model-card&amp;body=Document%3A%20inclusion-ai-ling-3-0-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-3.0-flash%0AFingerprint%3A%2056b2d933db02ec323bb939a321c80cec07dafea79d4c3d3553febffc3261b14c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-3-0-flash-model-card&amp;body=Document%3A%20inclusion-ai-ling-3-0-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-3.0-flash%0AFingerprint%3A%20ecefd4763f6ae417b7b62e8666361c122f711f188905bd9870f8c7d8cbb96f05%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-05T06:21:02Z</td>
+          <td>text/html</td>
+          <td>278,317</td>
+          <td><code title="ecefd4763f6ae417b7b62e8666361c122f711f188905bd9870f8c7d8cbb96f05">ecefd4763f6ae417</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-10T09:47:45Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -110,6 +117,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/api/models/inclusionAI/Ling-3.0-flash" rel="noopener nofollow">https://huggingface.co/api/models/inclusionAI/Ling-3.0-flash</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-05T06:21:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-05T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ling-3.0-flash" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-flash</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -119,7 +134,13 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://huggingface.co/inclusionAI/Ling-3.0-flash" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>🤗 Hugging Face | 🤖 ModelScope | 🐙 OpenRouter
+      <pre class="extracted" data-pagefind-body>Instructions to use inclusionAI/Ling-3.0-flash with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+🤗 Hugging Face | 🤖 ModelScope | 🐙 OpenRouter
 Introduction
 We&#39;re introducing Ling-3.0-flash, our next-generation native hybrid reasoning model. Operating with 124B total and 5.1B active parameters (~12.4% and ~8.1% of our previous 1T-class flagship Ring-2.6-1T), Ling-3.0-flash matches or outperforms its predecessor across key benchmarks.
 Key highlights of the model are summarized below:
@@ -195,12 +216,12 @@ curl -s http://localhost:30000/v1/chat/completions \
      }&#39;
 For --reasoning-parser ling3 / --tool-call-parser ling3, the HiCache + Mooncake L3 setup, and GSM8K / bench_serving reproduction commands, see the cookbook page linked above.
 vLLM
-Install our vLLM
+Install vLLM
 pip install uv
 uv venv ~/my_ling_env
 source ~/my_ling_env/bin/activate
-git clone -b ling_3_0 https://github.com/inclusionAI/vllm-ling-v3.git
-cd vllm-ling-v3
+git clone https://github.com/vllm-project/vllm.git
+cd vllm
 VLLM_USE_PRECOMPILED=1 uv pip install --editable . --torch-backend=auto
 Run Inference
 Here is the example to run Ling-3.0-flash with 4 GPUs, where the server port is ${PORT}:
@@ -231,20 +252,20 @@ curl -s http://${MASTER_IP}:${PORT}/v1/chat/completions \
        &#34;top_p&#34;: 0.95
      }&#39;
 - Downloads last month
-- 5,261
+- 19,319
 Model tree for inclusionAI/Ling-3.0-flash
-Spaces using inclusionAI/Ling-3.0-flash 13
+Spaces using inclusionAI/Ling-3.0-flash 15
 Collection including inclusionAI/Ling-3.0-flash
 Evaluation results
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
 - SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results leaderboard
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results    leaderboard   93.2
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   56.6
 - cais/hle · Hle View evaluation results      22.7
 - MathArena/hmmt_feb_2026 · MathArena Hmmt Feb 2026 View evaluation results leaderboard</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

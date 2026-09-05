@@ -22,7 +22,7 @@
     <dt>Publisher</dt>
     <dd><a href="https://www.aisi.gov.uk" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">uk_aisi</span></a>
 <span class="badge independent" data-pagefind-filter="source">independent</span>
-<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:restricted"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">independent_eval</span></dd>
@@ -41,7 +41,7 @@
         <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
         <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge openness-closed">closed weights</span>
+    <dd><span class="badge openness-restricted">restricted access</span>
 </dd>
     <dt>Source</dt>
     <dd>
@@ -77,7 +77,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -124,6 +124,13 @@
         <span class="run">run manual-20260831T100847Z · human</span>
           <div class="just">risk_domains: [] → ["cyber", "loss_of_control"]</div>
           <div class="just">Risk-domain backfill (2026-08-31 classification pass): Incident report from cyber testing: agent autonomously attempted supply-chain attack, social engineering, prompt injection — unsanctioned goal-directed deception analysis</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-04T18:10:18Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-04T-openness-policy · human</span>
+          <div class="just">openness: "closed" → "restricted"</div>
+          <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
     </ol>
     </details>
@@ -193,6 +200,6 @@ You can read our technical incident report here.</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:32:42Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-super-120b-a12b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-super-120b-a12b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16%0AFingerprint%3A%20c03eeb9ad5cb7769477ad882c5e59aca52d642f99a8cb5cdb9a94fee0e4da1ee%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-super-120b-a12b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-super-120b-a12b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16%0AFingerprint%3A%204273ceb82f35115ace615e0a9dd6e0a2948313b247447707ba03c32d85a3cc67%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-05T06:21:18Z</td>
+          <td>text/html</td>
+          <td>549,358</td>
+          <td><code title="4273ceb82f35115ace615e0a9dd6e0a2948313b247447707ba03c32d85a3cc67">4273ceb82f35115a</code></td>
+          <td class="change-summary">The specification table adds a Speculative Decoding row noting a built-in MTP head plus an updated MTPv2 head available as a separate checkpoint. A pointer to NVIDIA&#39;s Public Summary of Training Content was added to the training-data section. Reported evaluation results now include SWE-bench Multilingual at 45.8, while the MMLU-Pro 83.73 entry was dropped.
+</td>
+        </tr>
         <tr>
           <td>2026-08-09T20:32:42Z</td>
           <td>text/html</td>
@@ -72,7 +80,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -106,6 +114,23 @@
         <strong>new_version</strong>
         <span class="run">run 2026-08-17T06:15Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-05T06:21:18Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-05T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-05T06:32:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-05T06:19Z-local · agent</span>
+          <div class="just">change_summary: null → "The specification table adds a Speculative Decoding row noting a built-in MTP head plus an updated MTPv2 head available as a separate checkpoint. A pointer to NVIDIA\u0027s Public Summary of Training Content was added to the training-data section. Reported evaluation results now include SWE-bench Multilingual at 45.8, while the MMLU-Pro 83.73 entry was dropped."</div>
+          <div class="just">Substantive: three authored additions to the card body (a new specification row disclosing a second MTP checkpoint, a new training-content disclosure link, and a new benchmark result), distinguishable from the download-count and Spaces-count churn in the same diff, which is ignored.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16</a>          </div>
       </li>
@@ -214,6 +239,7 @@ Model Summary
 | Supported Languages | English, French, German, Italian, Japanese, Spanish, Chinese |
 | Best For | Agentic workflows, long-context reasoning, high-volume workloads (e.g. IT ticket automation), tool use, RAG |
 | Reasoning Mode | Configurable on/off via chat template ( enable_thinking=True/False ) |
+| Speculative Decoding | Includes a built-in MTP head, with an updated MTPv2 head available as a separate checkpoint |
 | License | NVIDIA Nemotron Open Model License |
 | Release Date | March 11, 2026 |
 Quick Start
@@ -598,6 +624,7 @@ During post-training, we generate synthetic data by distilling trajectories, sol
 For all domains, we apply a unified data filtering pipeline to ensure that only high-quality, license-compliant, and verifiable samples are used for post-training. We first discard malformed examples using structural checks (e.g., missing tool definitions when tool calls are present). We then aggressively filter reasoning traces exhibiting pathological repetition, such as repeated n-grams within a sliding window or across the entire trajectory, which we found to be a strong indicator of malformed or low-quality reasoning. Finally, based on internal audits of synthetically generated datasets, we observed that some teacher models occasionally produce reasoning traces and final responses that implicitly align with specific political entities or promote nationalistic narratives. To mitigate this, we apply targeted keyword- and regex-based filters and remove all trajectories matching such behavior.
 Alongside the model, we release our final pre-training and post-training data, as outlined in this section. For ease of analysis, there is a sample set that is ungated. For all remaining code, math and multilingual data, gating and approval is required, and the dataset is permissively licensed for model training purposes.
 More details on the datasets and synthetic data generation methods can be found in the technical report NVIDIA Nemotron 3 Super.
+For more information about the datasets used to train this model, please see the Public Summary of Training Content
 Click to explore the full dataset catalogue used for training
 Base Pre-Training Corpus (Nemotron 3 Foundation)
 The foundation of the model is trained on the Nemotron-3-Nano corpus, comprising the following collections:
@@ -785,9 +812,9 @@ Citation
   note   = {White Paper}
 }
 - Downloads last month
-- 828,425
+- 1,068,106
 Model tree for nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16
-Spaces using nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16 8
+Spaces using nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16 9
 Collection including nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16
 Papers for nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16
 NVIDIA Nemotron 3: Efficient and Open Intelligence
@@ -795,18 +822,18 @@ Nemotron 3 Nano: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Mod
 Article mentioning nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16
 Nemotron 3 Nano \- A new Standard for Efficient, Open, and Intelligent Agentic Models
 Evaluation results
+- Idavidrein/gpqa · Diamond leaderboard
+- default View evaluation results79.23
+- With tools View evaluation results82.7 *
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved leaderboard
 - OpenHands harness View evaluation results60.47 *
 - OpenCode harness View evaluation results59.2 *
 - Codex harness View evaluation results53.73 *
-- Idavidrein/gpqa · Diamond leaderboard
-- default View evaluation results79.23
-- With tools View evaluation results82.7 *
-- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   83.73</pre>
+- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   45.8</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-04T14:00:09Z</p></footer>
+<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
 </body>
 </html>

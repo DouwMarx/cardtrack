@@ -1159,3 +1159,37 @@ and the friction log is the channel this system uses to find out that something 
 one `invalid_value` rejection on the `related_urls` kind; `settings.yaml` `agent.cmd` allows
 `Write` and `Edit` but scopes `Bash` to `propose_doc.py` and `comment_issue.py` only, which is
 consistent with Edit being the intended append mechanism — TASK.md just never says so.
+
+## 2026-09-05 — `has_safety_evals` has no rule for domain-safety metrics, and it is now a recurring call
+
+Problem: `has_safety_evals` is defined as "safety or dangerous-capability evaluations,
+red-teaming results, or a risk assessment", against a counter-example ("a generic limitations
+paragraph is false"). That resolves the *thin* end of the range. It does not resolve the case
+that actually keeps recurring: a card that reports genuine, quantitative safety evaluations of a
+model's behaviour **in its own task domain**, where none of the five `risk_domains` applies.
+
+Three instances so far, each decided by a different reading:
+
+- This run, `Qwen/Qwen-Drive-1.0-4B`: reports WaymoQA safety and at-fault collision scores.
+  Literally safety evaluations. I set `false`, on the argument that admitting them puts a driving
+  card into the site's safety filter next to frontier CBRN and cyber cards, which is the opposite
+  of the filter's purpose.
+- Earlier friction lines `has_safety_evals_undefined_for_dual_use_capability_report` and
+  `guardrail_model_safety_evals_flag_has_no_stable_reading` are the same question arriving from
+  the guardrail-model and dual-use-capability directions.
+
+The corpus already holds a non-trivial population where this decides the flag — NVIDIA Alpamayo
+(driving), GR00T and Isaac (robotics), Cosmos (world models), Gemini Robotics — so the flag is
+probably already inconsistent across rows that were judged by different runs.
+
+Suggested change: one line in `criteria.yaml` under `has_safety_evals`, e.g. "task-domain
+safety metrics (collision/at-fault rates, actuation limits, clinical accuracy) do not count;
+the flag tracks misuse, dangerous-capability and alignment evaluation only." Either polarity is
+fine — the value is that it is written down, because the flag's whole job is to be comparable
+across rows. If the answer is instead "they count", then the five-tag `risk_domains` vocabulary
+has a gap for physical/embodied safety and that is the change worth making.
+
+Evidence: this run's `alibaba-qwen-qwen-drive-1-0-4b-model-card` add, whose `notes` field carries
+the judgment call because there was nowhere authoritative to point; friction lines
+`ambiguous_criteria` (2026-09-05), `has_safety_evals_undefined_for_dual_use_capability_report`,
+`guardrail_model_safety_evals_flag_has_no_stable_reading`.
