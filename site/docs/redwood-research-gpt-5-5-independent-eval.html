@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:47:51Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-gpt-5-5-independent-eval&amp;body=Document%3A%20redwood-research-gpt-5-5-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/estimating-no-cot-task-completion%0AFingerprint%3A%207f48933edf42ae875ae11276956d052e8c707cf468899fd89dede193e8fa6387%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-gpt-5-5-independent-eval&amp;body=Document%3A%20redwood-research-gpt-5-5-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/estimating-no-cot-task-completion%0AFingerprint%3A%2001d8a24e00e51d47d17ccc6e224f36175e7e6cff61e66c06bc14b0255df1a586%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-06T06:17:30Z</td>
+          <td>text/html</td>
+          <td>179,615</td>
+          <td><code title="01d8a24e00e51d47d17ccc6e224f36175e7e6cff61e66c06bc14b0255df1a586">01d8a24e00e51d47</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-10T09:47:51Z</td>
           <td>text/html</td>
@@ -75,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -127,6 +134,14 @@
           <div class="just">risk_domains: ["ai_rnd", "loss_of_control"] → ["loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-06T06:17:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-06T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion" rel="noopener nofollow">https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -136,9 +151,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Estimating No-CoT Task-Completion Time Horizons of Frontier AI Models
-Models&#39; no-CoT time horizon has doubled roughly every year.
-by Francis Rhys Ward, Dewi Gould, Anders Cairns Woodruff et al. (see full author list at the end)
+      <pre class="extracted" data-pagefind-body>by Francis Rhys Ward, Dewi Gould, Anders Cairns Woodruff et al. (see full author list at the end)
 About a year ago, METR showed that the length of tasks frontier models can reliably complete doubles every few months. A related safety-relevant question is this: what length of tasks can models complete without any chain of thought (CoT)? We investigate in our new paper.
 If models can do extensive reasoning without outputting any CoT, it would have implications for safety. Developers and deployment-time monitors couldn’t easily understand models’ motivations and catch dangerous planning. Models that reason substantially without a CoT might also drift further from human patterns of thought, since their reasoning is no longer constrained by text in the pretraining prior. As a result, they would be harder to understand and might be more likely to scheme.
 Extending Ryan Greenblatt’s research, we investigate this by measuring models’ ability to complete tasks without any CoT on a suite of 43 benchmarks spanning different domains. We compare AI reasoning ability to humans using the estimated 50% time horizon (TH)---the typical time taken for a human to perform a task that the LLM performs with 50% success rate. We find that frontier models like GPT-5.5 answer questions that take humans roughly three minutes with 50% reliability, and this TH has doubled approximately every year since 2019.
@@ -179,6 +192,6 @@ Datasets are held back from public release to avoid training contamination; avai
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
+<footer><p>Data updated 2026-09-06T06:32:03Z</p></footer>
 </body>
 </html>

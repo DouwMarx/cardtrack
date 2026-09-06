@@ -61,7 +61,8 @@
           <td>text/html</td>
           <td>278,317</td>
           <td><code title="ecefd4763f6ae417b7b62e8666361c122f711f188905bd9870f8c7d8cbb96f05">ecefd4763f6ae417</code></td>
-          <td class="change-summary"><span class="muted">—</span></td>
+          <td class="change-summary">The vLLM deployment instructions were switched from InclusionAI own fork (git clone -b ling_3_0 of vllm-ling-v3, described as Install our vLLM) to upstream vllm-project/vllm, indicating Ling 3.0 flash support has landed in mainline vLLM. Remaining diff lines are Hugging Face widget boilerplate and download or Spaces counters.
+</td>
         </tr>
         <tr>
           <td>2026-08-10T09:47:45Z</td>
@@ -79,7 +80,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -122,6 +123,15 @@
         <strong>new_version</strong>
         <span class="run">run 2026-09-05T06:19Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ling-3.0-flash" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-flash</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-06T06:29:48Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-06T06:15Z-local · agent</span>
+          <div class="just">change_summary: null → "The vLLM deployment instructions were switched from InclusionAI own fork (git clone -b ling_3_0 of vllm-ling-v3, described as Install our vLLM) to upstream vllm-project/vllm, indicating Ling 3.0 flash support has landed in mainline vLLM. Remaining diff lines are Hugging Face widget boilerplate and download or Spaces counters."</div>
+          <div class="just">The substantive part of the v491 diff is the change of supported inference path from a vendor fork to upstream vLLM, which is a real deployment-facing change to the model card. The rest of the diff is page furniture and counters, which I have said so explicitly rather than implying the whole diff was meaningful.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ling-3.0-flash" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-flash</a>          </div>
       </li>
@@ -266,6 +276,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
+<footer><p>Data updated 2026-09-06T06:32:03Z</p></footer>
 </body>
 </html>

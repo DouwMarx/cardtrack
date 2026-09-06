@@ -54,12 +54,12 @@
     <dt>First seen</dt>
     <dd>2026-08-17T06:19:10Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Google DeepMind serves this card in two formats: the HTML page catalogued here (deepmind.google/models/model-cards/gemini-3-7-flash/) and a PDF twin at https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf (HTTP 200, 313 KB, verified 2026-08-17). Same publisher, same document, two surfaces - not a co-publication. Recorded here because the corpus is split on which surface it treats as canonical: Gemini 3.5 Flash (id 13) and 3.6 Flash (id 14) point at the PDF, while 3.5 Flash-Lite (35), Omni Flash (36) and the Robotics cards point at the HTML page, and both surfaces exist live for each. Only the catalogued URL is link-checked and fingerprinted.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-7-flash-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-7-flash-model-card%0AURL%3A%20https%3A//storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf%0AFingerprint%3A%20682ec9be1850460b863a4b01e42c2d4a899368976eb0ce7bc6b3014b1c30198e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-7-flash-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-7-flash-model-card%0AURL%3A%20https%3A//storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf%0AFingerprint%3A%206b8eef45dd83ba75279ee7282c5541cce316df6ffddff798458517e7267d0e59%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -67,6 +67,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-06T06:17:32Z</td>
+          <td>application/pdf</td>
+          <td>386,307</td>
+          <td><code title="6b8eef45dd83ba75279ee7282c5541cce316df6ffddff798458517e7267d0e59">6b8eef45dd83ba75</code></td>
+          <td class="change-summary">The Description section now credits Gemini 3.7 Flash with algorithmic improvements to its core reasoning foundation and support for agentic video understanding, where the previous revision listed only the reasoning improvements. The Benefit and Intended Usage list correspondingly adds complex video reasoning to agentic workflows, coding tasks, and enterprise workflows. No benchmark figures, safety sections, or known limitations changed.
+</td>
+        </tr>
         <tr>
           <td>2026-08-31T09:50:29Z</td>
           <td>application/pdf</td>
@@ -99,7 +107,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 11 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -181,6 +189,23 @@
           <div class="just">risk_domains: ["ai_rnd", "cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-06T06:17:32Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-06T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-06T06:29:42Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-06T06:15Z-local · agent</span>
+          <div class="just">change_summary: null → "The Description section now credits Gemini 3.7 Flash with algorithmic improvements to its core reasoning foundation and support for agentic video understanding, where the previous revision listed only the reasoning improvements. The Benefit and Intended Usage list correspondingly adds complex video reasoning to agentic workflows, coding tasks, and enterprise workflows. No benchmark figures, safety sections, or known limitations changed."</div>
+          <div class="just">The diff for v513 is a capability-scope change to the model card text, not extraction noise: two sentences were rewritten to add agentic video understanding as a supported capability, matching the Google announcement of agentic video in Gemini. Recording it so the version history shows why the card changed.</div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/gemini-3-7-flash/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-3-7-flash/</a> · <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/" rel="noopener nofollow">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -207,8 +232,9 @@ Model Information
 
 Description
 Gemini 3.7 Flash is the next iteration in the Gemini 3 model family, featuring algorithmic
-improvements to its core reasoning foundation. It supports customizable thinking
-configurations to control the mix of quality, cost and latency.
+improvements to its core reasoning foundation and support for agentic video understanding.
+It supports customizable thinking configurations to control the mix of quality, cost and
+latency.
 
 Model dependencies
 Gemini 3.7 Flash is based on Gemini 3.6 Flash.
@@ -283,10 +309,10 @@ deepmind.com/models/evals-methodology/gemini-3-7-flash
 Intended Usage and Limitations
 
 Benefit and Intended Usage
-Gemini 3.7 Flash is well-suited for users, developers, and enterprises, some use cases include:
-agentic workflows, coding tasks, and enterprise workflows.
+Gemini 3.7 Flash is well-suited for users, developers, and enterprises. Some use cases include:
+agentic workflows, complex video reasoning, coding tasks, and enterprise workflows.
 
-                                                                                              5
+                                                                                             5
 Known Limitations
 Gemini 3.7 Flash may exhibit some of the general limitations of foundation models, such as
 hallucinations. In addition to this, we are continually working to improve jailbreak resistance
@@ -454,6 +480,6 @@ The Gemini 3.7 Frontier Safety Framework Report is available here.
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
+<footer><p>Data updated 2026-09-06T06:32:03Z</p></footer>
 </body>
 </html>

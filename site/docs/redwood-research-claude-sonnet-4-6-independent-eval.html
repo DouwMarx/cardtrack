@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:47:51Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-claude-sonnet-4-6-independent-eval&amp;body=Document%3A%20redwood-research-claude-sonnet-4-6-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short%0AFingerprint%3A%20bb3233e11764fb21ac48feebc0000216a75c324be0ed1344f19b02972c0cc84c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-claude-sonnet-4-6-independent-eval&amp;body=Document%3A%20redwood-research-claude-sonnet-4-6-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short%0AFingerprint%3A%2088034aa187e38f3d39cd8c477597614bc164079c157aab35dc077ea315024f3a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-06T06:17:30Z</td>
+          <td>text/html</td>
+          <td>410,664</td>
+          <td><code title="88034aa187e38f3d39cd8c477597614bc164079c157aab35dc077ea315024f3a">88034aa187e38f3d</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-10T09:47:51Z</td>
           <td>text/html</td>
@@ -75,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -120,6 +127,14 @@
           <div class="just">risk_domains: [] → ["loss_of_control"]</div>
           <div class="just">Risk-domain backfill (2026-08-31 classification pass): AI-control protocol research (untrusted advisor with information bottlenecks, trusted monitoring) with usefulness experiments on BashArena/SWE-bench.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-06T06:17:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-06T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short" rel="noopener nofollow">https://blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -129,9 +144,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Untrusted advice for AI control: Short, strong advice significantly uplifts weak LLMs
-When a misaligned AI can only output tiny amounts of information, it may find sabotage very difficult
-TL;DR: We introduce the untrusted advice protocol, in which a trusted executor LLM takes every action and an untrusted advisor LLM can only send it short hints. Even with as few as 4 characters per step, this advice recovers a substantial fraction of the capability gap between the two models. Because the untrusted LLM’s influence flows through such a narrow, monitorable channel, we argue that this achieves near-maximal safety in our BashArena setting. We also discuss the general concept of information bottlenecks and their benefits for interpretability, security, and cost.
+      <pre class="extracted" data-pagefind-body>TL;DR: We introduce the untrusted advice protocol, in which a trusted executor LLM takes every action and an untrusted advisor LLM can only send it short hints. Even with as few as 4 characters per step, this advice recovers a substantial fraction of the capability gap between the two models. Because the untrusted LLM’s influence flows through such a narrow, monitorable channel, we argue that this achieves near-maximal safety in our BashArena setting. We also discuss the general concept of information bottlenecks and their benefits for interpretability, security, and cost.
 In high-stakes AI control, we want to safely use a highly capable but untrusted model (U) that might secretly attempt a misaligned, catastrophic action. To do this, we create protocols that call U alongside a less capable, trusted model (T). Typically, T takes an auxiliary role in these protocols: for example, T might monitor U’s actions and alert a human if they are suspicious enough (trusted monitoring), or rewrite or replace moderately suspicious actions (trusted editing, defer-to-trusted). However, since U can freely attempt any action, there remains a meaningful possibility that it can fool T and cause a catastrophe.
 We introduce the untrusted advice protocol, in which all actions are taken by T. U can only communicate to T through a restricted channel, sending it advice about what to do next. As in trusted monitoring, another instance of T can monitor U, notifying a human of any suspicious-looking advice. To cause a catastrophe, U would somehow have to send advice that causes T to take malicious actions, without T noticing that its own actions are malicious! Given sufficient restrictions on U’s advice, it should be much more difficult for U to cause a catastrophe by advising T than by taking actions directly.
 In our experiments, we use information bottlenecks to restrict U’s advice, limiting the amount of information contained in each message from U. A motivation of this project was to explore control protocols with nearly 100% safety,1 and we believe that information bottlenecks help us make this case for untrusted advice. Given a narrow enough bottleneck:
@@ -324,6 +337,6 @@ Note that in best-of-n, U exerts influence by choosing actions that T is likely 
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-05T06:32:32Z</p></footer>
+<footer><p>Data updated 2026-09-06T06:32:03Z</p></footer>
 </body>
 </html>

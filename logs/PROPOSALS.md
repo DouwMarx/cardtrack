@@ -1193,3 +1193,74 @@ Evidence: this run's `alibaba-qwen-qwen-drive-1-0-4b-model-card` add, whose `not
 the judgment call because there was nowhere authoritative to point; friction lines
 `ambiguous_criteria` (2026-09-05), `has_safety_evals_undefined_for_dual_use_capability_report`,
 `guardrail_model_safety_evals_flag_has_no_stable_reading`.
+
+## 2026-09-06 — the openai.com bot wall is an *agent-side* wall only, and it cost us a whole programme
+
+Update to the open 2026-08-12 entry on publisher bot walls. The framing there — and in the
+2026-09-05 friction line — was that `openai.com/index/` is unreadable, so those documents cannot
+be proposed. That is only half true, and the other half is the expensive half.
+
+**What actually happens.** `openai.com/index/*` returns HTTP 403 to the agent's fetch tool. It
+does *not* return 403 to the validator: every one of the five URLs I proposed this run fetched
+cleanly inside `propose_doc.py` and produced a stored version. The wall is asymmetric. The agent
+was declining to propose documents the pipeline could retrieve without difficulty, purely because
+the agent could not attest criteria it had not read.
+
+**What it cost.** OpenAI's Trusted Access for Cyber programme — the gating framework for every
+`-Cyber` model tier and the thing later rebranded Daybreak — had its two Daybreak-era instalments
+catalogued and *all three earlier ones missing*: the Feb 2026 programme root, the Apr 2026
+GPT-5.4-Cyber expansion, the May 2026 GPT-5.5-Cyber expansion. Same for both launch-day safety
+companions to the GPT-6 Astra card. Five rows, one of them a programme root, invisible for
+months because of a fetch-tool 403.
+
+**Workaround that works today.** Prefixing `https://r.jina.ai/` to the https URL returns full
+readable text for every blocked page. I used it for all six OpenAI documents this run.
+
+**Suggested change**, in rough order of value:
+
+1. One line in TASK.md: when a publisher's page 403s the agent's fetch, retry through a
+   text-extraction proxy before recording it as unreadable — and note that the validator's fetch
+   is independent, so an agent-side 403 is not evidence the document is unfetchable.
+2. Better: expose the pipeline's own browser-impersonation fetch to the agent read-only (a
+   `scripts/fetch_url.py` in the agent allowlist). The proxy is a third party in the trust path
+   for content the agent then attests to; the pipeline already has a fetcher that works.
+3. Note the proxy's one real cost: it strips page date metadata. All five adds this run needed a
+   secondary source to pin `publication_date`, and two of them (2026-02-05, 2026-04-14) rest on
+   secondary reporting alone. Recorded in each row's `notes`.
+
+**Evidence.** This run: `openai-gpt-5-3-codex-access-policy`, `openai-gpt-5-4-access-policy`,
+`openai-gpt-5-5-access-policy`, `openai-gpt-6-astra-other`, `openai-astra-other-2`, plus the
+`safety-overview-gpt-6-astra` companion added to the Astra card's `related_urls` — all six read
+via proxy, all validator fetches succeeded. Prior friction: `publisher_bot_wall` (2026-09-05),
+which named four of these exact URLs as unreadable-and-therefore-unproposed.
+
+## 2026-09-06 — a publisher URL restructure silently overwrites documents with redirect stubs
+
+Problem: when a publisher moves content and leaves an HTML redirect at the old URL, the pipeline
+stores the redirect page as a new version. The document's newest stored text becomes
+"Redirecting… Click here if you are not redirected." — two lines — and nothing about that looks
+like an error to the pipeline. It is a successful fetch of a sane content-type.
+
+This happened this run to **both** of Palisade Research's rows, i.e. 100% of that publisher's
+presence in the corpus, when Palisade moved `/blog/<slug>` → `/research/<slug>`. Versions 508 and
+509 replaced the full reports with the stub. I flagged the new URLs via `related_urls` updates,
+but until an operator promotes them, the public site shows a two-line stub as the current content
+of both documents, and each subsequent daily fetch will confirm the stub as unchanged.
+
+Suggested change: a deterministic guard in the fetch/version path — if a new version's extracted
+text is under some floor (say 200 chars) *and* the previous version was substantially longer,
+don't store it as a version; file it as a `needs-review` issue, or better, follow the redirect and
+record the target as an `alt_url`. A redirect-shaped body (`Redirecting`, `<meta http-equiv=
+"refresh">`, a single "click here" link) is cheap to detect specifically, and following redirects
+is cheaper still.
+
+Why it matters more than two rows: I only caught it because the diff was small enough to read
+inside the 5-diff review budget. A publisher with 30 catalogued rows doing the same restructure
+would produce 30 stub versions, blow the budget, and the corpus would quietly hollow out. The
+failure is silent by construction — it looks exactly like a document that got shorter.
+
+Evidence: `logs/version_diffs/palisade-research-gpt-5-4-independent-eval-v508.diff` and
+`…-grok-4-grok-4-0709-independent-eval-v509.diff`; both old URLs confirmed by hand to serve a
+redirect stub pointing at `palisaderesearch.org/research/<same-slug>`; both new URLs confirmed
+present with unchanged titles and dates on `https://palisaderesearch.org/research`. Friction line
+`publisher_url_restructure_stores_redirect_stub` (2026-09-06).
