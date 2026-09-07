@@ -22,7 +22,7 @@
     <dt>Publisher</dt>
     <dd><a href="https://www.rand.org" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">rand</span></a>
 <span class="badge independent" data-pagefind-filter="source">independent</span>
-<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">independent_eval</span></dd>
@@ -40,7 +40,8 @@
     <dd><span class="badge risk-domain">CBRN</span>
         <span hidden data-pagefind-filter="risk:cbrn"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge">unclear</span></dd>
+    <dd><span class="badge openness-closed">closed weights</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www.rand.org/content/dam/rand/pubs/research_reports/RRA4700/RRA4741-1/RAND_RRA4741-1.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://www.rand.org/content/dam/rand/pubs/research_reports/RRA4700/RRA4741-1/RAND_RRA4741-1.pdf</a>
@@ -93,7 +94,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 11 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -176,6 +177,20 @@
         <span class="run">run manual-20260831T101556Z · human</span>
           <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:39:04Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">openness: null → "closed"</div>
+          <div class="just">Openness backfill under the 2026-09-04 policy (openness = most restricted class among model_names): every model named in this row is publicly available (public API and/or public weights) and at least one is API-only with no public weights, so the most restricted class is closed. Previously NULL because the retired spans-classes rule was never applied here.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:40:45Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">openness: "closed" → "closed"</div>
+          <div class="just">Openness backfill under the 2026-09-04 policy (openness = most restricted class among model_names): every model named in this row is publicly available (public API and/or public weights) and at least one is API-only with no public weights, so the most restricted class is closed. Previously NULL because the retired spans-classes rule was never applied here.</div>
       </li>
     </ol>
     </details>
@@ -2529,6 +2544,6 @@ Sciences.
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-07T06:33:44Z</p></footer>
+<footer><p>Data updated 2026-09-07T06:40:49Z</p></footer>
 </body>
 </html>

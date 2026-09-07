@@ -22,7 +22,7 @@ const OPENNESS_LABELS = {
   closed: "closed",
   open_weight_restrictive: "open (restrictive)",
   open_weight_permissive: "open (permissive)",
-  na: "n/a",
+  na: "unclear",
 };
 
 const state = {
@@ -115,7 +115,7 @@ function cellHtml(d, key) {
     }
     case "openness": {
       const label = OPENNESS_LABELS[d.openness];
-      if (!label || d.openness == null) return '<td><span class="badge">n/a</span></td>';
+      if (!label || d.openness == null) return '<td><span class="badge">unclear</span></td>';
       const cls = { closed: "openness-closed", open_weight_restrictive: "openness-restrictive",
                     open_weight_permissive: "openness-permissive" }[d.openness] || "";
       return `<td><span class="badge ${cls}">${label}</span></td>`;

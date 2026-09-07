@@ -50,7 +50,10 @@ for clarification, is always the safe move.
    and evidence URLs. Skip marketing pages, product launches without documentation,
    and press coverage.
 2. **Targeted web search**: search for model/system cards and independent evals
-   released in the last ~72 hours; also check any allowlisted org silent for >14 days.
+   released since the last successful agent run (`logs/.agent_last_success`;
+   minimum lookback ~72 hours, and use 72h if the file is missing) — a fixed
+   window would leave a permanent blind spot after any multi-day outage. Also
+   check any allowlisted org silent for >14 days.
    Search patterns: "<org> system card", "<org> model card <model>", "<evaluator>
    evaluation report <model>".
    **Restricted-access programs**: also search for documents about gated/trusted
@@ -67,14 +70,25 @@ for clarification, is always the safe move.
    `model_names` and say so in `notes`. Cheapest recall is polling known program
    names: GPT-Rosalind / Rosalind Biodefense, OpenAI Daybreak (Blue/Red), Anthropic
    Project Glasswing / Claude Mythos access, Anthropic Life Sciences Verification
-   Program (LSVP, the US-government-partnered biology access program — watch for
-   its enrollment opening) / Cyber Verification Program, Claude Science (AI
+   Program (LSVP, the US-government-partnered biology access program — first
+   participants enrolled as of Sep 2026, US organizations only; watch for
+   expansion news and a dedicated program page) / Cyber Verification Program
+   (watch for its Mythos-class access opening), Claude Science (AI
    workbench for scientists), Gemini for Science / Co-Scientist / labs.google
    science experiments, Gemini Flash Cyber / CodeMender, DeepMind–Isomorphic
    Bioresilience — new documents in this class almost always name their program.
 3. **Citation mining**: for documents added in the last few runs (see state summary),
    fetch them and look for references to predecessor cards and third-party evals not
    yet in the database. Propose the ones that qualify (`source_of_lead: citation`).
+   **Weekly retrospective sweep** (on runs whose UTC date is a Monday): pick the
+   2-3 allowlisted orgs whose newest entry in the state summary is oldest, and
+   search each WITHOUT a recency filter for documentation the pipeline may never
+   have seen — system/model cards, access programs, eval reports published any
+   time on/after the scope floor. Index diffing only sees links that appear
+   while we watch, and the daily search only looks back days; this sweep is the
+   channel that catches documents that predate monitoring (this is how the
+   Claude Science and Gemini for Science program pages were missed for weeks).
+   Check candidates against the state summary before proposing.
 4. **Investigate open issues** (`logs/open_issues.json`): verify each claim against
    the live source. If a correction is warranted, submit `status_change` /
    `field_update` proposals citing the issue as lead (`issue:<n>`). Then comment the
@@ -169,14 +183,20 @@ document contains safety or dangerous-capability
 evaluations, red-teaming results, or a risk assessment — a generic "limitations"
 paragraph is false. Documents without safety evals are still in scope (release
 tracking); the flag is how the site keeps the safety signal visible.
-`openness` (optional; set it only when verified): availability of the model(s)
-the document covers — `restricted` (no public weights AND no public API: access
-gated to vetted parties, e.g. GPT-Rosalind, Claude Mythos, Gemini Flash Cyber),
-`closed` (no public weights, public API), `open_weight_restrictive`
-(public weights under a use-restricted or community license, e.g. Llama/Gemma terms),
-`open_weight_permissive` (Apache/MIT/BSD-class license). Omit when the document is
-not model-specific, spans models in different openness classes, or you cannot
-verify the license.
+`openness` (set it whenever verifiable): the availability class of the MOST
+RESTRICTED model in `model_names`, ordered restricted < closed <
+open_weight_restrictive < open_weight_permissive — `restricted` (no public
+weights AND no public API: access gated to vetted parties, e.g. GPT-Rosalind,
+Claude Mythos, Gemini Flash Cyber, internal-only research models), `closed`
+(no public weights, public API), `open_weight_restrictive` (public weights under
+a use-restricted or community license, e.g. Llama/Gemma terms),
+`open_weight_permissive` (Apache/MIT/BSD-class license). A document naming any
+vetted-access model is `restricted` even when it also covers public models
+(policy 2026-09-04: the restricted filter must surface every document about
+gated models; there is deliberately NO omit-when-spanning rule — it had a 12%
+compliance rate). Omit ONLY when no specific model is named and the document
+itself does not make the class clear (a family-only row about a public-API
+product is `closed`), or when access/license terms cannot be verified.
 `notable_release`: canonical enough to catalog — announced by the org, widely used,
 or independently covered. Do not propose obscure checkpoints, size/quant re-uploads,
 or unaffiliated re-hosts. (An official copy on a launch partner's own site is a
@@ -186,10 +206,13 @@ co-publication, not a mirror — see below.)
 a NAMED model and under what conditions: trusted/restricted-access program pages,
 access-tier overviews, policy-change posts (safeguard removal or reinstatement,
 access expansion/revocation), and program launch posts that name the gated model.
-A named model FAMILY qualifies when the program gates the family's capabilities as
-a whole (science-workbench and trusted-access programs often do). The named-model
-requirement is still the gate: a generic AI-policy essay or a partnership
-announcement without a named model or family still gets skipped. Documents in
+A named model FAMILY qualifies when the program gates the family's capabilities
+as a whole AND has real program structure — an application, vetting, registration,
+or defined-community eligibility condition (science-workbench and trusted-access
+programs usually do). A general-availability product launch whose only "gate" is
+a paid tier is NOT an access policy. The named-model requirement is still the
+gate: a generic AI-policy essay or a partnership announcement without a named
+model or family still gets skipped. Documents in
 this class are usually HTML (program pages, dated news posts), and that is fine.
 
 **Scope discipline for `doc_type: other`** — reserve it for model-specific

@@ -21,7 +21,7 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://www.anthropic.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">anthropic</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">other</span></dd>
@@ -40,7 +40,8 @@
         <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
         <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge">unclear</span></dd>
+    <dd><span class="badge openness-closed">closed weights</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www-cdn.anthropic.com/7b1c44894e980876479947dcdd40716278aeeffd/automated-alignment-researchers-august-2026.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://www-cdn.anthropic.com/7b1c44894e980876479947dcdd40716278aeeffd/automated-alignment-researchers-august-2026.pdf</a>
@@ -87,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -144,6 +145,20 @@
         <span class="run">run manual-20260831T152040Z · human</span>
           <div class="just">risk_domains: ["ai_rnd", "harmful_manipulation", "loss_of_control", "safeguard_robustness"] → ["harmful_manipulation", "loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:39:06Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">openness: null → "closed"</div>
+          <div class="just">Openness backfill under the 2026-09-04 policy (openness = most restricted class among model_names): every model named in this row is publicly available (public API and/or public weights) and at least one is API-only with no public weights, so the most restricted class is closed. Previously NULL because the retired spans-classes rule was never applied here.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:40:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">openness: "closed" → "closed"</div>
+          <div class="just">Openness backfill under the 2026-09-04 policy (openness = most restricted class among model_names): every model named in this row is publicly available (public API and/or public weights) and at least one is API-only with no public weights, so the most restricted class is closed. Previously NULL because the retired spans-classes rule was never applied here.</div>
       </li>
     </ol>
     </details>
@@ -3012,6 +3027,6 @@ not it succeeded. The categories and rubric follow.
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-07T06:33:44Z</p></footer>
+<footer><p>Data updated 2026-09-07T06:40:49Z</p></footer>
 </body>
 </html>

@@ -21,7 +21,7 @@
   <dl class="meta">
     <dt>Publisher</dt>
     <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
-<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
         <span hidden data-pagefind-meta="source_kind:pdf"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">other</span></dd>
@@ -36,7 +36,8 @@
     <dd><span class="badge safety-no">none found</span>
 </dd>
     <dt>Openness</dt>
-    <dd><span class="badge">unclear</span></dd>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://d1qx31qr3h6wln.cloudfront.net/publications/Nemotron_Diffusion_Tech_Report.pdf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://d1qx31qr3h6wln.cloudfront.net/publications/Nemotron_Diffusion_Tech_Report.pdf</a>
@@ -71,7 +72,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -108,6 +109,15 @@
           <div class="just">taxonomy change: &#39;mixed&#39; retired; openness is only assigned when a document covers model(s) in a single openness class, so multi-class documents are n/a</div>
           <div class="evidence">Evidence:
 <a href="https://d1qx31qr3h6wln.cloudfront.net/publications/Nemotron_Diffusion_Tech_Report.pdf" rel="noopener nofollow">https://d1qx31qr3h6wln.cloudfront.net/publications/Nemotron_Diffusion_Tech_Report.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:40:48Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">openness: null → "open_weight_restrictive"</div>
+          <div class="just">Verified 2026-09-07: 3B/8B/14B ship under the permissive-class nvidia-nemotron-open-model-license, but Nemotron-Labs-Diffusion-VLM-8B is license_name nscl-v1 (NVIDIA Source Code License, research/evaluation only per its License section; the page&#39;s NVIDIA Open Model License badge is stale copy-paste contradicted by its own front matter and prose). Most restricted class among the four named models = open_weight_restrictive.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-VLM-8B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-VLM-8B</a> · <a href="https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-14B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Diffusion-14B</a>          </div>
       </li>
     </ol>
     </details>
@@ -1692,6 +1702,6 @@ where 𝜆 ∈ [0, 1] controls the interpolation.
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-07T06:33:44Z</p></footer>
+<footer><p>Data updated 2026-09-07T06:40:49Z</p></footer>
 </body>
 </html>

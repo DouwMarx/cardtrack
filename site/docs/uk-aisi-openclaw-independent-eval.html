@@ -22,7 +22,7 @@
     <dt>Publisher</dt>
     <dd><a href="https://www.aisi.gov.uk" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">uk_aisi</span></a>
 <span class="badge independent" data-pagefind-filter="source">independent</span>
-<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
         <span hidden data-pagefind-meta="source_kind:web"></span></dd>
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">independent_eval</span></dd>
@@ -40,7 +40,8 @@
     <dd><span class="badge risk-domain">Loss of control</span>
         <span hidden data-pagefind-filter="risk:loss_of_control"></span></dd>
     <dt>Openness</dt>
-    <dd><span class="badge">unclear</span></dd>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
     <dt>Source</dt>
     <dd>
       <a href="https://www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments</a>
@@ -49,6 +50,8 @@
     <dd>2026-08-09T22:34:17Z</dd>
     <dt>Versions</dt>
     <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>OpenClaw is an MIT-licensed open-source agent harness (github.com/openclaw/openclaw), not a weights release; it runs on user-supplied external LLM APIs. The article does not name the backing model, so openness reflects the harness license only.</dd>
   </dl>
 
   <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20uk-aisi-openclaw-independent-eval&amp;body=Document%3A%20uk-aisi-openclaw-independent-eval%0AURL%3A%20https%3A//www.aisi.gov.uk/blog/what-can-sandboxed-ai-agents-learn-about-their-evaluation-environments%0AFingerprint%3A%203684e5ac6a2bae8f1ba103c54c7f4eddf8a184cc0b1160585b26dbb629f851d0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
@@ -75,7 +78,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -101,6 +104,24 @@
         <span class="run">run manual-20260831T100851Z · human</span>
           <div class="just">risk_domains: [] → ["loss_of_control"]</div>
           <div class="just">Risk-domain backfill (2026-08-31 classification pass): Experiment on sandboxed agent information discovery, evaluation awareness, sandbagging risk, and exfiltration concerns.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:40:49Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">openness: null → "open_weight_permissive"</div>
+          <div class="just">Verified 2026-09-07: OpenClaw is MIT-licensed, self-hostable, and commercially usable (github.com/openclaw/openclaw). A verifiably MIT project must not sit in the unverifiable bucket.</div>
+          <div class="evidence">Evidence:
+<a href="https://github.com/openclaw/openclaw" rel="noopener nofollow">https://github.com/openclaw/openclaw</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-07T06:40:49Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-07T-openness-backfill · human</span>
+          <div class="just">notes: null → "OpenClaw is an MIT-licensed open-source agent harness (github.com/openclaw/openclaw), not a weights release; it runs on user-supplied external LLM APIs. The article does not name the backing model, so openness reflects the harness license only."</div>
+          <div class="just">Record the harness-vs-model caveat behind the openness value, per verification 2026-09-07.</div>
+          <div class="evidence">Evidence:
+<a href="https://github.com/openclaw/openclaw" rel="noopener nofollow">https://github.com/openclaw/openclaw</a>          </div>
       </li>
     </ol>
     </details>
@@ -133,6 +154,6 @@ Our experience with OpenClaw highlights the possibility of sandboxed AI agents a
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-07T06:33:44Z</p></footer>
+<footer><p>Data updated 2026-09-07T06:40:49Z</p></footer>
 </body>
 </html>

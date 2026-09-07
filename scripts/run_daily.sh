@@ -32,10 +32,12 @@ MON_JSON="$("${PY[@]}" scripts/monitor.py --run-id "$RUN_ID" --root "$ROOT")"
 echo "$MON_JSON"
 # Total link-check outage (network down): monitor.py freezes candidate expiry
 # itself; here we just make the day visibly abnormal in git log.
-MONITOR_OUTAGE="$(printf '%s' "$MON_JSON" | "${PY[@]}" - <<'PYEOF'
+# NB: the JSON must travel via argv — with a heredoc, stdin carries the script
+# itself, so piping data in would silently read nothing (bug found 2026-09-07).
+MONITOR_OUTAGE="$("${PY[@]}" - "$MON_JSON" <<'PYEOF'
 import json, sys
 try:
-    s = json.loads(sys.stdin.read().strip().splitlines()[-1])
+    s = json.loads(sys.argv[1].strip().splitlines()[-1])
     print(1 if s.get("checked", 0) > 0 and s.get("ok", 0) == 0 else 0)
 except Exception:
     print(0)
