@@ -1264,3 +1264,67 @@ Evidence: `logs/version_diffs/palisade-research-gpt-5-4-independent-eval-v508.di
 redirect stub pointing at `palisaderesearch.org/research/<same-slug>`; both new URLs confirmed
 present with unchanged titles and dates on `https://palisaderesearch.org/research`. Friction line
 `publisher_url_restructure_stores_redirect_stub` (2026-09-06).
+
+## 2026-09-07 — HuggingFace widget churn is manufacturing most of the diff queue
+
+Problem: the diff-review budget is 5 documents per run, and it is being spent almost entirely on
+HuggingFace page furniture rather than on document changes. Every HF model card ends with
+auto-generated blocks the publisher does not write — `Downloads last month`, `Spaces using …`,
+`Model tree for …`, `Collection including …`, and the community-contributed `Evaluation results`
+leaderboard. Those blocks change on their own schedule, and when HF re-renders the leaderboard the
+existing rows come back **in a different order**, which the differ reports as a large add/remove
+block. To an agent reading a diff of "7 added, 8 removed lines" this is indistinguishable from a
+publisher revising its reported benchmarks, so it must be read in full before it can be dismissed.
+
+Eight of this run's 20 pending diffs were exactly this, across five unrelated publishers on a
+single crawl date: v492 (tencent/Hy3), v493 (XiaomiMiMo/MiMo-V2.5-Pro), v483 and v478 (Qwen3.8-27B
+and Qwen3.8-Flash-Next), v484 and v485 (poolside Laguna-S-2.1 and Laguna-XS-2.1), v486
+(stepfun-ai/Step-3.5-Flash), plus the trailing half of v496 (nvidia/Cosmos3-Super). The giveaway is
+that the *same* new leaderboard rows — `harborframework/terminal-bench-2.1`,
+`llamaindex/ExtractBench` — appear simultaneously on cards from Tencent, Qwen, poolside and
+StepFun, which no coordinated publisher edit would produce. Only four of the 20 diffs were real
+document changes, and all four were on non-HF sources (two Google model-card PDFs, one NIST page)
+or were a genuine body-text insertion (v496's training-data disclosure line).
+
+Suggested change: strip the HF trailing furniture before diffing. Everything from the first
+occurrence of a `Downloads last month` / `Model tree for` / `Spaces using` heading to end-of-page
+is machine-generated and should be excluded from the stored text or at least from the diff — the
+same way one would exclude a nav bar. A narrower version, if dropping content is unwelcome: keep
+it in the stored version but sort the `Evaluation results` rows before diffing, which kills the
+reorder-as-change artefact on its own. Either one converts most of these to zero-line diffs that
+never enter `updated_docs.json`.
+
+Why it matters: this is not cosmetic. The budget is 5, HF-sourced rows are a large share of the
+corpus, and on a heavier crawl the noise alone exceeds the budget — meaning a real revision to a
+frontier card can sit unreviewed behind eight download counters. It also compounds the
+redirect-stub problem reported on 2026-09-06: both failure modes spend the same scarce budget, and
+both are silent.
+
+Evidence: the eight diff files named above, all in `logs/version_diffs/`; compare v493 (pure row
+reorder, zero text change) against v481/v480 (Gemini model-card PDFs, where the real edit —
+"complex video reasoning" added to intended use — is a two-line change that would be trivially
+visible if the HF noise were not competing for attention). Friction line
+`diff_noise_source_identified` (2026-09-07).
+
+## 2026-09-07 — a music-generation foundation model has no eligible publisher
+
+Problem: ACE-Step 1.5 (released 2026-01-28, MIT-licensed, open weights at `ACE-Step/Ace-Step1.5`,
+with a 4B-DiT "XL" update on 2026-04-02) is a music generation foundation model — squarely inside
+`covered_model_class`, which names "image/video/audio/music generation" explicitly. It is
+independently notable: AMD published a deployment guide for it, ComfyUI shipped native support, and
+it has 55k monthly downloads with 11 finetunes. But its publisher is the `ace-step` project, which
+is not on the allowlist, so there is no key to propose it under. Per TASK.md I am recording it here
+rather than proposing it under a neighbouring publisher.
+
+Note it was *reached* through StepFun, which co-developed the original ACE-Step with ACE Studio —
+so the allowlist has a partial hold on this lineage without covering the releases themselves.
+
+Suggested change: either add `ace_step` to `publishers` in `config/sources.yaml` (homepage
+`https://github.com/ace-step`, index `https://huggingface.co/ACE-Step`), or record a conscious
+exclusion next to the MLCommons note so future retrospective sweeps stop re-deriving it. I have no
+view on which; the point is that right now it is neither included nor deliberately excluded, and
+the music-generation slice of `covered_model_class` currently has no allowlisted publisher at all.
+
+Evidence: surfaced by the Monday retrospective sweep of StepFun (2026-09-07). `covered_model_class`
+in `config/criteria.yaml` lists music generation as in scope; no `publishers` entry in
+`config/sources.yaml` covers a music-generation lab.

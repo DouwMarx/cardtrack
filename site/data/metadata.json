@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-06T06:32:03Z",
+ "generated_at": "2026-09-07T06:33:44Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -7087,6 +7087,78 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T20:59:57Z",
    "content_fingerprint": "dba246da1873b2483cba55a265004a65fa6d8df20ae1a0e22bf76f41d0b5e282",
+   "version_count": 1
+  },
+  {
+   "slug": "xiaomi-mimo-v2-omni-model-card",
+   "title": "Xiaomi MiMo-V2-Omni: Omni-Modal Agentic Foundation Model",
+   "publisher": "xiaomi",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiMo-V2-Omni"
+   ],
+   "publication_date": "2026-03-18",
+   "canonical_url": "https://mimo.xiaomi.com/mimo-v2-omni",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-07T06:31:10Z",
+   "last_checked": "2026-09-07T06:31:10Z",
+   "last_changed": "2026-09-07T06:31:10Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "closed",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://mimo.mi.com/docs/en-US/news/previous-news/v2-omni-release",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://mimo.mi.com/docs/en-US/updates/model",
+     "kind": "other"
+    }
+   ],
+   "content_hash": "a949d4080c2aee458de5ca93d186de888f2779533a3211614c3cafeed878449f",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-07T06:31:10Z",
+   "content_fingerprint": "24c43856e0337d16cf589c6e7d8acd6cc2aad1e99ebe90ec31e7ef89dee06aee",
+   "version_count": 1
+  },
+  {
+   "slug": "xiaomi-mimo-v2-pro-model-card",
+   "title": "Xiaomi MiMo-V2-Pro: Flagship Foundation Model towards the Agent Era",
+   "publisher": "xiaomi",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiMo-V2-Pro"
+   ],
+   "publication_date": "2026-03-18",
+   "canonical_url": "https://mimo.xiaomi.com/mimo-v2-pro",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-07T06:30:57Z",
+   "last_checked": "2026-09-07T06:30:57Z",
+   "last_changed": "2026-09-07T06:30:57Z",
+   "source_of_lead": "agent_search",
+   "safety_evals": 0,
+   "openness": "closed",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://mimo.mi.com/docs/en-US/news/previous-news/v2-pro-release",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://mimo.mi.com/docs/en-US/updates/model",
+     "kind": "other"
+    }
+   ],
+   "content_hash": "44292572ad4d2e338828b68cfec88defc00eaa0e17a4a962feff5dae783ee3b7",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-07T06:30:57Z",
+   "content_fingerprint": "37511dc9b5daebb785e139d3e0cfc1a9299d6290cb9babeae70093dcecda6c03",
    "version_count": 1
   },
   {

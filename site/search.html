@@ -69,7 +69,7 @@ const state = { publisher: new Set(), type: new Set(), openness: new Set(),
                 risk: new Set(), source: "", safety: "" };
 const OPENNESS_LABELS = { restricted: "restricted access", closed: "closed",
                           open_weight_restrictive: "open (restrictive)",
-                          open_weight_permissive: "open (permissive)", na: "n/a" };
+                          open_weight_permissive: "open (permissive)", na: "unclear" };
 const RISK_LABELS = {"cbrn": "CBRN", "cyber": "Cyber offence", "harmful_manipulation": "Harmful manipulation", "loss_of_control": "Loss of control", "societal_harm": "Societal harms"};
 let pagefind = null, ready = false, indexed = 0;
 let msels = {};
