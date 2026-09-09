@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-20T06:28:51Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Predecessor of nvidia/GR00T-H-N1.7 (proposed as a separate row in the same run); the project README lists the two as distinct Model Variants on separate git branches, with different base models (N1.6 vs N1.7) and different licenses (NVIDIA OneWay Noncommercial vs NVIDIA Open Model License). The card carries a banner directing readers to GR00T-H-N1.7 as the latest version. Surfaced in this run&#39;s Phase A index diff because the card was revised on 2026-08-19 (three README edits), not because of a new release; it is a backlog find. has_safety_evals false: boilerplate Ethical Considerations paragraph and subcard links only, no quantitative safety evaluation, red-teaming or risk assessment. Flagging the weakest attestation honestly: notability rests on the first-party GTC-2026-era announcement and press coverage of the surgical GR00T line rather than on adoption metrics (320 downloads, 20 likes), and the model is superseded and research-only.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-gr00t-h-model-card&amp;body=Document%3A%20nvidia-gr00t-h-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/GR00T-H%0AFingerprint%3A%2097e25d4c28bf1333db817ad38e5780e4af9e3233e8981707d6324565f1a990a1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-gr00t-h-model-card&amp;body=Document%3A%20nvidia-gr00t-h-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/GR00T-H%0AFingerprint%3A%20756385a35eabddbd8311aea8ae104a58238d9a9261270ef86db1fece1bacdee2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-09T06:19:02Z</td>
+          <td>text/html</td>
+          <td>190,013</td>
+          <td><code title="756385a35eabddbd8311aea8ae104a58238d9a9261270ef86db1fece1bacdee2">756385a35eabddbd</code></td>
+          <td class="change-summary">The header notice changed from Please see GR00T-H-N1.7 for the latest version of this model to This is the N1.6 non-commercially usable version of GR00T-H. Please see GR00T-H-N1.7 for the newer and commercially usable version of this model. The card now discloses that this checkpoint is not licensed for commercial use, which the previous revision did not state.
+</td>
+        </tr>
         <tr>
           <td>2026-08-20T06:28:51Z</td>
           <td>text/html</td>
@@ -74,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -102,6 +110,23 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/GR00T-H" rel="noopener nofollow">https://huggingface.co/nvidia/GR00T-H</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-09T06:19:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-09T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/GR00T-H" rel="noopener nofollow">https://huggingface.co/nvidia/GR00T-H</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-09T06:26:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-09T06:17Z-local · agent · lead: updated_docs</span>
+          <div class="just">change_summary: null → "The header notice changed from Please see GR00T-H-N1.7 for the latest version of this model to This is the N1.6 non-commercially usable version of GR00T-H. Please see GR00T-H-N1.7 for the newer and commercially usable version of this model. The card now discloses that this checkpoint is not licensed for commercial use, which the previous revision did not state."</div>
+          <div class="just">Substantive change: a licensing disclosure, not extraction noise. The card newly identifies this GR00T-H checkpoint as the N1.6 non-commercially usable version and marks the N1.7 successor as the commercially usable one, which changes what a reader can infer about the terms attached to these weights. The only other line in the diff is the monthly download counter moving from 320 to 602, which is HuggingFace page furniture.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/GR00T-H" rel="noopener nofollow">https://huggingface.co/nvidia/GR00T-H</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -118,7 +143,7 @@
 - Google Colab
 - Kaggle
 GR00T-H
-Please see GR00T-H-N1.7 for the latest version of this model
+This is the N1.6 non-commercially usable version of GR00T-H. Please see GR00T-H-N1.7 for the newer and commercially usable version of this model
 Description:
 GR00T-H is a post-trained variant of NVIDIA Isaac GR00T N1.6 for surgical robotics. It builds on the GR00T N1.6 VLA foundation and adapts it using the Open-H embodiment dataset.
 This model is for research and development only.
@@ -209,7 +234,7 @@ Please make sure you have proper rights and permissions for all input image and 
 For more detailed information on ethical considerations for this model, please see the Model Card++ Explainability, Bias, Safety &amp; Security, and Privacy Subcards.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 320
+- 602
 Model tree for nvidia/GR00T-H
 Base model
 nvidia/GR00T-N1.6-3B</pre>
@@ -217,6 +242,6 @@ nvidia/GR00T-N1.6-3B</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-07T06:40:49Z</p></footer>
+<footer><p>Data updated 2026-09-09T06:26:41Z</p></footer>
 </body>
 </html>

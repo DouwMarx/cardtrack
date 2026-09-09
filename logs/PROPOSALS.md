@@ -1328,3 +1328,40 @@ the music-generation slice of `covered_model_class` currently has no allowlisted
 Evidence: surfaced by the Monday retrospective sweep of StepFun (2026-09-07). `covered_model_class`
 in `config/criteria.yaml` lists music generation as in scope; no `publishers` entry in
 `config/sources.yaml` covers a music-generation lab.
+
+## 2026-09-09 — Irregular is a named frontier-lab evaluator with no allowlist entry
+
+Problem: citation mining on the GPT-6 Astra system card surfaced Irregular, which OpenAI credits
+for the card's "External Evaluations for Cyber Capabilities" section. Irregular does not only feed
+results into the card — it publishes its own report at
+`https://www.irregular.com/research/assessing-gpt-6-astra`, "Assessing GPT-6 Astra: FrontierCyber
+Measures a Sharp Increase in Cyber Capability" (2026-09-03). That document is exactly what this
+corpus exists to hold: an independent, quantified evaluation of a named frontier model. It reports
+GPT-6 Astra solving 86 of 226 FrontierCyber challenges against 34 for GPT-5.6 Sol, per-tier success
+rates rising from 14 to 63 per cent (Easy), 15 to 30 (Medium) and 17 to 39 (Hard), CyScenarioBench
+average success moving from 27 to 59 per cent, and multiple zero-days found and exploited in
+widely deployed database systems, browsers and mobile devices, with neither model solving
+Elite-tier challenges. It passes the system-card test unambiguously — it *is* the source of a
+system-card section. But `irregular` is not in `evaluators` in `config/sources.yaml`, so there is
+no key to propose it under, and per TASK.md I am recording it here rather than filing it under a
+neighbouring evaluator.
+
+This is not a one-off. Astra's card names five external evaluators: UK AISI, Apollo Research and
+SecureBio are allowlisted; Irregular and Gray Swan are not. Gray Swan supplied the indirect-prompt-
+injection results (1,810 curated attacks from its IPI Arena, with an arXiv paper at
+`arxiv.org/abs/2603.15714`) and is the same shape of organisation. The pattern to note is that the
+allowlist covers the *non-profit and government* evaluator ecosystem well and the *commercial*
+red-team vendor ecosystem not at all, even though labs increasingly route their hardest
+dangerous-capability testing through the latter — which means the corpus systematically under-
+represents cyber evaluations specifically, since that is where the commercial vendors concentrate.
+
+Suggested change: add `irregular` to `evaluators` in `config/sources.yaml` (tier 1, homepage
+`https://www.irregular.com`, index `https://www.irregular.com/research`), and consider Gray Swan
+alongside it (`https://www.grayswan.ai`) if the operator is willing to accept arXiv-hosted reports
+as canonical URLs — see the unresolved arXiv-precedent question in the 2026-09-07 friction line
+`ambiguous_criteria`, which this would also force a decision on. If either is a deliberate
+exclusion, a note next to the MLCommons comment would stop future runs re-deriving it.
+
+Evidence: `https://www.irregular.com/research/assessing-gpt-6-astra` (fetched 2026-09-09);
+`https://deploymentsafety.openai.com/gpt-6-astra` section 8 and its external-evaluation
+subsections; `config/sources.yaml` `evaluators` (no `irregular`, no `gray_swan`).
