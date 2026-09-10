@@ -1365,3 +1365,47 @@ exclusion, a note next to the MLCommons comment would stop future runs re-derivi
 Evidence: `https://www.irregular.com/research/assessing-gpt-6-astra` (fetched 2026-09-09);
 `https://deploymentsafety.openai.com/gpt-6-astra` section 8 and its external-evaluation
 subsections; `config/sources.yaml` `evaluators` (no `irregular`, no `gray_swan`).
+
+## 2026-09-10 — the scope rules now exclude documents the corpus already holds, in two places
+
+**Problem.** Two inclusion rules have drifted out of agreement with the rows already in the
+database, so on each occurrence the agent must choose between following the rule and matching
+precedent. Neither choice is safe, and the disagreement is now producing repeat friction lines
+instead of decisions: `ambiguous_criteria` has fired on 2026-09-07, 2026-09-09 and again today
+without either question being settled.
+
+*First: capability demonstrations.* TASK.md lists "capability demos and showcases" as out of scope
+for `doc_type: other`. Today that rule excluded
+`anthropic.com/research/formalizing-fermats-last-theorem` (2026-09-04), in which an internal
+general-purpose research model "roughly comparable to Claude Fable 5.1" produced the first
+end-to-end computer-checked proof of Fermat's Last Theorem in 11 days working largely
+autonomously — 13 million lines of Lean, 29,500 intermediate theorems, about six billion output
+tokens. Those are quantitative long-horizon autonomy figures of exactly the kind `criteria.yaml`
+places under `loss_of_control` ("agentic time horizons"). The corpus already holds three close
+analogues from the same publisher and the same blog, all `doc_type: other`:
+`Claude-accelerates-protein-design` (2026-08-18), `claude-plays-robotics` (2026-07-09) and
+`discovering-cryptographic-weaknesses` (2026-07-28). Applied consistently, today's rule would
+remove all three.
+
+*Second: speech and avatar models.* `covered_model_class` lists audio generation as covered and
+TTS as auxiliary-and-out, and a growing class of releases is both at once. Three instances in four
+days: StepAudio 2.5 (2026-09-07), `tencent/AuK` (2026-09-09) and `tencent/Ex-Omni` today — an 11B
+omni-modal model emitting response text, decoded audio and 52-dimensional facial blendshapes for a
+talking-face video, with a technical report at arXiv 2602.07106 and no safety evals. All three
+were skipped. The corpus holds `mistral-voxtral-tts-26-03`, `mistral-voxtral-mini-transcribe`,
+`stepfun-step-audio-r1-1` and `tencent-hunyuan-evie-preview-4-5b`, which the same reading excludes.
+
+**Suggested change.** Two lines in `config/criteria.yaml`, plus one sweep decision.
+(1) Under `about_a_specific_model_or_eval`, state whether a first-party capability demonstration
+that reports *measured* autonomous performance of a named model or checkpoint is in scope, and
+note that a model identified only by comparison ("roughly comparable to X") does not satisfy the
+named-model requirement — that alone would have decided today's case cleanly.
+(2) Under `covered_model_class`, state whether a unified speech generation-and-editing or
+avatar-driving model counts as audio generation.
+(3) Decide once whether rows predating the 2026-08-31 auxiliary-model audit are grandfathered or
+swept; the ambiguity above is only costly because precedent and rule are both live.
+
+**Evidence.** `https://www.anthropic.com/research/formalizing-fermats-last-theorem` (fetched
+2026-09-10); `https://huggingface.co/tencent/Ex-Omni` (fetched 2026-09-10); `config/criteria.yaml`
+`agent_attested.covered_model_class` and the TASK.md `doc_type: other` scope paragraph;
+`logs/friction.jsonl` entries dated 2026-09-07, 2026-09-09 and 2026-09-10.
