@@ -1409,3 +1409,42 @@ swept; the ambiguity above is only costly because precedent and rule are both li
 2026-09-10); `https://huggingface.co/tencent/Ex-Omni` (fetched 2026-09-10); `config/criteria.yaml`
 `agent_attested.covered_model_class` and the TASK.md `doc_type: other` scope paragraph;
 `logs/friction.jsonl` entries dated 2026-09-07, 2026-09-09 and 2026-09-10.
+
+## 2026-09-11 — conventional-weapons capability has no home in `risk_domains`
+
+**Problem.** The `risk_domains` vocabulary cannot express the single most consequential finding in
+a document catalogued today, so the site's risk filters hide it. Anthropic's Frontier Red Team
+published *Measuring tactical intelligence targeting and conventional weapons capabilities of AI
+models* on 2026-09-10 (now `anthropic-claude-mythos-preview-other-9`, doc 305). Half of it is
+surveillance and deanonymisation, which maps cleanly onto `societal_harm`: photo geolocation where
+Mythos Preview and Mythos 5 beat the strongest human baseline at 37.0 km and 47.2 km median error
+across 6,000 photos, and text geolocation placing 135 GeoText users — 8% of the corpus — within
+1 km of their assessed home location. The other half has no tag at all: drone terminal guidance
+(Opus 5 strikes on 80% of launches against parked high-visibility targets, Mythos Preview 70%,
+Mythos 5 53%, all degrading sharply against moving and camouflaged targets), wind-perturbed payload
+delivery (Opus 5 the only model succeeding with any regularity, at 28% of sorties) and GPS-denied
+navigation (Opus 5 typically fifteen to twenty metres from the destination, about a third of
+flights inside five metres). Kinetic weapons uplift is not CBRN, not cyber, not loss of control,
+not manipulation, and calling it a societal harm is a stretch that would dilute that tag. A reader
+filtering the corpus for dangerous-capability content will not find these numbers.
+
+This is not a one-off. The same publisher's September 2026 threat intelligence report, catalogued
+today as doc 306, lists conventional weapons as one of its seven harm categories, and both
+Anthropic and OpenAI now run standing evaluation workstreams in this area. The corpus should expect
+a steady trickle, not an exception.
+
+**Suggested change.** Either (a) add a sixth key to `config/criteria.yaml` `risk_domains` —
+suggested `conventional_weapons`, display "Conventional weapons", definition "Uplift toward the
+design, targeting, guidance or employment of conventional (non-CBRN) weapons, including autonomous
+and remotely piloted systems" — or (b) if the five-term vocabulary is a deliberate hard commitment
+to the EU CoP Appendix 1.1 mirror, say so explicitly in the comment block and state where kinetic
+capability findings should go instead. Option (b) is a perfectly good answer; what is expensive is
+that the current comment explains the 5-term choice as a mirror without saying whether the mirror
+is a constraint or a starting point, so each run re-derives the question from scratch. Note that
+adding a key is a config change and therefore operator-only — the agent cannot route around this.
+
+**Evidence.**
+`https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities`
+(fetched 2026-09-11); `https://www.anthropic.com/threat-intelligence-report-september-2026`
+(fetched 2026-09-11); `config/criteria.yaml` `risk_domains` and its preamble comment;
+`logs/friction.jsonl` entry dated 2026-09-11 (`schema_gap`).
