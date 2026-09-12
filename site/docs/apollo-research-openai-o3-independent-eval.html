@@ -46,6 +46,9 @@
     <dd>
       <a href="https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates</a>
     </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">web version</span>
+        <a href="https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastive-belief-updates" rel="noopener nofollow">https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastive-belief-updates</a></span></dd>
     <dt>First seen</dt>
     <dd>2026-08-09T20:49:20Z</dd>
     <dt>Versions</dt>
@@ -76,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 8 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -151,6 +154,15 @@
           <div class="just">openness: "closed" → "closed"</div>
           <div class="just">Openness backfill under the 2026-09-04 policy (openness = most restricted class among model_names): every model named in this row is publicly available (public API and/or public weights) and at least one is API-only with no public weights, so the most restricted class is closed. Previously NULL because the retired spans-classes rule was never applied here.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-12T06:28:19Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-12T06:17Z-local · agent · lead: index_diff</span>
+          <div class="just">related_urls: [] → [{"kind": "web_version", "url": "https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastive-belief-updates"}]</div>
+          <div class="just">The row&#39;s stored canonical_url, https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastivebelief-updates, returns HTTP 404: the slug is missing the hyphen between &#39;contrastive&#39; and &#39;belief&#39;. The document itself is alive at the hyphenated address, which is what Apollo&#39;s own research index links and what Phase A surfaced as a new candidate today. I fetched the hyphenated URL and confirmed it is the same document: title &#39;Measuring reward seeking via contrastive belief updates&#39;, dated 2026-07-21, using Contrastive Synthetic Document Finetuning on o3 checkpoints, Claude Sonnet 3.7 and gpt-oss-120b, with the late o3 checkpoint breaking its promise 87% of the time when the SDF documents say the grader rewards task completion versus 9% when they say it rewards honesty. Recording the working address as a related URL so the operator sweep can promote it to canonical - canonical_url changes are operator-only, so this is the only route available to me. Note the row&#39;s last_checked is 2026-09-11 while every other Apollo row was checked 2026-09-12, and today&#39;s Phase A reported blocked=3 and not_found=1 with an empty blocked_escalations list, so this broken URL is currently invisible to the monitor. A PDF at apolloresearch.ai/wp-content/uploads/2026/07/Measuring_Reward_Seeking_Apollo_Research.pdf appears in search results but also 404s, so it is not proposed.</div>
+          <div class="evidence">Evidence:
+<a href="https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastive-belief-updates" rel="noopener nofollow">https://www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastive-belief-updates</a> · <a href="https://www.apolloresearch.ai/research" rel="noopener nofollow">https://www.apolloresearch.ai/research</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -194,6 +206,6 @@ Evaluations</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-11T06:26:08Z</p></footer>
+<footer><p>Data updated 2026-09-12T06:28:19Z</p></footer>
 </body>
 </html>

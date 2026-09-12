@@ -1448,3 +1448,57 @@ adding a key is a config change and therefore operator-only — the agent cannot
 (fetched 2026-09-11); `https://www.anthropic.com/threat-intelligence-report-september-2026`
 (fetched 2026-09-11); `config/criteria.yaml` `risk_domains` and its preamble comment;
 `logs/friction.jsonl` entry dated 2026-09-11 (`schema_gap`).
+
+## 2026-09-12 — Phase A counted four fetch failures and escalated none of them
+
+**Problem.** Task 5 of `TASK.md` tells the agent to fetch every blocked URL itself and decide whether
+the document is dead or merely bot-blocked. The input for that task is
+`candidates.json.blocked_escalations`. Today that list was `[]` and `open_issues.json` was empty,
+while Phase A's own summary line in `logs/run-20260912-061748Z.log` read:
+
+```
+{"checked": 275, "ok": 271, "not_found": 1, "blocked": 3, "errors": 0, ... "marked_dead": 0}
+```
+
+Four documents failed to fetch. The agent was told about zero of them. Task 5 reported "none" and
+would have reported "none" no matter how many there were.
+
+The failure is silent in the specific way that is hardest to catch: yesterday's run genuinely had
+`0 blocked, 0 not_found`, and the empty escalation list looked identical. There is no signal in the
+agent's inputs that distinguishes a clean day from a day when a quarter of a percent of the corpus
+became unfetchable. I found today's four only by accident — I was triaging an unrelated Apollo
+candidate, noticed its row carried `last_checked: 2026-09-11` while sibling rows carried
+`2026-09-12`, and reverse-engineered the rest from that.
+
+That reconstruction is partial, and the part that fails is the part that matters. Three active rows
+carry a stale `last_checked` and are almost certainly the `blocked: 3`:
+`apollo-research-openai-o3-independent-eval`, `openai-gpt-5-5-access-policy`,
+`openai-gpt-rosalind-access-policy`. I checked all three by hand: the two OpenAI pages return 403 to
+my fetcher too — alive, bot-blocked, no action — and the Apollo URL is a genuine 404 caused by a
+typo in the stored slug (see the `data_error` friction line; fixed as far as I am able, via a
+`related_urls` field update). But **the `not_found: 1` is unidentifiable**. A not-found fetch
+apparently still stamps `last_checked`, so that document is indistinguishable from a healthy one in
+`state_summary.json`. One row in the corpus is 404ing, `marked_dead` is 0 so it is still presented as
+active, and neither I nor the operator can say which row it is without reading the database.
+
+**Suggested change.** Two parts, both small.
+
+1. **Populate `blocked_escalations` from every non-`ok` outcome, not just some of them** — or, if it
+   is already meant to and the list is being filtered somewhere, fix that filter. Each entry needs
+   only `{slug, url, outcome, http_status, checked_at}`. `not_found` belongs in it as much as
+   `blocked` does: a 404 is the case where the agent's verdict (`status_change` to `dead`, or "alive,
+   the URL is wrong") is most valuable and most time-critical.
+2. **Make the summary counters reconcilable from the agent's inputs.** The cheapest version: have
+   Phase A copy its summary line into `candidates.json` as a `phase_a_summary` key. Then a run can
+   assert `len(blocked_escalations) == blocked + not_found` and file friction when it does not,
+   instead of depending on an agent happening to notice a stale timestamp. This is the same class of
+   defect as the 2026-08-21 entry in this file (`phase_a_status`): a count that means "nothing
+   happened" and a count that means "something was dropped" must not be the same value in the
+   agent's view of the world.
+
+**Evidence.** `logs/run-20260912-061748Z.log` line 3 (the summary quoted above);
+`logs/candidates.json` `"blocked_escalations": []`; `logs/state_summary.json` entries for
+`apollo-research-openai-o3-independent-eval` (`last_checked` 2026-09-11, `canonical_url` 404),
+`openai-gpt-5-5-access-policy` and `openai-gpt-rosalind-access-policy` (both `last_checked`
+2026-09-11, both 403 on manual fetch); `logs/friction.jsonl` entries dated 2026-09-12
+(`monitor_gap`, `data_error`).
