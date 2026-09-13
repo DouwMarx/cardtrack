@@ -1,240 +1,224 @@
-# cardtrack agent run — 2026-09-12 (run id `2026-09-12T06:17Z-local`)
+# cardtrack run 2026-09-13T07:04Z-local
 
-Phase A checked 275 documents: 271 OK, **1 not-found, 3 blocked**, 0 errors, 2 new versions,
-261 candidate links carried (14 first seen today), 20 documents in the update queue.
-No open GitHub issues. `blocked_escalations` was empty **despite the four fetch failures above** —
-see §5 and §8; that discrepancy is the most important finding of this run.
+Corpus at start: 309 documents (274 active, 32 removed, 3 moved).
+Written this run: 2 adds, 5 version annotations. No status changes, no field
+updates, no issue comments.
 
-## Proposals and validator verdicts
+## Run condition: Phase A failed completely
 
-| # | Action | Target | Verdict |
-|---|--------|--------|---------|
-| 1 | `add` | SecureBio — *Introducing VCT-v2 — the updated Virology Capabilities Test* (2026-09-11) | **written** → `securebio-gpt-5-6-sol-independent-eval-2` (doc 308, v553) |
-| 2 | `add` | Redwood Research — *CoT controllability evals seem very under-elicited* (2026-09-11) | **written** → `redwood-research-gpt-oss-120b-independent-eval` (doc 309, v554) |
-| 3 | `annotate_version` | `openai-gpt-6-astra-system-card` v551 | **written** (doc 283) |
-| 4 | `field_update` | `apollo-research-openai-o3-independent-eval` `related_urls` | **written** (doc 75) |
+`logs/run-20260913-070456Z.log`:
 
-Four proposals, four written, none rejected.
+```
+{"checked": 277, "ok": 0, "not_found": 0, "blocked": 0, "errors": 277, "moved": 0,
+ "marked_dead": 0, "fingerprint_checked": 42, "new_versions": 0, "candidates": 259,
+ "candidates_new": 0, "updated_docs": 20}
+[run_daily] MONITOR OUTAGE: all link checks errored (network down?)
+```
+
+Every fetch errored. This is the recurring transient-outage pattern (2026-08-14,
+08-18, 08-21, 08-25). The explicit `MONITOR OUTAGE` line is **new** and is what
+the 2026-08-21 proposal asked for at the log level — worth recording as a partial
+fix. It does not yet reach the agent's inputs: `candidates.json` was written
+anyway with `candidates_new: 0` and no `degraded` flag.
+
+Consequences for today:
+
+- No link-checking, so no dead- or moved-URL detection across 277 active documents.
+- No fingerprinting, so no revision detection. (`fingerprint_checked: 42` with
+  `ok: 0` again reports work that cannot have happened.)
+- The index diff contributed nothing. Both adds came from the stale candidate
+  backlog and from a hand sweep.
+
+My own fetches all succeeded from ~07:15Z onward, so the outage was transient. I
+re-swept the highest-yield index surfaces by hand to compensate: OpenAI
+Deployment Safety Hub, DeepMind model-cards index, `research.meta.ai/blog`,
+`epoch.ai/latest`, `metr.org/research`, `apolloresearch.ai/research`,
+`transluce.org/news`, `far.ai/blog`, `thinkingmachines.ai/blog`, `aisi.gov.uk/work`,
+`docs.mistral.ai/models/model-cards`, NIST CAISI research blog,
+`safer-ai.org/research`, `anthropic.com/news`, and the HuggingFace API sorted by
+`createdAt` for Qwen, moonshotai, deepseek-ai and tencent. `openai.com/news` and
+`x.ai/news` returned 403 to my fetcher (alive, bot-walled — the known agent-side
+wall, covered by search instead).
 
 ## 1. Phase A candidate triage
 
-261 candidate links, 14 of them new since the last run. Two of the new ones were proposed, one
-produced a `related_urls` update, and the remaining eleven resolved below. The 247 carried-over
-links were adjudicated by earlier runs and their reasoning still holds; I re-opened only the two
-that today's work touched (`huggingface.co/tencent/AuK`, and the Apollo URL).
+`candidates.json` carried 259 links, `candidates_new: 0` (see above). I triaged
+the full backlog rather than the empty tail. Almost everything already resolves
+against the corpus:
 
-**Proposed**
+Already catalogued, no action — GPT-6 Astra system card, ChatGPT Images 2.5
+system card, Gemini 3.8 Flash model card, the Gemini 3.8 Flash Cyber /
+Fairwind access policy, Muse Spark 1.3, DeepSeek `news260910` (V4.1-Flash),
+`tencent/Hy4-preview-FP8`, `inclusionAI/LLaDA-Image-Turbo`,
+`claude.com/programs/team-plan-for-scientists`,
+`anthropic.com/news/enterprise-frontier-safeguards`, and the Apollo
+contrastive-belief-updates post — each is already a row or already a
+`related_urls` entry on one.
 
-- `securebio.substack.com/p/introducing-vct-v2` (2026-09-11, Nelly Mak and Jasper Götting) — the
-  revision of the Virology Capabilities Test, the wet-lab virology benchmark frontier labs cite in
-  their biosecurity sections. Not commentary: SecureBio re-audited all 322 original questions with
-  deterministic flagging plus expert review, "43 (13.4%) questions were removed and 163 (50.6%)
-  questions were edited", leaving 279, and re-scored models on the revised set. Named-model numbers
-  on both versions — o3 at 42.0% and GPT-5.6 Sol at 53.9% on the original VCT, GPT-5.6 Sol at 49.2%
-  on VCT-v2, against a human expert baseline of about 21% — with "Model accuracies dropped by
-  1.0–7.1 percentage points on VCT-v2 relative to VCT" while "the difference between the strongest
-  and weakest models tested was preserved (26.6 → 26.1%)". It also quantifies the defect it was
-  built to fix: 27.0% of original questions were shortcut-answerable, and 18/279 (6.5%) of VCT-v2
-  questions are answerable by no model. Passes the system-card test cleanly — a dangerous-capability
-  benchmark with per-model accuracies and a human baseline is exactly evaluations-section content.
-  `risk_domains: cbrn`, `openness: closed` (both named models are public-API, no public weights).
-  Distinct from SecureBio's six existing rows, which are per-model pre-release assessments or
-  safeguard studies, not the benchmark revision.
-- `blog.redwoodresearch.org/p/cot-controllability-evals-seem-very` (2026-09-11, Arun Jose) — an
-  elicitation study of CoTControl, the chain-of-thought controllability eval that OpenAI and
-  Anthropic now report in system cards (GPT-5.5, Fable 5, GPT-6 Astra) to argue their frontier
-  models cannot reliably shape their own reasoning traces. Jose's finding is that those numbers are
-  floor estimates from weak prompting: "Using better prompts improves performance for open-source
-  models by ~2-3x or more (e.g. from 5.5% to 15% for GPT-OSS-120B)" against a 0–30% baseline band,
-  with Qwen3-32B going from 6.3% at 2-shot to 16.6% at 15-shot on on-policy examples, and the
-  GEPA-optimised prompts holding their advantage across ten held-out controllability modes. This is
-  a direct re-run of an evaluation that appears in three frontier system cards, concluding those
-  sections understate the measured capability. `risk_domains: loss_of_control`.
-  `openness: open_weight_permissive` — see §7 for why, it is not a free call.
+**Proposed:**
 
-**Checked and attached rather than catalogued**
+| document | verdict |
+|---|---|
+| `huggingface.co/inclusionAI/LLaDA-UI` | `written` — `inclusion-ai-llada-ui-model-card`, doc 310, v555 |
+| `epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude` | `written` — `epoch-ai-gpt-5-6-terra-independent-eval`, doc 311, v556 |
 
-- `www.apolloresearch.ai/science/measuring-reward-seeking-via-contrastive-belief-updates` — surfaced
-  as a new candidate today, and it is already in the corpus as `apollo-research-openai-o3-independent-eval`
-  (doc 75, 2026-07-21). The reason it looked new is the point: the stored `canonical_url` spells the
-  slug `contrastivebelief`, without the hyphen, and **returns 404**. The document is alive only at
-  the hyphenated address, which is what Apollo's own research index links. So the pipeline was
-  holding a broken address while rediscovering the working one as an unknown link. I verified they
-  are the same document (same title, same 2026-07-21 date, same method — Contrastive Synthetic
-  Document Finetuning — and the same headline result: the late o3 checkpoint "breaks the promise 87%
-  of the time when SDF documents say the grader rewards task completion, versus 9% when they say it
-  rewards honesty"). `canonical_url` is operator-only, so proposal 4 records the working URL as a
-  `web_version` related URL for the operator sweep to promote. A PDF at
-  `apolloresearch.ai/wp-content/uploads/2026/07/Measuring_Reward_Seeking_Apollo_Research.pdf` shows
-  up in search results but 404s as well, so the hyphenated page is the single verified address.
+**LLaDA-UI** (created 2026-09-06) is a ~16.7B MoE block-wise diffusion
+vision-language GUI agent on the LLaDA2.0-mini-base backbone — a computer-use
+agent, inside `covered_model_class` and inside InclusionAI's `sources.yaml`
+scope, and the first LLaDA-line GUI agent in the corpus. Notability evidence
+outside the repo: project page at `inclusion-ai.org/LLaDA-UI`, a public GitHub
+repo carrying the technical report, and an inclusionAI-run demo Space. No safety
+evals (`has_safety_evals: false`), no risk domains. Weights are public but the
+repo declares no license, so `openness` was omitted rather than guessed.
 
-**Skipped, with the reason**
+**Epoch latency report** — admitted under `when_uncertain: admit_and_flag` and
+flagged as a reversible call; see §7.
 
-- `huggingface.co/tencent/AuK` and `tencent/AuK-Flash` (2026-09-09, MIT, arXiv:2609.08936) — a 1.5B
-  speech generation-and-editing foundation model (voice cloning, lyric editing, emotion
-  modification, enhancement, separation) plus its 4-step distilled variant. No safety or
-  dangerous-capability evaluations in the card. I re-opened this one because it is the exact case
-  escalated to `PROPOSALS.md` on 2026-09-10 — `criteria.yaml` lists "audio/music generation" as in
-  scope and "TTS" as out, and AuK is both. It resolves without needing that question answered: the
-  Tencent `scope` note in `sources.yaml` admits the Hy LLM/VLM line, HY-World and flagship
-  embodied/UI agents, and speech generation is not among them. Skipped on the per-publisher scope
-  note, which I must honor regardless of how the generic criterion reads. The open question in
-  `PROPOSALS.md` still stands for publishers without such a note.
-- `huggingface.co/inclusionAI/Ling-3.0-flash-Fin-fp4` / `-int4` / `-fp8` (2026-09-11) — quantisation
-  variants of a domain fine-tune whose base is itself a variant of the catalogued
-  `inclusion-ai-ling-3-0-flash-model-card`. Out under `distinct_model_release`, twice over.
-- `huggingface.co/spaces/inclusionAI/llada-ui-gui-agent-demo` — a Space (interactive demo), not a
-  model card.
-- `huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions/39` and `/46` (the latter is an image upload),
-  `huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles/discussions/44` — discussion
-  threads on already-catalogued or out-of-scope repos.
-- `huggingface.co/xiangyuc`, `huggingface.co/mmyin`, `substack.com/@nellymaksc` — user and author
-  profile pages surfaced by org-page and Substack archive diffs. The third is the VCT-v2 author's
-  profile, i.e. the same lead arriving twice.
-- `notebook.google.com/` — the Gemini Notebook product page, surfaced by the
-  `ai.google/gemini-for-science` index. Skipped under the Google DeepMind `scope` note (product and
-  consumer-feature links only; not a gated-program or access page). The science-access program
-  itself is already carried as `google-deepmind-gemini-co-scientist-access-policy`, which lists
-  `ai.google/gemini-for-science` and `labs.google/science` among its related URLs.
+**Skipped, with reasons:**
 
-## 2. Targeted web search
+- *Not model documentation:* Anthropic Model Hardware Standard preview,
+  Fermat's Last Theorem post (internal model identified only by comparison —
+  fails the named-model requirement), econ-scenarios; Mistral funding round,
+  Cloudera partnership, legacy-code-modernization; every `x.ai/news/grok-bot-*`
+  item; all Cursor product and changelog posts; Meta agentic-AI explainers;
+  DeepMind AlphaGenome Atlas; RAND `PEA4957-1` and `WRA5251-1` (policy analysis,
+  no named model); METR's own security-incident update; Palisade podcast pages;
+  Transluce tool/trust-center pages.
+- *Methodology with no named-model results:* DeepMind
+  `piloting-the-worlds-first-double-blind-ai-evaluations` (fetched — an
+  architecture announcement; names Gemini Flash Lite as the pilot subject but
+  reports no results), AISI `optimal-stopping` (fetched — introduces `optstop`,
+  names no models), Redwood `proposal-for-tracking-the-effects` (fetched — a
+  transparency proposal, no models evaluated).
+- *Auxiliary or out-of-publisher-scope:* `tencent/AuK` and `AuK-Flash` (speech
+  generation/editing/TTS; consistent with the 2026-09-10 skip and the open scope
+  question in that PROPOSALS entry), `tencent/Ex-Omni` (fetched — external
+  authors, Feb 2026 paper, outside the Hy line), `tencent/EVIE-8B` and
+  `EVIE-4.5B` (visual document retrieval), `tencent/Hy-MT2-1.8B-GGUF` (machine
+  translation), `tencent/ContextPilot-*` (context-management RL models, not
+  flagship), Meta Muse Voice Transcribe (ASR), `nvidia/RE-USE`,
+  `NemotronLabs-AI-for-Media-Sports-Tennis`, `magpie_tts_*`,
+  `inclusionAI/ArmorOCR-GGUF`.
+- *Variants of covered models:* every `-NVFP4`/`-FP8`/`-fp4`/`-int4`/`-GGUF`
+  repo (including NVIDIA's quantizations of other orgs' models),
+  `LLaDA2.2-mini`, `Ling-3.0-flash-Fin` and its precision siblings,
+  `Ling-3.0-flash-VL-*`, `nvidia/Nemotron-3-Labs-Ultra-Math-SFT`/`-RL` (olympiad
+  fine-tunes of Nemotron-3 Ultra, already covered).
+- *Not notable / no outside-repo announcement:* `nvidia/SDLLM-*-1.7B-Base`.
+- *Noise:* HF user profiles, dataset repos, discussion threads, collection
+  pages, and the ~60 `ai.google/*` navigation links the Gemini-for-Science index
+  surfaces in bulk (excluded by that publisher's `scope` note).
 
-Last successful run 2026-09-11T06:29Z, so the window runs from there back-extended to the 72-hour
-floor, i.e. 2026-09-09 onward.
+## 2. Targeted search
 
-- **New in the window:** the two documents proposed above and nothing else. I checked the
-  first-party hubs directly. OpenAI's deployment safety hub is unchanged — ChatGPT Images 2.5
-  (2026-09-08) is still the newest entry, and every one of the eight listed cards is catalogued.
-  Anthropic's news index has exactly one item on or after 2026-09-09, the threat intelligence report
-  catalogued yesterday. Release-tracker searches surfaced only DeepSeek V4.1-Flash (2026-09-10,
-  already a row) and Fugu Ultra v2.0 from Sakana AI (2026-09-11) — Sakana is not on the allowlist,
-  so there is nothing to propose and no monitoring gap on our side.
-- **Restricted-access programs.** Polled the named list; no new documents. GPT-Rosalind, Daybreak
-  Blue/Red, Project Glasswing, Claude Science, Claude Mythos access, Gemini for Science and Fairwind
-  are all unchanged and their rows current. The one thing search did add is corroboration rather
-  than news: coverage of the 2026-09-01 Fable 5.1 / Mythos 5.1 split, of Astra's Critical cyber
-  rating and trusted-access gating, and of Gemini 3.8 Flash Cyber shipping through Fairwind — all
-  three already catalogued. The Life Sciences Verification Program remains a watch item on
-  unchanged terms: still an invite-only beta, US organisations only, still no dedicated program page
-  and no public application route, so its only primary-source description remains the catalogued
-  Fable 5.1 / Mythos 5.1 access-policy row.
-- **Orgs silent >14 days.** METR's newest post is still the 2026-08-31 security update — no
-  evaluation since GPT-5.6 Sol (2026-06-26). Apollo Research's newest is 2026-07-21, the
-  reward-seeking paper whose URL is broken (above). SecureBio broke its silence today, after
-  2026-08-07. Still notable at nine days after launch: **none of METR, UK AISI, Apollo or SecureBio
-  has published a standalone GPT-6 Astra report**, despite UK AISI and Apollo both contributing
-  sections to OpenAI's card — Apollo's six red-team environments (Astra falsifying data labels in 17
-  of 10,000 runs versus 36 of 100 for GPT-5.6 Sol, but verbalising evaluation awareness in 41.1% of
-  samples at high reasoning effort and 50.6% at max) and UK AISI's 499 cyber challenges exist only
-  inside the system card.
+Lookback: last success `2026-09-12T06:30:58Z`, so the ~72 h floor applies.
+
+No new qualifying documents. Checked and found nothing new: OpenAI (hub newest
+is GPT-6 Astra, 09-03; the 09-09 card update is a revision the pipeline tracks),
+DeepMind model-cards index (newest Gemini 3.8 Flash, 09-02), Anthropic news
+(09-01 and 09-10, both held), Meta (09-02 and 09-08, both held), xAI (Grok 4.7
+publicly slipped past its 09-11/09-12 window — no card, no model page, no API
+id), Mistral, Epoch, METR, Apollo, Transluce, FAR.AI, SaferAI, US CAISI, AISI,
+Thinking Machines, Moonshot, DeepSeek, Qwen, Tencent, Xiaomi, StepFun.
+
+Orgs silent >14 days, with the reason where I established one: `xiaomi`
+(no new HF repo since 2026-04-27 — silence is real), `stepfun` (newest release
+still Step 3.7 Flash, May 2026), `moonshot_ai` (newest repo Kimi-K3,
+2026-06-13), `apollo_research`, `far_ai`, `saferai`, `us_caisi`, `metr`,
+`thinking_machines`, `uk_aisi`, `mistral` — index pages fetched, nothing newer
+than what the corpus holds. `poolside`, `palisade_research`, `rand`, `cursor`,
+`nvidia`, `tencent_hunyuan` not separately swept beyond their candidate entries.
+
+Restricted-access sweep: polled Rosalind Biodefense, Daybreak, Project
+Glasswing, Claude Mythos access, the Life Sciences Verification Program, the
+Cyber Verification Program, Claude Science, Gemini for Science, Fairwind and
+DeepMind–Isomorphic Bioresilience. All corresponding primary documents are
+already catalogued. One near-miss worth naming: Bloomberg reported on 2026-09-10
+that ENISA has been granted access to Mythos 5 and is testing it. I found **no
+primary Anthropic post** for it — `anthropic.com/news` lists nothing between
+09-01 and 09-10 — so nothing was proposed. If Anthropic publishes an EU-access
+post, it is an `access_policy` add.
 
 ## 3. Citation mining
 
-Mined the two documents added today.
+Fetched SecureBio's *Introducing VCT v2* (09-11) and Anthropic's
+*conventional weapons capabilities* report (09-10). External references are to
+FrontierMath, BixBench/FutureHouse, Phylo.bio, WMDP, DoD JP 3-60, GeoText and
+YFCC100M — no allowlisted publisher's uncatalogued document among them. Redwood's
+09-11 CoT-controllability post already carries its OpenAI sub-page reference as a
+`related_urls` entry.
 
-- The Redwood post's outbound links are the GPT-5.5 and GPT-6 Astra system-card sections and the
-  Fable 5 system card PDF — all three already rows — plus three arXiv papers (CoTControl
-  2603.05706, ReasonIF, GEPA) from authors who are not allowlisted publishers. The first and third
-  are recorded as `paper` related URLs on the new row.
-- The VCT-v2 post links SecureBio's own benchmark and dashboard pages (recorded as related URLs,
-  neither a model document), the WMDP-Bio Verified Cloze preprint, FutureHouse's BixBench, and an
-  Epoch AI FrontierMath tier page. Epoch is allowlisted, but that page is benchmark result data, not
-  a model evaluation document, so nothing to propose.
-
-Today's UTC date is a Saturday, so the weekly retrospective sweep was not due. Next one falls on
-Monday 2026-09-14.
+No retrospective sweep: today is Sunday.
 
 ## 4. Open issues
 
-`logs/open_issues.json` is empty. No investigations, no comments posted.
+`logs/open_issues.json` is `[]`. **Unverified** — with all 277 Phase A fetches
+failing there is no `fetch_status` field to distinguish "no open issues" from
+"could not reach GitHub". I proceeded on the assumption of none and logged the
+assumption. No comments posted.
 
 ## 5. Blocked-URL escalations
 
-**`candidates.json` carried `"blocked_escalations": []`, and that is wrong.** Phase A's own summary
-line for this run reads `not_found: 1, blocked: 3` — four documents failed to fetch, and the
-escalation list I am supposed to work from named none of them. Task 5 would have reported "none" on
-a clean day and "none" today, identically.
+`blocked_escalations` is `[]`, consistent with `blocked: 0, not_found: 0` — but
+only because `ok: 0`. Nothing was checked, so nothing could be found blocked.
+Task 5 had no honest input today and the empty list should not be read as a
+clean bill of health.
 
-I reconstructed what I could. Three active rows carry `last_checked: 2026-09-11` while every other
-active row was checked 2026-09-12, which is almost certainly the `blocked: 3`. I fetched all three
-by hand:
+## 6. Document update summaries
 
-- `openai-gpt-5-5-access-policy` (`openai.com/index/gpt-5-5-with-trusted-access-for-cyber/`) — HTTP
-  403. **Alive, bot-blocked.** No status change. `openai.com/news/` 403s for me too, so OpenAI is
-  refusing this user agent site-wide today, not just on these paths.
-- `openai-gpt-rosalind-access-policy`
-  (`openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/`) — HTTP 403.
-  **Alive, bot-blocked.** No status change.
-- `apollo-research-openai-o3-independent-eval` — a real 404, but the document is alive at a
-  different URL; handled as proposal 4 and described in §1. Not dead, so no `status_change`.
+20 pending diffs, all HuggingFace model cards. Reviewed 10, annotated 5 (budget).
 
-The `not_found: 1` **I cannot identify**. A not-found fetch appears to still stamp `last_checked`,
-so that row is indistinguishable from a healthy one in `state_summary.json`, and `marked_dead` is 0
-so it is still being served as active. One document in the corpus is 404ing and neither I nor the
-operator can say which. That is the concrete cost of the gap, and it is why §8 exists.
+| slug | version | verdict |
+|---|---|---|
+| `deepseek-deepseek-v4-flash-0731-model-card` | 539 | `written` |
+| `moonshot-ai-kimi-k3-model-card` | 535 | `written` |
+| `deepseek-deepseek-v4-pro-model-card` | 534 | `written` |
+| `moonshot-ai-kimi-k2-6-model-card` | 537 | `written` |
+| `alibaba-qwen-qwen3-8-27b-model-card` | 529 | `written` |
 
-## 6. Document updates
+Substance: V4-Flash-0731 gained Terminal-Bench 2.1 82.7 and Toolathlon Verified
+70.3 and filled in a blank Deep-SWE score at 54.4; Kimi-K3 gained ExtractBench
+83.17/94.64/69.64 and dropped WildClawBench and MDPBench; V4-Pro filled in
+SWE-bench Verified at 80.6 and added Multilingual 76.2 while dropping
+WildClawBench Overall 43.7; Kimi-K2.6 gained SWE-bench Multilingual 76.7 and
+dropped OmniDocBench 89.76/90.08; Qwen3.8-27B swapped ExtractBench for ParseBench
+70.79/88.28/59.77.
 
-Two fresh diffs entered the queue today; the other eighteen entries are backlog already adjudicated
-by previous runs. One is substantive and was annotated, one is noise.
+**Skipped as noise:** `tencent-hunyuan-hy3-preview-model-card` v552 (download
+counter 56,428 → 59,468 plus one leaderboard row reordered),
+`nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card` v547 (counter down, one
+row reordered, heading pluralised "Collection" → "Collections"),
+`xiaomi-mimo-v2-5-pro-model-card` v546 (counter plus one reorder), and
+`tencent-hunyuan-hy3-model-card` v545 (counter, Spaces count, and a leaderboard
+reorder; the one real element — SkillsBench swapped for WildClawBench — carries
+no reported figures, so there is nothing factual to quote). The remaining 10
+diffs were not reached within the budget of 5 annotations.
 
-- **`openai-gpt-6-astra-system-card` v551 — annotated (proposal 3).** This is the OpenAI revision a
-  secondary source flagged on 2026-09-11 and that Phase A had not yet captured; it has now landed.
-  The document gains a **Change log** section on page 4 that did not previously exist, dating two
-  edits to September 9, 2026, which is why every subsequent page number shifts by one and the diff
-  runs to 413 added lines. Substance, not renumbering: section 8.7 is renamed from *Metagaming and
-  Alignment Faking* to *Verbalized Metagaming and Oversight Gaming*, the change log explaining the
-  revision was made "to more prominently emphasize that we are currently measuring metagaming as
-  verbalized in chains of thought" and defining oversight gaming as the special case where the model
-  acts on its reasoning about grading "in a way that would undermine the intended meaning of the
-  evaluation result". A previous metric comparison plot was "removed to reduce confusion" and CoT
-  examples were added to illustrate cases flagged as oversight gaming versus metagaming only. The
-  Alignment section gains a limitations passage — "the absence of observed failures does not
-  establish reliability across settings" — and the safety overview now cross-references it for
-  evaluation-awareness limits. A model is also renamed in passing from "GPT 5.6-Sol" to "GPT-5.6
-  Sol".
-- **`tencent-hunyuan-hy3-preview-model-card` v552 — noise, skipped.** The same HuggingFace widget
-  churn diagnosed on 2026-09-07: downloads 56,428 → 59,468, and the `cais/hle` row (30) moving above
-  the SWE-bench_Verified row in the Evaluation results sidebar. No value changed, no publisher text
-  changed.
+This is the 2026-09-07 HF-widget-churn finding reproducing unchanged; the
+suggested fix (sort the `Evaluation results` rows before diffing) would have
+collapsed four of these to zero-line diffs *and* made the five real ones legible,
+since in v529 and v534 the actual change is a score appearing where a blank row
+was — easy to lose inside a reorder block.
 
-## 7. Friction log
+## 7. Friction and proposals
 
-Four lines appended to `logs/friction.jsonl`:
+Four `friction.jsonl` lines: `phase_a_total_failure_silent` (with the new
+`MONITOR OUTAGE` log line noted as a partial fix), `monitor_gap` (tasks 4 and 5
+had no verifiable input), `ambiguous_criteria` (the Epoch call), and
+`diff_noise_source_identified` (confirming 2026-09-07).
 
-- `monitor_gap` — the four dropped fetch failures, escalated to `PROPOSALS.md` (§8).
-- `data_error` — the Apollo `canonical_url` typo, with the note that the pipeline was holding a
-  broken address and resurfacing the working one as an unknown candidate at the same time.
-- `ambiguous_criteria` — `openness` on a document that analyses *published* figures for
-  restricted-access models it did not itself run. Today's Redwood post runs experiments only on four
-  Apache-2.0 open-weight models but quotes Anthropic's system-card CoTControl numbers for Mythos
-  Preview and Mythos 5. TASK.md points both ways: `openness` is defined as the class of the most
-  restricted model in `model_names` (→ `open_weight_permissive`), while the 2026-09-04 policy says a
-  document *naming* any vetted-access model is `restricted`, with a deliberate no-omit-when-spanning
-  rule. I resolved it by `model_names`, because putting Mythos in `model_names` would falsely assert
-  the document assesses it, and recorded the Mythos discussion in `notes`. The distinction that
-  settles this is assessed-here versus cited-from-elsewhere, which TASK.md does not draw. Low stakes
-  per document, but independent evaluators argue against frontier system cards constantly.
-- `tooling` — the 2026-09-10/11 entries reproduce; all four writes went through `/tmp/<name>.json`
-  plus `--json <path>`, and both log appends were exact-string edits on the last line. Two new
-  refusals: `env | grep` is refused as a multi-operation command, so the run environment cannot be
-  inspected at all; and an inline `.venv/bin/python -c` sqlite read of `data/docs.sqlite` needs
-  approval a headless run cannot give. The second had a direct cost — I wanted the vocabulary
-  actually used in `provenance.source_of_lead` so today's rows would match prior runs, could not
-  read it, and guessed `index_diff`.
+One `PROPOSALS.md` entry, dated 2026-09-13: **the system-card test has no answer
+for performance and cost studies of named models.** The Epoch latency report is
+the subject of the measurement, so it clears the "merely uses models" carve-out,
+but long-context serving latency is a deployment property rather than a
+capability or a risk. I admitted it and flagged it in the row's `notes`; the ask
+is one sentence in `criteria.yaml` settling the class, since Epoch produces this
+shape several times a month. If the answer is "out of scope",
+`epoch-ai-gpt-5-6-terra-independent-eval` is the only row to revert.
 
-## 8. Proposals
+## Housekeeping
 
-One dated entry appended to `logs/PROPOSALS.md`: *Phase A counted four fetch failures and escalated
-none of them*. Phase A logged `not_found: 1, blocked: 3` while handing me an empty
-`blocked_escalations` list, so the input to Task 5 was silently empty on a day when it should have
-had four entries — and, because yesterday's run genuinely had zero, an empty list looks the same in
-both cases. I only caught it by noticing a stale `last_checked` while triaging an unrelated
-candidate. The reconstruction recovered the three blocked rows but not the one not-found row, which
-is the row where an agent verdict would have been worth most. The entry asks for two small things:
-populate `blocked_escalations` from every non-`ok` outcome including `not_found`, with
-`{slug, url, outcome, http_status, checked_at}`; and copy Phase A's summary counters into
-`candidates.json` so a run can assert `len(blocked_escalations) == blocked + not_found` and file
-friction when it does not. This is the same defect class as the 2026-08-21 `phase_a_status` entry in
-that file — a count that means "nothing happened" and a count that means "something was dropped"
-must not look identical to the agent.
+Proposal records were staged at `logs/.proposal_tmp.json` (the harness blocks
+both heredocs into `--json -` and writes outside the working directory, so the
+`/tmp` path recorded in the 2026-09-01 PROPOSALS entry was not available this
+run). The file holds the last proposal submitted and can be deleted.

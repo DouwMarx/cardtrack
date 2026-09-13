@@ -1502,3 +1502,53 @@ active, and neither I nor the operator can say which row it is without reading t
 `openai-gpt-5-5-access-policy` and `openai-gpt-rosalind-access-policy` (both `last_checked`
 2026-09-11, both 403 on manual fetch); `logs/friction.jsonl` entries dated 2026-09-12
 (`monitor_gap`, `data_error`).
+
+## 2026-09-13 — the system-card test has no answer for performance and cost studies of named models, and Epoch publishes them on a cadence
+
+**Problem.** `criteria.yaml` defines `about_a_specific_model_or_eval` as "the content could sit in
+the evals section of a system/model card — it assesses a NAMED model's capabilities or safety",
+with one explicit carve-out ("research that merely uses models does not qualify"). A whole class of
+document clears the carve-out and sits ambiguously against the positive half: **empirical studies
+whose subject is a named model's deployment behaviour rather than its capability or its risk.**
+
+Today's instance is Epoch AI's *Long-context latency scales quadratically for GPT-5.6 but nearly
+linearly for Claude 5* (2026-09-08). It measures time-to-first-token against input context length
+up to ~1M tokens for GPT-5.6 Terra, GPT-5.6 Sol, Claude Sonnet 5 and Claude Opus 5, with GPT-6
+Astra in an appendix, and reports fitted quadratic coefficients, marginal-latency tables and
+10M-token extrapolations. The named models are unambiguously the subject. But long-context
+latency is a serving property that implies an architectural choice — full attention versus
+something cheaper — not a capability and not a risk. I admitted it under
+`policy.when_uncertain: admit_and_flag` (written as `epoch-ai-gpt-5-6-terra-independent-eval`) and
+flagged the call in the row's `notes`, but the honest position is that I could have argued either
+way and a second agent tomorrow will argue it again.
+
+This is not a one-off document, which is what distinguishes it from an ordinary judgement call.
+Epoch's publication mix is substantially performance, cost and trend measurement of named frontier
+models; the corpus already holds seven Epoch rows, and its `/publications` and `/data-insights`
+sections produce this shape several times a month. The same question will arrive for any
+throughput, price-per-token or context-degradation comparison, from Epoch or from anyone else.
+
+**Suggested change.** One sentence under `about_a_specific_model_or_eval` in
+`config/criteria.yaml`, stating whether a quantitative study of a named model's *deployment
+characteristics* — latency, throughput, cost, context degradation, availability — is in scope.
+Either answer is workable and both are cheap to apply:
+
+- *In scope.* Say so, and note that such documents will normally carry `has_safety_evals: false`
+  and no `risk_domains`, so the site's safety filter already separates them from evaluation
+  content. Under this reading today's row stands.
+- *Out of scope.* Say so, and the rule becomes mechanical: the reported numbers must be about what
+  the model can do or how it can fail, not about what it costs to serve. Under this reading today's
+  row is the one to revert, and it is the only such row in the corpus — the other six Epoch entries
+  are capability or incident analyses.
+
+Note the adjacency to the 2026-08-20 §2 entry in this file, which asked for a discriminator
+between "a property of the named model" and "a property of the technique applied to it". This is
+the third axis of the same underspecification: *which* properties of a named model count. That
+entry is still open, so a single clarifying paragraph could settle both.
+
+**Evidence.** `https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude` (fetched
+2026-09-13); `https://epoch.ai/latest`, which lists six items from 1–9 September 2026 of which
+four are measurement-of-named-systems pieces; `config/criteria.yaml`
+`agent_attested.about_a_specific_model_or_eval` and `policy.when_uncertain`;
+`logs/friction.jsonl` entry dated 2026-09-13 (`ambiguous_criteria`); the 2026-08-20 entry in this
+file, §2.

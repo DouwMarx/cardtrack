@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T06:28:19Z",
+ "generated_at": "2026-09-13T07:13:11Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -440,6 +440,37 @@
    "version_count": 1
   },
   {
+   "slug": "epoch-ai-gpt-5-6-terra-independent-eval",
+   "title": "Long-context latency scales quadratically for GPT-5.6 but nearly linearly for Claude 5",
+   "publisher": "epoch_ai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Opus 5",
+    "Claude Sonnet 5",
+    "GPT-5.6 Sol",
+    "GPT-5.6 Terra",
+    "GPT-6 Astra"
+   ],
+   "publication_date": "2026-09-08",
+   "canonical_url": "https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-13T07:12:02Z",
+   "last_checked": "2026-09-13T07:12:02Z",
+   "last_changed": "2026-09-13T07:12:02Z",
+   "source_of_lead": "index_diff",
+   "safety_evals": 0,
+   "openness": null,
+   "risk_domains": [],
+   "related_urls": [],
+   "content_hash": "e91f107ac54391c6c499e20e6428083c77dc15d979fc993c6c879fb6cb2e2e0f",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-13T07:12:02Z",
+   "content_fingerprint": "3e89a644e190ca900adc6a1e8a298b27f345cd5f7a9dce8b670519c2f7b10324",
+   "version_count": 1
+  },
+  {
    "slug": "meta-muse-other",
    "title": "How We Built Safety Into Muse",
    "publisher": "meta",
@@ -504,6 +535,50 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-09-09T06:24:02Z",
    "content_fingerprint": "1d8e84c0ffe1eb6d0f8a2eb7a78fb9a9670fdc6b1497f0906677e5de611373bc",
+   "version_count": 1
+  },
+  {
+   "slug": "inclusion-ai-llada-ui-model-card",
+   "title": "LLaDA-UI",
+   "publisher": "inclusion_ai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "LLaDA-UI"
+   ],
+   "publication_date": "2026-09-06",
+   "canonical_url": "https://huggingface.co/inclusionAI/LLaDA-UI",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-13T07:11:30Z",
+   "last_checked": "2026-09-13T07:11:30Z",
+   "last_changed": "2026-09-13T07:11:30Z",
+   "source_of_lead": "index_diff",
+   "safety_evals": 0,
+   "openness": null,
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://www.inclusion-ai.org/LLaDA-UI/",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://github.com/inclusionAI/LLaDA-UI",
+     "kind": "code"
+    },
+    {
+     "url": "https://github.com/inclusionAI/LLaDA-UI/blob/master/assets/LLaDA-UI-paper.pdf",
+     "kind": "paper"
+    },
+    {
+     "url": "https://huggingface.co/spaces/inclusionAI/llada-ui-gui-agent-demo",
+     "kind": "other"
+    }
+   ],
+   "content_hash": "455f9535f56e4a6c5a69e38087f97e63711525e7947780b0c2bef97bbd67f672",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-13T07:11:30Z",
+   "content_fingerprint": "41aadb5eac9f68e1c6b6361d283ab82bcd0fdcf375c99b9b335eba24bc19a406",
    "version_count": 1
   },
   {
