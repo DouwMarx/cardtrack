@@ -1552,3 +1552,53 @@ four are measurement-of-named-systems pieces; `config/criteria.yaml`
 `agent_attested.about_a_specific_model_or_eval` and `policy.when_uncertain`;
 `logs/friction.jsonl` entry dated 2026-09-13 (`ambiguous_criteria`); the 2026-08-20 entry in this
 file, §2.
+
+## 2026-09-14 — Palisade Research's watched index no longer lists its research reports
+
+**Problem.** `config/sources.yaml` watches `palisade_research` at a single index,
+`https://palisaderesearch.org/blog`. Palisade has restructured its site and its research output
+now lives under `/research`. The two indexes have disjoint content:
+
+- `/blog` (watched) lists podcast episodes, a YouTube channel announcement, a fundraiser, a
+  conference talk and policy commentary. It lists **no research reports at all**.
+- `/research` (not watched) lists all fifteen research outputs, including both that fall inside the
+  scope floor: *Language Models Can Autonomously Hack and Self-Replicate* (2026-05-07) and
+  *Technical Report: Shutdown Resistance in Large Language Models, on robots!* (2026-02-12).
+
+So index diffing for this publisher is now structurally incapable of surfacing a new Palisade
+research report. It would surface a new podcast episode, which we correctly skip every time.
+
+Two pieces of corroborating damage are already in the database. Both Palisade rows are catalogued
+under `/blog/<slug>` URLs that now serve only a `Redirecting…` stub: versions 508 and 509 stored
+the stub instead of the report, and earlier runs left operator notes on both rows saying exactly
+that and asking for a `canonical_url` sweep. Those notes are still unactioned. And Palisade's
+newest corpus entry (2026-05-07) is the second-oldest of any allowlisted org — a silence that
+reads as a dead channel rather than a quiet org.
+
+This is also a note about detection. Nothing in the daily pipeline can find this: link-checking
+passes (the stub returns 200), the index diff produces candidates (podcasts), and the publisher
+simply looks quiet. It surfaced only because the Monday retrospective sweep picks orgs by *oldest
+newest entry*, which is precisely the signal a broken channel produces. That heuristic is earning
+its keep and is worth keeping.
+
+**Suggested change.** Three things, in descending order of importance:
+
+1. In `config/sources.yaml`, change `palisade_research`'s `index_urls` to
+   `https://palisaderesearch.org/research`, or add it alongside `/blog`.
+2. Run the `canonical_url` sweep the notes on documents 190 and 191 have been asking for:
+   `palisade-research-gpt-5-4-independent-eval` → `https://palisaderesearch.org/research/self-replication`,
+   `palisade-research-grok-4-grok-4-0709-independent-eval` →
+   `https://palisaderesearch.org/research/shutdown-resistance-on-robots`. Both are already recorded
+   as `related_urls` (kind `web_version`); the stored versions are stubs until this happens.
+3. Consider a cheap standing check: for each allowlisted publisher, if the newest candidate the
+   index has produced in N days is older than the newest document the corpus holds for that
+   publisher, the index may have moved. That is the generalisation of what the retrospective sweep
+   found by hand today, and it would catch the next restructure in days rather than months.
+
+**Evidence.** `https://palisaderesearch.org/blog` and `https://palisaderesearch.org/research`,
+both fetched 2026-09-14 (listings quoted above); `https://palisaderesearch.org/research/self-replication`
+(fetched, same title and date as document 190); `config/sources.yaml` `evaluators.palisade_research`;
+the stored operator notes on the `related_urls` of documents 190 and 191, read out of the validator
+this run; `logs/state_summary.json` per-publisher newest `publication_date`, where
+`palisade_research` (2026-05-07) is second-oldest behind `xiaomi` (2026-04-27);
+`logs/friction.jsonl` entry dated 2026-09-14 (`stale_source_config`).

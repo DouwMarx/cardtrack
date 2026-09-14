@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-31T10:12:10Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-access-policy&amp;body=Document%3A%20openai-gpt-5-6-sol-access-policy%0AURL%3A%20https%3A//help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview%0AFingerprint%3A%205ee9b833d243eb5c6f343dd12b58c6ac314bdcfe3a5f51f39cb71b3d894af8b1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-access-policy&amp;body=Document%3A%20openai-gpt-5-6-sol-access-policy%0AURL%3A%20https%3A//help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview%0AFingerprint%3A%207fc7a4e1c0b0f9db0cc8cb650c6e966d87fd5f56ed1a6aa369e41a6c8f3a91b8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-14T06:19:59Z</td>
+          <td>text/html</td>
+          <td>70,851</td>
+          <td><code title="7fc7a4e1c0b0f9db0cc8cb650c6e966d87fd5f56ed1a6aa369e41a6c8f3a91b8">7fc7a4e1c0b0f9db</code></td>
+          <td class="change-summary">Two FAQ entries were added to the Daybreak trusted-access overview. Reduced refusals on Astra are available to Daybreak Red customers but not currently to Daybreak Blue customers, and OpenAI says it is working on extending them to Blue. Daybreak Red is available only to approved business and enterprise organizations and cannot be applied for directly by individuals; individuals can apply for Blue, and Blue approval does not include Red.
+</td>
+        </tr>
         <tr>
           <td>2026-08-31T10:12:10Z</td>
           <td>text/html</td>
@@ -75,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -102,6 +110,23 @@
         <span class="run">run 2026-09-04T-openness-policy · human</span>
           <div class="just">openness: null → "restricted"</div>
           <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-14T06:19:59Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-14T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview" rel="noopener nofollow">https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-14T06:27:31Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-14T06:17Z-local · agent · lead: agent_search</span>
+          <div class="just">change_summary: null → "Two FAQ entries were added to the Daybreak trusted-access overview. Reduced refusals on Astra are available to Daybreak Red customers but not currently to Daybreak Blue customers, and OpenAI says it is working on extending them to Blue. Daybreak Red is available only to approved business and enterprise organizations and cannot be applied for directly by individuals; individuals can apply for Blue, and Blue approval does not include Red."</div>
+          <div class="just">Substantive access-policy change: the page now states which customer tier can obtain reduced refusals on GPT-6 Astra and that individuals are ineligible to apply for Daybreak Red. Both are eligibility conditions for a gated frontier model, the core content of an access_policy row, and neither appeared in the prior version.</div>
+          <div class="evidence">Evidence:
+<a href="https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview" rel="noopener nofollow">https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview</a>          </div>
       </li>
     </ol>
     </details>
@@ -158,6 +183,12 @@ Read: Trusted Access for Cyber - Common Issues and Troubleshooting
 FAQ
 What changes after approval?
 Approved customers can use the models and product surfaces specified for their accounts. Daybreak Blue, which uses GPT-5.6 Sol, supports approved defensive cybersecurity workflows, while Daybreak Red, which uses GPT-5.6 Cyber, requires separate approval for advanced, authorized work. Existing GPT-5.5 or GPT-5.5-Cyber access remains subject to its original approval. Other safeguards, usage policies, and access restrictions continue to apply.
+Can I use Daybreak Blue with Astra?
+Reduced refusals on Astra are available to Daybreak Red customers, but are not currently available to Daybreak Blue customers. We’re working on extending reduced refusals on Astra to Daybreak Blue customers. If you have Daybreak Blue access, you can use Astra with standard safeguards or switch to a model that supports Daybreak Blue.
+Can I get Daybreak Red as an individual?
+Daybreak Red is currently available only to approved business and enterprise organizations. It isn&#39;t available through the individual application process.
+Individuals can apply for Daybreak Blue, but Blue approval doesn&#39;t include Daybreak Red.
+Note that some individuals may have access as an exception, but at this time, it&#39;s not possible to apply for Daybreak Red directly.
 Does approval include GPT-5.5-Cyber?
 Not automatically. Trusted Access for Cyber can support many defensive cybersecurity workflows with GPT-5.5. GPT-5.5-Cyber is intended for a narrower set of specialized authorized workflows, such as red teaming and exploit validation or development, and may require additional approval and controls.
 Does existing Trusted Access for Cyber or GPT-5.5-Cyber approval include Daybreak Red?
@@ -185,6 +216,6 @@ Trusted Access should be available only to approved internal users working on au
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-13T07:13:11Z</p></footer>
+<footer><p>Data updated 2026-09-14T06:30:07Z</p></footer>
 </body>
 </html>
