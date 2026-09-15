@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:57:28Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-claude-haiku-4-5-independent-eval&amp;body=Document%3A%20apollo-research-claude-haiku-4-5-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/monitoring/evaluating-llm-calibration-for-coding-agent-monitoring%0AFingerprint%3A%2077b4d49c449578ad6d67a3ae9355e11d85ad8e8348a4277cb3762706087b1ee9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20apollo-research-claude-haiku-4-5-independent-eval&amp;body=Document%3A%20apollo-research-claude-haiku-4-5-independent-eval%0AURL%3A%20https%3A//www.apolloresearch.ai/monitoring/evaluating-llm-calibration-for-coding-agent-monitoring%0AFingerprint%3A%209bdfaf3bb430c7177a0a7a0692d3300d30c5229a43d230fd16506588c0a17896%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-15T08:14:34Z</td>
+          <td>text/html</td>
+          <td>192,127</td>
+          <td><code title="9bdfaf3bb430c7177a0a7a0692d3300d30c5229a43d230fd16506588c0a17896">9bdfaf3bb430c717</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:57:28Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -119,6 +126,14 @@
         <span class="run">run manual-20260831T100822Z · human</span>
           <div class="just">risk_domains: [] → ["loss_of_control"]</div>
           <div class="just">Risk-domain backfill (2026-08-31 classification pass): Quantitative eval of 16 LLMs as coding-agent monitors (2,904 trajectories, calibration/Spearman/MAE) — control/monitoring research per conventions.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-15T08:14:34Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-15T08:11Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.apolloresearch.ai/monitoring/evaluating-llm-calibration-for-coding-agent-monitoring" rel="noopener nofollow">https://www.apolloresearch.ai/monitoring/evaluating-llm-calibration-for-coding-agent-monitoring</a>          </div>
       </li>
     </ol>
     </details>
@@ -222,12 +237,13 @@ Calibration curves for the best ensemble at each size (1–3 members, mean aggre
 A.3 Performance across failure modes
 The pooled metrics in the main text mask meaningful variation across the five failure modes: within a single judge, Spearman ρ varies by up to ~0.15 and MAE by up to ~0.9. Some failure modes are consistently easier to score than others: undesirable deletions show higher Spearman and lower MAE for nearly every judge, while instruction-following violations are the hardest for most. Models can also underperform on specific failure modes, e.g. Gemini 3.5 Flash scores markedly lower on PII and instruction-following than on the other failure modes. The strong judges stay strong everywhere (Opus 4.8 and Sonnet 5 keep a compact, high band across all five); therefore, if a deployment cares primarily about one failure mode, judge selection should be checked against that mode&#39;s profile rather than the pooled numbers.
 Share this article
+Copy as Markdown
 oUR FINDINGS
 More papers
 July 23, 2026
 What makes a good monitoring prompt?
 We want to understand which principles work well for high-quality monitoring prompts. We use a 1-10 severity scale and full-trajectory scoring, as opposed to real-time binary prompts.
-Product
+Research
 July 13, 2026
 Red-teaming auto mode: lessons from our first external monitor campaign with Anthropic
 Apollo Research ran a pilot monitor campaign for auto mode, Anthropic&#39;s monitoring system for Claude Code agents that decides whether an agent&#39;s next action should be allowed or blocked.
@@ -244,6 +260,6 @@ Product</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-14T06:30:07Z</p></footer>
+<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
 </body>
 </html>

@@ -1,0 +1,44 @@
+Computer Science > Sound
+  [Submitted on 11 Sep 2026]
+    Title:StepAudio 3 Gen Technical Report
+View PDF HTML (experimental)
+            Abstract:We introduce StepAudio 3 Gen, a general-purpose audio generation model that supports zero-shot text-to-speech (TTS), voice design, vocal generation, sound effects, music, vibe speech, and mixtures of multiple audio types within a unified framework. At its core, StepAudio 3 Gen is a discrete autoregressive generator that models audio directly over residual vector quantization (RVQ) tokens, departing from the diffusion Transformer-based continuous generation paradigm prevalent in recent general audio models. Its StepAudio Tokenizer represents general audio at 12.5 Hz in a shared $16 \times 2048$ residual code space, jointly quantizing semantic and waveform-level acoustic features so that each code layer preserves both types of information. For generation, the backbone predicts the first codebook along the time axis using autoregressive modeling, while a lightweight causal Transformer completes the remaining fifteen codebooks along the codebook axis. Our study further identifies three key design principles: (1) interference-aware progressive pretraining for acquiring audio capabilities while preserving the textual abilities of the large language model, (2) RVQ Adaptor for effectively incorporating multi-codebook acoustic representations, and (3) discrete autoregressive modeling over a shared representation across general audio domains. With progressive pretraining, multi-task instruction training, and supervised fine-tuning, StepAudio 3 Gen achieves state-of-the-art performance on both TTS and voice design, while retaining strong generation capabilities across speech, vocals, sound effects, and music. Audio samples are available at this https URL.
+
+Current browse context:
+cs.SD
+
+    References & Citations
+
+    Loading...
+Bibliographic and Citation Tools
+            Bibliographic Explorer (What is the Explorer?)
+
+            Connected Papers (What is Connected Papers?)
+
+            Litmaps (What is Litmaps?)
+
+            scite Smart Citations (What are Smart Citations?)
+
+        Code, Data and Media Associated with this Article
+            alphaXiv (What is alphaXiv?)
+
+            CatalyzeX Code Finder for Papers (What is CatalyzeX?)
+
+            DagsHub (What is DagsHub?)
+
+            Gotit.pub (What is GotitPub?)
+
+            Hugging Face (What is Huggingface?)
+
+            ScienceCast (What is ScienceCast?)
+
+        Demos
+Recommenders and Search Tools
+              Influence Flower (What are Influence Flowers?)
+
+              CORE Recommender (What is CORE?)
+
+          arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv's community? Learn more about arXivLabs.

@@ -1602,3 +1602,76 @@ the stored operator notes on the `related_urls` of documents 190 and 191, read o
 this run; `logs/state_summary.json` per-publisher newest `publication_date`, where
 `palisade_research` (2026-05-07) is second-oldest behind `xiaomi` (2026-04-27);
 `logs/friction.jsonl` entry dated 2026-09-14 (`stale_source_config`).
+
+## 2026-09-15 — The agent's fetcher is blocked on domains Phase A reads fine, and today that lost a document
+
+**Problem.** There are now two fetch stacks in this system with different reach, and the weaker one
+belongs to the agent. Phase A fetches `rand.org` without trouble — it link-checks six `rand` rows
+every run and it generated today's candidate from the Project Canary index. The validator fetches
+with the same stack, which is why `document_retrievable` passes for those rows. My own fetch tool
+gets HTTP 403 from `rand.org` on every path I tried: `www.rand.org`, `rand.org` without the `www`,
+and the conventional `content/dam/.../RAND_RRA5112-1.pdf` full-report path. A text-extraction proxy
+returned 401.
+
+The cost today was concrete. Today's index diff produced
+`https://www.rand.org/pubs/research_reports/RRA5112-1.html`, *Open-Weight AI Models May Increase
+Biological Misuse Risks*, described in the index link text as "Researchers examined whether frontier
+open-weight LLMs can be modified for malicious biological purposes, and found that removing an LLM's
+saf[eguards]…". On its face that is a RAND CAST report evaluating named open-weight models for
+biological misuse uplift — the same class as all six existing `rand` rows, and the exact shape of
+document this project exists to catalog. I could not read it, so I could not verify its title, its
+publication date, its authors or which models it evaluates, and TASK.md rightly forbids proposing a
+document I have not read. **It is not in the corpus, and nothing in the pipeline will retry it**:
+the candidate is now `first_seen`, and on the next run it is just another stale backlog link.
+
+`securebio.org` is the same failure in a milder form and it bit the same run. Today's main add,
+SecureBio's *GPT-6 Astra Pre-Release Testing Report* (document 312), ships a full assessment PDF at
+`securebio.org/resources/gpt-6-astra-assessment.pdf`. TASK.md says the full document should be the
+canonical URL. Both `securebio.org` URLs 403 me, so I catalogued the Substack copy I could actually
+read and filed the PDF as a `related_urls` `full_document` for the operator sweep. Worth noting that
+all seven pre-existing `securebio` rows are also catalogued under `substack.com` URLs — prior runs
+almost certainly hit this same wall and took the same fallback without naming it.
+
+This is a different problem from a publisher bot-walling the pipeline. `config/sources.yaml` already
+documents that case ("Some publishers bot-block scripted fetches (OpenAI /news, Meta blog); index
+diffing quietly skips failures and agent web search covers the gap") and the stated mitigation is
+*the agent covers the gap*. That mitigation assumes the agent's reach is a superset of Phase A's.
+For `rand.org` and `securebio.org` it is a strict subset, so the gap has no cover from either side.
+Note that the `meta` entry in `sources.yaml` says its index became reachable "since the browser-
+impersonation fetch fallback" — that fallback evidently exists in Phase A and is exactly what the
+agent side lacks.
+
+**Suggested change.**
+
+1. Give the agent a read path through the pipeline's own fetcher. The cheapest version is a
+   read-only `scripts/fetch_url.py <url>` that reuses Phase A's client (browser impersonation
+   included), writes nothing, and prints extracted text — the agent sandbox already permits
+   `scripts/propose_doc.py` and `scripts/comment_issue.py`, so adding a third read-only script fits
+   the existing permission model. This would also close the PDF-reading gap logged on 2026-09-14
+   (the Palisade robots report, still unverified for the same reason).
+2. Failing that, extend `config/sources.yaml`'s `scope`/comment convention with an explicit
+   `agent_fetch: blocked` marker for `rand`, `securebio` and `openai`, so a future run recognises
+   the wall immediately instead of spending four fetches and four searches rediscovering it.
+3. Independently: **re-triage `RRA5112-1` by hand.** It is one operator fetch, and if the link text
+   is accurate it belongs in the corpus.
+
+**Second, smaller point, because it compounds the first.** `blocked_escalations` in
+`logs/candidates.json` has been `[]` on four consecutive runs (09-12, 09-13, 09-14, 09-15) while
+Phase A reported 1, 0, 1 and **13** fetch failures respectively. Today's run log reads
+`blocked: 12, errors: 1, moved: 1`. None of those thirteen reached me through the documented channel;
+I found them by elimination on `last_checked`, established that none is dead, and proposed no
+`status_change`. The right outcome, reached the wrong way — and the wider the agent/Phase A fetch
+gap gets, the more this matters, because a `blocked` result is precisely the case where the agent is
+supposed to second-opinion the fetch and today would have had no better luck than Phase A. Four
+`friction.jsonl` entries have recorded this; this is the first time it is in PROPOSALS.
+
+**Evidence.** `logs/run-20260915-081156Z.log` (`checked: 279, ok: 266, not_found: 0, blocked: 12,
+errors: 1, moved: 1`); `logs/candidates.json` `"blocked_escalations": []` and the `rand` candidate
+at `first_seen 2026-09-15T08:15:10Z` with its index_url
+`.../ai-security-and-technology/projects/canary.html`; four failed fetches of `RRA5112-1` and four
+searches (two `allowed_domains`-restricted to `rand.org`) that never surfaced it; the 403s on
+`securebio.org/blog/gpt-6-astra-pre-release-testing-report/index.html` and
+`securebio.org/resources/gpt-6-astra-assessment.pdf` against the successful fetch of
+`securebio.substack.com/p/securebio-gpt-6-astra-pre-release`; `config/sources.yaml` header comment
+and the `meta` `index_urls` comment; `logs/friction.jsonl` entries dated 2026-09-15
+(two `unfetchable_but_alive`, one `monitor_gap`).

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StepAudio 3 Gen Technical Report — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">StepAudio 3 Gen Technical Report</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.stepfun.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">stepfun</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:na"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>StepAudio 3 Gen</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-09-11</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge">unclear</span></dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://arxiv.org/abs/2609.12945" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://arxiv.org/abs/2609.12945</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">full document</span>
+        <a href="https://arxiv.org/pdf/2609.12945" rel="noopener nofollow">https://arxiv.org/pdf/2609.12945</a></span><br>        <span class="related-item"><span class="badge">web version</span>
+        <a href="https://huggingface.co/papers/2609.12945" rel="noopener nofollow">https://huggingface.co/papers/2609.12945</a></span><br>        <span class="related-item"><span class="badge">other</span>
+        <a href="https://huggingface.co/spaces/stepfun-ai/StepAudio-3-Music" rel="noopener nofollow">https://huggingface.co/spaces/stepfun-ai/StepAudio-3-Music</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-09-15T08:24:16Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-stepaudio-3-gen-model-card&amp;body=Document%3A%20stepfun-stepaudio-3-gen-model-card%0AURL%3A%20https%3A//arxiv.org/abs/2609.12945%0AFingerprint%3A%2054b656c6e44164f8c384c953a287c2ac128d5bf14235fe6c6dec9ce0490df97c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-09-15T08:24:16Z</td>
+          <td>text/html</td>
+          <td>52,942</td>
+          <td><code title="54b656c6e44164f8c384c953a287c2ac128d5bf14235fe6c6dec9ce0490df97c">54b656c6e44164f8</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-09-15T08:24:16Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-09-15T08:11Z-local · agent · lead: index_diff</span>
+          <div class="just">StepFun&#39;s own technical report for StepAudio 3 Gen, a unified discrete autoregressive audio-generation model covering text-to-speech, voice design, vocal generation, sound effects, music generation and mixed audio, built on a 12.5 Hz StepAudio tokenizer with a residual-vector-quantization code predictor. Audio and music generation are explicitly inside covered_model_class in criteria.yaml, and StepFun has no sources.yaml scope note excluding audio; the corpus already carries Step-Audio-R1.1 under this publisher. Notable: it is a technical report published by the org itself (arXiv:2609.12945, StepFun-Audio Team, 71 authors) with a companion demo Space at huggingface.co/spaces/stepfun-ai/StepAudio-3-Music. Distinct release: this is a generation model, not a variant of the existing Step-Audio-R1.1 audio-understanding row or of the Step-3.7-Flash VLM line. has_safety_evals is false and I want to be explicit about that: I read the arXiv HTML in full and found no safety section, no misuse discussion and no voice-cloning risk assessment, which is itself a finding for a speech-and-voice-design generative model. Openness is omitted because the report does not state whether weights will be released or under what licence, and no StepAudio-3 weights repo exists on the stepfun-ai HuggingFace org yet, so the access class cannot be verified.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2609.12945" rel="noopener nofollow">https://arxiv.org/abs/2609.12945</a> · <a href="https://arxiv.org/html/2609.12945v1" rel="noopener nofollow">https://arxiv.org/html/2609.12945v1</a> · <a href="https://huggingface.co/papers/2609.12945" rel="noopener nofollow">https://huggingface.co/papers/2609.12945</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://arxiv.org/abs/2609.12945" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Computer Science &gt; Sound
+  [Submitted on 11 Sep 2026]
+    Title:StepAudio 3 Gen Technical Report
+View PDF HTML (experimental)
+            Abstract:We introduce StepAudio 3 Gen, a general-purpose audio generation model that supports zero-shot text-to-speech (TTS), voice design, vocal generation, sound effects, music, vibe speech, and mixtures of multiple audio types within a unified framework. At its core, StepAudio 3 Gen is a discrete autoregressive generator that models audio directly over residual vector quantization (RVQ) tokens, departing from the diffusion Transformer-based continuous generation paradigm prevalent in recent general audio models. Its StepAudio Tokenizer represents general audio at 12.5 Hz in a shared $16 \times 2048$ residual code space, jointly quantizing semantic and waveform-level acoustic features so that each code layer preserves both types of information. For generation, the backbone predicts the first codebook along the time axis using autoregressive modeling, while a lightweight causal Transformer completes the remaining fifteen codebooks along the codebook axis. Our study further identifies three key design principles: (1) interference-aware progressive pretraining for acquiring audio capabilities while preserving the textual abilities of the large language model, (2) RVQ Adaptor for effectively incorporating multi-codebook acoustic representations, and (3) discrete autoregressive modeling over a shared representation across general audio domains. With progressive pretraining, multi-task instruction training, and supervised fine-tuning, StepAudio 3 Gen achieves state-of-the-art performance on both TTS and voice design, while retaining strong generation capabilities across speech, vocals, sound effects, and music. Audio samples are available at this https URL.
+
+Current browse context:
+cs.SD
+
+    References &amp; Citations
+
+    Loading...
+Bibliographic and Citation Tools
+            Bibliographic Explorer (What is the Explorer?)
+
+            Connected Papers (What is Connected Papers?)
+
+            Litmaps (What is Litmaps?)
+
+            scite Smart Citations (What are Smart Citations?)
+
+        Code, Data and Media Associated with this Article
+            alphaXiv (What is alphaXiv?)
+
+            CatalyzeX Code Finder for Papers (What is CatalyzeX?)
+
+            DagsHub (What is DagsHub?)
+
+            Gotit.pub (What is GotitPub?)
+
+            Hugging Face (What is Huggingface?)
+
+            ScienceCast (What is ScienceCast?)
+
+        Demos
+Recommenders and Search Tools
+              Influence Flower (What are Influence Flowers?)
+
+              CORE Recommender (What is CORE?)
+
+          arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv&#39;s community? Learn more about arXivLabs.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
+</body>
+</html>

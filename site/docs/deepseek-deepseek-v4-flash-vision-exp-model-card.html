@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-09-01T06:26:09Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>MIT licence per the card. No safety evaluations, red-teaming or risk assessment of any kind on the card - the Cybergym entry is a capability leaderboard score, not a risk assessment. publication_date is the date the model card repository was created (initial commit ~2026-08-31); the API availability announcement predates it by ten days.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-flash-vision-exp-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-flash-vision-exp-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp%0AFingerprint%3A%206a7a2e42f7ddc2891566c7cc0664b2722d23e909d74b6febcd1dc23e9a0c87c6%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-flash-vision-exp-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-flash-vision-exp-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp%0AFingerprint%3A%206a602663a9563785deb4d20e5e4c6ac77c10a0e36bcd238a6b05432d6e398686%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-15T08:14:30Z</td>
+          <td>text/html</td>
+          <td>271,336</td>
+          <td><code title="6a602663a9563785deb4d20e5e4c6ac77c10a0e36bcd238a6b05432d6e398686">6a602663a9563785</code></td>
+          <td class="change-summary">The model card gained a &#39;How to Run with vLLM&#39; section giving a single 4xGB300 docker serving command with DSpark speculative decoding (num_speculative_tokens 3, adaptive verification enabled), alongside the existing SGLang recipe. The Evaluation results list also added a Toolathlon Verified entry (hkust-nlp/Toolathlon), which is shown without a figure.
+</td>
+        </tr>
         <tr>
           <td>2026-09-01T06:26:09Z</td>
           <td>text/html</td>
@@ -77,7 +85,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +106,23 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp</a> · <a href="https://api-docs.deepseek.com/news/news260821/" rel="noopener nofollow">https://api-docs.deepseek.com/news/news260821/</a> · <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp/commits/main" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp/commits/main</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-15T08:14:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-15T08:11Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-15T08:24:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-15T08:11Z-local · agent · lead: manual</span>
+          <div class="just">change_summary: null → "The model card gained a \u0027How to Run with vLLM\u0027 section giving a single 4xGB300 docker serving command with DSpark speculative decoding (num_speculative_tokens 3, adaptive verification enabled), alongside the existing SGLang recipe. The Evaluation results list also added a Toolathlon Verified entry (hkust-nlp/Toolathlon), which is shown without a figure."</div>
+          <div class="just">Substantive documentation change, not extraction noise: a new deployment section was added and a new benchmark appeared in the card&#39;s evaluation-results list. The remaining diff lines (download counter, Spaces count, row reordering) are HuggingFace widget churn and are excluded from the summary.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -115,6 +140,8 @@ pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;deepseek-ai/DeepSeek-V4
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Flash-Vision-Exp&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Flash-Vision-Exp&#34;, device_map=&#34;auto&#34;)
+- Inference
+- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -215,6 +242,18 @@ examples under inference/examples/ encode to identical prompts and token IDs.
 Minimal inference
 See inference/README.md for dependency installation,
 checkpoint conversion, and TXT/JSON inference commands.
+How to Run with vLLM
+For example, the command below serves the model with vLLM on a single 4×GB300 node. See the vLLM recipe for detailed instructions and other hardware configurations.
+docker run --gpus all \
+  vllm/vllm-openai:deepseekv4-flash-vision deepseek-ai/DeepSeek-V4-Flash-Vision-Exp \
+  --kv-cache-dtype fp8 \
+  --block-size 256 \
+  --tensor-parallel-size 4 \
+  --tool-call-parser deepseek_v4 \
+  --enable-auto-tool-choice \
+  --reasoning-parser deepseek_v4 \
+  --reasoning-config &#39;{&#34;reasoning_parser&#34;:&#34;deepseek_v4&#34;,&#34;reasoning_start_str&#34;:&#34;&#34;,&#34;reasoning_end_str&#34;:&#34;&#34;}&#39; \
+  --speculative-config &#39;{&#34;method&#34;:&#34;dspark&#34;,&#34;model&#34;:&#34;deepseek-ai/DeepSeek-V4-Flash-Vision-Exp&#34;,&#34;num_speculative_tokens&#34;:3,&#34;draft_sample_method&#34;:&#34;probabilistic&#34;,&#34;enable_adaptive_verification&#34;:true}&#39;
 How to Run with SGLang
 Enable DSpark with --speculative-algorithm DSPARK and do not set a separate --speculative-draft-model-path as the target and draft weights therefore come from the same checkpoint. See the SGLang cookbook for detailed instructions, benchmarks and other hardwares configurations.
 sglang serve \
@@ -227,16 +266,18 @@ sglang serve \
 License
 This repository is licensed under the MIT License.
 - Downloads last month
-- -
+- 547,463
 Model tree for deepseek-ai/DeepSeek-V4-Flash-Vision-Exp
+Spaces using deepseek-ai/DeepSeek-V4-Flash-Vision-Exp 3
 Collection including deepseek-ai/DeepSeek-V4-Flash-Vision-Exp
 Evaluation results
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
 - harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
-- datacurve/deep-swe · Deep Swe View evaluation results leaderboard</pre>
+- hkust-nlp/Toolathlon · Toolathlon Verified View evaluation results</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-14T06:30:07Z</p></footer>
+<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
 </body>
 </html>
