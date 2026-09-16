@@ -51,12 +51,12 @@
     <dt>First seen</dt>
     <dd>2026-09-10T06:30:01Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Openness closed, not restricted: Claude Opus and Sonnet are generally available via public API; the CVP relaxes cyber safeguards for vetted parties rather than gating the models themselves. Distinct from anthropic-claude-mythos-5-access-policy-2 (claude.com blog post), on which this URL currently sits only as a related URL.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-access-policy&amp;body=Document%3A%20anthropic-claude-opus-access-policy%0AURL%3A%20https%3A//support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet%0AFingerprint%3A%201961e5154d5dc208347bc50d521619973a33bbfe30eeefc88e1358c3cbe5be36%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-access-policy&amp;body=Document%3A%20anthropic-claude-opus-access-policy%0AURL%3A%20https%3A//support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet%0AFingerprint%3A%20efcbac46f44b6aa9acb21633f9c6927974a5c36a2c2a7f7046af7da40d721b75%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-16T12:56:21Z</td>
+          <td>text/html</td>
+          <td>355,941</td>
+          <td><code title="efcbac46f44b6aa9acb21633f9c6927974a5c36a2c2a7f7046af7da40d721b75">efcbac46f44b6aa9</code></td>
+          <td class="change-summary">The Cyber Verification Program availability table changed: the &#34;Google Vertex AI - not available at this time&#34; row became &#34;Claude on Google Cloud&#34;, which now directs authorised admins to the Verification Portal to apply. A new section requires consent to the Advanced AI Safety Addendum per project plus PublisherModelConfig settings: data sharing with Anthropic for Opus 5, and advancedAiEnabled for Sonnet 5, Opus 4.7 and Opus 4.8.
+</td>
+        </tr>
         <tr>
           <td>2026-09-10T06:30:01Z</td>
           <td>text/html</td>
@@ -80,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -100,6 +108,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet" rel="noopener nofollow">https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet</a> · <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" rel="noopener nofollow">https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-16T12:56:21Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-16T12:52Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet" rel="noopener nofollow">https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-16T13:09:40Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-16T12:52Z-local · agent</span>
+          <div class="just">change_summary: null → "The Cyber Verification Program availability table changed: the \"Google Vertex AI - not available at this time\" row became \"Claude on Google Cloud\", which now directs authorised admins to the Verification Portal to apply. A new section requires consent to the Advanced AI Safety Addendum per project plus PublisherModelConfig settings: data sharing with Anthropic for Opus 5, and advancedAiEnabled for Sonnet 5, Opus 4.7 and Opus 4.8."</div>
+          <div class="just">Substantive access-policy change rather than extraction noise: a named platform moved from explicitly unsupported to supported for the Cyber Verification Program, and new per-model data-retention preconditions were documented. Resubmitted with a shorter summary after the validator rejected the first attempt for exceeding 500 characters.</div>
+          <div class="evidence">Evidence:
+<a href="https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet" rel="noopener nofollow">https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet</a>          </div>
       </li>
     </ol>
     </details>
@@ -127,10 +152,18 @@ How you apply depends on how you access Claude. Once you submit your application
 | Microsoft Foundry | Find both your Azure Tenant ID and Subscription ID in your Azure Portal (see instructions here). Choose &#34;Azure&#34; under the Surface field in the Cyber Use Case Form. |
 | Amazon Bedrock | The Cyber Verification Program is not available on Bedrock at this time. |
 | Claude Platform on AWS | Navigate to the Verification Portal to apply for access to the Cyber Verification Program. You will need to create or log into an Anthropic account, then link your AWS account.  Note: Only authorized admins will be able to apply. |
-| Google Vertex AI | The Cyber Verification Program is not available on Vertex at this time. |
+| Claude on Google Cloud | Navigate to the Verification Portal to apply for access to the Cyber Verification Program. You will need to create or log into an Anthropic account, then link your Google account and configure data retention. Please see the instructions under the Enable data retention on Claude on Google Cloud section below.  Note: Only authorized admins will be able to apply. |
 | Third-party platform (coding tools and other apps powered by Claude) | Reach out to your platform directly to check if Anthropic CVP is available and if so request access to the Cyber Use Case Form through the platform. Not all platforms participate in the CVP at this time. |
 | Bring your own key (BYOK) Customers | Follow instructions under Anthropic first-party |
 Are you a platform owner? If you use Claude to power products or services available to your customers and want to learn whether your platform is eligible to participate in the Cyber Verification Program, please fill out this Platform CVP Interest Form.
+Enable data retention on Claude on Google Cloud
+In order to access the Cyber Verification Program through Claude on Google Cloud, you must consent to and configure data retention.
+Consent to the Advanced AI Safety Addendum once per project on the model page. In addition, the calling GCP project must opt in to the correct data retention settings. These are set on Google&#39;s PublisherModelConfig, keyed by project, region, and model.
+Note: You must update these settings for every project, region, and model combination with which you&#39;d like to use the Cyber Verification Program on Claude on Google Cloud.
+| Setting | Needed for | PublisherModelConfig field |
+| Data sharing with Anthropic | Opus 5 | dataSharingEnabledProvider: &#34;ANTHROPIC&#34; |
+| Advanced AI | Sonnet 5 Opus 4.7 Opus 4.8 | claudeFeatureConfig.advancedAiEnabled: true |
+You can find out more about how to set this configuration by reading the Google Cloud documentation.
 Appeals
 We expect to occasionally decline eligible applications incorrectly, and approved users may still experience blocks on legitimate work. We’re actively working to reduce both.
 If you’re encountering one of these issues, we recommend checking the following:
@@ -141,6 +174,6 @@ If you&#39;ve checked both and still believe something is wrong, you can submit 
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
+<footer><p>Data updated 2026-09-16T13:09:40Z</p></footer>
 </body>
 </html>

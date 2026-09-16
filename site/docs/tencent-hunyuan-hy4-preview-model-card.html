@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-08-28T07:39:38Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>HF createdAt 2026-08-27T08:52:40Z, lastModified 2026-08-28T07:15Z per the HF API. Hy4-preview-FP8 (https://huggingface.co/tencent/Hy4-preview-FP8, created the same day) is the FP8 quantization of this release and is covered by this entry per the size/quantization rule. Tencent also mirrors the same card on ModelScope, GitCode and CNB - same publisher, other platforms, so mirrors rather than co-publications. Found by querying the HuggingFace API by creation date, not by index diffing: Phase A returned errors on all 260 documents this run and surfaced 0 new candidates, and this release is absent from candidates.json. has_safety_evals=false: no safety, red-team, misuse or risk content anywhere in the card.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy4-preview-model-card&amp;body=Document%3A%20tencent-hunyuan-hy4-preview-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy4-preview%0AFingerprint%3A%2014203fbb157748f550e9e4fe55366a340249fae588a60f0f165d8f03f5ac0f6f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy4-preview-model-card&amp;body=Document%3A%20tencent-hunyuan-hy4-preview-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy4-preview%0AFingerprint%3A%20c98f52870a9c3350159e77da8d79597ae83b65023c617ccb7665842e93bf58f9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-16T12:56:02Z</td>
+          <td>text/html</td>
+          <td>360,596</td>
+          <td><code title="c98f52870a9c3350159e77da8d79597ae83b65023c617ccb7665842e93bf58f9">c98f52870a9c3350</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-10T06:21:38Z</td>
           <td>text/html</td>
@@ -85,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +133,14 @@
         <span class="run">run 2026-09-10T06:19Z-local · agent · lead: updated_docs</span>
           <div class="just">change_summary: null → "The Quick start example was expanded to load a tokenizer and apply the chat template before generate, and the Deployment section dropped the build-vLLM-from-source steps and the explicit vllm serve invocation in favour of pointing to the published recipes and the prebuilt vllm/vllm-openai:hy4-preview image. No benchmark numbers, license terms or safety content changed."</div>
           <div class="just">Reviewed the v533 diff. Unlike the other ten diffs in this batch, it contains a real edit to the card body by the publisher rather than HuggingFace widget churn: a rewritten usage snippet and a materially shorter Deployment section. Recording it so readers can see the version bump is a documentation change and not a change to results or terms.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/Hy4-preview" rel="noopener nofollow">https://huggingface.co/tencent/Hy4-preview</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-16T12:56:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-16T12:52Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/tencent/Hy4-preview" rel="noopener nofollow">https://huggingface.co/tencent/Hy4-preview</a>          </div>
       </li>
@@ -332,18 +347,18 @@ If you have any questions or suggestions, feel free to reach out to our R&amp;D 
 📧 hunyuan_opensource@tencent.com
 Hy4 preview is developed by the Tencent Hy Team.
 - Downloads last month
-- 7,193
+- 12,388
 Model tree for tencent/Hy4-preview
-Space using tencent/Hy4-preview 1
+Spaces using tencent/Hy4-preview 3
 Collection including tencent/Hy4-preview
 Papers for tencent/Hy4-preview
 IndexCache: Accelerating Sparse Attention via Cross-Layer Index Reuse
 DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models
 Evaluation results
 - mercor/apex-agents · Apex Agents View evaluation results leaderboard
-- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results    leaderboard   85.4
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   92.3
-- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
+- datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   64.3
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results    leaderboard   85.4
 - SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results leaderboard
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
 - hkust-nlp/Toolathlon · Toolathlon Verified View evaluation results</pre>
@@ -351,6 +366,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
+<footer><p>Data updated 2026-09-16T13:09:40Z</p></footer>
 </body>
 </html>

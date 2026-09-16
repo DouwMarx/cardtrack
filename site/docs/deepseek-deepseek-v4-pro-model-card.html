@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:23:18Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro%0AFingerprint%3A%20803133254c3ea846ef319885b0345fe39d14645c3dcf5aca44ba474e01778f88%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro%0AFingerprint%3A%20a4eff548f6dffb594d1254eb9b118d88251967dba98902955cd2393c04a5d11b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-16T12:56:03Z</td>
+          <td>text/html</td>
+          <td>406,365</td>
+          <td><code title="a4eff548f6dffb594d1254eb9b118d88251967dba98902955cd2393c04a5d11b">a4eff548f6dffb59</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-10T06:21:39Z</td>
           <td>text/html</td>
@@ -88,7 +95,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -149,6 +156,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-16T12:56:03Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-16T12:52Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -162,11 +177,7 @@
 - Libraries
 -  Transformers How to use deepseek-ai/DeepSeek-V4-Pro with Transformers: # Use a pipeline as a high-level helper
 from transformers import pipeline
-pipe = pipeline(&#34;text-generation&#34;, model=&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)
-messages = [
-    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
-]
-pipe(messages)# Load model directly
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;, device_map=&#34;auto&#34;)
@@ -181,16 +192,13 @@ pip install vllm
 # Start the vLLM server:
 vllm serve &#34;deepseek-ai/DeepSeek-V4-Pro&#34;
 # Call the server using curl (OpenAI-compatible API):
-curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+curl -X POST &#34;http://localhost:8000/v1/completions&#34; \
 	-H &#34;Content-Type: application/json&#34; \
 	--data &#39;{
 		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Pro&#34;,
-		&#34;messages&#34;: [
-			{
-				&#34;role&#34;: &#34;user&#34;,
-				&#34;content&#34;: &#34;What is the capital of France?&#34;
-			}
-		]
+		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
+		&#34;max_tokens&#34;: 512,
+		&#34;temperature&#34;: 0.5
 	}&#39;Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-V4-Pro
 -  SGLang  How to use deepseek-ai/DeepSeek-V4-Pro with SGLang: Install from pip and serve model# Install SGLang from pip:
 pip install sglang
@@ -200,16 +208,13 @@ python3 -m sglang.launch_server \
     --host 0.0.0.0 \
     --port 30000
 # Call the server using curl (OpenAI-compatible API):
-curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
 	-H &#34;Content-Type: application/json&#34; \
 	--data &#39;{
 		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Pro&#34;,
-		&#34;messages&#34;: [
-			{
-				&#34;role&#34;: &#34;user&#34;,
-				&#34;content&#34;: &#34;What is the capital of France?&#34;
-			}
-		]
+		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
+		&#34;max_tokens&#34;: 512,
+		&#34;temperature&#34;: 0.5
 	}&#39;Use Docker imagesdocker run --gpus all \
     --shm-size 32g \
     -p 30000:30000 \
@@ -222,16 +227,13 @@ curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
         --host 0.0.0.0 \
         --port 30000
 # Call the server using curl (OpenAI-compatible API):
-curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
 	-H &#34;Content-Type: application/json&#34; \
 	--data &#39;{
 		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4-Pro&#34;,
-		&#34;messages&#34;: [
-			{
-				&#34;role&#34;: &#34;user&#34;,
-				&#34;content&#34;: &#34;What is the capital of France?&#34;
-			}
-		]
+		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
+		&#34;max_tokens&#34;: 512,
+		&#34;temperature&#34;: 0.5
 	}&#39;
 -  Docker Model Runner  How to use deepseek-ai/DeepSeek-V4-Pro with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-V4-Pro
 DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence
@@ -378,7 +380,7 @@ Citation
 Contact
 If you have any questions, please raise an issue or contact us at service@deepseek.com.
 - Downloads last month
-- 623,492
+- 614,204
 Model tree for deepseek-ai/DeepSeek-V4-Pro
 Spaces using deepseek-ai/DeepSeek-V4-Pro 100
 Collection including deepseek-ai/DeepSeek-V4-Pro
@@ -386,15 +388,16 @@ Paper for deepseek-ai/DeepSeek-V4-Pro
 Evaluation results
 - openai/gsm8k · Gsm8k View evaluation results    leaderboard   92.6
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   90.1
-- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   76.2
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   55.4
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   80.6
-- actava/chi-bench leaderboard
-- Chi Bench View evaluation results source</pre>
+- IntelligenceLab/Long-Horizon-Terminal-Bench · Lhtb Solved View evaluation results source leaderboard
+- joelniklaus/LEXam-hard · Lexam Hard View evaluation results  source leaderboard
+- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   76.2
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   87.5
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   55.4</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
+<footer><p>Data updated 2026-09-16T13:09:40Z</p></footer>
 </body>
 </html>

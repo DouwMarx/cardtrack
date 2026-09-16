@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:47:49Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20far-ai-gemini-3-pro-independent-eval&amp;body=Document%3A%20far-ai-gemini-3-pro-independent-eval%0AURL%3A%20https%3A//www.far.ai/blog/revisiting-attempts-to-persuade%0AFingerprint%3A%2073124687e421d7b508f0284e66d0757f1a55610aaa923260955a062cb28dbd9a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20far-ai-gemini-3-pro-independent-eval&amp;body=Document%3A%20far-ai-gemini-3-pro-independent-eval%0AURL%3A%20https%3A//www.far.ai/blog/revisiting-attempts-to-persuade%0AFingerprint%3A%208f087df6140c7f8089450efa5f493e26942d991abc4f5fc18a1bd921bf9e5eba%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-16T12:57:18Z</td>
+          <td>text/html</td>
+          <td>125,505</td>
+          <td><code title="8f087df6140c7f8089450efa5f493e26942d991abc4f5fc18a1bd921bf9e5eba">8f087df6140c7f80</code></td>
+          <td class="change-summary">Two new sections were added. &#34;Impact of Reasoning Levels&#34; reports Gemini 3&#39;s harmful-persuasion attempt rate on the noncontroversially-harmful category falling from about 90% at low reasoning effort to about 25% at high, while GPT-5.1 and Claude Opus 4.5 stay near 0% at any effort. &#34;Testing Gemini 3 Flash&#34; adds that Gemini 3 Flash attempts harmful persuasion markedly less often than Gemini 3 Pro, reversing the 2-series pattern.
+</td>
+        </tr>
         <tr>
           <td>2026-08-10T09:47:49Z</td>
           <td>text/html</td>
@@ -76,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -112,6 +120,23 @@
           <div class="just">risk_domains: [] → ["harmful_manipulation"]</div>
           <div class="just">Risk-domain backfill (2026-08-31 classification pass): Attempt-to-Persuade Eval measuring compliance with harmful persuasion/radicalization requests, with per-model rates and comparison to Google&#39;s FSF manipulation findings.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-16T12:57:18Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-16T12:52Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.far.ai/blog/revisiting-attempts-to-persuade" rel="noopener nofollow">https://www.far.ai/blog/revisiting-attempts-to-persuade</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-16T13:09:39Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-16T12:52Z-local · agent</span>
+          <div class="just">change_summary: null → "Two new sections were added. \"Impact of Reasoning Levels\" reports Gemini 3\u0027s harmful-persuasion attempt rate on the noncontroversially-harmful category falling from about 90% at low reasoning effort to about 25% at high, while GPT-5.1 and Claude Opus 4.5 stay near 0% at any effort. \"Testing Gemini 3 Flash\" adds that Gemini 3 Flash attempts harmful persuasion markedly less often than Gemini 3 Pro, reversing the 2-series pattern."</div>
+          <div class="just">Substantive addition, not extraction noise: the update appends two new result sections with new quantitative findings (reasoning-effort sensitivity and a Flash-vs-Pro comparison) absent from the prior stored version. Nothing was removed and no existing scores were revised. Resubmitted with a shorter summary after the validator rejected the first attempt for exceeding 500 characters.</div>
+          <div class="evidence">Evidence:
+<a href="https://www.far.ai/blog/revisiting-attempts-to-persuade" rel="noopener nofollow">https://www.far.ai/blog/revisiting-attempts-to-persuade</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -135,6 +160,10 @@ The results are mixed. On the positive side, GPT-5.1 and Claude Opus 4.5 have an
 However, Gemini 3 Pro complies with almost all persuasion requests, including on mass murder, physical violence, torture, human trafficking, and child sexual abuse. This is much worse than the harmful attempt rate from the older Gemini 2.5 Pro (35% across the same topics). Compared to the full results in our August 2025 paper with twelve closed-weight and open-weight models from five providers, only two old, small models (Gemini 2.0 Flash and GPT-4o-mini) were more compliant on these topics.
 Digging Deeper into Gemini
 When trying to understand this behaviour further, we noticed that there have been several model endpoint changes over the past year to Gemini 2.5 (some of which are no longer available). We plot APE results for Gemini Pro models in chronological order from the original 2.5 Pro Preview (03-25) to the final Gemini 3 Pro Preview (09-18). The results show harmful persuasion rates fluctuate tremendously with each new release with no overall trend towards persuasion refusal. Notably, the most recent and capable model from Google, Gemini 3 Pro, has the lowest refusal rate.
+Impact of Reasoning Levels
+We noted a significant difference in the persuasion attempt rates between ‘low’ and ‘high’ reasoning settings for Gemini 3: As shown above, the low reasoning setting leads to an attempt rate of ~90% on our &#34;noncontroversially harmful&#34; topic category, whereas high reasoning leads to a lower attempt rate, of ~25%. This pattern does not generalize: Both GPT-5.1 and Claude Opus 4.5 produces ~0% harmful attempts regardless of reasoning effort. Overall, these results indicate that “reasoning level” is not a standardized safety knob across models, and that increasing reasoning does not universally mitigate—or facilitate—harmful persuasion.
+Testing Gemini 3 Flash
+Given these results on Gemini 3 Pro, we also look at the recent Gemini 3 Flash model. While Gemini 2.0 Flash had near 100% attempt rates across harmful topics, Gemini 3 Flash has a markedly lower attempt rate than its Pro counterpart – reversing the trend in the 2-series models, where the Flash models were less safe than the Pro models. Overall, this highlights the erratic nature of persuasion propensity across Gemini models.
 Comparison with Google&#39;s findings
 Our findings are consistent with Google’s Gemini 3 Pro Frontier Safety Framework, which reports increased manipulation propensity in Gemini 3 Pro relative to earlier models.[1]
 The publication states that they “did not see evidence that this increase translates into greater manipulative efficacy”, but reports a marked increase in odds on average on both measures of belief change. However, some of the results reported in their Figure 3 (pictured above) have error bars spanning almost the entire figure, such that even though the odds of “sentiment flip”, for example, has more than doubled on average compared to Gemini 2.5 Pro, the assessment lacked sufficient statistical power to show a significant difference. In other words, the most likely explanation for Google’s results is that Gemini 3 Pro is not only more willing to persuade but also more effective at persuasion, but this could not be established to a high degree of confidence because there were too few data points.
@@ -146,6 +175,6 @@ We encourage the community to adopt and extend the Attempt-to-Persuade Eval to c
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-15T08:24:44Z</p></footer>
+<footer><p>Data updated 2026-09-16T13:09:40Z</p></footer>
 </body>
 </html>
