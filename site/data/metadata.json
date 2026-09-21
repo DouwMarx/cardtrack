@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-18T07:33:48Z",
+ "generated_at": "2026-09-21T06:59:55Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -155,6 +155,96 @@
   "societal_harm": "Societal harms"
  },
  "documents": [
+  {
+   "slug": "anthropic-claude-mythos-5-1-access-policy-2",
+   "title": "Introducing the Life Sciences Verification Program",
+   "publisher": "anthropic",
+   "doc_type": "access_policy",
+   "is_independent": 0,
+   "model_names": [
+    "Claude Mythos 5.1",
+    "Claude Opus 5",
+    "Claude Sonnet 5"
+   ],
+   "publication_date": "2026-09-17",
+   "canonical_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-21T06:55:16Z",
+   "last_checked": "2026-09-21T06:55:16Z",
+   "last_changed": "2026-09-21T06:55:16Z",
+   "source_of_lead": "phase_a_candidate",
+   "safety_evals": 1,
+   "openness": "restricted",
+   "risk_domains": [
+    "cbrn"
+   ],
+   "related_urls": [],
+   "content_hash": "9ef86944179b9f66c00291e2c0f26d8c81a9b608d02ce5902d5a9f50bcec1000",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-21T06:55:16Z",
+   "content_fingerprint": "3c06aec73eb44ed00f58be6b0ed2c9c198d8d19137900b49b40c1d6c5da53de6",
+   "version_count": 1
+  },
+  {
+   "slug": "us-caisi-glm-5-3-independent-eval",
+   "title": "CAISI's Assessment of Z.ai's GLM-5.3 Cyber Capabilities",
+   "publisher": "us_caisi",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "GLM-5.3"
+   ],
+   "publication_date": "2026-09-17",
+   "canonical_url": "https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-21T06:55:30Z",
+   "last_checked": "2026-09-21T06:55:30Z",
+   "last_changed": "2026-09-21T06:55:30Z",
+   "source_of_lead": "phase_a_candidate",
+   "safety_evals": 1,
+   "openness": "open_weight_restrictive",
+   "risk_domains": [
+    "cyber"
+   ],
+   "related_urls": [],
+   "content_hash": "d95477e4a54e6c5b3892298bfdd75e332850a62b3bc48ce0379126d8250fed7a",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-21T06:55:30Z",
+   "content_fingerprint": "fd8d742c52eeef6137e879529e6d3e68a6ced34d2e6325be637a543de05cc2d6",
+   "version_count": 1
+  },
+  {
+   "slug": "epoch-ai-gpt-6-astra-independent-eval",
+   "title": "GPT-6 Astra leads on math benchmarks, but not on software engineering",
+   "publisher": "epoch_ai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "Claude Fable 5.1",
+    "GPT-5.6 Sol",
+    "GPT-6 Astra",
+    "Kimi K3"
+   ],
+   "publication_date": "2026-09-16",
+   "canonical_url": "https://epoch.ai/data-insights/astra-eci-breakdown",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-21T06:59:55Z",
+   "last_checked": "2026-09-21T06:59:55Z",
+   "last_changed": "2026-09-21T06:59:55Z",
+   "source_of_lead": "phase_a_candidate",
+   "safety_evals": 0,
+   "openness": "closed",
+   "risk_domains": [],
+   "related_urls": [],
+   "content_hash": "ec0a2941c8ba590a70587a48cfd4255a6fbb635f0a93d1f3694813428dc3cdd7",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-21T06:59:55Z",
+   "content_fingerprint": "c93e0fd055a6cf4884760e78d16da26372f0f7674e2dfff0ecf65ac9e20561d5",
+   "version_count": 1
+  },
   {
    "slug": "google-deepmind-gemini-3-8-live-model-card",
    "title": "Gemini 3.8 Audio (Live, Live Extended Thinking) Model Card",

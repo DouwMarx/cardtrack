@@ -1,8 +1,19 @@
 {
-  "action": "annotate_version",
-  "slug": "alibaba-qwen-qwen3-8-27b-model-card",
-  "version_id": 529,
-  "summary": "The card's Evaluation results section swapped benchmarks: the ExtractBench block, which listed Mean, Short and Medium entries without figures, and the SWE-bench Pro entry were removed, and a ParseBench block was added reporting Mean 70.79, Text Content 88.28 and Text Formatting 59.77 for the qwen3_8_27b_thinking_parse_with_layout pipeline on the Qwen3.8-27B-FP8 checkpoint, plus a Terminal-Bench 2.1 entry.",
-  "justification": "Substantive change: three new quantitative ParseBench results were published on the card and two previously declared benchmark entries were withdrawn. Download-count movement in the same diff is extraction noise and is excluded from the summary.",
-  "evidence_urls": ["https://huggingface.co/Qwen/Qwen3.8-27B"]
+ "action": "add",
+ "url": "https://epoch.ai/data-insights/astra-eci-breakdown",
+ "title": "GPT-6 Astra leads on math benchmarks, but not on software engineering",
+ "publisher": "epoch_ai",
+ "doc_type": "independent_eval",
+ "model_names": ["GPT-6 Astra", "Claude Fable 5.1", "GPT-5.6 Sol", "Kimi K3"],
+ "publication_date": "2026-09-16",
+ "justification": "Primary-source Epoch AI data insight reporting a domain breakdown of the Epoch Capabilities Index for GPT-6 Astra against Claude Fable 5.1, GPT-5.6 Sol and Kimi K3. It passes the system-card test: it reports quantitative capability measurements with uncertainty - general ECI (157.63-166.31), Math-ECI (158.39-169.83) and Software Engineering ECI (160.47-167.44), each with 90% confidence intervals - and concludes Astra leads on math while not leading on software engineering. This is the same document class already catalogued for this publisher, e.g. epoch-ai-claude-ds-eci at epoch.ai/data-insights/claude-ds-eci and epoch-ai-gpt-5-5-independent-eval at epoch.ai/data-insights/codex-engineer-effort, and it is a distinct evaluation of a model generation not previously covered by an Epoch ECI breakdown.",
+ "criteria": {"primary_source": true, "about_a_specific_model_or_eval": true, "distinct_model_release": true, "notable_release": true, "covered_model_class": true},
+ "soft": {"has_safety_evals": false},
+ "openness": "closed",
+ "risk_domains": [],
+ "related_urls": [],
+ "evidence_urls": ["https://epoch.ai/data-insights/astra-eci-breakdown"],
+ "source_of_lead": "phase_a_candidate",
+ "notes": "Capability benchmarking only - no safety or dangerous-capability evaluations, hence no risk_domains tags, consistent with the epoch-ai-claude-ds-eci row. Openness recorded as closed: the most restricted model covered is a closed public-API model (GPT-6 Astra, Claude Fable 5.1, GPT-5.6 Sol); Kimi K3 is open-weight. Epoch notes ECI scores are refit whenever results are added, so values may be revised over time.",
+ "queries_used": []
 }
