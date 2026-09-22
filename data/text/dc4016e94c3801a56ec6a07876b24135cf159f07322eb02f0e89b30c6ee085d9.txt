@@ -1,0 +1,136 @@
+Instructions to use MiniMaxAI/MiniMax-M2.7 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use MiniMaxAI/MiniMax-M2.7 with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("text-generation", model="MiniMaxAI/MiniMax-M2.7", trust_remote_code=True)
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+pipe(messages)# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained("MiniMaxAI/MiniMax-M2.7", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("MiniMaxAI/MiniMax-M2.7", trust_remote_code=True, device_map="auto")
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors="pt",
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use MiniMaxAI/MiniMax-M2.7 with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "MiniMaxAI/MiniMax-M2.7"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "MiniMaxAI/MiniMax-M2.7",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Dockerdocker model run hf.co/MiniMaxAI/MiniMax-M2.7
+-  SGLang  How to use MiniMaxAI/MiniMax-M2.7 with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "MiniMaxAI/MiniMax-M2.7" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "MiniMaxAI/MiniMax-M2.7",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "MiniMaxAI/MiniMax-M2.7" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "MiniMaxAI/MiniMax-M2.7",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'
+-  Docker Model Runner  How to use MiniMaxAI/MiniMax-M2.7 with Docker Model Runner: docker model run hf.co/MiniMaxAI/MiniMax-M2.7
+MiniMax-M2.7 is our first model deeply participating in its own evolution. M2.7 is capable of building complex agent harnesses and completing highly elaborate productivity tasks, leveraging Agent Teams, complex Skills, and dynamic tool search. For more details, see our blog post.
+Model Self-Evolution
+M2.7 initiates a cycle of model self-evolution: during development, we let the model update its own memory, build dozens of complex skills for RL experiments, and improve its own learning process based on experiment results. An internal version of M2.7 autonomously optimized a programming scaffold over 100+ rounds — analyzing failure trajectories, modifying code, running evaluations, and deciding to keep or revert — achieving a 30% performance improvement. On MLE Bench Lite (22 ML competitions), M2.7 achieved a 66.6% medal rate, second only to Opus-4.6 and GPT-5.4.
+Professional Software Engineering
+M2.7 delivers outstanding real-world programming capabilities spanning log analysis, bug troubleshooting, refactoring, code security, and machine learning. Beyond code generation, M2.7 demonstrates strong system-level reasoning — correlating monitoring metrics, conducting trace analysis, verifying root causes in databases, and making SRE-level decisions. Using M2.7, we have reduced live production incident recovery time to under three minutes on multiple occasions.
+On SWE-Pro, M2.7 achieved 56.22%, matching GPT-5.3-Codex, with even stronger performance on real-world engineering benchmarks: SWE Multilingual (76.5) and Multi SWE Bench (52.7). On VIBE-Pro (55.6%), M2.7 is nearly on par with Opus 4.6. On Terminal Bench 2 (57.0%) and NL2Repo (39.8%), M2.7 demonstrates deep understanding of complex engineering systems. M2.7 also supports native Agent Teams for multi-agent collaboration with stable role identity and autonomous decision-making.
+Professional Work
+M2.7 achieved an ELO score of 1495 on GDPval-AA (highest among open-weight models), surpassing GPT5.3. It handles Word, Excel, and PPT with high-fidelity multi-round editing, producing editable deliverables. On Toolathon, M2.7 reached 46.3% accuracy (global top tier), and maintains 97% skill compliance across 40+ complex skills on MM Claw. On the MM Claw end-to-end benchmark, M2.7 achieved 62.7%, close to Sonnet 4.6.
+Entertainment
+M2.7 features strengthened character consistency and emotional intelligence. We open-sourced OpenRoom, an interactive demo that places AI interaction within a Web GUI space with real-time visual feedback and scene interactions. Try it at openroom.ai.
+How to Use
+- MiniMax Agent: https://agent.minimax.io/
+- MiniMax API: https://platform.minimax.io/
+- Token Plan: https://platform.minimax.io/subscribe/token-plan
+Local Deployment Guide
+Download the model from HuggingFace repository: https://huggingface.co/MiniMaxAI/MiniMax-M2.7
+We recommend using the following inference frameworks (listed alphabetically) to serve the model:
+SGLang
+We recommend using SGLang to serve MiniMax-M2.7. Please refer to our SGLang Deployment Guide.
+vLLM
+We recommend using vLLM to serve MiniMax-M2.7. Please refer to our vLLM Deployment Guide.
+Transformers
+We recommend using Transformers to serve MiniMax-M2.7. Please refer to our Transformers Deployment Guide.
+ModelScope
+You also can get model weights from modelscope.
+NVIDIA NIM
+MiniMax M2.7 is also available on NVIDIA NIM Endpoint.
+Inference Parameters
+We recommend using the following parameters for best performance: temperature=1.0, top_p = 0.95, top_k = 40. Default system prompt:
+You are a helpful assistant. Your name is MiniMax-M2.7 and is built by MiniMax.
+Tool Calling Guide
+Please refer to our Tool Calling Guide.
+Contact Us
+Contact us at model@minimax.io.
+- Downloads last month
+- 1,426,568
+Model tree for MiniMaxAI/MiniMax-M2.7
+Spaces using MiniMaxAI/MiniMax-M2.7 100
+Collection including MiniMaxAI/MiniMax-M2.7
+Evaluation results
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   56.2
+- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   76.5
+- internlm/WildClawBench leaderboard
+- Overall View evaluation resultssource33.8
+- Avg Time View evaluation resultssource
+- Avg Cost View evaluation resultssource7.2
+- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results leaderboard
+- benchflow/skillsbench · Skillsbench V1 1 View evaluation results  source leaderboard34.9 *

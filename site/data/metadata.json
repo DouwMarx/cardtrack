@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-21T06:59:55Z",
+ "generated_at": "2026-09-22T11:46:41Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -81,9 +81,29 @@
    "homepage": "https://www.stepfun.com",
    "independent": false
   },
+  "zai": {
+   "display_name": "Z.ai (Zhipu AI)",
+   "homepage": "https://z.ai",
+   "independent": false
+  },
+  "minimax": {
+   "display_name": "MiniMax",
+   "homepage": "https://www.minimax.io",
+   "independent": false
+  },
   "inclusion_ai": {
    "display_name": "InclusionAI (Ant Group)",
    "homepage": "https://huggingface.co/inclusionAI",
+   "independent": false
+  },
+  "upstage": {
+   "display_name": "Upstage",
+   "homepage": null,
+   "independent": false
+  },
+  "dots_studio": {
+   "display_name": "Dots Studio",
+   "homepage": null,
    "independent": false
   },
   "metr": {
@@ -1520,6 +1540,56 @@
    "version_count": 2
   },
   {
+   "slug": "zai-glm-5-3-model-card",
+   "title": "GLM-5.3 model card",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5.3"
+   ],
+   "publication_date": "2026-08-28",
+   "canonical_url": "https://huggingface.co/zai-org/GLM-5.3",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:52Z",
+   "last_checked": "2026-09-22T11:44:52Z",
+   "last_changed": "2026-09-22T11:44:52Z",
+   "source_of_lead": "manual",
+   "safety_evals": 1,
+   "openness": "open_weight_restrictive",
+   "risk_domains": [
+    "cyber"
+   ],
+   "related_urls": [
+    {
+     "url": "https://docs.z.ai/guides/llm/glm-5.3",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.15763",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/zai-org/GLM-5",
+     "kind": "code"
+    },
+    {
+     "url": "https://huggingface.co/zai-org/GLM-5.3-BF16",
+     "kind": "weights"
+    }
+   ],
+   "content_hash": "539b0a5f11a926ddd2c692f5fca51fed09dd2f5c52f877b10241b57bdab46147",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:52Z",
+   "content_fingerprint": "7a3d0c22b895bae59835a854d5333944e3d351bf1bc4d6e2d239f91c84240ac3",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-mythos-5-access-policy",
    "title": "Expanding our support for scientists",
    "publisher": "anthropic",
@@ -1768,6 +1838,50 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-27T06:23:24Z",
    "content_fingerprint": "77adbbb42369ab5bf7c0c04ce866df686d895f4ea908b5ec8351e7d9f557ec0c",
+   "version_count": 1
+  },
+  {
+   "slug": "zai-glm-5-3-flash-model-card",
+   "title": "GLM-5.3-Flash model card",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5.3-Flash"
+   ],
+   "publication_date": "2026-08-26",
+   "canonical_url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:53Z",
+   "last_checked": "2026-09-22T11:44:53Z",
+   "last_changed": "2026-09-22T11:44:53Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.15763",
+     "kind": "paper"
+    },
+    {
+     "url": "https://huggingface.co/zai-org/GLM-5.3-Flash-BF16",
+     "kind": "weights"
+    }
+   ],
+   "content_hash": "ea7ea9edaa93d616771bb7e957ade4099de7415651d8c78b68515b40dd3029de",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:53Z",
+   "content_fingerprint": "e8b209f407061c104dae3da191fc6759860501873d81808b00c3e364c37e4c17",
    "version_count": 1
   },
   {
@@ -5135,6 +5249,58 @@
    "version_count": 2
   },
   {
+   "slug": "zai-glm-5-2-model-card",
+   "title": "GLM-5.2 model card",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5.2"
+   ],
+   "publication_date": "2026-06-16",
+   "canonical_url": "https://huggingface.co/zai-org/GLM-5.2",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:54Z",
+   "last_checked": "2026-09-22T11:44:54Z",
+   "last_changed": "2026-09-22T11:44:54Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://docs.z.ai/guides/llm/glm-5.2",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.15763",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/zai-org/GLM-5",
+     "kind": "code"
+    },
+    {
+     "url": "https://huggingface.co/zai-org/GLM-5.2-FP8",
+     "kind": "weights"
+    },
+    {
+     "url": "https://docs.mistral.ai/models/zai-glm-5-2",
+     "kind": "co_published"
+    }
+   ],
+   "content_hash": "b7cd36aaace5a4372bb3dbb70bff00e3fcf9cb3221444df11d21dfef60517461",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:54Z",
+   "content_fingerprint": "eb8fba638affdd35945a17de090a62c392ad3da74b7ac2a7aa95fab8aff75f97",
+   "version_count": 1
+  },
+  {
    "slug": "anthropic-claude-fable-5-addendum-4",
    "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5",
    "publisher": "anthropic",
@@ -5162,6 +5328,46 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T22:28:37Z",
    "content_fingerprint": "559c53eb6796b49f348d1762e99515c99be107d217e047a664b4f787f1fa28de",
+   "version_count": 1
+  },
+  {
+   "slug": "minimax-minimax-m3-model-card",
+   "title": "MiniMax-M3 model card",
+   "publisher": "minimax",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiniMax-M3"
+   ],
+   "publication_date": "2026-06-12",
+   "canonical_url": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:25Z",
+   "last_checked": "2026-09-22T11:44:25Z",
+   "last_changed": "2026-09-22T11:44:25Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_restrictive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://www.minimax.io/blog/minimax-m3",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.13392",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/MiniMax-AI/MiniMax-M3",
+     "kind": "code"
+    }
+   ],
+   "content_hash": "f8ed83e2ec4d74f5c51373dbe02617e38b26449898263276e072c864f66d51b1",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:25Z",
+   "content_fingerprint": "91057de217e6a9ee2ea0e09d469c3b14d3967601af68bbcf84fa73b4698f310f",
    "version_count": 1
   },
   {
@@ -5886,6 +6092,52 @@
    "version_count": 1
   },
   {
+   "slug": "minimax-minimax-m2-model-card",
+   "title": "The MiniMax-M2 Series: Mini Activations Unleashing Max Real-World Intelligence",
+   "publisher": "minimax",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiniMax-M2",
+    "MiniMax-M2.5",
+    "MiniMax-M2.7"
+   ],
+   "publication_date": "2026-05-26",
+   "canonical_url": "https://arxiv.org/pdf/2605.26494",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:11Z",
+   "last_checked": "2026-09-22T11:44:11Z",
+   "last_changed": "2026-09-22T11:44:11Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_restrictive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://arxiv.org/abs/2605.26494",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+     "kind": "weights"
+    },
+    {
+     "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.5",
+     "kind": "weights"
+    },
+    {
+     "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2",
+     "kind": "weights"
+    }
+   ],
+   "content_hash": "866e92e58242b520f25a8a19107e5c54d73d9effcf9e11e02c6b651782dc6b08",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-09-22T11:44:11Z",
+   "content_fingerprint": "d0c703f8b5fc3162c4db49a5c0a6afbbbf07c27a8eec2bde4024c16d972982ad",
+   "version_count": 1
+  },
+  {
    "slug": "stepfun-step-3-7-flash-model-card",
    "title": "Step-3.7-Flash Model Card",
    "publisher": "stepfun",
@@ -6578,6 +6830,42 @@
    "version_fetched_at": "2026-09-10T06:21:36Z",
    "content_fingerprint": "45778ebec3bd578820b3931e5a7c0628534780be6aac2dc2333390d6d43b0d19",
    "version_count": 2
+  },
+  {
+   "slug": "zai-glm-5v-turbo-model-card",
+   "title": "GLM-5V-Turbo: Toward a Native Foundation Model for Multimodal Agents",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5V-Turbo"
+   ],
+   "publication_date": "2026-04-29",
+   "canonical_url": "https://arxiv.org/abs/2604.26752",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:55Z",
+   "last_checked": "2026-09-22T11:44:55Z",
+   "last_changed": "2026-09-22T11:44:55Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "closed",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://arxiv.org/pdf/2604.26752",
+     "kind": "full_document"
+    },
+    {
+     "url": "https://docs.z.ai/guides/vlm/glm-5v-turbo",
+     "kind": "web_version"
+    }
+   ],
+   "content_hash": "2372655aeacc5325505f9d02aa8376928feb82989cdd014fcb0c2c55589a28a1",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:55Z",
+   "content_fingerprint": "aac8d0c5799d89c09bbc6a18efc12e438a59858c9094904d04259d6bda2e6b38",
+   "version_count": 1
   },
   {
    "slug": "inclusion-ai-ling-2-6-flash-model-card",
@@ -7523,6 +7811,46 @@
    "version_count": 1
   },
   {
+   "slug": "minimax-minimax-m2-7-model-card",
+   "title": "MiniMax-M2.7 model card",
+   "publisher": "minimax",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiniMax-M2.7"
+   ],
+   "publication_date": "2026-04-09",
+   "canonical_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:13Z",
+   "last_checked": "2026-09-22T11:44:13Z",
+   "last_changed": "2026-09-22T11:44:13Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_restrictive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://www.minimax.io/news/minimax-m27-en",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26494",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/MiniMax-AI/MiniMax-M2.7",
+     "kind": "code"
+    }
+   ],
+   "content_hash": "dc4016e94c3801a56ec6a07876b24135cf159f07322eb02f0e89b30c6ee085d9",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:13Z",
+   "content_fingerprint": "f321b6bb7e5a5db29b10817f87f9e6485d4d46c8c85845bb673432f6a931edfd",
+   "version_count": 1
+  },
+  {
    "slug": "tencent-hunyuan-hy-embodied-0-5-mot-2b-model-card",
    "title": "HY-Embodied-0.5 Model Card",
    "publisher": "tencent_hunyuan",
@@ -7703,6 +8031,54 @@
    "content_type": "application/pdf",
    "version_fetched_at": "2026-08-09T15:57:45Z",
    "content_fingerprint": "5aa28a71a4ce582d4e6e913d931f81c4154a0e08fe0a4797f9244899206e0d74",
+   "version_count": 1
+  },
+  {
+   "slug": "zai-glm-5-1-model-card",
+   "title": "GLM-5.1 model card",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5.1"
+   ],
+   "publication_date": "2026-04-07",
+   "canonical_url": "https://huggingface.co/zai-org/GLM-5.1",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:55Z",
+   "last_checked": "2026-09-22T11:44:55Z",
+   "last_changed": "2026-09-22T11:44:55Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://docs.z.ai/guides/llm/glm-5.1",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.15763",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/zai-org/GLM-5",
+     "kind": "code"
+    },
+    {
+     "url": "https://huggingface.co/zai-org/GLM-5.1-FP8",
+     "kind": "weights"
+    }
+   ],
+   "content_hash": "d11afb0c6301a9a3cb5dfd80d4fbd60cc165b90d09df23c4a3a119f6db094a1d",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:55Z",
+   "content_fingerprint": "996569f3a43aeb0978cc08baa0a4dc55c438b46908aceaf620b872eb92773409",
    "version_count": 1
   },
   {
@@ -8570,6 +8946,50 @@
    "version_count": 1
   },
   {
+   "slug": "zai-glm-5-model-card",
+   "title": "GLM-5: from Vibe Coding to Agentic Engineering",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5"
+   ],
+   "publication_date": "2026-02-17",
+   "canonical_url": "https://arxiv.org/abs/2602.15763",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:56Z",
+   "last_checked": "2026-09-22T11:44:56Z",
+   "last_changed": "2026-09-22T11:44:56Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://arxiv.org/pdf/2602.15763",
+     "kind": "full_document"
+    },
+    {
+     "url": "https://huggingface.co/zai-org/GLM-5",
+     "kind": "weights"
+    },
+    {
+     "url": "https://github.com/zai-org/GLM-5",
+     "kind": "code"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    }
+   ],
+   "content_hash": "3645c0b442c6faf12893355850fc91b6e9bfa42467b989972286a6de097d7f77",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:56Z",
+   "content_fingerprint": "323466e78c94f012ab1ebff1c00f2158e699f2ea0d553ab9aa391b60de65f881",
+   "version_count": 1
+  },
+  {
    "slug": "alibaba-qwen-qwen3-5-397b-a17b-model-card",
    "title": "Qwen3.5-397B-A17B model card",
    "publisher": "alibaba_qwen",
@@ -8631,6 +9051,46 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-09T22:56:09Z",
    "content_fingerprint": "4c6f2d4b81e11a3bfa035cb67cd24bba167ddc3773c46122ccb501b0f85f270f",
+   "version_count": 1
+  },
+  {
+   "slug": "minimax-minimax-m2-5-model-card",
+   "title": "MiniMax-M2.5 model card",
+   "publisher": "minimax",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "MiniMax-M2.5"
+   ],
+   "publication_date": "2026-02-12",
+   "canonical_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.5",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:13Z",
+   "last_checked": "2026-09-22T11:44:13Z",
+   "last_changed": "2026-09-22T11:44:13Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_restrictive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://www.minimax.io/news/minimax-m25",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26494",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/MiniMax-AI/MiniMax-M2.5",
+     "kind": "code"
+    }
+   ],
+   "content_hash": "04cae695268a8cc49a99a673a077de08c55aedb5d131e4a79591a3b76191d952",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:14Z",
+   "content_fingerprint": "539f8560e43f984be6620acd6b6f45911802262afb3c10192ebb75fe419cc8de",
    "version_count": 1
   },
   {
@@ -8704,6 +9164,54 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-08-10T08:44:56Z",
    "content_fingerprint": "cf403b9c02d670c6152c49ee4d33cd3a139390df1047dc24412059bbad35e543",
+   "version_count": 1
+  },
+  {
+   "slug": "zai-glm-5-model-card-2",
+   "title": "GLM-5 model card",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-5"
+   ],
+   "publication_date": "2026-02-11",
+   "canonical_url": "https://huggingface.co/zai-org/GLM-5",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:44:57Z",
+   "last_checked": "2026-09-22T11:44:57Z",
+   "last_changed": "2026-09-22T11:44:57Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://docs.z.ai/guides/llm/glm-5",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.15763",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/zai-org/GLM-5",
+     "kind": "code"
+    },
+    {
+     "url": "https://huggingface.co/zai-org/GLM-5-FP8",
+     "kind": "weights"
+    }
+   ],
+   "content_hash": "450414bb33344d50dbc4e2e4fa446172ac18aae69c0b164e19d3a6021cb57f8e",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:44:57Z",
+   "content_fingerprint": "8f567287f3808f773507b4353a4dfc1d69ecd8d9fa02378de917d8ffc604abf0",
    "version_count": 1
   },
   {
@@ -9047,6 +9555,50 @@
    "version_fetched_at": "2026-09-18T07:32:03Z",
    "content_fingerprint": "9b40a640865693903dae2036a16e23d7201dfe614eb69a5e9b39e0522f9cb386",
    "version_count": 2
+  },
+  {
+   "slug": "zai-glm-4-7-flash-model-card",
+   "title": "GLM-4.7-Flash model card",
+   "publisher": "zai",
+   "doc_type": "model_card",
+   "is_independent": 0,
+   "model_names": [
+    "GLM-4.7-Flash"
+   ],
+   "publication_date": "2026-01-19",
+   "canonical_url": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-09-22T11:46:41Z",
+   "last_checked": "2026-09-22T11:46:41Z",
+   "last_changed": "2026-09-22T11:46:41Z",
+   "source_of_lead": "manual",
+   "safety_evals": 0,
+   "openness": "open_weight_permissive",
+   "risk_domains": [],
+   "related_urls": [
+    {
+     "url": "https://docs.z.ai/guides/llm/glm-4.7",
+     "kind": "web_version"
+    },
+    {
+     "url": "https://docs.z.ai/release-notes/new-released",
+     "kind": "announcement"
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.06471",
+     "kind": "paper"
+    },
+    {
+     "url": "https://github.com/zai-org/GLM-4.5",
+     "kind": "code"
+    }
+   ],
+   "content_hash": "66629a08736d2a0998d4ea1dad5e64f1afd4a99f0a05b902fdf8941302f28d89",
+   "content_type": "text/html",
+   "version_fetched_at": "2026-09-22T11:46:41Z",
+   "content_fingerprint": "9f66783815280fa738e2d0a004fee9f294b46a6f11d92a86c383271db25ba8cf",
+   "version_count": 1
   },
   {
    "slug": "anthropic-claude-sonnet-4-5-other",

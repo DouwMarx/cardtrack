@@ -129,6 +129,24 @@ publishers:            # first-party
     homepage: https://www.stepfun.com
     index_urls:
       - https://huggingface.co/stepfun-ai
+  zai:
+    tier: 1
+    display_name: Z.ai (Zhipu AI)
+    scope: >-
+      GLM LLM/VLM line (GLM-5.x, GLM-5V, Flash/Air/Turbo variants) and their technical reports. NOT: GLM-OCR, GLM-ASR/TTS, embeddings, CogVideo/CogView point releases, quantised re-uploads (-FP8/-BF16) of an already-catalogued card.
+    homepage: https://z.ai
+    index_urls:            # z.ai blog renders client-side; HF org + docs release notes cover releases
+      - https://huggingface.co/zai-org
+      - https://docs.z.ai/release-notes/new-released
+  minimax:
+    tier: 2
+    display_name: MiniMax
+    scope: >-
+      MiniMax-M LLM line (M2.x, M3) and their technical reports. NOT: Hailuo video, Speech/TTS, music, image models.
+    homepage: https://www.minimax.io
+    index_urls:
+      - https://huggingface.co/MiniMaxAI
+      - https://www.minimax.io/news
   inclusion_ai:
     tier: 2
     display_name: InclusionAI (Ant Group)

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLM-5.3-Flash model card — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">GLM-5.3-Flash model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://z.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">zai</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_permissive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>GLM-5.3-Flash</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-08-26</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-permissive">open weights (permissive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/zai-org/GLM-5.3-Flash" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/zai-org/GLM-5.3-Flash</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">web version</span>
+        <a href="https://docs.z.ai/guides/vlm/glm-5.3-flash" rel="noopener nofollow">https://docs.z.ai/guides/vlm/glm-5.3-flash</a></span><br>        <span class="related-item"><span class="badge">announcement</span>
+        <a href="https://docs.z.ai/release-notes/new-released" rel="noopener nofollow">https://docs.z.ai/release-notes/new-released</a></span><br>        <span class="related-item"><span class="badge">paper</span>
+        <a href="https://arxiv.org/abs/2602.15763" rel="noopener nofollow">https://arxiv.org/abs/2602.15763</a></span><br>        <span class="related-item"><span class="badge">weights</span>
+        <a href="https://huggingface.co/zai-org/GLM-5.3-Flash-BF16" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.3-Flash-BF16</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-09-22T11:44:53Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Benchmark numbers are embedded in an image (bench_53.png), so text extraction will not capture them. GLM-5.3-Flash-BF16 is a dtype re-upload of this same card. Z.ai blog (z.ai/blog/glm-5.3-flash) unreachable from the curation sandbox.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-3-flash-model-card&amp;body=Document%3A%20zai-glm-5-3-flash-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.3-Flash%0AFingerprint%3A%20e8b209f407061c104dae3da191fc6759860501873d81808b00c3e364c37e4c17%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-09-22T11:44:53Z</td>
+          <td>text/html</td>
+          <td>690,562</td>
+          <td><code title="e8b209f407061c104dae3da191fc6759860501873d81808b00c3e364c37e4c17">e8b209f407061c10</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-09-22T11:44:53Z</span>
+        <strong>add</strong>
+        <span class="run">run backfill-zai-20260922 · human · lead: manual</span>
+          <div class="just">First-party Hugging Face model card for GLM-5.3-Flash, the first natively multimodal model in the GLM-5 series (320B total / 18B active, newly trained base with hybrid sparse+linear attention, mHC, 30T-token multimodal corpus). Distinct release, not a variant: separately pre-trained base and separate model, image-text-to-text pipeline. Card gives architecture description, benchmark results (as an image, with methodology footnotes for HLE w/ tools, NL2Repo, DeepSWE, Terminal-Bench 2.1, Toolathlon, AutomationBench, GDPval-AA, BabyVision) and deployment instructions. No safety, red-team or dangerous-capability evaluations of any kind, so has_safety_evals=no. MIT licence per the card header, hence open_weight_permissive. Date: Z.ai&#39;s official release notes list GLM-5.3-Flash on 2026-08-26 (HF repo created 2026-08-25, evaluation results added 2026-09-07). Notability: Z.ai release notes entry plus wide independent coverage.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://docs.z.ai/release-notes/new-released" rel="noopener nofollow">https://docs.z.ai/release-notes/new-released</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/zai-org/GLM-5.3-Flash" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use zai-org/GLM-5.3-Flash with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use zai-org/GLM-5.3-Flash with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;zai-org/GLM-5.3-Flash&#34;)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+pipe(text=messages)# Load model directly
+from transformers import AutoProcessor, AutoModelForMultimodalLM
+processor = AutoProcessor.from_pretrained(&#34;zai-org/GLM-5.3-Flash&#34;)
+model = AutoModelForMultimodalLM.from_pretrained(&#34;zai-org/GLM-5.3-Flash&#34;, device_map=&#34;auto&#34;)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+inputs = processor.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=40)
+print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Inference
+- HuggingChat
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use zai-org/GLM-5.3-Flash with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;zai-org/GLM-5.3-Flash&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;zai-org/GLM-5.3-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/zai-org/GLM-5.3-Flash
+-  SGLang  How to use zai-org/GLM-5.3-Flash with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;zai-org/GLM-5.3-Flash&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;zai-org/GLM-5.3-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;zai-org/GLM-5.3-Flash&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;zai-org/GLM-5.3-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use zai-org/GLM-5.3-Flash with Docker Model Runner: docker model run hf.co/zai-org/GLM-5.3-Flash
+GLM-5.3-Flash
+    👋 Join our WeChat or Discord community.
+
+    📖 Check out the GLM-5.3-Flash blog and GLM-5 Technical report.
+
+    📍 Use GLM-5.3-Flash API services on Z.ai API Platform.
+Introduction
+We introduce GLM-5.3-Flash, the first natively multimodal model in the GLM-5 series. With 320B total parameters and just 18B active parameters, it outperforms GLM-5.2 across benchmarks and real-world workloads at one-tenth the price, while approaching Claude Opus 4.8 on coding and agentic benchmarks.
+GLM-5.3-Flash starts from a newly trained base model, with its architecture and training recipe redesigned around capability and efficiency. For the first time in the GLM series, we introduce a hybrid architecture combining sparse and linear attention, sharply reducing long-context serving costs while preserving precise long-context capabilities. The model also adopts Manifold-Constrained Hyper-Connections (mHC) to further improve scaling efficiency. Together with our latest 30T-token multimodal pre-training corpus, these changes enable GLM-5.3-Flash to deliver more intelligence with less compute.
+Serve GLM-5.3-Flash Locally
+GLM-5.3-Flash supports deployment with the following frameworks. Feel free to try them out:
+- SGLang — see cookbook
+- vLLM — see recipes
+- TokenSpeed — see here
+- Transformers — see transformers docs
+- KTransformers — see tutorial
+- Unsloth — see guide
+Note
+- GLM-5.3-Flash supports controlling the thinking budget through the reasoning_effort parameter, which accepts three levels:low ,high , andmax . It defaults tomax if not passed (or if set to any other value). To uselow orhigh , pass them explicitly. For benchmark and leaderboard reproduction, keep the defaultmax .
+- In the chat template for GLM-5.3-Flash, clear_thinking defaults tofalse if not passed. For chat scenarios, explicitly passclear_thinking=true .
+Footnotes
+- HLE w/ tools (full set): We use sampling parameters of temperature=1.0 andtop_p=0.95 for evaluation, with a maximum generation length of163,840 tokens. The evaluation is conducted with a maximum context length of300,000 tokens, using a context management strategy. We use GPT-5.6-luna (medium) as the judge model.
+- NL2Repo: We evaluated NL2Repo with temperature=1.0, top_p=1.0, and max_new_tokens=64k under 1M context. To prevent hacking, we use rule-based and a LLM-based judgement to prevent malicious behaviors (e.g., unauthorized pip or curl operations).
+- DeepSWE: We run DeepSWE using the mini-swe-agent harness with temperature=0.95 ,top_p=1.0 ,timeout=6h and 400K context.
+- Terminal-Bench 2.1: We evaluate in Claude Code 2.1.207 with temperature=1.0, top_p=1, max_new_tokens=65536 with 6h timeout.
+- Agent’s Last Exam:
+- Toolathlon Verified: We obtain all results via the official evaluation service and report pass@1 averaged over 3 independent runs.
+- AutomationBench: We evaluate on AutomationBench v1.0.6, incorporating the fix for the null -type handling issue introduced in PR #13.
+- GDPval-AA v2: Models are evaluated by Artificial Analysis.
+- BabyVision: We use temperature=1.0, top_p=0.95, and a maximum context length of 164K tokens. We resize the input images such that their shorter side is at least 1.5K pixels, consistent with other baselines.
+Citation
+If you find GLM-5.3-Flash useful in your research, please cite our technical report:
+@misc{glm5team2026glm5vibecodingagentic,
+      title={GLM-5: from Vibe Coding to Agentic Engineering},
+      author={GLM-5-Team and : and Aohan Zeng and Xin Lv and Zhenyu Hou and Zhengxiao Du and Qinkai Zheng and Bin Chen and Da Yin and Chendi Ge and Chenghua Huang and Chengxing Xie and Chenzheng Zhu and Congfeng Yin and Cunxiang Wang and Gengzheng Pan and Hao Zeng and Haoke Zhang and Haoran Wang and Huilong Chen and Jiajie Zhang and Jian Jiao and Jiaqi Guo and Jingsen Wang and Jingzhao Du and Jinzhu Wu and Kedong Wang and Lei Li and Lin Fan and Lucen Zhong and Mingdao Liu and Mingming Zhao and Pengfan Du and Qian Dong and Rui Lu and Shuang-Li and Shulin Cao and Song Liu and Ting Jiang and Xiaodong Chen and Xiaohan Zhang and Xuancheng Huang and Xuezhen Dong and Yabo Xu and Yao Wei and Yifan An and Yilin Niu and Yitong Zhu and Yuanhao Wen and Yukuo Cen and Yushi Bai and Zhongpei Qiao and Zihan Wang and Zikang Wang and Zilin Zhu and Ziqiang Liu and Zixuan Li and Bojie Wang and Bosi Wen and Can Huang and Changpeng Cai and Chao Yu and Chen Li and Chengwei Hu and Chenhui Zhang and Dan Zhang and Daoyan Lin and Dayong Yang and Di Wang and Ding Ai and Erle Zhu and Fangzhou Yi and Feiyu Chen and Guohong Wen and Hailong Sun and Haisha Zhao and Haiyi Hu and Hanchen Zhang and Hanrui Liu and Hanyu Zhang and Hao Peng and Hao Tai and Haobo Zhang and He Liu and Hongwei Wang and Hongxi Yan and Hongyu Ge and Huan Liu and Huanpeng Chu and Jia&#39;ni Zhao and Jiachen Wang and Jiajing Zhao and Jiamin Ren and Jiapeng Wang and Jiaxin Zhang and Jiayi Gui and Jiayue Zhao and Jijie Li and Jing An and Jing Li and Jingwei Yuan and Jinhua Du and Jinxin Liu and Junkai Zhi and Junwen Duan and Kaiyue Zhou and Kangjian Wei and Ke Wang and Keyun Luo and Laiqiang Zhang and Leigang Sha and Liang Xu and Lindong Wu and Lintao Ding and Lu Chen and Minghao Li and Nianyi Lin and Pan Ta and Qiang Zou and Rongjun Song and Ruiqi Yang and Shangqing Tu and Shangtong Yang and Shaoxiang Wu and Shengyan Zhang and Shijie Li and Shuang Li and Shuyi Fan and Wei Qin and Wei Tian and Weining Zhang and Wenbo Yu and Wenjie Liang and Xiang Kuang and Xiangmeng Cheng and Xiangyang Li and Xiaoquan Yan and Xiaowei Hu and Xiaoying Ling and Xing Fan and Xingye Xia and Xinyuan Zhang and Xinze Zhang and Xirui Pan and Xu Zou and Xunkai Zhang and Yadi Liu and Yandong Wu and Yanfu Li and Yidong Wang and Yifan Zhu and Yijun Tan and Yilin Zhou and Yiming Pan and Ying Zhang and Yinpei Su and Yipeng Geng and Yong Yan and Yonglin Tan and Yuean Bi and Yuhan Shen and Yuhao Yang and Yujiang Li and Yunan Liu and Yunqing Wang and Yuntao Li and Yurong Wu and Yutao Zhang and Yuxi Duan and Yuxuan Zhang and Zezhen Liu and Zhengtao Jiang and Zhenhe Yan and Zheyu Zhang and Zhixiang Wei and Zhuo Chen and Zhuoer Feng and Zijun Yao and Ziwei Chai and Ziyuan Wang and Zuzhou Zhang and Bin Xu and Minlie Huang and Hongning Wang and Juanzi Li and Yuxiao Dong and Jie Tang},
+      year={2026},
+      eprint={2602.15763},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2602.15763},
+}
+- Downloads last month
+- 3,547,021
+Model tree for zai-org/GLM-5.3-Flash
+Spaces using zai-org/GLM-5.3-Flash 27
+Collection including zai-org/GLM-5.3-Flash
+Paper for zai-org/GLM-5.3-Flash
+Evaluation results
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
+- llamaindex/ExtractBench leaderboard
+- Mean View evaluation resultssourcePipeline name: glm_5_3_flash_extract_oneshot_structured_output_file80.75 *
+- Short View evaluation resultssource
+- Medium View evaluation resultssourcePipeline name: glm_5_3_flash_extract_oneshot_structured_output_file51.56 *</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-09-22T11:46:41Z</p></footer>
+</body>
+</html>
