@@ -27,6 +27,13 @@ setting() { "${PY[@]}" scripts/get_setting.py "$1" --default "${2:-}" --root "$R
 
 echo "== cardtrack run $RUN_ID ($(date -u +%FT%TZ)) =="
 
+# Network gate. The Persistent timer fires the instant the laptop resumes from
+# suspend, seconds before Wi-Fi is back; without this every phase fails in the
+# first minute (2026-09-16..22). Exit 75 = EX_TEMPFAIL: nothing was touched,
+# and the systemd unit retries the whole run later (Restart=on-failure).
+"${PY[@]}" scripts/wait_for_network.py --root "$ROOT" \
+  || { echo "[run_daily] NO NETWORK: exiting for a later retry"; exit 75; }
+
 # Roster sync first, so a newly admitted publisher's index_urls are swept by
 # the monitor the same day (config/roster.yaml). Fail-closed inside; the shell
 # fallback only covers an interpreter-level crash, which must not stop the day.
@@ -254,8 +261,13 @@ if [ "$HOLD" -ne 0 ]; then
 fi
 if [ "$AGENT_FAILED" -ne 0 ]; then
   # Publishing still happened; the nonzero exit marks the systemd unit failed so
-  # the outage is visible in `systemctl --user --failed` too.
+  # the outage is visible in `systemctl --user --failed` too, and triggers the
+  # unit's Restart=on-failure retry (lock-guarded, caps are rolling 24 h).
   echo "== run $RUN_ID complete BUT AGENT PHASE FAILED (see above) =="
   exit 3
+fi
+if [ "$MONITOR_OUTAGE" = "1" ]; then
+  echo "== run $RUN_ID complete BUT MONITOR OUTAGE (network dropped mid-run; retry scheduled) =="
+  exit 4
 fi
 echo "== run $RUN_ID complete =="

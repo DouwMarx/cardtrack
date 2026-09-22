@@ -10,6 +10,14 @@ caps:
 cadence:
   fingerprint_fraction: 0.15           # ~weekly full coverage of silent updates
 
+network:
+  # Gate at the start of every run: poll until one probe answers, else exit 75
+  # and let systemd retry (Restart=on-failure in scripts/systemd/cardtrack.service).
+  wait_seconds: 900
+  probe_urls:
+    - https://huggingface.co/api/models?limit=1
+    - https://api.github.com/
+
 fetch:
   allow_private_hosts: false           # SSRF guard; true only in tests
   impersonate_fallback: true           # retry bot-blocked fetches (400/403/429/…) with

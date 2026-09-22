@@ -121,6 +121,13 @@ Classic cron works too where cron exists (not on NixOS by default):
 `run_daily.sh` sets its own PATH (NixOS profiles, `~/.local/bin`, system dirs), so
 it runs correctly under a scheduler's minimal environment on either OS.
 
+Laptops: a missed firing runs the moment the machine resumes, before Wi-Fi is
+back. The run therefore waits for the network first (`network.*` in
+settings.yaml; exit 75 after 15 min with nothing touched), and the service unit
+retries a failed day every 30 min, at most 5 starts per day (`Restart=on-failure`;
+a security hold, exit 1, is never retried). After editing the unit files, re-copy
+them and `systemctl --user daemon-reload`.
+
 Phase B uses the `claude` CLI via `agent.cmd` in settings — it authenticates with
 your Claude subscription login (`env -u ANTHROPIC_API_KEY` guards against silently
 switching to API billing). Swapping in another CLI agent is a one-line change to

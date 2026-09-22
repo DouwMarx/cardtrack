@@ -168,6 +168,8 @@ def write_test_config(root: Path, server: TestServer, *, caps: dict | None = Non
         "caps": default_caps,
         "cadence": {"fingerprint_fraction": fingerprint_fraction},
         "fetch": {"allow_private_hosts": True},
+        # the network gate must never reach the internet from tests
+        "network": {"probe_urls": [server.url("/index-page")], "wait_seconds": 5},
         "github": {"repo": gh_repo, "use_gh": False},  # outbox mode: never touch gh
         "site": {"title": "cardtrack-test", "run_pagefind": False},
         "publish": {"git_commit": False, "git_push": False, "wrangler_deploy": False},
