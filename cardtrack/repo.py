@@ -79,9 +79,47 @@ class Repo:
     def settings(self) -> dict:
         return self._load_yaml("settings.yaml")
 
+    def _load_yaml_optional(self, name: str) -> dict:
+        path = self.config_dir / name
+        if not path.exists():
+            return {}
+        return self._load_yaml(name)
+
+    @property
+    def base_sources(self) -> dict:
+        """The curated allowlist exactly as written in sources.yaml."""
+        return self._load_yaml("sources.yaml")
+
+    @property
+    def roster_policy(self) -> dict:
+        """config/roster.yaml; {} (=> disabled) when absent."""
+        return self._load_yaml_optional("roster.yaml")
+
+    @property
+    def roster_overlay(self) -> dict:
+        """config/sources.generated.yaml as written by cardtrack/roster.py; {} when absent."""
+        return self._load_yaml_optional("sources.generated.yaml")
+
     @property
     def sources(self) -> dict:
-        return self._load_yaml("sources.yaml")
+        """Effective allowlist: sources.yaml plus, when roster sync is enabled, the
+        generated overlay's publishers that do not collide with a curated key.
+        Additive only — the overlay can never modify or remove a curated entry."""
+        if "__sources__" not in self._cache:
+            base = self.base_sources
+            merged = {cat: dict(entries or {}) for cat, entries in base.items()}
+            policy = self.roster_policy
+            if policy.get("enabled", False):
+                curated = set(merged.get("publishers") or {}) | set(merged.get("evaluators") or {})
+                # deny is honoured here too, so it works even while the sync is
+                # failing closed and cannot rewrite the overlay
+                deny = set(policy.get("deny") or [])
+                for key, entry in (self.roster_overlay.get("publishers") or {}).items():
+                    slug = (entry or {}).get("openrouter_slug") or key
+                    if key not in curated and slug not in deny and key not in deny:
+                        merged.setdefault("publishers", {})[key] = dict(entry or {})
+            self._cache["__sources__"] = merged
+        return self._cache["__sources__"]
 
     @property
     def criteria(self) -> dict:

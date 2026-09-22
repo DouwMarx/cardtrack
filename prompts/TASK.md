@@ -31,6 +31,11 @@ depend on it — the validator enforces them over a rolling 24 h window regardle
   ones) and the `risk_domains` tag vocabulary
 - `config/sources.yaml` — the publisher/evaluator allowlist, tiers, and
   per-publisher `scope` notes you MUST honor when triaging that publisher's leads
+- `config/sources.generated.yaml` — machine-generated additive overlay of extra
+  allowlisted publishers (labs carrying real traffic on OpenRouter; see
+  `origin: openrouter`). Same rules as sources.yaml; entries there may have no
+  `scope` note or `index_urls` yet — apply `covered_model_class` strictly and
+  find their documentation by web search
 
 ## Security posture (read carefully)
 

@@ -1,0 +1,51 @@
+# Roster sync policy (human-owned). Keeps the publisher allowlist covering the
+# labs that actually carry traffic, using OpenRouter's daily rankings as the
+# signal. cardtrack/roster.py reads this and writes config/sources.generated.yaml,
+# an ADDITIVE overlay merged under config/sources.yaml at load time (base wins on
+# any key collision; nothing here can modify or remove a curated entry).
+#
+# Escape hatches, fastest first:
+#   enabled: false            -> step skipped, overlay ignored, base list only
+#   deny: [slug]              -> never admit this author (also drops it from the overlay)
+#   git revert <daily commit> -> the overlay is committed with each run
+#   copy an overlay stanza into sources.yaml -> it becomes curated; overlay copy is ignored
+
+enabled: true
+endpoint: https://openrouter.ai/api/v1/datasets/rankings-daily   # needs OPENROUTER_API_KEY (.env)
+models_endpoint: https://openrouter.ai/api/v1/models             # public; supplies HF org + display name
+
+# Admission: rank authors by trailing-window token share (largest first) and
+# admit until this share of attributable tokens is covered. Self-scaling: no
+# per-author percentage to retune as the market moves.
+cumulative_share: 0.99
+min_days_present: 7      # must appear in the daily top-50 on at least this many days of the window
+
+# Fail-closed guards: any breach keeps the previous overlay untouched and logs a warning.
+guards:
+  min_days_in_window: 20   # the API returns ~30 days; fewer means a truncated/partial dataset
+  min_authors: 5
+  max_authors: 100
+  failstreak_issue_after: 3   # consecutive failed syncs before a pipeline-failure issue is filed
+
+# OpenRouter author slug -> sources.yaml key, for authors whose key is not simply
+# the slug with '-' replaced by '_'. Slugs prefixed '~' are OpenRouter-internal
+# aliases and are always dropped.
+aliases:
+  google: google_deepmind
+  meta-llama: meta
+  mistralai: mistral
+  x-ai: xai
+  qwen: alibaba_qwen
+  moonshotai: moonshot_ai
+  thinkingmachines: thinking_machines
+  inclusionai: inclusion_ai
+  tencent: tencent_hunyuan
+  z-ai: zai
+
+# Slugs that are not publishers: anonymous stealth launches and the aggregator itself.
+ignore:
+  - stealth
+  - openrouter
+
+# Authors a human looked at and rejected. Never admitted; removed from the overlay if present.
+deny: []

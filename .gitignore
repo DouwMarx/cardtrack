@@ -18,6 +18,8 @@ __pycache__/
 logs/.phase_b_started
 logs/.agent_last_success
 logs/.agent_failstreak
+logs/.roster_failstreak
+config/*.tmp
 
 # raw logs are noise; run_report.md, friction.jsonl, issues_outbox.jsonl stay tracked
 logs/*.log

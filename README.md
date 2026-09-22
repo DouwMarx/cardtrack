@@ -66,6 +66,34 @@ It prints a JSON verdict: `written | duplicate | noop | rejected | issue_filed`.
 Proposals can also be piped as JSON: `propose_doc.py --json -` (see
 `prompts/TASK.md` for the record format).
 
+## Publisher roster sync
+
+`config/sources.yaml` is the curated allowlist. `config/roster.yaml` adds a
+deterministic Phase A step (`uv run poe roster`) that pulls OpenRouter's daily
+rankings dataset, ranks model authors by trailing-window token share, and writes
+`config/sources.generated.yaml`: an additive overlay of tier-2 publishers that
+together cover `cumulative_share` (99%) of attributable traffic and are not
+already curated. `Repo.sources` merges the two; base wins on any collision. Overlay entries
+carry only identity (tier 2, display name, HuggingFace org as `index_urls` when
+known); they have no `scope` note, so the agent applies `covered_model_class`
+strictly and finds their documents by web search. Authors present on fewer than
+`min_days_present` days of the window are ignored as spikes. Needs
+`OPENROUTER_API_KEY` in the environment or `.env` (any key; the endpoints are
+free, two calls per run). The overlay changes only when membership changes and
+is committed with the daily run, so its diff is the review gate on widening.
+
+Fail-closed: a fetch error, schema change, truncated window, or crash keeps
+the previous overlay untouched and logs a warning. Failures are counted in
+`logs/.roster_failstreak` (manual runs included; a success clears it) and the
+third in a row files a `pipeline-failure` issue. An author dropping out of the
+rankings never removes a publisher. Escape hatches: `enabled: false`,
+`deny: [slug]` (honoured at load time, so it works even while the sync is
+down), `git revert` of the daily commit, or copying an overlay stanza into
+`sources.yaml` to make it curated. `logs/roster_openrouter.json` records every
+author seen in the window, why it was or was not admitted, and how much of all
+traffic the allowlist covers once the dataset's unattributed "other" bucket is
+counted.
+
 ## The daily run
 
 `scripts/run_daily.sh` orchestrates: Phase A `monitor.py` (deterministic

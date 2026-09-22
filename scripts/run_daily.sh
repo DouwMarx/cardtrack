@@ -27,6 +27,13 @@ setting() { "${PY[@]}" scripts/get_setting.py "$1" --default "${2:-}" --root "$R
 
 echo "== cardtrack run $RUN_ID ($(date -u +%FT%TZ)) =="
 
+# Roster sync first, so a newly admitted publisher's index_urls are swept by
+# the monitor the same day (config/roster.yaml). Fail-closed inside; the shell
+# fallback only covers an interpreter-level crash, which must not stop the day.
+echo "-- Phase A: roster sync"
+"${PY[@]}" scripts/roster.py --run-id "$RUN_ID" --root "$ROOT" \
+  || echo "[run_daily] WARNING: roster sync crashed; previous overlay kept"
+
 echo "-- Phase A: monitor"
 MON_JSON="$("${PY[@]}" scripts/monitor.py --run-id "$RUN_ID" --root "$ROOT")"
 echo "$MON_JSON"
@@ -220,6 +227,8 @@ if [ "$HOLD" -eq 0 ] && [ "$(setting publish.git_commit false)" = "true" ]; then
   fi
   # scoped add: never sweep unrelated working-tree changes into an automated commit
   git -C "$ROOT" add data site logs 2>/dev/null || true
+  # the generated overlay is optional: a missing pathspec would abort the whole add
+  [ -f "$ROOT/config/sources.generated.yaml" ] && git -C "$ROOT" add config/sources.generated.yaml
   if git -C "$ROOT" diff --cached --quiet; then
     echo "nothing to commit"
   else
