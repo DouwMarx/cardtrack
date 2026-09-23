@@ -1675,3 +1675,59 @@ searches (two `allowed_domains`-restricted to `rand.org`) that never surfaced it
 `securebio.substack.com/p/securebio-gpt-6-astra-pre-release`; `config/sources.yaml` header comment
 and the `meta` `index_urls` comment; `logs/friction.jsonl` entries dated 2026-09-15
 (two `unfetchable_but_alive`, one `monitor_gap`).
+
+---
+
+## 2026-09-23 — The add cap is shared with operator backfills, and a backfill just disabled a day of curation
+
+**Problem.** `propose_doc.py` rejected my **fourth** add this run with
+`cap_exceeded: max_new_documents_per_run (rolling 24h)`. `cardtrack/propose.py` `_count_recent_actions`
+counts changelog `add` rows over a rolling 24 h window and is deliberately not keyed on `run_id` —
+correctly, since run ids are caller-supplied. But it is also not keyed on **actor**, so the 12
+documents backfilled when Z.ai and MiniMax were allowlisted consumed 12 of the 15 slots before the
+agent started, leaving exactly 3.
+
+That landed on the worst possible day. 2026-09-22 saw Claude Opus 5.5, Grok 4.7 and MiMo-V2.6 ship
+within twenty-four hours of each other. I spent the three slots on
+`anthropic-claude-opus-5-5-system-card`, `xai-grok-4-7-model-card` and
+`metr-claude-opus-5-5-independent-eval`, which is the right ranking — but only because I happened to
+submit in that order. **There is no way to see the remaining budget before spending it.** The cap is
+discovered by hitting it, and the fourth proposal is rejected after the work of verifying it is done.
+
+Three verified-in-scope documents were not written:
+
+| document | why it qualifies |
+| --- | --- |
+| Xiaomi **MiMo-V2.6** family card, `huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL` | 2026-09-22, MIT, Pro 1.02T-A42B + Flash 309B-A15B; announced outside HF at `mimo.mi.com/docs/en-US/updates/model`. Submitted, rejected by the cap. |
+| Alibaba **Qwen-Image-2.1**, `huggingface.co/Qwen/Qwen-Image-2.1` | image generation is explicitly in `covered_model_class`; Qwen Research License; announced at `qwen.ai/blog?id=qwen-image-2.1`. |
+| Redwood Research, *Astra is much better at reasoning with filler tokens than previous models* (2026-09-23) | independent eval of GPT-6-Astra, Claude Opus 4.5, Claude Opus 5, GPT-5.6-Sol, DeepSeek-V3.2; CoT-monitorability results (`loss_of_control`). |
+
+None is lost permanently — all three re-surface from `candidates.json` — but each waits a day for no
+safety reason, and the same arithmetic recurs on every future backfill.
+
+**Suggested change**, in preference order:
+
+1. **Give the cap an actor dimension.** Count only `actor != 'human'` rows (or count operator rows
+   against a separate, larger allowance). The cap exists as a runaway-*agent* backstop; an operator
+   bulk-load is a deliberate act that needs no protection from the agent's budget. One `WHERE` clause
+   in `_count_recent_actions`.
+2. **Failing that, make the budget legible before it is spent.** Emit `adds_remaining` into
+   `logs/state_summary.json` (or add a read-only `propose_doc.py --budget` mode). Then a run that
+   opens with 3 slots can rank its whole candidate list first and spend them deliberately, instead of
+   discovering the ceiling on proposal four. This is cheap and useful even if (1) lands.
+3. **Cosmetic but worth it:** have the rejection name the numbers — `cap_exceeded: 15/15 adds in the
+   last 24h (12 by human, 3 by agent)` — so the friction log records the cause without the agent
+   having to infer it from a commit message it is not allowed to read.
+
+**Evidence.** `{"status": "rejected", "reason": "cap_exceeded: max_new_documents_per_run (rolling
+24h)", "run_id": "2026-09-23T06:15Z-local"}` on the MiMo-V2.6 proposal, after exactly three `written`
+results this run (documents 335, 336, 337); `config/settings.yaml` `caps.max_new_documents_per_run: 15`;
+`cardtrack/propose.py` lines 289–300 and 489–493; `logs/friction.jsonl` entry
+`2026-09-23T07:10:00Z` (`cap_starvation`).
+
+**Unrelated housekeeping, flagged because it is two days stale.** `logs/friction_pending_2026-09-21.jsonl`
+(5 entries) and `logs/PROPOSALS_pending_2026-09-21.md` (2 proposals) are still unmerged in `logs/`.
+The 2026-09-21 run staged them believing no append route existed; the 2026-09-11 recipe — `Edit` with
+`old_string` set to a unique tail substring of the file's last line — does work, and is how this entry
+and today's friction entries were appended. Either the operator runs the staged `cat >>` commands or a
+future run merges them, but they should not keep aging out of sight.

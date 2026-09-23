@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:34:05Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos3-edge-model-card&amp;body=Document%3A%20nvidia-cosmos3-edge-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos3-Edge%0AFingerprint%3A%20a6c9905a4873cb36e3d2fa2f5f6d9b603c1966b232010bf63b4fb48e665df7a2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos3-edge-model-card&amp;body=Document%3A%20nvidia-cosmos3-edge-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos3-Edge%0AFingerprint%3A%208e0e0d0abf6cf4469c154921a7ad68aac6106227aeb4caf63911d961b3e63de8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-23T06:18:01Z</td>
+          <td>text/html</td>
+          <td>347,866</td>
+          <td><code title="8e0e0d0abf6cf4469c154921a7ad68aac6106227aeb4caf63911d961b3e63de8">8e0e0d0abf6cf446</code></td>
+          <td class="change-summary">NVIDIA narrowed the card to document Cosmos3-Edge alone. The Model Versions and trainable-parameter lists dropped Cosmos3-Edge-Policy-DROID (4B), Cosmos3-Super-Image2Video-4Step (64B) and Cosmos3-Super-Text2Image-4Step (64B), along with the entire 05/31/2026 release block covering Cosmos3-Nano (16B), Cosmos3-Super (64B), Cosmos3-Nano-Policy-DROID (16B), Cosmos3-Super-Image2Video (64B) and Cosmos3-Super-Text2Image (64B). Only &#34;Released on: 07/20/2026 - Cosmos3-Edge: 4B&#34; remains.
+</td>
+        </tr>
         <tr>
           <td>2026-09-05T06:21:19Z</td>
           <td>text/html</td>
@@ -88,7 +96,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -149,6 +157,23 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Cosmos3-Edge" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Edge</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-23T06:18:01Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-23T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Cosmos3-Edge" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Edge</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-23T06:27:21Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-23T06:15Z-local · agent</span>
+          <div class="just">change_summary: null → "NVIDIA narrowed the card to document Cosmos3-Edge alone. The Model Versions and trainable-parameter lists dropped Cosmos3-Edge-Policy-DROID (4B), Cosmos3-Super-Image2Video-4Step (64B) and Cosmos3-Super-Text2Image-4Step (64B), along with the entire 05/31/2026 release block covering Cosmos3-Nano (16B), Cosmos3-Super (64B), Cosmos3-Nano-Policy-DROID (16B), Cosmos3-Super-Image2Video (64B) and Cosmos3-Super-Text2Image (64B). Only \"Released on: 07/20/2026 - Cosmos3-Edge: 4B\" remains."</div>
+          <div class="just">Substantive, and verified against the live card today: 26 of the 27 removed lines are the family release history and per-model parameter counts, which NVIDIA has deleted so the card documents only the checkpoint it sits on. The sole noise line in the diff is the HuggingFace download counter (1,431,241 to 1,519,709), which is excluded from the summary. This matters for the corpus because the stored row still lists four model_names that the current card no longer covers.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Cosmos3-Edge" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos3-Edge</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -177,23 +202,6 @@ Model Versions
 Released on: 07/20/2026
 - Cosmos3-Edge:
   - Given multimodal inputs including text, images, video, and action trajectories, generate coherent text, images, video, and action outputs for multimodal understanding, world simulation, future prediction, action reasoning, and Physical AI applications.
-- Cosmos3-Edge-Policy-DROID:
-  - Given language instructions and visual observations from the DROID robot platform, generate robot action trajectories for manipulation and control tasks.
-- Cosmos3-Super-Image2Video-4Step:
-  - Given one or more input images and optional text instructions, generate temporally coherent video sequences that are consistent with the provided visual content. Distilled from Cosmos3-Super-Image2Video using Improved Distribution Matching Distillation (DMD2), enabling high-quality generation in 4 steps.
-- Cosmos3-Super-Text2Image-4Step:
-  - Given text input, generate high-fidelity images that are consistent with the provided description. Distilled from Cosmos3-Super-Text2Image using Improved Distribution Matching Distillation (DMD2), enabling high-quality generation in 4 steps.
-Released on: 05/31/2026
-- Cosmos3-Nano:
-  - Given multimodal inputs including text, images, video, audio, and action trajectories, generate coherent text, images, video, audio, and action outputs for multimodal understanding, world simulation, future prediction, action reasoning, and Physical AI applications.
-- Cosmos3-Super:
-  - Given multimodal inputs including text, images, video, audio, and action trajectories, generate coherent text, images, video, audio, and action outputs for multimodal understanding, world simulation, future prediction, action reasoning, and Physical AI applications.
-- Cosmos3-Nano-Policy-DROID:
-  - Given language instructions and visual observations from the DROID robot platform, generate robot action trajectories for manipulation and control tasks.
-- Cosmos3-Super-Image2Video:
-  - Given one or more input images and optional text instructions, generate temporally coherent video sequences that are consistent with the provided visual content.
-- Cosmos3-Super-Text2Image:
-  - Given text input, generate high-fidelity images that are consistent with the provided description.
 License
 This model is released under the OpenMDW1.1
 Deployment Geography
@@ -210,15 +218,6 @@ This model was developed based on: Cosmos Framework
 Number of trainable model parameters:
 Released on: 07/20/2026
 - Cosmos3-Edge: 4B
-- Cosmos3-Edge-Policy-DROID: 4B
-- Cosmos3-Super-Image2Video-4Step: 64B
-- Cosmos3-Super-Text2Image-4Step: 64B
-Released on: 05/31/2026
-- Cosmos3-Nano: 16B
-- Cosmos3-Super: 64B
-- Cosmos3-Nano-Policy-DROID: 16B
-- Cosmos3-Super-Image2Video: 64B
-- Cosmos3-Super-Text2Image: 64B
 Input/Output Specifications
 - Generator Input
   - Input Type(s): Text, Image, Action Trajectory
@@ -939,11 +938,11 @@ Please make sure you have proper rights and permissions for all input image and 
 Users are responsible for model inputs and outputs. Users are responsible for ensuring safe integration of this model, including implementing guardrails as well as other safety mechanisms, prior to deployment.
 For more detailed information on ethical considerations for this model, please see the Model Card++ Explainability, Bias, Safety &amp; Security, and Privacy subcards. Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 1,431,241</pre>
+- 1,519,709</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-22T11:46:41Z</p></footer>
+<footer><p>Data updated 2026-09-23T06:27:24Z</p></footer>
 </body>
 </html>

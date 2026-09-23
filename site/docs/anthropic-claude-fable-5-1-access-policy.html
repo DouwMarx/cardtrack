@@ -56,12 +56,12 @@
     <dt>First seen</dt>
     <dd>2026-09-04T13:59:21Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>First formal naming of the Life Sciences Verification Program (LSVP: US-government partnership, first participants already enrolled, currently limited to US organizations, expansion planned) and the Cyber Verification Program (Opus/Sonnet-class today; Mythos-class access &#39;in the near future&#39;). These access facts appear nowhere else in the corpus, which is why the launch post is a row alongside the system card. openness=restricted per the most-restricted-class rule (Mythos 5.1 vetted-access; Fable 5.1 closed).</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-1-access-policy&amp;body=Document%3A%20anthropic-claude-fable-5-1-access-policy%0AURL%3A%20https%3A//www.anthropic.com/claude-fable-and-mythos-5-1%0AFingerprint%3A%2097784236c75fc4cb1e2e8b9c0a5ed939ee5ad9fc2922979a9650cadff8ebef65%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-1-access-policy&amp;body=Document%3A%20anthropic-claude-fable-5-1-access-policy%0AURL%3A%20https%3A//www.anthropic.com/claude-fable-and-mythos-5-1%0AFingerprint%3A%20b4024548affdc081d59d8e29724d463ab68006b10a371b99b57883875bbc17ef%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -69,6 +69,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-23T06:17:38Z</td>
+          <td>text/html</td>
+          <td>534,566</td>
+          <td><code title="b4024548affdc081d59d8e29724d463ab68006b10a371b99b57883875bbc17ef">b4024548affdc081</code></td>
+          <td class="change-summary">Added a methodology disclosure below the benchmark table: &#34;Fable 5.1 was evaluated with its production safeguards enabled. On tasks where these safeguards intervened, Fable 5.1 and Fable 5 scored a zero on OSWorld 2.0, and Fable 5 scored a zero on AutomationBench. In all other interventions from our safeguards, cybersecurity tasks were completed by Claude Opus 4.8, and biology tasks were completed by Claude Opus 5.&#34;
+</td>
+        </tr>
         <tr>
           <td>2026-09-04T13:59:21Z</td>
           <td>text/html</td>
@@ -85,7 +93,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -151,6 +159,23 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener nofollow">https://www.anthropic.com/claude-fable-and-mythos-5-1</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-23T06:17:38Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-23T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener nofollow">https://www.anthropic.com/claude-fable-and-mythos-5-1</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-23T06:26:05Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-23T06:15Z-local · agent</span>
+          <div class="just">change_summary: null → "Added a methodology disclosure below the benchmark table: \"Fable 5.1 was evaluated with its production safeguards enabled. On tasks where these safeguards intervened, Fable 5.1 and Fable 5 scored a zero on OSWorld 2.0, and Fable 5 scored a zero on AutomationBench. In all other interventions from our safeguards, cybersecurity tasks were completed by Claude Opus 4.8, and biology tasks were completed by Claude Opus 5.\""</div>
+          <div class="just">Substantive addition, not extraction noise: a new paragraph explains that the published OSWorld 2.0 and AutomationBench figures are depressed by safeguard interventions, and that cyber and biology tasks were completed by other Claude models when safeguards fired. I verified the paragraph is present verbatim on the live page today. The rest of this diff IS noise and is excluded from the summary: the footnote 3 body and the eight Further-reading link labels collapsed to bare numerals and the pagination marker changed from &#39;1 of 22&#39; to &#39;1&#39;, all consistent with a degraded extraction pass rather than an edit by Anthropic.</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener nofollow">https://www.anthropic.com/claude-fable-and-mythos-5-1</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -175,14 +200,15 @@ Here, you can see how Fable 5.1 compares across various benchmarks:
 | Agentic scientific researchTerminal-Bench-Science 0.1 [1] | 52.6% | 24.7% | 29.0% | 22.4% |
 | Agentic codingTerminal-Bench 4.0 | 55.8%60.9% (Mythos 5.1) | 42.0% | 52.3% | 37.3% |
 | Knowledge workGDPval-AA v2 | 1853 | 1723 | 1824 | 1711 |
-| Computer useOSWorld 2.0 [2] | 77.9%partial | 72.9%partial | 75.4%partial | —partial |
-| Computer useOSWorld 2.0 | 41.7%strict | 36.1%strict | 39.6%strict | —strict |
-| Multidisciplinary reasoningHumanity&#39;s Last Exam | 60.9%no tools | 57.8%no tools | 56.6%no tools | —no tools |
-|  | 65.0%with tools | 63.8%with tools | 63.6%with tools | —with tools |
+| Computer useOSWorld 2.0 [2] | 77.9%partial | 72.9%partial | 75.4%partial | — |
+| Computer useOSWorld 2.0 | 41.7%strict | 36.1%strict | 39.6%strict | — |
+| Multidisciplinary reasoningHumanity&#39;s Last Exam | 60.9%no tools | 57.8%no tools | 56.6%no tools | — |
+|  | 65.0%with tools | 63.8%with tools | 63.6%with tools | — |
 | Business workflowsAutomationBench | 31.4% | 17.1% | 26.9% | 19.6% |
 | Agentic codingCursorBench 3.2.0 | 73.4% | 70.5% | 70.0% | 67.2% |
+Fable 5.1 was evaluated with its production safeguards enabled. On tasks where these safeguards intervened, Fable 5.1 and Fable 5 scored a zero on OSWorld 2.0, and Fable 5 scored a zero on AutomationBench. In all other interventions from our safeguards, cybersecurity tasks were completed by Claude Opus 4.8, and biology tasks were completed by Claude Opus 5. This likely reduces the performance of Fable 5.1 and Fable 5 on these benchmarks.
 Our early-access partners noticed these performance upgrades, and also picked up on more qualitative improvements in the model’s outputs. Here’s what they told us:
-1 of 22
+1
 Scientific research
 We tested the scientific research capabilities of Claude Fable 5.1 and Claude Mythos 5.1 across a wide range of domains. What we found—which includes the early examples we share below—adds to the evidence that AI models will soon make important contributions to scientific discovery.
 Molecular design. Many modern medicines work by binding to targets within the body to block, activate, or deliver something to them. High-affinity binders are necessary for drugs to work at lower doses; designing one is the first step in the development process for many common drug modalities. To see how well Claude Mythos 5.1 could do at this task, we gave the model access to open-source protein design and folding tools and sent its designs to two external organizations for experimental validation. Mythos 5.1 proved able to design very high-affinity binders. On three targets, [3] its binding affinities were 10 times higher than the best designs submitted to Adaptyv Bio’s protein design competitions. Its hit rate (that is, the number of designs that were viable binders) was the strongest we’ve measured to date: it reached nearly 50% across 12 targets. (Hit rates of 10–15% are typical in protein design today.)
@@ -226,20 +252,20 @@ Get started
 Footnotes
 1 Terminal-Bench-Science 0.1: The standard error is ±3.5–4.5 pts per model. The public leaderboard (3 trials/task, Claude Code harness) reports Claude Opus 5 at 30.0% and Claude Fable 5 at 21.4%; our setup reproduces them at 29.0% and 24.7%, respectively, both within noise.
 2 OSWorld 2.0: Scores are on the benchmark authors’ August 2026 task release; Fable 5 and Opus 5 were re-run under the same conditions. Because the task files differ from earlier releases, these numbers aren&#39;t directly comparable to previously published OSWorld 2.0 results, which is why no competitor score is shown
-3 These three targets are (EGFR, Nipah G, 15-PGDH) and come from Adaptyv Bio’s protein design competitions. The Nipah G comparison is against de novo designs targeting the receptor-binding site on the G head (best: ~8–12 nM, N1032). A de novo entry from Nick Boyd/Escalante Bio that targets a different region (the stalk) reached ~1.4 nM (design_7), comparable to our best binder.
+3
 Further reading
-1. The Claude Fable 5.1 and Claude Mythos 5.1 system card. View card
-2. More detail on our Enterprise Frontier Safeguards. Learn more
-3. Request access to our Enterprise Frontier Safeguards. Open form
-4. An overview of our improvements to our biology safeguards. Learn more
-5. Support for scientists. Read more
-6. Earlier work by Claude in protein design. Read more
-7. Earlier work by Claude in mathematics. Read more
-8. More about the Model Hardware Standard. Learn more</pre>
+1
+2
+3
+4
+5
+6
+7
+8</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-22T11:46:41Z</p></footer>
+<footer><p>Data updated 2026-09-23T06:27:24Z</p></footer>
 </body>
 </html>
