@@ -229,6 +229,8 @@ Nicholas Carlini, Collin Burns, Jack Lindsey, Sara Price*, Subhash Kantamneni*â€
                   senior authorship. Correspondence to
                   subhash@anthropic.com.}
 }
+Footnotes
+- We have since advised external partners running cyber evaluations with pre-release models to explicitly define what is in and out of scope for any exercise, including the targets, permitted actions, and network boundaries.
 Related content
 Measuring tactical intelligence targeting and conventional weapons capabilities of AI models
 Anthropicâ€™s Frontier Red Team developed new evaluations to measure AI capabilities in tactical intelligence targeting and conventional weapons development.

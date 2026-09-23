@@ -17,7 +17,8 @@ import requests
 
 from .canonical import canonicalize_url
 from .db import connect
-from .extract import extract_text, fingerprint_text, sha256_bytes
+from .derived import check_derived_layer
+from .extract import _compiled_ignores, extract_text, fingerprint_text, sha256_bytes
 from .fetch import fetch, probe
 from .identity import find_doc_by_url
 from .propose import process_proposal
@@ -85,9 +86,46 @@ def _recent_outcomes(conn: sqlite3.Connection, doc_id: int, check_type: str, n: 
     return [r["outcome"] for r in rows]
 
 
+# A re-fetch whose extracted text shrinks below this share of the previous version is
+# not minted as a version: the page has collapsed into a stub or listing and a human
+# (or the agent) should look, not the diff pipeline.
+COLLAPSE_RATIO = 0.10
+# Deleted lines shorter than this are too generic to look up in the raw capture.
+DRIFT_MIN_LINE_CHARS = 20
+
+
+def extractor_drift_lines(prev_text: str, new_text: str, raw: bytes | None,
+                          ignore_patterns: tuple[str, ...] = ()) -> int:
+    """Second opinion on deletions: how many substantive lines disappeared from the
+    extracted text but are still present, verbatim, in the new raw capture. A non-zero
+    count means the extractor dropped them, not the publisher."""
+    if not raw or not prev_text or not new_text:
+        return 0
+    import html as html_mod
+    import re
+
+    ignores = _compiled_ignores(ignore_patterns) if ignore_patterns else []
+
+    def lines(text):
+        out = []
+        for ln in text.splitlines():
+            ln = re.sub(r"\s+", " ", ln).strip()
+            if len(ln) >= DRIFT_MIN_LINE_CHARS and not any(rx.search(ln) for rx in ignores):
+                out.append(ln)
+        return out
+
+    new_lines = set(lines(new_text))
+    deleted = [ln for ln in lines(prev_text) if ln not in new_lines]
+    if not deleted:
+        return 0
+    haystack = re.sub(r"\s+", " ", html_mod.unescape(raw.decode("utf-8", errors="replace")))
+    return sum(1 for ln in deleted if ln in haystack)
+
+
 def run_monitor(repo: Repo, run_id: str) -> dict:
     repo.ensure_dirs()
     conn = connect(repo.db_path)
+    check_derived_layer(conn, repo)  # raises DerivedLayerStale rather than mint junk
     session = requests.Session()
     caps = repo.settings.get("caps", {})
     timeout = float(caps.get("fetch_timeout_seconds", 60))
@@ -98,7 +136,8 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
 
     summary: dict = {"run_id": run_id, "checked": 0, "ok": 0, "not_found": 0, "blocked": 0,
                      "errors": 0, "moved": 0, "marked_dead": 0, "fingerprint_checked": 0,
-                     "new_versions": 0, "candidates": 0, "budget_exhausted": False}
+                     "new_versions": 0, "candidates": 0, "budget_exhausted": False,
+                     "content_collapsed": [], "extractor_drift": 0}
     blocked_escalations: list[dict] = []
 
     try:
@@ -209,6 +248,26 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
             known = conn.execute(
                 "SELECT 1 FROM document_versions WHERE document_id = ? AND "
                 "content_fingerprint = ?", (doc["id"], fp)).fetchone()
+            prev_text = ""
+            if not known:
+                prev = conn.execute(
+                    "SELECT text_path FROM latest_versions WHERE document_id = ?",
+                    (doc["id"],)).fetchone()
+                if prev and prev["text_path"]:
+                    try:
+                        prev_text = (repo.root / prev["text_path"]).read_text(
+                            encoding="utf-8", errors="replace")
+                    except OSError:
+                        prev_text = ""
+            if (not known and prev_text and text
+                    and len(text) < COLLAPSE_RATIO * len(prev_text)):
+                # the page became a stub (client-side redirect, listing, login wall):
+                # surface it instead of minting the stub as a version
+                _record_check(conn, doc["id"], run_id, "fingerprint", result.status,
+                              "content_collapsed", byte_size=len(result.content))
+                conn.commit()
+                summary["content_collapsed"].append(doc["slug"])
+                continue
             _record_check(conn, doc["id"], run_id, "fingerprint", result.status,
                           "unchanged" if known else "changed",
                           byte_size=len(result.content))
@@ -218,6 +277,8 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                              (utcnow(), doc["id"]))
                 conn.commit()
             else:
+                drift = extractor_drift_lines(prev_text, text or "", result.content,
+                                              repo.fingerprint_ignore_patterns)
                 res = process_proposal(repo, {
                     "action": "new_version", "url": doc["canonical_url"],
                     "justification": "Content fingerprint changed on scheduled re-fetch",
@@ -226,6 +287,20 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                 }, run_id, actor="monitor", conn=conn)
                 if res.status == "written":
                     summary["new_versions"] += 1
+                    if drift:
+                        # the raw capture still holds what the extracted text lost:
+                        # record the version, but label the deletion as ours
+                        process_proposal(repo, {
+                            "action": "annotate_version", "slug": doc["slug"],
+                            "version_id": res.version_id,
+                            "summary": f"Extractor drift: {drift} line(s) missing from the "
+                                       "extracted text are still present in the raw "
+                                       "capture; not a publisher deletion.",
+                            "justification": "Deleted lines found verbatim in the new raw "
+                                             "capture",
+                            "evidence_urls": [doc["canonical_url"]],
+                        }, run_id, actor="monitor", conn=conn)
+                        summary["extractor_drift"] += 1
 
         # ---- 3. index-page diff ----
         new_candidates: list[dict] = []

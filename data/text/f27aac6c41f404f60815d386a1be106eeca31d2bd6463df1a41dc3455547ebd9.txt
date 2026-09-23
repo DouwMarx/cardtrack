@@ -208,6 +208,7 @@ log("result: " + result);
 log(result === 1337
 ? "BUG: call.bind was bypassed — unwrapped function called directly"
 : "OK: call.bind wrapper is intact (expected on patched builds)");
+[1] The bug also affects iterElemsFunctions()(WasmInstance.cpp:1100), which populates wasm tables from element segments using the same pattern. However, table calls go through call_indirect, which performs a runtime type signature check that prevents type confusion through that path.
 Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
 Read more
 We're sharing a review of the evidence on worker retraining programs, coauthored by independent researcher David Roodman and Anthropic's Maxim Massenkoff.

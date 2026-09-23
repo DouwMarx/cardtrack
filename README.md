@@ -160,8 +160,14 @@ switching to API billing). Swapping in another CLI agent is a one-line change to
   Phase A emits `logs/updated_docs.json` + diffs for versions still needing one.
 - **Fingerprints ignore page furniture** (`fingerprint.ignore_line_patterns` in
   settings.yaml — HF download counters, rotating blog footers, access-date stamps).
-  If you change the patterns, run `scripts/recompute_fingerprints.py --apply`
-  or every unchanged document mints a bogus version on its next fetch.
+  The derived layer (text files + fingerprints) is stamped with a config id
+  (`DERIVED_LAYER_VERSION` in `cardtrack/extract.py` + the ignore patterns) and the
+  monitor refuses to run while it is stale, so a pattern or extractor change can never
+  mint a bogus version for every document. After changing the patterns run
+  `scripts/recompute_fingerprints.py --apply`; after changing extraction (bump
+  `DERIVED_LAYER_VERSION`) run `scripts/extract_text.py --reextract-all --apply`, which
+  rewrites the text files from the raw store, recomputes fingerprints and prunes
+  versions that now extract identically. Both are dry-run by default.
 
 ## Security model
 

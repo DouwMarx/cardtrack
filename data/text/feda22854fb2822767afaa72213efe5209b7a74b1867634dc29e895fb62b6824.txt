@@ -68,6 +68,13 @@ We also temporarily reassigned a portion of the company to these efforts. Roughl
 Alongside the reallocation of resources towards security, we continued building out containment and monitoring for internal agent use. Our training and evaluation workloads have typically run in sandboxes isolated from our production systems. Since developing Claude Mythos Preview, we have used our models to probe for any weaknesses in those sandboxes. We described our offline monitoring of internal coding agents in our April alignment risk update, and our August Risk Report covers that system in more detail, along with the interventions that run alongside it. These include sandboxing or auto-mode classifiers on the most autonomous forms of internal agent use, and automated review of infrastructure code changes before they merge.
 What this work missed was evaluations—and third-party evaluations above all. We did monitor some high-risk evaluations including in real time, but generally we only conducted automated reviews on a sample of transcripts after the fact.
 The July incidents have stressed that the urgency of improving our cybersecurity defenses is even higher than we previously believed. We are redoubling our efforts in this direction and will say more in our next Risk Report.
+Footnotes
+- We’ve verified the classifier would have flagged the incidents described in our July 30 report.
+- None of these findings came from our internal dedicated offensive-cyber evaluation suites, which run with no network access at all.
+- High-risk cyber evaluations include those where Claude is given an ambiguously scoped, offensive task, like penetration testing.
+- Ultimately, a model that acts outside its intended scope on such a challenge is a problem of alignment; an aligned model should stop or report to humans that the task can’t be completed as specified. We are continuing to train this behavior directly, but a defense-in-depth approach means not relying on alignment alone.
+- We’ve publicly discussed two other categories of reward hacking in the Mythos Preview system card, including one where the model utilizes low-level computer process data in order to escalate its permissions, and another where it circumvents network restrictions in its training environment to download data that lets it shortcut the assigned task.
+- These mitigations have not been wholly sufficient; we discuss further instances of training on chain of thought in more detail in our August Risk Report, Section 5.2.3.
 Related content
 Developing Enterprise Frontier Safeguards with our customers
 Read more

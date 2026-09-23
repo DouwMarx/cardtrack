@@ -73,7 +73,8 @@ def test_full_pipeline_via_clis(repo_root, http_server, pdf_bytes):
 
     # 7. extraction rebuild is a no-op when nothing changed
     code, stats, err = run_cli("extract_text.py", "--reextract-all", root=repo_root)
-    assert code == 0 and stats["versions"] == 3 and stats["conflicts"] == []
+    assert code == 0 and stats["versions"] == 3 and stats["status"] == "dry_run"
+    assert stats["text_changed"] == 0 and stats["failed"] == 0
 
 
 def test_comment_issue_outbox_mode(repo_root):

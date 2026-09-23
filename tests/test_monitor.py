@@ -226,3 +226,59 @@ def test_fingerprint_rotation_cadence(repo_root, http_server):
              model_names=[f"RotModel {i}"])
     summary = run_monitor(repo, "r1")
     assert summary["fingerprint_checked"] == 2, "ceil(0.4 * 3) = 2, oldest first"
+
+
+def test_meta_refresh_stub_marks_moved(repo, http_server):
+    """A page replaced by a client-side redirect stub answers 200 to a link checker but
+    is gone for a reader (Palisade, Sept 2026): treat it like a permanent redirect."""
+    added = seed(repo, http_server, "/old-post", model_names=["StubModel"])
+    http_server.set_html("/new-home", "Seeded content.")
+    target = http_server.url("/new-home")
+    http_server.routes["/old-post"] = Route(body=f"""<!DOCTYPE html><html><head>
+    <title>Redirecting&hellip;</title>
+    <link rel="canonical" href="{target}">
+    <meta http-equiv="refresh" content="0; url={target}">
+    </head><body><h1>Redirecting&hellip;</h1>
+    <a href="{target}">Click here if you are not redirected.</a></body></html>""".encode())
+    summary = run_monitor(repo, "r1")
+    assert summary["moved"] == 1
+    assert get_status(repo, added.slug) == "moved"
+
+
+def test_collapsed_page_is_not_minted_as_a_version(repo, http_server):
+    long_body = " ".join(["A substantive paragraph about the model and its evaluations."] * 40)
+    added = seed(repo, http_server, "/big-doc", body=long_body, model_names=["BigModel"])
+    http_server.set_html("/big-doc", "Listing: v1.0, 256k context, pricing.")
+    summary = run_monitor(repo, "r1")
+    assert summary["new_versions"] == 0
+    assert summary["content_collapsed"] == [added.slug]
+    conn = connect(repo.db_path)
+    outcome = conn.execute(
+        "SELECT outcome FROM link_checks WHERE document_id=? AND check_type='fingerprint' "
+        "ORDER BY id DESC LIMIT 1", (added.document_id,)).fetchone()[0]
+    n = conn.execute("SELECT COUNT(*) FROM document_versions WHERE document_id=?",
+                     (added.document_id,)).fetchone()[0]
+    conn.close()
+    assert outcome == "content_collapsed"
+    assert n == 1
+
+
+def test_extractor_drift_is_labelled_not_reported_as_deletion(repo, http_server):
+    """Text the extractor drops (here: moved into a <footer>) is still in the raw capture,
+    so the new version carries an extractor-drift note instead of posing as a deletion."""
+    para = "The tested model was an unreleased internal prototype and is not planned for release."
+    body = " ".join(["Main text about the evaluation methodology and the results table."] * 20)
+    added = seed(repo, http_server, "/drift-doc",
+                 body=f"{body}</p><p>{para}", model_names=["DriftModel"])
+    http_server.routes["/drift-doc"] = Route(body=f"""<!DOCTYPE html><html><head>
+    <title>Doc</title></head><body><article><h1>Doc</h1><p>{body}</p></article>
+    <footer><p>{para}</p><a href="/privacy">Privacy</a></footer></body></html>""".encode())
+    summary = run_monitor(repo, "r1")
+    assert summary["new_versions"] == 1
+    assert summary["extractor_drift"] == 1
+    conn = connect(repo.db_path)
+    note = conn.execute(
+        "SELECT change_summary FROM document_versions WHERE document_id=? "
+        "ORDER BY id DESC LIMIT 1", (added.document_id,)).fetchone()[0]
+    conn.close()
+    assert note and note.startswith("Extractor drift")

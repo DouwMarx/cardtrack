@@ -41,3 +41,25 @@ def test_binary_garbage_fails_gracefully():
     text, method = extract_text(b"\x00\x01\x02\x03" * 100, "application/octet-stream")
     assert text is None
     assert method == "binary"
+
+
+def test_footnotes_survive_a_footer_classed_wrapper():
+    """Anthropic (Aug 2026) wrapped its footnote block in a "...postFooter" container;
+    trafilatura discards anything classed "footer", so three documents' footnotes
+    vanished from extracted text while the raw HTML still held them."""
+    from cardtrack.extract import extract_text
+
+    body = " ".join(["This model was evaluated on a benchmark suite with many tasks."] * 12)
+    footnote = "We routinely test internal research prototypes like this one."
+    html = f"""<!DOCTYPE html><html><head><title>Post</title></head><body>
+    <nav><a href="/">Home</a><a href="/news">News</a></nav>
+    <article><h1>A post</h1><p>{body}</p><p>{body}</p>
+    <div class="page-wrapper PostDetail-module__postFooter">
+      <div class="PostDetail-module__footnotes"><h4>Footnotes</h4>
+      <ol><li id="footnote-1">{footnote}</li></ol></div>
+    </div></article>
+    <footer><a href="/privacy">Privacy</a></footer>
+    </body></html>""".encode()
+    text, method = extract_text(html, "text/html", "https://example.com/post")
+    assert method == "html"
+    assert footnote in text

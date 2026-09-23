@@ -6,6 +6,7 @@ per-document size caps, and an SSRF guard against private/loopback hosts.
 from __future__ import annotations
 
 import ipaddress
+import re
 import socket
 import time
 from dataclasses import dataclass, field
@@ -13,6 +14,35 @@ from dataclasses import dataclass, field
 import requests
 
 from .canonical import canonicalize_url
+
+# Client-side redirect stubs: a 200 whose whole body is <meta http-equiv="refresh"
+# content="0; url=..."> (Palisade's blog, Sept 2026). To a link checker that page is
+# alive; to a reader it is gone. A refresh with a delay over a few seconds is a
+# reload, not a move, and is left alone.
+_META_TAG = re.compile(rb"<meta\b[^>]*>", re.IGNORECASE)
+_HTTP_EQUIV_REFRESH = re.compile(rb"http-equiv\s*=\s*[\"']?refresh[\"']?", re.IGNORECASE)
+_REFRESH_CONTENT = re.compile(
+    rb"content\s*=\s*[\"']\s*(\d+)\s*;\s*url\s*=\s*[\"']?([^\"'>\s]+)", re.IGNORECASE)
+MAX_REFRESH_DELAY_SECONDS = 5
+
+
+def client_redirect_target(content: bytes | None, content_type: str | None,
+                           base_url: str) -> str | None:
+    """URL a meta-refresh stub points at, or None when the body is a real page."""
+    if not content or (content_type and "html" not in content_type.lower()):
+        return None
+    for tag in _META_TAG.finditer(content[:16384]):
+        meta = tag.group(0)
+        if not _HTTP_EQUIV_REFRESH.search(meta):
+            continue
+        m = _REFRESH_CONTENT.search(meta)
+        if not m or int(m.group(1)) > MAX_REFRESH_DELAY_SECONDS:
+            continue
+        from urllib.parse import urljoin
+
+        target = urljoin(base_url, m.group(2).decode("utf-8", errors="replace").strip())
+        return target if target != base_url else None
+    return None
 
 BROWSER_UA = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
@@ -191,6 +221,17 @@ def _fetch_requests(
         if result.truncated and not range_bytes:
             result.error = f"exceeds max_fetch_bytes ({max_bytes})"
             return result
+        target = client_redirect_target(result.content, result.content_type, current)
+        if target:
+            # treat like a 301: the old URL now only points elsewhere
+            result.hops.append(current)
+            result.content = None
+            result.truncated = False
+            current = target
+            if chain_permanent:
+                result.stable_url = current
+                result.permanent_redirect = True
+            continue
         result.ok = True
         return result
 

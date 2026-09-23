@@ -32,5 +32,7 @@ Opus 4.6 is currently far better at identifying and fixing vulnerabilities than 
 But looking at the rate of progress, it is unlikely that the gap between frontier models’ vulnerability discovery and exploitation abilities will last very long. If and when future language models break through this exploitation barrier, we will need to consider additional safeguards or other actions to prevent our models from being misused by malicious actors.
 We urge developers to take advantage of this window to redouble their efforts to make their software more secure. For our part, we plan to significantly expand our cybersecurity efforts, including by working with developers to search for vulnerabilities (following the CVD process outlined above), developing tools to help maintainers triage bug reports, and directly proposing patches.
 If you’re interested in supporting our security efforts—writing new scaffolds to identify vulnerabilities in open-source software; triaging, patching, and reporting vulnerabilities; and developing a robust CVD process for the AI era—apply to work at Anthropic here.
+- All the advice shared here is based on our use of Claude, but it should apply to whichever LLM you prefer.
+- Which Mozilla patched independently.
 Mariano-Florentino (Tino) Cuéllar will join Anthropic as its first Chief Global Affairs Officer.
 Read more

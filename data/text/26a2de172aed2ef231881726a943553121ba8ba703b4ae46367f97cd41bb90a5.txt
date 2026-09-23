@@ -228,6 +228,8 @@ Nicholas Carlini, Collin Burns, Jack Lindsey, Sara Price*, Subhash Kantamneni*â€
                   senior authorship. Correspondence to
                   subhash@anthropic.com.}
 }
+Footnotes
+- We have since advised external partners running cyber evaluations with pre-release models to explicitly define what is in and out of scope for any exercise, including the targets, permitted actions, and network boundaries.
 Related content
 Formalizing Fermat's Last Theorem
 We are sharing the first complete computer-checked proof of Fermatâ€™s Last Theorem. Claude worked largely autonomously over 11 days to write the proof in the Lean programming language. Below, we describe how the formalization was done and share some thoughts about what this work could mean for research mathematics.

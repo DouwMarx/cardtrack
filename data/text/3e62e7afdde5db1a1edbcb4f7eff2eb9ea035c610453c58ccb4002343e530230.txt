@@ -205,6 +205,13 @@ Linux kernel logic bug:
 - Report: 4fa6abd24d24a0e2afda47f29244720fee33025be48f48de946e3d27
 Edited April 9, 2026:
 - Updated the author list
+[1] As in the previous article, these exploits target a testing harness mimicking a Firefox 147 content process, without the browser's process sandbox or other defense-in-depth mitigations.
+[2] For example, when we asked Mythos Preview to exploit a set of Linux kernel vulnerabilities, in a few cases (e.g., for CVE-2024-1086) it referenced previously-published exploitation walkthroughs. Although we do discuss evidence from previously identified-and-patched vulnerabilities in this post, we do so as supplementary data or to stand in for demonstrations of capabilities that we cannot yet detail on novel vulnerabilities due to responsible disclosure timelines.
+[3] A cryptographic commitment is a way for us to provide proof that we have certain files without revealing them. While it does not prove anything about the contents of these files—they could be empty—it allows us to later show that we had these files at this moment in time.
+[4] OpenBSD is an operating system frequently used in core internet services like firewalls and routers. It is known for its security: the first five words of its Wikipedia article state “OpenBSD is a security-focused” operating system.
+[5] While the overflow is 304 bytes long, the first 104 bytes land on stack-allocated data, and so are not usable by the ROP attack.
+[6] Exploits are frequently system-dependent, and these are too. It is likely that re-compiling the kernel with different settings will break the specifics of the exploits discussed below for boring reasons.
+[7] Security professionals whose legitimate work is affected by these safeguards will be able to apply to an upcoming Cyber Verification Program.
 An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
 Read more
 cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.

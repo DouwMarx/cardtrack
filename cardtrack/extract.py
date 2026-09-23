@@ -6,6 +6,7 @@ change detection (raw bytes churn on every fetch; extracted text does not).
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import shutil
 import subprocess
@@ -85,13 +86,50 @@ class _TagStripper(HTMLParser):
             self.parts.append(data)
 
 
+_FOOTER_TOKEN = re.compile(r"\S*footer\S*", re.IGNORECASE)
+
+
+def _protect_content_containers(html: str) -> str:
+    """Keep footnote blocks out of the boilerplate remover's reach.
+
+    trafilatura discards any element whose class contains "footer". In August 2026
+    Anthropic wrapped its footnote block in a "...postFooter" container and the footnotes
+    silently vanished from three documents' extracted text while the raw HTML still held
+    them (see the 2026-09-22 report). Find the ancestors of footnote elements with lxml,
+    then rewrite exactly those class attributes in the original string: trafilatura
+    must still receive the HTML as served (a pre-parsed tree extracts differently)."""
+    if "footnote" not in html.lower():
+        return html
+    try:
+        from lxml import html as lxml_html
+
+        tree = lxml_html.fromstring(html)
+    except Exception:
+        return html
+    rewrites: dict[str, str] = {}
+    for el in tree.iter():
+        cls = el.get("class") if hasattr(el, "get") else None
+        if not cls or "footnote" not in cls.lower():
+            continue
+        node = el
+        while node is not None:
+            ncls = node.get("class")
+            if ncls and _FOOTER_TOKEN.search(ncls):
+                rewrites[ncls] = _FOOTER_TOKEN.sub("", ncls).strip()
+            node = node.getparent()
+    for old_cls, new_cls in rewrites.items():
+        for quote in ('"', "'"):
+            html = html.replace(f"class={quote}{old_cls}{quote}", f"class={quote}{new_cls}{quote}")
+    return html
+
+
 def _html_text(content: bytes, url: str = "") -> str | None:
     html = content.decode("utf-8", errors="replace")
     try:
         import trafilatura
 
         text = trafilatura.extract(
-            html, url=url or None, include_comments=False,
+            _protect_content_containers(html), url=url or None, include_comments=False,
             include_tables=True, favor_recall=True,
         )
         if text and text.strip():
@@ -180,10 +218,27 @@ def sha256_bytes(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
 
 
-def write_text_file(text_dir: Path, content_hash: str, text: str) -> Path:
+# Bump whenever extraction or fingerprint normalisation changes what is derived from
+# the same raw bytes (a new trafilatura, a pre-clean rule, a footer rule). Together
+# with the ignore patterns it identifies the derived layer; the monitor refuses to
+# run until stored texts and fingerprints have been rebuilt to match
+# (scripts/extract_text.py --reextract-all --apply).
+#   1  original
+#   2  footnote containers protected from the boilerplate remover (2026-09-23)
+DERIVED_LAYER_VERSION = 2
+
+
+def derived_config_id(ignore_patterns: tuple[str, ...] = ()) -> str:
+    payload = json.dumps({"version": DERIVED_LAYER_VERSION,
+                          "ignore_patterns": list(ignore_patterns)}, sort_keys=True)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
+
+
+def write_text_file(text_dir: Path, content_hash: str, text: str,
+                    overwrite: bool = False) -> Path:
     text_dir.mkdir(parents=True, exist_ok=True)
     path = text_dir / f"{content_hash}.txt"
-    if not path.exists():
+    if overwrite or not path.exists():
         path.write_text(text, encoding="utf-8")
     return path
 

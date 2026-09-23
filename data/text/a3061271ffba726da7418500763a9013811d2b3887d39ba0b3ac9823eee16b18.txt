@@ -58,6 +58,12 @@ Read the full paper on HAWK.
 Read the full paper on AES, and the associated chain of thought.
 Read the paper introducing CryptanalysisBench.
 Edit 29 July: Updated an academic affiliation.
+- See, for example, cryptographic vulnerabilities we have found on OpenSSL and wolfSSL.
+- We believe the attack discovered by Mythos Preview does not impact the other NIST post-quantum cryptographic schemes or other schemes that use related methods.
+- Even then, the attack would cost hundreds of millions of dollars to implement and does not impact other similar cipher schemes.
+- A scaffold is a set of prompts and code that help the model achieve its goal. We build on top of Claude Code, construct an environment where it can safely run various experiments, and log its results.
+- Out of curiosity, after confirming the HAWK result was correct, we then tested if the same scaffold that successfully attacked AES could also re-discover the HAWK break. It could.
+- Importantly, this is just one of many (autonomous) sessions where Claude worked on discovering new ideas. Many sessions resulted in no new discoveries; other follow-up sessions improved on the insight developed in this one. This document was produced by having Claude rewrite the chain of thought to include more detail to make it easier to read.
 An unreleased research version of Claude has made strides on a problem related to the Riemann hypothesis. It improved a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis, increasing it from 41.6% to 67.2%.
 Read more
 Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
