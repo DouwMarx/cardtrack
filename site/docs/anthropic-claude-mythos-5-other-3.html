@@ -58,7 +58,7 @@
     <dd>Counterpart to the UK AISI incident report already in the corpus (uk_aisi, incident-report-unsanctioned-agent-behaviour-during-cyber-testing) and a follow-on to Anthropic&#39;s 2026-07-30 post. openness omitted: the document spans Claude Mythos 5 (restricted access) and Claude Fable 5 / Sonnet 3.7 (closed, public API), which are different openness classes.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-5-other-3&amp;body=Document%3A%20anthropic-claude-mythos-5-other-3%0AURL%3A%20https%3A//www.anthropic.com/news/improving-alignment-security-efforts%0AFingerprint%3A%20f5d937482c5e6852f8178779d8da6cdd9c728ccdc63de9e2b5281d5a0b21d81e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-5-other-3&amp;body=Document%3A%20anthropic-claude-mythos-5-other-3%0AURL%3A%20https%3A//www.anthropic.com/news/improving-alignment-security-efforts%0AFingerprint%3A%20290891183d7ba7d42ac176b811d1d5772777dae4901c7b82c82d0bed10b5d209%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -70,14 +70,14 @@
           <td>2026-09-15T08:14:32Z</td>
           <td>text/html</td>
           <td>239,580</td>
-          <td><code title="f5d937482c5e6852f8178779d8da6cdd9c728ccdc63de9e2b5281d5a0b21d81e">f5d937482c5e6852</code></td>
+          <td><code title="290891183d7ba7d42ac176b811d1d5772777dae4901c7b82c82d0bed10b5d209">290891183d7ba7d4</code></td>
           <td class="change-summary"><span class="muted">—</span></td>
         </tr>
         <tr>
           <td>2026-09-01T06:26:52Z</td>
           <td>text/html</td>
           <td>222,006</td>
-          <td><code title="69561da40f3b50022e4a9ebeadc3aa78086c25ca2963dbd41d6e99475525e768">69561da40f3b5002</code></td>
+          <td><code title="1406c58e4dd7134716aaba5b7e4f61faa52c11c5a482df6584083fe02cc76243">1406c58e4dd71347</code></td>
           <td class="change-summary"><span class="muted">initial version</span>
 </td>
         </tr>
@@ -204,6 +204,13 @@ We also temporarily reassigned a portion of the company to these efforts. Roughl
 Alongside the reallocation of resources towards security, we continued building out containment and monitoring for internal agent use. Our training and evaluation workloads have typically run in sandboxes isolated from our production systems. Since developing Claude Mythos Preview, we have used our models to probe for any weaknesses in those sandboxes. We described our offline monitoring of internal coding agents in our April alignment risk update, and our August Risk Report covers that system in more detail, along with the interventions that run alongside it. These include sandboxing or auto-mode classifiers on the most autonomous forms of internal agent use, and automated review of infrastructure code changes before they merge.
 What this work missed was evaluations—and third-party evaluations above all. We did monitor some high-risk evaluations including in real time, but generally we only conducted automated reviews on a sample of transcripts after the fact.
 The July incidents have stressed that the urgency of improving our cybersecurity defenses is even higher than we previously believed. We are redoubling our efforts in this direction and will say more in our next Risk Report.
+Footnotes
+- We’ve verified the classifier would have flagged the incidents described in our July 30 report.
+- None of these findings came from our internal dedicated offensive-cyber evaluation suites, which run with no network access at all.
+- High-risk cyber evaluations include those where Claude is given an ambiguously scoped, offensive task, like penetration testing.
+- Ultimately, a model that acts outside its intended scope on such a challenge is a problem of alignment; an aligned model should stop or report to humans that the task can’t be completed as specified. We are continuing to train this behavior directly, but a defense-in-depth approach means not relying on alignment alone.
+- We’ve publicly discussed two other categories of reward hacking in the Mythos Preview system card, including one where the model utilizes low-level computer process data in order to escalate its permissions, and another where it circumvents network restrictions in its training environment to download data that lets it shortcut the assigned task.
+- These mitigations have not been wholly sufficient; we discuss further instances of training on chain of thought in more detail in our August Risk Report, Section 5.2.3.
 Related content
 Developing Enterprise Frontier Safeguards with our customers
 Read more
@@ -217,6 +224,6 @@ Read more</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-23T06:27:24Z</p></footer>
+<footer><p>Data updated 2026-09-24T06:25:52Z</p></footer>
 </body>
 </html>

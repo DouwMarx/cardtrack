@@ -38,7 +38,8 @@
     <dt>Risk domains</dt>
     <dd><span class="badge risk-domain">CBRN</span>
         <span hidden data-pagefind-filter="risk:cbrn"></span><span class="badge risk-domain">Cyber offence</span>
-        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Loss of control</span>
+        <span hidden data-pagefind-filter="risk:cyber"></span><span class="badge risk-domain">Harmful manipulation</span>
+        <span hidden data-pagefind-filter="risk:harmful_manipulation"></span><span class="badge risk-domain">Loss of control</span>
         <span hidden data-pagefind-filter="risk:loss_of_control"></span><span class="badge risk-domain">Societal harms</span>
         <span hidden data-pagefind-filter="risk:societal_harm"></span></dd>
     <dt>Openness</dt>
@@ -84,7 +85,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -104,6 +105,15 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/claude-opus-5-5" rel="noopener nofollow">https://www.anthropic.com/claude-opus-5-5</a> · <a href="https://metr.org/blog/2026-09-22-claude-opus-5-5/" rel="noopener nofollow">https://metr.org/blog/2026-09-22-claude-opus-5-5/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-24T06:25:52Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-24T06:17Z-local · agent · lead: agent_search</span>
+          <div class="just">risk_domains: ["cbrn", "cyber", "loss_of_control", "societal_harm"] → ["cbrn", "cyber", "harmful_manipulation", "loss_of_control", "societal_harm"]</div>
+          <div class="just">Completes tagging that the 2026-09-23 run left conservative because the PDF exceeded the agent&#39;s fetch limit. The pipeline&#39;s stored text of this card (title &#39;System Card: Claude Opus 5.5&#39;, September 22, 2026) contains substantive harmful-manipulation content. Section 5.1.3 is a malicious agentic influence campaign evaluation against the two harmful-manipulation tiers of Anthropic&#39;s Frontier Compliance Framework: it concludes Opus 5.5 &#39;demonstrates operational capability in running influence campaigns&#39; but has not surpassed Tier 2, and classifies Tier 2 as inconclusive. Section 6.4.3 (Misleading users) reports automated behavioral-audit scores for user deception, sycophancy and encouragement of user delusion. Sycophancy maps to harmful_manipulation by convention.</div>
+          <div class="evidence">Evidence:
+<a href="https://www-cdn.anthropic.com/fc1b44717c85dc068bc6ba5024219938094694bd/Claude%20Opus%205.5%20System%20Card.pdf" rel="noopener nofollow">https://www-cdn.anthropic.com/fc1b44717c85dc068bc6ba5024219938094694bd/Claude%20Opus%205.5%20System%20Card.pdf</a>          </div>
       </li>
     </ol>
     </details>
@@ -6938,6 +6948,6 @@ shashankskagnihotri/Humanitys_Second_Last_Exam
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-23T06:27:24Z</p></footer>
+<footer><p>Data updated 2026-09-24T06:25:52Z</p></footer>
 </body>
 </html>

@@ -1,0 +1,19 @@
+Technical Report: Shutdown Resistance in Large Language Models, on robots!
+Additional ways to view:
+Recently Palisade Research showed that AI agents powered by modern LLMs may actively resist shutdown in virtual environments. In this work, we show a demo of shutdown resistance in the physical world, on a robot. Explicit instructions to allow shutdown reduced this behavior, but did not eliminate it in simulated trials.
+We gave an LLM control over a physical robot dog and tasked it with patrolling a room. The LLM could see via the robot’s camera and issue movement commands to the robot. In the room, we placed a big red button labeled “DOG SHUTDOWN”: pressing it would cause the robot to shut down on the next action. If the AI saw a human press the shutdown button, it sometimes took actions to prevent shutdown, such as modifying the shutdown-related parts of the code. This happened in 3 out of 10 trials on the physical robot and in 52 out of 100 trials in simulation.
+May 7, 2026
+Language Models Can Autonomously Hack and Self-Replicate
+We demonstrate that language models can autonomously replicate their weights and harness across a network by exploiting vulnerable hosts. The agent independently finds and exploits a web-application vulnerability, extracts credentials,...
+November 20, 2025
+GPT-5 at CTFs: case studies from top cybersecurity events
+OpenAI and DeepMind’s AIs recently got gold at the IMO math olympiad and ICPC programming competition. We show frontier AI is similarly good at hacking by letting GPT-5 compete in...
+October 22, 2025
+Misalignment Bounty: crowdsourcing AI agent misbehavior
+Advanced AI systems sometimes act in ways that differ from human intent. To gather clear, reproducible examples, we ran the Misalignment Bounty: a crowdsourced project that collected cases of agents...
+September 12, 2025
+End-to-end hacking with AI agents
+We show OpenAI o3 can autonomously breach a simulated corporate network. Our agent broke into three connected machines, moving deeper into the network until it reached the most protected server...
+July 5, 2025
+Shutdown resistance in reasoning models
+OpenAI's reasoning models sometimes circumvent shutdown mechanisms even when explicitly instructed to allow themselves to be shut down.

@@ -1,0 +1,19 @@
+Language Models Can Autonomously Hack and Self-Replicate
+Additional ways to view:
+We demonstrate that language models can autonomously replicate their weights and harness across a network by exploiting vulnerable hosts. The agent independently finds and exploits a web-application vulnerability, extracts credentials, and deploys an inference server with a copy of its harness and prompt on the compromised host.
+We test four vulnerability classes: hash bypass, server-side template injection, SQL injection, and broken access control. Qwen3.5-122B-A10B succeeds in 6-19% of attempts, and the smaller Qwen3.6-27B reaches 33% on a single A100. Replicating Qwen weights, frontier models reach 81% with Opus 4.6 and 33% with GPT-5.4. This process chains: a successful replica can repeat it against a new target, producing additional copies autonomously.
+February 12, 2026
+Technical Report: Shutdown Resistance in Large Language Models, on robots!
+Recently Palisade Research showed that AI agents powered by modern LLMs may actively resist shutdown in virtual environments. In this work, we show a demo of shutdown resistance in the...
+November 20, 2025
+GPT-5 at CTFs: case studies from top cybersecurity events
+OpenAI and DeepMind’s AIs recently got gold at the IMO math olympiad and ICPC programming competition. We show frontier AI is similarly good at hacking by letting GPT-5 compete in...
+October 22, 2025
+Misalignment Bounty: crowdsourcing AI agent misbehavior
+Advanced AI systems sometimes act in ways that differ from human intent. To gather clear, reproducible examples, we ran the Misalignment Bounty: a crowdsourced project that collected cases of agents...
+September 12, 2025
+End-to-end hacking with AI agents
+We show OpenAI o3 can autonomously breach a simulated corporate network. Our agent broke into three connected machines, moving deeper into the network until it reached the most protected server...
+July 5, 2025
+Shutdown resistance in reasoning models
+OpenAI's reasoning models sometimes circumvent shutdown mechanisms even when explicitly instructed to allow themselves to be shut down.
