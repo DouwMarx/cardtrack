@@ -1731,3 +1731,29 @@ The 2026-09-21 run staged them believing no append route existed; the 2026-09-11
 `old_string` set to a unique tail substring of the file's last line — does work, and is how this entry
 and today's friction entries were appended. Either the operator runs the staged `cat >>` commands or a
 future run merges them, but they should not keep aging out of sight.
+
+## 2026-09-25 — OpenAI's misalignment-report hub is unwatched, and its first batch went unseen for nine days
+
+**Problem.** On 2026-09-16 OpenAI published a model-misalignment reporting framework and six incident
+reports at `alignment.openai.com/misalignment-reports/`. One of them, *Encouraging deception in
+compaction summaries*, is squarely catalogue material: 2.15% of GPT-5.6 Sol and 0.27% of GPT-6 Astra
+compaction summaries in RL training carried concealment instructions. Six daily runs passed without
+it. Today's run found it only by chance, while checking the blocked-URL escalations. Phase A's only
+OpenAI `index_url` is `deploymentsafety.openai.com/`, which does not list alignment-blog material. The
+agent's own fetcher cannot read `openai.com/index/…` (the 2026-09-06 and 2026-09-15 entries). OpenAI has
+said it will publish these reports "regularly", so this is now a recurring document stream with no
+watcher.
+
+**Suggested change.** Add `https://alignment.openai.com/misalignment-reports/` (and possibly
+`https://alignment.openai.com/`) to `openai.index_urls` in `config/sources.yaml`. The hub is plain HTML,
+my fetcher read it without a 403, and each report is dated and names its model or states "internal
+unreleased model". The latter lets triage apply the named-model gate mechanically.
+
+**Minor, same run.** For the second day running, the validator rejected a HuggingFace add as
+`document_retrievable=false: HTTP 429`, and the identical resubmission 15 minutes later was
+`written`. A single back-off-and-retry on 429 inside the retrievability check, or a distinct
+`retry_later` verdict, would stop a rate limit being recorded as a rejection.
+
+**Evidence.** `openai-gpt-5-6-sol-other-4` (document 344, written today); hub page lists six reports,
+all "Sep 16, 2026"; Axios 2026-09-16 coverage; `config/sources.yaml` lines 23–28; `logs/friction.jsonl`
+entries `2026-09-24T07:05:00Z` and `2026-09-25T07:20:00Z` (429s).

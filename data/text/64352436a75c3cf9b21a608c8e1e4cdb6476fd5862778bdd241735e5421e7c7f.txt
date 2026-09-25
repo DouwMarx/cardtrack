@@ -1,0 +1,144 @@
+Instructions to use inclusionAI/Ring-2.5-1T with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use inclusionAI/Ring-2.5-1T with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("text-generation", model="inclusionAI/Ring-2.5-1T", trust_remote_code=True)
+messages = [
+    {"role": "user", "content": "Who are you?"},
+]
+pipe(messages)# Load model directly
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained("inclusionAI/Ring-2.5-1T", trust_remote_code=True, device_map="auto")
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use inclusionAI/Ring-2.5-1T with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve "inclusionAI/Ring-2.5-1T"
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:8000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "inclusionAI/Ring-2.5-1T",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Dockerdocker model run hf.co/inclusionAI/Ring-2.5-1T
+-  SGLang  How to use inclusionAI/Ring-2.5-1T with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path "inclusionAI/Ring-2.5-1T" \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "inclusionAI/Ring-2.5-1T",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env "HF_TOKEN=<secret>" \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path "inclusionAI/Ring-2.5-1T" \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST "http://localhost:30000/v1/chat/completions" \
+	-H "Content-Type: application/json" \
+	--data '{
+		"model": "inclusionAI/Ring-2.5-1T",
+		"messages": [
+			{
+				"role": "user",
+				"content": "What is the capital of France?"
+			}
+		]
+	}'
+-  Docker Model Runner  How to use inclusionAI/Ring-2.5-1T with Docker Model Runner: docker model run hf.co/inclusionAI/Ring-2.5-1T
+🤗 Hugging Face | 🤖 ModelScope | 🐙 Experience Link Coming Soon~
+Ring-2.5-1T，Think Deeper, Run Further
+Introducing Ring-2.5-1T: the world's first open-source trillion-parameter thinking model based on hybrid linear attention architecture.
+In a major step toward general-purpose AI agents, we're scaling hybrid linear attention across pre-training and RL. Our efficient 1:7 MLA + Lightning Linear Attention boosts reasoning speed and exploration, while expanded RL training enhances deep thinking and long-horizon task execution.
+Compared to the previously released Ring-1T, Ring-2.5-1T demonstrates substantial improvements across three key dimensions: generation efficiency, reasoning depth, and long-horizon task execution capabilities：
+Generation efficiency: Leveraging a high-ratio linear attention mechanism, Ring-2.5-1T reduces memory access overhead by over 10× and increases generation throughput by more than 3× for sequences exceeding 32K tokens, making it particularly suitable for deep thinking and long-horizon task execution .
+Deep Thinking: Building upon RLVR by introducing dense rewards to provide feedback on the rigor of the reasoning process, enabling Ring-2.5-1T to simultaneously achieve gold medal level for both IMO 2025 and CMO 2025 (self-tested).
+Long-horizon task Execution: Through large-scale fully-async agentic RL training, significantly enhancing the long-term autonomous execution capability for complex tasks, enabling Ring-2.5-1T to easily adapt to agentic programming frameworks such as Claude Code and the OpenClaw personal AI assistant.
+Model Downloads
+You can download Ring-1T from the following table. If you are located in mainland China, we also provide the model on ModelScope to speed up the download process.
+| Model | Context Length | Download |
+|---|---|---|
+| Ring-2.5-1T | 128K -> 256K (YaRN) | 🤗 HuggingFace 🤖 ModelScope |
+Note: If you are interested in the previous version, please visit the past model collections on Huggingface or ModelScope.
+Deep Thinking & Long-horizon task Execution
+For evaluating the Deep Thinking and Long-term Execution capabilities of Ring-2.5-1T, we selected representative open-source thinking models (DeepSeek-v3.2-Thinking, Kimi-K2.5-Thinking) and closed-source APIs (GPT-5.2-thinking-high, Gemini-3.0-Pro-preview-thinking-high, Claude-Opus-4.5-Extended-Thinking) as references. Ring-2.5-1T achieves state-of-the-art open-source performance across both high-difficulty reasoning tasks—including mathematics, coding, and logical reasoning (IMOAnswerBench, AIME 26, HMMT 25, LiveCodeBench, ARC-AGI-V2)—and long-horizon task execution such as agent search, tool calling, and software engineering (Gaia2-search, Tau2-bench, and SWE-Bench Verified).
+We also conducted additional tests on the "heavy thinking mode," by expanding parallel thinking and summarization during the reasoning process to achieve test-time scaling, thereby effectively enhancing the depth and breadth of reasoning.
+In IMO 2025 (full score 42), Ring-2.5-1T scored 35 points, achieving gold medal level; in CMO 2025 (full score 126), it scored 105 points, significantly exceeding the gold medal threshold (78 points) and the national team training squad selection cutoff (87 points). Comparing the answer results of Ring-2.5-1T and Ring-1T reveals that the former exhibits significant improvements in the rigor of reasoning logic, the application of advanced mathematical proof techniques, and the completeness of answer formulation.
+We have now publicly released the detailed solutions of Ring-2.5-1T for IMO 2025 and CMO 2025. The full content can be viewed at the following link:
+https://github.com/inclusionAI/Ring-V2.5/tree/main/examples
+Additionally, in the challenging agent search task Gaia2-search, Ring-2.5-1T has achieved SOTA performance among open-source models. The Gaia2 environment emphasizes cross-application tool collaboration and complex task execution capabilities, and Ring-2.5-1T demonstrates outstanding efficiency and accuracy in both planning generation and multi-step tool calling.
+Trillion-scale hybrid linear attention architecture
+In the era of general agents, deep thinking and long-horizon agents are increasingly becoming the core working paradigm for language-based foundational models. This shift places exceptionally stringent demands on the architectural capabilities of foundational models, particularly in terms of efficiency for long-horizon reasoning decoding.
+As a key advancement toward the architecture of agentic models, Ling 2.5 architecture introduces a hybrid linear attention architecture built upon the Ling 2.0 architecture.Through incremental training, we upgrade the GQA (Grouped Query Attention) of Ling 2.0 architecture to a 1:7 ratio of MLA (Multi-head Linear Attention) + Lightning Linear structure. Specifically, building upon the previously released Ring-flash-linear-2.0 technical roadmap, we transform a subset of GQA layers into Lightning Linear Attention to significantly enhance throughput in long-horizon reasoning scenarios. To further compress the KV Cache, we approximately convert the remaining GQA layers to MLA while applying targeted adaptations for features such as QK Norm (Query-Kernel Normalization) and Partial RoPE (Rotational Positional Encoding), thereby strengthening the expressiveness of Ling 2.5 architecture.
+After modification, the trillion-scale version of Ling 2.5 architecture increases activation parameter count from 51B to 63B. However, leveraging the hybrid linear attention architecture, its inference efficiency has still achieved a significant improvement compared to Ling 2.0. Even when benchmarked against the KIMI K2 architecture with only 32B activation parameters, Ling 2.5 maintains notable advantages in throughput for long-horizon task execution; and the longer the generated length, the more pronounced this throughput benefit becomes.
+On a single machine with 8 H20-3e GPUs, batch size=64, comparison of decode throughput under different generation lengths.
+On a single machine with 8 H200 GPUs, batch size=64, comparison of decode throughput under different generation lengths.
+Quickstart
+🚀 Try Online
+Coming Soon
+🔌 API Usage
+Comming Soon
+Deployment
+SGLang
+Environment Preparation
+We will later submit our model to SGLang official release, now we can prepare the environment following steps:
+git clone -b ling_2_5 git@github.com:antgroup/sglang.git
+cd sglang
+# Install the python packages
+pip install --upgrade pip
+pip install -e "python"
+Run Inference
+Both BF16 and FP8 models are supported by SGLang now. It depends on the dtype of the model in ${MODEL_PATH}. Here is the example to run Ring-1T with multiple GPU nodes, where the master node IP is ${MASTER_IP} and server port is ${PORT}:
+- Start server:
+# Node 0:
+python -m sglang.launch_server --model-path $MODEL_PATH --tp-size 8 --pp-size 4 --dp-size 1 --trust-remote-code --dist-init-addr $MASTER_IP:2345 --port $PORT --nnodes 4 --node-rank 0
+# Node 1:
+python -m sglang.launch_server --model-path $MODEL_PATH --tp-size 8 --pp-size 4 --dp-size 1 --trust-remote-code --dist-init-addr $MASTER_IP:2345 --port $PORT --nnodes 4 --node-rank 1
+# Node 2:
+python -m sglang.launch_server --model-path $MODEL_PATH --tp-size 8 --pp-size 4 --dp-size 1 --trust-remote-code --dist-init-addr $MASTER_IP:2345 --port $PORT --nnodes 4 --node-rank 2
+# Node 3:
+python -m sglang.launch_server --model-path $MODEL_PATH --tp-size 8 --pp-size 4 --dp-size 1 --trust-remote-code --dist-init-addr $MASTER_IP:2345 --port $PORT --nnodes 4 --node-rank 3
+# This is only an example. Please adjust arguments according to your actual environment.
+- Client:
+curl -s http://${MASTER_IP}:${PORT}/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model": "auto", "messages": [{"role": "user", "content": "What is the capital of France?"}]}'
+More usage can be found here
+Limitations and Future Work
+Ring-2.5-1T represents a pioneering exploration by Ling Team into the era of general agents, focusing on foundational architecture, deep thinking, and long-horizon task execution. However, this version still has limitations in token efficiency and instruction following. There remains significant potential for improvement in long-horizon task execution and delivery when handling more realistic and complex tasks. We will continue to refine these capabilities in subsequent versions and greatly value community usage feedback.
+The training of Ring-2.5-1T is still ongoing. We will release the technical report following the publication of the next version. Additionally, the evaluation for the aforementioned Gaia2 leaderboard employs the openai function call format, which is widely adopted by the community, rather than the original ReAct format. The related evaluation methodology will be submitted to the Gaia2 GitHub repository to facilitate more widespread evaluations by the community.
+Hugging Face：https://huggingface.co/inclusionAI/Ring-2.5-1T
+ModelScope：https://modelscope.cn/models/inclusionAI/Ring-2.5-1T.
+The chat experience page and API services on Ling studio and ZenMux will be launched in the near future.
+License
+This code repository is licensed under the MIT License.
+Training content summary
+The public training-content summary identifying Ring-2.5-1T is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
+This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
+- Downloads last month
+- 4,070

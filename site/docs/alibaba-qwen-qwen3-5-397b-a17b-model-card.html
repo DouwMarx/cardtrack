@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-08-19T06:27:55Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. No safety section, red-teaming or risk assessment anywhere in 95 KB of card text. The Qwen3.5 generation shipped eight post-trained sizes, each with its own HF card: 397B-A17B (this row), 122B-A10B, 35B-A3B, 27B, 9B, 4B, 2B, 0.8B, plus -Base and FP8/GPTQ variants. Whether the siblings warrant their own rows or belong in this row&#39;s model_names is genuinely ambiguous under the family rule, so it is raised in logs/PROPOSALS.md (2026-08-19) for the backfill workstream rather than decided here. Blog: https://qwen.ai/blog?id=qwen3.5</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-5-397b-a17b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-5-397b-a17b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.5-397B-A17B%0AFingerprint%3A%201ca4d408f99ffc4fc7c780e1572f50213c6c52e18cb26125aa38862abb3a944a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-5-397b-a17b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-5-397b-a17b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.5-397B-A17B%0AFingerprint%3A%2041433bb986770e7bf40e3614ecaa9cd7790e26f166a528145408eed61d10959b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-25T06:19:09Z</td>
+          <td>text/html</td>
+          <td>556,399</td>
+          <td><code title="41433bb986770e7bf40e3614ecaa9cd7790e26f166a528145408eed61d10959b">41433bb986770e7b</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-14T06:19:47Z</td>
           <td>text/html</td>
@@ -93,7 +100,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -149,6 +156,14 @@
         <span class="run">run 2026-09-15T08:11Z-local · agent · lead: manual</span>
           <div class="just">change_summary: null → "The reported benchmark set changed: SWE-bench Verified (76.4) and the WildClawBench Avg Time (459) and Avg Cost rows were dropped, while SWE-bench Multilingual 69.3 and ScreenSpot-Pro Overall 65.6 were added. GPQA Diamond 88.4, Apex Agents 13.6, WildClawBench Overall 34.5 and AIME 2026 93.33 are unchanged."</div>
           <div class="just">Substantive: a reported score (SWE-bench Verified 76.4) was removed and two new scored benchmarks were added, which changes what the card claims. Download counter and row ordering are excluded as widget churn.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.5-397B-A17B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.5-397B-A17B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-25T06:19:09Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-25T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen3.5-397B-A17B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.5-397B-A17B</a>          </div>
       </li>
@@ -736,22 +751,22 @@ If you find our work helpful, feel free to give us a cite.
     url    = {https://qwen.ai/blog?id=qwen3.5}
 }
 - Downloads last month
-- 191,511
+- 199,713
 Model tree for Qwen/Qwen3.5-397B-A17B
 Spaces using Qwen/Qwen3.5-397B-A17B 100
 Collection including Qwen/Qwen3.5-397B-A17B
 Evaluation results
-- mercor/apex-agents · Apex Agents View evaluation results  source leaderboard13.6 *
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   88.4
-- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   69.3
-- likaixin/ScreenSpot-Pro · Overall View evaluation results    leaderboard   65.6
+- mercor/apex-agents · Apex Agents View evaluation results  source leaderboard13.6 *
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   76.4
 - MathArena/aime_2026 · MathArena Aime 2026 View evaluation results  source  leaderboard   93.33
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results leaderboard
 - internlm/WildClawBench leaderboard
 - Overall View evaluation resultssource34.5</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-24T06:25:52Z</p></footer>
+<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
 </body>
 </html>

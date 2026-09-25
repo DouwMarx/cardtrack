@@ -21,3 +21,10 @@ publishers:
     openrouter_slug: dots-studio
     first_seen: '2026-09-22'
     index_urls: []
+  typesafe:
+    tier: 2
+    display_name: typesafe
+    origin: openrouter
+    openrouter_slug: typesafe
+    first_seen: '2026-09-25'
+    index_urls: []

@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-19T06:27:40Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Card contains extensive language and vision-language benchmark tables but no safety section, red-teaming or risk assessment - zero occurrences of safety/risk/red-team/jailbreak/misuse in 62 KB of card text. FP8 variant at Qwen/Qwen3.6-27B-FP8 is a quantization, not catalogued. Lead: base-model citation in https://huggingface.co/tencent/UI-Mate-27B</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-6-27b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-6-27b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.6-27B%0AFingerprint%3A%20c9d5821c296deb7d63308ed2c59a00d5a59b54dce690c43a8b5f9f13b4dc612d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-6-27b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-6-27b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.6-27B%0AFingerprint%3A%206d4747cfdd6bf4b99987a2168825791ba2fd717c3c2ca32dc7b2160c09cebd20%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-25T06:19:08Z</td>
+          <td>text/html</td>
+          <td>498,042</td>
+          <td><code title="6d4747cfdd6bf4b99987a2168825791ba2fd717c3c2ca32dc7b2160c09cebd20">6d4747cfdd6bf4b9</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-14T06:19:46Z</td>
           <td>text/html</td>
@@ -82,7 +89,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -131,6 +138,14 @@
         <span class="run">run 2026-09-15T08:11Z-local · agent · lead: manual</span>
           <div class="just">change_summary: null → "The listed benchmark set was reworked. SWE-bench Verified and the three WildClawBench rows (Overall, Avg Time, Avg Cost) were dropped; SWE-bench Multilingual, SkillsBench v1.1 (benchflow/skillsbench) and Terminal-Bench 2.0 were added. GPQA Diamond, SWE-bench Pro and AIME 2026 remain. Every row on this card is listed without a figure, before and after."</div>
           <div class="just">Substantive rather than noise: which benchmarks the publisher chooses to list changed, including the removal of SWE-bench Verified. No numbers can be quoted because this card&#39;s evaluation rows are figureless in both versions, and I say so explicitly instead of implying scores changed. Download counter excluded.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.6-27B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.6-27B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-25T06:19:08Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-25T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen3.6-27B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.6-27B</a>          </div>
       </li>
@@ -694,22 +709,22 @@ If you find our work helpful, feel free to give us a cite.
     url    = {https://qwen.ai/blog?id=qwen3.6-27b}
 }
 - Downloads last month
-- 4,145,148
+- 2,992,723
 Model tree for Qwen/Qwen3.6-27B
 Spaces using Qwen/Qwen3.6-27B 100
 Collection including Qwen/Qwen3.6-27B
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results leaderboard
-- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results leaderboard
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results leaderboard
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
-- benchflow/skillsbench · Skillsbench V1 1 View evaluation results leaderboard
-- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results leaderboard
-- internlm/WildClawBench leaderboard</pre>
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results leaderboard
+- internlm/WildClawBench leaderboard
+- Overall View evaluation resultssource</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-24T06:25:52Z</p></footer>
+<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
 </body>
 </html>

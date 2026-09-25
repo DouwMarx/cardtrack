@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-12T06:25:06Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Quantized/derived siblings deliberately NOT proposed: -NVFP4, -NVFP4-DSpark, -NVFP4-DFlash, -Base-BF16. has_safety_evals=false: the card documents training-data bias analysis and deployment guidance and points to separate Model Card++ safety/bias/privacy/explainability subcards (safety.md), but the card itself reports no safety or dangerous-capability eval results.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16%0AFingerprint%3A%20ac97e4c40b497a94a102b6e0c54724e301911b367ddb2adcb30e94542ce5cb12%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16%0AFingerprint%3A%200620049f758fb261b1d328c699258939cddb0d363a6a985134463f3777023c92%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-25T06:19:02Z</td>
+          <td>text/html</td>
+          <td>501,221</td>
+          <td><code title="0620049f758fb261b1d328c699258939cddb0d363a6a985134463f3777023c92">0620049f758fb261</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-25T06:18:32Z</td>
           <td>text/html</td>
@@ -90,7 +97,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -148,6 +155,14 @@
         <span class="run">run manual-20260831T101600Z · human</span>
           <div class="just">change_summary: null → "Major deployment-guide expansion: added a Hardware Matrix and a Choose-your-deployment table, full SGLang recipes (B200 and H100) with MTP, DFlash, and DSpark speculative-decoding flags, and validated-context notes (256K on 1x H100, 1M on 8x H100, GB200, B200). Supported hardware swapped GeForce RTX 5090 for B200; a runtime thinking-budget claim was dropped. Sidebar eval results appeared: SWE-bench Verified 51.56, GPQA Diamond 75.44, HLE 11.72, SWE-bench Multilingual 39.33."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-25T06:19:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-25T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16</a>          </div>
       </li>
     </ol>
     </details>
@@ -796,9 +811,9 @@ We advise against circumvention of any provided safety guardrails contained in t
 For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, and Privacy Subcards.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 141,338
+- 370,164
 Model tree for nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16
-Space using nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16 1
+Spaces using nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16 3
 Collection including nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   75.44 *
@@ -811,6 +826,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-24T06:25:52Z</p></footer>
+<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
 </body>
 </html>

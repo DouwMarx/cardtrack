@@ -51,12 +51,12 @@
     <dt>First seen</dt>
     <dd>2026-08-12T06:24:38Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Announcement blog: research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model (2026-08-10). Companion eval methodology report at research.meta.ai/static/muse-glimmer-methodology proposed separately. Card cross-references the Muse Spark Safety &amp; Preparedness Report already in the database. HF repo created 2026-08-09, published with the Aug 10 announcement.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-glimmer-model-card&amp;body=Document%3A%20meta-muse-glimmer-model-card%0AURL%3A%20https%3A//huggingface.co/meta-models/Muse-Glimmer-30B%0AFingerprint%3A%2080f3d1513524056a964a45320a479a4ddfe9aca5f8351226381f7f8f0f2db6f1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-glimmer-model-card&amp;body=Document%3A%20meta-muse-glimmer-model-card%0AURL%3A%20https%3A//huggingface.co/meta-models/Muse-Glimmer-30B%0AFingerprint%3A%20b28f080fd9911a9b551a7676ff1782d8e2bc134c1ed833ac7764bd5a9de1bdd8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-25T06:19:01Z</td>
+          <td>text/html</td>
+          <td>402,860</td>
+          <td><code title="b28f080fd9911a9b551a7676ff1782d8e2bc134c1ed833ac7764bd5a9de1bdd8">b28f080fd9911a9b</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-25T06:18:29Z</td>
           <td>text/html</td>
@@ -88,7 +95,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -145,6 +152,14 @@
         <span class="run">run manual-20260831T152038Z · human</span>
           <div class="just">risk_domains: ["cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "loss_of_control", "societal_harm"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
+      <li>
+        <span class="ts">2026-09-25T06:19:01Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-25T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/meta-models/Muse-Glimmer-30B" rel="noopener nofollow">https://huggingface.co/meta-models/Muse-Glimmer-30B</a>          </div>
       </li>
     </ol>
     </details>
@@ -446,9 +461,9 @@ All artifacts are released under Apache 2.0:
 | Perception encoder | Frozen ViT-G/14 vision encoder (~1.8B params) |
 Where to send questions or comments about the model: Please provide any feedback, comments or bug reports on the model through the Hugging Face page at https://huggingface.co/meta-models/. For more technical information about generation parameters and recipes for how to use Muse Glimmer in applications, please see the developer documentation.
 - Downloads last month
-- 525,361
+- 311,531
 Model tree for meta-models/Muse-Glimmer-30B
-Spaces using meta-models/Muse-Glimmer-30B 17
+Spaces using meta-models/Muse-Glimmer-30B 21
 Collection including meta-models/Muse-Glimmer-30B
 Papers for meta-models/Muse-Glimmer-30B
 DFlash: Block Diffusion for Flash Speculative Decoding
@@ -458,14 +473,14 @@ Evaluation results
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results leaderboard
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
 - harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
-- MMMU/MMMU_Pro · Mmmu Pro Standard 10 Options View evaluation results leaderboard
 - MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
-- benchflow/skillsbench · Skillsbench V1 1 View evaluation results leaderboard
-- internlm/WildClawBench · Overall View evaluation results leaderboard</pre>
+- internlm/WildClawBench · Overall View evaluation results leaderboard
+- MMMU/MMMU_Pro · Mmmu Pro Standard 10 Options View evaluation results leaderboard
+- cais/hle · Hle View evaluation results      22</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-24T06:25:52Z</p></footer>
+<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
 </body>
 </html>
