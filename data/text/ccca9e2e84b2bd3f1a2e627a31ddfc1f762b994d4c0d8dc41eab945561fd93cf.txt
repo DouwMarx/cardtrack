@@ -1,0 +1,92 @@
+Overview
+Daybreak Access is OpenAI’s Trusted Access for Cyber program. Daybreak Blue and Daybreak Red are access tiers within Daybreak.
+Daybreak enables qualified enterprise customers and cybersecurity practitioners to use OpenAI models more effectively for authorized cybersecurity work, and is designed to support legitimate security workflows by reducing unnecessary friction through more precise safeguards. OpenAI's usage policies, other safeguards, and access controls continue to apply to all Daybreak usage.
+Daybreak is intended for authorized defensive cybersecurity work on systems, applications, accounts, networks, or data that you own, operate, or are explicitly authorized to test or analyze. Do not enable Daybreak for customer-facing applications, downstream product traffic, or third-party access.
+Customer workflows generally fall into three categories:
+- Secure SDLC / AppSec: continuous code scanning, test environment scanning, security finding validation, security patch automation, secure code review, and patching.
+- Defensive operations: blue teaming, threat modeling, threat intelligence, threat hunting, malware analysis, detection engineering, vulnerability triage, and patch validation.
+- Authorized offensive testing: penetration testing, red teaming, exploit validation or development, malware analysis, reverse engineering, and controlled validation in authorized environments.
+The table below describes the current trusted access levels:
+| Access | Models and safeguards | Intended use cases |
+|---|---|---|
+| Standard mainline model usage | Supported mainline models, including GPT-5.5, GPT-5.6 Sol, GPT-6 Sol, GPT-6 Luna, and Astra, with standard safeguards for general-purpose use. No access to cyber-specialized models. | Secure SDLC and application security workflows, including threat modeling, secure code reviews and patching, as well as generalized blue teaming |
+| Daybreak Blue | Reduced refusals on supported mainline models, including GPT-5.5, GPT-5.6 Sol, GPT-6 Sol, and GPT-6 Luna, for verified defensive work in authorized environments. Astra retains standard safeguards. No access to cyber-specialized models. | Vulnerability triage, secure code review, malware analysis, detection engineering, incident response, and patch validation. |
+| Daybreak Red | GPT-5.5-Cyber, plus reduced refusals on supported mainline models, including Astra. Requires separate Red approval, stronger verification, and access controls. | Authorized penetration testing, red teaming, exploit validation or development, and controlled vulnerability research. |
+| Daybreak Red with additional model approval | GPT-5.6-Cyber, plus the models and reduced refusals included with Daybreak Red. Requires additional model-specific approval. | Authorized penetration testing, red teaming, exploit validation or development, and controlled vulnerability research. |
+Daybreak Blue is the recommended starting point for most security teams. It supports approved defensive workflows including secure code review, vulnerability triage, detection engineering, incident response, malware analysis, and patch validation. Most existing safeguards and usage policies continue to apply.
+Daybreak Red is intended for advanced, authorized workflows, including proof-of-concept exploit development, exploit-chain validation, penetration testing, and red teaming.
+Access for Daybreak Blue and Red requires additional approval.
+Reduced refusals behaviour by model
+This table describes safeguards for supported models. Model availability still depends on your account, plan, product surface, and approved access.
+| Model | Standard (Daybreak off or not approved) | Daybreak Blue | Daybreak Red | Daybreak Red with additional model approval |
+|---|---|---|---|---|
+| Earlier supported mainline models (including GPT-5.5 and GPT-5.6 Sol) | Standard safeguards | Reduced refusals | Reduced refusals | Reduced refusals |
+| GPT-6 Sol | Standard safeguards | Reduced refusals | Reduced refusals | Reduced refusals |
+| GPT-6 Luna | Standard safeguards | Reduced refusals | Reduced refusals | Reduced refusals |
+| Astra | Standard safeguards | Standard safeguards | Reduced refusals | Reduced refusals |
+| GPT-5.5-Cyber | No access | No access | Reduced refusals | Reduced refusals |
+| GPT-5.6-Cyber | No access | No access | No access | Reduced refusals |
+Approval alone does not turn on reduced refusals. Daybreak must be enabled for the request through your workspace or API project controls. See Daybreak troubleshooting for access and setup checks, and Use Daybreak in the Responses API for API request settings.
+In Codex signed in with ChatGPT, turn the Daybreak toggle on before making a request. Requests use standard safeguards when the toggle is off.
+Limitations
+Daybreak does not:
+- Remove all safeguards or all refusals, or reduce refusals on every model by default.
+- Guarantee access to every cyber-specialized model.
+- Grant Zero Data Retention by default.
+- Allow resale, proxying, embedding, or downstream access for third-party customers or external users.
+- Authorize activity outside systems you own or are explicitly permitted to test.
+Applying for Daybreak
+To request Daybreak:
+As part of the review, you may be asked to provide information about:
+- Your organization and cybersecurity capabilities.
+- The defensive cybersecurity workflows you want to support.
+- The OpenAI organization or workspace you expect to use.
+- Verification or trust information needed to assess eligibility.
+OpenAI reviews requests before enabling access. Approval is not automatic.
+To be eligible for Daybreak Access as an individual, you must be at least 18 years old.
+The benefits available through Daybreak depend on the access approved for your request, which OpenAI evaluates based on factors such as identity and trust verification, risk considerations, the intended use case, and the applicant's ability to strengthen the broader cybersecurity ecosystem.
+Individual account-security requirements
+Individual Daybreak access requires an eligible paid plan, Advanced Account Security, and at least one compatible FIDO2 hardware security key. Hardware keys must be your only registered login methods; software or synced passkeys do not qualify. The individual application flow checks these requirements before identity verification.
+Existing individual users must meet these requirements by Oct 1, 2026 to keep access. Open chatgpt.com/cyber and follow Your eligibility to check your setup. Keep a backup hardware key and your recovery keys somewhere safe. Read Advanced Account Security before enrolling so you understand its sign-in and recovery requirements.
+These requirements apply to the individual application path. Organization-level access and separately approved Daybreak Red access follow their own onboarding requirements.
+Using Daybreak
+Once you have Daybreak access and (if necessary) your admin has enabled it for your user profile or API project, you can access Daybreak functionality across a number of product surfaces.
+How you use Daybreak depends on the product surface you are using:
+- For API requests, you can set access_programs.cyber explicitly when you want predictable behavior: use daybreak_blue for reduced refusals on mainline models, daybreak_red to access cyber models, or standard to keep standard refusals in place. See Use Daybreak in the Responses API for more detail.
+- In Codex, you can use the Daybreak toggle in the model picker to turn reduced refusals on for a request. The toggle is off by default, which means that a request will be subject to standard refusals until switched on.
+  - If you use the Codex app, update to version 26.908.40834 or later to access the Daybreak toggle. On surfaces where no Daybreak toggle is available, Daybreak is on by default for all supported requests.
+Using Daybreak responsibly
+You are responsible for ensuring that your use remains within the approved scope and complies with OpenAI’s terms and usage policies.
+If you are approved, use Daybreakonly for lawful, authorized cybersecurity work, and you must agree to our Cyber Abuse Policy: we disallow use of our services to facilitate cyber abuse: the compromise of the integrity, confidentiality, or availability of an information system—to include ‘dual-use’ cyber activities carried out with malicious intent, without proper authorization, or in excess of granted authorization.
+Use the organization, workspace, and API project named in your approval. Where an existing organization serves customer-facing traffic, follow the approved setup to keep Daybreak restricted to internal security work. Daybreak may not be extended to third-party customers, external users, customer-facing workflows, or downstream product traffic.
+Troubleshooting
+Read: Trusted Access for Cyber - Common Issues and Troubleshooting
+FAQ
+What changes after approval?
+Daybreak approval provides an API org or chatGPT/Codex workspace with more precise safeguards on mainline models (Daybreak Blue) and access to specialized cyber models (Daybreak Red) - these are enabled default OFF, so no immediate change will be visible to users. An org or The workspace owner then enables access for approved users and groups, or an API organization owner enables access for approved projects. Note that other safeguards, usage policies and access restrictions continue to apply.
+Can I use Daybreak Blue with Astra?
+At this time, reduced refusals on Astra are available to Daybreak Red customers only. We’re working on extending reduced refusals on Astra to Daybreak Blue customers. If you have Daybreak Blue access, you can use Astra with standard safeguards, subject to your account’s model access, or switch to a model that supports reduced refusals for Daybreak Blue, such as GPT-6 Sol or GPT-6 Luna.
+Can I get Daybreak Red as an individual?
+Daybreak Red is currently available only to approved business and enterprise organizations. It isn't available through the individual application process.
+Individuals can apply for Daybreak Blue, but Blue approval doesn't include Daybreak Red.
+Note that some individuals may have access as an exception, but at this time, it's not possible to apply for Daybreak Red directly.
+Does Daybreak Red approval include all Cyber models?
+Not automatically, some frontier cyber models may require additional approval even if an organization is already approved for Daybreak Red.
+Can I use Daybreak for my customers or external users?
+No. Daybreak is intended for approved internal use only. It may not be extended to third-party customers, external users, customer-facing workflows, or downstream product traffic. For externally facing workflows, explore the Daybreak Partner Program.
+Does Daybreak approval include Zero Data Retention?
+No. Trusted Access and Zero Data Retention are separate. If you need guidance about data retention or organization setup, please work with your OpenAI contact.
+Can I use Daybreak for systems I do not own?
+Only if you are explicitly authorized to test or analyze them. You are not permitted to share or sell Daybreak access to third parties, or to use Daybreak to test systems that you do not own or that you do not have explicit authorization to test or analyze.
+Can Daybreak be used outside Codex?
+Yes, Daybreak is also available via the Responses API and ChatGPT. Note that while ChatGPT respects the same admin-based access controls as Codex sign in via ChatGPT, we recommend using Daybreak through Codex for an improved user experience.
+Which API identifiers should I use if accessing Daybreak via AWS Bedrock?
+On Amazon Bedrock, Daybreak Blue uses openai.gpt-daybreak-blue-5.6-sol and Daybreak Red uses openai.gpt-5.6-cyber. The gpt-daybreak-blue-latest and gpt-daybreak-red-latest aliases are not available on Amazon Bedrock.
+How should we set up Daybreak if our current OpenAI organization serves customer-facing API traffic?
+Enable Daybreak access to internal-only API projects and ChatGPT and Codex users.Do not enable Daybreak for customer-facing or third-party workflows.
+Can a contract or purchase guarantee Daybreak access?
+No. Daybreak access is limited and approval-based. A commercial agreement or purchase alone does not guarantee access. If your request is approved, OpenAI will confirm the available access path.
+What should I check if I still see a cyber safety message after approval?
+Confirm that you are using the approved organization or workspace, the approved model or access path, and the intended product surface. Some safeguards can still apply after approval, even with Daybreak Red. If a clearly defensive request appears to be blocked unexpectedly, contact Support with the exact message, model, product surface, timestamp, request ID if available, and a brief redacted description of the task. Read more: Trusted Access for Cyber - Common Issues and Troubleshooting
+How can an organization limit Trusted Access to the right employees?
+Where Daybreak access controls are enabled, a workspace owner can use custom roles and group assignments to restrict access to approved internal users for Codex sign in via ChatGPT; and project-based controls for API. Keep Daybreak OFF in Workspace default and turn it on only for the intended role. API organization owners must configure Daybreak separately for each approved non-default project. See Managing feature access with role-based access control in ChatGPT and Enterprise Daybreak onboarding.

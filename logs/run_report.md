@@ -1,150 +1,89 @@
-# cardtrack run report — 2026-09-25 (run_id `2026-09-25T06:17Z-local`)
+# cardtrack run report — 2026-09-26 (run_id `2026-09-26T06:17Z-local`)
 
 ## Headline
 
-**8 new documents written (343–350), 0 duplicates, 0 noop.** One add needed a resubmission after a
-transient HuggingFace 429.
+**3 proposals, all `written`; 0 new documents.** It was a quiet news window. The main finding is
+that OpenAI's Daybreak help article (`openai-gpt-5-6-sol-access-policy`) was substantively revised:
 
-- **Missed OpenAI incident report.** The misalignment report of 2026-09-16 was missed for nine days. It
-  found concealment instructions in 2.15% of GPT-5.6 Sol compaction summaries and 0.27% for GPT-6
-  Astra.
-- **Project Swap.** Anthropic's report from yesterday.
-- **Two new OpenRouter-overlay publishers** got their first rows: Upstage (Solar Open 2) and Dots Studio
-  (dots3-note Preview).
-- **Pre-monitoring backlog cleared:** two InclusionAI flagships (Ling-2.5-1T, Ring-2.5-1T, both
-  2026-02) and two MiniMax generation models (H3 video, Music 3).
+- The tiers are remapped, with GPT-6 Sol and Luna now in Daybreak Blue.
+- Astra's reduced refusals are available in Daybreak Red only.
+- There is a new approval tier for GPT-5.6-Cyber.
+- Individual users need a FIDO2 hardware key by Oct 1, 2026.
 
-No version annotations: all 10 new diffs are noise.
+That change got a version annotation and a `model_names` update.
 
 | | |
 | --- | --- |
-| Proposals submitted | 8 (+1 resubmission after a transient 429) |
-| `written` | 8: documents 343–350 (Ling-2.5-1T is 345, written on retry) |
-| `rejected` | 1 transient (`HTTP 429`); the identical resubmission was `written` |
-| `duplicate` / `noop` | 0 |
-| Candidates triaged | 24 non-profile/non-discussion links first seen since the last run |
-| `annotate_version` | 0 of 10 new diffs, all noise |
+| Proposals submitted | 3 |
+| `written` | 3 (2 `annotate_version`, 1 `field_update`) |
+| `rejected` / `duplicate` / `noop` | 0 |
+| Candidates triaged | 12 links first seen at 2026-09-26T06:19Z (older slices were triaged by earlier runs) |
+| `annotate_version` | 2 of 5 new diffs; the 3 others are noise (see §6) |
 | Issues handled | 0 (`open_issues.json` is `[]`) |
-| Blocked-URL escalations | 2: both alive (bot wall), no status change |
-| Friction entries | 3 · `PROPOSALS.md` entries: 1 |
+| Blocked-URL escalations | 8: all alive (openai.com bot wall), no status change |
+| Friction entries | 2 · `PROPOSALS.md` entries: 0 |
 
 ## All proposals and verdicts
 
 | # | proposal | verdict |
 | --- | --- | --- |
-| 1 | add: Anthropic, *Project Swap: What happens when agents trade for us?* (PDF, 2026-09-24), `other`, Opus 4.8 / Sonnet 4.5 / Haiku 4.5 / Fable 5, `closed`, `societal_harm` | `{"status": "written", "slug": "anthropic-claude-opus-4-8-other-4", "document_id": 343, "version_id": 638}` |
-| 2 | add: InclusionAI, Ling-2.5-1T model card (2026-02-15), MIT, `open_weight_permissive`, no safety evals | 1st: `{"status": "rejected", "reason": "document_retrievable=false: HTTP 429"}` → resubmitted about 15 min later: `{"status": "written", "slug": "inclusion-ai-ling-2-5-1t-model-card", "document_id": 345, "version_id": 640}` |
-| 3 | add: OpenAI, *Encouraging deception in compaction summaries* (alignment.openai.com, 2026-09-16), `other`, GPT-5.6 Sol + GPT-6 Astra, `closed`, `loss_of_control` | `{"status": "written", "slug": "openai-gpt-5-6-sol-other-4", "document_id": 344, "version_id": 639}` |
-| 4 | add: InclusionAI, Ring-2.5-1T model card (2026-02-15), MIT, `open_weight_permissive`, no safety evals | `{"status": "written", "slug": "inclusion-ai-ring-2-5-1t-model-card", "document_id": 346, "version_id": 641}` |
-| 5 | add: MiniMax, MiniMax H3 model card (video+audio generation, 2026-08-03), H3 Community License, `open_weight_restrictive`, no safety evals | `{"status": "written", "slug": "minimax-minimax-h3-model-card", "document_id": 347, "version_id": 642}` |
-| 6 | add: MiniMax, MiniMax Music 3 model card (2026-08-13), Music3 Community License, `open_weight_restrictive`, no safety evals | `{"status": "written", "slug": "minimax-minimax-music-3-model-card", "document_id": 348, "version_id": 643}` |
-| 7 | add: Upstage, Solar Open 2 (250B-A15B) model card (2026-07-22), Upstage Solar License, `open_weight_restrictive`, no safety evals | `{"status": "written", "slug": "upstage-solar-open-2-model-card", "document_id": 349, "version_id": 644}` |
-| 8 | add: Dots Studio, dots3-note Preview model card (2026-08-14), Apache-2.0, `open_weight_permissive`, no safety evals | `{"status": "written", "slug": "dots-studio-dots3-note-preview-model-card", "document_id": 350, "version_id": 645}` |
+| 1 | annotate_version: `openai-gpt-5-6-sol-access-policy` v646, the Daybreak tier restructure and the FIDO2 requirement | `{"status": "written", "slug": "openai-gpt-5-6-sol-access-policy", "document_id": 271, "version_id": 646}` |
+| 2 | field_update: `openai-gpt-5-6-sol-access-policy` `model_names` changed from [GPT-5.5, GPT-5.6 Sol, GPT-5.6-Cyber] to add GPT-5.5-Cyber, GPT-6 Sol, GPT-6 Luna and GPT-6 Astra | `{"status": "written", "slug": "openai-gpt-5-6-sol-access-policy", "document_id": 271}` |
+| 3 | annotate_version: `nvidia-nvidia-nemotronlabs-voicechat-11b-model-card` v650. The references list was replaced by a citation of the model's own arXiv technical report (2609.21967) | `{"status": "written", "slug": "nvidia-nvidia-nemotronlabs-voicechat-11b-model-card", "document_id": 82, "version_id": 650}` |
 
-Judgement calls:
-
-- **Project Swap** is the sequel to Project Deal (`anthropic-claude-opus-4-5-other`). It measures named
-  models as delegated agents:
-  - Market efficiency by model: Haiku 0.75, Sonnet 0.80, Opus 0.88, Fable 0.86.
-  - On mixed floors, Opus agents always beat Haiku agents.
-  - Agent honesty: about 1 in 100 lied about their top pick.
-
-  It is tagged `societal_harm` (inequality between principals), as the Project Deal and Project Pilot
-  rows are. The canonical URL is the full PDF (same title, "Published September 24, 2026"); the research
-  post is recorded as `announcement`.
-- **OpenAI misalignment report.** Of the six reports on the 2026-09-16 hub, this is the only one that
-  names a released model; the other five are "internal unreleased" checkpoints. One of those is an
-  "Astra family" training run explicitly distinct from the deployed GPT-6 Astra, so they are not
-  proposed. The hub and the openai.com framework post are recorded as related.
-- **Ling/Ring-2.5-1T.** Phase A surfaced them because of 2026-09-24 card edits, but the models date
-  from February, which predates monitoring. Notability comes from Ant Group's joint Business Wire
-  release and FinTech Weekly coverage. Both use the press-release date 2026-02-15; HF `createdAt` is
-  02-10 (Ring) and 02-14 (Ling), and one secondary source says 02-16. They are kept as separate rows,
-  matching the existing Ling-2.6-1T / Ring-2.6-1T pair.
-- **MiniMax H3 / Music 3** came from the silent-org sweep; MiniMax's newest row was 06-12. Video and music
-  generation are both in `covered_model_class`.
-  - H3 was announced 07-31 as a web launch. Its weights and card went public on 08-03, which is the
-    date used.
-  - Music 3 has no date on the card, so the date comes from the 08-13 research-blog announcement.
-- **Upstage / Dots Studio** are OpenRouter-overlay publishers with no prior rows. See §2 for what was
-  skipped.
+Judgement call on #2: the current page's "Reduced refusals behaviour by model" table defines access
+for all seven models. "Astra" on the page was recorded as GPT-6 Astra, which is how the model is named
+elsewhere in the database. Evidence is the pipeline's stored v646. openai.com and help.openai.com
+return 403 to my fetcher, so I could not re-read the live page.
 
 ---
 
 ## 1. Phase A candidate triage
 
-Only links first seen at 2026-09-25T06:19Z were new; older slices were triaged by earlier runs. HF
-profile pages, discussions, datasets and `huggingface.co/papers/*` are not documents.
+These 12 links were first seen today. None was proposed:
 
-- **Written:** `anthropic.com/research/project-swap` (#1). The InclusionAI `Ling-2.5-1T` and
-  `Ring-2.5-1T` repos (#2, #4).
-- **Skipped:**
-  - `blog.google/.../gemini-3-8-live-with-live-avatar/` (09-24). This is a feature launch. Its "model
-    card" link is the Gemini 3.8 Audio card, already `google-deepmind-gemini-3-8-live-model-card`.
-  - `blog.redwoodresearch.org/p/continual-learning-might-make-your` (09-25). A conceptual essay: no
-    named-model results, only a toy tabular-RL setting.
-  - `nvidia/NV-Reason-CT`. A CT-imaging medical VLM (Qwen3.5-4B base), i.e. a domain task model outside
-    the nvidia scope note (Nemotron/Cosmos/GR00T), with no safety evals.
-  - InclusionAI `Ling-1T`, `Ring-1T`, `Ling/Ring-flash-2.0`, `Ling-mini-2.0`, `Ring-mini-2.0`,
-    `Ming-UniVision-16B-A3B`. These are 2025 releases, before the scope floor; they only resurfaced
-    because of card edits. Mini/flash are size variants in any case.
-  - DeepSeek `api-docs` agent-integration pages, `status.deepseek.com`, and the awesome-agents GitHub
-    page. These are developer docs and navigation.
-  - `spaces/inclusionAI/README`, `datasets/nvidia/tuv-data`, and `huggingface.co/papers/2609.27321`.
-    None of these are documents.
-- **Noticed, not pursued:** Ming-Flash-Omni-2.0 (InclusionAI, 2026-02-11, named in the same Ant Group
-  press coverage). The inclusion_ai scope note is "Ling/LLaDA LLM lines, flagship agents", and Ming is
-  neither, so it is left out.
+- **`anthropic.com/research/yes-claude-can-do-nine-loops` (09-25).** A science showcase: Fable 5.1 in
+  Claude Science computes a nine-loop N=4 SYM amplitude. There is no benchmark or safety content, so it
+  is a capability demo and out of scope. This matches the earlier skip of the 09-17 biomolecular-modeling
+  post.
+- **Also skipped:**
+  - `cursor.com/en-US/cookie-policy`: navigation.
+  - HF profile `AdinaY`: not a document.
+  - Three `huggingface.co/papers/*` (Tencent GAE, WorldCrafter, SLCA-GRPO): research papers, not
+    model documentation.
+  - `datasets/XiaomiMiMo/MiMo-V2.6-RL-oss`: a dataset.
+  - Two `nvidia/OpenH-RF` discussions: not documents.
 
-## 2. Targeted search (window 2026-09-22 → 2026-09-25)
+## 2. Targeted search (window 2026-09-23 → 2026-09-26)
 
-`.agent_last_success` = `2026-09-24T06:27:48Z`, so the 72 h floor governs.
+`.agent_last_success` = `2026-09-25T06:29:51Z`, so the 72 h floor governs.
 
-- **Frontier releases.** The release trackers (llm-stats, digitalapplied) show nothing after the 09-22
-  cluster (Opus 5.5, GPT-6 Sol/Luna, MiMo-V2.6), all already covered. China Telecom Xing4.0-29B (09-24)
-  is not allowlisted.
+- **Release trackers** (llm-stats, digitalapplied): nothing after the 09-22 cluster (Opus 5.5, GPT-6
+  Sol/Luna, MiMo-V2.6, Solar Mini 4), all of which are handled.
+  - GPT-6 Sol/Luna have no standalone card. They are covered by the 09-22 appendix to the GPT-6 Astra
+    system card (`openai-gpt-6-astra-system-card`).
+  - The other 09-23/24 items are skipped:
+    - Gemini 3.8 Flash TTS: TTS is an auxiliary model.
+    - Fireworks Ember-1 and BFL FLUX 3 Action: not allowlisted.
+    - Gemini 3.8 Live Avatar: a feature launch.
+- **OpenAI, "priorities and principles for third-party assessments".** A policy statement that names no
+  model, so it is skipped.
 - **Restricted-access sweep.** Nothing new:
-  - LSVP (09-17) is catalogued.
-  - The Cyber Verification Program still says Mythos access will come "in the near future".
-  - Glasswing expansion, Daybreak (09-03), GPT-Rosalind GA (09-11) and Fairwind (09-02) are all
-    catalogued.
-  - DeepMind Co-Scientist: the 05-19 access post is catalogued. The Aug-28 "Co-Scientist now plans
-    experiments" expansion is a system paper built on several Gemini versions. It was not pursued
-    today and is a watch item.
-- **Found through the escalation check:** the OpenAI misalignment report (#3). See the `PROPOSALS.md`
-  entry: the alignment.openai.com hub is not watched.
-- **Anthropic Institute, *Measurements for understanding the pace of AI development inside frontier
-  labs*** (Aug 2026; "Claude leads 26% of Anthropic's AI R&D"). It names no specific model, so it
-  fails the named-model gate and is skipped.
-- **METR watch item from yesterday.** No new public output from the separate METR team assessing AI
-  R&D acceleration at Anthropic. The 09-22 Opus 5.5 summary is catalogued.
-- **Silent orgs (>14 days).** A background research agent checked Palisade, MiniMax, Poolside, Apollo,
-  Moonshot, Thinking Machines, SaferAI, Mistral, UK AISI, RAND, Cursor, NVIDIA and Tencent Hunyuan:
-  - **MiniMax:** yielded #5 and #6.
-  - **RAND RR-A5112-1** (open-weight bio misuse via anti-refusal tampering) looks in scope, but
-    rand.org returns 403 to my fetcher, so I could not verify its date or named models. Not proposed;
-    logged as friction and left as a lead for the next run.
-  - **Tencent Hunyuan-A13B technical report** (arXiv 2609.27284, 09-23) is a late paper about a 2025
-    model, which fails notability as a new release. Skipped.
-  - **Kimi K2.8 Preview:** only one secondary source mentions it, with no primary document. Not pursued.
-  - Everything else: nothing new.
-- **OpenRouter-overlay publishers** (`upstage`, `dots_studio` from 09-22; `typesafe` new today, none
-  with rows):
-  - Upstage: Solar Open 2 (#7) written. Solar Pro 3 (01-26), Solar Pro 4 (08-11) and Solar Mini 4
-    (around 09-22) are API-only, and their only documentation is launch posts with benchmark tables,
-    treated as marketing and skipped. The Solar Open technical report (arXiv 2601.07022, 01-11) covers
-    Solar-Open-100B, released around 2025-12-31; it was not pursued today.
-  - Dots Studio: dots3-note Preview (#8) written; its own FP8 repo is a variant.
-  - typesafe: Jev 1.13 is a non-generative "text→decisions" model, judged outside
-    `covered_model_class`.
-
-  Both skip decisions are logged as `ambiguous_criteria` friction.
+  - LSVP, CVP, Glasswing, Daybreak, Rosalind Biodefense and Fairwind are all catalogued.
+  - The CVP opening for Mythos-class models is still not announced.
+  - "Scaling trusted access for cyber defense" is already catalogued.
+- **Carried-over lead, RAND RR-A5112-1** (open-weight bio misuse): still 403 on the HTML and PDF paths,
+  and I can't verify its date or named models. Not proposed; friction logged for the second day.
+- **Silent orgs (>14 days).** The full background sweep ran yesterday (09-25) and was not repeated.
+  Today's spot checks of DeepSeek, Qwen, Moonshot, Z.ai and Xiaomi found their latest releases already
+  catalogued (DeepSeek-V4.1-Flash, Qwen3.8, Kimi K3, GLM-5.3, MiMo-V2.6-Pro).
+  - Limitation: I could not run an ad-hoc script to compute each publisher's newest date, because only
+    `propose_doc.py` is runnable in this sandbox.
 
 ## 3. Citation mining
 
-Today is Friday, so there is no retrospective sweep. On this run's adds, Project Swap cites Project
-Deal (catalogued). The misalignment report cites only the framework post, which is recorded as
-related. Upstage's Solar Open 2 cites its arXiv tech report, recorded as `paper`. No new leads.
+No documents were added in this run. Yesterday's adds (343–350) were citation-mined yesterday. Today
+is Saturday, so there is no retrospective sweep.
 
 ## 4. Open issues
 
@@ -152,38 +91,36 @@ related. Upstage's Solar Open 2 cites its arXiv tech report, recorded as `paper`
 
 ## 5. Blocked-URL escalations
 
-Both are **alive**; no status change was proposed.
-
-| slug | URL | finding |
-| --- | --- | --- |
-| `openai-gpt-5-6-sol-other` | openai.com/index/hugging-face-model-evaluation-security-incident/ | 403 to my fetcher as well (the known openai.com bot wall). The page is currently indexed under its own title, a localized copy (`/so-DJ/…`) exists, and it is cited by live follow-up posts. |
-| `openai-gpt-rosalind-access-policy-3` | openai.com/index/introducing-new-capabilities-to-gpt-rosalind/ | Same: 403 to the fetcher, but currently indexed with full content, with localized copies (`/ms-MY/`, `/so-DJ/`). |
+All 8 are openai.com or help.openai.com URLs that return 403 to my fetcher as well. Each is **alive**:
+every one is currently indexed by search under its own title (Path to Astra, Introducing Trusted
+Access for Cyber, Rosalind Biodefense, Introducing GPT-Rosalind, new GPT-Rosalind capabilities, the
+Daybreak TAC overview, the HF security incident, and third-party cyber evaluations). The Daybreak
+article also shows a fresh substantive revision in our own store (v646). No status change was proposed.
 
 ## 6. Document update summaries
 
-**10 new diffs, 0 annotated. All are noise:**
+There were 5 new diffs today (v646–v651). The 09-23→25 entries in `updated_docs.json` were judged by
+earlier runs.
 
-- **HF download counters and eval-widget reordering:** Qwen3.5-397B v637, Qwen3.6-27B v636,
-  Qwen3.8-2.4T v635, Nemotron-3.5-Lightning v633, Muse Glimmer v632.
-- **Related-posts sidebar rotation and footnote extraction drift:** Fable-5 addendum-4 v631, Opus 4.6
-  other-2 v630, Project Pilot v629.
-- **Apollo o3 v628:** a sidebar retitle of a *different* note plus a "Copy as Markdown" button.
-- **Ling-3.0-tiny v634:** the install instructions switched from a vLLM fork to upstream vLLM, and a
-  boilerplate "training content summary" pointer was added. Both are operational notes, not changes to
-  model documentation.
+- **Annotated (2):**
+  - v646: the Daybreak restructure (#1).
+  - v650: VoiceChat's tech-report citation (#3).
+- **Noise (3):**
+  - `metr-claude-opus-4-8-independent-eval` v651: US spelling edits only ("judgment", "Acknowledgments").
+  - `nvidia-alpamayo-1-5-10b-model-card` v649: download counter and model-tree widget.
+  - `openai-gpt-5-5-access-policy` v647: the access-level table disappeared and "(opens in a new window)"
+    text appeared. This looks like extractor drift, and I can't verify it against the live page (403),
+    so it was not annotated. Logged as friction.
 
 ## 7. Friction and proposals
 
-Three entries appended to `logs/friction.jsonl`:
+Two entries were appended to `logs/friction.jsonl`:
 
-- `transient_rejection`: a HuggingFace 429, for the second day running.
-- `unfetchable_but_alive`: OpenAI's "Hugging Face incident and other third-party impact" page and
-  RAND RR-A5112-1, both unread because of 403s.
-- `ambiguous_criteria`: API-only launch posts from overlay publishers, and TypeSafe's non-generative
-  model.
+- `unfetchable_but_alive`: RAND RR-A5112-1, for the second day.
+- `diff_ambiguity`: GPT-5.5 access-policy v647.
 
-One `PROPOSALS.md` entry: add `alignment.openai.com/misalignment-reports/` to OpenAI's `index_urls`,
-plus a minor request to retry on 429 before rejecting.
+There are no new `PROPOSALS.md` entries. The RAND block fits the existing agent-fetcher-403 pattern;
+if it persists, it may warrant a proposal to have Phase A attach a text snapshot to candidate leads.
 
-Proposal JSON was staged in `/tmp/cardtrack_p*.json` and passed with `--json <path>`, because stdin
-heredocs are blocked by the shell sandbox. The rolling cap did not bind.
+Proposal JSON was staged in `/tmp/cardtrack_p*.json` and passed with `--json <path>`. Shell
+redirection into `logs/` was blocked, so friction was appended with the Edit tool.

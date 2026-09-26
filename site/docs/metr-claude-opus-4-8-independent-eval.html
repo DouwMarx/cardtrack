@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:36:07Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-8-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-8-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-07-21-expenditure-horizon/%0AFingerprint%3A%2056ba33a2086851aded19773bbdb598d3ccfad8260fa136f5a17ba4a19f5e85fa%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-8-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-8-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-07-21-expenditure-horizon/%0AFingerprint%3A%2040f799002337f197d1fe577223752080b416ba8aca92af55b4b7c723165bb66a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-26T06:19:13Z</td>
+          <td>text/html</td>
+          <td>158,153</td>
+          <td><code title="40f799002337f197d1fe577223752080b416ba8aca92af55b4b7c723165bb66a">40f799002337f197</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-20T06:20:00Z</td>
           <td>text/html</td>
@@ -84,7 +91,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -142,6 +149,14 @@
           <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-26T06:19:13Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-26T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" rel="noopener nofollow">https://metr.org/blog/2026-07-21-expenditure-horizon/</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -193,7 +208,7 @@ The full returns-to-expenditure curves are shown below, and for each we illustra
 
 A few observations:
 - Our harness is likely inefficient. We ran the agents with continuous access to 4 H100 nodes, to use for validation of their optimizations. As a consequence the agents ran many experiments, likely inefficiently, and experiment cost comprised around 70-90% of the cost of most trajectories. We expect a more optimized harness would significantly lower cost for a given optimization. However we can see from the curves that shifting the expenditure curves horizontally would not dramatically change the expenditure horizon, and it appears unlikely to increase the maximum speedup achieved.
-- The raw trajectories overstate progress. The trajectories show the cumulative best score. But for each run we also re-validate their trajectories. The overstatement is due to statistical noise. For the best performing models we further think only ~70% of contributions are mergeable as per the maintainer’s judgement.
+- The raw trajectories overstate progress. The trajectories show the cumulative best score. But for each run we also re-validate their trajectories. The overstatement is due to statistical noise. For the best performing models we further think only ~70% of contributions are mergeable as per the maintainer’s judgment.
 - GPT-5 and Opus-4.1 only chase noise. The raw trajectories from GPT-5 and Opus-4.1 show progress, but revalidation of their final algorithms shows no increase over the baseline.
 - Some models show significant improvements. GPT-5.5 and Opus-4.8 show significant improvements over the baseline, and we can quantify those with significant expenditure horizons, as shown above.
 - The big-picture improvements are still modest. Although these models have expenditure horizons in the thousands of dollars, they are small relative to the overall expenditure on human labor. Thus this evidence implies that autonomous optimization does not have dramatic effects on AI R&amp;D progress on NanoGPT (though it is still possible that agents could dramatically augment human progress, AKA hybrid optimization).
@@ -341,7 +356,7 @@ Below we compare expenditure horizons for Opus-4.8 and GPT-5.5 using three alter
 The rank ordering of the models is roughly preserved across the three cases, but the magnitudes of the expenditure horizons are quite different. This appropriately reflects the difference in assumptions about the intrinsic value of optimization. If it is relatively easy to achieve a 1% optimization in NanoGPT then these agentic optimization curves represent a limited value; if it is hard then the same curves represent substantial value.
 Other runs and discussions.
 We also discuss runs started from an older record (#12, 5-minute) in Appendix C where we identified training data contamination. We also have a discussion on hardening the task against cheating and timing discrepancies in NanoGPT in Appendix D.
-Acknowledgements
+Acknowledgments
 We thank Larry Dial, Varun Srivastava, and Sam Acquaviva for their interviews that informed our human-effort estimates, help reviewing agent contributions, and several other informative discussions. We thank Beth Barnes, Thomas Kwa, Chris Painter, and Charles Foster for feedback on this post. We also thank Ollie Jaffe for helpful discussions and feedback.
 Appendix
 Appendix A: Contributor Interviews to Estimate Human Effort
@@ -449,6 +464,6 @@ These hardening decisions were made after multiple rounds of elicitation and obs
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
+<footer><p>Data updated 2026-09-26T06:23:42Z</p></footer>
 </body>
 </html>

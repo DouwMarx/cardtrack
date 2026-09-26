@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:00:25Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B%0AFingerprint%3A%20ae3c979310568b8ae7aff8fa47ee122c8ffaec19d562bae9925cec9196b9b259%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotronlabs-voicechat-11b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B%0AFingerprint%3A%20f392beb0be1708f5db4baace1e07d1795b590807ff4c08d15394b91361c5a26d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-26T06:19:11Z</td>
+          <td>text/html</td>
+          <td>225,471</td>
+          <td><code title="f392beb0be1708f5db4baace1e07d1795b590807ff4c08d15394b91361c5a26d">f392beb0be1708f5</code></td>
+          <td class="change-summary">Replaced the four-entry References list with a Citation block for the model&#39;s own technical report, &#39;NemotronLabs VoiceChat: An Open Full-duplex Speech-to-Speech Model with Tool Calling Capabilities&#39; (arXiv 2609.21967), and renumbered the in-text references.
+</td>
+        </tr>
         <tr>
           <td>2026-08-20T06:19:54Z</td>
           <td>text/html</td>
@@ -80,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -132,6 +140,23 @@
           <div class="just">change_summary: null → "Removed the statement that the model is ready for research purposes only, and revised the tool-calling Argument accuracy score from 44.2% to 42.2%."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-26T06:19:11Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-26T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-26T06:23:42Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-26T06:17Z-local · agent · lead: version_diff</span>
+          <div class="just">change_summary: null → "Replaced the four-entry References list with a Citation block for the model\u0027s own technical report, \u0027NemotronLabs VoiceChat: An Open Full-duplex Speech-to-Speech Model with Tool Calling Capabilities\u0027 (arXiv 2609.21967), and renumbered the in-text references."</div>
+          <div class="just">The diff v317-&gt;v650 adds a citation to a newly published technical report for this model, which is a documentation change and not extraction noise. The download counter changes are ignored.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -151,8 +176,8 @@
 ▶ Code: On Github
 Model Overview
 Description:
-NVIDIA NemotronLabs VoiceChat is a 11B end-to-end, real-time speech full duplex (FD) model for conversational AI that jointly performs streaming speech understanding and speech generation [1, 2]. Unlike traditional cascaded stacks (ASR → LLM → TTS), this model achieves full duplex, real-time, seamless voice interaction in one unified architecture, eliminating the need for multiple models or API handoffs, thus reducing end-to-end latency. It sets new benchmarks by bringing open, robust, and highly natural conversation capabilities. Moreover, NVIDIA NemotronLabs VoiceChat is the first open full-duplex model to support tool calling while maintaining a natural conversation flow during tool execution. For each tool, a specific “on-hold” message can be defined that will be spoken by the agent as soon as the LLM generates the text that will trigger the tool call and response.
-The model operates on audio signals, which are encoded using a fast conformer module. The resulting audio tokens are inputted into a Nemotron Nano V2 9B LLM backbone to predict text tokens, which are fed to a TTS decoder [2] to predict audio codes for generating the agent&#39;s speech. A separate output channel is used to predict tool calling scripts. NemotronLabs VoiceChat offers an unprecedented trade-off between intelligence and latency in the space of open-source voice agents, as highlighted by our benchmarking results below.
+NVIDIA NemotronLabs VoiceChat is a 11B end-to-end, real-time speech full duplex (FD) model for conversational AI that jointly performs streaming speech understanding and speech generation [1, 2, 3]. Unlike traditional cascaded stacks (ASR → LLM → TTS), this model achieves full duplex, real-time, seamless voice interaction in one unified architecture, eliminating the need for multiple models or API handoffs, thus reducing end-to-end latency. It sets new benchmarks by bringing open, robust, and highly natural conversation capabilities. Moreover, NVIDIA NemotronLabs VoiceChat is the first open full-duplex model to support tool calling while maintaining a natural conversation flow during tool execution. For each tool, a specific “on-hold” message can be defined that will be spoken by the agent as soon as the LLM generates the text that will trigger the tool call and response.
+The model operates on audio signals, which are encoded using a fast conformer module. The resulting audio tokens are inputted into a Nemotron Nano V2 9B LLM backbone to predict text tokens, which are fed to a TTS decoder to predict audio codes for generating the agent&#39;s speech. A separate output channel is used to predict tool calling scripts. NemotronLabs VoiceChat offers an unprecedented trade-off between intelligence and latency in the space of open-source voice agents, as highlighted by our benchmarking results below.
 Highlights
 | Parameters | Turn-taking latency | VoiceBench (open FD) | Tool calling | Architecture |
 |---|---|---|---|---|
@@ -175,7 +200,7 @@ Network Architecture:
 NemotronLabs VoiceChat uses:
 - Fast Conformer Speech Encoder from Nemotron-Speech-Streaming-En-0.6b
 - NVIDIA Nemotron Nano v2 LLM backbone
-- NVIDIA TTS decoder and codec [3]
+- NVIDIA TTS decoder and codec
 - Separate output channel for tool-calling scripts
 Input
 | Property | Value |
@@ -361,13 +386,18 @@ NVIDIA believes Trustworthy AI is a shared responsibility and we have establishe
 
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 References:
-[1] SALM-Duplex: Efficient and Direct Duplex Modeling for Speech-to-Speech Language Model
-
-[2] Open Full-duplex Voice Agent with Speech-to-Speech Language Model
-[3] Audio Flamingo 3: Advancing Audio Intelligence with Fully Open Large Audio Language Models
-[4] PersonaPlex: Voice and role control for full duplex conversational speech models
+Citation
+@misc{balam2026nemotronlabsvoicechatopenfullduplex,
+      title={NemotronLabs VoiceChat: An Open Full-duplex Speech-to-Speech Model with Tool Calling Capabilities},
+      author={NVIDIA},
+      year={2026},
+      eprint={2609.21967},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2609.21967},
+}
 - Downloads last month
-- 2,198
+- 3,630
 Model tree for nvidia/NVIDIA-NemotronLabs-VoiceChat-11B
 Base model
 nvidia/NVIDIA-Nemotron-Nano-12B-v2-Base</pre>
@@ -375,6 +405,6 @@ nvidia/NVIDIA-Nemotron-Nano-12B-v2-Base</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
+<footer><p>Data updated 2026-09-26T06:23:42Z</p></footer>
 </body>
 </html>

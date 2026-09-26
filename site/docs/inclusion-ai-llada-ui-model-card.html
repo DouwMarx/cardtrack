@@ -50,12 +50,12 @@
     <dt>First seen</dt>
     <dd>2026-09-13T07:11:30Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>MoE block-wise diffusion GUI agent (~16.7B total params) built on LLaDA2.0-mini-base. No license declared in the repo, so openness class was not asserted.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada-ui-model-card&amp;body=Document%3A%20inclusion-ai-llada-ui-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA-UI%0AFingerprint%3A%2041aadb5eac9f68e1c6b6361d283ab82bcd0fdcf375c99b9b335eba24bc19a406%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada-ui-model-card&amp;body=Document%3A%20inclusion-ai-llada-ui-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA-UI%0AFingerprint%3A%209e531cb6d305adc30841c4c5d0c1d24581c4b91850ff40e4917f423c00de3e1c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -63,6 +63,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-26T06:19:00Z</td>
+          <td>text/html</td>
+          <td>173,426</td>
+          <td><code title="9e531cb6d305adc30841c4c5d0c1d24581c4b91850ff40e4917f423c00de3e1c">9e531cb6d305adc3</code></td>
+          <td class="change-summary">Extractor drift: 5 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-09-13T07:11:30Z</td>
           <td>text/html</td>
@@ -79,7 +87,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +107,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.inclusion-ai.org/LLaDA-UI/" rel="noopener nofollow">https://www.inclusion-ai.org/LLaDA-UI/</a> · <a href="https://huggingface.co/spaces/inclusionAI/llada-ui-gui-agent-demo" rel="noopener nofollow">https://huggingface.co/spaces/inclusionAI/llada-ui-gui-agent-demo</a> · <a href="https://huggingface.co/inclusionAI/LLaDA-UI/raw/main/README.md" rel="noopener nofollow">https://huggingface.co/inclusionAI/LLaDA-UI/raw/main/README.md</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-26T06:19:00Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-26T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/LLaDA-UI" rel="noopener nofollow">https://huggingface.co/inclusionAI/LLaDA-UI</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-26T06:19:00Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-26T06:17Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 5 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/LLaDA-UI" rel="noopener nofollow">https://huggingface.co/inclusionAI/LLaDA-UI</a>          </div>
       </li>
     </ol>
     </details>
@@ -192,23 +217,21 @@ rectangular bounding box.
 For GUI grounding, the model directly returns [x,y]. It returns [-1,-1]
 when the requested target is infeasible or unrelated to the screenshot.
 Citation
-@techreport{lladaui2026,
-  title  = {LLaDA-UI: Bringing Block-wise Diffusion to Vision-Language GUI Agents},
-  author = {Zhangxuan Gu and Haoxing Chen and Qi Qin and Yi Xin and
-            Kai Gan and Lin Liu and Long Cui and Xiaomei Wang and
-            Beitong Zhou and Yunzhu Zhang and Zhengwen Zeng and
-            Changlong Gao and Weizhi Chen and Rongchao Zhang and
-            Haoyuan Wu and Shuheng Shen and Changhua Meng and Weiqiang Wang and
-            Jianguo Li and Zhenzhong Lan},
-  year   = {2026},
-  url    = {https://huggingface.co/inclusionAI/LLaDA-UI}
+@misc{gu2026lladauibringingblockwisediffusion,
+  title={LLaDA-UI: Bringing Block-wise Diffusion to Vision-Language GUI Agents},
+  author={Zhangxuan Gu and Haoxing Chen and Qi Qin and Yi Xin and Kai Gan and Lin Liu and Long Cui and Xiaomei Wang and Beitong Zhou and Yunzhu Zhang and Zhengwen Zeng and Changlong Gao and Weizhi Chen and Rongchao Zhang and Haoyuan Wu and Shuheng Shen and Changhua Meng and Weiqiang Wang and Jianguo Li and Zhenzhong Lan},
+  year={2026},
+  eprint={2609.13287},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2609.13287},
 }
 - Downloads last month
-- 81</pre>
+- 455</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-25T06:27:12Z</p></footer>
+<footer><p>Data updated 2026-09-26T06:23:42Z</p></footer>
 </body>
 </html>
