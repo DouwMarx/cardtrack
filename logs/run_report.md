@@ -1,126 +1,112 @@
-# cardtrack run report — 2026-09-26 (run_id `2026-09-26T06:17Z-local`)
+# cardtrack run report — 2026-09-27 (run_id `2026-09-27T11:24Z-local`)
 
 ## Headline
 
-**3 proposals, all `written`; 0 new documents.** It was a quiet news window. The main finding is
-that OpenAI's Daybreak help article (`openai-gpt-5-6-sol-access-policy`) was substantively revised:
-
-- The tiers are remapped, with GPT-6 Sol and Luna now in Daybreak Blue.
-- Astra's reduced refusals are available in Daybreak Red only.
-- There is a new approval tier for GPT-5.6-Cyber.
-- Individual users need a FIDO2 hardware key by Oct 1, 2026.
-
-That change got a version annotation and a `model_names` update.
+**0 proposals; nothing warranted a write.** It was a quiet window. Two leads are new: an OpenAI
+TAC-expansion post that the agent cannot read (403), and a suspicious third-party re-host of StepFun's
+Step 5 Preview. Both are logged as friction and neither was proposed.
 
 | | |
 | --- | --- |
-| Proposals submitted | 3 |
-| `written` | 3 (2 `annotate_version`, 1 `field_update`) |
-| `rejected` / `duplicate` / `noop` | 0 |
-| Candidates triaged | 12 links first seen at 2026-09-26T06:19Z (older slices were triaged by earlier runs) |
-| `annotate_version` | 2 of 5 new diffs; the 3 others are noise (see §6) |
+| Proposals submitted | 0 |
+| Candidates triaged | 8 links first seen since the last success (09-26T06:24Z); older slices were triaged by earlier runs |
+| `annotate_version` | 0 of 4 new diffs; all 4 are noise (see §6) |
 | Issues handled | 0 (`open_issues.json` is `[]`) |
-| Blocked-URL escalations | 8: all alive (openai.com bot wall), no status change |
+| Blocked-URL escalations | 11: all alive (openai.com bot wall), no status change |
 | Friction entries | 2 · `PROPOSALS.md` entries: 0 |
-
-## All proposals and verdicts
-
-| # | proposal | verdict |
-| --- | --- | --- |
-| 1 | annotate_version: `openai-gpt-5-6-sol-access-policy` v646, the Daybreak tier restructure and the FIDO2 requirement | `{"status": "written", "slug": "openai-gpt-5-6-sol-access-policy", "document_id": 271, "version_id": 646}` |
-| 2 | field_update: `openai-gpt-5-6-sol-access-policy` `model_names` changed from [GPT-5.5, GPT-5.6 Sol, GPT-5.6-Cyber] to add GPT-5.5-Cyber, GPT-6 Sol, GPT-6 Luna and GPT-6 Astra | `{"status": "written", "slug": "openai-gpt-5-6-sol-access-policy", "document_id": 271}` |
-| 3 | annotate_version: `nvidia-nvidia-nemotronlabs-voicechat-11b-model-card` v650. The references list was replaced by a citation of the model's own arXiv technical report (2609.21967) | `{"status": "written", "slug": "nvidia-nvidia-nemotronlabs-voicechat-11b-model-card", "document_id": 82, "version_id": 650}` |
-
-Judgement call on #2: the current page's "Reduced refusals behaviour by model" table defines access
-for all seven models. "Astra" on the page was recorded as GPT-6 Astra, which is how the model is named
-elsewhere in the database. Evidence is the pipeline's stored v646. openai.com and help.openai.com
-return 403 to my fetcher, so I could not re-read the live page.
-
----
 
 ## 1. Phase A candidate triage
 
-These 12 links were first seen today. None was proposed:
+There were 8 new links. None was proposed:
 
-- **`anthropic.com/research/yes-claude-can-do-nine-loops` (09-25).** A science showcase: Fable 5.1 in
-  Claude Science computes a nine-loop N=4 SYM amplitude. There is no benchmark or safety content, so it
-  is a capability demo and out of scope. This matches the earlier skip of the 09-17 biomolecular-modeling
-  post.
-- **Also skipped:**
-  - `cursor.com/en-US/cookie-policy`: navigation.
-  - HF profile `AdinaY`: not a document.
-  - Three `huggingface.co/papers/*` (Tencent GAE, WorldCrafter, SLCA-GRPO): research papers, not
-    model documentation.
-  - `datasets/XiaomiMiMo/MiMo-V2.6-RL-oss`: a dataset.
-  - Two `nvidia/OpenH-RF` discussions: not documents.
+- **Qwen3Guard-Stream-0.6B/4B/8B, the 3 repos plus 3 "Fix KV cache reuse" discussions.** These are
+  content-safety classifiers, which are auxiliary models excluded by `covered_model_class`. The repos
+  were updated, not newly created; the Qwen3Guard line dates from 2025, before the scope floor.
+- **Palisade Threads and Facebook links:** navigation.
 
-## 2. Targeted search (window 2026-09-23 → 2026-09-26)
+## 2. Targeted search (window 2026-09-24 → 2026-09-27; 72 h floor governs)
 
-`.agent_last_success` = `2026-09-25T06:29:51Z`, so the 72 h floor governs.
-
-- **Release trackers** (llm-stats, digitalapplied): nothing after the 09-22 cluster (Opus 5.5, GPT-6
-  Sol/Luna, MiMo-V2.6, Solar Mini 4), all of which are handled.
-  - GPT-6 Sol/Luna have no standalone card. They are covered by the 09-22 appendix to the GPT-6 Astra
-    system card (`openai-gpt-6-astra-system-card`).
-  - The other 09-23/24 items are skipped:
-    - Gemini 3.8 Flash TTS: TTS is an auxiliary model.
-    - Fireworks Ember-1 and BFL FLUX 3 Action: not allowlisted.
-    - Gemini 3.8 Live Avatar: a feature launch.
-- **OpenAI, "priorities and principles for third-party assessments".** A policy statement that names no
-  model, so it is skipped.
-- **Restricted-access sweep.** Nothing new:
-  - LSVP, CVP, Glasswing, Daybreak, Rosalind Biodefense and Fairwind are all catalogued.
+- **Release trackers** (llm-stats, llmgateway): nothing after the 09-22 cluster, which is already
+  handled. LLM Gateway "Smart Route" (09-25) is a router, not an allowlisted publisher.
+- **METR:** its newest post is the Opus 5.5 predeployment summary (09-22), already catalogued.
+- **Anthropic, "Claude discovers a novel enzyme system with CRISPR-like repeats" (~09-24):** a science
+  capability showcase with no eval or safety content. Skipped, matching the earlier Nine Loops skip. It
+  surfaced via the related-content box on the Mythos access page. The Accenture embedded-evaluation
+  partnership post seen there is also skipped, as a partnership announcement.
+- **Restricted-access sweep** (LSVP, CVP, Glasswing, Daybreak, Rosalind/Rosalind Biodefense, Fairwind,
+  Gemini for Science):
+  - Nothing new. LSVP, Glasswing expansion, Mythos, Fairwind, the real-time cyber safeguards article,
+    "expanding support for scientists" and TAC/GPT-5.5 are all catalogued.
   - The CVP opening for Mythos-class models is still not announced.
-  - "Scaling trusted access for cyber defense" is already catalogued.
-- **Carried-over lead, RAND RR-A5112-1** (open-weight bio misuse): still 403 on the HTML and PDF paths,
-  and I can't verify its date or named models. Not proposed; friction logged for the second day.
-- **Silent orgs (>14 days).** The full background sweep ran yesterday (09-25) and was not repeated.
-  Today's spot checks of DeepSeek, Qwen, Moonshot, Z.ai and Xiaomi found their latest releases already
-  catalogued (DeepSeek-V4.1-Flash, Qwen3.8, Kimi K3, GLM-5.3, MiMo-V2.6-Pro).
-  - Limitation: I could not run an ad-hoc script to compute each publisher's newest date, because only
-    `propose_doc.py` is runnable in this sandbox.
+  - **New lead, not proposed:** OpenAI, "Accelerating the cyber defense ecosystem that protects us
+    all". It is a TAC expansion naming GPT-5.4-Cyber and a likely `access_policy`, but it returns 403 to
+    the agent, so its date and content are unverified. Friction logged.
+  - **Also not proposed:**
+    - "Life Science Research Special Access Program" (help.openai.com 11826767): 403, names no model in
+      search snippets, and likely predates 2026.
+    - "Biodefense in the Intelligence Age" (~Apr 2026): a policy action plan, 403.
+- **Spot checks on silent orgs:**
+  - Mistral: Leanstral 1.5 (being retired 09-30) and OCR 4, which is out of scope per its note.
+  - Meta: Muse Realtime Avatar at Connect (~09-23) is a feature launch with no model card found.
+  - A bot-generated third-party PR claims MiniMax M3.5, Kimi K3.1 and StepFun Step-4 as open-weight
+    releases. None exists on the orgs' HF pages (newest: MiniMax-Music3 08-07, Kimi-K3 06-13,
+    Step-3.7-Flash 05-23). Treated as unreliable.
+- **StepFun Step 5 Preview** (API launched 09-20; 600B/27B MoE):
+  - The only primary doc is a platform.stepfun.ai product page with no benchmarks, safety content,
+    date or license, so it was skipped as a launch without documentation.
+  - StepFun's own HF repo is an empty shell, with weights promised for 10-15; re-check then.
+  - `TypeSafeAI/Step-5-Preview-BF16` is an unaffiliated re-host ("Duplicated from SHSLab") claiming full
+    weights. It was not proposed and was flagged in friction.
+- **Unverified tracker mention:** "Atria Dawn Preview" has no identifiable allowlisted publisher, so it
+  was ignored.
 
 ## 3. Citation mining
 
-No documents were added in this run. Yesterday's adds (343–350) were citation-mined yesterday. Today
-is Saturday, so there is no retrospective sweep.
+No documents were added since 09-25 (count 350), and those were already mined. Today is Sunday, so
+there is no retrospective sweep.
 
 ## 4. Open issues
 
-`open_issues.json` is `[]`.
+None.
 
-## 5. Blocked-URL escalations
+## 5. Blocked-URL escalations (11)
 
-All 8 are openai.com or help.openai.com URLs that return 403 to my fetcher as well. Each is **alive**:
-every one is currently indexed by search under its own title (Path to Astra, Introducing Trusted
-Access for Cyber, Rosalind Biodefense, Introducing GPT-Rosalind, new GPT-Rosalind capabilities, the
-Daybreak TAC overview, the HF security incident, and third-party cyber evaluations). The Daybreak
-article also shows a fresh substantive revision in our own store (v646). No status change was proposed.
+All are openai.com or help.openai.com and return 403 to my fetcher as well. Each is **alive**, indexed
+by search under its own title today:
+
+- Path to Astra
+- Responding to the next frontier of critical cyber capabilities
+- Third-party cyber evaluations
+- The HF security incident
+- Scaling/Trusted Access for Cyber (both)
+- Expanding Daybreak
+- Rosalind Biodefense
+- New GPT-Rosalind capabilities
+
+Introducing GPT-Rosalind and the Daybreak TAC overview were confirmed yesterday; the latter was
+substantively revised on 09-26 (v646). No status change was proposed.
 
 ## 6. Document update summaries
 
-There were 5 new diffs today (v646–v651). The 09-23→25 entries in `updated_docs.json` were judged by
-earlier runs.
+There were 4 new diffs since the last run, all noise:
 
-- **Annotated (2):**
-  - v646: the Daybreak restructure (#1).
-  - v650: VoiceChat's tech-report citation (#3).
-- **Noise (3):**
-  - `metr-claude-opus-4-8-independent-eval` v651: US spelling edits only ("judgment", "Acknowledgments").
-  - `nvidia-alpamayo-1-5-10b-model-card` v649: download counter and model-tree widget.
-  - `openai-gpt-5-5-access-policy` v647: the access-level table disappeared and "(opens in a new window)"
-    text appeared. This looks like extractor drift, and I can't verify it against the live page (403),
-    so it was not annotated. Logged as friction.
+- `anthropic-claude-mythos-5-access-policy` v653: only the "Related content" widget rotated (the
+  enzyme, Accenture and LSVP posts replaced older ones). The body is unchanged.
+- `deepseek-deepseek-v4-flash-vision-exp-model-card` v652: download and Spaces counters, plus a
+  Terminal-Bench 2.1 leaderboard widget value.
+- `alibaba-qwen-qwen3-8-flash-next-model-card` v655: counters, reordered HF eval-results widget
+  entries, and an "Inference" nav item.
+- `inclusion-ai-ui-venus-2-9b-model-card` v656: the download counter and an "Inference" nav item.
+
+The older `updated_docs.json` entries were judged by earlier runs.
 
 ## 7. Friction and proposals
 
 Two entries were appended to `logs/friction.jsonl`:
 
-- `unfetchable_but_alive`: RAND RR-A5112-1, for the second day.
-- `diff_ambiguity`: GPT-5.5 access-policy v647.
+- `unfetchable_but_alive`: the OpenAI cyber-defense-ecosystem TAC post and the Life Science special
+  access article.
+- `ambiguous_criteria`: the TypeSafeAI Step 5 Preview re-host.
 
-There are no new `PROPOSALS.md` entries. The RAND block fits the existing agent-fetcher-403 pattern;
-if it persists, it may warrant a proposal to have Phase A attach a text snapshot to candidate leads.
-
-Proposal JSON was staged in `/tmp/cardtrack_p*.json` and passed with `--json <path>`. Shell
-redirection into `logs/` was blocked, so friction was appended with the Edit tool.
+There are no new `PROPOSALS.md` entries. The openai.com 403 wall is already documented; if it keeps
+hiding new access-policy leads, Phase A attaching text snapshots to candidate leads would address it.

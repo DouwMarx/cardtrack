@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-27T06:24:25Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. A UI-Venus-2-27B is named in the card&#39;s comparison tables but is not yet released; only the 9B weights are published. UI-Venus-2 technical report arXiv id is still a placeholder on the card. Predecessor UI-Venus-1.5 (Feb 2026) is not yet in the database.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%20af506d5b399c6a73a957a0ffcd9b5c5192be263892f81e090a9081ec897331e6%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%20e7005b5537d83853dc134c6b5d980cc85051a4fe1fd35736fef9546da5ebb1d7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-27T11:26:32Z</td>
+          <td>text/html</td>
+          <td>289,444</td>
+          <td><code title="e7005b5537d83853dc134c6b5d980cc85051a4fe1fd35736fef9546da5ebb1d7">e7005b5537d83853</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-03T06:18:05Z</td>
           <td>text/html</td>
@@ -82,7 +89,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -133,6 +140,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/UI-Venus-2-9B" rel="noopener nofollow">https://huggingface.co/inclusionAI/UI-Venus-2-9B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-27T11:26:32Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-27T11:24Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/UI-Venus-2-9B" rel="noopener nofollow">https://huggingface.co/inclusionAI/UI-Venus-2-9B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -178,6 +193,7 @@ inputs = processor.apply_chat_template(
 ).to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=40)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Inference
 - Notebooks
 - Google Colab
 - Kaggle
@@ -413,7 +429,7 @@ Please cite the UI-Venus-2 technical report as follows:
   year    = {2025}
 }
 - Downloads last month
-- 2,067
+- 8,127
 Model tree for inclusionAI/UI-Venus-2-9B
 Base model
 Qwen/Qwen3.5-9B-Base</pre>
@@ -421,6 +437,6 @@ Qwen/Qwen3.5-9B-Base</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-26T06:23:42Z</p></footer>
+<footer><p>Data updated 2026-09-27T11:26:32Z</p></footer>
 </body>
 </html>

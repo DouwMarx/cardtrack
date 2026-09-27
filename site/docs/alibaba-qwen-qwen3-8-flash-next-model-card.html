@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-08-27T06:23:45Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Licensed qwen-community-1.0 (use-restricted community licence). Quantized sibling repo https://huggingface.co/Qwen/Qwen3.8-Flash-Next-FP8 covered by this entry. No safety/dangerous-capability evaluation or red-teaming section in the card -- benchmarks only.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-flash-next-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-flash-next-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-Flash-Next%0AFingerprint%3A%20ce8def6239bb9046c2b860df6e12eedf8e936f3fcd9305b69f38223966fa76d8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-flash-next-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-flash-next-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-Flash-Next%0AFingerprint%3A%205afa26fa34c0b32aa30447b5ca928ed4db25b078f77226416420435f8b651a62%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-27T11:26:31Z</td>
+          <td>text/html</td>
+          <td>461,954</td>
+          <td><code title="5afa26fa34c0b32aa30447b5ca928ed4db25b078f77226416420435f8b651a62">5afa26fa34c0b32a</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-03T06:18:04Z</td>
           <td>text/html</td>
@@ -84,7 +91,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -115,6 +122,14 @@
         <span class="ts">2026-09-03T06:18:04Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-09-03T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-Flash-Next</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-27T11:26:31Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-27T11:24Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-Flash-Next</a>          </div>
@@ -164,6 +179,7 @@ inputs = processor.apply_chat_template(
 ).to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=40)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Inference
 - Notebooks
 - Google Colab
 - Kaggle
@@ -592,22 +608,22 @@ If you find our work helpful, feel free to give us a cite.
     url    = {https://qwen.ai/blog?id=qwen3.8-flash-next}
 }
 - Downloads last month
-- 207,941
+- 1,226,891
 Model tree for Qwen/Qwen3.8-Flash-Next
-Spaces using Qwen/Qwen3.8-Flash-Next 11
+Spaces using Qwen/Qwen3.8-Flash-Next 16
 Collection including Qwen/Qwen3.8-Flash-Next
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results leaderboard
+- datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   58.7 *
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
 - llamaindex/ExtractBench leaderboard
 - Mean View evaluation resultssource
 - Short View evaluation resultssource
-- Medium View evaluation resultssource
-- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results leaderboard
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard</pre>
+- Medium View evaluation resultssource</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-26T06:23:42Z</p></footer>
+<footer><p>Data updated 2026-09-27T11:26:32Z</p></footer>
 </body>
 </html>
