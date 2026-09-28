@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-09-09T06:24:47Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Notability rests on evidence outside the repo, as criteria.yaml requires for HuggingFace org-page leads: the Ant Ling account announced the model on X on 2026-09-04, describing visual perception, STEM reasoning, document intelligence, multimodal agent tasks, frontend coding and medical report interpretation. publication_date 2026-09-04 taken from the repository initial commit, which matches that announcement; the two README edits about 20 hours before this run are later revisions. The Ling-3.0-flash-VL-fp8 repo is a quantisation variant and is deliberately not proposed. The card carries no safety or dangerous-capability evaluations.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-3-0-flash-vl-model-card&amp;body=Document%3A%20inclusion-ai-ling-3-0-flash-vl-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-3.0-flash-VL%0AFingerprint%3A%20e9dc189a9621a725b946e1bbf0f3a26c9033e187b79f69f36c34d25a19a1bba3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-3-0-flash-vl-model-card&amp;body=Document%3A%20inclusion-ai-ling-3-0-flash-vl-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-3.0-flash-VL%0AFingerprint%3A%201d676026d9760578499daea9687158e2a83d390921ce3d3b36ed28f605d6fdb2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-28T06:18:11Z</td>
+          <td>text/html</td>
+          <td>262,245</td>
+          <td><code title="1d676026d9760578499daea9687158e2a83d390921ce3d3b36ed28f605d6fdb2">1d676026d9760578</code></td>
+          <td class="change-summary">Corrected the stated maximum context window from 1M tokens to 256K tokens (introduction and Model Overview). Added a Training content summary section pointing to a public training-content disclosure document.
+</td>
+        </tr>
         <tr>
           <td>2026-09-09T06:24:47Z</td>
           <td>text/html</td>
@@ -74,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -95,6 +103,23 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ling-3.0-flash-VL/commits/main" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-flash-VL/commits/main</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-28T06:18:11Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ling-3.0-flash-VL" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-flash-VL</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-28T06:21:03Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-28T06:16Z-local · agent · lead: manual</span>
+          <div class="just">change_summary: null → "Corrected the stated maximum context window from 1M tokens to 256K tokens (introduction and Model Overview). Added a Training content summary section pointing to a public training-content disclosure document."</div>
+          <div class="just">Diff v528 to v662 revises the context window claim from up to 1M tokens to up to 256K tokens in two places and adds a new Training content summary section; verified on the live card today. A spec correction, not extraction noise.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ling-3.0-flash-VL" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-3.0-flash-VL</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -112,9 +137,9 @@
 - Kaggle
 🤗 Hugging Face | 🤖 ModelScope
 Introduction
-We are introducing Ling-3.0-flash-VL, our next-generation native multimodal model. Built upon Ling-3.0-flash, it brings visual information into the complete process of understanding, reasoning, acting, and verification—advancing beyond image and video perception to solving real-world tasks through vision. With 124B total parameters, only 5.5B activated parameters per token, support for image and video inputs, and a context window of up to 1M tokens, Ling-3.0-flash-VL delivers powerful multimodal reasoning and agentic capabilities with exceptional efficiency.
+We are introducing Ling-3.0-flash-VL, our next-generation native multimodal model. Built upon Ling-3.0-flash, it brings visual information into the complete process of understanding, reasoning, acting, and verification—advancing beyond image and video perception to solving real-world tasks through vision. With 124B total parameters, only 5.5B activated parameters per token, support for image and video inputs, and a context window of up to 256K tokens, Ling-3.0-flash-VL delivers powerful multimodal reasoning and agentic capabilities with exceptional efficiency.
 Model Overview
-Ling-3.0-flash-VL inherits the language, reasoning, and long-context capabilities of Ling-3.0-flash, while extending them with native image and video understanding. The model has 124B total parameters, with only 5.5B parameters activated per token, and supports a context window of up to 1M tokens.
+Ling-3.0-flash-VL inherits the language, reasoning, and long-context capabilities of Ling-3.0-flash, while extending them with native image and video understanding. The model has 124B total parameters, with only 5.5B parameters activated per token, and supports a context window of up to 256K tokens.
 The architecture of Ling-3.0-flash-VL is designed to integrate visual information into real-world reasoning and agentic workflows.
 - A ViT visual encoder extracts features from images and videos, while a two-layer MLP projector aligns visual features with text representations for unified multimodal understanding and reasoning;
 - VideoRoPE encodes both spatial positions and temporal order, enabling the model to understand visual changes over time and supporting tasks such as event localization, long-video question answering, and video clip editing;
@@ -147,7 +172,6 @@ docker run --rm --gpus all --ipc=host --shm-size 32g \
     --tp 4 \
     --context-length 262144 \
     --json-model-override-args &#39;{&#34;rope_scaling&#34;:{&#34;rope_type&#34;:&#34;yarn&#34;,&#34;factor&#34;:2.0,&#34;rope_theta&#34;:6000000,&#34;partial_rotary_factor&#34;:0.5,&#34;original_max_position_embeddings&#34;:131072}}&#39; \
-    --mem-fraction-static 0.85 \
     --trust-remote-code \
     --reasoning-parser auto \
     --tool-call-parser auto \
@@ -201,12 +225,15 @@ curl -s http://${MASTER_IP}:${PORT}/v1/chat/completions \
        &#34;temperature&#34;: 1.0, &#34;top_k&#34;: 20, &#34;top_p&#34;: 0.95
      }&#39;
 Video input uses {&#34;type&#34;: &#34;video_url&#34;, &#34;video_url&#34;: {&#34;url&#34;: &#34;...&#34;}} in the same message shape. For MMMU-Pro / bench_serving reproduction commands and per-hardware recipes, see the cookbook page linked above.
+Training content summary
+The public training-content summary identifying Ling-3.0-flash-VL is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
+This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
 - Downloads last month
-- 42</pre>
+- 12,327</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-27T11:26:32Z</p></footer>
+<footer><p>Data updated 2026-09-28T06:21:13Z</p></footer>
 </body>
 </html>

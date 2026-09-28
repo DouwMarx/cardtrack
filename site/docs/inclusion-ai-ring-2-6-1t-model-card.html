@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:28Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>MIT licence. First Ring-line document in the corpus; shares the Ling and Ring 2.6 technical report with Ling-2.6-1T and Ling-2.6-flash.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.6-1T%0AFingerprint%3A%20d70fa30ad70cd85bc042bbbc1a5a4b79ee8ca8b3361f3f73ab0b893566d0c8c4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.6-1T%0AFingerprint%3A%2040096e2b369d41de477b5a9bfa9922c985c8faa11dd65956c98056ed64387688%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-28T06:18:09Z</td>
+          <td>text/html</td>
+          <td>417,831</td>
+          <td><code title="40096e2b369d41de477b5a9bfa9922c985c8faa11dd65956c98056ed64387688">40096e2b369d41de</code></td>
+          <td class="change-summary">Added a Training content summary section linking a public training-content disclosure document for Ring-2.6-1T, stating it does not replace the model&#39;s technical documentation, usage terms, or license.
+</td>
+        </tr>
         <tr>
           <td>2026-09-10T06:21:37Z</td>
           <td>text/html</td>
@@ -81,7 +89,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -106,6 +114,23 @@
         <strong>new_version</strong>
         <span class="run">run 2026-09-10T06:19Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-28T06:18:09Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-28T06:21:10Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-28T06:16Z-local · agent · lead: manual</span>
+          <div class="just">change_summary: null → "Added a Training content summary section linking a public training-content disclosure document for Ring-2.6-1T, stating it does not replace the model\u0027s technical documentation, usage terms, or license."</div>
+          <div class="just">Diff v532 to v661 adds a new Training content summary section, part of a same-day rollout across inclusionAI model cards; the remaining changes are counters and widget reordering.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
       </li>
@@ -254,20 +279,23 @@ curl -s http://${MASTER_IP}:${PORT}/v1/chat/completions \
   -d &#39;{&#34;model&#34;: &#34;auto&#34;, &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;What is the capital of France?&#34;}]}&#39;
 License
 This code repository is licensed under the MIT License.
+Training content summary
+The public training-content summary identifying Ring-2.6-1T is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
+This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
 - Downloads last month
-- 629
+- 1,121
 Spaces using inclusionAI/Ring-2.6-1T 4
 Collection including inclusionAI/Ring-2.6-1T
 Paper for inclusionAI/Ring-2.6-1T
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   88.27 *
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results    leaderboard   95.83 *
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   74 *
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results    leaderboard   95.83 *
 - claw-eval/Claw-Eval · General View evaluation results    leaderboard   63.82 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-27T11:26:32Z</p></footer>
+<footer><p>Data updated 2026-09-28T06:21:13Z</p></footer>
 </body>
 </html>
