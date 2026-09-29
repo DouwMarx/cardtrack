@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "openai-gpt-6-astra-system-card",
+  "version": 620,
+  "category": "content_major",
+  "score_change": true,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": true,
+  "correction": true,
+  "growth_direction": "grew",
+  "summary": "Added ~35-page Appendix A covering GPT-6 Sol and Luna. Corrected Astra HealthBench scores after a misconfiguration. Added updated alignment-eval results. Three new changelog entries dated Sept 22.",
+  "notable": "OpenAI quietly corrected GPT-6 Astra's headline HealthBench numbers after a misconfiguration (e.g., HealthBench Professional 63.4 -> 64.7, answer lengths now shorter rather than longer) and folded two new models into an existing system card instead of publishing separate cards.",
+  "confidence": "high"
+ }
+]

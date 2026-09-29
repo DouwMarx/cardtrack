@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "google-deepmind-gemini-3-8-live-model-card",
+  "version": 677,
+  "category": "content_major",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": true,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Card expanded to add Gemini 3.8 Flash TTS and Flash-Lite TTS plus Live Avatar video output; added child safety evaluations; frontier safety statement extended; Vertex AI renamed.",
+  "notable": "An existing model card was quietly broadened to cover two new TTS models and an avatar video capability, with the frontier safety claim extended to them by inference from Gemini 3.7 Flash evaluations rather than new testing.",
+  "confidence": "high"
+ },
+ {
+  "slug": "nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card",
+  "version": 633,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only Hugging Face widgets changed: monthly downloads 141,338 to 370,164 and Spaces-using count 1 to 3.",
+  "notable": "",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,10 @@
+[
+ {"slug": "anthropic-claude-opus-4-7-other", "version": 276, "category": "extraction_noise",
+  "reason": "Raw HTML of both versions contains the footnotes (7 markers each); only the extracted text lost them. Verified 2026-09-22 against data/raw; live page still shows them (sub-agent check)."},
+ {"slug": "anthropic-claude-fable-5-addendum", "version": 274, "category": "extraction_noise",
+  "reason": "Raw HTML of both versions contains footnote 1 (5 markers each); extractor artifact. Verified 2026-09-22."},
+ {"slug": "anthropic-claude-opus-4-6-other-3", "version": 323, "category": "extraction_noise",
+  "reason": "Raw HTML of both versions contains the footnotes (7 markers each); extractor artifact. Verified 2026-09-22."},
+ {"slug": "anthropic-claude-fable-5-other", "version": 629, "category": "extraction_noise", "verified": false,
+  "reason": "NOT verified against raw HTML: data/raw was not available to the 2026-09-29 unattended run. Conservative call: the dropped DJI Tello/consent footnote is the last line before the related-content footer, the same position as the three verified Anthropic footnote artefacts, and the publisher-deletion reading cannot be confirmed. Counter-evidence: the footnote-preserving pre-clean is now in cardtrack/extract.py and the earlier artefact version of this page (v208) was purged from the DB, so v629/v689 may have been extracted with the fix, which would make this a real publisher deletion; against that, a second Anthropic page (opus-4-6-other-2 v630) lost footnotes on the same day (2026-09-25), suggesting a new markup change. Maintainer: count footnote markers in raw of versions 116/629/689 and set verified or delete this entry."}
+]

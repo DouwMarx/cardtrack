@@ -1,0 +1,17 @@
+[Unit]
+Description=cardtrack weekly research report (Analysis page)
+After=network-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/ais/system_card_db
+Environment=DISABLE_AUTOUPDATER=1
+ExecStart=%h/projects/ais/system_card_db/scripts/run_report.sh
+TimeoutStartSec=6h
+# 3 = agent failed / no rebuilt PDF, 75 = lock busy: retry later the same day.
+# 10 = secret found under report/: a human must look, never retried.
+Restart=on-failure
+RestartSec=2h
+RestartPreventExitStatus=10

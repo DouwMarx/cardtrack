@@ -1,0 +1,9 @@
+[Unit]
+Description=Weekly cardtrack research report, Sunday 02:00 UTC (the 06:15 daily run deploys it)
+
+[Timer]
+OnCalendar=Sun *-*-* 02:00:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target

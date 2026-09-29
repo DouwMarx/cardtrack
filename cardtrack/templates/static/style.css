@@ -171,3 +171,28 @@ footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 0.75r
   border-radius: 6px; background: var(--surface); color: var(--fg);
   font: inherit; cursor: pointer;
 }
+
+/* analysis page: the weekly AI-generated research report */
+.report { max-width: 50rem; }
+.report .disclaimer {
+  border: 1px solid var(--warn); border-left-width: 4px; border-radius: 6px;
+  background: var(--surface); padding: 0.7rem 0.9rem; margin: 0 0 1.5rem;
+}
+.report .disclaimer p { margin: 0.2rem 0; }
+.report .disclaimer .edition { color: var(--muted); font-size: 0.9em; }
+.report .report-title { font-size: 1.5rem; line-height: 1.25; }
+.report .abstract { color: var(--muted); border-left: 3px solid var(--line); padding-left: 0.8rem; }
+.report figure { margin: 1.2rem 0; }
+.report img { max-width: 100%; height: auto; background: #fff; border-radius: 4px; }
+.report figcaption { color: var(--muted); font-size: 0.9em; margin-top: 0.4rem; }
+.report table {
+  display: block; overflow-x: auto; max-width: 100%; border-collapse: collapse;
+  font-size: 0.82em; margin: 1rem 0;
+}
+.report caption { text-align: left; color: var(--muted); padding-bottom: 0.4rem; }
+.report th, .report td {
+  border-bottom: 1px solid var(--line); padding: 0.3rem 0.5rem; vertical-align: top;
+  text-align: left; overflow-wrap: break-word; hyphens: auto;
+}
+.report td a { word-break: break-all; }
+.report .citation a, .report .csl-entry { overflow-wrap: anywhere; }

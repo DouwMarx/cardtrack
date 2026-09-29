@@ -18,6 +18,14 @@ dev = [
     "ruff>=0.8",
     "poethepoet>=0.30",
 ]
+# research report (report/, weekly): plotting for report/analyze.py
+report = [
+    "matplotlib>=3.9",
+    "numpy>=2.0",
+]
+
+[tool.uv]
+default-groups = ["dev", "report"]
 
 [build-system]
 requires = ["hatchling"]
@@ -32,6 +40,8 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+# report/ is agent-maintained analysis code, reviewed weekly rather than linted
+extend-exclude = ["report"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "W", "UP", "B"]

@@ -1,15 +1,17 @@
 ---
 name: cardtrack-report
-description: Regenerate the research report over the cardtrack system-card database (corpus growth, discovery latency, link availability, change classification, tracker reliability). Use when asked to re-run, refresh or extend the "system card database report" after the database has grown. Read-only with respect to the cardtrack repo.
+description: Regenerate the research report over the cardtrack system-card database (corpus growth, discovery latency, link availability, change classification, tracker reliability). Use when asked to re-run, refresh or extend the "system card database report" after the database has grown. Runs weekly and unattended (scripts/run_report.sh) and is published as the site's Analysis page. Writes only under report/.
 ---
 
 # cardtrack research report
 
-The report lives OUTSIDE this repo, in `~/projects/ais/system_card_report/`, and reads a snapshot
-of this repo's data. Never edit the cardtrack codebase as part of this task; raise pipeline issues
-in the report's future-work section and in the final message instead.
+The report lives in `report/` and reads a snapshot of this repo's data. It runs weekly and
+unattended (`scripts/run_report.sh`, prompt `prompts/REPORT.md`), and every edition is published on
+the site's Analysis page with a disclaimer naming the model and linking this file at the commit
+used. Maintainers steer the report by editing this skill. Never edit anything outside `report/`
+as part of this task; raise pipeline issues in `report/pipeline_proposals.md` and in the run summary.
 
-Layout of `~/projects/ais/system_card_report/`:
+Layout of `report/` (`data/`, `pairs/`, `out/` and `tex/*.pdf` are generated and gitignored):
 
 - `snapshot.sh`            copies `data/docs.sqlite`, `logs/run-*.log`, friction/candidates files and exports
                            host journal events (suspend/resume + service starts) to `data/`
@@ -20,33 +22,37 @@ Layout of `~/projects/ais/system_card_report/`:
                            `classifications/overrides.json` holds hand-verified corrections with reasons
 - `analyze.py`             all numbers, `out/macros.tex`, `out/tables/*.tex`, `out/figures/*.{pdf,png}`,
                            `out/results.json`, `out/comprehensive_report.md`
-- `report/report.tex`      the polished report: a body under 4 pages plus appendices (A: every substantive
+- `tex/report.tex`         the polished report: a body under 4 pages plus appendices (A: every substantive
                            change with URL and version ids, for verification; B: tracker reliability, kept out
                            of the body because the science is about the documents, not the host);
                            contains NO hard-coded numbers, only `\input`s
-- `out/pipeline_proposals.md` evidence-backed fixes for the tracker (full daily coverage with conditional
+- `literature.md`          literature baselines and their citations (hand-curated; `tex/refs.bib`)
+- `pipeline_proposals.md`  evidence-backed fixes for the tracker (full daily coverage with conditional
                            requests, soft-404 detection, footnote-safe extraction, raw-vs-extracted attribution)
 - `run.sh`                 `snapshot | pairs | analyze | pdf | all`
 
 ## Procedure
 
-1. `cd ~/projects/ais/system_card_report && ./run.sh snapshot && ./run.sh pairs`
-   (`uv sync` once on a fresh clone; needs `latexmk`, `pdftoppm`, `pdfinfo`, `journalctl` optional).
+1. `report/run.sh snapshot && report/run.sh pairs`
+   (`uv sync` once on a fresh clone; needs `latexmk`, `pdftoppm`, `pdfinfo`, `pandoc`, `journalctl`
+   optional). The unattended runner does this step before handing over.
 2. If `pairs/batches/` is non-empty, fan out one general-purpose sub-agent per batch file, all in one
    message. Prompt: "Read CLASSIFY_INSTRUCTIONS.md and follow it exactly. Input batch: <path>. Output
    path: classifications/batch_<date>_<i>.json." Nine agents handled 176 pairs in about 5 minutes.
    Spot-check 3 furniture and 3 content labels against the diffs before trusting them. For any pair
-   summarised as a deletion, check the raw capture in the repo's `data/raw/` (the extractor has dropped
+   summarised as a deletion, check the raw capture in `data/raw/` (the extractor has dropped
    footnotes before); record verified corrections in `classifications/overrides.json`.
-3. `./run.sh analyze && ./run.sh pdf`. Look at every `report/page-*.png` and every figure PNG; fix
-   layout in `analyze.py` (figures) or `report.tex` (placement), never by typing numbers.
+3. `report/run.sh analyze && report/run.sh pdf`. Look at every `tex/page-*.png` and every figure PNG;
+   fix layout in `analyze.py` (figures) or `tex/report.tex` (placement), never by typing numbers.
 4. Spawn two fresh review agents (code correctness vs. results.json; prose/figures) and fix what matters.
 5. Keep the body under 4 pages and lead with what changed in the documents; host and pipeline failures go
-   to Appendix B and `out/pipeline_proposals.md`. Deliberately exclude corpus composition, the curation
+   to Appendix B and `pipeline_proposals.md`. Deliberately exclude corpus composition, the curation
    funnel and metadata churn from the body (they stay in `out/comprehensive_report.md`). Appendix A is
    generated (`out/tables/appendix_changes.tex`) and must list every substantive publisher-side pair with
    its canonical URL and version ids so readers can verify claims against the live page and the database.
-6. `okular report/report.pdf &` to show the result.
+6. Interactive runs only: `okular report/tex/report.pdf &`. The HTML edition is built afterwards by
+   `scripts/report_html.py` (pandoc). Keep tables as `tabular`/`longtable` and cross-references as
+   `\ref`; the converter fails loudly if a table does not survive, rather than publishing without it.
 
 ## Analysis conventions worth keeping
 
@@ -58,4 +64,4 @@ Layout of `~/projects/ais/system_card_report/`:
   non-changes even though a version was stored.
 - The fingerprint furniture filter was recomputed on 2026-08-31 (`FILTER_RECOMPUTE` in `analyze.py`);
   pre/post comparisons key off that date.
-- Literature baselines and their citations are in `out/literature.md` and `report/refs.bib`.
+- Literature baselines and their citations are in `report/literature.md` and `report/tex/refs.bib`.

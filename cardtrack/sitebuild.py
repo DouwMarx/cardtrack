@@ -77,6 +77,48 @@ def _doc_text(repo: Repo, text_path: str | None) -> str | None:
     return path.read_text(encoding="utf-8")
 
 
+def model_display_name(model_id: str) -> str:
+    """claude-opus-5-5 -> Claude Opus 5.5; claude-haiku-4-5-20251001 -> Claude Haiku 4.5."""
+    words, nums = [], []
+    for part in model_id.split("-"):
+        if part.isdigit() and len(part) < 8:
+            nums.append(part)
+        elif not part.isdigit():
+            words.append(part.capitalize())
+    return " ".join(words + ([".".join(nums)] if nums else [])) or model_id
+
+
+def _analysis(repo: Repo) -> dict | None:
+    """The weekly research report (report/published/, written by
+    scripts/report_html.py), or None when no edition has been published yet."""
+    pub = repo.root / "report" / "published"
+    try:
+        meta = json.loads((pub / "meta.json").read_text(encoding="utf-8"))
+        html = (pub / "report.html").read_text(encoding="utf-8")
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not (meta.get("model") and meta.get("skill_url")):
+        return None   # the disclaimer is mandatory; no provenance, no page
+    return {**meta, "model_name": model_display_name(meta["model"]),
+            "html": html.replace('src="figures/', 'src="./analysis/figures/'),
+            "dir": pub}
+
+
+def _write_analysis(env: Environment, ctx: dict, site: Path, analysis: dict | None) -> None:
+    out = site / "analysis"
+    shutil.rmtree(out, ignore_errors=True)
+    if analysis is None:
+        (site / "analysis.html").unlink(missing_ok=True)
+        return
+    out.mkdir(parents=True)
+    if (analysis["dir"] / "figures").is_dir():
+        shutil.copytree(analysis["dir"] / "figures", out / "figures")
+    if (analysis["dir"] / "report.pdf").exists():
+        shutil.copyfile(analysis["dir"] / "report.pdf", out / "report.pdf")
+    (site / "analysis.html").write_text(
+        env.get_template("analysis.html.j2").render(**ctx, analysis=analysis), encoding="utf-8")
+
+
 def build_site(repo: Repo, run_pagefind: bool | None = None) -> dict:
     """Render everything. Returns a summary dict."""
     conn = connect(repo.db_path)
@@ -118,9 +160,10 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
     asset_v = {f.name: hashlib.sha256(f.read_bytes()).hexdigest()[:10]
                for f in static_src.iterdir() if f.is_file()}
 
+    analysis = _analysis(repo)
     ctx_common = {"site_title": site_title, "gh_repo": gh_repo,
                   "generated_at": generated_at, "asset_v": asset_v,
-                  "risk_labels": risk_labels}
+                  "risk_labels": risk_labels, "has_analysis": analysis is not None}
 
     # explicit cache policy; without it the CDN default (4 h browser TTL)
     # serves stale assets after every deploy
@@ -137,6 +180,8 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
         env.get_template("search.html.j2").render(**ctx_common), encoding="utf-8")
     (site / "about.html").write_text(
         env.get_template("about.html.j2").render(**ctx_common), encoding="utf-8")
+
+    _write_analysis(env, ctx_common, site, analysis)
 
     # per-document pages (including dead/removed-adjacent statuses; 'removed' docs are
     # excluded from site_documents, and their stale pages are pruned below)

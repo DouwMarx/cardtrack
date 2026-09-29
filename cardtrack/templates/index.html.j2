@@ -15,6 +15,7 @@
   <nav>
     <a href="./search.html">Full-text search</a>
     <a href="./about.html">About</a>
+    {% if has_analysis %}<a href="./analysis.html">Analysis</a>{% endif %}
     {% if gh_repo %}<a href="https://github.com/{{ gh_repo }}">GitHub</a>{% endif %}
   </nav>
 </header>
