@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sqlite3
 import sys
@@ -48,7 +49,8 @@ def load_secret_values(repo: Repo) -> list[bytes]:
                 v = line.split("=", 1)[1].strip().strip("'\"")
                 if len(v) >= 12:
                     values.append(v.encode())
-    cred_path = Path.home() / ".claude" / ".credentials.json"
+    cred_path = Path(os.path.expanduser(os.environ.get("CLAUDE_CONFIG_DIR")
+                                        or "~/.claude")) / ".credentials.json"
     if cred_path.exists():
         try:
             def collect(node):
