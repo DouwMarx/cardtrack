@@ -87,3 +87,27 @@ Your DNS is already on Cloudflare (chad/mimi nameservers), so this is a one-time
 - CNAME `cards` → `cardtrack.pages.dev` created via the DNS API
 - Custom domain `cards.douwmarx.com` attached to the Pages project
 - End-to-end check: https://cards.douwmarx.com serves the built site
+
+## Public archive (data.systemcards.org)
+
+R2 buckets (see `scripts/backup.sh`, README "Operational notes"): a private backup
+bucket (`R2_BUCKET`) and a public one (`R2_PUBLIC_BUCKET`) connected to the custom
+domain `data.systemcards.org`, `r2.dev` access off. One R2 API token, Object Read &
+Write, limited to those two buckets. Two zone rules on systemcards.org (dashboard:
+Rules > Create rule; not in code, so recreate them by hand):
+
+1. Redirect Rule `data root to archive`: R2 has no index page, so send the bare
+   address to the About page's archive section.
+   - Expression: `(http.host eq "data.systemcards.org" and http.request.uri.path eq "/")`
+   - Static redirect to `https://systemcards.org/about#archive`, 302, query string not preserved.
+2. Response Header Transform Rule `sandbox archived pages`: archived HTML originals
+   still contain the publisher's JavaScript; this makes browsers render them as static
+   documents under an opaque origin (no scripts, forms, pop-ups, trackers). PDFs are
+   excluded because Chrome's PDF viewer can refuse sandboxed documents.
+   - Expression: `(http.host eq "data.systemcards.org" and ends_with(http.request.uri.path, ".html"))`
+   - Set static `Content-Security-Policy: sandbox; default-src 'none'; img-src * data:; style-src * 'unsafe-inline'; font-src *`
+   - Set static `X-Content-Type-Options: nosniff`
+
+Check after any change:
+`curl -sI https://data.systemcards.org/` (302 to the About page) and
+`curl -sI https://data.systemcards.org/raw/<hash>.html` (both headers present).
