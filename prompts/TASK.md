@@ -55,7 +55,7 @@ for clarification, is always the safe move.
    and evidence URLs. Skip marketing pages, product launches without documentation,
    and press coverage.
 2. **Targeted web search**: search for model/system cards and independent evals
-   released since the last successful agent run (`logs/.agent_last_success`;
+   released since the last successful agent run (`state/.agent_last_success`;
    minimum lookback ~72 hours, and use 72h if the file is missing) — a fixed
    window would leave a permanent blind spot after any multi-day outage. Also
    check any allowlisted org silent for >14 days.

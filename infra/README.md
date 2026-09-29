@@ -12,6 +12,7 @@ Everything is code except the secrets, which you deliver in one command.
 | Secrets + switch-on | `push-secrets.sh`, `prod.env.example` | writes `.env`, logs `gh` in, enables the timers |
 | Moving production | `migrate-data.sh` | stops the old host, copies `data/raw`, hands over |
 | Proof without a VM | `test-bootstrap.sh` | runs the bootstrap + test suite + report build in a Debian 13 container |
+| Dress rehearsal | `rehearse.sh` | a throwaway Debian 13 "server" (container with systemd + sshd): provision, push a dev-role copy of the secrets, install timers, one full daily run under systemd |
 
 Sizing: `cx23` (2 vCPU x86, 4 GB, 40 GB, about 6 EUR/month with IPv4). The pipeline
 uses about 3 GB of disk and runs one job at a time. IPv4 stays on because github.com
@@ -85,6 +86,15 @@ what your own devices can reach:
 Then generate a one-off, pre-approved auth key tagged `tag:cardtrack` and pass it as
 `tailscale_auth_key` (Terraform) or `--tailscale-key-file` (provision.sh, where
 `--lockdown` then drops all public inbound traffic).
+
+## Rehearse before touching a real host
+
+`./rehearse.sh` runs the real `provision.sh`, `push-secrets.sh` and timers against a
+local Debian 13 container reached over SSH, then one full daily run under systemd
+with `CARDTRACK_ROLE=dev` (nothing is committed, pushed, deployed or filed). It clones
+the default branch from GitHub, so push first. Its first run found that the sandbox
+hid `~/.local/bin/claude` on Debian (the agent failed with exit 127), which the NixOS
+laptop could never show.
 
 ## Operate
 
