@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:08:30Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-6&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-6%0AURL%3A%20https%3A//www.anthropic.com/research/exploit-evals%0AFingerprint%3A%201a5bdb06d2bae94bbdcbd08a40af4aadb46837de3d9de885811b559220075e8c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-6&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-6%0AURL%3A%20https%3A//www.anthropic.com/research/exploit-evals%0AFingerprint%3A%20a0178991bd62e2dab77e50504a6e6cea0c66f225e40fd1276375c0a3617d0bbf%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-29T07:46:21Z</td>
+          <td>text/html</td>
+          <td>195,305</td>
+          <td><code title="a0178991bd62e2dab77e50504a6e6cea0c66f225e40fd1276375c0a3617d0bbf">a0178991bd62e2da</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:08:30Z</td>
           <td>text/html</td>
@@ -75,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -134,6 +141,14 @@
           <div class="just">openness: "closed" → "restricted"</div>
           <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
+      <li>
+        <span class="ts">2026-09-29T07:46:21Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/exploit-evals" rel="noopener nofollow">https://www.anthropic.com/research/exploit-evals</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -146,7 +161,6 @@
       <pre class="extracted" data-pagefind-body>Subscribe to the Frontier Red Team newsletter
 Get updates on our latest red-teaming research and findings.
 Frontier Red Team
-May 22, 2026
 Newton Cheng, Keane Lucas, Winnie Xiao, Nicholas Carlini, and Milad Nasr
 Claude Mythos Preview’s ability to develop exploits is a step-change over previous frontier models. This was one of our primary motivations for rolling out the model carefully through Project Glasswing rather than through a general release. Mythos Preview is capable of finding complex vulnerabilities, but what concerned us most in our internal testing was that Mythos Preview could both turn vulnerabilities into exploit primitives, and combine those primitives together into complete end-to-end attack chains.
 When we published our Mythos Preview results, we measured its capabilities by having it search for novel zero-days and then build exploits for them. Qualitative evaluations like this are helpful for showcasing a model’s capabilities—but ideally, we would have high-quality quantitative benchmarks that let us measure them precisely. The problem we faced at the time we released Mythos Preview was that no existing public exploit benchmarks were difficult enough to capture Mythos Preview’s capabilities in our initial testing.
@@ -178,14 +192,16 @@ Whereas the strongest models from February of this year could only barely develo
 As models continue to become more capable, the cost of misjudging what they can do rises with it. Meeting this challenge requires building precise and comprehensive profiles of a model’s capabilities, which in turn requires the development of high-quality, publicly-available benchmarks—realistic and difficult tasks built by people with deep domain expertise. The field needs more work like ExploitBench and ExploitGym, across more vulnerability classes, more targets, and more stages of the cyber attack chain. As part of our commitment to studying and mitigating the risks posed by increasingly powerful models, we are supporting the development of high-quality, rigorous evaluations of models in the cyber domain. Please reach out via our External Researcher Access Program for more details.
 Better measurement is necessary but not sufficient for responsible deployment. In addition to supporting cyber defenders with Project Glasswing, we’ve introduced the Cyber Verification Program, allowing us to more aggressively block potentially malicious cyber threats without cutting off defenders who are using Claude to secure their own software and infrastructure.
 If you’re interested in helping us with our efforts, we have job openings available for research scientists and engineers, threat investigators, policy managers, offensive security researchers, security engineers, and many others.
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
+Guest writer and physicist Matt von Hippel shares what happened when he issued a challenge to AI companies to solve a problem in his former subfield of theoretical physics.
 Read more
-Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
+To see what works and what breaks when agents are sent into a market, we made a miniature market of Claudes.
+Read more
+Claude made the open-source models that scientists use to predict and design biomolecules faster and more memory-efficient. Claude optimized more than 30 of these models in just under four weeks, speeding them up roughly 4x on average. It also created a low-memory mode that enables the accurate prediction of biomolecular systems larger than 10,000 tokens (amino acids, nucleotides, and atoms from small molecules and ions) on a single NVIDIA GPU node.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-29T06:54:37Z</p></footer>
+<footer><p>Data updated 2026-09-29T07:54:35Z</p></footer>
 </body>
 </html>

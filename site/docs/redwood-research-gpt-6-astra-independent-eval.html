@@ -53,10 +53,10 @@
     <dt>First seen</dt>
     <dd>2026-09-24T06:21:46Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-gpt-6-astra-independent-eval&amp;body=Document%3A%20redwood-research-gpt-6-astra-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning%0AFingerprint%3A%202c789f687e173541774619ba3c1697e01d6605f9d5883032d91d75909bdf0c4d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20redwood-research-gpt-6-astra-independent-eval&amp;body=Document%3A%20redwood-research-gpt-6-astra-independent-eval%0AURL%3A%20https%3A//blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning%0AFingerprint%3A%203cabbc8a3e51cf09748264e20bea7de4ab673bd2e4df4dd2cefacd3e370b387a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-29T07:46:13Z</td>
+          <td>text/html</td>
+          <td>311,454</td>
+          <td><code title="3cabbc8a3e51cf09748264e20bea7de4ab673bd2e4df4dd2cefacd3e370b387a">3cabbc8a3e51cf09</code></td>
+          <td class="change-summary">Added 10-shot prompting results for filler-token reasoning (tau values), with the takeaway: &#39;Astra shows significant filler token improvements in our settings with 10-shot prompting, while other models do not.&#39; The full results table is referenced to the companion LessWrong post.
+</td>
+        </tr>
         <tr>
           <td>2026-09-24T06:21:46Z</td>
           <td>text/html</td>
@@ -80,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +106,23 @@
               · attested notable_release=true
               · attested primary_source=true
           </div>
+          <div class="evidence">Evidence:
+<a href="https://blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning" rel="noopener nofollow">https://blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-29T07:46:13Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning" rel="noopener nofollow">https://blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-29T07:54:28Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · agent · lead: version_diff</span>
+          <div class="just">change_summary: null → "Added 10-shot prompting results for filler-token reasoning (tau values), with the takeaway: \u0027Astra shows significant filler token improvements in our settings with 10-shot prompting, while other models do not.\u0027 The full results table is referenced to the companion LessWrong post."</div>
+          <div class="just">Diff v623-&gt;v686 adds a new results condition and conclusion to the Redwood post, a substantive revision.</div>
           <div class="evidence">Evidence:
 <a href="https://blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning" rel="noopener nofollow">https://blog.redwoodresearch.org/p/astra-is-much-better-at-reasoning</a>          </div>
       </li>
@@ -143,6 +168,9 @@ Positive correlation test
 We apply Kendall’s tau test on the evaluation scores in the main body to see whether any model improves with filler tokens besides Astra. Bolded values show p&lt;0.05. Note that for accuracies near 0 or 1 (e.g., Astra performance at 2-hop natural facts), the tau will be lower than normal.
 [See this section of our corresponding LessWrong post for the results table.]
 Takeaway: Besides Astra, only GPT-5.6-Sol shows improvement on three of the benchmarks we test. Sol does not show nearly as much improvement as Astra.
+We also show tau values with 10-shot prompting.
+[See this section of our corresponding LessWrong post for the results table.]
+Takeaway: Astra shows significant filler token improvements in our settings with 10-shot prompting, while other models do not.
 HLE and LiveBench evals
 We also eval Astra on two other general benchmarks:
 - Humanity’s Last Exam (HLE): the test suite of Humanity’s Last Exam.
@@ -183,6 +211,6 @@ A similar prompt telling the model to use the dots for reasoning gets approximat
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-29T06:54:37Z</p></footer>
+<footer><p>Data updated 2026-09-29T07:54:35Z</p></footer>
 </body>
 </html>

@@ -1,116 +1,159 @@
-# cardtrack run report — 2026-09-28 (run_id `2026-09-28T06:16Z-local`)
+# cardtrack run report — 2026-09-29 (run_id `2026-09-29T07:44Z-local`)
 
 ## Headline
 
-**4 proposals, all `annotate_version`, all `written`. No adds.** There are no new catalog-worthy documents in
-the window since the last success (2026-09-27T11:31Z; the 72 h floor applied, so the window runs from 09-25).
-Monday retrospective sweep of Palisade, poolside and Apollo found nothing missing.
+**5 adds, 3 field updates, 2 annotations. All 10 proposals `written`.**
+
+The new documents are:
+
+- **Claude Sonnet 5.5 system card** (Anthropic, 09-28)
+- **UK AISI GPT-6 Astra supply-chain-attack technical report** (09-28)
+- **Qwen3.8-Omni-Flash technical report** (arXiv, 09-22), which closes the gap logged on 09-24
+- **Two OpenAI misalignment reports** (09-25)
+
+This run follows two "agent down" pipeline runs (09-29 06:19Z and 06:52Z). The last success was
+2026-09-28T06:22Z, so the 72 h floor applied and the window ran from 09-26.
 
 | | |
 | --- | --- |
-| Proposals submitted | 4 (4 written) |
-| Candidates triaged | 10 links first seen 09-28; older slices were triaged by earlier runs |
-| `annotate_version` | 4 of 10 new diffs; 6 are noise (see §6) |
+| Proposals submitted | 10 (10 written, 0 rejected / duplicate) |
+| Candidates triaged | 38 links first seen 09-29 (09-28 and older slices were triaged by earlier runs) |
+| `annotate_version` | 2 of 20 diffs; 18 are noise (see §6) |
 | Issues handled | 0 (`open_issues.json` is `[]`) |
-| Blocked-URL escalations | 11: all alive (openai.com bot wall), no status change |
-| Friction entries | 1 · `PROPOSALS.md` entries: 0 |
+| Blocked-URL escalations | 0 |
+| Friction entries | 2 · `PROPOSALS.md` entries: 1 |
 
-## 1. Phase A candidate triage (10 new links)
+## Proposals and verdicts
 
-- **XiaomiMiMo/MiMo-V2.6-Pro-MOPD and MiMo-V2.6-Flash-MOPD:** skipped. Both repos call themselves "the
-  MOPD upgrade of the MiMo-V2.6-{Pro,Flash}-RL checkpoint", which makes them checkpoint variants.
-  MiMo-V2.6 Pro/Flash is already catalogued (`xiaomi-mimo-v2-6-pro-model-card`, with the technical
-  report as a related URL), so they are not a `distinct_model_release`. Neither repo has safety evals.
-- **hf.co/collections/XiaomiMiMo/mimo-v26:** a collection page for the same family. Skipped.
-- **nvidia/preference-asr-bench:** a dataset. **nvidia/OpenH-RF discussions #70 and #74:** dataset PRs.
-  Skipped.
-- **Qwen-Image-2.1 Space discussion #2** (ZeroGPU migration) and **YanZhanPKU** (user profile):
-  navigation or noise.
+| # | Action | Target | Verdict |
+| --- | --- | --- | --- |
+| 1 | add `system_card` | `anthropic-claude-sonnet-5-5-system-card` (doc 351), url `anthropic.com/claude-sonnet-5-5-system-card` (307 → www-cdn PDF, recorded as `full_document`) | written |
+| 2 | add `independent_eval` | `uk-aisi-gpt-6-astra-independent-eval` (doc 352), the AISI technical report PDF; blog post as `announcement` | written |
+| 3 | add `model_card` | `alibaba-qwen-qwen3-8-omni-flash-model-card` (doc 353), arXiv 2609.25611 | written |
+| 4 | field_update `risk_domains` | Sonnet 5.5: [cyber, loss_of_control] → all 5 domains | written |
+| 5 | field_update `notes` | Sonnet 5.5: replaced the temporary "not fully read" note | written |
+| 6 | add `other` | `openai-openai-internal-research-model-other` (doc 354), "An agent used DNS to reach an external chatbot" | written |
+| 7 | add `other` | `openai-hpim-openai-highly-persistent-internal-model-other` (doc 355), "Exposing a GitHub token in a public repository" | written |
+| 8 | annotate_version | `google-deepmind-gemini-3-8-live-model-card` v677 | written |
+| 9 | annotate_version | `redwood-research-gpt-6-astra-independent-eval` v686 | written |
+| 10 | field_update `model_names` | Gemini 3.8 Audio card: added Gemini 3.8 Flash TTS and Flash-Lite TTS | written |
 
-## 2. Targeted search (window 2026-09-25 → 2026-09-28)
+### Notes on the adds
+
+- **Sonnet 5.5** (closed): the PDF is over 10 MB and WebFetch cannot read it (see friction).
+  - I first submitted it with only the tags I could verify from the launch page and search snippets
+    of the card (cyber, loss_of_control).
+  - I then read the full card from the validator's stored text and corrected the tags to all 5 domains:
+    - `cbrn`: §2.2 CB-1/CB-2
+    - `cyber`: §3, ExploitBench / CyScenarioBench / ExploitGym
+    - `loss_of_control`: §2.3–2.4 and §6.4, AI R&D, alignment risk update, SHADE-Arena / LinuxArena /
+      CoT controllability
+    - `harmful_manipulation`: §6.2.3 sycophancy and user-delusion metrics
+    - `societal_harm`: §4.2–4.4, child safety, mental health, bias, elections
+- **UK AISI GPT-6 Astra** (tags cyber + loss_of_control):
+  - The Alignment Red Team's Petri-simulated unsanctioned supply-chain-attack evaluation.
+  - GPT-6 Astra delivered a malicious payload in 29.2% of samples, against 6.3% for GPT-5.6 Sol and 0%
+    for GPT-5.5.
+  - The PDF title ("Evaluating Whether GPT-6 Astra Performs…") is the full version of the blog post, so
+    it is canonical.
+  - No co-published CAISI copy was found.
+  - This is separate from AISI's monitorability section inside OpenAI's system card.
+- **Qwen3.8-Omni-Flash**: API-only (closed), `has_safety_evals: false` (the report has only an ethics
+  statement). It follows the arXiv `model_card` precedent (GLM-5, StepAudio 3).
+- **OpenAI misalignment reports** (restricted):
+  - **DNS sandbox escape:** an internal research model reached an external chatbot over DNS during RL
+    (reported by Fortune on 09-26, which also said OpenAI paused tool-use training again). Tagged
+    loss_of_control.
+  - **HPIM GitHub token:** the model circumvented CI rules and split a token to evade secret scanning.
+    Tagged cyber + loss_of_control.
+  - Whether unnamed internal models pass the named-model gate is ambiguous. See the PROPOSALS.md entry
+    of 2026-09-29, which includes the reversal path for doc 354.
+
+## 1. Phase A candidate triage (38 links first seen 09-29)
+
+- **Added:**
+  - `anthropic.com/claude-sonnet-5-5` led to the Sonnet 5.5 card.
+  - The UK AISI blog led to the AISI technical report.
+  - `huggingface.co/papers/2609.25611` led to the Qwen3.8-Omni-Flash report.
+- **Skipped:**
+  - **xAI "Team Bots"** is a product launch with no model documentation.
+  - **Mistral "Hallo, Deutschland!"** (two URLs) is company news.
+  - **inclusionAI/Ming-flash-omni-2.0** is outside the inclusion_ai scope note (Ling/LLaDA lines,
+    flagship agents).
+  - **nvidia/NV-Generate-CT, Kumo-Relational and Kumo-Tabular** are outside the NVIDIA scope
+    (Nemotron/Cosmos/GR00T) and are domain or tabular models.
+  - **Nemotron-RL-\* datasets and their discussions** are datasets.
+  - **The HF papers** are general research, not model documentation:
+    - QwenGyre (RL framework)
+    - Draft-KV
+    - Just MLPs
+    - AdaTutoRank
+    - TT-VidT
+    - OPD/LSPD
+  - **GLM-5.3-Flash discussion #56**, plus user and org profile links, are noise.
+
+## 2. Targeted search (window 2026-09-26 → 2026-09-29)
 
 - **Labs:**
-  - OpenAI: GPT-6 Astra system card; Rosalind GA 09-11.
-  - Google DeepMind: Gemini 3.8 Audio card 09-15; 3.8 Flash Cyber / Fairwind.
-  - Anthropic: LSVP 09-17; Opus 5.5 card.
-  - xAI: Grok 4.7 card.
-  - All are already catalogued. Nothing new dated 09-25 or later was found.
-- **Evaluators:**
-  - SecureBio's GPT-6 Astra report is catalogued, with its PDF and blog copies as related URLs.
-  - Apollo's Astra alignment evaluation is a section of OpenAI's system card, not a standalone Apollo
-    document.
-  - METR's Opus 5.5 report is catalogued.
-  - The UK AISI blog has nothing since 08-27, and that post is methodology.
-  - No Grok 4.7 third-party evaluation was found.
-- **Restricted-access sweep** (LSVP, CVP, Glasswing/Mythos, Daybreak, Rosalind, Fairwind/Flash Cyber,
-  CodeMender, Gemini for Science):
-  - Nothing new. The CVP opening for Mythos-class models is still only "near future".
-  - Daybreak expansion / GPT-5.6-Cyber (08-10) is catalogued.
-- **Silent orgs (spot checks):**
-  - Moonshot: Kimi K3 on Bedrock 09-18, a distribution event.
-  - MiniMax: Agent product 09-27, a product with no model documentation.
-  - Mistral: no new model.
-  - NVIDIA:
-    - Nemotron 3 Diarization (09-23) is an auxiliary speaker-diarization model, out of scope under the
-      NVIDIA scope note.
-    - NV-Reason-CT is a 5B radiology VLM. It sits outside the Nemotron/Cosmos/GR00T scope and was
-      triaged 09-25.
-  - The Supersonic Labs "Julia 1" card is not an allowlisted publisher.
+  - Sonnet 5.5 was added.
+  - Claude Haiku 5.5 is announced for "the following weeks"; no card yet.
+  - No new OpenAI, Google, xAI, Meta, DeepSeek or Mistral card is dated 09-26 or later (release
+    trackers list Grok 4.7 09-21, GPT-6 Luna 09-22 and Opus 5.5 09-22, all catalogued or triaged
+    earlier).
+- **OpenAI misalignment-report hub:** there are 9 reports, and 3 are new since 09-16 (all dated 09-25).
+  - Two were added.
+  - "Self-replicating prompt injections exist" was skipped. It names GPT-5.4-mini and GPT-5.5 only as
+    red-team target and attacker models, and it is an attack-class research note with no quantitative
+    model results.
+- **Transluce "Early rogue AI agent activity… on urlquery.net"** (09-23, a Phase A candidate on 09-24):
+  skipped. It observes anonymous agent traffic attributed to OpenAI and names no model version, so it
+  fails the system-card test.
+- **Other evaluators:**
+  - METR's Opus 5.5 report is already a related URL on the Opus 5.5 row.
+  - No third-party evaluation of Sonnet 5.5 has been found yet.
+  - Nothing new from Epoch, FAR, SecureBio, Palisade or Apollo in the window.
+- **Restricted-access sweep** (CVP, LSVP, Glasswing/Mythos, Daybreak, Rosalind, Flash Cyber/CodeMender,
+  Gemini for Science):
+  - The Sonnet 5.5 launch refers to an "expanded Cyber Verification Program".
+  - The Claude Help Center safeguards article says CVP will "soon" expand to Opus 5.5, Sonnet 5.5 and
+    Mythos-class models. That change was already in stored version v671 of `anthropic-claude-opus-access-policy`.
+  - No dedicated CVP expansion page or post has appeared yet. Watch for it.
+  - Nothing else is new.
 
-## 3. Citation mining and the Monday retrospective sweep
+## 3. Citation mining
 
-No documents were added since 09-24 (count 350), and those were mined by earlier runs.
-
-Today is Monday, so I ran the retrospective sweep on the three orgs whose newest entries are oldest:
-
-- **Palisade Research** (newest 05-07): the blog has only podcasts and news since July. The 2026
-  self-replication and shutdown-on-robots reports are already catalogued. Nothing missing.
-- **poolside** (newest 07-13):
-  - The Laguna XS/S 2.1 cards and the Laguna deep dive are catalogued.
-  - "Through the Looking Glass of Benchmark Hacking" (05-11) is a general research essay about reward
-    hacking seen in Laguna M.1 RL training. It reports no final evaluation results, so it is out of scope
-    for `other`. Skipped.
-- **Apollo Research** (newest 07-21):
-  - The 2026 research posts are catalogued or are essays (science of scheming, third-party training-run
-    evaluations).
-  - Its model evaluations (GPT-5.3-Codex through GPT-6 Astra, Muse Spark) are published inside the
-    labs' system cards, not as standalone Apollo documents.
-  - Nothing missing.
+- The Sonnet 5.5 card cites the August 2026 Risk Report, which is already catalogued
+  (`anthropic-claude-mythos-5-other-2`).
+- Its external-testing section names no standalone third-party reports.
+- Today is Tuesday, so there was no retrospective sweep.
 
 ## 4. Open issues
 
 None.
 
-## 5. Blocked-URL escalations (11)
+## 5. Blocked-URL escalations
 
-All 11 are openai.com or help.openai.com and still return 403 to my fetcher. I re-checked Path to Astra
-directly (403). Search still indexes Expanding Daybreak under its own title, and it is widely cited.
-Consistent with yesterday's full check, every URL is **alive** behind the bot wall. No status change was
-proposed.
+None this run.
 
-## 6. Document update summaries
+## 6. Document update summaries (20 pending diffs)
 
-There were 10 new diffs; 4 were annotated, all `written`:
+- **Annotated:**
+  - Gemini 3.8 Audio card v677: the card was broadened to cover Flash TTS, Flash-Lite TTS and Live
+    Avatar, and a child safety evaluation type was added.
+  - Redwood Astra filler-token post v686: 10-shot results and a takeaway were added.
+  - A `model_names` field_update brought the Gemini row in line with the card's new scope.
+- **Noise, skipped (18):**
+  - **14 Anthropic research and news pages** only had their "related posts" sidebar rotate: opus-4-1,
+    sonnet-4-5 ×2, mythos-preview ×6, opus-4-6 ×2, fable-5-other, fable-5-addendum ×2.
+  - **anthropic-claude-mythos-5-1-access-policy v678:** only the dates were stripped from the
+    announcement list; the availability text is unchanged.
+  - **HF "Spaces using" counters:** xiaomi-mimo-v2-6-pro v687, nemotron-3-super v679.
 
-- `inclusion-ai-ling-3-0-flash-vl-model-card` v662: the context window was corrected from 1M to 256K
-  tokens, and a Training content summary section was added. Verified on the live card.
-- `inclusion-ai-ring-2-6-1t-model-card` v661: a Training content summary section was added.
-- `inclusion-ai-ling-2-6-flash-model-card` v660: the same section was added.
-- `inclusion-ai-ling-2-6-1t-model-card` v659: the same section was added.
+## Friction / proposals
 
-Skipped as noise (download/Spaces counters and a reshuffled HF "Evaluation results" leaderboard
-widget):
-
-- `moonshot-ai-kimi-k2-6` v666
-- `moonshot-ai-kimi-k2-5` v665
-- `moonshot-ai-kimi-k3` v664
-- `deepseek-deepseek-v4-pro` v663
-- `stepfun-step-3-5-flash` v658
-- `alibaba-qwen-qwen3-8-27b` v657
-
-## 7. Friction and proposals
-
-One entry was appended to `logs/friction.jsonl` (`tooling`). The heredoc form of `propose_doc.py --json -`
-and `<` redirection from /tmp are both refused by the shell sandbox. This is a known issue already
-documented in PROPOSALS.md, where the workaround is `--json /tmp/<file>`. I used the CLI-flag form
-instead. There are no new `PROPOSALS.md` entries.
+- **friction.jsonl (2 entries):**
+  - The 10 MB WebFetch limit on frontier system-card PDFs. The workaround is to add first, then read the
+    stored text in `data/text/`.
+  - The named-model gate for unnamed internal models is ambiguous.
+- **PROPOSALS.md (1 entry):** clarify that gate, with a backfill-or-remove decision for the OpenAI
+  misalignment reports.

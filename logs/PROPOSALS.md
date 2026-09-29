@@ -1757,3 +1757,34 @@ unreleased model". The latter lets triage apply the named-model gate mechanicall
 **Evidence.** `openai-gpt-5-6-sol-other-4` (document 344, written today); hub page lists six reports,
 all "Sep 16, 2026"; Axios 2026-09-16 coverage; `config/sources.yaml` lines 23–28; `logs/friction.jsonl`
 entries `2026-09-24T07:05:00Z` and `2026-09-25T07:20:00Z` (429s).
+
+## 2026-09-29 — Clarify the named-model gate for incident reports about unnamed internal models
+
+**Problem.** OpenAI's misalignment-report hub now has 9 reports, and it will keep growing. Most of
+them describe an unnamed "internal research model" or "unreleased internal model". The criteria and
+policy pull in different directions:
+
+- `criteria.yaml` (`about_a_specific_model_or_eval`) requires a NAMED model.
+- The 2026-09-04 openness policy lists "internal-only research models" as a `restricted` example.
+- `openai-gpt-5-6-sol-other-3` is catalogued with model "OpenAI internal-only research model".
+
+Runs have therefore split. The 09-25 run applied the gate and skipped five 09-16 reports. Today I added
+the 09-25 DNS sandbox-escape report, on the same precedent and because of its Fortune coverage and the
+training pause.
+
+**Suggested change.** Add one explicit sentence to `criteria.yaml` or TASK.md in either direction.
+
+- Option (a): a first-party incident or risk report about a specific internal checkpoint qualifies, and
+  the model is recorded as "<Lab> internal research model".
+- Option (b): an unnamed internal model fails the gate unless the model identity recurs across
+  documents, as HPIM does.
+
+If (a), a later run should backfill the five 09-16 reports. If (b), `openai-openai-internal-research-model-other`
+(document 354, added today) should get `status_change` → `removed`.
+
+**Evidence.**
+
+- `alignment.openai.com/misalignment-reports/` (index, 9 entries).
+- Documents 354 and 355 (written today).
+- PROPOSALS entry of 2026-09-25.
+- `logs/friction.jsonl` entry `2026-09-29T08:31:00Z`.

@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:06:41Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-other&amp;body=Document%3A%20anthropic-claude-fable-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/project-pilot%0AFingerprint%3A%20eb7054dc479b4748b34dc4e6438a16005f96feb256dc757bf84a1855fa54974e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-fable-5-other&amp;body=Document%3A%20anthropic-claude-fable-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/project-pilot%0AFingerprint%3A%20b5642a7746378b2b1a1544f65b61169a9c3db97ec87f4919e279732c5b28475a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-29T07:46:18Z</td>
+          <td>text/html</td>
+          <td>189,499</td>
+          <td><code title="b5642a7746378b2b1a1544f65b61169a9c3db97ec87f4919e279732c5b28475a">b5642a7746378b2b</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-25T06:18:51Z</td>
           <td>text/html</td>
@@ -82,7 +89,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -149,6 +156,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/project-pilot" rel="noopener nofollow">https://www.anthropic.com/research/project-pilot</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-29T07:46:18Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/project-pilot" rel="noopener nofollow">https://www.anthropic.com/research/project-pilot</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -161,7 +176,6 @@
       <pre class="extracted" data-pagefind-body>Subscribe to the Frontier Red Team newsletter
 Get updates on our latest red-teaming research and findings.
 Frontier Red Team
-Jul 24, 2026
 Anthropic and Andon Labs
 Several of our research projects over the last year have looked at how frontier models interact with the physical world. In Project Vend, AI models ran a small shop; Project Fetch was an early look at robots as the intermediary between digital models and physical objects. As we recently noted in Project Fetch: Phase two, we’re already seeing improvements in model capability such that their ability to use off-the-shelf robots is on track to approach the ease with which coding agents use software tools.
 Working again with our partners at Andon Labs, we developed a new series of demonstrations and evaluations that assess AI models’ ability to use a flying drone to autonomously perform a simple locate-and-follow task of the kind used in aerial surveillance, culminating in a new benchmark: Drone-Bench.
@@ -194,14 +208,16 @@ Although the complexity of this experiment is greater than some of our previous 
 This experiment highlights the potential of commercial-off-the-shelf (COTS) hardware and AI-tailored software to support useful, but possibly risky, tasks.
 It is important to take seriously the parallel between AI models’ use of software in agentic coding and AI models’ control of hardware. In the early days of agentic coding, humans approved nearly every tool call. But after only a few months, models are now much more trusted to execute long-horizon tasks with minimal intervention.
 More generally, at low levels of capability and reliability, keeping a human in the loop is an easy decision because it saves time and resources by augmenting model capabilities or preventing costly mistakes. Once models pass capability and reliability thresholds (such as the human-AI team baseline we used in this experiment), there will be real pressure to treat human oversight as a cost rather than a safeguard. That is exactly why these decisions must be made deliberately, particularly in domains like this one that implicate physical security and privacy and where efficiency alone should not be the governing consideration. As Anthropic has long argued, the requirements for investing in AI alignment, governance, and safety increase with the scale of capabilities. Robotics is no different than other domains in this regard, especially since it implicates physical security and individual privacy.
-Claude made the open-source models that scientists use to predict and design biomolecules faster and more memory-efficient. Claude optimized more than 30 of these models in just under four weeks, speeding them up roughly 4x on average. It also created a low-memory mode that enables the accurate prediction of biomolecular systems larger than 10,000 tokens (amino acids, nucleotides, and atoms from small molecules and ions) on a single NVIDIA GPU node.
+Guest writer and physicist Matt von Hippel shares what happened when he issued a challenge to AI companies to solve a problem in his former subfield of theoretical physics.
 Read more
-Anthropic’s Frontier Red Team developed new evaluations to measure AI capabilities in tactical intelligence targeting and conventional weapons development.
+To see what works and what breaks when agents are sent into a market, we made a miniature market of Claudes.
+Read more
+Claude made the open-source models that scientists use to predict and design biomolecules faster and more memory-efficient. Claude optimized more than 30 of these models in just under four weeks, speeding them up roughly 4x on average. It also created a low-memory mode that enables the accurate prediction of biomolecular systems larger than 10,000 tokens (amino acids, nucleotides, and atoms from small molecules and ions) on a single NVIDIA GPU node.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-29T06:54:37Z</p></footer>
+<footer><p>Data updated 2026-09-29T07:54:35Z</p></footer>
 </body>
 </html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qwen3.8-Omni: Towards Native Omni-Modal Agents — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=beb02c468f">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Qwen3.8-Omni: Towards Native Omni-Modal Agents</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://qwen.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">alibaba_qwen</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Qwen3.8-Omni-Flash</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-09-22</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://arxiv.org/abs/2609.25611" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://arxiv.org/abs/2609.25611</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">other</span>
+        <a href="https://huggingface.co/papers/2609.25611" rel="noopener nofollow">https://huggingface.co/papers/2609.25611</a></span><br>        <span class="related-item"><span class="badge">code</span>
+        <a href="https://github.com/QwenLM/Qwen-Live-Harness" rel="noopener nofollow">https://github.com/QwenLM/Qwen-Live-Harness</a></span><br>        <span class="related-item"><span class="badge">code</span>
+        <a href="https://github.com/QwenLM/Qwen-MM-Plugins" rel="noopener nofollow">https://github.com/QwenLM/Qwen-MM-Plugins</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-09-29T07:50:38Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-omni-flash-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-omni-flash-model-card%0AURL%3A%20https%3A//arxiv.org/abs/2609.25611%0AFingerprint%3A%209b7bb99d97ea09b672a0dd7452e04f653098608d3b6db9aae3e52672eb1d721b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-09-29T07:50:38Z</td>
+          <td>text/html</td>
+          <td>42,826</td>
+          <td><code title="9b7bb99d97ea09b672a0dd7452e04f653098608d3b6db9aae3e52672eb1d721b">9b7bb99d97ea09b6</code></td>
+          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-09-29T07:50:38Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · agent · lead: index_diff</span>
+          <div class="just">Qwen Team&#39;s technical report for Qwen3.8-Omni-Flash, submitted to arXiv on 2026-09-22 and surfaced today via the Qwen HF org&#39;s papers link. Qwen3.8-Omni-Flash is an API-only, natively omni-modal (text/audio/image/video in, speech out), 1M-context agentic MoE model launched on 2026-09-18 and widely covered (MarkTechPost and others). It falls within the alibaba_qwen scope (&#39;Qwen LLM/VLM/generative lines&#39;). The report covers architecture, pre- and post-training, agentic and real-time interaction, and evaluation. Run 2026-09-24 logged this release as uncatalogable because qwen.ai renders client-side and there are no HF weights, and this report closes that gap. It contains no safety evaluation, only an ethics statement about voice-data consent and labelling synthetic audio, so has_safety_evals is false. Openness is closed: Alibaba Cloud Model Studio and press confirm hosted API access with no open weights.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2609.25611" rel="noopener nofollow">https://arxiv.org/abs/2609.25611</a> · <a href="https://www.alibabacloud.com/help/en/model-studio/qwen3-8-omni-flash" rel="noopener nofollow">https://www.alibabacloud.com/help/en/model-studio/qwen3-8-omni-flash</a> · <a href="https://www.marktechpost.com/2026/09/18/alibaba-qwen-releases-qwen3-8-omni-flash/" rel="noopener nofollow">https://www.marktechpost.com/2026/09/18/alibaba-qwen-releases-qwen3-8-omni-flash/</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://arxiv.org/abs/2609.25611" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Computer Science &gt; Computation and Language
+  [Submitted on 22 Sep 2026]
+    Title:Qwen3.8-Omni: Towards Native Omni-Modal Agents
+View PDF HTML (experimental)
+            Abstract:We introduce Qwen3.8-Omni-Flash, a natively multimodal agentic model for real-world multimodal productivity. Compared with previous omni models, which primarily emphasized perception and interaction, Qwen3.8-Omni-Flash substantially improves multimodal understanding and reasoning, as well as performance on long-horizon agentic tasks. These capabilities are supported by a native multimodal co-training strategy that preserves strong text-domain capabilities while facilitating the transfer of agentic capabilities from text to audio and video tasks. The model inherits the sparse mixture-of-experts (MoE) architecture of Qwen3.8-Next and extends the context window to one million tokens, supporting long-context multimodal reasoning and long-horizon planning. These advances enable integration into production workflows as a primary agent or a specialized sub-agent, supporting video editing, long-form audio and video translation, music-conditioned music video or movie generation, and video-based note or omni-skill creation. To address the lack of native audio and video support in existing agent harnesses, we release Qwen-MM-Plugins, a lightweight open-source plugin framework for multimodal productivity. We further frame real-time multimodal interaction as a system-level challenge requiring orchestration of context and memory management, tool use, and sub-agent delegation. Accordingly, we release Qwen-Live-Harness, an open-source framework for building responsive, real-time multimodal agents based on Qwen3.8-Omni-Flash. Extensive evaluations demonstrate that Qwen3.8-Omni-Flash achieves strong performance across multimodal understanding, reasoning, long-horizon agentic execution, and video productivity tasks. These results and the accompanying open-source tools support Qwen3.8-Omni-Flash as a practical foundation for deploying natively multimodal agents in research and production.
+
+Current browse context:
+cs.CL
+
+    References &amp; Citations
+
+    Loading...
+Bibliographic and Citation Tools
+            Bibliographic Explorer (What is the Explorer?)
+
+            Connected Papers (What is Connected Papers?)
+
+            Litmaps (What is Litmaps?)
+
+            scite Smart Citations (What are Smart Citations?)
+
+        Code, Data and Media Associated with this Article
+            alphaXiv (What is alphaXiv?)
+
+            CatalyzeX Code Finder for Papers (What is CatalyzeX?)
+
+            DagsHub (What is DagsHub?)
+
+            Gotit.pub (What is GotitPub?)
+
+            Hugging Face (What is Huggingface?)
+
+            ScienceCast (What is ScienceCast?)
+
+        Demos
+Recommenders and Search Tools
+              Influence Flower (What are Influence Flowers?)
+
+              CORE Recommender (What is CORE?)
+
+          arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv&#39;s community? Learn more about arXivLabs.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-09-29T07:54:35Z</p></footer>
+</body>
+</html>

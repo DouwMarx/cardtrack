@@ -26,7 +26,7 @@
     <dt>Type</dt>
     <dd><span data-pagefind-filter="type">model_card</span></dd>
     <dt>Models</dt>
-    <dd>Gemini 3.8 Live, Gemini 3.8 Live Extended Thinking</dd>
+    <dd>Gemini 3.8 Flash TTS, Gemini 3.8 Flash-Lite TTS, Gemini 3.8 Live, Gemini 3.8 Live Extended Thinking</dd>
     <dt>Published</dt>
     <dd><span data-pagefind-meta="date">2026-09-15</span>
         <span data-pagefind-filter="year" hidden>2026</span></dd>
@@ -65,7 +65,8 @@
           <td>application/pdf</td>
           <td>207,012</td>
           <td><code title="f3df49ef8afdd2cd822af7535d226c843b04655611e9f23312a93b412b3ad362">f3df49ef8afdd2cd</code></td>
-          <td class="change-summary"><span class="muted">—</span></td>
+          <td class="change-summary">Card broadened from Gemini 3.8 Live and Live Extended Thinking to &#39;Gemini 3.8 Audio&#39;, adding Gemini 3.8 Flash TTS and Flash-Lite TTS (text input up to 8K) and optional Live Avatar video output (24K token output). Added child safety evaluations to the listed evaluation types; the frontier safety statement now covers the TTS models; Vertex AI channel renamed Gemini Enterprise Agent Platform.
+</td>
         </tr>
         <tr>
           <td>2026-09-16T13:01:39Z</td>
@@ -83,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -109,6 +110,24 @@
         <strong>new_version</strong>
         <span class="run">run 2026-09-29T06:19Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-29T07:54:26Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · agent · lead: version_diff</span>
+          <div class="just">change_summary: null → "Card broadened from Gemini 3.8 Live and Live Extended Thinking to \u0027Gemini 3.8 Audio\u0027, adding Gemini 3.8 Flash TTS and Flash-Lite TTS (text input up to 8K) and optional Live Avatar video output (24K token output). Added child safety evaluations to the listed evaluation types; the frontier safety statement now covers the TTS models; Vertex AI channel renamed Gemini Enterprise Agent Platform."</div>
+          <div class="just">Diff v584-&gt;v677 of the Gemini 3.8 Audio model card PDF shows new models, new output modality and a new evaluation type, not extraction noise.</div>
+          <div class="evidence">Evidence:
+<a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-29T07:54:35Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-09-29T07:44Z-local · agent · lead: version_diff</span>
+          <div class="just">model_names: ["Gemini 3.8 Live", "Gemini 3.8 Live Extended Thinking"] → ["Gemini 3.8 Flash TTS", "Gemini 3.8 Flash-Lite TTS", "Gemini 3.8 Live", "Gemini 3.8 Live Extended Thinking"]</div>
+          <div class="just">The current version (v677) of the Gemini 3.8 Audio model card PDF now defines &#39;Gemini 3.8 Audio&#39; as Live, Live Extended Thinking, Flash TTS and Flash-Lite TTS. It lists inputs, outputs and distribution channels for the two TTS models and extends the frontier-safety statement to them. One family card covering several variants should list all model_names.</div>
           <div class="evidence">Evidence:
 <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf</a>          </div>
       </li>
@@ -308,6 +327,6 @@ For more information about the risks and mitigations for Gemini 3.8 Audio, see t
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-29T06:54:37Z</p></footer>
+<footer><p>Data updated 2026-09-29T07:54:35Z</p></footer>
 </body>
 </html>
