@@ -180,7 +180,10 @@ def test_run_daily_security_hold_blocks_publish(repo_root, http_server):
     (repo_root / "logs" / "run_report.md").write_text(f"leak {token} end\n")
     run_cli("comment_issue.py", "--issue", "9", "--body", f"leak {token}", root=repo_root)
 
-    env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="held", CARDTRACK_ROLE="prod")
+    env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="held", CARDTRACK_ROLE="prod",
+               # hermetic: fresh CI runners have no git identity
+               GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@t",
+               GIT_COMMITTER_NAME="t", GIT_COMMITTER_EMAIL="t@t")
     proc = subprocess.run(["bash", str(PROJECT_ROOT / "scripts" / "run_daily.sh")],
                           capture_output=True, text=True, timeout=600, env=env)
     assert proc.returncode == 10, proc.stdout   # 1 = generic error, systemd retries it
