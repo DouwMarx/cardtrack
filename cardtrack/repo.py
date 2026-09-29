@@ -60,6 +60,12 @@ class Repo:
         return self.root / "logs"
 
     @property
+    def state_dir(self) -> Path:
+        """Run-state markers (last successes, health clocks). Unlike logs/, never
+        writable inside the agent sandbox, so the agent cannot forge its own health."""
+        return self.root / "state"
+
+    @property
     def site_dir(self) -> Path:
         return self.root / "site"
 

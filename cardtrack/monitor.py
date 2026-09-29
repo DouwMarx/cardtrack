@@ -374,7 +374,7 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
         hard_cutoff = (datetime.now(UTC) - timedelta(days=CANDIDATE_HARD_TTL_DAYS)
                        ).strftime("%Y-%m-%dT%H:%M:%SZ")
         try:
-            agent_last_success = (repo.logs_dir / ".agent_last_success"
+            agent_last_success = (repo.state_dir / ".agent_last_success"
                                   ).read_text().strip()
         except OSError:
             agent_last_success = ""

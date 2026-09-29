@@ -1,0 +1,10 @@
+[Unit]
+Description=cardtrack pre-run canary (one model call + health issues)
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/ais/system_card_db
+Environment=DISABLE_AUTOUPDATER=1
+ExecStart=%h/projects/ais/system_card_db/scripts/canary.sh
+TimeoutStartSec=20min

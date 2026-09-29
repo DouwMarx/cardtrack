@@ -156,20 +156,21 @@ def test_candidate_expiry_requires_agent_run(repo, http_server):
     first_seen = stale(monitor_mod.CANDIDATE_TTL_DAYS + 1)
     earlier = (datetime.now(UTC) - timedelta(
         days=monitor_mod.CANDIDATE_TTL_DAYS + 2)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    (repo.logs_dir / ".agent_last_success").write_text(earlier)
+    repo.state_dir.mkdir(exist_ok=True)
+    (repo.state_dir / ".agent_last_success").write_text(earlier)
     run_monitor(repo, "r2")
     backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
     assert [c["url"] for c in backlog] == ["https://x.test/stale-lead"]
 
     # agent succeeded after the lead appeared → normal TTL expiry applies
     assert first_seen < utcnow()
-    (repo.logs_dir / ".agent_last_success").write_text(utcnow())
+    (repo.state_dir / ".agent_last_success").write_text(utcnow())
     run_monitor(repo, "r3")
     backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
     assert backlog == []
 
     # hard cap: with no agent success at all, an 8x-TTL-old lead is dropped
-    (repo.logs_dir / ".agent_last_success").unlink()
+    (repo.state_dir / ".agent_last_success").unlink()
     stale(8 * monitor_mod.CANDIDATE_TTL_DAYS + 1)
     run_monitor(repo, "r4")
     backlog = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]

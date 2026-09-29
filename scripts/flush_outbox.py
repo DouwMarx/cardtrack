@@ -71,19 +71,43 @@ def main(argv: list[str] | None = None) -> int:
     # ---- issues ----
     outbox = repo.logs_dir / "issues_outbox.jsonl"
     remaining = []
-    for rec in _read_outbox(outbox):
+    records = _read_outbox(outbox)
+    # Dedup against issues already open: the agent cannot see needs-review issues,
+    # so it re-proposed the same ruling three times (#28, #31, #32). List open
+    # issues directly; the search API lags and would let a same-run dupe through.
+    open_titles: set[str] | None = None
+    if records:
+        listing = _gh(["gh", "issue", "list", "-R", gh_repo, "--state", "open",
+                       "--limit", "300", "--json", "title"])
+        if listing and listing.returncode == 0:
+            open_titles = {i["title"] for i in json.loads(listing.stdout or "[]")}
+    for rec in records:
         text = (rec.get("title", "") + "\n" + rec.get("body", "")).encode()
         if scan_bytes(text, "issues_outbox", secret_values):
             _append(repo.logs_dir / "issues_outbox.held.jsonl",
                     {**rec, "held_at": utcnow(), "held_reason": "secret_scan"})
             summary["held"] += 1
             continue
+        if open_titles is not None and rec["title"] in open_titles:
+            rec["delivered_at"] = utcnow()
+            rec["issue_url"] = "duplicate-of-open-issue"
+            _append(repo.logs_dir / "issues_outbox.sent.jsonl", rec)
+            summary["duplicates_skipped"] = summary.get("duplicates_skipped", 0) + 1
+            continue
         cmd = ["gh", "issue", "create", "-R", gh_repo,
                "--title", rec["title"], "--body", rec["body"]]
+        labelled = list(cmd)
         for label in rec.get("labels", []):
-            cmd += ["--label", label]
-        proc = _gh(cmd)
+            labelled += ["--label", label]
+        proc = _gh(labelled)
+        if proc and proc.returncode != 0 and rec.get("labels") \
+                and "label" in (proc.stderr or "").lower():
+            # gh rejects labels missing on the repo (roster.py's "pipeline-failure"
+            # never existed), which used to strand the record in the outbox forever.
+            proc = _gh(cmd)
         if proc and proc.returncode == 0:
+            if open_titles is not None:
+                open_titles.add(rec["title"])
             rec["delivered_at"] = utcnow()
             rec["issue_url"] = proc.stdout.strip().splitlines()[-1] if proc.stdout else ""
             _append(repo.logs_dir / "issues_outbox.sent.jsonl", rec)
