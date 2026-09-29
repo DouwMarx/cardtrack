@@ -147,10 +147,14 @@ HIDE_CFG=()
 CFG_REAL="$(claude_config_dir)"
 case "$CFG_REAL" in "$HOME"|"$HOME"/*) ;; *) [ -d "$CFG_REAL" ] && HIDE_CFG=(--tmpfs "$CFG_REAL") ;; esac
 
-# the venv's python symlinks into uv's toolchain dir; expose it read-only
-# (interpreters only — no secrets live there)
+# Programs installed under $HOME, which the tmpfs below would otherwise hide:
+# uv's Python toolchains (the venv symlinks into them) and Claude Code's native
+# install (~/.local/bin/claude -> ~/.local/share/claude/versions/...), which is
+# where it lives on Debian hosts. Read-only; programs only, no secrets.
 UV_PY=()
-[ -d "$HOME/.local/share/uv" ] && UV_PY=(--ro-bind "$HOME/.local/share/uv" "$HOME/.local/share/uv")
+for d in "$HOME/.local/share/uv" "$HOME/.local/bin" "$HOME/.local/share/claude"; do
+  [ -d "$d" ] && UV_PY+=(--ro-bind "$d" "$d")
+done
 
 exec bwrap \
   --ro-bind / / \

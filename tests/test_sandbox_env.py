@@ -91,3 +91,19 @@ def test_read_only_island_inside_writable_dir(tmp_path):
              CARDTRACK_SANDBOX_RW="report", CARDTRACK_SANDBOX_RO="report/published")
     assert p.returncode == 0, p.stderr
     assert "pub-ro" in p.stdout
+
+
+def test_tools_installed_under_home_are_runnable(tmp_path):
+    """Claude Code's native installer puts `claude` in ~/.local/bin (Debian hosts);
+    the $HOME tmpfs hid it and the agent failed with exit 127 (rehearsal, 2026-09-29)."""
+    home = tmp_path / "home"
+    (home / ".local" / "share" / "claude" / "versions").mkdir(parents=True)
+    real = home / ".local" / "share" / "claude" / "versions" / "9.9.9"
+    real.write_text("#!/bin/sh\necho fake-claude-ran\n")
+    real.chmod(0o755)
+    (home / ".local" / "bin").mkdir(parents=True)
+    (home / ".local" / "bin" / "claude").symlink_to(real)
+    p = _run(tmp_path, "", "claude",
+             PATH=f"{home}/.local/bin:{os.environ['PATH']}")
+    assert p.returncode == 0, p.stderr
+    assert "fake-claude-ran" in p.stdout
