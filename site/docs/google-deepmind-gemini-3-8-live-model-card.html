@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-09-16T13:01:38Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-8-live-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-8-live-model-card%0AURL%3A%20https%3A//storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf%0AFingerprint%3A%20c9847a7aae1ed025faf703032fa7cc3cb2bf11eb45c871674cffa2140bad1606%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-8-live-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-8-live-model-card%0AURL%3A%20https%3A//storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf%0AFingerprint%3A%20f3df49ef8afdd2cd822af7535d226c843b04655611e9f23312a93b412b3ad362%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-29T06:21:29Z</td>
+          <td>application/pdf</td>
+          <td>207,012</td>
+          <td><code title="f3df49ef8afdd2cd822af7535d226c843b04655611e9f23312a93b412b3ad362">f3df49ef8afdd2cd</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-16T13:01:39Z</td>
           <td>application/pdf</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -97,6 +104,14 @@
           <div class="evidence">Evidence:
 <a href="https://deepmind.google/models/model-cards/gemini-3-8-audio/" rel="noopener nofollow">https://deepmind.google/models/model-cards/gemini-3-8-audio/</a> · <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/" rel="noopener nofollow">https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-29T06:21:29Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-29T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -109,7 +124,9 @@
       <pre class="extracted" data-pagefind-body>Gemini 3.8 Audio
 (Live, Live
 Extended
-Thinking)
+Thinking, Flash
+TTS, Flash-Lite
+TTS)
 Model card
 Gemini 3.8 Audio — Model Card
 
@@ -123,66 +140,82 @@ Published: September 2026
 
 Model Information
 
-Description
-Gemini 3.8 Audio (Live, Live Extended Thinking) is an addition to the Gemini 3 series of
-highly-capable, natively multimodal, reasoning models. The models are cost-efficient and
-fast, optimized for high-volume, latency-sensitive tasks like real-time dialogue. This model
-card describes the native audio capabilities as additional outputs of Gemini. Information
-specific to these modalities is specified in-line and referred to as Gemini 3.8 Live, and
-Gemini 3.8 Live Extended Thinking referred to collectively as Gemini 3.8 Audio.
+Description​
+​
+Gemini 3.8 Audio (Live, Live Extended Thinking, Flash TTS, Flash-Lite TTS) is an addition to
+the Gemini 3 series of highly-capable models. This model card describes the native
+capabilities (e.g., audio and video) as additional outputs of Gemini, including optional
+avatar capabilities (Live Avatar). Information specific to these modalities is specified
+in-line and referred to as Gemini 3.8 Live, Gemini 3.8 Live Extended Thinking, Gemini
+3.8 Flash TTS, and Gemini 3.8 Flash-Lite TTS (collectively as Gemini 3.8 Audio).
 
 Model dependencies
 Gemini 3.8 Audio is based on Gemini 3 Pro.
 
 Inputs
-Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking: Audio, images, video, and text
-with a token context window of up to 128K.
+   ●​ Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking: Audio, images, video, and
+      text with a token context window of up to 128K.
+   ●​ Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS: Text up to 8K.
 
 Outputs
-Gemini 3.8 Live and 3.8 Live Extended Thinking: Audio and text, with 64K token output.
-
-Architecture
+   ●​ Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking: Audio and text, with 64K
+      token output. With Live Avatar: Audio, video, and text, with 24K token output.
+   ●​ Gemini 3.8 Flash TTS and 3.8 Flash-Lite TTS: Audio, with 64K token output.
+Architecture
 Gemini 3.8 Audio models are based on Gemini 3 Pro. For more information about the
 model architecture, see the Gemini 3 Pro model card.
-Model Data
+
+Model Data
 
 Training Dataset
-Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking are based on Gemini 3 Pro. For
-more information about the training dataset, see the Gemini 3 Pro model card.
+Gemini 3.8 Audio models are based on Gemini 3 Pro. For more information about the
+training dataset, see the Gemini 3 Pro model card.
 
 Training Data Processing
-For more information about the training data processing for Gemini 3.8 Live and Gemini
-3.8 Live Extended Thinking, see the Gemini 3 Pro model card.
+For more information about the training data processing for Gemini 3.8 Audio models,
+see the Gemini 3 Pro model card.
 
 Implementation and Sustainability
 
 Hardware
-Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking are based on Gemini 3 Pro. For
-more information about the hardware for Gemini 3 Pro and our continued commitment to
-operate sustainably, see the Gemini 3 Pro model card.
+Gemini 3.8 Audio models are based on Gemini 3 Pro. For more information about the
+hardware for Gemini 3 Pro and our continued commitment to operate sustainably, see
+the Gemini 3 Pro model card.
 
 Software
-Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking are based on Gemini 3 Pro. For
-more information about the software for Gemini 3 Pro, see the Gemini 3 Pro model card.
+Gemini 3.8 Audio models are based on Gemini 3 Pro. For more information about the
+software for Gemini 3 Pro, see the Gemini 3 Pro model card.
 
 Distribution
-Gemini 3.8 Live is distributed in the following channels; respective documentation shared
-in line:
+Gemini 3.8 Audio is distributed in the following channels; respective documentation
+shared in line:
+Gemini 3.8 Live
 
-   ●​ Gemini API
-   ●​ Gemini App
-   ●​ Google AI Studio
-   ●​ Google Cloud / Vertex AI
-   ●​ Google Search Live
+   ●​   Gemini API
+   ●​   Gemini App
+   ●​   Google AI Studio
+   ●​   Gemini Enterprise Agent Platform
+   ●​   Google Search Live
 
-Gemini 3.8 Live Extended Thinking is distributed in the following channels; respective
-documentation shared in line:
+Gemini 3.8 Live Extended Thinking
 
    ●​   Gemini App
    ●​   Gemini API
    ●​   Google AI Studio
-   ●​   Google Cloud / Vertex AI
+   ●​   Gemini Enterprise Agent Platform
    ●​   Google Workspace (Gmail, Docs, and Keep)
+
+Gemini 3.8 Flash TTS
+
+   ●​ Gemini API
+   ●​ Google AI Studio
+   ●​ Gemini Notebook
+
+Gemini 3.8 Flash-Lite TTS
+
+   ●​ Gemini API
+   ●​ Google AI Studio
+   ●​ Google Vids​
 
 Our models are available to downstream providers via an application program interface
 (API) and subject to relevant terms of use. There is no required hardware or software to
@@ -190,33 +223,42 @@ use the model. For AI Studio and Gemini API, see the Gemini API Additional Terms
 Service; for Gemini Enterprise Agent Platform, see Google Cloud Platform Terms of
 Service. For more information, see Gemini Model API instructions and Gemini API
 quickstart.
-
-Evaluation
+Evaluation
 
 Approach
-Gemini 3.8 Audio (Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking) was evaluated
-across a range of benchmarks. See Evals &amp; Methodology for 3.8 Live Extended Thinking
-for more details.
+Gemini 3.8 Audio models were evaluated across a range of benchmarks. For more details,
+see:
+
+   ●​ Evals &amp; Methodology for 3.8 for Live and Live Extended Thinking
+   ●​ Evals &amp; Methodology for 3.8 Flash TTS and Flash-Lite TTS
 
 Intended Usage and Limitations
 
 Benefit and Intended Usage
-Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking process continuous streams of
-audio, video, and text to deliver spoken responses in real-time to create natural
-conversational experiences well-suited for users, developers, and enterprises.
-Known Limitations
-Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking may exhibit some of the general
-limitations of foundation models, such as hallucinations. In addition to this, we are
-continually working to improve jailbreak resistance and have recently strengthened the
-mitigations across Frontier Safety. There may also be occasional slowness or timeout
-issues. The knowledge cutoff date is January 2025.
+Gemini 3.8 Audio models process continuous streams of audio, video, and text to deliver
+spoken responses in real-time to create natural conversational experiences well-suited for
+users, developers, and enterprises.
 
-For more information about the known limitations for Gemini 3 Pro, see the Gemini 3 Pro
-model card.
+Gemini 3.8 Live with Live Avatar and Gemini 3.8 Live Extended Thinking with Live Avatar
+generate expressive videos of natural head movements and speech synchronization
+based on configured images and audio inputs.
 
-Acceptable Usage
-For more information about the acceptable usage for Gemini 3.8 Live and Gemini 3.8 Live
-Extended Thinking, see the Gemini 3 Pro model card.
+Known Limitations
+Gemini 3.8 Audio may exhibit some of the general limitations of foundation models, such
+as hallucinations. In addition to this, we are continually working to improve jailbreak
+resistance and have recently strengthened the mitigations across Frontier Safety. There
+may also be occasional slowness or timeout issues.
+
+Gemini 3.8 Live with Live Avatar and Gemini 3.8 Live Extended Thinking with Live Avatar
+can support a few minutes of continuous interaction, rather than extended hours.
+
+The knowledge cutoff date is January 2025.
+
+For more information about the known limitations for Gemini 3.8 Audio, see the Gemini 3
+Pro model card.
+Acceptable Usage
+For more information about the acceptable usage for Gemini 3.8 Audio, see the Gemini 3
+Pro model card.
 
 Ethics and Content Safety
 
@@ -228,39 +270,44 @@ Google&#39;s AI Principles and responsible AI approach, as well as Google&#39;s 
 policies (e.g., Generative AI Prohibited Use Policy and the Gemini API Additional Terms of
 Service).
 
-Evaluation types included but were not limited to:
+Evaluation types included, but were not limited to:
 
    ●​ Training/Development Evaluations including automated and human evaluations
       carried out continuously throughout and after the model’s training, to monitor its
       progress and performance;
    ●​ Human Evaluations conducted by specialist teams across the policies and
       desiderata to ensure the model adheres to safety policies and desired outcomes.
+   ●​ Child Safety Evaluations were conducted using techniques developed by expert
+      teams to protect children online and to meet Google’s commitments to child
+      safety across our models and Google products.
 
 Additional information: For more information about the evaluation approach for Gemini
-3.8 Live and Gemini 3.8 Live Extended Thinking, see the Gemini 3 Pro model card.
-Safety Policies
-For more information about the safety policies for Gemini 3.8 Live and Gemini 3.8 Live
-Extended Thinking, see the Gemini 3 Pro model card.
+3.8 Audio, see the Gemini 3 Pro model card.
 
-Frontier Safety Assessment
-Gemini 3.8 Audio is part of the Gemini 3 series of models. We evaluated Gemini 3.7 Flash
-as outlined in our latest Frontier Safety Framework, and we found that it did not reach any
-Tracked or Critical Capability Levels (T/CCLs). Our assessments have shown that Gemini
-3.8 Live or Gemini 3.8 Live Extended Thinking does not have meaningful new capabilities
-or material increases in performance compared to Gemini 3.7 Flash; therefore, based on
-Gemini 3.7 Flash results, we are confident that Gemini 3.8 Live and Gemini 3.8 Live
-Extended Thinking are not likely to reach any T/CCLs.
+Safety Policies
+For more information about the safety policies for Gemini 3.8 Audio, see the Gemini 3 Pro
+model card.
+Frontier Safety Assessment
+Gemini 3.8 Audio is part of the Gemini 3 series of models. To assess Gemini 3.8 Audio for
+frontier safety, we rely on our evaluations of Gemini 3.7 Flash as outlined in our latest
+Frontier Safety Framework. We found that Gemini 3.7 Flash did not reach any Tracked or
+Critical Capability Levels (T/CCLs). Our assessments have shown that Gemini 3.8 Live,
+Gemini 3.8 Live Extended Thinking, Gemini 3.8 Flash TTS, or Gemini 3.8 Flash-Lite TTS do
+not have meaningful new capabilities or material increases in performance compared to
+Gemini 3.7 Flash; therefore, based on Gemini 3.7 Flash results, we are confident that
+Gemini 3.8 Live, Gemini 3.8 Live Extended Thinking, Gemini 3.8 Flash TTS, or Gemini 3.8
+Flash-Lite TTS are not likely to reach any T/CCLs.
 
 For more information on our Frontier Safety Assessment, read the Gemini 3.7 Flash Model
 Card.
 
 Risks and Mitigations
-For more information about the risks and mitigations for Gemini 3.8 Live and Gemini 3.8
-Live Extended Thinking, see the Gemini 3 Pro model card.</pre>
+For more information about the risks and mitigations for Gemini 3.8 Audio, see the Gemini
+3 Pro model card.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-28T06:21:13Z</p></footer>
+<footer><p>Data updated 2026-09-29T06:21:34Z</p></footer>
 </body>
 </html>

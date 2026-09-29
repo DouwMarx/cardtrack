@@ -50,12 +50,12 @@
     <dt>First seen</dt>
     <dd>2026-09-10T06:29:13Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>MIT-licensed public weights. No safety or dangerous-capability evaluations in the card - absence recorded as a finding. Sibling repo DeepSeek-V4.1-Exp is referenced in the README but was not separately assessed this run.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-1-flash-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-1-flash-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash%0AFingerprint%3A%20944e31db1688d65343baadbd3f1f12faebd306e1a65475fd18cb8c495dad8fd1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-1-flash-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-1-flash-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash%0AFingerprint%3A%209dc5c72bf1763cab5514402ea3c66602a1d0923bd8815c639a0766ac1ccd420a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -63,6 +63,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-29T06:21:03Z</td>
+          <td>text/html</td>
+          <td>367,084</td>
+          <td><code title="9dc5c72bf1763cab5514402ea3c66602a1d0923bd8815c639a0766ac1ccd420a">9dc5c72bf1763cab</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-16T12:56:19Z</td>
           <td>text/html</td>
@@ -87,7 +94,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -131,6 +138,14 @@
         <span class="run">run 2026-09-16T12:52Z-local · agent</span>
           <div class="just">change_summary: null → "The agentic-evaluation methodology note was revised: DeepSeek now states that mini-SWE is used for DeepSWE v1.1 and the Claude Code harness for SEC-Bench Pro to match official setups, that Terminal-Bench 2.1 is evaluated without network access, and that all agentic evaluations use temperature=1.0 and top_p=0.95. Benchmark names were also restyled from \"Terminal Bench\" to \"Terminal-Bench\". No reported scores changed."</div>
           <div class="just">Mostly presentational, but the evaluation-methodology paragraph gained three new conditions that materially affect how the agentic numbers should be read (harness assignment per benchmark, no network access on Terminal-Bench 2.1, sampling parameters). Recorded because the reproducibility conditions changed; the accompanying download-counter and widget churn is extraction noise and is not described.</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-09-29T06:21:03Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-29T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash</a>          </div>
       </li>
@@ -307,22 +322,22 @@ Citation
 Contact
 If you have any questions, please raise an issue or contact us at service@deepseek.com.
 - Downloads last month
-- 366,459
+- 668,537
 Model tree for deepseek-ai/DeepSeek-V4.1-Flash
-Spaces using deepseek-ai/DeepSeek-V4.1-Flash 16
+Spaces using deepseek-ai/DeepSeek-V4.1-Flash 34
 Collection including deepseek-ai/DeepSeek-V4.1-Flash
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   90.9
 - datacurve/deep-swe · Deep Swe View evaluation results leaderboard
 - harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
-- llamaindex/ParseBench leaderboard
-- Mean View evaluation resultssourcePipeline name: deepseek_v4_1_flash_no_thinking_parse_with_layout (served via the DeepSeek API)56.57 *
-- Text Content View evaluation resultssourcePipeline name: deepseek_v4_1_flash_no_thinking_parse_with_layout (served via the DeepSeek API)88.09 *
-- Text Formatting View evaluation resultssourcePipeline name: deepseek_v4_1_flash_no_thinking_parse_with_layout (served via the DeepSeek API)66.05 *</pre>
+- llamaindex/ExtractBench leaderboard
+- Mean View evaluation resultssourcePipeline name: deepseek_v4_1_flash_extract_oneshot_structured_output_file (served via the DeepSeek API, thinking disabled)87.11 *
+- Short View evaluation resultssourcePipeline name: deepseek_v4_1_flash_extract_oneshot_structured_output_file (served via the DeepSeek API, thinking disabled)94.44 *
+- Medium View evaluation resultssourcePipeline name: deepseek_v4_1_flash_extract_oneshot_structured_output_file (served via the DeepSeek API, thinking disabled)81.49 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-28T06:21:13Z</p></footer>
+<footer><p>Data updated 2026-09-29T06:21:34Z</p></footer>
 </body>
 </html>
