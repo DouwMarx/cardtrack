@@ -166,3 +166,14 @@ def test_backup_fills_both_buckets_and_takedown_touches_only_public(
                    env={**os.environ, **s3}, check=True)
     for f in (fa, fb):
         assert (restored / f).read_bytes() == (repo_root / "data" / "raw" / f).read_bytes()
+
+
+def test_dataset_build_leaves_the_database_untouched(repo, repo_root, http_server, tmp_path):
+    """The backup runs after the daily commit; a rewritten docs.sqlite would leave the
+    checkout dirty and block the next deploy."""
+    _enable(repo_root)
+    _two_docs(repo, http_server)
+    before = repo.db_path.read_bytes()
+    mtime = repo.db_path.stat().st_mtime_ns
+    build(repo, tmp_path / "pub")
+    assert repo.db_path.read_bytes() == before and repo.db_path.stat().st_mtime_ns == mtime

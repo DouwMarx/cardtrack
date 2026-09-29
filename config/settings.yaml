@@ -87,9 +87,10 @@ archive:
   # uploads data/raw/ there (minus config/withheld.txt) plus manifest.json,
   # urls.txt and cardtrack-dataset.tar.gz; a private bucket (R2_BUCKET) keeps
   # everything, withheld files included.
-  # Go-live switch: set to https://data.systemcards.org only after the bucket
-  # serves a real file there, or pages link to originals that 404.
-  public_base_url: ""
+  # Go-live switch. Set 2026-09-29 after verifying: all 700 originals in both
+  # buckets, a PDF downloaded via this domain matched its sha256, and a full
+  # restore from the private bucket was byte-identical. Empty it to hide links.
+  public_base_url: https://data.systemcards.org
   contact: ops@systemcards.org
 
 report:

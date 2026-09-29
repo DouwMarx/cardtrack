@@ -20,6 +20,7 @@ PUBLIC="$(envget R2_PUBLIC_BUCKET "$ROOT")"
 command -v rclone >/dev/null || { echo "[backup] rclone missing"; exit 1; }
 STAGE="$(mktemp -d)"; trap 'rm -rf "$STAGE"' EXIT
 (
+  export RCLONE_CONFIG=/dev/null        # configured by env only; no config-file notice
   export RCLONE_S3_PROVIDER="${R2_PROVIDER:-$(envget R2_PROVIDER "$ROOT")}"
   RCLONE_S3_PROVIDER="${RCLONE_S3_PROVIDER:-Cloudflare}"
   RCLONE_S3_ACCESS_KEY_ID="$(envget R2_ACCESS_KEY_ID "$ROOT")"; export RCLONE_S3_ACCESS_KEY_ID

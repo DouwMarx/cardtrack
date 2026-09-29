@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import sqlite3
 import sys
 import tarfile
 from pathlib import Path
@@ -22,7 +23,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from cardtrack.archive import manifest, withheld_hashes  # noqa: E402
-from cardtrack.db import connect  # noqa: E402
 from cardtrack.repo import Repo  # noqa: E402
 
 README = """cardtrack dataset ({site}), snapshot {ts}
@@ -43,7 +43,19 @@ requests: {contact}. Code and data model: https://github.com/{repo}
 
 def build(repo: Repo, out: Path) -> dict:
     out.mkdir(parents=True, exist_ok=True)
-    conn = connect(repo.db_path)
+    # Read-only, from a consistent copy: cardtrack.db.connect() rewrites views on
+    # open, which left the committed docs.sqlite dirty after every backup, and a
+    # dirty checkout makes deploy_update.sh refuse the next code update.
+    snapshot = out / "docs.sqlite"
+    src = sqlite3.connect(f"file:{repo.db_path}?mode=ro", uri=True)
+    dst = sqlite3.connect(snapshot)
+    try:
+        src.backup(dst)
+    finally:
+        src.close()
+        dst.close()
+    conn = sqlite3.connect(f"file:{snapshot}?mode=ro", uri=True)
+    conn.row_factory = sqlite3.Row
     try:
         man = manifest(repo, conn)
     finally:
@@ -63,7 +75,7 @@ def build(repo: Repo, out: Path) -> dict:
                            repo=repo.setting("github.repo", "")).encode()
     tar_path = out / "cardtrack-dataset.tar.gz"
     with tarfile.open(tar_path, "w:gz") as tar:
-        tar.add(repo.db_path, arcname="cardtrack-dataset/docs.sqlite")
+        tar.add(snapshot, arcname="cardtrack-dataset/docs.sqlite")
         if repo.text_dir.is_dir():
             tar.add(repo.text_dir, arcname="cardtrack-dataset/text")
         for name, data in (("manifest.json", man_bytes), ("README.txt", readme)):
