@@ -81,6 +81,17 @@ publish:
   wrangler_project: cardtrack
   wrangler_version: 4.143.0   # pinned: this npm package receives the Cloudflare token
 
+archive:
+  # Public archive of original documents (Cloudflare R2 bucket R2_PUBLIC_BUCKET,
+  # custom domain below). Empty base URL = no public links. scripts/backup.sh
+  # uploads data/raw/ there (minus config/withheld.txt) plus manifest.json,
+  # urls.txt and cardtrack-dataset.tar.gz; a private bucket (R2_BUCKET) keeps
+  # everything, withheld files included.
+  # Go-live switch: set to https://data.systemcards.org only after the bucket
+  # serves a real file there, or pages link to originals that 404.
+  public_base_url: ""
+  contact: ops@systemcards.org
+
 report:
   # Weekly research report (scripts/run_report.sh, cardtrack-report.timer), published
   # as the site's Analysis page. The agent follows .claude/skills/cardtrack-report/

@@ -1,0 +1,4 @@
+# Originals withheld from the public archive (data.systemcards.org), e.g. after a
+# takedown request. One sha256 content hash per line; everything after # is a note
+# (date, requester, reason). The private backup keeps these files. The next
+# production run removes them from the public bucket and drops their links.

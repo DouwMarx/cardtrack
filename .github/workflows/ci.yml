@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: system packages (sandbox, PDF text, report conversion)
+      - name: system packages (sandbox, PDF text, report conversion, R2 via rclone)
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q bubblewrap poppler-utils pandoc
+          sudo apt-get install -y -q bubblewrap poppler-utils pandoc rclone
           # Ubuntu 24.04 blocks unprivileged user namespaces, which bwrap needs
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - uses: astral-sh/setup-uv@v6

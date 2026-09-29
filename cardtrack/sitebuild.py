@@ -13,6 +13,7 @@ from urllib.parse import quote
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from .archive import public_base, raw_url, withheld_hashes
 from .db import connect
 from .repo import Repo, utcnow
 
@@ -160,10 +161,14 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
     asset_v = {f.name: hashlib.sha256(f.read_bytes()).hexdigest()[:10]
                for f in static_src.iterdir() if f.is_file()}
 
+    archive_base = public_base(repo)
+    withheld = withheld_hashes(repo)
     analysis = _analysis(repo)
     ctx_common = {"site_title": site_title, "gh_repo": gh_repo,
                   "generated_at": generated_at, "asset_v": asset_v,
-                  "risk_labels": risk_labels, "has_analysis": analysis is not None}
+                  "risk_labels": risk_labels, "has_analysis": analysis is not None,
+                  "archive_base": archive_base,
+                  "archive_contact": repo.setting("archive.contact", "")}
 
     # explicit cache policy; without it the CDN default (4 h browser TTL)
     # serves stale assets after every deploy
@@ -205,7 +210,8 @@ def _build(repo: Repo, conn: sqlite3.Connection, run_pagefind: bool | None) -> d
             source_kind=source_kind,
             publisher_home=(publishers.get(doc["publisher"]) or {}).get("homepage"),
             notes=row["notes"],
-            versions=[dict(v) for v in versions],
+            versions=[{**dict(v), "original_url": raw_url(
+                archive_base, v["raw_path"], v["content_hash"], withheld)} for v in versions],
             provenance=[{**dict(pr), "detail": json.loads(pr["detail"])} for pr in provenance],
             text=text,
             year=(doc.get("publication_date") or "")[:4] or "unknown",

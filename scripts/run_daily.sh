@@ -263,6 +263,12 @@ if [ "$HOLD" -eq 0 ] && publish_on publish.git_commit; then
   fi
 fi
 
+# Before the deploy, so a new version's "original" link never points at a file
+# that is not uploaded yet.
+if [ "$HOLD" -eq 0 ] && [ "$ROLE" = "prod" ]; then
+  bash scripts/backup.sh "$ROOT" || echo "[run_daily] WARNING: R2 backup failed (health alarms after 36 h)"
+fi
+
 if [ "$HOLD" -eq 0 ] && publish_on publish.wrangler_deploy; then
   # Subshell: the deploy token is exported for wrangler only, never to later steps.
   # A failed deploy (2026-09-20: DNS error) used to kill the run under set -e with
@@ -279,10 +285,6 @@ if [ "$HOLD" -eq 0 ] && publish_on publish.wrangler_deploy; then
     DEPLOY_FAILED=1
     echo "[run_daily] DEPLOY FAILED (wrangler); the next run retries"
   fi
-fi
-
-if [ "$ROLE" = "prod" ]; then
-  bash scripts/backup.sh "$ROOT" || echo "[run_daily] WARNING: R2 backup failed (health alarms after 36 h)"
 fi
 
 # Health: open/close one GitHub issue per failing condition (time-based, self-closing).

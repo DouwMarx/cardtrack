@@ -90,7 +90,7 @@
     <h3>Version history</h3>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th>{% if archive_base %}<th>Original</th>{% endif %}<th>What changed</th></tr></thead>
       <tbody>
       {% for v in versions %}
         <tr>
@@ -98,6 +98,7 @@
           <td>{{ v.content_type or "?" }}</td>
           <td>{{ "{:,}".format(v.byte_size) if v.byte_size else "?" }}</td>
           <td><code title="{{ v.content_fingerprint }}">{{ v.content_fingerprint[:16] }}</code></td>
+          {% if archive_base %}<td>{% if v.original_url %}<a href="{{ v.original_url }}" rel="nofollow" title="archived copy, sha256 {{ v.content_hash }}">archived copy</a>{% else %}<span class="muted">withheld</span>{% endif %}</td>{% endif %}
           <td class="change-summary">{% if v.change_summary %}{{ v.change_summary }}
               {% elif loop.last %}<span class="muted">initial version</span>
               {% else %}<span class="muted">—</span>{% endif %}</td>

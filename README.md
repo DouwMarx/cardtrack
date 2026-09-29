@@ -181,8 +181,12 @@ skill at the commit used. Maintainers steer the report by editing the skill.
 ## Operational notes
 
 - **Source of truth**: `data/docs.sqlite` (committed). `data/raw/` holds immutable
-  hash-addressed original bytes — gitignored, never published; `scripts/backup.sh`
-  copies it to Cloudflare R2 after each production run when `R2_*` is set in `.env`.
+  hash-addressed original bytes (gitignored, too large for git). `scripts/backup.sh`
+  copies it after each production run to a private R2 bucket (`R2_BUCKET`, add-only)
+  and to the public archive (`R2_PUBLIC_BUCKET`, served at `archive.public_base_url`),
+  which also gets `manifest.json`, `urls.txt` and `cardtrack-dataset.tar.gz`.
+  Takedowns: add the content hash to `config/withheld.txt`; the next run deletes it
+  from the public bucket and drops its links, and the private copy stays.
   `data/text/` is derived, re-buildable via `scripts/extract_text.py --reextract-all`.
 - **Reverting a bad run**: `git revert <run commit>` then
   `uv run poe build && npx -y wrangler pages deploy site --project-name cardtrack`.
