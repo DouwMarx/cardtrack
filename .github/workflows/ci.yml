@@ -16,7 +16,10 @@ jobs:
       - name: system packages (sandbox, PDF text, report conversion, R2 via rclone)
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q bubblewrap poppler-utils pandoc rclone
+          sudo apt-get install -y -q bubblewrap poppler-utils pandoc
+          # rclone >= 1.65 for `serve s3` (tests/test_archive.py); Ubuntu's is older
+          curl -fsSLo /tmp/rclone.zip https://downloads.rclone.org/v1.74.4/rclone-v1.74.4-linux-amd64.zip
+          unzip -q -j /tmp/rclone.zip '*/rclone' -d /tmp/rclone && sudo install /tmp/rclone/rclone /usr/local/bin/rclone
           # Ubuntu 24.04 blocks unprivileged user namespaces, which bwrap needs
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - uses: astral-sh/setup-uv@v6

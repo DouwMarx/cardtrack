@@ -1,5 +1,5 @@
 """Public archive: per-version links, withheld hashes, manifest and dataset,
-and scripts/backup.sh against a real S3 server (MinIO in docker)."""
+and scripts/backup.sh against a real S3 endpoint (`rclone serve s3`)."""
 
 from __future__ import annotations
 
@@ -95,29 +95,34 @@ def _free_port() -> int:
 
 
 @pytest.fixture
-def minio():
-    if not shutil.which("docker") or not shutil.which("rclone"):
+def s3(tmp_path):
+    """A real S3 endpoint: `rclone serve s3` over a temp dir (buckets = subdirs)."""
+    if not shutil.which("rclone"):
         if os.environ.get("CI"):
-            pytest.fail("CI must provide docker and rclone")
-        pytest.skip("needs docker and rclone")
+            pytest.fail("CI must provide rclone >= 1.65")
+        pytest.skip("needs rclone >= 1.65")
+    store = tmp_path / "s3store"
+    (store / "priv").mkdir(parents=True)
+    (store / "pub").mkdir()
     port = _free_port()
-    name = f"cardtrack-minio-{port}"
-    subprocess.run(["docker", "run", "-d", "--rm", "--name", name, "-p", f"127.0.0.1:{port}:9000",
-                    "-e", "MINIO_ROOT_USER=testkey", "-e", "MINIO_ROOT_PASSWORD=testsecret123",
-                    "minio/minio", "server", "/data"], check=True, capture_output=True)
-    env = {"RCLONE_S3_PROVIDER": "Minio", "RCLONE_S3_ACCESS_KEY_ID": "testkey",
+    proc = subprocess.Popen(["rclone", "serve", "s3", str(store), "--addr", f"127.0.0.1:{port}",
+                             "--auth-key", "testkey,testsecret123"],
+                            stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    env = {"RCLONE_S3_PROVIDER": "Rclone", "RCLONE_S3_ACCESS_KEY_ID": "testkey",
            "RCLONE_S3_SECRET_ACCESS_KEY": "testsecret123",
            "RCLONE_S3_ENDPOINT": f"http://127.0.0.1:{port}"}
     try:
         for _ in range(60):
-            if subprocess.run(["rclone", "mkdir", ":s3:priv"], env={**os.environ, **env},
+            if subprocess.run(["rclone", "lsd", ":s3:"], env={**os.environ, **env},
                               capture_output=True).returncode == 0:
                 break
-            time.sleep(0.5)
-        subprocess.run(["rclone", "mkdir", ":s3:pub"], env={**os.environ, **env}, check=True)
+            time.sleep(0.25)
+        else:
+            pytest.fail("rclone serve s3 did not start: " + proc.stderr.read(2000).decode())
         yield env
     finally:
-        subprocess.run(["docker", "rm", "-f", name], capture_output=True)
+        proc.terminate()
+        proc.wait(timeout=10)
 
 
 def _ls(env, path):
@@ -127,15 +132,15 @@ def _ls(env, path):
 
 
 def test_backup_fills_both_buckets_and_takedown_touches_only_public(
-        repo, repo_root, http_server, minio, tmp_path):
+        repo, repo_root, http_server, s3, tmp_path):
     _enable(repo_root)
     va, vb, _, _ = _two_docs(repo, http_server)
     fa, fb = Path(va["raw_path"]).name, Path(vb["raw_path"]).name
     (repo_root / ".env").write_text(
-        "R2_BUCKET=priv\nR2_PUBLIC_BUCKET=pub\nR2_PROVIDER=Minio\n"
-        f"R2_ACCESS_KEY_ID={minio['RCLONE_S3_ACCESS_KEY_ID']}\n"
-        f"R2_SECRET_ACCESS_KEY={minio['RCLONE_S3_SECRET_ACCESS_KEY']}\n"
-        f"R2_ENDPOINT={minio['RCLONE_S3_ENDPOINT']}\n")
+        "R2_BUCKET=priv\nR2_PUBLIC_BUCKET=pub\nR2_PROVIDER=Rclone\n"
+        f"R2_ACCESS_KEY_ID={s3['RCLONE_S3_ACCESS_KEY_ID']}\n"
+        f"R2_SECRET_ACCESS_KEY={s3['RCLONE_S3_SECRET_ACCESS_KEY']}\n"
+        f"R2_ENDPOINT={s3['RCLONE_S3_ENDPOINT']}\n")
     (repo_root / ".venv").symlink_to(ROOT / ".venv")
 
     def backup():
@@ -144,20 +149,20 @@ def test_backup_fills_both_buckets_and_takedown_touches_only_public(
         assert p.returncode == 0, p.stdout + p.stderr
 
     backup()
-    assert _ls(minio, ":s3:priv/raw") == {fa, fb}
-    assert _ls(minio, ":s3:pub/raw") == {fa, fb}
-    assert {"manifest.json", "urls.txt", "cardtrack-dataset.tar.gz"} <= _ls(minio, ":s3:pub")
+    assert _ls(s3, ":s3:priv/raw") == {fa, fb}
+    assert _ls(s3, ":s3:pub/raw") == {fa, fb}
+    assert {"manifest.json", "urls.txt", "cardtrack-dataset.tar.gz"} <= _ls(s3, ":s3:pub")
     assert (repo_root / "state" / ".backup_last_ok").exists()
 
     # takedown: gone from the public bucket, kept in the private one
     (repo_root / "config" / "withheld.txt").write_text(f"{vb['content_hash']}\n")
     backup()
-    assert _ls(minio, ":s3:pub/raw") == {fa}
-    assert _ls(minio, ":s3:priv/raw") == {fa, fb}
+    assert _ls(s3, ":s3:pub/raw") == {fa}
+    assert _ls(s3, ":s3:priv/raw") == {fa, fb}
 
     # restore from the private bucket reproduces the bytes
     restored = tmp_path / "restored"
     subprocess.run(["rclone", "copy", ":s3:priv/raw", str(restored)],
-                   env={**os.environ, **minio}, check=True)
+                   env={**os.environ, **s3}, check=True)
     for f in (fa, fb):
         assert (restored / f).read_bytes() == (repo_root / "data" / "raw" / f).read_bytes()
