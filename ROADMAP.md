@@ -37,7 +37,7 @@
   across the 78 HF cards is truncated silently. Storage at today's flag rate: ~45 MB/day
   raw (local), ~2 MB/day text (committed). Once on the always-on host.
 - Classify every minted version in the pipeline (category + flags per the report taxonomy
-  in `~/projects/ais/system_card_report/CLASSIFY_INSTRUCTIONS.md`) so "silent score change"
+  in `report/CLASSIFY_INSTRUCTIONS.md`) so "silent score change"
   and "content collapsed" become queryable fields; the report's Appendix A then becomes a
   live feed.
 - Run the daily pipeline from committed code only (2026-09-23): the timer executes

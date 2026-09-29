@@ -105,7 +105,7 @@ def test_comment_issue_outbox_mode(repo_root):
 def test_run_daily_agent_phase_guards(repo_root, http_server, cmd, expected, rc):
     """The turn cap has exactly one source of truth; wall clock — not turns —
     stops a runaway agent; and the heartbeat makes agent failure loud (exit 3,
-    failure streak) without ever blocking build & publish."""
+    no success marker) without ever blocking build & publish."""
     import yaml
 
     settings_path = repo_root / "config" / "settings.yaml"
@@ -121,11 +121,13 @@ def test_run_daily_agent_phase_guards(repo_root, http_server, cmd, expected, rc)
     assert expected in proc.stdout, proc.stdout
     assert "Phase C" in proc.stdout, "a failed agent never blocks build & publish"
     if rc == 0:
-        assert (repo_root / "logs" / ".agent_last_success").exists()
-        assert not (repo_root / "logs" / ".agent_failstreak").exists()
+        assert (repo_root / "state" / ".agent_last_success").exists()
     else:
-        assert (repo_root / "logs" / ".agent_failstreak").read_text().strip() == "1"
+        assert not (repo_root / "state" / ".agent_last_success").exists()
         assert "AGENT PHASE FAILED" in proc.stdout
+        # failures never file issues by count; scripts/health.py alarms on elapsed time
+        outbox = repo_root / "logs" / "issues_outbox.jsonl"
+        assert not outbox.exists() or "pipeline-failure" not in outbox.read_text()
 
 
 @pytest.mark.skipif(shutil.which("uv") is None or shutil.which("flock") is None,
@@ -154,7 +156,7 @@ def test_run_daily_orchestration(repo_root, http_server):
                     or shutil.which("git") is None,
                     reason="run_daily.sh needs uv, flock, git")
 def test_run_daily_security_hold_blocks_publish(repo_root, http_server):
-    """A planted secret holds the whole run: no commit, outbox not flushed, exit 1;
+    """A planted secret holds the whole run: no commit, outbox not flushed, exit 10;
     the quarantine exclusion lets a cleaned rerun pass (does not re-trip forever)."""
     import yaml
 
@@ -178,10 +180,10 @@ def test_run_daily_security_hold_blocks_publish(repo_root, http_server):
     (repo_root / "logs" / "run_report.md").write_text(f"leak {token} end\n")
     run_cli("comment_issue.py", "--issue", "9", "--body", f"leak {token}", root=repo_root)
 
-    env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="held")
+    env = dict(os.environ, CARDTRACK_ROOT=str(repo_root), RUN_ID="held", CARDTRACK_ROLE="prod")
     proc = subprocess.run(["bash", str(PROJECT_ROOT / "scripts" / "run_daily.sh")],
                           capture_output=True, text=True, timeout=600, env=env)
-    assert proc.returncode == 1, proc.stdout
+    assert proc.returncode == 10, proc.stdout   # 1 = generic error, systemd retries it
     assert "SECURITY HOLD" in proc.stdout
     head = subprocess.run(["git", "-C", str(repo_root), "rev-parse", "HEAD"],
                           capture_output=True, text=True).stdout.strip()

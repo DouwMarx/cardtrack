@@ -7,25 +7,46 @@ SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ROOT="${CARDTRACK_ROOT:-$SCRIPT_ROOT}"
 export CARDTRACK_ROOT="$ROOT"
 cd "$SCRIPT_ROOT"
-
-# Schedulers (cron, systemd timers) run with a minimal PATH. Prepend the places
-# uv/claude/npx/git actually live on NixOS and Debian; nonexistent dirs are harmless.
-export PATH="$HOME/.local/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/usr/local/bin:$PATH"
+# shellcheck source=lib.sh
+. "$SCRIPT_ROOT/scripts/lib.sh"
+standard_path
 
 RUN_ID="${RUN_ID:-$(date -u +%Y-%m-%dT%H:%MZ)-local}"
-mkdir -p "$ROOT/logs"
+mkdir -p "$ROOT/logs" "$ROOT/state"
+# One-time move (2026-09-29): markers used to live in logs/, which the agent can write.
+for m in .agent_last_success .monitor_last_ok .deploy_last_ok .health_state.json; do
+  [ -f "$ROOT/logs/$m" ] && [ ! -f "$ROOT/state/$m" ] && mv "$ROOT/logs/$m" "$ROOT/state/$m"
+done
 AGENT_FAILED=0
+DEPLOY_FAILED=0
+# prod: publishes, files alert issues, pulls new code before running.
+# dev (default, so a fresh clone can never publish with your git credentials):
+# runs every phase but never commits, pushes, deploys, flushes issues or pulls.
+# Production sets CARDTRACK_ROLE=prod in .env (infra/prod.env.example).
+ROLE="${CARDTRACK_ROLE:-$(envget CARDTRACK_ROLE "$ROOT")}"; ROLE="${ROLE:-dev}"
+# Non-secret: where the /login credential lives when no setup-token is used.
+CFG_DIR="$(envget CLAUDE_CONFIG_DIR "$ROOT")"
+[ -n "$CFG_DIR" ] && export CLAUDE_CONFIG_DIR="${CFG_DIR/#\~/$HOME}"
+publish_on() { [ "$ROLE" = "prod" ] && [ "$(setting "$1" false)" = "true" ]; }
 
 exec 9>"$ROOT/.run.lock"
-flock -n 9 || { echo "[run_daily] another run holds the lock; exiting"; exit 0; }
+# Wait rather than skip: the weekly report holds this lock for up to ~2 h, and a
+# skipped day would never be retried (the timer already fired).
+flock -w 10800 9 || { echo "[run_daily] lock held for 3 h; exiting for a retry"; exit 75; }
 
 LOG="$ROOT/logs/run-$(date -u +%Y%m%d-%H%M%SZ).log"
 exec > >(tee -a "$LOG") 2>&1
 
 PY=(uv run --project "$SCRIPT_ROOT" python)
 setting() { "${PY[@]}" scripts/get_setting.py "$1" --default "${2:-}" --root "$ROOT"; }
+# Fail fast on unparseable config: every `setting` call would otherwise fall back
+# to its default and silently disable features (report.enabled -> off, exit 0).
+"${PY[@]}" scripts/get_setting.py site.title --root "$ROOT" >/dev/null \
+  || { echo "ERROR: config/settings.yaml does not parse; refusing to run on defaults"; exit 2; }
 
-echo "== cardtrack run $RUN_ID ($(date -u +%FT%TZ)) =="
+echo "== cardtrack run $RUN_ID ($(date -u +%FT%TZ), role=$ROLE) =="
+# New code arrives BEFORE this script starts (systemd ExecStartPre runs
+# scripts/deploy_update.sh), because git rewriting a bash script mid-run corrupts it.
 
 # Network gate. The Persistent timer fires the instant the laptop resumes from
 # suspend, seconds before Wi-Fi is back; without this every phase fails in the
@@ -57,7 +78,11 @@ except Exception:
     print(0)
 PYEOF
 )"
-[ "$MONITOR_OUTAGE" = "1" ] && echo "[run_daily] MONITOR OUTAGE: all link checks errored (network down?)"
+if [ "$MONITOR_OUTAGE" = "1" ]; then
+  echo "[run_daily] MONITOR OUTAGE: all link checks errored (network down?)"
+else
+  date -u +%FT%TZ > "$ROOT/state/.monitor_last_ok"
+fi
 
 echo "-- Phase B: agent"
 if [ "$(setting agent.enabled false)" = "true" ]; then
@@ -100,9 +125,12 @@ MERGE
     # The sandbox strips the refresh token (see agent_sandbox.sh), so refresh can
     # only happen out here on the host — one trivial headless call does it, and
     # only runs when the token would expire before the agent could finish.
+    # Not needed (and skipped) with a setup-token in CLAUDE_CODE_OAUTH_TOKEN.
+    CRED_FILE="$(claude_config_dir)/.credentials.json"
     if [ "${CARDTRACK_SKIP_TOKEN_REFRESH:-}" != "1" ] \
-        && command -v claude >/dev/null && [ -f "$HOME/.claude/.credentials.json" ]; then
-      NEED_REFRESH="$("${PY[@]}" - "$HOME/.claude/.credentials.json" "$AGENT_TIMEOUT" <<'PYEOF'
+        && [ -z "${CLAUDE_CODE_OAUTH_TOKEN:-$(envget CLAUDE_CODE_OAUTH_TOKEN "$ROOT")}" ] \
+        && command -v claude >/dev/null && [ -f "$CRED_FILE" ]; then
+      NEED_REFRESH="$("${PY[@]}" - "$CRED_FILE" "$AGENT_TIMEOUT" <<'PYEOF'
 import json, sys, time
 try:  # expiresAt is epoch-ms metadata, not a secret value
     exp = json.load(open(sys.argv[1])).get("claudeAiOauth", {}).get("expiresAt", 0)
@@ -121,7 +149,7 @@ PYEOF
     fi
     # Heartbeat: the agent must both exit 0 AND have written this run's report —
     # exit status alone can lie (a wedged CLI can exit 0 having done nothing).
-    PHASE_B_MARK="$ROOT/logs/.phase_b_started"
+    PHASE_B_MARK="$ROOT/state/.phase_b_started"
     touch "$PHASE_B_MARK"
     GUARD=()
     if command -v timeout >/dev/null; then
@@ -137,31 +165,13 @@ PYEOF
       echo "[run_daily] agent exited $RC (continuing to Phase C)"
     fi
     if [ "$RC" -eq 0 ] && [ "$ROOT/logs/run_report.md" -nt "$PHASE_B_MARK" ]; then
-      date -u +%FT%TZ > "$ROOT/logs/.agent_last_success"
-      rm -f "$ROOT/logs/.agent_failstreak"
+      date -u +%FT%TZ > "$ROOT/state/.agent_last_success"
     else
       [ "$RC" -eq 0 ] && echo "[run_daily] agent exited 0 but wrote no run report; treating as FAILED"
       AGENT_FAILED=1
-      STREAK=$(( $(cat "$ROOT/logs/.agent_failstreak" 2>/dev/null || echo 0) + 1 ))
-      echo "$STREAK" > "$ROOT/logs/.agent_failstreak"
-      echo "[run_daily] AGENT PHASE FAILED (consecutive day $STREAK)"
-      if [ "$STREAK" -eq 2 ]; then
-        # Two days down = an outage, not a blip: file one issue per episode
-        # through the existing outbox (delivered by flush_outbox below).
-        "${PY[@]}" - "$ROOT/logs/issues_outbox.jsonl" "$RUN_ID" "$RC" <<'PYEOF' \
-          || echo "[run_daily] WARNING: could not queue outage issue"
-import json, sys, datetime
-rec = {"ts": datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
-       "title": f"pipeline-failure: agent phase down 2 consecutive runs (as of {sys.argv[2]})",
-       "body": ("The Phase B curation agent has failed two runs in a row "
-                f"(latest exit code {sys.argv[3]}). Candidates are piling up untriaged "
-                "(they will not expire while the agent is down, but discovery is stalled).\n\n"
-                "Check the latest logs/run-*.log. If the error is a 401/expired token, "
-                "run any interactive claude command on the host to refresh credentials."),
-       "labels": []}
-open(sys.argv[1], "a", encoding="utf-8").write(json.dumps(rec) + "\n")
-PYEOF
-      fi
+      # No issue from here: scripts/health.py (end of run) alarms on the AGE of
+      # .agent_last_success, so same-morning retries can never read as an outage.
+      echo "[run_daily] AGENT PHASE FAILED (last success: $(cat "$ROOT/state/.agent_last_success" 2>/dev/null || echo never))"
     fi
     rm -f "$PHASE_B_MARK"
     unset CARDTRACK_ACTOR CARDTRACK_MAX_TURNS
@@ -179,7 +189,7 @@ else
   echo "agent disabled (agent.enabled=false)"
   # Deliberately agent-less deployments still get normal candidate TTL expiry
   # (the guard in monitor.py would otherwise stretch it to the hard cap).
-  date -u +%FT%TZ > "$ROOT/logs/.agent_last_success"
+  date -u +%FT%TZ > "$ROOT/state/.agent_last_success"
 fi
 
 echo "-- Phase C: build & publish"
@@ -215,19 +225,19 @@ if [ "$HOLD" -eq 0 ]; then
     || { HOLD=1; echo "[run_daily] SECURITY HOLD: LLM screen flagged outbound text (logs/SECURITY_HOLD.md)"; }
 fi
 
-if [ "$HOLD" -eq 0 ]; then
+if [ "$HOLD" -eq 0 ] && [ "$ROLE" = "prod" ]; then
   # deliver issues/comments the sandboxed agent could only queue (gh is
   # unauthenticated inside; flush re-scans each record individually)
   "${PY[@]}" scripts/flush_outbox.py --root "$ROOT"
 fi
 
-if [ "$HOLD" -eq 0 ] && [ "$(setting publish.git_commit false)" = "true" ]; then
+if [ "$HOLD" -eq 0 ] && publish_on publish.git_commit; then
   # render the message BEFORE staging: --emit-commit-msg opens the DB, and
   # connect() rewrites views, which would leave docs.sqlite perpetually dirty
   MSG="$("${PY[@]}" scripts/build_site.py --root "$ROOT" --emit-commit-msg "$RUN_ID")"
   # Outages must be visible where the operator actually looks: git log.
   if [ "$AGENT_FAILED" -ne 0 ]; then
-    MSG="[agent down, day $(cat "$ROOT/logs/.agent_failstreak" 2>/dev/null || echo '?')] $MSG"
+    MSG="[agent failed; last success $(cut -c1-10 "$ROOT/state/.agent_last_success" 2>/dev/null || echo never)] $MSG"
   fi
   if [ "$MONITOR_OUTAGE" = "1" ]; then
     MSG="[monitor outage] $MSG"
@@ -240,24 +250,47 @@ if [ "$HOLD" -eq 0 ] && [ "$(setting publish.git_commit false)" = "true" ]; then
     echo "nothing to commit"
   else
     git -C "$ROOT" commit -m "$MSG"
-    if [ "$(setting publish.git_push false)" = "true" ]; then
-      # A push flake must not abort the run (wrangler deploy and the exit-code
-      # report come after); the commit is local and the next run pushes both.
-      git -C "$ROOT" push || echo "[run_daily] WARNING: push failed; next run retries"
-    fi
+  fi
+  # Push whenever ahead (also yesterday's stranded commit). A push flake must not
+  # abort the run; the next run retries. Never `pull --rebase` here: that would
+  # bring in upstream code the test gate has not seen, or has rejected.
+  # deploy_update.sh rebases and tests before the next run instead.
+  if publish_on publish.git_push && [ -n "$(git -C "$ROOT" log --oneline '@{u}..HEAD' 2>/dev/null)" ]; then
+    git -C "$ROOT" push || echo "[run_daily] WARNING: push failed; next run retries"
+  fi
+  if [ -z "$(git -C "$ROOT" log --oneline '@{u}..HEAD' 2>/dev/null)" ]; then
+    date -u +%FT%TZ > "$ROOT/state/.push_last_ok"
   fi
 fi
 
-if [ "$HOLD" -eq 0 ] && [ "$(setting publish.wrangler_deploy false)" = "true" ]; then
-  if [ -f "$ROOT/.env" ]; then set -a; . "$ROOT/.env"; set +a; fi
-  npx -y wrangler pages deploy "$ROOT/site" \
-    --project-name "$(setting publish.wrangler_project cardtrack)" \
-    --commit-dirty=true
+if [ "$HOLD" -eq 0 ] && publish_on publish.wrangler_deploy; then
+  # Subshell: the deploy token is exported for wrangler only, never to later steps.
+  # A failed deploy (2026-09-20: DNS error) used to kill the run under set -e with
+  # exit 1, which systemd never retries; now it is exit 5 and a health alarm.
+  # Only the two Cloudflare variables reach the (npm-fetched) wrangler process.
+  if ( CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN:-$(envget CLOUDFLARE_API_TOKEN "$ROOT")}"
+       CLOUDFLARE_ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-$(envget CLOUDFLARE_ACCOUNT_ID "$ROOT")}"
+       export CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID
+       npx -y "wrangler@$(setting publish.wrangler_version 4)" pages deploy "$ROOT/site" \
+         --project-name "$(setting publish.wrangler_project cardtrack)" \
+         --commit-dirty=true ); then
+    date -u +%FT%TZ > "$ROOT/state/.deploy_last_ok"
+  else
+    DEPLOY_FAILED=1
+    echo "[run_daily] DEPLOY FAILED (wrangler); the next run retries"
+  fi
 fi
+
+if [ "$ROLE" = "prod" ]; then
+  bash scripts/backup.sh "$ROOT" || echo "[run_daily] WARNING: R2 backup failed (health alarms after 36 h)"
+fi
+
+# Health: open/close one GitHub issue per failing condition (time-based, self-closing).
+"${PY[@]}" scripts/health.py --root "$ROOT" || echo "[run_daily] WARNING: health check crashed"
 
 if [ "$HOLD" -ne 0 ]; then
   echo "== run $RUN_ID HELD (nothing published; see logs/SECURITY_HOLD.md) =="
-  exit 1
+  exit 10      # distinct from 1 (any unexpected set -e failure), which systemd retries
 fi
 if [ "$AGENT_FAILED" -ne 0 ]; then
   # Publishing still happened; the nonzero exit marks the systemd unit failed so
@@ -269,5 +302,9 @@ fi
 if [ "$MONITOR_OUTAGE" = "1" ]; then
   echo "== run $RUN_ID complete BUT MONITOR OUTAGE (network dropped mid-run; retry scheduled) =="
   exit 4
+fi
+if [ "$DEPLOY_FAILED" -ne 0 ]; then
+  echo "== run $RUN_ID complete BUT DEPLOY FAILED (retry scheduled) =="
+  exit 5
 fi
 echo "== run $RUN_ID complete =="

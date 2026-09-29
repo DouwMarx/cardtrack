@@ -12,12 +12,13 @@ Live site: https://systemcards.org (also reachable at https://cards.douwmarx.com
 Requirements: Python ≥3.11 with [uv](https://docs.astral.sh/uv/), and for the full
 pipeline: `node`/`npx` (Pagefind + wrangler), `pdftotext` (poppler; optional —
 falls back to pypdf), `gh` (optional — GitHub issues loop), `bwrap` (optional —
-agent sandbox), the `claude` CLI (agent phase; authenticate once with `claude login`).
+agent sandbox), the `claude` CLI (agent phase), and for the weekly report `pandoc`,
+`latexmk` and TeX Live.
 
-Debian/Ubuntu: `apt install git curl nodejs npm poppler-utils bubblewrap` then the
-[uv](https://docs.astral.sh/uv/getting-started/installation/),
-[gh](https://github.com/cli/cli#installation), and
-[claude](https://claude.com/claude-code) installers. Note: bwrap needs unprivileged
+Production host: `infra/` creates and configures one from code (Terraform + a Debian
+bootstrap script); see [infra/README.md](infra/README.md). The exact Debian package
+list lives in `infra/bootstrap.sh`, and `infra/test-bootstrap.sh` proves it in a
+container. Note: bwrap needs unprivileged
 user namespaces (default-on in Debian 12+; Ubuntu 24.04 restricts them via AppArmor —
 if `bwrap true` fails there, the sandbox script warns and the agent phase should stay
 disabled or run with a relaxed AppArmor profile).
@@ -25,8 +26,15 @@ disabled or run with a relaxed AppArmor profile).
 ```sh
 uv sync                      # installs deps + dev tools (pytest, ruff, poe)
 uv run poe test              # full test suite (local HTTP servers, no internet)
-cp env.example .env          # then fill in Cloudflare credentials (deploy only)
+cp env.example .env          # set CARDTRACK_ROLE=dev on a development machine
 ```
+
+Roles: a checkout with `CARDTRACK_ROLE=prod` (the default) publishes, files alert
+issues and pulls new code before each run. `CARDTRACK_ROLE=dev` runs every phase but
+never commits, pushes, deploys or files issues. Develop on a dev checkout, push to
+`main`; production picks the change up at its next run, only if the test suite passes
+on it (`deploy.*` in settings.yaml, `scripts/deploy_update.sh`), and otherwise stays on
+the last good commit and opens a `pipeline-alert: deploy-rejected` issue.
 
 ## Everyday commands
 
@@ -102,20 +110,24 @@ link checks, fingerprint rotation, index diffs) → Phase B agent (only if
 optional git commit/push + optional Cloudflare Pages deploy (gated by the
 `publish.*` settings).
 
-Scheduling — systemd user timer (works on NixOS and Debian; the script holds its
-own lock, so overlapping runs are impossible):
+Scheduling — systemd user timers (NixOS and Debian). Three timers share one lock,
+so runs never overlap; a run waits for the lock instead of skipping its day:
+
+| Timer | When (UTC) | Does |
+|---|---|---|
+| `cardtrack-canary` | daily 05:15 | one model call with the pipeline's credentials + health issues |
+| `cardtrack` | daily 06:15 | pull + test new code, then the A → B → C run |
+| `cardtrack-report` | Sunday 02:00 | the weekly research report (Analysis page) |
 
 ```sh
-cp scripts/systemd/cardtrack.{service,timer} ~/.config/systemd/user/
-systemctl --user daemon-reload
-systemctl --user enable --now cardtrack.timer
-loginctl enable-linger $USER     # keep timers firing when logged out
+scripts/install_units.sh             # install for this checkout's path, enable, linger
+scripts/install_units.sh --disable   # stop them (e.g. on the old host after a move)
 ```
 
 Classic cron works too where cron exists (not on NixOS by default):
 
 ```
-15 06 * * *  $HOME/projects/ais/system_card_db/scripts/run_daily.sh >> $HOME/projects/ais/system_card_db/logs/cron.log 2>&1
+15 06 * * *  <repo>/scripts/deploy_update.sh; <repo>/scripts/run_daily.sh >> <repo>/logs/cron.log 2>&1
 ```
 
 `run_daily.sh` sets its own PATH (NixOS profiles, `~/.local/bin`, system dirs), so
@@ -125,18 +137,52 @@ Laptops: a missed firing runs the moment the machine resumes, before Wi-Fi is
 back. The run therefore waits for the network first (`network.*` in
 settings.yaml; exit 75 after 15 min with nothing touched), and the service unit
 retries a failed day every 30 min, at most 5 starts per day (`Restart=on-failure`;
-a security hold, exit 1, is never retried). After editing the unit files, re-copy
-them and `systemctl --user daemon-reload`.
+a security hold, exit 10, is never retried). After editing the unit files, re-run
+`scripts/install_units.sh`.
 
 Phase B uses the `claude` CLI via `agent.cmd` in settings — it authenticates with
-your Claude subscription login (`env -u ANTHROPIC_API_KEY` guards against silently
-switching to API billing). Swapping in another CLI agent is a one-line change to
+a Claude subscription, never metered API billing (`env -u ANTHROPIC_API_KEY`).
+Unattended hosts use a one-year token: run `claude setup-token` while signed in to
+the pipeline's own account and put it in `.env` as `CLAUDE_CODE_OAUTH_TOKEN` with
+`CLAUDE_TOKEN_CREATED=YYYY-MM-DD` (an issue opens 30 days before it expires).
+Without a token, the `/login` session under `CLAUDE_CONFIG_DIR` (default
+`~/.claude`) is used, refreshed on the host before each run. Swapping in another CLI agent is a one-line change to
 `agent.cmd`.
+
+## Alerts
+
+`scripts/health.py` runs at the end of every daily run and from the canary. It keeps
+one GitHub issue per failing condition, titled `pipeline-alert: <condition>`, and
+closes it when the condition clears. Thresholds are elapsed time, never run counts,
+so same-morning retries cannot read as an outage:
+
+| Condition | Opens when |
+|---|---|
+| `agent-down`, `monitor-down`, `deploy-failing` | no success for 36 h |
+| `report-stale` | no weekly report for 8 days |
+| `backup-stale` | no R2 copy of `data/raw` for 36 h (only if R2 is configured) |
+| `deploy-rejected` | production refused a commit whose tests failed |
+| `outbox-stuck` | queued issues/comments undelivered for 24 h |
+| `claude-token-expiring` | the setup-token is within 30 days of expiry |
+| `claude-unavailable` | the canary's model call fails three times, 2 min apart |
+
+The GitHub `dead-man` workflow covers the one case the host cannot report: the host
+itself being down (no commit for 48 h).
+
+## Analysis page (weekly report)
+
+`scripts/run_report.sh` has a sandboxed agent (writable: `report/` only) follow
+[.claude/skills/cardtrack-report/SKILL.md](.claude/skills/cardtrack-report/SKILL.md)
+to regenerate the research report in `report/`. `scripts/report_html.py` converts the
+LaTeX to HTML with pandoc into `report/published/`, and the site renders it at
+`/analysis.html` with a disclaimer naming the model that wrote it and linking the
+skill at the commit used. Maintainers steer the report by editing the skill.
 
 ## Operational notes
 
 - **Source of truth**: `data/docs.sqlite` (committed). `data/raw/` holds immutable
-  hash-addressed original bytes — local only, gitignored, never published.
+  hash-addressed original bytes — gitignored, never published; `scripts/backup.sh`
+  copies it to Cloudflare R2 after each production run when `R2_*` is set in `.env`.
   `data/text/` is derived, re-buildable via `scripts/extract_text.py --reextract-all`.
 - **Reverting a bad run**: `git revert <run commit>` then
   `uv run poe build && npx -y wrangler pages deploy site --project-name cardtrack`.
@@ -180,13 +226,20 @@ entries but can never reset limits. (Backfills: temporarily raise the caps in
 
 Phase B runs inside `scripts/agent_sandbox.sh` (bwrap): the filesystem is read-only,
 `$HOME` is a tmpfs (no `~/.ssh`, no `~/.config/secrets.env`, no gh auth), the
-repo-local `.env` is masked with `/dev/null`, and the only writable paths are
-`data/`, `logs/`, `PROPOSALS.md`, plus an **ephemeral** `~/.claude` seeded with a
-**slimmed** credential file — the long-lived refresh token and any MCP OAuth tokens
-are stripped at seed time, so the worst a prompt-injected agent can exfiltrate is a
-short-lived access token (verified empirically 2026-08-31: headless `--allowedTools`
-does deny unlisted tools, and runs authenticate fine on the slimmed file). The host
-`settings.json` is deliberately NOT seeded. Issues and issue comments the sandboxed
+repo-local `.env` is masked with `/dev/null` and every key named in it is unset in
+the agent's environment, and the only writable paths are `data/`, `logs/` (the weekly
+report agent: `report/` only) plus an **ephemeral** `~/.claude`. The one credential
+that enters is Claude's:
+
+- with a setup-token (production): `CLAUDE_CODE_OAUTH_TOKEN` as an env var. It is
+  long-lived but can only make model requests, belongs to an account that holds
+  nothing else, and is revocable at claude.ai/settings/claude-code. This trade was
+  made after 8 of 15 agent-phase failures (2026-08-24..09-29) turned out to be
+  expired or unseedable `/login` credentials.
+- with a `/login` session: a **slimmed** copy of the credential file (refresh token
+  and MCP OAuth tokens stripped), so only a short-lived access token can leak.
+
+The host `settings.json` is deliberately NOT seeded. Issues and issue comments the sandboxed
 agent writes land in outboxes (`issues_outbox.jsonl`, `comments_outbox.jsonl`);
 `scripts/flush_outbox.py` delivers them to GitHub *outside* the sandbox.
 
@@ -199,7 +252,7 @@ a narrow hold-only-clear-leaks charter. On any finding the run publishes nothing
 writes `logs/SECURITY_HOLD.md`, and exits non-zero; quarantined records go to
 `logs/*.held.jsonl` (gitignored). Accepted residual: the agent's own WebFetch/
 WebSearch request URLs are an un-gateable exfil channel — bounded by the credential
-slimming above, per "some risk is acceptable".
+scoping above, per "some risk is acceptable".
 
 Known residual gaps at MVP, accepted deliberately: (1) the validator runs inside
 the sandbox, so `data/` itself is agent-writable and a fully compromised agent
@@ -218,6 +271,7 @@ Everything the agent reads (web pages, issue text) is treated as untrusted input
 1. ✅ Schema + validator + extraction + full test suite (`poe test`); every document seeded through the tool (280+ and counting — the site header shows the live number)
 2. ✅ Site live at https://systemcards.org (Pages project `cardtrack`; systemcards.org +
    www + cards.douwmarx.com all attached, CNAMEs → cardtrack-aar.pages.dev, HTTPS active)
-3. ✅ Daily schedule live (systemd user timer, 06:15 UTC, linger enabled)
+3. ✅ Daily schedule live (systemd user timer, 06:15 UTC, linger enabled); host-as-code in
+   `infra/` (Hetzner + Debian 13), funded for 12 months by a BlueDot Rapid Grant
 4. ✅ Agent enabled and battle-tested (backfill drain + audits, 2026-08-09/10)
 5. ✅ 2026 corpus backfilled (supervised session, 2026-08-09); deepen later by lowering `min_publication_date`

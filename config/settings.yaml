@@ -79,6 +79,30 @@ publish:
   git_push: true
   wrangler_deploy: true    # project + domain live since 2026-08-09
   wrangler_project: cardtrack
+  wrangler_version: 4.143.0   # pinned: this npm package receives the Cloudflare token
+
+report:
+  # Weekly research report (scripts/run_report.sh, cardtrack-report.timer), published
+  # as the site's Analysis page. The agent follows .claude/skills/cardtrack-report/
+  # SKILL.md; maintainers steer the report by editing that skill.
+  enabled: true
+  timeout_seconds: 7200
+  # No web tools: everything the report needs is in the snapshot and report/.
+  # Bash is unrestricted because the bwrap sandbox (writable: report/ only) is the
+  # boundary. Agent/Task: the skill fans out classification and review sub-agents.
+  cmd: >-
+    env -u ANTHROPIC_API_KEY
+    claude -p "$(cat prompts/REPORT.md)" --model opus
+    --max-turns 400 --output-format text
+    --allowedTools "Read" "Glob" "Grep" "Write" "Edit" "Bash" "Agent" "Task"
+
+deploy:
+  # Production pulls origin/main before each daily run (systemd ExecStartPre ->
+  # scripts/deploy_update.sh) and moves to it only if test_cmd passes there.
+  # Only acts on a CARDTRACK_ROLE=prod checkout (the default); set
+  # CARDTRACK_ROLE=dev in .env on development machines.
+  auto_pull: true
+  test_cmd: uv run pytest -q -x
 
 agent:
   enabled: true

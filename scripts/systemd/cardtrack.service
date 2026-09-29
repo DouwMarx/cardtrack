@@ -9,15 +9,21 @@ StartLimitBurst=5
 [Service]
 Type=oneshot
 WorkingDirectory=%h/projects/ais/system_card_db
+Environment=DISABLE_AUTOUPDATER=1
+# Pull new code first, in its own process, so git never rewrites run_daily.sh
+# while bash is executing it. "-": an update problem never blocks the run.
+ExecStartPre=-%h/projects/ais/system_card_db/scripts/deploy_update.sh
 ExecStart=%h/projects/ais/system_card_db/scripts/run_daily.sh
 # run_daily.sh sets its own PATH and holds its own lock
-# Hang backstop: Type=oneshot has NO default timeout, and a wedged run would
-# hold the flock forever — every later run would then exit 0 silently.
-RuntimeMaxSec=4h
+# Hang backstop. For Type=oneshot it must be TimeoutStartSec: RuntimeMaxSec has
+# no effect on oneshot units. Budget: up to 3 h waiting for the lock + 2 h agent.
+TimeoutStartSec=6h
 # Retry a failed day while the machine is still on. run_daily.sh exits 75 when
 # the network never came up (nothing done), 3 when the agent phase failed, 4
-# when link checks all errored (network dropped mid-run). Exit 1 is a security
-# hold that only a human can clear, so it is never retried.
+# when link checks all errored (network dropped mid-run), 5 when the deploy
+# failed, 1 on any unexpected error. Exit 10 is a security hold that only a human
+# can clear, so it is never retried. Alerts come from scripts/health.py by
+# elapsed time, not from retries.
 Restart=on-failure
 RestartSec=30min
-RestartPreventExitStatus=1
+RestartPreventExitStatus=10

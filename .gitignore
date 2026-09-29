@@ -12,12 +12,12 @@ __pycache__/
 # secrets (see env.example)
 .env
 
-# run state
+# run state (state/: markers the agent sandbox cannot write)
+state/
+logs/.agent_last_success
 .run.lock
 .agent-home/
 logs/.phase_b_started
-logs/.agent_last_success
-logs/.agent_failstreak
 logs/.roster_failstreak
 config/*.tmp
 
@@ -41,3 +41,25 @@ logs/SECURITY_HOLD.md
 # content-hashed shards every run. Deploy uses the working tree, not git;
 # a clean clone regenerates it with `poe build`.
 site/pagefind/
+
+# infrastructure: local state and variable files hold tokens
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/terraform.tfvars
+infra/prod.env
+infra/.terraform.tfstate.lock.info
+
+# research report: generated intermediates (report/published/ is the tracked edition)
+report/data/
+report/pairs/
+report/out/
+report/tex/*.pdf
+report/tex/*.png
+report/tex/*.aux
+report/tex/*.bbl
+report/tex/*.blg
+report/tex/*.fdb_latexmk
+report/tex/*.fls
+report/tex/*.log
+report/tex/*.out
