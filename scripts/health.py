@@ -180,13 +180,20 @@ def canary_condition(repo: Repo, attempts: int = 3, wait_s: int = 120,
     config_dir = _env_value(repo, "CLAUDE_CONFIG_DIR")
     if config_dir and not token:
         env["CLAUDE_CONFIG_DIR"] = os.path.expanduser(config_dir)
+    # JSON output: the model's answer is the `result` field, untouched by notices a
+    # CLI wrapper may print (a laptop's plugin note once broke a plain-text match).
     cmd = ["claude", "-p", "Reply with the single word: ok", "--model", agent_model(repo),
-           "--max-turns", "1", "--output-format", "text"]
+           "--max-turns", "1", "--output-format", "json"]
 
     def default_runner(c: list[str], e: dict) -> tuple[int, str]:
         try:
             p = subprocess.run(c, env=e, capture_output=True, text=True, timeout=180)
-            return p.returncode, (p.stdout + p.stderr).strip()
+            try:
+                d = json.loads(p.stdout)
+                ok = p.returncode == 0 and not d.get("is_error")
+                return (0 if ok else 1), str(d.get("result", "")).strip()
+            except (json.JSONDecodeError, AttributeError):
+                return p.returncode or 1, (p.stdout + p.stderr).strip()
         except (OSError, subprocess.TimeoutExpired) as exc:
             return 1, str(exc)
 

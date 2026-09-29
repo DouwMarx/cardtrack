@@ -11,7 +11,7 @@ set -euo pipefail
 HOST="${1:?usage: push-secrets.sh <host> [--no-enable]}"
 ENABLE=1; [ "${2:-}" = "--no-enable" ] && ENABLE=0
 HERE="$(cd "$(dirname "$0")" && pwd)"
-ENV_FILE="$HERE/prod.env"
+ENV_FILE="${CARDTRACK_PROD_ENV:-$HERE/prod.env}"   # override: rehearsals with a dev-role copy
 [ -f "$ENV_FILE" ] || { echo "missing $ENV_FILE (copy prod.env.example)"; exit 1; }
 for k in CARDTRACK_ROLE CLAUDE_CODE_OAUTH_TOKEN CLAUDE_TOKEN_CREATED GH_TOKEN \
          CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
