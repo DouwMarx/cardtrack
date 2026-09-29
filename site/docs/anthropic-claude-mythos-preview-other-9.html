@@ -51,12 +51,12 @@
     <dt>First seen</dt>
     <dd>2026-09-11T06:23:41Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Frontier Red Team report. openness=restricted because Claude Mythos Preview and Mythos 5 are vetted-access only, even though Opus 5/Sonnet 5 are public-API and Kimi K3/GLM 5.2 are open-weight. risk_domains carries only societal_harm (surveillance, privacy, deanonymisation); the conventional-weapons half of the report (drone terminal guidance, payload delivery, GPS-denied navigation) has no matching tag in the 5-term vocabulary, which is neither CBRN nor cyber. Gap written up in logs/PROPOSALS.md on 2026-09-11.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-9&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-9%0AURL%3A%20https%3A//www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities%0AFingerprint%3A%20cfb6758a92e8928b306d8421866027433677fd05fc8030e9eaded39a88b0b9bb%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-9&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-9%0AURL%3A%20https%3A//www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities%0AFingerprint%3A%20eccf8e526f7f640c534796c7f77e6ff8c6fa06b0db2e9f0502f241946a37edff%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-29T06:54:36Z</td>
+          <td>text/html</td>
+          <td>267,344</td>
+          <td><code title="eccf8e526f7f640c534796c7f77e6ff8c6fa06b0db2e9f0502f241946a37edff">eccf8e526f7f640c</code></td>
+          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-24T06:19:16Z</td>
           <td>text/html</td>
@@ -87,7 +94,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -116,6 +123,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities" rel="noopener nofollow">https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-29T06:54:36Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-29T06:52Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities" rel="noopener nofollow">https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -128,7 +143,6 @@
       <pre class="extracted" data-pagefind-body>Subscribe to the Frontier Red Team newsletter
 Get updates on our latest red-teaming research and findings.
 Frontier Red Team
-Sep 10, 2026
 Anthropic’s Frontier Red Team developed new evaluations to measure AI capabilities in tactical intelligence targeting (like finding where people are based on fragmentary information) and conventional weapons development (like engineering drones to strike a moving target).
 - For some tasks in military and intelligence domains, models could do things that, historically, only a set of scarce, highly-trained human experts could do.
 - These evaluations show how models have become useful to actors seeking to misuse our platform for surveillance and conventional weapons development. They also show why on-platform safety measures are necessary, like the new classifiers we have implemented to block such misuse.
@@ -195,16 +209,16 @@ Finally, as model progress continues, we expect more aspects of military and int
 - This expertise has diffused somewhat with the rise of online, open-source intelligence investigators like Bellingcat, but they still tend to focus on relatively high-profile targets and cases.
 - We tested two prompt variants—one that names a specific person of interest (&#34;anchor-given&#34;) as the signal for the classification task, one that only describes an issue of concern (&#34;vague issue&#34;). We report the results from the “vague issue” variant, but the ordering of the models was essentially the same from the “anchor-given” version of the eval.
 - It’s worth noting that Haas et al.&#39;s human comparison comes from GeoGuessr&#39;s Duels mode, where a player has 15 seconds to answer once the opponent has guessed. While the authors did not report timing data, their paper and codebase show that the bot was able to respond nearly instantaneously but included a random delay on the order of seconds. We can then surmise that the human medians reflect roughly 15–20 seconds of interactive Street View exploration per round. For comparison, Mythos 5 returned its estimate from a single static image in a median of 6 seconds of wall-clock time per photo in our setup.
+Guest writer and physicist Matt von Hippel shares what happened when he issued a challenge to AI companies to solve a problem in his former subfield of theoretical physics.
+Read more
+To see what works and what breaks when agents are sent into a market, we made a miniature market of Claudes.
+Read more
 Claude made the open-source models that scientists use to predict and design biomolecules faster and more memory-efficient. Claude optimized more than 30 of these models in just under four weeks, speeding them up roughly 4x on average. It also created a low-memory mode that enables the accurate prediction of biomolecular systems larger than 10,000 tokens (amino acids, nucleotides, and atoms from small molecules and ions) on a single NVIDIA GPU node.
-Read more
-We present an alignment assessment of four incidents in which Claude models gained unauthorized access to real third-party systems.
-Read more
-We are sharing the first complete computer-checked proof of Fermat’s Last Theorem. Claude worked largely autonomously over 11 days to write the proof in the Lean programming language.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-29T06:21:34Z</p></footer>
+<footer><p>Data updated 2026-09-29T06:54:37Z</p></footer>
 </body>
 </html>
