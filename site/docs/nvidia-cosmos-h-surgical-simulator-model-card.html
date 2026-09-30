@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-20T06:29:08Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Companion model to nvidia/GR00T-H and nvidia/GR00T-H-N1.7 (both proposed this run) from the same NVIDIA-Medtech Open-H programme; distinct from the corpus&#39;s nvidia/Cosmos-H-Dreams row (id 112), which is a separate repo created 2026-07-21. has_safety_evals false: the card reports video-fidelity and tool-tracking metrics but contains no safety or dangerous-capability evaluation, red-teaming or risk assessment beyond the boilerplate Ethical Considerations paragraph and subcard links. openness=open_weight_restrictive per the NVIDIA Open Model License, matching the corpus&#39;s treatment of Cosmos-H-Dreams. Backlog find: released March 2026 and never catalogued; surfaced this run by following the surgical-robotics thread out of the GR00T-H card revision.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos-h-surgical-simulator-model-card&amp;body=Document%3A%20nvidia-cosmos-h-surgical-simulator-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos-H-Surgical-Simulator%0AFingerprint%3A%20fad44fc5edc2fbb2d18bc910fffae80c67d94c4952ddbe6e3a4cac28bb95f570%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-cosmos-h-surgical-simulator-model-card&amp;body=Document%3A%20nvidia-cosmos-h-surgical-simulator-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Cosmos-H-Surgical-Simulator%0AFingerprint%3A%20462ff23cde4c35cda63af1cd7d0ff2dc79cd914ab2afab48c19ebf209e10fb0f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-09-30T07:37:12Z</td>
+          <td>text/html</td>
+          <td>194,453</td>
+          <td><code title="462ff23cde4c35cda63af1cd7d0ff2dc79cd914ab2afab48c19ebf209e10fb0f">462ff23cde4c35cd</code></td>
+<td><a href="https://data.systemcards.org/raw/f2c5ae9d54c1bfddb3aa0213dca5926158aaff869454741524a70816c0590ccd.html" rel="nofollow" title="archived copy, sha256 f2c5ae9d54c1bfddb3aa0213dca5926158aaff869454741524a70816c0590ccd">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-20T06:29:08Z</td>
           <td>text/html</td>
@@ -74,7 +81,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -102,6 +109,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-09-30T07:37:12Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-09-30T07:35Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator" rel="noopener nofollow">https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -111,13 +126,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://huggingface.co/nvidia/Cosmos-H-Surgical-Simulator" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Instructions to use nvidia/Cosmos-H-Surgical-Simulator with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
-- Libraries
--  NV-MedTech How to use nvidia/Cosmos-H-Surgical-Simulator with NV-MedTech: # No code snippets available yet for this library. # To use this model, check the repository files and the library&#39;s documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
-- Notebooks
-- Google Colab
-- Kaggle
-Cosmos-H-Surgical-Simulator
+      <pre class="extracted" data-pagefind-body>Cosmos-H-Surgical-Simulator
 Description
 Cosmos-H-Surgical-Simulator is a kinematic action-conditioned surgical world foundation model, built on the public NVIDIA Cosmos-Predict2.5-2B for physical AI and fine-tuned on the Open-H multi-embodiment surgical benchmark. Unlike the text-conditioned base model, it is driven directly by robot kinematics: given a surgical context frame and a sequence of 44-dimensional action vectors encoding end-effector poses and gripper commands (unified across 9 embodiments), it generates future video of the resulting surgical scene.
 The model is intended for evaluating surgical robotics policies in simulation and for synthetic data generation prior to deployment on a physical system. It covers CMR Surgical Versius clinical procedures (cholecystectomy, prostatectomy, inguinal hernia, hysterectomy) as well as dVRK, MITIC, and other surgical platforms across tasks such as suturing, tissue manipulation, and peg transfer.
@@ -220,11 +229,11 @@ Please make sure you have proper rights and permissions for all input image and 
 For more detailed information on ethical considerations for this model, please see the Model Card++ for Bias, Explainability, Safety &amp; Security, and Privacy Subcards below.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 350</pre>
+- 381</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-09-30T06:52:39Z</p></footer>
+<footer><p>Data updated 2026-09-30T07:39:23Z</p></footer>
 </body>
 </html>
