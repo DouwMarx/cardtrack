@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About — systemcards.org</title>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="./style.css?v=beb02c468f">
+<link rel="stylesheet" href="./style.css?v=7285ecd5de">
 </head>
 <body>
 <header class="masthead">
@@ -13,7 +13,7 @@
   <nav>
     <a href="./index.html">Table</a>
     <a href="./search.html">Search</a>
-<a href="https://github.com/DouwMarx/cardtrack">GitHub</a>  </nav>
+<a href="./analysis.html">Analysis</a><a href="https://github.com/DouwMarx/cardtrack">GitHub</a>  </nav>
 </header>
 
 <article class="doc about">
@@ -23,7 +23,9 @@
   <h3>What it does</h3>
   <ul>
     <li>Catalogs documents from an allowlist of AI labs and independent evaluators.</li>
-    <li>Links originals. Never re-hosts them.</li>
+    <li>Links the original of every document, and keeps an archived copy of every
+        version it has captured, downloadable from each document's
+        version history.</li>
     <li>Fingerprints every document daily. Silent edits become recorded versions.</li>
     <li>Shows provenance for every entry: when, how, and why it was added.</li>
   </ul>
@@ -39,6 +41,20 @@
         this site is a static export of it.</li>
   </ul>
 
+  <h3 id="archive">Archive and data</h3>
+  <ul>
+    <li>Every captured version is archived byte for byte and named by its SHA-256, so
+        anyone can verify a copy. Edits and removals stay checkable after the
+        publisher changes the page.</li>
+    <li>Download everything: <a href="https://data.systemcards.org/cardtrack-dataset.tar.gz">the
+        dataset</a> (database, extracted text, manifest), the
+        <a href="https://data.systemcards.org/manifest.json">manifest</a> of every version with its
+        hash and link, and <code>wget -i https://data.systemcards.org/urls.txt</code> for all originals.</li>
+    <li>Archived copies are of publicly released documents; rights remain with their
+        publishers. To request removal of a copy, write to
+<a href="mailto:ops@systemcards.org">ops@systemcards.org</a>.</li>
+  </ul>
+
   <h3>Corrections</h3>
   <ul>
     <li>Wrong entry: use the "report an issue" link on its page.</li>
@@ -47,6 +63,6 @@
   </ul>
 </article>
 
-<footer><p>Data updated 2026-09-29T07:54:35Z</p></footer>
+<footer><p>Data updated 2026-09-30T06:19:00Z</p></footer>
 </body>
 </html>
