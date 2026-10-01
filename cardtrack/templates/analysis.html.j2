@@ -27,8 +27,7 @@
     It is regenerated weekly from the live database and published automatically;
     maintainers review each edition afterwards and refine the skill.</p>
     <p class="edition">Generated {{ analysis.generated_at[:10] }}{% if analysis.snapshot %} from a
-    database snapshot taken {{ analysis.snapshot[:10] }}{% endif %}.{% if analysis.has_pdf %}
-    <a href="./analysis/report.pdf">PDF version</a>.{% endif %}</p>
+    database snapshot taken {{ analysis.snapshot[:10] }}{% endif %}.</p>
   </aside>
   {{ analysis.html | safe }}
 </article>

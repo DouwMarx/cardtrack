@@ -54,6 +54,11 @@ Layout of `report/` (`data/`, `pairs/`, `out/` and `tex/*.pdf` are generated and
    `scripts/report_html.py` (pandoc). Keep tables as `tabular`/`longtable` and cross-references as
    `\ref`; the converter fails loudly if a table does not survive, rather than publishing without it.
 
+## Authorship
+
+The report is AI-generated and published with a disclaimer naming the model. Never put a human
+name in `\author`, and never claim human review ("checked by hand") that did not happen in this run.
+
 ## Analysis conventions worth keeping
 
 - A "monitor outage" run is one where every link check errored; those runs are excluded from all

@@ -91,6 +91,11 @@
   maintenance funded.
 
 ## Other options
+- Public health page (e.g. /health): last success of each phase (monitor, agent,
+  deploy, backup, weekly report), open `pipeline-alert` issues, and the pipeline's
+  Claude usage so far. Source: state/ markers + logs; usage needs a token scope the
+  setup-token lacks (`user:profile`), so either a separate read-only login or
+  counting tokens from the agent transcripts.
 - Make sure the updated claude report gets published weekly on the website that shows the biggest changes etc
 - contact the people at  https://www.themidasproject.com/  who keep track of AI safety policies, but not really system cards.
 - Add a "Download everything" button that allows someone to extract the full corpus

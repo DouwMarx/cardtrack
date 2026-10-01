@@ -16,6 +16,7 @@ body() { curl -fsSL --max-time 30 "$1"; }
 check "site index loads"                 body "$SITE/"
 check "About page has the archive section" bash -c "curl -fsSL '$SITE/about' | grep -q 'id=\"archive\"'"
 check "Analysis page names model + skill" bash -c "curl -fsSL '$SITE/analysis' | grep -q 'AI-generated report' && curl -fsSL '$SITE/analysis' | grep -q 'SKILL.md'"
+check "Analysis page offers no PDF"      bash -c "p=\$(curl -fsSL '$SITE/analysis') && ! printf '%s' \"\$p\" | grep -qi 'report\.pdf\|PDF version'"
 check "Analysis page forbids scripts (CSP)" bash -c "curl -fsSL '$SITE/analysis' | grep -q \"script-src 'none'\""
 check "archive root redirects to About"  bash -c "curl -fsI --max-time 30 '$DATA/' | grep -qi '^location: .*about#archive'"
 

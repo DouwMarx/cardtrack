@@ -10,8 +10,9 @@ Pandoc does the conversion; this script fixes what it gets wrong on this report:
 (\\graphicspath is ignored), table cells with \\newline (pandoc drops the whole
 longtable) and % inside \\url (pandoc reads a comment). It then sanitizes the HTML
 against an allowlist, because the site embeds it unescaped. Writes out/report.html,
-out/figures/*.png, out/report.pdf and out/meta.json. The disclaimer is rendered by
-the site template from meta.json, so it cannot be edited away by the report author.
+out/figures/*.png and out/meta.json; no PDF, the site publishes HTML only. The
+disclaimer is rendered by the site template from meta.json, so it cannot be edited
+away by the report author.
 """
 
 from __future__ import annotations
@@ -177,9 +178,6 @@ def convert(report_dir: Path, out_dir: Path, model: str, skill_url: str,
         if not png.exists():
             raise SystemExit(f"report_html: figure {name} missing in out/figures")
         shutil.copy2(png, fig_out / name)
-    pdf = tex_dir / "report.pdf"
-    if pdf.exists():
-        shutil.copy2(pdf, out_dir / "report.pdf")
     (out_dir / "report.html").write_text(html, encoding="utf-8")
 
     macros = (report_dir / "out" / "macros.tex")
@@ -187,8 +185,7 @@ def convert(report_dir: Path, out_dir: Path, model: str, skill_url: str,
                      macros.read_text(encoding="utf-8")) if macros.exists() else None
     meta = {"model": model, "skill_url": skill_url,
             "generated_at": generated_at or datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "snapshot": snap.group(1) if snap else "",
-            "has_pdf": pdf.exists()}
+            "snapshot": snap.group(1) if snap else ""}
     (out_dir / "meta.json").write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
     return meta
 

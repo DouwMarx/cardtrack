@@ -141,3 +141,14 @@ def test_agent_written_markup_cannot_inject_script(report_dir, tmp_path):
     assert "javascript:" not in html and "<script" not in html
     assert 'href="https://ok.example/x"' in html
     assert html.count("<table") == 1
+
+
+def test_site_publishes_no_pdf_of_the_report(repo, report_dir):
+    """HTML only: the PDF carried a human author line on an AI-generated report."""
+    (report_dir / "tex" / "report.pdf").write_bytes(b"%PDF-1.4 fake")
+    _publish(repo, report_dir)
+    assert not (repo.root / "report" / "published" / "report.pdf").exists()
+    build_site(repo, run_pagefind=False)
+    assert not (repo.site_dir / "analysis" / "report.pdf").exists()
+    page = (repo.site_dir / "analysis.html").read_text()
+    assert "report.pdf" not in page and "PDF version" not in page

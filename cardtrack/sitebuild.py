@@ -114,8 +114,6 @@ def _write_analysis(env: Environment, ctx: dict, site: Path, analysis: dict | No
     out.mkdir(parents=True)
     if (analysis["dir"] / "figures").is_dir():
         shutil.copytree(analysis["dir"] / "figures", out / "figures")
-    if (analysis["dir"] / "report.pdf").exists():
-        shutil.copyfile(analysis["dir"] / "report.pdf", out / "report.pdf")
     (site / "analysis.html").write_text(
         env.get_template("analysis.html.j2").render(**ctx, analysis=analysis), encoding="utf-8")
 
