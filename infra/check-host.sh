@@ -21,7 +21,9 @@ FAIL=0
 check() {  # check <description> <command...>
   local d="$1"; shift
   local out
-  if out="$("$@" 2>&1)"; then echo "ok    $d"
+  # </dev/null: this script arrives on ssh's stdin, and `claude -p` reads stdin,
+  # which once swallowed every check after it
+  if out="$("$@" 2>&1 </dev/null)"; then echo "ok    $d"
   else echo "FAIL  $d: $(printf '%s' "$out" | tail -1 | cut -c1-160)"; FAIL=1; fi
 }
 setting() { .venv/bin/python scripts/get_setting.py "$1" --root .; }
