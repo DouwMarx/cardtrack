@@ -73,6 +73,9 @@ ssh -o BatchMode=yes "cardtrack@$IP" bash -s <<'REMOTE'
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 cd ~/cardtrack
 scripts/install_units.sh >/dev/null && echo "   timers: $(systemctl --user list-timers 'cardtrack*' --no-legend | wc -l) installed"
+# dev role never deploys, so prove the pinned deploy tool at least starts here
+V="$(.venv/bin/python scripts/get_setting.py publish.wrangler_version --root .)"
+echo "   node $(node --version), wrangler $(npx -y "wrangler@$V" --version 2>&1 | tail -1)"
 systemctl --user start cardtrack.service || true
 echo "   unit: $(systemctl --user show cardtrack.service -p Result --value), exit $(systemctl --user show cardtrack.service -p ExecMainStatus --value)"
 L="$(ls -t logs/run-*.log | head -1)"

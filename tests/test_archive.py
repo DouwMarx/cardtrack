@@ -112,13 +112,17 @@ def s3(tmp_path):
            "RCLONE_S3_SECRET_ACCESS_KEY": "testsecret123",
            "RCLONE_S3_ENDPOINT": f"http://127.0.0.1:{port}"}
     try:
-        for _ in range(60):
-            if subprocess.run(["rclone", "lsd", ":s3:"], env={**os.environ, **env},
-                              capture_output=True).returncode == 0:
+        for _ in range(40):
+            if proc.poll() is not None:   # e.g. an rclone without `serve s3` (< 1.65)
+                pytest.fail("rclone serve s3 exited: " + proc.stderr.read(2000).decode())
+            if subprocess.run(["rclone", "lsd", ":s3:", "--retries", "1",
+                               "--low-level-retries", "1", "--contimeout", "2s"],
+                              env={**os.environ, **env}, capture_output=True,
+                              timeout=15).returncode == 0:
                 break
             time.sleep(0.25)
         else:
-            pytest.fail("rclone serve s3 did not start: " + proc.stderr.read(2000).decode())
+            pytest.fail("rclone serve s3 did not answer: " + proc.stderr.read(2000).decode())
         yield env
     finally:
         proc.terminate()

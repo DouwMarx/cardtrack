@@ -17,12 +17,42 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
 # git/curl/ca: fetch + clone; bubblewrap: agent sandbox; poppler-utils: PDF text;
-# nodejs/npm: npx wrangler + pagefind; gh: issues and push auth; sqlite3: report
+# gh: issues and push auth; sqlite3: report
 # snapshot; rclone: R2 archive backup; pandoc/latexmk/texlive: weekly report.
 apt-get install -y -q --no-install-recommends \
-  git curl ca-certificates rsync bubblewrap poppler-utils nodejs npm gh sqlite3 rclone \
+  git curl ca-certificates rsync xz-utils unzip bubblewrap poppler-utils gh sqlite3 \
   pandoc latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
   texlive-bibtex-extra lmodern python3 jq unattended-upgrades systemd-container
+
+# Node.js, pinned (versions.env), from the official release, checksum-verified.
+# Installed under /opt and linked into /usr/local/bin, which precedes /usr/bin.
+NODE_DIR="/opt/node-v$NODE_VERSION"
+if [ ! -x "$NODE_DIR/bin/node" ]; then
+  case "$(dpkg --print-architecture)" in amd64) NARCH=x64 ;; arm64) NARCH=arm64 ;;
+    *) echo "unsupported architecture for Node.js"; exit 1 ;; esac
+  NTAR="node-v$NODE_VERSION-linux-$NARCH.tar.xz"
+  NTMP="$(mktemp -d)"
+  curl -fsSLo "$NTMP/$NTAR" "https://nodejs.org/dist/v$NODE_VERSION/$NTAR"
+  curl -fsSLo "$NTMP/SHASUMS256.txt" "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt"
+  (cd "$NTMP" && grep " $NTAR\$" SHASUMS256.txt | sha256sum -c --quiet -)
+  mkdir -p "$NODE_DIR" && tar -xJf "$NTMP/$NTAR" -C "$NODE_DIR" --strip-components=1
+  rm -rf "$NTMP"
+fi
+for b in node npm npx; do ln -sf "$NODE_DIR/bin/$b" "/usr/local/bin/$b"; done
+
+# rclone, pinned the same way (official release + its SHA256SUMS).
+if [ "$(/usr/local/bin/rclone version 2>/dev/null | head -1)" != "rclone v$RCLONE_VERSION" ]; then
+  case "$(dpkg --print-architecture)" in amd64) RARCH=amd64 ;; arm64) RARCH=arm64 ;;
+    *) echo "unsupported architecture for rclone"; exit 1 ;; esac
+  RZIP="rclone-v$RCLONE_VERSION-linux-$RARCH.zip"
+  RTMP="$(mktemp -d)"
+  curl -fsSLo "$RTMP/$RZIP" "https://downloads.rclone.org/v$RCLONE_VERSION/$RZIP"
+  curl -fsSLo "$RTMP/SHA256SUMS" "https://downloads.rclone.org/v$RCLONE_VERSION/SHA256SUMS"
+  (cd "$RTMP" && grep " $RZIP\$" SHA256SUMS | sha256sum -c --quiet -)
+  unzip -q -j "$RTMP/$RZIP" '*/rclone' -d "$RTMP/bin"
+  install -m 755 "$RTMP/bin/rclone" /usr/local/bin/rclone
+  rm -rf "$RTMP"
+fi
 
 # SSH: keys only. Some images (netcup) ship with root password login enabled.
 if [ -d /etc/ssh/sshd_config.d ]; then

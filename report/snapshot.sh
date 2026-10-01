@@ -13,13 +13,15 @@ else
 fi
 cp "$SRC"/logs/run-*.log "$HERE/data/runlogs/" 2>/dev/null || true
 cp "$SRC/logs/friction.jsonl" "$SRC/logs/PROPOSALS.md" "$SRC/logs/candidates.json" "$HERE/data/" 2>/dev/null || true
-# Host journal (only meaningful on the machine that runs the timer; optional).
+# Host journal (only meaningful on the machine that runs the timer; optional). A host
+# that never suspends, or has no journal, yields no lines: grep then exits 1, which
+# under pipefail aborted the whole snapshot (found on a Debian server, 2026-10-01).
 {
-  journalctl --since 2026-08-09 -o short-iso --no-pager 2>/dev/null \
-    | grep -i "System returned from sleep\|Performing sleep operation" \
-    | awk '{print $1 " " (($0 ~ /returned/) ? "resume" : "suspend")}'
-  journalctl --user -u cardtrack.service --since 2026-08-09 -o short-iso --no-pager 2>/dev/null \
-    | grep "Starting cardtrack" | awk '{print $1 " service_start"}'
+  { journalctl --since 2026-08-09 -o short-iso --no-pager 2>/dev/null \
+      | grep -i "System returned from sleep\|Performing sleep operation" \
+      | awk '{print $1 " " (($0 ~ /returned/) ? "resume" : "suspend")}'; } || true
+  { journalctl --user -u cardtrack.service --since 2026-08-09 -o short-iso --no-pager 2>/dev/null \
+      | grep "Starting cardtrack" | awk '{print $1 " service_start"}'; } || true
 } | sort | python3 -c '
 import sys, json
 ev=[{"ts": l.split()[0], "kind": l.split()[1]} for l in sys.stdin if len(l.split())==2]

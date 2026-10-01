@@ -10,6 +10,7 @@ only the secrets file is filled in by hand.
 | First contact | `provision.sh` | runs the bootstrap on a fresh server over SSH as root |
 | Secrets + switch-on | `push-secrets.sh`, `prod.env.example` | writes `.env`, logs `gh` in, runs the canary, enables the timers |
 | Moving production | `migrate-data.sh` | stops the old machine's timers, copies `data/raw` and `state/`, enables the new host |
+| Pre-flight on the host | `check-host.sh` | every credential and tool, exercised without changing anything |
 | Tests without a server | `test-bootstrap.sh`, `rehearse.sh` | see "Testing" below |
 
 The pipeline only makes outbound connections; SSH (key-only) is the one open port.
@@ -34,7 +35,8 @@ The pipeline only makes outbound connections; SSH (key-only) is the one open por
 5. New deployment: `./push-secrets.sh <ip>`. It ends with the canary (`"failing": []`
    means Claude answers with the pipeline's credentials) and enables the timers.
 6. Moving an existing deployment instead: `./push-secrets.sh <ip> --no-enable`, then
-   on the old machine `./migrate-data.sh <ip>`. It stops the old timers, copies
+   `./check-host.sh <ip>` (every line must say ok), then on the old machine
+   `./migrate-data.sh <ip>`. It stops the old timers, copies
    `data/raw` and `state/`, and only then enables the new host's timers, so two
    machines never publish the same day.
 
@@ -47,6 +49,7 @@ From cheapest to most complete. None of these touch production.
 | Unit + integration | `uv run poe test` | uv; bwrap, pandoc, rclone for some tests | code paths, the real sandbox, a real S3 endpoint (`rclone serve s3`), real git for deploys; also runs in CI on every push |
 | Clean-machine build | `uv run poe test-bootstrap` | docker | `bootstrap.sh` on a fresh Debian 13, then the full test suite and a report build there |
 | Dress rehearsal | `uv run poe rehearse` | docker, `infra/prod.env`, your SSH key | the whole host path on a throwaway Debian 13 "server" (systemd + sshd, reached over SSH): `provision.sh`, `push-secrets.sh` with a dev-role copy of the secrets, the timers, one full daily run under systemd. Costs one agent run on the pipeline's subscription. Clones the default branch from GitHub, so push first. |
+| Host pre-flight | `infra/check-host.sh <host>` | SSH to a provisioned host with secrets | on the real host, without changing anything: role, file permissions, pinned versions, the sandbox, git push auth (dry run), gh, a Claude call on the pipeline account, wrangler against the Pages project, OpenRouter, both R2 buckets, the report toolchain. It caught wrangler needing Node 22 on Debian 13, which the rehearsal cannot see because dev never deploys. |
 | Live smoke test | `uv run poe smoke` | curl | the public production surface: site pages, the Analysis page and its disclaimer, the archive redirect and sandbox headers, and one archived original against its sha256 in the manifest |
 
 The rehearsal's first run found that the sandbox hid `~/.local/bin/claude` on Debian

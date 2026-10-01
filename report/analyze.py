@@ -287,11 +287,15 @@ R["longest_outage_streak"] = best
 first_run, last_run = parse_ts(run_rows[0]["ts"]), parse_ts(run_rows[-1]["ts"])
 R["calendar_days_span"] = int(days(first_run, last_run)) + 1
 R["n_missing_days"] = R["calendar_days_span"] - len({r["date"] for r in run_rows})
-R["median_sec_since_resume_outage"] = int(np.median(
-    [r["sec_since_resume"] for r in run_rows if r["outage"] and r["sec_since_resume"] is not None]))
-R["median_sec_since_resume_valid"] = int(np.median(
-    [r["sec_since_resume"] for r in run_rows if not r["outage"]
-     and r["sec_since_resume"] is not None] or [float("nan")]))
+def _median_int_or_nan(xs):
+    # A host that never suspends (a server) has no resume events: no median, not a crash.
+    return int(np.median(xs)) if xs else float("nan")
+
+
+R["median_sec_since_resume_outage"] = _median_int_or_nan(
+    [r["sec_since_resume"] for r in run_rows if r["outage"] and r["sec_since_resume"] is not None])
+R["median_sec_since_resume_valid"] = _median_int_or_nan(
+    [r["sec_since_resume"] for r in run_rows if not r["outage"] and r["sec_since_resume"] is not None])
 outage_runs = {r["run_id"] for r in run_rows if r["outage"]}
 
 # ------------------------------------------------------------------ 3. availability (target side)
