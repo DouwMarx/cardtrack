@@ -42,13 +42,8 @@ logs/SECURITY_HOLD.md
 # a clean clone regenerates it with `poe build`.
 site/pagefind/
 
-# infrastructure: local state and variable files hold tokens
-infra/.terraform/
-infra/*.tfstate
-infra/*.tfstate.*
-infra/terraform.tfvars
+# production secrets (infra/push-secrets.sh)
 infra/prod.env
-infra/.terraform.tfstate.lock.info
 
 # research report: generated intermediates (report/published/ is the tracked edition)
 report/data/

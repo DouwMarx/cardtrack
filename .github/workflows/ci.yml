@@ -1,6 +1,6 @@
 name: ci
 # Same checks production runs before it moves to a new commit (deploy.test_cmd),
-# plus lint and the infrastructure definition. Red here = the host will refuse it.
+# plus lint. Red here = the host will refuse it.
 on:
   push:
   pull_request:
@@ -31,14 +31,3 @@ jobs:
         env:
           CI: "1"
 
-  infra:
-    runs-on: ubuntu-24.04
-    defaults:
-      run:
-        working-directory: infra
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - run: terraform fmt -check -diff
-      - run: terraform init -backend=false -input=false
-      - run: terraform validate

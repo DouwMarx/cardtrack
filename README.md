@@ -15,8 +15,8 @@ falls back to pypdf), `gh` (optional — GitHub issues loop), `bwrap` (optional 
 agent sandbox), the `claude` CLI (agent phase), and for the weekly report `pandoc`,
 `latexmk` and TeX Live.
 
-Production host: `infra/` creates and configures one from code (Terraform + a Debian
-bootstrap script); see [infra/README.md](infra/README.md). The exact Debian package
+Production host: `infra/` turns a fresh Debian 13 server into production over SSH;
+see [infra/README.md](infra/README.md). The exact Debian package
 list lives in `infra/bootstrap.sh`, and `infra/test-bootstrap.sh` proves it in a
 container. Note: bwrap needs unprivileged
 user namespaces (default-on in Debian 12+; Ubuntu 24.04 restricts them via AppArmor —
@@ -45,6 +45,9 @@ uv run poe monitor                       # Phase A only (link/fingerprint/index 
 uv run poe build                         # rebuild site/ from the DB
 uv run poe serve                         # preview at http://localhost:8791
 uv run poe daily                         # full daily run (A → B → C)
+uv run poe smoke                         # live smoke test of systemcards.org + the archive
+uv run poe test-bootstrap                # setup script + tests in a clean Debian 13 container
+uv run poe rehearse                      # dress rehearsal of a production host (see infra/README.md)
 ```
 
 The table UI loads `data/metadata.json` via fetch, so preview through `poe serve`
@@ -276,6 +279,7 @@ Everything the agent reads (web pages, issue text) is treated as untrusted input
 2. ✅ Site live at https://systemcards.org (Pages project `cardtrack`; systemcards.org +
    www + cards.douwmarx.com all attached, CNAMEs → cardtrack-aar.pages.dev, HTTPS active)
 3. ✅ Daily schedule live (systemd user timer, 06:15 UTC, linger enabled); host-as-code in
-   `infra/` (Hetzner + Debian 13), funded for 12 months by a BlueDot Rapid Grant
+   `infra/` (any Debian 13 server; netcup in production), funded for 12 months by a
+   BlueDot Rapid Grant
 4. ✅ Agent enabled and battle-tested (backfill drain + audits, 2026-08-09/10)
 5. ✅ 2026 corpus backfilled (supervised session, 2026-08-09); deepen later by lowering `min_publication_date`

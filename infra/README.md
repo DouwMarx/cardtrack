@@ -1,100 +1,57 @@
 # Production host
 
-One small Debian 13 VM at Hetzner, created and configured from this directory.
-Everything is code except the secrets, which you deliver in one command.
+One small Debian 13 server (production: netcup VPS 500, Nuremberg: 2 cores, 4 GB RAM,
+64 GB disk, about 7 EUR/month). Everything after ordering it is code run over SSH;
+only the secrets file is filled in by hand.
 
 | Piece | File | Does |
 |---|---|---|
-| Infrastructure | `main.tf`, `variables.tf` | server, SSH key, firewall (only key-only SSH inbound) |
-| First boot | `cloud-init.yaml.tftpl` | joins the tailnet (optional), runs the bootstrap |
-| Machine setup | `bootstrap.sh`, `versions.env` | packages, app user, pinned `uv` and `claude`, clone, `uv sync` |
-| Any other provider | `provision.sh` | the cloud-init steps over SSH, for a Debian 13 box you ordered by hand |
-| Secrets + switch-on | `push-secrets.sh`, `prod.env.example` | writes `.env`, logs `gh` in, enables the timers |
-| Moving production | `migrate-data.sh` | stops the old host, copies `data/raw`, hands over |
-| Proof without a VM | `test-bootstrap.sh` | runs the bootstrap + test suite + report build in a Debian 13 container |
-| Dress rehearsal | `rehearse.sh` | a throwaway Debian 13 "server" (container with systemd + sshd): provision, push a dev-role copy of the secrets, install timers, one full daily run under systemd |
+| Machine setup | `bootstrap.sh`, `versions.env` | packages, app user `cardtrack`, pinned `uv` and Claude Code, repo clone, key-only SSH |
+| First contact | `provision.sh` | runs the bootstrap on a fresh server over SSH as root |
+| Secrets + switch-on | `push-secrets.sh`, `prod.env.example` | writes `.env`, logs `gh` in, runs the canary, enables the timers |
+| Moving production | `migrate-data.sh` | stops the old machine's timers, copies `data/raw` and `state/`, enables the new host |
+| Tests without a server | `test-bootstrap.sh`, `rehearse.sh` | see "Testing" below |
 
-Sizing: `cx23` (2 vCPU x86, 4 GB, 40 GB, about 6 EUR/month with IPv4). The pipeline
-uses about 3 GB of disk and runs one job at a time. IPv4 stays on because github.com
-has no IPv6 address.
+The pipeline only makes outbound connections; SSH (key-only) is the one open port.
 
-## Create a host
+## Set up a host
 
-You need: [Terraform](https://developer.hashicorp.com/terraform/install) (or OpenTofu),
-a Hetzner Cloud project, and an SSH key. The host clones `repo_url` and runs
-`infra/bootstrap.sh` from its default branch, so that branch must already contain `infra/`.
-
-1. Hetzner console: create a project, then Security > API tokens > Generate (Read & Write).
-2. SSH is key-only (the bootstrap disables password login) and open on port 22, the only
-   inbound port. To restrict it, set `admin_cidrs`. Optional: put the host on a Tailscale
-   tailnet instead and close port 22 entirely; see "Optional: Tailscale" below.
-3. In `infra/`: `cp terraform.tfvars.example terraform.tfvars`, fill it in, then:
+1. Order a Debian 13 server with 2 cores and 4 GB RAM. Any provider works; the
+   steps below use only SSH. Keep the root password in your password manager: it is
+   needed only for the provider's web console, the break-glass if SSH ever fails.
+2. Put your SSH key on it and check the host's identity on first contact: the
+   fingerprint `ssh` shows must match the one in the provider's welcome email.
    ```sh
-   cd infra
-   terraform init
-   terraform apply
+   ssh-copy-id -i ~/.ssh/id_ed25519.pub root@<ip>     # asks for the root password once
+   ssh root@<ip> true                                  # must not ask for a password
    ```
-   Or let `./hetzner-try.sh` pick: it asks the Hetzner API which budget type
-   (CX23, then ARM CAX11) is orderable in which location, applies only then, and
-   creates nothing (exit 3) when none is, so you can fall back to "Other providers". First boot takes about 10 minutes (TeX Live). Progress:
-   `ssh root@<host> tail -F /var/log/cardtrack-bootstrap.log`. With Tailscale, remove an old
-   node of the same name in the admin console before re-creating a host.
+3. `./provision.sh <ip>` (about 5 minutes; disables password login).
 4. `cp prod.env.example prod.env` and fill it in:
-   - `CLAUDE_CODE_OAUTH_TOKEN`: run `claude setup-token` and approve in the browser as
-     the pipeline's own Claude account; set `CLAUDE_TOKEN_CREATED` to today.
-   - `GH_TOKEN`: fine-grained PAT, this repo only, Contents and Issues read/write.
-   - Cloudflare and OpenRouter keys as in the root `env.example`.
-5. New deployment: `./push-secrets.sh <host>`. It runs the canary (`ok` means Claude
-   answers with the pipeline's credentials) and enables the timers.
-6. Moving an existing deployment instead: `./push-secrets.sh <host> --no-enable`, then
-   on the old machine `./migrate-data.sh <host>`. It stops the old timers, copies
-   `data/raw`, and only then enables the new host's timers, so two machines never
-   publish the same day.
+   - `CLAUDE_CODE_OAUTH_TOKEN`: `claude setup-token`, approved in the browser as the
+     pipeline's own Claude account; `CLAUDE_TOKEN_CREATED` = that day.
+   - `GH_TOKEN`: fine-grained PAT, this repository only, Contents and Issues read/write.
+   - Cloudflare, OpenRouter and R2 values as in the root `env.example`.
+5. New deployment: `./push-secrets.sh <ip>`. It ends with the canary (`"failing": []`
+   means Claude answers with the pipeline's credentials) and enables the timers.
+6. Moving an existing deployment instead: `./push-secrets.sh <ip> --no-enable`, then
+   on the old machine `./migrate-data.sh <ip>`. It stops the old timers, copies
+   `data/raw` and `state/`, and only then enables the new host's timers, so two
+   machines never publish the same day.
 
-## Other providers (netcup, OVH, bare metal)
+## Testing
 
-Only the ordering step differs. `bootstrap.sh` is provider-neutral; `main.tf` is the
-Hetzner-specific part, used when that provider has stock (its cost-optimized CX/CAX
-line was sold out for much of September 2026).
+From cheapest to most complete. None of these touch production.
 
-1. Order a Debian 13 server with 2 cores and 4 GB RAM in the provider's web shop, with
-   your SSH key for root (netcup: VPS 500, Nuremberg). netcup has no ordering API; its
-   Terraform providers are community-maintained and manage existing servers only.
-2. `./provision.sh <public-ip>` (optionally `--tailscale-key-file <file> --lockdown`,
-   see below).
-3. Continue with step 4 above, with the public IP as `<host>`.
+| Layer | Command | Needs | Proves |
+|---|---|---|---|
+| Unit + integration | `uv run poe test` | uv; bwrap, pandoc, rclone for some tests | code paths, the real sandbox, a real S3 endpoint (`rclone serve s3`), real git for deploys; also runs in CI on every push |
+| Clean-machine build | `uv run poe test-bootstrap` | docker | `bootstrap.sh` on a fresh Debian 13, then the full test suite and a report build there |
+| Dress rehearsal | `uv run poe rehearse` | docker, `infra/prod.env`, your SSH key | the whole host path on a throwaway Debian 13 "server" (systemd + sshd, reached over SSH): `provision.sh`, `push-secrets.sh` with a dev-role copy of the secrets, the timers, one full daily run under systemd. Costs one agent run on the pipeline's subscription. Clones the default branch from GitHub, so push first. |
+| Live smoke test | `uv run poe smoke` | curl | the public production surface: site pages, the Analysis page and its disclaimer, the archive redirect and sandbox headers, and one archived original against its sha256 in the manifest |
 
-## Optional: Tailscale
-
-Joining a tailnet lets the host close port 22 to the internet. It costs a policy edit
-that must keep the host from reaching your other devices; check it against your
-existing policy before saving, since replacing the default allow-all rule changes
-what your own devices can reach:
-
-```json
-"tagOwners": { "tag:cardtrack": ["autogroup:admin"] },
-"grants": [
-  { "src": ["autogroup:member"], "dst": ["autogroup:member"], "ip": ["*"] },
-  { "src": ["autogroup:admin"],  "dst": ["tag:cardtrack"],    "ip": ["*"] }
-],
-"ssh": [
-  { "action": "accept", "src": ["autogroup:admin"], "dst": ["tag:cardtrack"],
-    "users": ["root", "cardtrack"] }
-]
-```
-
-Then generate a one-off, pre-approved auth key tagged `tag:cardtrack` and pass it as
-`tailscale_auth_key` (Terraform) or `--tailscale-key-file` (provision.sh, where
-`--lockdown` then drops all public inbound traffic).
-
-## Rehearse before touching a real host
-
-`./rehearse.sh` runs the real `provision.sh`, `push-secrets.sh` and timers against a
-local Debian 13 container reached over SSH, then one full daily run under systemd
-with `CARDTRACK_ROLE=dev` (nothing is committed, pushed, deployed or filed). It clones
-the default branch from GitHub, so push first. Its first run found that the sandbox
-hid `~/.local/bin/claude` on Debian (the agent failed with exit 127), which the NixOS
-laptop could never show.
+The rehearsal's first run found that the sandbox hid `~/.local/bin/claude` on Debian
+(agent exit 127), a failure the NixOS laptop could never show. Run it before changing
+`bootstrap.sh`, `provision.sh`, `push-secrets.sh`, the systemd units or the sandbox.
 
 ## Operate
 
@@ -102,21 +59,22 @@ laptop could never show.
   if the test suite passes there; otherwise a `pipeline-alert: deploy-rejected` issue opens.
 - Alerts arrive as GitHub issues (`pipeline-alert: *`) and close themselves; see the
   root README, "Alerts".
-- Logs: `ssh cardtrack@<host>`, then `ls ~/cardtrack/logs/`, or
+- Logs: `ssh cardtrack@<ip>`, then `ls ~/cardtrack/logs/`, or
   `journalctl --user -u cardtrack -u cardtrack-canary -u cardtrack-report`.
 - Run now: `systemctl --user start cardtrack` (or `cardtrack-report`).
+- Troubleshoot with Claude Code on the host (uses the pipeline's subscription):
+  `cd ~/cardtrack && CLAUDE_CODE_OAUTH_TOKEN="$(. scripts/lib.sh; envget CLAUDE_CODE_OAUTH_TOKEN .)" claude`
 
 ### Rotate the Claude token
 
 Run `claude setup-token` as the pipeline's account, update `CLAUDE_CODE_OAUTH_TOKEN` and
-`CLAUDE_TOKEN_CREATED` in `prod.env`, and re-run `./push-secrets.sh <host>`. Revoke the
+`CLAUDE_TOKEN_CREATED` in `prod.env`, and re-run `./push-secrets.sh <ip>`. Revoke the
 old token at claude.ai/settings/claude-code. The `claude-token-expiring` issue closes on
 the next run.
 
 ### Upgrade pinned tools
 
-Bump `versions.env`, run the daily pipeline once on a dev checkout with the new
-versions, push, let the host pull it, then as root on the host:
-`ssh root@<host> bash ~cardtrack/cardtrack/infra/bootstrap.sh <repo-url>` (idempotent).
-Not pinned: Debian packages (security updates install automatically), the Tailscale
-installer, and `npx` wrangler/pagefind.
+Bump `versions.env`, run `poe rehearse`, push, let the host pull it, then as root:
+`ssh root@<ip> bash ~cardtrack/cardtrack/infra/bootstrap.sh <repo-url>` (idempotent).
+Not pinned: Debian packages (security updates install automatically) and `npx`
+pagefind (wrangler is pinned in settings.yaml).

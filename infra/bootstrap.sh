@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Idempotent host setup for a cardtrack production box (Debian 13). Run as root.
-# cloud-init runs it on first boot (infra/cloud-init.yaml.tftpl); re-running it is
-# safe and is how a host gets new packages or pinned tool versions.
+# infra/provision.sh runs it over SSH on a fresh server; re-running it is safe and
+# is how a host gets new packages or pinned tool versions.
 #
 #   bootstrap.sh <repo-url> [user]
 #

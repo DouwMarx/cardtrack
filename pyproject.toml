@@ -55,3 +55,7 @@ roster = "python scripts/roster.py"
 build = "python scripts/build_site.py"
 serve = "python -m http.server -d site 8791"
 daily = "bash scripts/run_daily.sh"
+# testing layers beyond pytest (infra/README.md, "Testing")
+test-bootstrap = "bash infra/test-bootstrap.sh"
+rehearse = "bash infra/rehearse.sh"
+smoke = "bash scripts/smoke_public.sh"
