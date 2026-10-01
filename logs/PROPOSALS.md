@@ -1788,3 +1788,30 @@ If (a), a later run should backfill the five 09-16 reports. If (b), `openai-open
 - Documents 354 and 355 (written today).
 - PROPOSALS entry of 2026-09-25.
 - `logs/friction.jsonl` entry `2026-09-29T08:31:00Z`.
+
+## 2026-10-01 — US CAISI is now branded "CAISSI"; update the us_caisi source entry
+
+**Problem.** NIST now presents the center as "CAISSI" (Center for Advancing Innovation and Standards for
+Super Intelligence), under `www.nist.gov/caissi` and `www.nist.gov/blogs/caissi-research-blog`. Phase A
+followed the configured `nist.gov/caisi` index URLs to the new paths. Today it surfaced 13 "new"
+`us_caisi` candidates, and all of them were noise:
+
+- navigation and feedback-webform links;
+- re-pathed copies of old research-blog posts, such as "Cheating On AI Agent Evaluations" (2025-12-02),
+  which names no models.
+
+The known model evaluations (DeepSeek V4 Pro, GLM-5.2, Kimi K3, GLM-5.3) still live under
+`/news-events/news/...` and are all catalogued. The `display_name: US CAISI (NIST)` is now stale.
+
+**Suggested change.**
+
+- In `config/sources.yaml` `us_caisi`, point `homepage` and `index_urls` at the `/caissi` paths. Keep the
+  publisher key so that slugs stay stable.
+- Consider changing `display_name` to "US CAISSI (NIST, formerly CAISI)".
+- Seed the index-diff baseline so that the re-pathed blog posts do not resurface as new.
+
+**Evidence.**
+
+- `logs/candidates.json` for run 2026-10-01T06:19Z-local (13 `us_caisi` entries).
+- The `nist.gov/caissi` page.
+- The CAISSI byline on `nist.gov/blogs/caissi-research-blog/cheating-ai-agent-evaluations`.

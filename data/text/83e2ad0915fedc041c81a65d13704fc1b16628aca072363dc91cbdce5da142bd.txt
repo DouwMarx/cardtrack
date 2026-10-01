@@ -1,0 +1,17 @@
+Putting defenders first
+Using frontier models can help people to rapidly discover – and fix – critical vulnerabilities. But in the wrong hands, the same capabilities can become an equally powerful threat.
+Keeping defenders one step ahead
+The Fairwind Program gives trusted partners a critical head start against cyber threats, while making sure models are deployed safely and responsibly.
+The Fairwind Program gives high-priority defenders (like governments, healthcare providers, and telecommunications services) early access to advanced models that help them build better defenses, before new threats arrive. So defenders have an early advantage, to help them protect vital infrastructure – which in turn protects people who rely on those systems.
+We currently work with over 650 partners globally.
+Slide 1 of 11
+A set of Fairwind Program partners get exclusive access to Gemini 4 Argon, and can use this model in CodeMender to further enhance its powerful vulnerability research and patching capabilities.
+Frontier-level performance in vulnerability detection, and automated patching.
+A specialized code security agent that provides a safe and effective way to help automate software fixes. Helps defenders focus on finding and fixing vulnerabilities, without the need to build and maintain their own harnesses.
+Slide 1 of 3
+We’ve established robust governance standards and due diligence checks to make sure this program is only used for defensive and research purposes, and that customer data is protected.
+Fairwind Program partners are only permitted to carry out dual-use tasks, including authorized threat simulation, reverse engineering, and malware analysis for defensive and academic research purposes.
+Participating organizations agree to specific terms, including user-level authentication, phishing-resistant MFA, and applicable access controls. Organizations may only grant Gemini 4 Argon access to internal cybersecurity, incident response, or penetration testing teams, and must track employee access and use.
+Access to the Fairwind Program is strictly controlled, and we do not allow partner organizations to share, redistribute, or sell access to our frontier models.
+We conduct background checks on organizations that apply, to verify security history and analyze their record of ethical operations.
+To request access to the Fairwind Program, fill in our form. We will review and respond to eligible partners who meet our criteria as soon as we can.

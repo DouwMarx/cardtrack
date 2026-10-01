@@ -1,59 +1,60 @@
-# cardtrack agent run — 2026-09-30 (run id 2026-09-30T07:35Z-local)
+# cardtrack agent run — 2026-10-01 (run id 2026-10-01T06:19Z-local)
 
-Last agent success: 2026-09-29T07:55:49Z. The search window used the 72 h minimum lookback (from 2026-09-27).
-Today is Wednesday, so there was no weekly retrospective sweep. There were no open issues.
+Last agent success: 2026-09-30T07:41:35Z. The search window used the 72 h minimum lookback (from 2026-09-28).
+Today is Thursday, so there was no weekly retrospective sweep. There were no open issues and no blocked-URL escalations.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | add (addendum) | OpenAI, "Addendum to GPT-6 Astra System Card: GPT-6.1 Sol" (deploymentsafety.openai.com/gpt-6-1-sol/gpt-6-1-sol.pdf, 2026-09-29) | **written**, `openai-gpt-6-1-sol-addendum` (doc 356, v707) |
-| 2 | add (other) | Anthropic Frontier Red Team, "GLM-5.3 and the spread of advanced cyber capabilities" (2026-09-29) | **written**, `anthropic-glm-5-3-other` (doc 357, v708) |
+| 1 | add (access_policy) | Google, "Gemini 4 Argon: our next era of frontier intelligence" (blog.google/…/gemini-4-argon/, 2026-09-30) | **written**, `google-deepmind-gemini-4-argon-access-policy` (doc 358, v711) |
+| 2 | add (access_policy) | Google DeepMind, Fairwind Program page (deepmind.google/fairwind-program/, undated) | **written**, `google-deepmind-gemini-4-argon-access-policy-2` (doc 359, v712) |
 
 Notes:
-- **GPT-6.1 Sol.** I read the PDF cover and TOC directly. The PDF is the canonical URL; the deploymentsafety web page (web_version) and the openai.com launch post (announcement) are in related_urls.
-  - openness `closed`: public API as `gpt-6.1-sol`.
-  - risk_domains: cbrn, cyber and loss_of_control (Preparedness bio/chem, cyber and AI self-improvement; monitorability; alignment), plus societal_harm (U18 and mental-health evals).
-  - A hashed CDN copy exists at cdn.openai.com/pdf/38e3efcf…/oai_GPT_6_1_Sol.pdf. I did not use it, because the stable URL is preferred.
-- **GLM-5.3 cyber report.** This is a quantitative eval of a named third-party model: ExploitBench, an OSS-Fuzz exploitation benchmark, zero-day discovery, and safeguard-bypass/refusal benchmarks.
-  - I used doc_type `other` because Anthropic is a lab, not an allowlisted evaluator. risk_domains: cyber.
-  - openness is omitted: the GLM-5.3 license is a custom "glm-5.3" license I could not classify.
+- **Gemini 4 Argon launch post.** This is the first Gemini 4 generation frontier model, and its release is gated: it is rolling out only to trusted cyber defenders through the vetted Fairwind Program. It is also in the US government's voluntary pre-release access process, and a public API and Ultra launch is promised "as soon as possible".
+  - Classified as an access_policy launch post that names the gated model, with openness `restricted`.
+  - risk_domains: `cyber`, from the reported CWE-bench v1 result (68%) and the misuse-safeguard and red-teaming section. The Gray Swan prompt-injection result is domain-generic and was not tagged separately.
+  - **There is no Gemini 4 Argon model card yet.** It is absent from the deepmind.google model-cards index as of 2026-10-01, and third-party coverage confirms this. Re-check daily; the card will likely ship with the public API launch.
+- **Fairwind program page.** This is the standing program page, distinct from the dated 2026-09-02 blog.google Fairwind launch post already catalogued as `google-deepmind-gemini-3-8-flash-cyber-access-policy`.
+  - It now names Gemini 4 Argon, alongside the CodeMender agent, and has real program structure: eligibility categories, background and security-history vetting, and an application form.
+  - It carries no date, so publication_date is null.
+- deepmind.google/models/gemini/cyber/ is a related URL on the existing 3.8 Flash Cyber row, and it has been repurposed to feature Gemini 4 Argon. I did not propose a change; it is noted in the Argon row's notes.
 
-## Phase A candidates triaged
+## Phase A candidates triaged (first_seen ≥ 2026-09-30T07:37Z)
 
-These are the new since last run (first_seen ≥ 2026-09-29):
-- Proposed: deploymentsafety.openai.com/gpt-6-1-sol (#1), anthropic.com/research/glm-5-3-… (#2).
-- Already in the database:
-  - anthropic.com/claude-sonnet-5-5 (related URL of `anthropic-claude-sonnet-5-5-system-card`)
-  - aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks… (related URL of `uk-aisi-gpt-6-astra-independent-eval`)
-  - huggingface.co/papers/2609.25611, the Qwen3.8-Omni report (canonical of `alibaba-qwen-qwen3-8-omni-flash-model-card`)
+- Proposed: blog.google gemini-4-argon (#1). The Fairwind page (#2) came from the Argon post's links.
 - Skipped as out of scope:
-  - anthropic.com/research/your-thoughts-on-ai: a societal-impacts survey, not a model eval.
-  - mistral.ai/news/hallo-deutschland (both variants): a company office announcement.
-  - mistral.ai/products/ai-cloud: a product page.
-  - x.ai/news/team-bots: a product launch without documentation.
-- Skipped as HF noise: user profiles (Svard, huaXiaKyrie, kailinjiang, KBlueLeaf, anwithkiran, chenmouxiang, alibaba-qwen, DVA13304, qingpei, whatseeker, Andyson, CFC); dataset discussions; Nemotron-RL datasets; and research papers that only use models (Draft-KV, Just MLPs, AdaTutoRank, TT-VidT, QwenGyre, OPD, reward-model alignment, Groupwise Agentic Grading, LongLive-Plug, Hindsight-Divergence).
-- Skipped under the auxiliary-model rule (tabular/relational/medical-imaging/climate models, no safety evals): nvidia/Kumo-Tabular, Kumo-Relational, the Kumo blog post, NV-Generate-CT and cbottle.
-- Skipped as a discussion thread: the Ling-3.0-flash-VL context-length discussion. It is not a document; the model card is the unit.
-- Skipped on scope and notability grounds: inclusionAI/Ming-flash-omni-2.0. It is an MIT omni model released 2026-02-11, but the Ming line is not in the inclusion_ai scope note and I found no external announcement. Logged to friction.
-- Older candidates (first_seen before 2026-09-29) were triaged by earlier runs and not re-reviewed.
+  - deepmind.google/blog/introducing-synthid-bio: a watermarking method family for synthetic biology, not a named generative model's documentation and not an access program.
+  - anthropic.com/research/what-work-can-robots-do: an economics essay.
+  - metr.org Chris Painter Senate testimony: policy testimony.
+  - apolloresearch.ai embedded-evaluators post: an essay.
+  - transluce.org/investigations: an index page.
+- Skipped, no named model: transluce.org/us-canada-gov, "AI Agents Targeted U.S. and Canadian Government Websites" (2026-09-30). It is an agent-incident report, but it explicitly does not attribute the traffic to any model ("we are not attributing this traffic as a whole to OpenAI"), so it fails the named-model gate.
+- Skipped, 13 us_caisi links: the center is now branded CAISSI, and its index pages moved to nist.gov/caissi. The new links are navigation, feedback webforms, and re-pathed research-blog posts. "Cheating On AI Agent Evaluations" (2025-12-02, no named models), "Analyzing Transcripts", "Large-Scale Red-Teaming Competition" and "Measurement Science" are generic. All CAISSI model evals (DeepSeek V4 Pro, GLM-5.2, Kimi K3, GLM-5.3) are already catalogued. PROPOSALS entry filed.
+- Skipped as HF noise: the nvidia/OpenH-RF dataset discussion.
+- Older candidates (first_seen before 2026-09-30T07:37Z) were triaged by earlier runs and not re-reviewed.
 
-## Targeted web search (window 2026-09-27 → now)
+## Targeted web search (window 2026-09-28 → now)
 
 - **Queries:**
-  - General: "system card September 2026"; "OpenAI DevDay 2026 system card addendum Codex"; open-weight model cards for Sep 28–29; "Gemini model card September 2026"; DeepSeek/Kimi/MiniMax/Grok technical reports.
-  - Access programs: trusted/vetted access programs; LSVP/CVP/Mythos.
-  - Third-party evals: AISI/CAISI/METR/Apollo on GPT-6.1 Sol and Sonnet 5.5; pre-deployment eval reports from Irregular, Apollo, Epoch and SecureBio.
-- **Already in the database:** Claude Sonnet 5.5 system card, LSVP page, Claude Mythos page, Fairwind program, OpenAI TAC scaling post, Grok 4.7 card, Gemini 3.8 Audio card, MiMo-V2.6.
-- **New:** only GPT-6.1 Sol, already proposed from Phase A.
-- **Not yet published:** no third-party (METR/Apollo/UK AISI/SecureBio) reports for GPT-6.1 Sol or Sonnet 5.5, although the Sonnet 5.5 card credits UK AISI and Apollo as external testers. Worth re-checking in the next few days.
-- **Silent-org check (>14 days):** not done systematically. I could not aggregate newest-entry dates per publisher with the permitted tools (friction logged).
+  - General: "system card October 2026"; open-weight model cards around Sep 30; Chinese labs and xAI releases Sep 29–30.
+  - Gemini 4 Argon: model card; AISI, METR or Apollo evaluations.
+  - Access programs: trusted, vetted and restricted access on Sep 30. Polled program names: Daybreak, GPT-Rosalind, Glasswing, Claude Science, Gemini for Science, LSVP expansion.
+  - Third-party evals of GPT-6.1 Sol and Sonnet 5.5.
+- **New:** only Gemini 4 Argon (proposed above).
+- **Already in the database or not new:** LSVP (2026-09-17 page; coverage on 09-30 is a recap with no new program page found), Muse Glimmer, the GPT-6.1 Sol addendum, and the Grok 4.7 card.
+- **Not yet published:** there are still no standalone third-party reports for GPT-6.1 Sol, Sonnet 5.5 or Gemini 4 Argon. Search hits for METR/SecureBio/Apollo numbers trace back to OpenAI system cards that are already catalogued.
+- **Silent-org check (>14 days).** It is now possible with jq (group_by over state_summary). Publishers whose newest dated entry is before 2026-09-17: palisade_research (05-07), poolside, apollo_research, upstage, moonshot_ai, thinking_machines, saferai, mistral, rand, cursor, minimax, dots_studio, nvidia, tencent_hunyuan, zai, transluce, inclusion_ai, meta, deepseek, stepfun, far_ai, securebio, google_deepmind (before today).
+  - Spot-checked Palisade, Mistral, Apollo, MiniMax, Moonshot and Thinking Machines.
+  - Palisade's self-replication report is already catalogued (2026-05-07).
+  - Kimi K2.8 Preview (2026-09-11) is proprietary and has no model card or tech report; only a Kimi Code "what's new" changelog exists, so it was skipped.
+  - Mistral search results were 2025-dated or aggregator noise.
+  - Nothing qualifying was found.
 
 ## Citation mining
 
-- GPT-6.1 Sol addendum: names no external evaluators.
-- GLM-5.3 cyber report: related work (US CAISI GLM-5.3 eval, Z.ai card) is already catalogued.
-- Sonnet 5.5 card: external testers have not published yet (see above).
+- The Gemini 4 Argon post links to the Frontier Safety Framework blog, an arXiv paper on activation monitoring, an agent-security essay and a reasoning-transparency essay. None is model-specific documentation, so nothing was proposed.
+- GPT-6.1 Sol and GLM-5.3 (from the last run) were already mined.
 
 ## Open issues
 
@@ -61,21 +62,20 @@ None (`open_issues.json` is empty).
 
 ## Blocked-URL escalations
 
-- `openai-gpt-rosalind-access-policy-3` (openai.com/index/introducing-new-capabilities-to-gpt-rosalind/): the agent fetch also returns 403. The page is still indexed by search under its original title and is cited by third-party coverage and OpenAI's X post, so it is **alive and bot-blocked** (openai.com blocks automated fetchers). No status change was proposed.
+None this run.
 
 ## Document update summaries
 
-No annotate_version proposals. I read 8 diffs and all were extraction noise:
-- poolside-laguna-xs-2-1 v706, xiaomi-mimo-v2-6-pro v687: download counts / Spaces count / eval-widget reorder.
-- alibaba-qwen-qwen3-8-flash-next v705: the same, plus the GPQA widget value rendering.
-- nvidia-gr00t-h v703: HF "how to use" widget and download count.
-- anthropic-claude-fable-5-addendum v680, anthropic-claude-sonnet-4-5-other-2 v695, anthropic-claude-mythos-preview-other-9 v682, anthropic-claude-opus-4-1-other v696: rotating "Related content" teasers and a dropped date line.
+There were no annotate_version proposals. I read the two newly queued diffs, and both were HF widget churn:
+- moonshot-ai-kimi-k3 v710: download count, Spaces count, and eval-leaderboard widget reorder.
+- deepseek-v4-pro v709: download count and eval-widget reorder.
 
-The other 12 queued entries were not opened:
-- nvidia-cosmos-h-surgical-simulator v704 and tencent-hunyuan-hy-world-2-0 v702 have the same +1/-7 shape as the GR00T-H HF widget diff.
-- The remaining 10 are anthropic-*-other rows with the same +4/-3 related-content shape.
+The other 18 queued entries were reviewed in the 2026-09-30 run as noise or noise-shaped, and were not reopened.
 
 ## Friction / proposals
 
-- 3 friction lines appended: Anthropic related-content diff churn, the Ming-flash-omni scope ambiguity, and the missing per-publisher recency aggregate plus the heredoc sandbox refusal.
-- No new PROPOSALS.md entry: the diff-churn issue is already covered by the 2026-09-07 entry.
+- 3 friction lines appended:
+  - CAISI → CAISSI index noise.
+  - Gemini 4 Argon has no model card yet.
+  - Tooling: jq works for the silent-org check, and appends go via the Edit tool.
+- 1 PROPOSALS.md entry: update the `us_caisi` source entry for the CAISSI rebrand and new index paths.
