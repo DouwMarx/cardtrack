@@ -1,19 +1,8 @@
 {
- "action": "add",
- "url": "https://epoch.ai/data-insights/astra-eci-breakdown",
- "title": "GPT-6 Astra leads on math benchmarks, but not on software engineering",
- "publisher": "epoch_ai",
- "doc_type": "independent_eval",
- "model_names": ["GPT-6 Astra", "Claude Fable 5.1", "GPT-5.6 Sol", "Kimi K3"],
- "publication_date": "2026-09-16",
- "justification": "Primary-source Epoch AI data insight reporting a domain breakdown of the Epoch Capabilities Index for GPT-6 Astra against Claude Fable 5.1, GPT-5.6 Sol and Kimi K3. It passes the system-card test: it reports quantitative capability measurements with uncertainty - general ECI (157.63-166.31), Math-ECI (158.39-169.83) and Software Engineering ECI (160.47-167.44), each with 90% confidence intervals - and concludes Astra leads on math while not leading on software engineering. This is the same document class already catalogued for this publisher, e.g. epoch-ai-claude-ds-eci at epoch.ai/data-insights/claude-ds-eci and epoch-ai-gpt-5-5-independent-eval at epoch.ai/data-insights/codex-engineer-effort, and it is a distinct evaluation of a model generation not previously covered by an Epoch ECI breakdown.",
- "criteria": {"primary_source": true, "about_a_specific_model_or_eval": true, "distinct_model_release": true, "notable_release": true, "covered_model_class": true},
- "soft": {"has_safety_evals": false},
- "openness": "closed",
- "risk_domains": [],
- "related_urls": [],
- "evidence_urls": ["https://epoch.ai/data-insights/astra-eci-breakdown"],
- "source_of_lead": "phase_a_candidate",
- "notes": "Capability benchmarking only - no safety or dangerous-capability evaluations, hence no risk_domains tags, consistent with the epoch-ai-claude-ds-eci row. Openness recorded as closed: the most restricted model covered is a closed public-API model (GPT-6 Astra, Claude Fable 5.1, GPT-5.6 Sol); Kimi K3 is open-weight. Epoch notes ECI scores are refit whenever results are added, so values may be revised over time.",
- "queries_used": []
+ "action": "annotate_version",
+ "slug": "inclusion-ai-ling-3-0-flash-model-card",
+ "version_id": 713,
+ "summary": "Added a Training content summary section pointing to a public training-content summary document for Ling-3.0-flash, noting it concerns training-content disclosure and does not replace the technical documentation, usage terms, or license.",
+ "justification": "The v713 diff adds a new card section (a training-content disclosure, i.e. a public training data summary) beyond the download and Spaces counter churn; verified on the live card, which links Ling-3.0-LLM_TDS-Summary.pdf in the inclusionAI/AI-Transparency repo.",
+ "evidence_urls": ["https://huggingface.co/inclusionAI/Ling-3.0-flash"]
 }

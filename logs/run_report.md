@@ -1,60 +1,62 @@
-# cardtrack agent run — 2026-10-01 (run id 2026-10-01T06:19Z-local)
+# cardtrack agent run — 2026-10-02 (run id 2026-10-02T06:16Z-local)
 
-Last agent success: 2026-09-30T07:41:35Z. The search window used the 72 h minimum lookback (from 2026-09-28).
-Today is Thursday, so there was no weekly retrospective sweep. There were no open issues and no blocked-URL escalations.
+Last agent success: 2026-10-01T06:27:05Z. The search window used the 72 h minimum lookback (from 2026-09-29).
+Today is Friday, so there was no weekly retrospective sweep. There were no open issues and no blocked-URL escalations.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | add (access_policy) | Google, "Gemini 4 Argon: our next era of frontier intelligence" (blog.google/…/gemini-4-argon/, 2026-09-30) | **written**, `google-deepmind-gemini-4-argon-access-policy` (doc 358, v711) |
-| 2 | add (access_policy) | Google DeepMind, Fairwind Program page (deepmind.google/fairwind-program/, undated) | **written**, `google-deepmind-gemini-4-argon-access-policy-2` (doc 359, v712) |
+| 1 | annotate_version | `inclusion-ai-ling-3-0-flash-model-card` v713 | **written** (doc 182, v713) |
 
 Notes:
-- **Gemini 4 Argon launch post.** This is the first Gemini 4 generation frontier model, and its release is gated: it is rolling out only to trusted cyber defenders through the vetted Fairwind Program. It is also in the US government's voluntary pre-release access process, and a public API and Ultra launch is promised "as soon as possible".
-  - Classified as an access_policy launch post that names the gated model, with openness `restricted`.
-  - risk_domains: `cyber`, from the reported CWE-bench v1 result (68%) and the misuse-safeguard and red-teaming section. The Gray Swan prompt-injection result is domain-generic and was not tagged separately.
-  - **There is no Gemini 4 Argon model card yet.** It is absent from the deepmind.google model-cards index as of 2026-10-01, and third-party coverage confirms this. Re-check daily; the card will likely ship with the public API launch.
-- **Fairwind program page.** This is the standing program page, distinct from the dated 2026-09-02 blog.google Fairwind launch post already catalogued as `google-deepmind-gemini-3-8-flash-cyber-access-policy`.
-  - It now names Gemini 4 Argon, alongside the CodeMender agent, and has real program structure: eligibility categories, background and security-history vetting, and an application form.
-  - It carries no date, so publication_date is null.
-- deepmind.google/models/gemini/cyber/ is a related URL on the existing 3.8 Flash Cyber row, and it has been repurposed to feature Gemini 4 Argon. I did not propose a change; it is noted in the Argon row's notes.
+- **#1:** the diff adds a new "Training content summary" section to the card. It links a public training-content disclosure PDF (`Ling-3.0-LLM_TDS-Summary.pdf` in the inclusionAI/AI-Transparency repo). I verified it on the live card.
 
-## Phase A candidates triaged (first_seen ≥ 2026-09-30T07:37Z)
+There were no add proposals this run.
 
-- Proposed: blog.google gemini-4-argon (#1). The Fairwind page (#2) came from the Argon post's links.
-- Skipped as out of scope:
-  - deepmind.google/blog/introducing-synthid-bio: a watermarking method family for synthetic biology, not a named generative model's documentation and not an access program.
-  - anthropic.com/research/what-work-can-robots-do: an economics essay.
-  - metr.org Chris Painter Senate testimony: policy testimony.
-  - apolloresearch.ai embedded-evaluators post: an essay.
-  - transluce.org/investigations: an index page.
-- Skipped, no named model: transluce.org/us-canada-gov, "AI Agents Targeted U.S. and Canadian Government Websites" (2026-09-30). It is an agent-incident report, but it explicitly does not attribute the traffic to any model ("we are not attributing this traffic as a whole to OpenAI"), so it fails the named-model gate.
-- Skipped, 13 us_caisi links: the center is now branded CAISSI, and its index pages moved to nist.gov/caissi. The new links are navigation, feedback webforms, and re-pathed research-blog posts. "Cheating On AI Agent Evaluations" (2025-12-02, no named models), "Analyzing Transcripts", "Large-Scale Red-Teaming Competition" and "Measurement Science" are generic. All CAISSI model evals (DeepSeek V4 Pro, GLM-5.2, Kimi K3, GLM-5.3) are already catalogued. PROPOSALS entry filed.
-- Skipped as HF noise: the nvidia/OpenH-RF dataset discussion.
-- Older candidates (first_seen before 2026-09-30T07:37Z) were triaged by earlier runs and not re-reviewed.
+## Phase A candidates triaged (14)
 
-## Targeted web search (window 2026-09-28 → now)
+- **anthropic.com/research/claude-shaped-science** (2026-10-01): skipped. It is a guest post by physicist Matthew Schwartz about his BootLoops toolkit for AI-assisted quantitative science. It names Claude Fable 5 and Opus 4.5, but only as examples of what the tools can do. It has no formal evaluation, no access program and no safety evals, so it fails the system-card test.
+- **anthropic.com/news/barclays-scales-claude**: skipped. It is a customer and partnership story.
+- **aisi.gov.uk "Building a more secure environment for evaluating dangerous capabilities"** (2026-10-01): skipped. It is about hardening AISI's own evaluation infrastructure and reports no results for any named model; GPT-6 Astra is mentioned only as a citation.
+- **epoch.ai "Introducing the ChatGPT usage explorer"** (2026-10-01): skipped. It is a usage-statistics dataset that does not evaluate any model.
+- **huggingface.co/nvidia/PixelUMM**: skipped.
+  - The model checkpoint is a non-commercial research release with no announcement outside the repo (fails `notable_release` for HF leads).
+  - It is outside NVIDIA's scope note, which covers Nemotron, Cosmos and GR00T.
+  - It has no safety evals.
+- **nvidia/PixelDiT2-ImageNet**: skipped. It is an ImageNet class-conditional research checkpoint, outside scope.
+- Skipped as HF noise:
+  - 4 HF paper pages: Tencent Adaptive Reward Routing, PixelUMM, PivotOPD, Physis-Lang.
+  - 3 HF user profiles.
+  - A DeepSeek-V4.1-Flash chat-template discussion. That model is already catalogued as `deepseek-deepseek-v4-1-flash-model-card`.
+
+## Targeted web search (window 2026-09-29 → now)
 
 - **Queries:**
-  - General: "system card October 2026"; open-weight model cards around Sep 30; Chinese labs and xAI releases Sep 29–30.
-  - Gemini 4 Argon: model card; AISI, METR or Apollo evaluations.
-  - Access programs: trusted, vetted and restricted access on Sep 30. Polled program names: Daybreak, GPT-Rosalind, Glasswing, Claude Science, Gemini for Science, LSVP expansion.
-  - Third-party evals of GPT-6.1 Sol and Sonnet 5.5.
-- **New:** only Gemini 4 Argon (proposed above).
-- **Already in the database or not new:** LSVP (2026-09-17 page; coverage on 09-30 is a recap with no new program page found), Muse Glimmer, the GPT-6.1 Sol addendum, and the Grok 4.7 card.
-- **Not yet published:** there are still no standalone third-party reports for GPT-6.1 Sol, Sonnet 5.5 or Gemini 4 Argon. Search hits for METR/SecureBio/Apollo numbers trace back to OpenAI system cards that are already catalogued.
-- **Silent-org check (>14 days).** It is now possible with jq (group_by over state_summary). Publishers whose newest dated entry is before 2026-09-17: palisade_research (05-07), poolside, apollo_research, upstage, moonshot_ai, thinking_machines, saferai, mistral, rand, cursor, minimax, dots_studio, nvidia, tencent_hunyuan, zai, transluce, inclusion_ai, meta, deepseek, stepfun, far_ai, securebio, google_deepmind (before today).
-  - Spot-checked Palisade, Mistral, Apollo, MiniMax, Moonshot and Thinking Machines.
-  - Palisade's self-replication report is already catalogued (2026-05-07).
-  - Kimi K2.8 Preview (2026-09-11) is proprietary and has no model card or tech report; only a Kimi Code "what's new" changelog exists, so it was skipped.
-  - Mistral search results were 2025-dated or aggregator noise.
-  - Nothing qualifying was found.
+  - System card October 2026; open-weight model cards October 2026.
+  - Gemini 4 Argon: model card, and METR, AISI or Apollo evaluations.
+  - Release-notes aggregators for Anthropic and OpenAI covering Sep 28–Oct 2.
+  - xAI, Mistral, Meta and Amazon releases; DeepSeek, Qwen, Kimi and GLM releases; GLM-5.4, MiniMax, Kimi K3.1, Poolside and Thinking Machines.
+  - HF trending for 2026-10-01.
+  - FAR.AI, Redwood, Transluce and Palisade evals.
+  - Access programs: trusted access with vetted researchers; LSVP, CVP and Glasswing; GPT-Rosalind, Daybreak and Gemini for Science.
+- **New and qualifying:** none.
+- **Already in the database:**
+  - GPT-6.1 Sol addendum (`openai-gpt-6-1-sol-addendum`).
+  - Sonnet 5.5, Opus 5.5 and Fable 5.1 system cards.
+  - MiMo-V2.6 Pro and Flash (`xiaomi-mimo-v2-6-pro-model-card`).
+  - DeepSeek-V4.1-Flash, Qwen-Image-2.1, Step-3.7-Flash and Grok 4.7.
+  - Gemini 3.8 Audio card (`google-deepmind-gemini-3-8-live-model-card`). The index shows 24 Sept while the stored date is 2026-09-15; this may be a revision, and the monitor tracks it.
+- **Not documentation:** OpenAI "Astra Ultrafast" (2026-09-30) is a serving-speed tier for the existing GPT-6 Astra; there is no new model or addendum.
+- **Not new:** the OpenAI TAC/Daybreak access-revocation story is from 2026-08-19 and is press coverage only.
+- **Not allowlisted:** Lightricks LTX-2.5 and Apple LensVLM-9B. Both were on HF trending.
+- **Gemini 4 Argon model card:** still absent from deepmind.google/models/model-cards/. The only third-party numbers are Artificial Analysis benchmarks (not allowlisted); there are no METR, AISI or Apollo reports yet.
+- **Access programs:** no new program pages. LSVP (2026-09-17) and the Glasswing expansion are already catalogued. The Cyber Verification Program still says Mythos access is coming "in the near future". GPT-Rosalind pricing takes effect 2026-10-05; that is a pricing change, not a new access-policy document.
+- **Silent orgs:** I spot-checked GLM, MiniMax, Kimi, Poolside, Thinking Machines, Mistral and Palisade. No new releases were found.
 
 ## Citation mining
 
-- The Gemini 4 Argon post links to the Frontier Safety Framework blog, an arXiv paper on activation monitoring, an agent-security essay and a reasoning-transparency essay. None is model-specific documentation, so nothing was proposed.
-- GPT-6.1 Sol and GLM-5.3 (from the last run) were already mined.
+The recently added documents (the Gemini 4 Argon launch post and the Fairwind page) were mined in the 2026-10-01 run. No new documents were added since then, so nothing was mined.
 
 ## Open issues
 
@@ -66,16 +68,19 @@ None this run.
 
 ## Document update summaries
 
-There were no annotate_version proposals. I read the two newly queued diffs, and both were HF widget churn:
-- moonshot-ai-kimi-k3 v710: download count, Spaces count, and eval-leaderboard widget reorder.
-- deepseek-v4-pro v709: download count and eval-widget reorder.
+I read the five newly queued diffs and annotated one:
+- **inclusion-ai-ling-3-0-flash v713:** substantive, annotated (#1).
+- Skipped as noise:
+  - **tencent-hunyuan-hy3 v714:** download count and eval-widget reorder (same scores).
+  - **xiaomi-mimo-v2-5-pro v715:** download count and HF leaderboard widget changes (an MMLU-Pro row added and a Terminalbench row dropped). These are hub-aggregated widget entries, not the card's own text.
+  - **nvidia-nemotron-3-ultra v716:** download count and widget reorder.
+  - **nvidia-cosmos3-edge v717:** the HF "use this model" boilerplate was removed and the download count changed.
 
-The other 18 queued entries were reviewed in the 2026-09-30 run as noise or noise-shaped, and were not reopened.
+The other 15 queued entries were reviewed in earlier runs as noise and were not reopened.
 
 ## Friction / proposals
 
-- 3 friction lines appended:
-  - CAISI → CAISSI index noise.
-  - Gemini 4 Argon has no model card yet.
-  - Tooling: jq works for the silent-org check, and appends go via the Edit tool.
-- 1 PROPOSALS.md entry: update the `us_caisi` source entry for the CAISSI rebrand and new index paths.
+- 2 friction lines appended:
+  - Gemini 4 Argon still has no model card.
+  - Tooling: heredoc and inline python were blocked; the Write-file-then-redirect workaround works.
+- No new PROPOSALS.md entries.
