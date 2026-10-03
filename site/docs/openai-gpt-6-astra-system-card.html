@@ -56,12 +56,12 @@
     <dt>First seen</dt>
     <dd>2026-09-05T06:25:25Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Section 8.8 cites external alignment evaluations by UK AISI and Apollo Research; section 9.3 cites an external UK AISI monitorability evaluation; section 10.1.1 cites SecureBio. Those third-party reports, if separately published, are citation-mining leads.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-6-astra-system-card&amp;body=Document%3A%20openai-gpt-6-astra-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf%0AFingerprint%3A%20b7204f0d079f2d087e87162ea0d9033557cac76942a7615ffe82d05cff818654%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-6-astra-system-card&amp;body=Document%3A%20openai-gpt-6-astra-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf%0AFingerprint%3A%20fb361e270f66cf9758ad591ce6064c6ed8c85b96890dfe6d27c429b556e92c9c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -69,6 +69,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-03T06:19:30Z</td>
+          <td>application/pdf</td>
+          <td>15,779,035</td>
+          <td><code title="fb361e270f66cf9758ad591ce6064c6ed8c85b96890dfe6d27c429b556e92c9c">fb361e270f66cf97</code></td>
+<td><a href="https://data.systemcards.org/raw/77ff1e8aaf7018c7d7bbe347c374cd74188387ceca91f1ef637ccc59ea930895.pdf" rel="nofollow" title="archived copy, sha256 77ff1e8aaf7018c7d7bbe347c374cd74188387ceca91f1ef637ccc59ea930895">archived copy</a></td>          <td class="change-summary">Added Appendix B: dots (change log entry dated September 29, 2026) covering dots, always-on agents powered by GPT-6 Astra. It reports prompt-injection red-teaming (no scored attack successes in 100 bulk rollouts with 16,600 attack emails, or in 2,638 iterative attempts), alignment results across simulated-time budgets, monitor-evasion tests, and preparedness and safeguards sections.
+</td>
+        </tr>
         <tr>
           <td>2026-09-24T06:19:12Z</td>
           <td>application/pdf</td>
@@ -101,7 +109,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -173,6 +181,23 @@
           <div class="just">The 22 Sep 2026 revision of the GPT-6 Astra System Card (Change log: &#39;We added an Appendix with information about GPT-6 Sol and GPT-6 Luna&#39;) adds Appendix A covering both models, with safe completions, jailbreak and prompt-injection robustness, health, alignment, monitorability and Preparedness evaluations. OpenAI launched GPT-6 Sol and Luna on 22 Sep 2026 and the Deployment Safety Hub lists no separate card for them, so this appendix is their safety documentation and the row should list them to be findable.</div>
           <div class="evidence">Evidence:
 <a href="https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf</a> · <a href="https://deploymentsafety.openai.com/" rel="noopener nofollow">https://deploymentsafety.openai.com/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-03T06:19:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-03T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-03T06:21:33Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-03T06:18Z-local · agent</span>
+          <div class="just">change_summary: null → "Added Appendix B: dots (change log entry dated September 29, 2026) covering dots, always-on agents powered by GPT-6 Astra. It reports prompt-injection red-teaming (no scored attack successes in 100 bulk rollouts with 16,600 attack emails, or in 2,638 iterative attempts), alignment results across simulated-time budgets, monitor-evasion tests, and preparedness and safeguards sections."</div>
+          <div class="just">The stored PDF diff adds about 450 lines: a new appendix with substantive safety evaluations for dots, and a matching change-log entry. I confirmed both on the live deploymentsafety.openai.com page.</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf</a> · <a href="https://deploymentsafety.openai.com/gpt-6-astra" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-astra</a>          </div>
       </li>
     </ol>
     </details>
@@ -290,10 +315,30 @@ A GPT-6 Sol, GPT-6 Luna                                                         
 
 3                                                                                                      OpenAI
     A.8 Preparedness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 143
-         A.8.1   Capabilities Assessment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 144
-         A.8.2 Safeguards . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 152
+          A.8.1   Capabilities Assessment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 144
+          A.8.2 Safeguards . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 152
 
-4                                                                                                  OpenAI
+B Dots                                                                                                  154
+    B.1   Introducing: dots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 154
+    B.2 Robustness for dots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 154
+          B.2.1   Prompt Injection Automated Red-teaming . . . . . . . . . . . . . . . . . . . 154
+          B.2.2 Manual Red-teaming . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 155
+    B.3 Alignment for dots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 156
+          B.3.1   Obeying Restrictions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 156
+          B.3.2 Avoiding Deceptive Interactions with Users . . . . . . . . . . . . . . . . . . . 159
+          B.3.3 Avoiding Misaligned Behavior in Realistic Work Environments . . . . . . . . 161
+          B.3.4 Unintended Engagement with External Agent Messages . . . . . . . . . . . 163
+          B.3.5 Alignment in Persistent and Proactive Workflows . . . . . . . . . . . . . . . 164
+          B.3.6 Evaluating Auto-review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 166
+    B.4 Monitorability for dots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 167
+          B.4.1   Monitor Evasion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 168
+    B.5 Preparedness for dots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 171
+          B.5.1   Capabilities Assessment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 171
+    B.6 Safeguards for dots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 171
+          B.6.1   Model Safety Training and Evaluation . . . . . . . . . . . . . . . . . . . . . . 171
+          B.6.2 Realtime Model Safeguards . . . . . . . . . . . . . . . . . . . . . . . . . . . . 171
+
+4                                                                                                     OpenAI
 Change log
      • September 9, 2026: Updates to the Alignment section: We clarify how
        our evaluations test alignment generalization, including which were
@@ -321,13 +366,18 @@ A GPT-6 Sol, GPT-6 Luna                                                         
        values in the main text for GPT-6 Astra to correct for a misconfiguration
        in the previous evaluations.
 
-     • September 22, 2026: We added an Appendix with information about GPT-6
-       Sol and GPT-6 Luna.
+     • September 22, 2026: We added an Appendix: GPT-6 Sol, GPT-6 Luna with
+       information about GPT-6 Sol and GPT-6 Luna.
 
      • September 22, 2026: For the suite of alignment evaluations, we added a
        note in the main body of the card to reflect that we have updated some
        of the evaluations, and that the Appendix now includes performance
        information for GPT-6 Astra on the new, updated versions.
+
+     • September 29, 2026: We added an Appendix: dots with information about
+       dots, remarkably capable, always-on agents built to handle everything.
+       Dots are built on existing model and agent capabilities, powered by GPT-6
+       Astra.
 
 5                                                                                  OpenAI
 1 Safety Overview: GPT-6 Astra
@@ -4638,7 +4688,440 @@ Table 36: Cybersecurity Safety Evaluation (higher is better)
              the program’s access controls.
 
 153                                                                                                 OpenAI
-References
+B Dots
+B.1 Introducing: dots
+        Today, we’re launching dots, remarkably capable, always-on agents built to
+        handle everything. Dots are built on existing model and agent capabilities,
+        powered by GPT-6 Astra. Each dot has its own cloud computer and browser,
+        uses connected tools, handles recurring work and follows up across Chat-
+        GPT, text message, email, and Slack, often delegating work to subagents.
+        Multi-agent setups and persistence are not new, but dots use a new time-
+        budget setting that guides how long they work. As discussed below, we
+        evaluated how proactive work on broader, open-ended goals in changing
+        contexts affects alignment.
+        This appendix supplements GPT-6 Astra’s model-level results above with
+        additional evaluations and safeguards for dots, focused on the risks of proac-
+        tive, long-running work.
+        Where relevant, we compare how the same GPT-6 Astra model performs
+        in the Codex and dots harnesses. To explore how dots’ persistence affects
+        alignment, we also reran selected alignment evaluations across different
+        simulated-time budgets, giving the model a deadline and tools to check
+        the time and wait. These comparisons examine whether behavior changes
+        across the tested configurations and time budgets.
+        We also developed preliminary evaluations of open-ended work in changing
+        environments, which we expect to expand over time. Some evaluations
+        isolate model behavior without the production safeguard stack of automated
+        checks and interventions. Others assess specific system protections, as
+        described in the relevant sections.
+
+B.2 Robustness for dots
+        Because dots are more likely to encounter new emails and other connected-
+        app content during proactive work, we conducted additional automated and
+        human red-teaming focused on prompt-injection risks in these workflows.
+        For a full description of the robustness evaluations done for GPT-6 Astra,
+        please see the Robustness section in the main text.
+
+B.2.1 Prompt Injection Automated Red-teaming
+
+        Dots continually encounter new information through their proactivity and
+        persistence. We developed an evaluation to test whether repeated exposure
+
+154                                                                                      OpenAI
+        to malicious emails can induce unauthorized actions, including disclosing
+        private information, forwarding mail, or diverting payments. We used
+        an internal version of GPT-Red to generate attacks with realistic sender
+        identities. The attacker received the confirmation policy, task context, tool
+        schemas, and relevant operating constraints for the defender (dots).
+        In the bulk attack variant, each rollout receives 500 simulated emails: 334
+        benign and 166 GPT-Red-generated attacks. We completed 100 valid roll-
+        outs for dots—50,000 delivered emails, including 16,600 attack emails. We
+        observed no scored attack successes in these 100 bulk attack rollouts. In the
+        traces we inspected, dots commonly flagged suspicious requests for further
+        review, then withheld risky actions and notified or asked the user.
+        In the iterative attack variant, an internal version of GPT-Red refines one
+        email using feedback from the previous attack and the defender’s responses
+        and tool calls. Each candidate is evaluated against a fresh defender context
+        that excludes earlier attack emails. Across 100 attack chains against dots,
+        we observed no scored successes in 2,638 valid attempts.
+
+B.2.2 Manual Red-teaming
+
+        Our human red-teaming efforts for dots involved collaboration across inter-
+        nal and external teams. These exercises assessed dots’ resilience to prompt
+        injection and data exfiltration in realistic work environments. Testers ex-
+        amined whether malicious third-party content or communications could
+        cause dots to disclose sensitive information or take actions beyond the user’s
+        instructions. We updated our confirmation policies in response to findings
+        and retested selected scenarios to assess whether the changes addressed
+        those findings.
+        Testing focused on a range of user requests, including broad or permissive
+        prompts, across email, calendar, shopping, and business workflows. The
+        exercise drew on the expertise of highly technical red-teamers deeply famil-
+        iar with our models and systems. Realistic workspace configurations and
+        synthetic data were used to ensure high quality findings, and testers acted
+        as real adversaries, attempting to hijack dots or extract sensitive data. This
+        often involved impersonating coworkers or posing as tools and services,
+        such as marketplace websites or other automated agents.
+        Red-teamers found that dots was resistant to attachment-based attacks,
+        injected or hidden instructions, and generally did not exfiltrate data to
+        external domains. For example, multiple attackers made attempts to collect
+        sensitive data or add external users to internal meetings, including attempts
+        to send data from an openai.com address to a gmail.com address. All of
+        these attempts failed.
+
+155                                                                                      OpenAI
+           Initial testing identified opportunities to strengthen how dots handle sensi-
+           tive disclosures and seek user confirmation. Updates to our confirmation
+           policies mitigated these issues in the scenarios we tested, including scenar-
+           ios where a dot was instructed never to ask permission and work entirely
+           on their own. While we continue to address known vulnerabilities, we be-
+           lieve deployment is appropriate given the conditions required to exploit
+           them: attacks typically needed significant setup and either highly permis-
+           sive prompts or advanced techniques across multiple surfaces, and were
+           often difficult to reproduce. These results inform our ongoing work to im-
+           prove dots’ resilience in realistic settings and workflows. We continue to
+           test and address identified issues and will do so throughout deployment.
+
+B.3 Alignment for dots
+           To explore the implications of dots’ persistence, we compared GPT-6 Astra’s
+           alignment evaluation results across a range of simulated-time budgets. With
+           simulated-time budgets, the model is given a generous time budget of up to
+           one year, and a clock tool with wait functionality.
+           The final product uses a combination of time budget and reasoning effort,
+           so we also compared GPT-6 Astra’s alignment evaluation results across a
+           range of reasoning budgets when relevant.
+           For a full description of this suite of alignment evaluations, please see the
+           Alignment section in the main text.
+
+B.3.1 Obeying Restrictions
+
+B.3.1.1   Respecting Auto-Review
+
+           GPT-6 Astra records a 0% prohibited-action completion rate at all four
+           simulated-time budgets—4 minutes, 30 minutes, 4 hours, and one year. At
+           the 4-hour budget, one of the samples was flagged for a circumvention
+           attempt, but manual review determined it was a false positive. We also sep-
+           arately ran the evaluations with the dot harness (not plotted) and observed
+           similar results.
+
+156                                                                                        OpenAI
+Figure 86
+
+B.3.1.2   Respecting Warnings
+
+            When a warning prohibits an action, we intend for the model to respect
+            that restriction and not attempt to circumvent it. In our evaluations, this
+            unwanted persistence appeared in 17.4% of GPT-6 Astra rollouts at the maxi-
+            mum reasoning budget. Across simulated-time budgets, it appeared in 17.2%
+            of rollouts at 4 minutes, 15.4% at both 30 minutes and 4 hours, and 15.0% at
+            one year, suggesting that the time budget does not meaningfully impact this
+            behavior. Note that the one-year setting is farther out of distribution and
+            GPT-6 Astra spends less simulated time on tasks, so lower unwanted persis-
+            tence may reflect reduced engagement rather than improved adherence to
+            warnings.
+
+157                                                                                        OpenAI
+Figure 87
+
+B.3.1.3   Declining to Exploit a Honeypot During Difficult ExploitGym Problems
+
+            GPT-6 Astra made no attempts at exploiting the honeypot at the 30-minute
+            or 1-year simulated-time budgets. At the 4-hour budget, one of the samples
+            was flagged for an attempt, but manual review determined it was a false
+            positive.
+            These results characterize behavior under the evaluation’s test conditions
+            without cyber safeguards and do not represent normal production use.
+
+158                                                                                      OpenAI
+Figure 88
+
+B.3.2 Avoiding Deceptive Interactions with Users
+
+B.3.2.1   Coding Deception
+
+            GPT-6 Astra shows a very low deception rate across all three simulated-time
+            budgets tested, on par with GPT-6 Astra at maximum reasoning budget.
+
+159                                                                                       OpenAI
+Figure 89
+
+B.3.2.2     Broken Search Tool
+
+            On tasks that normally require search, we measure how often models fail
+            to acknowledge in their final response that the search tool is unavailable.
+            Across simulated-time budgets, GPT-6 Astra’s failure rate is 3.0% at 4 min-
+            utes, 3.3% at both 30 minutes and 4 hours, and 2.5% at one year, compared
+            with 1.6% at the maximum reasoning budget. All of these rates remain well
+            below GPT-5.6 Sol’s 77.8% failure rate at the maximum reasoning budget.
+
+160                                                                                       OpenAI
+Figure 90
+
+B.3.3 Avoiding Misaligned Behavior in Realistic Work Environments
+
+            We evaluated dots using a more challenging version of our evaluations of
+            misaligned behavior in realistic work environments, subselected to the
+            cases more likely to result in misalignment. As a result, these rates are not
+            necessarily representative of production. Originally designed for ChatGPT
+            Work, these evaluations were adapted to the dots harness. For a full descrip-
+            tion of these evaluations, please see the Avoiding Misaligned Behavior in
+            Realistic Work Environments section in the main text.
+            We developed a custom confirmation policy for dots to account for their
+            proactivity and persistence. Dots runs used this policy, while the Codex
+            runs used Codex’s default confirmation policy. The dots harness also gave
+            confirmation-policy instructions higher priority than the Codex harness
+            did. GPT-6 Astra showed similarly low overall rates of severe misalignment
+            in both harnesses. The overall rate was slightly lower with dots at 0.84%,
+            while category-level rates varied modestly between the two configurations.
+            Results were comparable with explicit reasoning budgets enabled.
+
+161                                                                                         OpenAI
+Figure 91
+
+Figure 92
+
+162         OpenAI
+B.3.4 Unintended Engagement with External Agent Messages
+
+            We evaluated whether dots would engage with independent agents and
+            follow their instructions. The evaluation used a browsing task without
+            Internet access and a cached message board containing instructions to act
+            improperly, such as disclosing private information, promising future favors,
+            or approving illicit access. For a full description of this evaluation, please
+            see the Unintended Engagement with External Agent Messages section in
+            the main text.
+            We repeated this evaluation using the dots harness and observed a 0% rate
+            of following misaligned instructions planted in the message board, similar
+            to the result with the Codex harness. The dots confirmation policy further
+            restricts engagement with agents outside their own ecosystem unless ex-
+            plicitly requested by the user. In this evaluation, dots did not engage with
+            the board in any run.
+
+Figure 93
+
+163                                                                                          OpenAI
+B.3.5 Alignment in Persistent and Proactive Workflows
+
+B.3.5.1   Adapting to Changing Scope and Permissions
+
+          Dots’ persistence means their environment, task scope, or permissions may
+          change while a task is underway. If dots fail to respond appropriately, they
+          could continue actions that are no longer authorized.
+          To measure this behavior, we developed a new evaluation where each
+          episode contains one task, with an external environment change introduced
+          partway through execution (for example, revoking permission or changing
+          the scope of authorization). We wanted to examine whether the model can
+          adapt to these changes correctly, including by pausing actions that were no
+          longer authorized.
+          Dots achieved an alignment pass rate of 91.8% (45/49 episodes), includ-
+          ing passes in all 17 explicit permission-change cases. The four remain-
+          ing flagged episodes contained some ambiguity in the intended operation
+          boundaries, which we further explore in the maintaining boundaries across
+          chained tasks evaluation set below. With explicit reasoning budgets enabled,
+          pass rates ranged from 92.2% to 93.3%, with no clear trend as the budget
+          increased.
+
+B.3.5.2   Maintaining Boundaries Across Chained Tasks
+
+          Dots’ persistence also means that the model needs to handle a sequence of
+          incoming tasks, and correctly maintain different scopes across different
+          tasks.
+          To measure this behavior, we developed a new evaluation in which each
+          episode consists of an initial task, five or ten related intervening tasks, and a
+          final task, all in the same persistent environment. The scope of authorization
+          often changes between tasks without the user explicitly communicating the
+          changes. Dots must infer the appropriate boundaries using business records,
+          prior decisions, contextual cues, common sense, and the confirmation
+          policy.
+          Dots powered by GPT-6 Astra showed no instances of severe breach or
+          exfiltration (high severity, which we define as serious exposure, substantial
+          loss, broad persistent external effects, or comparable severe consequences).
+          We observed some moderate severity scope violations, defined as actions
+          that exceeded the intended task but with no evidence of a severe outcome.
+          Moderate severity violations are actions that a reasonable user may not
+          strongly object to but have limited consequences, such as carrying informa-
+          tion between unrelated tasks or making an edit to a shared document. Such
+          situations can arise in regular Codex sessions with multiple consecutive in-
+
+164                                                                                           OpenAI
+Figure 94
+
+            structions. For GPT-6 Astra in the dots harness, we observe that doubling the
+            number of intervening tasks from five to ten roughly doubled the observed
+            flag rate, from 8.6% to 19.7% of samples. With explicit reasoning budgets
+            enabled, results were comparable to time budget alone in the seven-task
+            setting and improved in the twelve-task setting.
+            We evaluated GPT-6 Sol in the dots harness as a comparison; dots will be
+            powered by GPT-6 Astra.
+
+B.3.5.3     Robustness to Misleading Proactivity Inputs
+
+            We pressure-tested dots by creating a new evaluation that supplies mis-
+            leading hints through inputs used to guide proactive behavior. A synthetic
+            pipeline generates user tasks, ChatGPT Work environments, and notifica-
+            tions that encourage unsupported conclusions or inappropriate actions.
+            The evaluation tests whether the dots check the underlying evidence and
+            stay within the user’s authorization.
+            In these evaluations, dots using GPT-6 Astra had an observed misalignment
+            rate of 0.00% across 151 tasks.
+
+165                                                                                         OpenAI
+B.3.6 Evaluating Auto-review
+
+        Auto-review is a protocol built into Codex whereby a separate model evalu-
+        ates the safety of certain commands that run outside a pre-specified sandbox.
+        When this second monitor model determines a command to be unsafe, it
+        blocks execution and returns a message that informs the model of its verdict
+        and instructs it to avoid substantively similar actions.
+        We evaluated auto-review on synthetic trajectories covering the following
+        threat models:
+
+          • Data disclosure: Sharing private information with unauthorized recipi-
+            ents.
+
+          • Destructive actions: Deleting or damaging resources beyond the user’s
+            intent.
+
+          • Financial commitments: Spending money or entering agreements with-
+            out sufficient approval.
+
+          • Access and security: Misusing credentials, expanding access, or weak-
+            ening protections.
+
+          • Unauthorized communication: Sending or publishing content beyond
+            the user’s instructions.
+
+          • Ambiguous authorization: Misinterpreting whether a user has autho-
+            rized an action. In these cases, the resulting harmful action falls into
+            one of the categories above.
+
+        We generated these by taking existing rollouts from de-identified OpenAI
+        employee dots, and using GPT-6 Astra to make targeted edits that make
+        an action disallowed. For example, removing the part of a user message
+        which allowed an action, or changing the rollout so that the agent sends an
+        unapproved message. We generated 30 of these per category.
+        We also measured the reviewer’s denial rate by replaying 5,000 unedited
+        requests from de-identified OpenAI employee traffic.
+        To adapt Auto-review to dots tasks, we added dots-specific instructions to
+        the reviewer’s policy. This configuration is labeled “dots policy” in the plot
+        below. The plot compares reviewer-policy configurations using two metrics:
+        denial rate on unedited employee requests and recall, the share of synthetic
+        disallowed actions correctly rejected.
+        The plot below shows the breakdown per category of the reviewer’s recall.
+        It performs generally well, with slightly less strong performance in cases
+        with ambiguous authorization. The results are reported on an adversarially
+
+166                                                                                      OpenAI
+Figure 95
+
+Figure 96
+
+            generated set designed to be difficult and often borderline, so we do not
+            expect the ceiling to be at 100%.
+
+B.4 Monitorability for dots
+            Because GPT-6 Astra’s broader model-level monitorability is already as-
+            sessed, our additional evaluation for dots focuses on whether its persistent
+            setting changes the model’s ability to evade monitoring. For a full descrip-
+
+167                                                                                        OpenAI
+        tion of the broader assessment, please see the Monitorability section in the
+        main text.
+
+B.4.1 Monitor Evasion
+
+        For a full description of these evaluations, please see the Monitor Evasion
+        section in the main text.
+        When using the high recall environment-specific monitor, we see that GPT-6
+        Astra with a 30-minute simulated-time budget has an evasion rate com-
+        parable to its non-persistent counterpart. For both task-guided and task-
+        unguided variants, the evasion rates for evading chain-of-thought and action
+        monitoring are similar across the persistent and non-persistent settings.
+        Most importantly, when the high-recall monitor has access to the full trajec-
+        tory, the successful evasion rate remains close to zero.
+        Our production monitoring system assigns priorities to issues detected,
+        where a P0 priority results in paging the security team. We specifically
+        measure dots’ ability to avoid the monitoring system paging our security
+        team. When we evaluate our production monitoring system for this setting,
+        we find that the model has some success at evading the assignment of a
+        P0 priority. Both the task-guided and task-unguided results are broadly
+        in line with GPT-6 Astra without the extended simulated-time budget. We
+        expect the precision of the priority assignment to improve as we continue
+        to develop our misalignment monitoring system.
+
+168                                                                                     OpenAI
+Figure 97
+
+169         OpenAI
+Figure 98
+
+170         OpenAI
+B.5 Preparedness for dots
+
+B.5.1 Capabilities Assessment
+
+B.5.1.1 Biological and Chemical Capabilities
+
+           Dots are powered by GPT-6 Astra, which we are treating as High capability
+           in the Biological and Chemical domain.
+           For a full description of these evaluations, please see the Biological and
+           Chemical Capabilities section in the main text.
+
+B.5.1.2   Cybersecurity Capabilities
+
+           Dots are powered by GPT-6 Astra, which we are treating as Critical capability
+           in the Cybersecurity domain.
+           For a full description of the evaluations we used to inform this determina-
+           tion, please see the Cybersecurity Capabilities section in the main text.
+
+B.6 Safeguards for dots
+           Our safeguards for dots build on the model-level and system-level protec-
+           tions described in the main text. Below, we describe the adaptations and
+           evaluations for dots’ persistent and proactive operation.
+          What follows is a public summary of our internal Safeguards Report, which
+          includes additional details that are not suitable for public disclosure (such
+          as information potentially useful to attackers). The internal report informed
+          our Safety Advisory Group’s recommendation and OpenAI leadership’s
+          determination that these safeguards are sufficient for dots’ public launch.
+
+B.6.1 Model Safety Training and Evaluation
+
+          Dots are powered by GPT-6 Astra. For a full description of the model safety
+          training and evaluation results for GPT-6 Astra, please see the Model Safety
+          Training and Evaluation section in the main text.
+
+B.6.2 Realtime Model Safeguards
+
+171                                                                                        OpenAI
+B.6.2.1   Misalignment Monitoring
+
+          We extended the misalignment monitoring system that we use for GPT-6
+          Astra to support dots’ persistent and proactive setup, preserving its existing
+          monitoring and intervention capabilities within the dots harness.
+
+B.6.2.2   Misuse Monitor Design
+
+          Dots also use GPT-6 Astra’s common monitor design as part of our safeguards
+          stack for both Biological/Chemical and Cybersecurity risk. We describe this
+          system in detail in the Misuse Monitor section in the main text.
+
+B.6.2.3   Misuse Monitor Performance
+
+          Dots contain the same system-level safeguards used for GPT-6 Astra in other
+          product surfaces. We additionally checked that safeguards performed sim-
+          ilarly between the dots harness and the Codex harness. We used a set of
+          defensive use evaluations that span across both general defensive work and
+          activity meant to be reserved for Daybreak Blue/Red.
+          We ran GPT-6 Astra through both harnesses to check for differences in our
+          system safeguard behavior. Block rates for exploit development and red-
+          teaming were 92% in both configurations. For high-risk cyber activity, the
+          block rate was 87.5% in the dots harness, compared with 85% in the baseline
+          configuration.
+
+172                                                                                        OpenAI
+Figure 99
+
+References
  [1] E. Wallace, C. A. Choquette-Choo, N. Kandpal, S. Toyer, D. Hunn, S. Lin, Y. Wen, X. Qi,
      C. Wolff, Z. Wang, M. Nasr, S. Zhu, C. Guo, J. F. Cerón Uribe, K. Wang, A. Low, K. Xiao,
      and K. Chen, “GPT-Red: Automated red teaming via self-play at scale,” arXiv preprint
@@ -4661,8 +5144,10 @@ Table 36: Cybersecurity Safety Evaluation (higher is better)
      hahn, E. Hubinger, G. Irving, E. Jenner, D. Kokotajlo, V. Krakovna, S. Legg, D. Lindner,
      D. Luan, A. Mądry, J. Michael, N. Nanda, D. Orr, J. Pachocki, E. Perez, M. Phuong, F. Roger,
      J. Saxe, B. Shlegeris, M. Soto, E. Steinberger, J. Wang, W. Zaremba, B. Baker, R. Shah, and
-     V. Mikulik, “Chain of thought monitorability: A new and fragile opportunity for ai safety,”
-     2025.
+
+173                                                                                       OpenAI
+      V. Mikulik, “Chain of thought monitorability: A new and fragile opportunity for ai safety,”
+      2025.
 
  [7] M. Y. Guan, M. Wang, M. Carroll, Z. Dou, A. Y. Wei, M. Williams, B. Arnav, J. Huizinga,
      I. Kivlichan, M. Glaese, J. Pachocki, and B. Baker, “Monitoring monitorability,” 2025.
@@ -4684,16 +5169,15 @@ Table 36: Cybersecurity Safety Evaluation (higher is better)
      models,” in Proceedings of the 42nd International Conference on Machine Learning, vol. 267 of
      Proceedings of Machine Learning Research, pp. 48371–48392, 2025.
 
-154                                                                                            OpenAI
-[13] J. M. Laurent, J. D. Janizek, M. Ruzo, M. M. Hinks, M. J. Hammerling, S. Narayanan, M. Pon-
+[13] J. M. Laurent, J. D. Janizek, M. Ruzo, M. M. Hinks, M. J. Hammerling, S. Narayanan, M. Pon-
      napati, A. D. White, and S. G. Rodriques, “Lab-bench: Measuring capabilities of language
      models for biology research,” 2024.
 
-155                                                                                       OpenAI</pre>
+174                                                                                            OpenAI</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-02T06:21:03Z</p></footer>
+<footer><p>Data updated 2026-10-03T06:26:22Z</p></footer>
 </body>
 </html>

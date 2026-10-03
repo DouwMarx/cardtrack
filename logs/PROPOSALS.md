@@ -1815,3 +1815,34 @@ The known model evaluations (DeepSeek V4 Pro, GLM-5.2, Kimi K3, GLM-5.3) still l
 - `logs/candidates.json` for run 2026-10-01T06:19Z-local (13 `us_caisi` entries).
 - The `nist.gov/caissi` page.
 - The CAISSI byline on `nist.gov/blogs/caissi-research-blog/cheating-ai-agent-evaluations`.
+
+## 2026-10-03 — Publishers from the OpenRouter overlay join with no index_urls and no backfill, so their existing releases go unseen
+
+**Problem.** `config/sources.generated.yaml` adds publishers with `index_urls: []`. Phase A never polls
+them, so the only way to discover their documents is the daily search, which looks back about 72 h.
+Anything a publisher released before its `first_seen` date is outside every channel except the Monday
+retrospective sweep. That sweep picks the 2-3 orgs with the *oldest newest-entry*, and a
+publisher with one old row can wait weeks for its turn.
+
+Concrete case: Upstage was added on 2026-09-22 with one catalogued row (Solar Open 2, 2026-07-22).
+- Its flagship Solar Pro 4 launched 2026-08-11 and was found only today, by accident. A release
+  tracker mentioned a different Upstage product. It is now added as `upstage-solar-pro-4-model-card`.
+- Solar Mini 4 launched 2026-09-22, the same day Upstage was added. The only first-party pages I can
+  find are `console.upstage.ai/docs/models/solar-mini-4` (a JS shell; my fetcher sees only a promo
+  banner) and the Upstage blog index (404 to my fetcher). It is still uncatalogued.
+
+**Suggested change.** Either is enough; both would be better.
+
+1. When `roster.py` adds a publisher, queue a one-off backfill search for that publisher (no
+   recency filter, scope floor only) on the next agent run, for example as a `new_publishers` list
+   in `candidates.json`.
+2. Seed `index_urls` for overlay publishers when they are obvious. For Upstage these are
+   `https://www.upstage.ai/blog` and `https://huggingface.co/upstage`; for dots_studio, its HF org.
+   Seeded URLs would need a `scope` note like any base publisher.
+
+**Evidence.**
+
+- `config/sources.generated.yaml` (all three overlay publishers have `index_urls: []`).
+- `upstage.ai/blog/en/solar-pro-4` (dated 2026-08-11).
+- Artificial Analysis articles on Solar Pro 4 and Solar Mini 4.
+- Document 362 (written today).
