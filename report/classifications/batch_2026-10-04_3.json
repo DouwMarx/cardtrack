@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "tencent-hunyuan-hy3-model-card",
+  "version": 714,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF chrome changed: download counter (12,124 to 191,636), Spaces count 27 to 30, eval-widget rows reordered and swapped.",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "nvidia-cosmos-h-surgical-simulator-model-card",
+  "version": 704,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF 'use this model' library/notebook widget removed from page top; download counter 350 to 381. Card body unchanged.",
+  "notable": "",
+  "confidence": "high"
+ }
+]

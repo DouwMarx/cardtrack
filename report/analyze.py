@@ -40,6 +40,7 @@ for d in (OUT, FIG, TAB):
     os.makedirs(d, exist_ok=True)
 
 FILTER_RECOMPUTE = "2026-08-31T08:40:00Z"   # furniture-aware fingerprint recompute run (08:41-10:13Z)
+KM_MIN_AT_RISK = 10   # Kaplan-Meier curves are drawn only while this many documents remain at risk
 BACKFILL_END = "2026-08-11"       # first_seen before this = supervised backfill, not discovery
 
 # ---- validated categorical palette (dataviz skill reference instance, light mode) ----
@@ -273,6 +274,10 @@ R["n_fully_good_runs"] = sum(1 for r in run_rows if not r["outage"] and r["agent
 R["n_runs_agent_unknown"] = sum(1 for r in run_rows if not r["agent_known"])
 R["n_runs_agent_known"] = R["n_runs"] - R["n_runs_agent_unknown"]
 R["last_run_log_date"] = max((r["date"] for r in run_rows if r["agent_known"]), default="")
+R["first_run_log_date"] = min((r["date"] for r in run_rows if r["agent_known"]), default="")
+# Resume events in the snapshot; zero when the journal comes from a host that never suspends (or
+# from a different host than the one that ran the outage-era runs), so no outage can be matched.
+R["n_journal_resumes"] = len(resumes)
 # recency: the last full outage and how many runs have been outage-free since
 _out_ts = [r["ts"] for r in run_rows if r["outage"]]
 R["last_outage_date"] = max(_out_ts)[:10] if _out_ts else ""
@@ -285,7 +290,7 @@ for r in run_rows:
 R["longest_outage_streak"] = best
 # expected daily runs vs actual
 first_run, last_run = parse_ts(run_rows[0]["ts"]), parse_ts(run_rows[-1]["ts"])
-R["calendar_days_span"] = int(days(first_run, last_run)) + 1
+R["calendar_days_span"] = (last_run.date() - first_run.date()).days + 1   # calendar dates, inclusive
 R["n_missing_days"] = R["calendar_days_span"] - len({r["date"] for r in run_rows})
 def _median_int_or_nan(xs):
     # A host that never suspends (a server) has no resume events: no median, not a crash.
@@ -515,6 +520,11 @@ R["n_overrides"] = sum(1 for o in overrides
                        if (o["slug"], int(o["version"])) in _live and o.get("verified", True))
 R["n_overrides_unverified"] = sum(1 for o in overrides
                                   if (o["slug"], int(o["version"])) in _live and not o.get("verified", True))
+# Verified extractor artefacts still in the database, by cause, counted as distinct documents:
+# footnotes the extractor fix did not prevent, and tab panels the extractor skipped.
+_live_verified = [o for o in overrides if (o["slug"], int(o["version"])) in _live and o.get("verified", True)]
+R["n_footnote_artefact_docs"] = len({o["slug"] for o in _live_verified if "footnote" in o["reason"].lower()})
+R["n_tabpanel_artefact_docs"] = len({o["slug"] for o in _live_verified if "tab panel" in o["reason"].lower()})
 R["n_overrides_purged"] = sum(1 for o in overrides if (o["slug"], int(o["version"])) not in _live)
 R["n_classified_purged"] = sum(1 for k in cls if k not in _live)
 # Versions the changelog says were written but that are no longer in document_versions (matched on
@@ -689,9 +699,14 @@ for label, filt in (("HTML", lambda d: ctype_of[d["id"]] == "text/html"),
             t_grid.append(t)
             s_grid.append(s)
         at_risk -= 1
+    # Plot only while at least KM_MIN_AT_RISK documents remain at risk; past that the tail steps are
+    # driven by a handful of documents (one event among few at risk doubles the curve).
+    t_cut = data[n - KM_MIN_AT_RISK][0] if n >= KM_MIN_AT_RISK else 0.0
     km_groups[label] = {"t": t_grid, "s": s_grid, "n": n, "events": sum(e for _, e in data),
-                        "max_t": max((t for t, _ in data), default=0)}
+                        "max_t": max((t for t, _ in data), default=0), "t_cut": t_cut}
     R[f"km_{label.lower()}_n"] = n
+    R[f"km_{label.lower()}_cut_days"] = t_cut
+    R["km_min_at_risk"] = KM_MIN_AT_RISK
     R[f"km_{label.lower()}_events"] = km_groups[label]["events"]
     # share changed by 30 days
     s30 = next((s for t, s in zip(reversed(t_grid), reversed(s_grid)) if t <= 30), 1.0)
@@ -802,8 +817,11 @@ for r, d in zip(run_rows, dates):
     if r["agent_failed"]:
         ax.plot([d], [110], marker="x", ms=3.5, color=PAL["red"], lw=0, mew=1)
 ax.bar([dates[0]], [0], color=GREY, label="monitor outage (all checks failed)")
-ax.plot([], [], marker="v", ms=3.5, color=INK, lw=0, label="run started at resume from suspend")
-ax.plot([], [], marker="x", ms=3.5, color=PAL["red"], lw=0, mew=1, label="curation agent failed")
+# marker legend entries only when some run carries the marker
+if R["n_resume_triggered_runs"]:
+    ax.plot([], [], marker="v", ms=3.5, color=INK, lw=0, label="run started at resume from suspend")
+if R["n_agent_failed_runs"]:
+    ax.plot([], [], marker="x", ms=3.5, color=PAL["red"], lw=0, mew=1, label="curation agent failed")
 ax.set_ylim(0, 116)
 ax.set_yticks([0, 25, 50, 75, 100])
 ax.set_ylabel("% of link checks")
@@ -908,11 +926,12 @@ ax1.set_xlabel("% of detected version changes")
 ax1.legend(loc="upper center", bbox_to_anchor=(0.5, -0.3), ncol=4, handlelength=1, columnspacing=0.8)
 ax1.set_title("(a) what a detected change turned out to be")
 for i, (lab, g) in enumerate(km_groups.items()):
-    ax2.step(g["t"] + [g["max_t"]], [100 * (1 - s) for s in g["s"]] + [100 * (1 - g["s"][-1])],
+    _ts = [(t, sv) for t, sv in zip(g["t"], g["s"]) if t <= g["t_cut"]]
+    ax2.step([t for t, _ in _ts] + [g["t_cut"]], [100 * (1 - sv) for _, sv in _ts] + [100 * (1 - _ts[-1][1])],
              where="post", color=CAT[i], lw=1.6, label=f"{lab}: {g['events']}/{g['n']} changed")
 ax2.set_xlabel("days since first tracked")
 ax2.set_ylabel("% with a substantive change")
-ax2.set_xlim(0, max(g["max_t"] for g in km_groups.values()) + 1)
+ax2.set_xlim(0, max(g["t_cut"] for g in km_groups.values()) + 1)
 ax2.set_ylim(0, None)
 ax2.legend(loc="lower right", handlelength=1.2, fontsize=6.5, borderaxespad=0.3)
 ax2.set_title("(b) first substantive change (Kaplan-Meier)")
@@ -1001,13 +1020,18 @@ write_table("cat_by_publisher", ["Publisher", "Pairs"] + [CAT_LAB[k] for k in CA
             [(k.replace("_", " "), n, *v) for k, n, v in R["cat_by_publisher"] if n >= 4])
 write_table("link_outcomes", ["Outcome (valid runs)", "Checks", "Share (\\%)", "Documents ever"],
             [(pretty(k), n, pct(n, len(valid_link)), ever.get(k, 0)) for k, n in R["valid_link_outcomes"]])
-longtable("runs_by_day", ["Run", "Links", "Reachable", "Blocked", "Errors", "Content checks", "Changed", "Outage", "Resume (s)", "Agent"],
+# The resume column only means something when the snapshot's journal has resume events.
+_res = bool(R["n_journal_resumes"])
+longtable("runs_by_day", ["Run", "Links", "Reachable", "Blocked", "Errors", "Content checks", "Changed", "Outage"]
+          + (["Resume (s)"] if _res else []) + ["Agent"],
           [(r["date"] + " " + r["ts"][11:16], str(r["n_link"]), str(r["ok"]), str(r["blocked"]), str(r["error"]), str(r["fp_n"]),
-            str(r["fp_changed"]), "yes" if r["outage"] else "", "" if r["sec_since_resume"] is None else str(int(r["sec_since_resume"])),
-            ("failed" if r["agent_failed"] else "ok") if r["agent_known"] else "no log") for r in run_rows],
-          "@{}l" + "r" * 9 + "@{}",
+            str(r["fp_changed"]), "yes" if r["outage"] else "")
+           + (("" if r["sec_since_resume"] is None else str(int(r["sec_since_resume"])),) if _res else ())
+           + (("failed" if r["agent_failed"] else "ok") if r["agent_known"] else "no log",) for r in run_rows],
+          "@{}l" + "r" * (9 if _res else 8) + "@{}",
           caption="Every daily run: link probes and their outcomes, content checks, whether the run was a full outage, "
-                  "seconds between the host's last resume from suspend and the run start, and the agent phase.",
+                  + ("seconds between the host's last resume from suspend and the run start, " if _res else "")
+                  + "and the agent phase.",
           label="tab:runs")
 write_table("runs", ["Metric", "Value"], [
     ("Daily runs recorded", R["n_runs"]),
@@ -1057,8 +1081,10 @@ sel.sort(key=lambda kp: (prio[kp[0]], -(kp[1]["added"] + kp[1]["removed"])))
 seen, groups = {}, []
 for kind, p in sel:
     m = re.search(r"(\d+(?:\.\d+)?)\s*%", p["cls"]["summary"])
-    key = (p["publisher"], kind, m.group(1) if m else p["slug"])
-    if key in seen:
+    # Group only on a shared number, and never two edits of the same document (a document's
+    # successive major edits are separate changes, not one change in several documents).
+    key = (p["publisher"], kind, m.group(1)) if m else (p["slug"], p["version"])
+    if key in seen and p["slug"] not in {q["slug"] for q in groups[seen[key]]["members"]}:
         groups[seen[key]]["n"] += 1
         groups[seen[key]]["members"].append(p)
         continue
@@ -1103,17 +1129,18 @@ R["n_appendix_rows"] = len(app_rows)
 _app_id = {(p["slug"], p["version"]): f"A{i}" for i, p in enumerate(sub_pairs, 1)}
 BODY_EXAMPLES = {
     "exAstraAppendix": [("openai-gpt-6-astra-system-card", 620)],
+    "exAstraDots": [("openai-gpt-6-astra-system-card", 720)],
+    "exMetrMonitoring": [("metr-claude-opus-4-6-independent-eval-4", 725)],
     "exGrokLog": [("xai-grok-4-6-model-card", 357)],
     "exAnthropicLog": [("anthropic-claude-opus-4-6-other-6", 579)],
     "exVoiceChat":[("nvidia-nvidia-nemotronlabs-voicechat-11b-model-card", 317)],
-    "exCyberExample": [("openai-gpt-5-6-cyber-other", 482)],
-    "exLaunchPartner": [("openai-gpt-rosalind-access-policy", 561)],
     "exDaybreakTiers": [("openai-gpt-5-6-sol-access-policy", 646)],
     "exCyberScope": [("anthropic-claude-opus-access-policy", 671)],
     "exCosmos": [("nvidia-cosmos3-super-model-card", 613), ("nvidia-cosmos3-edge-model-card", 614)],
     "exTrainingSummary": [("inclusion-ai-ling-3-0-tiny-model-card", 634), ("inclusion-ai-ling-2-6-1t-model-card", 659),
                           ("inclusion-ai-ling-2-6-flash-model-card", 660), ("inclusion-ai-ring-2-6-1t-model-card", 661),
-                          ("inclusion-ai-ling-3-0-flash-vl-model-card", 662)],
+                          ("inclusion-ai-ling-3-0-flash-vl-model-card", 662),
+                          ("inclusion-ai-ling-3-0-flash-model-card", 713)],
 }
 example_ids = {}
 for name, keys in BODY_EXAMPLES.items():
@@ -1166,6 +1193,46 @@ for k, v in R.items():
     if isinstance(v, int) and not isinstance(v, bool) and 0 <= v < len(WORDS):
         lines.append(f"\\newcommand{{\\{macro_name(k)}Word}}{{{WORDS[v]}}}")
         lines.append(f"\\newcommand{{\\{macro_name(k)}WordCap}}{{{WORDS[v].capitalize()}}}")
+# Sentences whose wording depends on the data are chosen here, not with \\ifnum in report.tex:
+# the HTML edition (pandoc) does not evaluate TeX conditionals and would print both branches.
+def _w(n):
+    return WORDS[n] if 0 <= n < len(WORDS) else f"{n:,}"
+_fn, _tp = R["n_footnote_artefact_docs"], R["n_tabpanel_artefact_docs"]
+_s = ""
+if _fn:
+    _s += (f" The fix did not catch every case: {_w(_fn)} Anthropic page{'s' if _fn != 1 else ''} still "
+           "store versions without footnotes that the raw HTML of the same captures holds.")
+if _tp:
+    _s += (f" Checking the raw capture also overturned {_w(_tp)} apparent deletion{'s' if _tp != 1 else ''} "
+           "that earlier editions reported, among them OpenAI's removal of a prompt-response table and of a named "
+           "launch partner: the content is still on the page, in tab panels the extractor skipped.")
+if _fn or _tp:
+    _s += " All of these count as extraction noise."
+lines.append(f"\\newcommand{{\\extractorArtefactSentence}}{{{_s}}}")
+if R["n_journal_resumes"]:
+    _s = (f"The snapshot does not record why the outages stopped. "
+          f"The systemd journal explains {R['n_resume_triggered_outages']} of them: the run started within two minutes "
+          f"of the laptop waking from suspend (median {fmt(R['median_sec_since_resume_outage'])}\\,s after resume, versus "
+          f"{fmt(R['median_sec_since_resume_valid'])}\\,s for healthy runs). The timer is \\texttt{{Persistent=true}}, so a "
+          "trigger missed while asleep fires at the moment of resume, before Wi-Fi is back, and every probe fails instantly.")
+else:
+    _s = ("This snapshot holds no suspend or resume events, and its run logs begin on "
+          + (parse_ts(R['first_run_log_date']).strftime('%-d %B') if R['first_run_log_date'] else 'no date')
+          + ": production moved from a laptop to a server at the end of September (repository history), and the "
+          "laptop's journal and run logs are not in the snapshot, so this edition cannot match outages to resume "
+          "events. The previous edition, whose snapshot still held them, traced the outages to runs started the "
+          "moment the laptop woke from suspend, before Wi-Fi was back (the timer is \\texttt{Persistent=true}); the "
+          "last outage coincides with a runner change that retries the run when the host wakes without network. "
+          "Neither is re-checked here.")
+lines.append(f"\\newcommand{{\\outageCauseSentence}}{{{_s}}}")
+_s = ""
+if R["n_agent_failed_runs"]:
+    _s = (f"Among runs with a run log, the curation agent failed in {R['n_agent_failed_runs']}, "
+          f"{R['n_agent_failed_on_outage']} of them outage runs where its credential refresh had no network either. ")
+_k, _g = R["n_runs_agent_known"], R["n_fully_good_runs"]
+_s += (f"Both runs with a run log had both phases healthy." if _k == 2 and _g == 2
+       else f"Of the {_k} runs with a run log, {_g} had both phases healthy.")
+lines.append(f"\\newcommand{{\\agentPhaseSentence}}{{{_s}}}")
 # a few derived convenience macros
 lines.append(f"\\newcommand{{\\snapshotDatePretty}}{{{snapshot_ts.strftime('%-d %B %Y')}}}")
 lines.append(f"\\newcommand{{\\firstSeenMinPretty}}{{{parse_ts(R['first_seen_min']).strftime('%-d %B %Y')}}}")
@@ -1173,6 +1240,7 @@ _sg_res = sorted(g["resolved"] for g in R["soft_gone"] if g["resolved"])
 lines.append(f"\\newcommand{{\\softGoneResolvedPretty}}{{{parse_ts(_sg_res[-1]).strftime('%-d %B') if _sg_res else 'n/a'}}}")
 lines.append(f"\\newcommand{{\\lastOutagePretty}}{{{parse_ts(R['last_outage_date']).strftime('%-d %B') if R['last_outage_date'] else 'n/a'}}}")
 lines.append(f"\\newcommand{{\\lastRunLogPretty}}{{{parse_ts(R['last_run_log_date']).strftime('%-d %B') if R['last_run_log_date'] else 'n/a'}}}")
+lines.append(f"\\newcommand{{\\firstRunLogPretty}}{{{parse_ts(R['first_run_log_date']).strftime('%-d %B') if R['first_run_log_date'] else 'n/a'}}}")
 lines.append(f"\\newcommand{{\\filterRecomputePretty}}{{{parse_ts(FILTER_RECOMPUTE).strftime('%-d %B')}}}")
 for name, ids in example_ids.items():
     lines.append(f"\\newcommand{{\\{name}}}{{{ids}}}")
@@ -1236,6 +1304,9 @@ lead_med = {k: m for k, _n, m in R["lag_by_lead"]}
 for key, name in (("index_diff", "IndexDiff"), ("phase_a_candidate", "PhaseA"), ("agent_search", "AgentSearch"),
                   ("manual", "Manual"), ("index_page", "IndexPage"), ("citation", "Citation")):
     lines.append(f"\\newcommand{{\\lagLead{name}}}{{{fmt(lead_med[key]) if key in lead_med else 'n/a'}}}")
+# "median X to Y days" for the two fast lead sources; collapses to "X" when both round the same.
+_fast = sorted({fmt(lead_med[k]) for k in ("phase_a_candidate", "index_diff") if k in lead_med}, key=float)
+lines.append(f"\\newcommand{{\\lagLeadFastRange}}{{{' to '.join(_fast) if _fast else 'n/a'}}}")
 flags_pre = sum(r["fp_changed"] for r in run_rows if r["ts"] < FILTER_RECOMPUTE)
 flags_post = sum(r["fp_changed"] for r in run_rows if r["ts"] >= FILTER_RECOMPUTE)
 sub_pre = sum(1 for p in classified if p["era"] == "pre" and not p["migration"] and p["cls"]["category"] in SUBSTANTIVE)
@@ -1289,7 +1360,7 @@ md.append("![corpus](figures/fig_corpus.png)\n")
 md.append("## 2. Runs and tracker reliability\n")
 md.append(md_table(["run", "date", "links", "ok", "blocked", "redirect", "404", "error", "fp changed", "fp unchanged", "fp error", "outage", "s since resume", "agent failed", "adds"],
                    [(r["run_id"], r["date"], r["n_link"], r["ok"], r["blocked"], r["redirect"], r["not_found"], r["error"], r["fp_changed"], r["fp_unchanged"], r["fp_error"], r["outage"], r["sec_since_resume"] if r["sec_since_resume"] is None else int(r["sec_since_resume"]), r["agent_failed"], r["adds"]) for r in run_rows]) + "\n")
-md.append(f"- Runs: {R['n_runs']} over {R['calendar_days_span']} calendar days ({R['n_missing_days']} days without a run). Monitor outages (all link checks errored): {R['n_outage_runs']} ({fmt(R['share_outage_runs'])}%), of which {R['n_resume_triggered_outages']} started within 2 minutes of the laptop resuming from suspend; {R['n_outages_not_resume']} outages were not resume-triggered. Resume-triggered runs that nevertheless succeeded: {R['n_resume_triggered_valid']}.")
+md.append(f"- Runs: {R['n_runs']} over {R['calendar_days_span']} calendar days ({R['n_missing_days']} days without a run). Monitor outages (all link checks errored): {R['n_outage_runs']} ({fmt(R['share_outage_runs'])}%), " + (f"of which {R['n_resume_triggered_outages']} started within 2 minutes of the laptop resuming from suspend; {R['n_outages_not_resume']} outages were not resume-triggered. Resume-triggered runs that nevertheless succeeded: {R['n_resume_triggered_valid']}." if R["n_journal_resumes"] else "the snapshot's journal has no suspend/resume events (the earlier host's journal is not in the snapshot), so outages cannot be matched to resumes."))
 md.append(f"- Median seconds between resume and run start: outage runs {fmt(R['median_sec_since_resume_outage'])}, valid runs {fmt(R['median_sec_since_resume_valid'])}. Longest outage streak: {R['longest_outage_streak']} runs.")
 md.append(f"- Agent phase failed in {R['n_agent_failed_runs']} runs ({R['n_agent_auth_failed']} authentication). Git push failed in {R['n_push_failed']} runs. Runs with both phases healthy: {R['n_fully_good_runs']}.")
 md.append(f"- Staleness at snapshot: median {fmt(R['staleness_median_days'])} days since a document's last valid link check (max {fmt(R['staleness_max_days'])}); never validly checked: {R['docs_never_validly_checked']}.\n")

@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "palisade-research-gpt-5-4-independent-eval",
+  "version": 718,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Extracted text lost page title, 'Additional ways to view' line and related-posts footer; the two abstract paragraphs with results are unchanged.",
+  "notable": "",
+  "confidence": "medium"
+ },
+ {
+  "slug": "nvidia-cosmos-h-dreams-model-card",
+  "version": 722,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Hugging Face 'how to use' library/notebook widget removed and monthly downloads counter rose from 354 to 1,385; card body unchanged.",
+  "notable": "",
+  "confidence": "high"
+ }
+]

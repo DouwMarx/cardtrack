@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card",
+  "version": 716,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF chrome changed: downloads 156,796 to 293,955, Spaces 4 to 6, MMLU-Pro widget row reordered (same 86.8).",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-access-policy-2",
+  "version": 721,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only the 'Related content' footer rotated: three linked article teasers replaced by three newer ones. Post body unchanged.",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "poolside-laguna-xs-2-1-model-card",
+  "version": 706,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF chrome changed: downloads 56,484 to 117,842, Spaces 10 to 19, SWE-bench Verified widget row reordered (same 70.9).",
+  "notable": "",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "moonshot-ai-kimi-k3-model-card",
+  "version": 710,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF chrome changed: download counter, Spaces count, and eval-widget leaderboard rows reordered/swapped (WildClawBench, RedlineBench out; ExtractBench in).",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "inclusion-ai-ling-3-0-flash-model-card",
+  "version": 713,
+  "category": "content_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Added three-line 'Training content summary' section linking a public training-content summary; states it does not replace technical docs, terms, or license.",
+  "notable": "Ling-3.0-flash's card now points to a public training-content summary, a training-data disclosure of the kind the EU AI Act asks for.",
+  "confidence": "high"
+ }
+]

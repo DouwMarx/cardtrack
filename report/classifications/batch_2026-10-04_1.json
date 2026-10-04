@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "metr-claude-opus-4-6-independent-eval-4",
+  "version": 725,
+  "category": "content_major",
+  "score_change": true,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Replaced one-line update pointer with new 'Results from the Exercise' section quoting monitoring bypasses, monitor jailbreaks, and attack-ideation eval (best 59% vs ~90% human).",
+  "notable": "METR published in full its red-team findings on Anthropic's internal agent monitoring: monitors were easy to disable or jailbreak, and part of the confidence rested on security by obscurity.",
+  "confidence": "high"
+ },
+ {
+  "slug": "nvidia-cosmos3-edge-model-card",
+  "version": 717,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF page chrome changed: 'use this model' library/notebook widget removed and monthly download counter fell from 1,519,709 to 1,122,142.",
+  "notable": "",
+  "confidence": "high"
+ }
+]

@@ -78,7 +78,7 @@ study is fingerprint-based and model-centred.
 \caption{(a) Classification of stored version pairs by what the text diff contained (groups with ten or
 more pairs; the ``before filter fix'' row lacks the versions later deleted; see text). (b) Kaplan--Meier estimate, that is the share of documents with at least one substantive
 publisher-side change by day $t$ adjusted for documents tracked fewer than $t$ days, by the document's
-current format; changes are dated at detection, and backfilled documents were already months old on day 0.}
+current format, drawn while at least \kmMinAtRisk{} documents remain at risk; changes are dated at detection, and backfilled documents were already months old on day 0.}
 \label{fig:changes}
 \end{figure}
 Of the \nPairs{} consecutive version pairs in the database, \nMigrationPairs{} (\shareMigrationPairs\%)
@@ -87,14 +87,15 @@ migrated on \filterRecomputePretty{} from announcement pages to full PDFs, and f
 target after a recorded move. The remaining \nPubPairs{} publisher-side
 pairs were classified by reading the text diffs (Figure~\ref{fig:changes}a): \sharePubNonchange\% were
 Hugging Face download counters, evaluation-widget rows, footers or PDF re-extraction artefacts,
-\sharePubSubstantive\% changed the document's content and \sharePubMajor\% did so substantially. On
+\sharePubSubstantive\% changed the document's content and \sharePubMajor\% were major edits. On
 \filterRecomputePretty{} the fingerprint was also recomputed to ignore known furniture. This cut the
 per-check change-flag rate from \shareFpChangedPreFilter\% to \shareFpChangedPostFilter\% while the number
 of substantive pairs found did not fall (\subPre{} before, \subPost{} after, over a longer window), so
 precision per flag rose from
 about \precisionPre\% to \precisionPost\%. The \emph{before} side is incomplete: \nVersionsMissing{} versions that
 the changelog records as written are no longer in the database, \nVersionsMissingPreFilter{} of them from
-before the recompute, so pairs of every kind are missing there. The remaining leak is evaluation-widget rows that end in a score,
+before the recompute; \nClassifiedPurgedWord{} of them are the footnote purge described below and the cause of the
+rest is not recorded, so pairs of every kind are missing there. The remaining leak is evaluation-widget rows that end in a score,
 which the bullet-anchored patterns do not match. In document terms, \nDocsSubstantive{} of \nTracked{}
 tracked documents (\shareDocsSubstantive\%) changed substantively during the window, an estimated
 \kmHtmlThirty\% of HTML and \kmPdfThirty\% of PDF documents within 30 days of tracking; the two curves
@@ -106,13 +107,15 @@ Appendix~\ref{app:changes} lists all \nAppendixRows{} with URLs). Of the publish
 touched a safety, risk or mitigation section. Three patterns recur (Appendix~\ref{app:changes} ids in
 brackets). First, some corrections come with dated change logs, mostly at OpenAI: one corrected number
 propagated with its change log into \notablePropagatedMax{} OpenAI documents that quote it as a baseline
-(\exPropagated), and most recently the GPT-6 Astra system card gained an appendix covering GPT-6 Sol and Luna
+(\exPropagated), and the GPT-6 Astra system card gained an appendix covering GPT-6 Sol and Luna
 and corrected Astra's HealthBench results after an evaluation misconfiguration, with dated entries
-(\exAstraAppendix); xAI (\exGrokLog) and Anthropic (\exAnthropicLog) each added one dated log. Second, edits
+(\exAstraAppendix), then, with another dated entry, a second appendix on ``dots'', always-on agents built on
+Astra, with prompt-injection red-teaming and monitor-evasion results (\exAstraDots); xAI (\exGrokLog) and Anthropic (\exAnthropicLog) each added one dated log. Second, edits
 without a change log exist: an NVIDIA card revised a tool-calling score downward and dropped its research-only
-use restriction with no note (\exVoiceChat); OpenAI removed a prompt-response table in which GPT-5.6 Cyber,
-alone of four configurations, answered a request for a Keychain-bypass and Chrome-cookie-decryption tool
-(\exCyberExample), and deleted a named launch partner from an access-programme page (\exLaunchPartner). Third,
+use restriction with no note (\exVoiceChat).
+A date label does not settle when an edit was made either: METR replaced a one-line pointer on its red-teaming of Anthropic's internal agent monitoring with the findings
+themselves, including routes to disabling monitors, under a heading dated months before the tracker's first
+capture, although every earlier successful content check found the page unchanged (\exMetrMonitoring). Third,
 documents change scope: OpenAI rebuilt its Daybreak cyber-access tiers to add GPT-6 Sol, Luna and Astra and to
 require extra approval for GPT-5.6-Cyber (\exDaybreakTiers); Anthropic's cyber-safeguards page now excludes
 Opus 5.5 and Sonnet 5.5 (\exCyberScope); NVIDIA's Cosmos 3 cards were each cut back to a single model
@@ -121,8 +124,7 @@ to several of its cards (\exTrainingSummary). A caution the other way: the previ
 Anthropic footnotes were extractor artefacts. The publisher had wrapped its footnotes in an element whose class
 name contains ``footer'', which the boilerplate remover discards, while the raw HTML still held every
 footnote. The extractor has since been fixed and \nClassifiedPurgedWord{} classified versions, the artefacts among them, were deleted
-from the database; \nOverridesUnverifiedWord{} new footnote deletion in the same position is treated as an
-artefact until it is checked against the raw capture. A fingerprint tracker cannot tell disclosed from
+from the database.\extractorArtefactSentence{} A fingerprint tracker cannot tell disclosed from
 undisclosed edits, or edits from extraction bugs, but it produces the diff that lets a human tell.
 
 \begin{table}[!htb]
@@ -152,7 +154,7 @@ typo fix and the soft-gone pages below). Bot blocking is the larger nuisance: \d
 were refused with HTTP 403 at least once, \topBlockedHostDocs{} of them OpenAI
 documents on \topBlockedHost. For most of the window the blocks were intermittent (overall a median of \blockedPersistenceMedian\% of
 later checks), consistent with rate-based bot detection, but in the last week most of the blocked OpenAI pages
-were refused in most runs; whether that reflects the site or a change on the tracker's host is not known, and block
+were refused in most runs; whether that reflects the site or the tracker's move to a server host at the end of September is not known, and block
 rates depend on the fetch client's fingerprint as much as on the site \cite{gundelach2026}. This matters
 because OpenAI is also the publisher whose documents carried most of the dated corrections above. The
 quietest failures were invisible to the link checker: \nSoftGoneWord{} pages kept returning HTTP 200 while
@@ -166,12 +168,12 @@ was temporary because the publisher had moved rather than removed the content.
 \section{Discovery is fast}
 For the \nLagLive{} documents published after the backfill, the median delay from publication to first
 tracking was \lagMedianDays{} days and \lagWithinSevenDays\% were tracked within a week. Leads from index
-diffs and from the monitor's own candidate queue were tracked within two days (median \lagLeadPhaseA{} to
-\lagLeadIndexDiff{} days); free-form agent search took \lagLeadAgentSearch{} days and manual submissions
+diffs and from the monitor's own candidate queue were tracked within two days (median
+\lagLeadFastRange{} days); free-form agent search took \lagLeadAgentSearch{} days and manual submissions
 \lagLeadManual{} days.
 
 \section{Limitations}
-The window is \trackingWeeks{} weeks on one host with one fetch client: enough to measure short-run edit
+The window is \trackingWeeks{} weeks on two hosts in turn (a laptop, then a server) with one fetch client: enough to measure short-run edit
 rates, not link rot, whose baselines are annual; block rates in the literature range from under 1\,\% for
 browser-like clients to 15\,\% for headless ones \cite{gundelach2026}. Coverage was uneven: \shareOutageRuns\%
 of the daily runs lost their checks to a host-side fault (Appendix~\ref{app:runs}), which stretched the content
@@ -191,10 +193,10 @@ aligning detected edits with publishers' change logs and with Watchtower's discl
 would estimate the disclosed fraction; classifying every minted version in the pipeline would turn the
 appendix into a live feed. On the instrument: re-fetch every document daily instead of a 15\,\% rotation
 (the whole corpus is under 400\,MB and the link probe already touches every URL), so edits are dated to the
-day; treat a body that collapses to a redirect stub as a soft 404 and re-point moved documents; keep the new
-footnote pre-clean under test and diff the raw capture alongside the extracted text so extractor regressions
+day; treat a body that collapses to a redirect stub as a soft 404 and re-point moved documents; extend the footnote
+pre-clean to the newer footnote markup, stop skipping tab panels, and diff the raw capture alongside the extracted text so extractor regressions
 are never read as deletions; extend the furniture patterns to widget rows that end in a
-score; run on an always-on host.
+score.
 
 \bibliographystyle{unsrtnat}
 \scriptsize
@@ -225,20 +227,12 @@ lists the pages that went quiet behind an HTTP 200 and Table~\ref{tab:moved} the
 \label{app:runs}
 Of the \nRuns{} runs, \nOutageRuns{} recorded a fetch error for every URL, the longest streak lasting
 \nOutageStreakDays{} consecutive runs (Figure~\ref{fig:heatmap}); the last was on \lastOutagePretty, and none of the
-\nRunsSinceLastOutage{} runs since then was a full outage. The snapshot does not record why the outages
-stopped, and the run logs stop on the same date. The systemd journal explains \nResumeTriggeredOutages{}
-of them: the run started within two minutes of the laptop waking from suspend (median
-\medianSecSinceResumeOutage\,s after resume, versus \medianSecSinceResumeValid\,s for healthy runs). The
-timer is \texttt{Persistent=true}, so a trigger missed while asleep fires at the moment of resume, before
-Wi-Fi is back, and every probe fails instantly. The run then continues; the agent phase, minutes later,
-usually has network again (\nOutageRunsWithAdds{} outage runs still added documents) and recent runs label
-the commit as an outage, but that day's link and content checks are lost. A further \nPartialRunsWord{} runs lost
-part of their checks (\worstPartialErrors{} of \worstPartialN{} probes on \worstPartialDate, while the network
-flapped). The curation agent failed in \nAgentFailedRuns{} runs, \nAgentFailedOnOutage{} of them outage runs
-where its credential refresh had no network either; only \nAgentFailedValid{} healthy runs lost their agent,
-and \nFullyGoodRuns{} of the \nRunsAgentKnown{} runs with a run log had both phases healthy. Run logs after
-\lastRunLogPretty{} were not in the snapshot, so the agent phase of the last \nRunsAgentUnknown{} runs is
-unknown (``no log'' in Table~\ref{tab:runs}). Outages stretched the tail of the content re-check interval.
+\nRunsSinceLastOutage{} runs since then was a full outage. \outageCauseSentence{} An outage run still continues to its agent phase, which can succeed
+(\nOutageRunsWithAdds{} outage runs still added documents), but that day's link and content checks are lost. A further \nPartialRunsWord{} runs lost
+part of their checks, the worst \worstPartialErrors{} of \worstPartialN{} probes on \worstPartialDate.
+\agentPhaseSentence{} Run logs for the
+other \nRunsAgentUnknown{} runs are not in the snapshot, so their agent phase is unknown (``no log'' in
+Table~\ref{tab:runs}). Outages stretched the tail of the content re-check interval.
 Table~\ref{tab:runs} gives every run.
 \begin{figure}[H]
 \centering

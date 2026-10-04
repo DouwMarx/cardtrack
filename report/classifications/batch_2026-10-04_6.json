@@ -1,0 +1,4 @@
+[
+ {"slug": "palisade-research-grok-4-grok-4-0709-independent-eval", "version": 719, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same", "summary": "Only page title, 'Additional ways to view' line and related-posts footer list dropped from extraction; report body paragraphs (3/10, 52/100 trials) unchanged.", "notable": "", "confidence": "high"},
+ {"slug": "nvidia-gr00t-h-model-card", "version": 703, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same", "summary": "Hugging Face 'use this model' library/notebook widget removed and monthly download counter changed 602 to 786; card body unchanged.", "notable": "", "confidence": "high"}
+]

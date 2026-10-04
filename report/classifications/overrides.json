@@ -1,10 +1,50 @@
 [
- {"slug": "anthropic-claude-opus-4-7-other", "version": 276, "category": "extraction_noise",
-  "reason": "Raw HTML of both versions contains the footnotes (7 markers each); only the extracted text lost them. Verified 2026-09-22 against data/raw; live page still shows them (sub-agent check)."},
- {"slug": "anthropic-claude-fable-5-addendum", "version": 274, "category": "extraction_noise",
-  "reason": "Raw HTML of both versions contains footnote 1 (5 markers each); extractor artifact. Verified 2026-09-22."},
- {"slug": "anthropic-claude-opus-4-6-other-3", "version": 323, "category": "extraction_noise",
-  "reason": "Raw HTML of both versions contains the footnotes (7 markers each); extractor artifact. Verified 2026-09-22."},
- {"slug": "anthropic-claude-fable-5-other", "version": 629, "category": "extraction_noise", "verified": false,
-  "reason": "NOT verified against raw HTML: data/raw was not available to the 2026-09-29 unattended run. Conservative call: the dropped DJI Tello/consent footnote is the last line before the related-content footer, the same position as the three verified Anthropic footnote artefacts, and the publisher-deletion reading cannot be confirmed. Counter-evidence: the footnote-preserving pre-clean is now in cardtrack/extract.py and the earlier artefact version of this page (v208) was purged from the DB, so v629/v689 may have been extracted with the fix, which would make this a real publisher deletion; against that, a second Anthropic page (opus-4-6-other-2 v630) lost footnotes on the same day (2026-09-25), suggesting a new markup change. Maintainer: count footnote markers in raw of versions 116/629/689 and set verified or delete this entry."}
+ {
+  "slug": "anthropic-claude-opus-4-7-other",
+  "version": 276,
+  "category": "extraction_noise",
+  "reason": "Raw HTML of both versions contains the footnotes (7 markers each); only the extracted text lost them. Verified 2026-09-22 against data/raw; live page still shows them (sub-agent check)."
+ },
+ {
+  "slug": "anthropic-claude-fable-5-addendum",
+  "version": 274,
+  "category": "extraction_noise",
+  "reason": "Raw HTML of both versions contains footnote 1 (5 markers each); extractor artifact. Verified 2026-09-22."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-6-other-3",
+  "version": 323,
+  "category": "extraction_noise",
+  "reason": "Raw HTML of both versions contains the footnotes (7 markers each); extractor artifact. Verified 2026-09-22."
+ },
+ {
+  "slug": "anthropic-claude-fable-5-other",
+  "version": 629,
+  "category": "extraction_noise",
+  "reason": "Raw HTML of v116, v629 and v689 all contain the DJI Tello/consent footnote (2 occurrences each, in the footnotes block and the page JSON); only the extracted text of v629/v689 lost it. Extractor artefact, not a publisher deletion. Verified 2026-10-04 against data/raw by the unattended run."
+ },
+ {
+  "slug": "palisade-research-grok-4-grok-4-0709-independent-eval",
+  "version": 719,
+  "category": "extraction_noise",
+  "reason": "Removed title, 'Additional ways to view' and related-posts lines are present in raw HTML of both v619 and v719; extractor drift, consistent with the sibling gpt-5-4 page v718 (same day, same lines). Verified 2026-10-04 against data/raw."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-6-other-2",
+  "version": 630,
+  "category": "extraction_noise",
+  "reason": "The two dropped footnote lines ('All the advice shared here...', 'Which Mozilla patched independently.') are present in raw HTML of both v126 and v630 (2 occurrences each; v630 uses new li id=footnote-N markup); extractor artefact, not a publisher deletion. Sub-agent label already extraction_noise (low confidence); now verified 2026-10-04 against data/raw."
+ },
+ {
+  "slug": "openai-gpt-5-6-cyber-other",
+  "version": 482,
+  "category": "extraction_noise",
+  "reason": "All 7 removed lines (macOS Keychain/Chrome cookies prompt-response table and the GPT-5.6 Cyber customer quote) are still present in the raw HTML of v482, inside the same role=tabpanel element as in v250 (rendered HTML and page JSON, 2 occurrences each); only the tab panel's class changed. Extractor skipped a tab panel; not a publisher deletion. Verified 2026-10-04 against data/raw. Earlier editions reported this as an undisclosed removal."
+ },
+ {
+  "slug": "openai-gpt-rosalind-access-policy",
+  "version": 561,
+  "category": "extraction_noise",
+  "reason": "The 'Fourth Eon' launch-partner paragraph and quote are still present in the raw HTML of v561 as a tab button and tab panel paragraph (6 occurrences, as in v462). Extractor skipped a tab panel; not a publisher deletion. Verified 2026-10-04 against data/raw. Earlier editions reported this as a deleted launch partner."
+ }
 ]

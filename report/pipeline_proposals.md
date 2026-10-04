@@ -139,3 +139,41 @@ the day at the same request count; in the reverse order it mints furniture faste
   undercounts the "before" side, and a reader cannot reproduce those diffs from the database. Please record
   purges or dedups in the changelog (for example `action = "purge_version"` with the version id and a reason).
   Alternatively, keep deleted rows with a `purged_at` column. Then `analyze.py` can say what was removed and why.
+
+## 6. Additions from the 2026-10-04 edition
+
+- **Footnote artefacts survive the pre-clean (section 3).** Two stored Anthropic versions still lack
+  footnotes that their own raw captures contain: anthropic-claude-fable-5-other v629/v689 (DJI Tello /
+  consent footnote, present twice in each raw file, absent from the text) and
+  anthropic-claude-opus-4-6-other-2 v630 (two footnotes, present in raw as `<li id="footnote-N">`). Either
+  these texts were extracted before the fix and never re-extracted, or the new `footnote-N` list markup
+  escapes the pre-clean. Proposal: re-extract both from `data/raw/`, and add these two raw files as
+  extractor regression fixtures. Both are recorded as verified overrides.
+- **The suspected fable-5-other deletion from the last edition is settled:** extractor artefact, not a
+  publisher deletion (raw of v116, v629 and v689 all hold the footnote). `data/raw/` was readable this run
+  at the repo path, so the previous "raw not visible" item is resolved for now; `snapshot.sh` still does
+  not copy raw files.
+- **Palisade extractor drift.** palisade-research-gpt-5-4 v718 and grok-4-0709 v719 dropped the page
+  title, "Additional ways to view" and the related-posts list from the extracted text while raw HTML of both
+  versions still holds them. The 2026-10-03 run log reports `"extractor_drift": 2`, so the drift detector
+  caught both, yet both were still stored as new versions. Consider not minting a version (or tagging it)
+  when drift is detected and the raw capture still contains the dropped lines.
+- **Host migration lost the outage evidence.** The tracker now runs on a different host (git history around
+  2026-10-01). The snapshot has run logs only from 2026-10-02 and a journal with service starts but no
+  suspend/resume events, so the report can no longer re-derive why 22 runs were outages; Appendix B now says
+  so and cites the previous edition. Proposal: keep `logs/run-*.log` in a persistent location that survives
+  host moves (or commit a per-run JSON summary), and export the old host's suspend/resume events once into
+  a committed file if the attribution should stay reproducible.
+- **Backdated section label (METR, v73 to v725).** METR's red-teaming page gained a section headed
+  "Results from the Exercise (added May 2026)"; the page was fingerprinted unchanged at every successful
+  content check from 2026-08-09 to 2026-09-29 and changed by 2026-10-03. Not a pipeline issue, but an
+  example of why detection dates from a daily full-coverage fetch (section 1) matter for dating edits.
+- **Tab panels are skipped by the extractor (new, verified).** Two pairs that earlier editions reported as
+  undisclosed publisher deletions are extractor artefacts: openai-gpt-5-6-cyber-other v250 to v482 (the
+  Keychain/Chrome-cookie prompt-response table and a customer quote) and openai-gpt-rosalind-access-policy
+  v462 to v561 (the "Fourth Eon" launch partner). In both, the newer raw HTML still holds the content
+  inside a `role="tabpanel"` element (the panel's class changed between captures, for example from a
+  `transition-opacity` class to `class=""`). The extractor should keep every tab panel's text. Both pairs
+  are now overrides (`extraction_noise`). Other substantive deletions cited in the report body were
+  checked against raw and hold (NVIDIA VoiceChat v317, Gemini Omni v432, Cosmos3 v613/v614, UI-Mate v376,
+  Mistral Small 4 v461).

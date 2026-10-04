@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "openai-gpt-6-astra-system-card",
+  "version": 720,
+  "category": "content_major",
+  "score_change": true,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": true,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "New ~20-page Appendix B on dots (always-on GPT-6 Astra agents): prompt-injection red-teaming, alignment across time budgets, monitor evasion, preparedness, safeguards; changelog entry Sept 29.",
+  "notable": "OpenAI extended an existing model system card with a full safety appendix for a new agent product (dots), reporting new eval results such as 0 successes in 16,600 injected attack emails and a 19.7% scope-violation flag rate with ten intervening tasks.",
+  "confidence": "high"
+ }
+]
