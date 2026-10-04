@@ -1,111 +1,80 @@
-# cardtrack agent run — 2026-10-03 (run id 2026-10-03T06:18Z-local)
+# cardtrack agent run — 2026-10-04 (run id 2026-10-04T06:19Z-local)
 
-The last agent success was 2026-10-02T06:21:44Z, so the search window used the 72 h minimum lookback (from 2026-09-30).
-Today is Saturday, so there was no weekly retrospective sweep. There were no open issues and no blocked-URL escalations.
+The last agent success was 2026-10-03T06:27:35Z, so the search window used the 72 h minimum lookback (from 2026-10-01).
+Today is Sunday, so there was no weekly retrospective sweep. There were no open issues.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | annotate_version | `openai-gpt-6-astra-system-card` v720 | **written** (doc 283) |
-| 2 | annotate_version | `metr-claude-opus-4-6-independent-eval-4` v725 | **written** (doc 73) |
-| 3 | add | Gemini 4 Argon Model Evaluation PDF (google_deepmind, `other`, restricted) | **written**: `google-deepmind-gemini-4-argon-other` (doc 360) |
-| 4 | add | OpenAI misalignment report "Preparing for a restart after reading Slack" (HPIM, `other`, restricted, loss_of_control) | **written**: `openai-hpim-openai-highly-persistent-internal-model-other-2` (doc 361) |
-| 5 | add | Upstage "Solar Pro 4" launch documentation (`model_card`, closed) | **written**: `upstage-solar-pro-4-model-card` (doc 362) |
+| 1 | add | Cursor's copy of "Model Card: Grok 4.7" (`cursor`, `model_card`, closed; cbrn, cyber, harmful_manipulation, societal_harm) | **written**: `cursor-grok-4-7-model-card` (doc 363) |
+| 2 | add | Anthropic "Improving our alignment and security efforts" (2026-08-31, `other`, restricted, loss_of_control) | **duplicate**: fingerprint already stored as `anthropic-claude-mythos-5-other-3` |
 
 Notes:
-- **#1:** the 2026-09-29 revision adds Appendix B "dots", covering the always-on agents built on GPT-6 Astra. It includes:
-  - prompt-injection red-teaming: no scored successes in 100 bulk rollouts or in 2,638 iterative attempts;
-  - alignment results across simulated-time budgets;
-  - monitor-evasion tests, plus preparedness and safeguards sections.
+- **#1:** I found this by checking the Cursor co-publication pattern from the existing Cursor rows for Grok 4.5 and 4.6.
+  - The PDF at `cursor.com/resources/grok-4-7-model-card.pdf` is dated September 21, 2026 (revision 2026-09-21).
+  - Its counterpart row is `xai-grok-4-7-model-card`, and the notes say so.
+  - I submitted it through CLI flags because stdin JSON is blocked (see friction). As a result, `related_urls` (co_published and announcement) were not set.
+- **#2:** I found the lead in a related-content sidebar. Its URL is not in state_summary, but the validator matched the content to an existing row. I accept that verdict.
 
-  I verified it on the live deploymentsafety page. Dots is a product harness on the existing model, so it gets no separate row.
-- **#2:** the METR page now carries a section "Results from the Exercise (added May 2026)". It quotes the Frontier Risk Report findings, including the 59% best score on the attack-ideation eval. Verified live.
-- **#3:** this is a 5-page first-party evaluation document: methodology plus a results table against GPT-6 Astra, Fable 5.1 and Opus 5.5 on 18 benchmarks.
-  - Location: `deepmind.google/models/evals-methodology/gemini-4-argon` redirects to the PDF.
-  - Date: coverage on 2026-09-30 cites it, so it shipped at launch.
-  - It has capability benchmarks only, so `has_safety_evals` is false.
-  - Precedent: Meta's Muse Spark evaluation-methodology rows.
-  - Still no Argon model card.
-- **#4:** HPIM is a recurring named identity with 3 existing rows, so this passes the named-model gate under either reading.
-- **#5:** Solar Pro 4 launched 2026-08-11, before Upstage joined the allowlist (OpenRouter overlay, 2026-09-22, no index_urls). Precedent for a launch post serving as the model card: `mistral-robostral-navigate-model-card`.
+## Phase A candidates (23): none proposed
 
-## Phase A candidates triaged (22)
+- **Claude Sonnet 5.5 System Card PDF:** already the `full_document` related URL of `anthropic-claude-sonnet-5-5-system-card`. Skipped.
+- **anthropic.com "Claude-shaped science":** a guest science essay with no evaluation or access program. Skipped.
+- **Barclays, Claude Frontier Academy:** corporate announcements. Skipped.
+- **arXiv MASK (2503.03750):** a 2025 benchmark paper, below the scope floor and not an Anthropic publication. Skipped.
+- **Meta "Developing Capable Models Responsibly":** an update to the scaling-framework policy that names no model. Skipped.
+- **Meta "Solving Open Research Problems Together":** a math-collaboration showcase with Muse Spark and no evals. Skipped.
+- **UK AISI "Building a more secure environment…":** an infrastructure/methodology blog with no model results. Skipped.
+- **Redwood "Capabilities research expands the safety-usefulness Pareto frontier":** a general essay. Skipped.
+- **Epoch ChatGPT usage explorer and agent-population estimate; RAND data-center siting:** not model documentation. Skipped.
+- **xAI changelog:** navigation link. Skipped.
+- **HF leads:**
+  - DeepSeek V4.1-Flash chat-template discussion: already cataloged as `deepseek-deepseek-v4-1-flash-model-card`.
+  - Papers and user pages: skipped.
+  - NVIDIA PixelUMM and PixelDiT2-ImageNet: research checkpoints outside NVIDIA's scope note (Nemotron/Cosmos/GR00T only). Skipped.
 
-All skipped:
-- **Already triaged on 2026-10-02 and still skipped:** claude-shaped-science (guest essay), Barclays (customer story), AISI secure-evaluation-environment (infrastructure, no named-model results), Epoch ChatGPT usage explorer, NVIDIA PixelUMM and PixelDiT2, 4 HF paper pages, 3 HF user profiles, and the DeepSeek-V4.1-Flash chat-template discussion.
-- **Sonnet 5.5 System Card PDF** (www-cdn): already in the related_urls of `anthropic-claude-sonnet-5-5-system-card`.
-- **arxiv 2503.03750 (MASK):** a 2025 benchmark paper cited on Anthropic's model-report page. It predates the scope floor and is not an Anthropic publication.
-- **anthropic.com/news/claude-frontier-academy:** a training-investment announcement.
-- **Meta "Developing Capable Models Responsibly"** (2026-10-02): an update to the Meta Superintelligence Scaling Framework (containment during training and evaluation; CBRN proliferation framing). It names no model, so it is a generic framework/policy update and fails the named-model gate.
-- **Meta "Solving Open Research Problems Together"** (2026-10-02): a math-collaboration showcase using Muse Spark 1.1/1.2, with no evaluation.
-- **x.ai/changelog/bot:** a changelog page.
-- **Epoch "estimating the agent population"** (2026-10-02): a hardware-capacity economics estimate with no model evaluation.
-- **RAND RRA5050-1** (data-center siting): outside RAND's CAST/Canary scope.
-- **Redwood "Capabilities research expands the safety-usefulness Pareto frontier"**: a conceptual essay.
+## Targeted search (since 2026-10-01)
 
-## Targeted web search (window 2026-09-30 → now)
+These were all checked and were already cataloged:
 
-- **Queries:**
-  - System card and open-weight model card releases for October 2026.
-  - Gemini 4 Argon model card / evals methodology.
-  - OpenAI dots and the GPT-6.1 Astra withholding; OpenAI's Australia incident.
-  - Anthropic enzyme discovery.
-  - Ai2 Olmo-core 3.
-  - Trusted/restricted access programs (LSVP, CVP, Glasswing, Rosalind, Daybreak, Gemini for Science, Claude Science).
-  - METR, Apollo and AISI evaluations; the OpenAI misalignment-report hub.
-  - Lab sweeps: Mistral, Qwen, DeepSeek, GLM, Kimi, MiniMax, xAI, NVIDIA, Upstage, StepFun, Tencent and inclusionAI.
-- **Added:** #3, #4 and #5 above.
-- **Skipped:**
-  - Two other 2026-10-02 OpenAI misalignment reports (EDA host, reference-tool command injection). They name only an unnamed internal model; the gate is still unresolved (PROPOSALS 2026-09-29).
-  - Apollo posts from 2026-09-30 and 2026-10-01 (embedded-evaluation principles, scheming-propensity framework, Senate testimony): frameworks with no named-model results.
-  - Anthropic "Claude discovers a novel enzyme system": a capability showcase, not an evaluation.
-  - Olmo-core 3: training infrastructure from Ai2, which is not allowlisted.
-  - MiniMax M3.1-Flash-Preview: no card, weights or benchmarks.
-  - Upstage Solar Mini 4 (2026-09-22): no fetchable first-party documentation; logged.
-  - Solar Decide/Jev: a decision endpoint, i.e. an auxiliary model.
-  - No Ling-3.1 repo exists on the inclusionAI HF org.
-- **Not readable (openai.com 403):**
-  - "How we will do better for Australia": per coverage the model is unnamed.
-  - "Daybreak for Frontline Defenders" (2026-09-03): coverage names only tiers, no model.
-  - GPT-6.1 Astra withholding: press only, no first-party document found.
+- **Recent launches:** GPT-6.1 Sol addendum; Sonnet 5.5 system card; Gemini 4 Argon (access policy, Fairwind, evaluation PDF); Grok 4.7 xAI card.
+- **Access programs:** Mythos 5.1 / LSVP; Glasswing; Claude Science; "Expanding support for scientists"; Rosalind Biodefense; Path to Astra.
+- **Muse Spark:** all reports.
+- **Model cards:** Inkling and Inkling-Small; GLM-5.3; Laguna S 2.1; DeepSeek V4.1-Flash.
+- **Sidebar leads:** Project Pilot / Drone-Bench; discovering-cryptographic-weaknesses; intelligence-targeting / conventional-weapons; the cyber-eval incident assessments.
 
-  All three are logged in friction.
-- **Access programs:** nothing new. LSVP and Glasswing are catalogued; CVP Mythos access is still "near future"; GPT-Rosalind pricing takes effect 2026-10-05 (not a new document).
-- **Silent orgs:** I spot-checked Upstage (found Solar Pro 4), MiniMax, NVIDIA, Tencent (Hy4 preview already catalogued), StepFun and inclusionAI. Palisade, Poolside, Apollo, Moonshot and Thinking Machines were checked yesterday or today, with nothing new.
+Other findings:
 
-## Citation mining
+- There is still no Gemini 4 Argon model card: `deepmind.google/models/model-cards/gemini-4-argon/` returns 404.
+- I found no METR report on the Anthropic incidents yet. The investigation's initial term is 8 weeks from early September.
+- The Apollo blog "Embedded evaluators are necessary…" (2026-09-29) is a policy essay that evaluates no model. Skipped.
+- **Silent >14 days (checked):** Palisade, Poolside, Apollo, Moonshot, Thinking Machines, Mistral, MiniMax, NVIDIA, Z.ai. I found no uncatalogued first-party documents.
+  - Kimi K3.1: still no card.
+  - The Mistral "Magistral 1.2 (2509)" hits are 2025 releases, below the scope floor.
 
-New rows this run:
-- The Argon evaluation PDF cites only public leaderboards and competitor system cards, which are already catalogued.
-- The HPIM report links only to the hub.
-- The Solar Pro 4 post cites Solar Open 2, which is catalogued.
+## Blocked-URL escalations (13 openai.com / help.openai.com)
 
-No new leads.
+- WebFetch still gets 403 on these URLs. I spot-checked `introducing-gpt-rosalind` and the Daybreak help article.
+- Search engines still index the pages with current titles (Path to Astra, Rosalind Biodefense, etc.), so they are alive behind a bot wall.
+- No `status_change` proposed.
 
-## Open issues
+## Document updates (summarized none)
 
-None.
+I reviewed 12 diffs: v736, v735, v734, v733, v732, v731, v730, v729, v724, v723, v722, v721. They were all extraction noise:
 
-## Blocked-URL escalations
+- HF download/Spaces counters and reordered eval-result widgets (Qwen3.5-397B, Qwen3.8-2.4T, Qwen-Image-2.1 feedback blurb, MiMo-V2.6-Pro, Cosmos-H-Dreams snippet panel);
+- Anthropic "Related content" sidebar rotation;
+- dropped dateline strings on Anthropic research pages.
 
-None.
-
-## Document update summaries
-
-I read the 6 newly queued diffs and annotated 2 (#1, #2). Skipped as noise:
-- **alibaba-qwen-qwen-image-2-1 v724:** a feedback-form blurb plus download count.
-- **xiaomi-mimo-v2-6-pro v723:** HF widget, Spaces count and leaderboard reorder.
-- **nvidia-cosmos-h-dreams v722:** the HF "use this model" boilerplate was removed and the download count changed.
-- **anthropic-claude-mythos-preview-access-policy-2 v721:** only the "Related content" sidebar rotated.
-
-The older queued entries were reviewed in earlier runs.
+No annotate_version proposals were made. I did not open the 7 older entries (v705–v717).
 
 ## Friction / proposals
 
-- 4 friction lines:
-  - Argon has an evaluation PDF but still no model card.
-  - The named-model gate is still unresolved; there are now 7 skipped reports.
-  - openai.com is blocked to my fetcher, which left 3 leads unread.
-  - Solar Mini 4 and MiniMax M3.1 have no documentation.
-- 1 PROPOSALS entry: publishers from the OpenRouter overlay join with empty index_urls and no backfill. Solar Pro 4 went 7 weeks unseen. The entry suggests a one-off backfill search when a publisher is added, and seeding index_urls.
+I added 3 friction lines:
+
+- openai.com is still bot-blocked;
+- the `--json -` stdin path is blocked by the Bash permission check, and the CLI flags cannot set `related_urls`;
+- a URL-based dedup lookup missed a fingerprint duplicate.
+
+No new PROPOSALS.md entry.

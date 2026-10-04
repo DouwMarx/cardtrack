@@ -49,12 +49,12 @@
     <dt>First seen</dt>
     <dd>2026-08-13T06:27:28Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Frontier Red Team. Not a new model release - distinct_model_release is attested in the sense that this is a distinct evaluation publication, not a re-release of an already-catalogued document. Cites Anthropic&#39;s earlier multiagent work and Project Glasswing (the Glasswing initial update of 2026-05-22 is already catalogued). Claude Haiku is mentioned once in passing and is NOT among the models evaluated, so it is excluded from model_names.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-5-other&amp;body=Document%3A%20anthropic-claude-mythos-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/multiagent-systems%0AFingerprint%3A%2040751393be7afc6bb70a20006ae5529b383d40c706cee9f3194d57f14ca6260f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-5-other&amp;body=Document%3A%20anthropic-claude-mythos-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/multiagent-systems%0AFingerprint%3A%20e813dbc497235d0a0c97bc5c41584cc2a6ad9bbecf83638fa57f1591a944f999%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-04T06:20:54Z</td>
+          <td>text/html</td>
+          <td>178,234</td>
+          <td><code title="e813dbc497235d0a0c97bc5c41584cc2a6ad9bbecf83638fa57f1591a944f999">e813dbc497235d0a</code></td>
+<td><a href="https://data.systemcards.org/raw/fc507bc74856e02fc3081f366cae5d07fff0811df3a2adbeb1ae99cb839cd193.html" rel="nofollow" title="archived copy, sha256 fc507bc74856e02fc3081f366cae5d07fff0811df3a2adbeb1ae99cb839cd193">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-14T06:19:43Z</td>
           <td>text/html</td>
@@ -93,7 +100,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -158,6 +165,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/multiagent-systems" rel="noopener nofollow">https://www.anthropic.com/research/multiagent-systems</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-04T06:20:54Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-04T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/multiagent-systems" rel="noopener nofollow">https://www.anthropic.com/research/multiagent-systems</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -170,7 +185,6 @@
       <pre class="extracted" data-pagefind-body>Subscribe to the Frontier Red Team newsletter
 Get updates on our latest red-teaming research and findings.
 Frontier Red Team
-Aug 13, 2026
 Models are improving and AI agents are taking on more tasks in shared codebases, markets, and other social systems. As a result, an increase in real-world interactions between agents is imminent. We&#39;ve already begun studying this, but still have a lot of uncertainty regarding what this looks like at scale. The trajectory is easy to imagine and hard to slow: current institutions are designed by and for people, resting on assumptions about the sufficiency of oversight at human speed. Some institutions will become human-AI hybrids; others where agents outcompete on speed or cost will become agent-only. The volume of agent-agent interaction could plausibly exceed that of human-human and human-agent interactions before the world understands the conditions for making such interactions go well.
 Agents are unlike people in many ways. They can work for longer, instantly grasp large bodies of information, and exhibit a breadth of knowledge surpassing any person. Yet they are also susceptible to confabulation and reward hacking, and despite progress in alignment, we know very little about how they behave in complex, real-world, multiagent environments. Moreover, benign behavioral quirks at the individual level might compound into unwanted global outcomes. Here, we identify a few examples of behavioral tendencies in current frontier models and show how they can produce unexpected systemic failures, in hopes of starting a conversation about mitigating these risks.
 True multiagent systems are still in their infancy. For some time now, agents have excelled at tool use, and insofar as they are able to treat other agents as tool invocations—that is, with well-defined inputs (prompts) and outputs (responses and artifacts)—they can work together efficiently. Where agents currently stumble, however, is in treating each other as more like distinct, long-lived peers, with their own goals and behaviors, and no clear hierarchy between them. As autonomous agents become more and more prevalent in the world and operate in ever-more demanding settings, it is crucial that they learn how to effectively coordinate.
@@ -229,16 +243,16 @@ Our social systems are robust in ways that are easy to take for granted. Over ma
 Nothing above suggests that these failures are permanent—but nothing suggests they will fix themselves, either. Coordination doesn&#39;t naturally emerge from stronger intelligence nor alignment at the individual level. Thus, the work that must be done takes two forms: environments that exert the kinds of social pressure that evolution exerted on us, and social computing systems redesigned for actors that can self-replicate and self-improve. These are open problems in interaction and mechanism design, and our experiments here provide early evidence that new solutions are necessary.
 The conditions that allow multiagent interaction to go well will be discovered one way or another: either deliberately and early, or—and by default—in production, after agents’ interactions far outnumber ours. We would prefer the former.
 Corresponding author: Carolyn Zou
-Anthropic’s Frontier Red Team developed new evaluations to measure AI capabilities in tactical intelligence targeting and conventional weapons development.
+Guest author Prof. Matthew Schwartz describes what happened when he stopped fighting Claude and allowed Claude to find “Claude-shaped” problems: ones best suited to the capabilities of the current generation of LLM tools. This led him to build BootLoops, a toolkit for exact calculations in quantitative science, which he has been applying across scientific fields alongside experts.
 Read more
-We present an alignment assessment of four incidents in which Claude models gained unauthorized access to real third-party systems.
+We built an index of how well today’s robots can perform US job tasks. Robots can already do three-quarters of physical tasks, mostly in limited settings, but are cost-competitive for just 0.3% of them.
 Read more
-We are sharing the first complete computer-checked proof of Fermat’s Last Theorem. Claude worked largely autonomously over 11 days to write the proof in the Lean programming language.
+We’re launching a new study using Anthropic Interviewer to learn from your experiences with AI, and we invite you to participate.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-03T06:26:22Z</p></footer>
+<footer><p>Data updated 2026-10-04T06:22:59Z</p></footer>
 </body>
 </html>

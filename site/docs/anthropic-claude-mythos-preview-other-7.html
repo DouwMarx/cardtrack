@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:27:34Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-7&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-7%0AURL%3A%20https%3A//www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench%0AFingerprint%3A%20ad983a18a3029c247516b8724d054a0922c60244d73cde9857e6b094e555cb61%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-7&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-7%0AURL%3A%20https%3A//www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench%0AFingerprint%3A%20dc0b021a435022a4e672910b55a0072ee950626505184b80ff033480bf2981b9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-04T06:20:39Z</td>
+          <td>text/html</td>
+          <td>195,605</td>
+          <td><code title="dc0b021a435022a4e672910b55a0072ee950626505184b80ff033480bf2981b9">dc0b021a435022a4</code></td>
+<td><a href="https://data.systemcards.org/raw/e90ab0e72261ebba03b2304174c0da5b608c3ac548ee870454560c9f6c7d0156.html" rel="nofollow" title="archived copy, sha256 e90ab0e72261ebba03b2304174c0da5b608c3ac548ee870454560c9f6c7d0156">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:27:34Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -124,6 +131,14 @@
           <div class="just">openness: "closed" → "restricted"</div>
           <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-04T06:20:39Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-04T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench" rel="noopener nofollow">https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -136,7 +151,6 @@
       <pre class="extracted" data-pagefind-body>Subscribe to Anthropic Science
 Features on AI-assisted discoveries, practical workflows, and field notes across the sciences.
 Science
-Apr 29, 2026
 In this post, Brianna, a researcher on the discovery team, shares results from a recent bioinformatics benchmarking effort.
 Almost as soon as large language models could hold a conversation, people started asking how they’d stack up against human experts. Could models pass the bar exam? Could they answer medical licensing questions, or solve Olympiad math problems? Such benchmarks—self-contained sets of human-vetted problems designed to evaluate a capability of a model—have now become a source of competition across AI developers, reported in model release system cards and tracked on many online leaderboards.
 Competition aside, benchmarks help us tackle an important question: whether models are capable and reliable enough to support, or even produce, professional-level work. Scientists are using models to write code for analysis pipelines, propose hypotheses, and draw conclusions from data with the long-term aim of accelerating innovation and discovery. But exactly how proficient is AI in science right now, and how quickly are Claude and other models improving?
@@ -185,14 +199,16 @@ BioMysteryBench is an encouraging measure of scientific capability. The most rec
 We’re also delighted to see convergent work in this space: While finalizing this post, Genentech and Roche released CompBioBench. Their benchmark consists of 100 computational biology tasks “based on synthetic/augmented data and metadata scrambling/scrubbing of real datasets to create challenging problems with a single ground-truth answer that require multi-step reasoning, tool use, bespoke code, and interaction with real-world external resources.” Sound familiar? Their results echo those of BioMysteryBench, too: Claude Opus 4.6 reaches 81% overall and 69% on their hardest questions, reinforcing that frontier models are now genuinely useful collaborators for bioinformatics research.
 We’re eager to build even longer-horizon, real-world tasks that push model research capabilities, and to hear creative ideas from others. Send us your interesting benchmarks, innovative uses of AI for science, and interactions with AI that prompted you to rethink what could be possible in your field at scienceblog@anthropic.com.
 If you are interested in understanding how models perform on difficult verifiable computational biology tasks, you can access BioMysteryBench here and visit claude.com/lifesciences to learn more.
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
+Guest author Prof. Matthew Schwartz describes what happened when he stopped fighting Claude and allowed Claude to find “Claude-shaped” problems: ones best suited to the capabilities of the current generation of LLM tools. This led him to build BootLoops, a toolkit for exact calculations in quantitative science, which he has been applying across scientific fields alongside experts.
 Read more
-Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
+We built an index of how well today’s robots can perform US job tasks. Robots can already do three-quarters of physical tasks, mostly in limited settings, but are cost-competitive for just 0.3% of them.
+Read more
+We’re launching a new study using Anthropic Interviewer to learn from your experiences with AI, and we invite you to participate.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-03T06:26:22Z</p></footer>
+<footer><p>Data updated 2026-10-04T06:22:59Z</p></footer>
 </body>
 </html>
