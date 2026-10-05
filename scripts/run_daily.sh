@@ -242,10 +242,14 @@ if [ "$HOLD" -eq 0 ] && publish_on publish.git_commit; then
   if [ "$MONITOR_OUTAGE" = "1" ]; then
     MSG="[monitor outage] $MSG"
   fi
-  # scoped add: never sweep unrelated working-tree changes into an automated commit
-  git -C "$ROOT" add data site logs 2>/dev/null || true
-  # the generated overlay is optional: a missing pathspec would abort the whole add
-  [ -f "$ROOT/config/sources.generated.yaml" ] && git -C "$ROOT" add config/sources.generated.yaml
+  # Allow-list, not a directory sweep: `git add logs` once published the agent's
+  # scratch files (2026-09-21). Every path is named; a missing one is skipped
+  # because a missing pathspec would abort the whole add.
+  for path in data site config/sources.generated.yaml \
+              logs/friction.jsonl logs/PROPOSALS.md logs/RESOLVED.md logs/run_report.md \
+              logs/issues_outbox.jsonl logs/comments_outbox.jsonl; do
+    [ -e "$ROOT/$path" ] && git -C "$ROOT" add "$path"
+  done
   if git -C "$ROOT" diff --cached --quiet; then
     echo "nothing to commit"
   else
@@ -289,6 +293,17 @@ fi
 
 # Health: open/close one GitHub issue per failing condition (time-based, self-closing).
 "${PY[@]}" scripts/health.py --root "$ROOT" || echo "[run_daily] WARNING: health check crashed"
+
+# Local run output is unbounded otherwise (the laptop reached 124 MB in 8 weeks).
+# Tracked files are never touched; only per-run logs, transcripts and diffs age out.
+RETENTION_DAYS="$(setting logs.retention_days 90)"
+if [ "$RETENTION_DAYS" -gt 0 ] 2>/dev/null; then
+  find "$ROOT/logs" -maxdepth 1 -type f \( -name 'run-*.log' -o -name 'report-*.log' \) \
+    -mtime +"$RETENTION_DAYS" -delete 2>/dev/null || true
+  find "$ROOT/logs/agent-transcripts" "$ROOT/logs/version_diffs" -mindepth 1 -maxdepth 1 \
+    -mtime +"$RETENTION_DAYS" -exec rm -rf {} + 2>/dev/null || true
+fi
+
 
 if [ "$HOLD" -ne 0 ]; then
   echo "== run $RUN_ID HELD (nothing published; see logs/SECURITY_HOLD.md) =="

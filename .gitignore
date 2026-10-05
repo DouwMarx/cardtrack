@@ -14,26 +14,24 @@ __pycache__/
 
 # run state (state/: markers the agent sandbox cannot write)
 state/
-logs/.agent_last_success
 .run.lock
 .agent-home/
-logs/.phase_b_started
-logs/.roster_failstreak
 config/*.tmp
 
-# raw logs are noise; run_report.md, friction.jsonl, issues_outbox.jsonl stay tracked
-logs/*.log
-logs/run-*.log
-logs/cron.log
-logs/candidates.json
-logs/state_summary.json
-logs/open_issues.json
-logs/agent-transcripts/
-logs/updated_docs.json
-logs/version_diffs/
-# security quarantine: may contain the very secrets the scan caught — never commit
-logs/*.held.jsonl
-logs/SECURITY_HOLD.md
+# logs/: everything is local run output EXCEPT the allow-list below. The daily
+# commit stages these same paths by name (scripts/run_daily.sh), so a stray file
+# in logs/ can never reach git. Local ledgers (comments.jsonl, *.sent.jsonl), the
+# OpenRouter snapshot, run logs, transcripts and the security quarantine
+# (*.held.jsonl, SECURITY_HOLD.md) all stay on disk only.
+logs/*
+!logs/friction.jsonl
+!logs/PROPOSALS.md
+!logs/RESOLVED.md
+!logs/run_report.md
+!logs/issues_outbox.jsonl
+!logs/comments_outbox.jsonl
+!logs/archive/
+!logs/archive/**
 .wrangler/
 
 # pagefind output is derived from the (tracked) rendered pages AND is

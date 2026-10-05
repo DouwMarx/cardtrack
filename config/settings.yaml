@@ -108,6 +108,11 @@ report:
     --max-turns 400 --output-format text
     --allowedTools "Read" "Glob" "Grep" "Write" "Edit" "Bash" "Agent" "Task"
 
+logs:
+  # Days to keep per-run logs, agent transcripts and version diffs under logs/
+  # (local only, never tracked). 0 disables pruning.
+  retention_days: 90
+
 deploy:
   # Production pulls origin/main before each daily run (systemd ExecStartPre ->
   # scripts/deploy_update.sh) and moves to it only if test_cmd passes there.
