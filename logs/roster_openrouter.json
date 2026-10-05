@@ -4,88 +4,88 @@
   "endpoint": "https://openrouter.ai/api/v1/datasets/rankings-daily",
   "cumulative_share": 0.99,
   "min_days_present": 7,
-  "as_of": "2026-10-04T06:19:06Z",
-  "run_id": "2026-10-04T06:19Z-local",
-  "window_start": "2026-09-04",
-  "window_end": "2026-10-03",
-  "other_share_of_all_tokens": 0.068,
-  "covered_share_of_all_tokens": 0.9301
+  "as_of": "2026-10-05T06:18:07Z",
+  "run_id": "2026-10-05T06:18Z-local",
+  "window_start": "2026-09-05",
+  "window_end": "2026-10-04",
+  "other_share_of_all_tokens": 0.0687,
+  "covered_share_of_all_tokens": 0.9293
  },
  "authors": [
   {
    "slug": "deepseek",
    "key": "deepseek",
-   "share": 0.256,
-   "days_present": 30,
-   "status": "curated"
-  },
-  {
-   "slug": "z-ai",
-   "key": "zai",
-   "share": 0.1481,
+   "share": 0.2599,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "openai",
    "key": "openai",
-   "share": 0.148,
+   "share": 0.1478,
+   "days_present": 30,
+   "status": "curated"
+  },
+  {
+   "slug": "z-ai",
+   "key": "zai",
+   "share": 0.1463,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "tencent",
    "key": "tencent_hunyuan",
-   "share": 0.1287,
+   "share": 0.1248,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "xiaomi",
    "key": "xiaomi",
-   "share": 0.0689,
+   "share": 0.0719,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "google",
    "key": "google_deepmind",
-   "share": 0.0505,
+   "share": 0.0501,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "nvidia",
    "key": "nvidia",
-   "share": 0.0472,
+   "share": 0.0481,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "anthropic",
    "key": "anthropic",
-   "share": 0.0387,
-   "days_present": 30,
-   "status": "curated"
-  },
-  {
-   "slug": "minimax",
-   "key": "minimax",
-   "share": 0.0176,
+   "share": 0.0383,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "meta",
    "key": "meta",
-   "share": 0.0171,
+   "share": 0.0172,
+   "days_present": 30,
+   "status": "curated"
+  },
+  {
+   "slug": "minimax",
+   "key": "minimax",
+   "share": 0.0155,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "moonshotai",
    "key": "moonshot_ai",
-   "share": 0.0128,
+   "share": 0.0127,
    "days_present": 30,
    "status": "curated"
   },
@@ -97,6 +97,13 @@
    "status": "overlay"
   },
   {
+   "slug": "typesafe",
+   "key": "typesafe",
+   "share": 0.0121,
+   "days_present": 17,
+   "status": "overlay"
+  },
+  {
    "slug": "inclusionai",
    "key": "inclusion_ai",
    "share": 0.0116,
@@ -104,38 +111,31 @@
    "status": "curated"
   },
   {
-   "slug": "typesafe",
-   "key": "typesafe",
-   "share": 0.0113,
-   "days_present": 16,
-   "status": "overlay"
-  },
-  {
    "slug": "qwen",
    "key": "alibaba_qwen",
-   "share": 0.0098,
+   "share": 0.0101,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "poolside",
    "key": "poolside",
-   "share": 0.0094,
+   "share": 0.0093,
    "days_present": 30,
    "status": "curated"
   },
   {
    "slug": "dots-studio",
    "key": "dots_studio",
-   "share": 0.0043,
-   "days_present": 26,
+   "share": 0.0044,
+   "days_present": 27,
    "status": "overlay"
   },
   {
    "slug": "x-ai",
    "key": "xai",
-   "share": 0.0027,
-   "days_present": 23,
+   "share": 0.0025,
+   "days_present": 22,
    "status": "curated"
   },
   {
@@ -149,21 +149,21 @@
    "slug": "thinkingmachines",
    "key": "thinking_machines",
    "share": 0.0017,
-   "days_present": 17,
+   "days_present": 16,
    "status": "curated"
   },
   {
    "slug": "mistralai",
    "key": "mistral",
-   "share": 0.0008,
-   "days_present": 9,
+   "share": 0.0009,
+   "days_present": 10,
    "status": "curated"
   },
   {
    "slug": "stepfun",
    "key": "stepfun",
-   "share": 0.0004,
-   "days_present": 4,
+   "share": 0.0003,
+   "days_present": 3,
    "status": "curated"
   }
  ]

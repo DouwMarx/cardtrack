@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-09-25T06:24:56Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-5-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-5-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.5-1T%0AFingerprint%3A%202e9a60e32afde34c4c4f3ef7773992393340006a99397d32136921db3854e582%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-5-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-5-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.5-1T%0AFingerprint%3A%20af31c7902121bd49496588ba4aed85259eb84509beaccbd586aa7374201a66c8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-05T06:19:27Z</td>
+          <td>text/html</td>
+          <td>214,011</td>
+          <td><code title="af31c7902121bd49496588ba4aed85259eb84509beaccbd586aa7374201a66c8">af31c7902121bd49</code></td>
+<td><a href="https://data.systemcards.org/raw/58a1a42e889e1a2cb81acb473e9ff1096ba8ec137d0ebcb89c90721baff73c52.html" rel="nofollow" title="archived copy, sha256 58a1a42e889e1a2cb81acb473e9ff1096ba8ec137d0ebcb89c90721baff73c52">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-25T06:24:56Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -97,6 +104,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ring-2.5-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.5-1T</a> · <a href="https://www.fintechweekly.com/news/ant-group-ling-2-5-1t-ring-2-5-1t-open-source-ai-models" rel="noopener nofollow">https://www.fintechweekly.com/news/ant-group-ling-2-5-1t-ring-2-5-1t-open-source-ai-models</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-05T06:19:27Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-05T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ring-2.5-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.5-1T</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -114,7 +129,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;inclusionAI/Ring-2.5-1T&#3
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;inclusionAI/Ring-2.5-1T&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Notebooks
@@ -249,11 +265,11 @@ Training content summary
 The public training-content summary identifying Ring-2.5-1T is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
 This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
 - Downloads last month
-- 4,070</pre>
+- 4,094</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-04T06:22:59Z</p></footer>
+<footer><p>Data updated 2026-10-05T06:23:03Z</p></footer>
 </body>
 </html>
