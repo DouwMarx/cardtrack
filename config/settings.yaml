@@ -151,3 +151,5 @@ agent:
     --allowedTools "Read" "Glob" "Grep" "WebSearch" "WebFetch" "Write" "Edit"
     "Bash(.venv/bin/python scripts/propose_doc.py *)"
     "Bash(.venv/bin/python scripts/comment_issue.py *)"
+    "Bash(.venv/bin/python scripts/log_note.py *)"
+    "Bash(.venv/bin/python scripts/read_doc.py *)"

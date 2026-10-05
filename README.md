@@ -100,7 +100,7 @@ third in a row files a `pipeline-failure` issue. An author dropping out of the
 rankings never removes a publisher. Escape hatches: `enabled: false`,
 `deny: [slug]` (honoured at load time, so it works even while the sync is
 down), `git revert` of the daily commit, or copying an overlay stanza into
-`sources.yaml` to make it curated. `logs/roster_openrouter.json` records every
+`sources.yaml` to make it curated. `logs/roster_openrouter.json` (local, untracked) records every
 author seen in the window, why it was or was not admitted, and how much of all
 traffic the allowlist covers once the dataset's unattributed "other" bucket is
 counted.
@@ -202,6 +202,15 @@ skill at the commit used. Maintainers steer the report by editing the skill.
   similar). GitHub issues are now just visitor-filed data-error/missing-doc reports;
   the operator can force a skipped add with `propose_doc.py --override-duplicate-review`.
   The agent reports pipeline limitations to `PROPOSALS.md`, not issues.
+- **Agent feedback files**: `logs/friction.jsonl` (one JSON line per obstacle, fixed
+  `kind` vocabulary) and `logs/PROPOSALS.md` are appended only through
+  `scripts/log_note.py`. `logs/RESOLVED.md` records which friction clusters were
+  fixed, by which commit, and the signal that proves it; the agent reads it and
+  logs a comeback as `kind: regression` instead of rediscovering the problem.
+- **`logs/` is local run output.** Only six files are tracked (allow-listed in
+  `.gitignore`; `run_daily.sh` stages them by name, never the directory), and
+  `logs/archive/` keeps anything retired from the tracked set. Per-run logs,
+  agent transcripts and version diffs age out after `logs.retention_days` (90).
 - **Caps and criteria** live in `config/settings.yaml` / `config/criteria.yaml`;
   the allowlist (with per-publisher `scope` notes) in `config/sources.yaml`. The
   agent cannot modify any of them. The `risk_domains` tag vocabulary is defined in

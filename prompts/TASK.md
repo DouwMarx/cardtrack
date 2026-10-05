@@ -6,10 +6,18 @@ headless, once per day. You have no write access to anything except:
 
 1. `.venv/bin/python scripts/propose_doc.py` — the only way to propose database changes
 2. `.venv/bin/python scripts/comment_issue.py` — the only way to comment on GitHub issues
-3. appending to `logs/PROPOSALS.md` and `logs/friction.jsonl`
-4. writing `logs/run_report.md`
+3. `.venv/bin/python scripts/log_note.py` — the only way to append to `logs/friction.jsonl`
+   and `logs/PROPOSALS.md`
+4. writing `logs/run_report.md` (Write tool)
 
-You never run `git`, never edit code/config/prompts, never write to GitHub directly.
+Scratch files (proposal JSON, draft text) go in `/tmp`, which is wiped after the run.
+Never create any other file under `logs/` or `data/`: the daily commit stages only
+named files, so anything else is lost. `.venv/bin/python scripts/read_doc.py <url>`
+fetches and extracts a page or PDF with the pipeline's own fetcher (browser
+impersonation, 50 MB cap): use it whenever WebFetch is blocked (403), refuses a
+large PDF, or returns a client-rendered shell. Never propose a document you have
+not read. You never run `git`, never edit code/config/prompts, never write to GitHub
+directly.
 A deterministic validator checks every proposal (allowlist, fetchability, dedup,
 criteria, caps) and returns a verdict: `written`, `duplicate` (a mirror or re-post
 it resolved without a row), `noop`, or `rejected`. Trust its verdicts; do not retry
@@ -23,10 +31,20 @@ depend on it — the validator enforces them over a rolling 24 h window regardle
 
 - `logs/state_summary.json` — every known document (slug, publisher, URL, status,
   risk_domains, related_urls)
-- `logs/candidates.json` — Phase A's new index-page links + blocked-URL escalations
+- `logs/candidates.json` — Phase A's new index-page links + blocked-URL escalations,
+  plus `phase_a_summary`: every URL bot-blocked or 404'd in THIS run, each with
+  `streak` (consecutive runs). `blocked_escalations` still lists only 3+ run
+  streaks; use `phase_a_summary.blocked` to investigate fresh blocks early and
+  `phase_a_summary.not_found` to catch a document that moved before run 3 marks
+  it dead. A candidate may carry `published_at` (repo creation time from the
+  Hugging Face API); prefer it over link order when judging recency
 - `logs/updated_docs.json` — stored versions that still need a change summary,
   with precomputed diffs in `logs/version_diffs/`
-- `logs/open_issues.json` — open `data-error` / `missing-doc` GitHub issues
+- `logs/open_issues.json` — `{"fetch_ok": bool, "issues": [...]}`, the open
+  `data-error` / `missing-doc` GitHub issues. `fetch_ok: false` means the fetch
+  failed and the list is UNKNOWN (not empty): skip task 4 and say so in the report
+- `logs/RESOLVED.md` — friction clusters already fixed, with the commit and the
+  signal that proves it; read it before logging friction
 - `config/criteria.yaml` — inclusion criteria (you attest the `agent_attested`
   ones) and the `risk_domains` tag vocabulary
 - `config/sources.yaml` — the publisher/evaluator allowlist, tiers, and
@@ -103,29 +121,45 @@ for clarification, is always the safe move.
    your own tools. If the document is genuinely gone (not just bot-blocked), propose
    `status_change` to `dead` with evidence; otherwise note it is alive in the
    run report.
-6. **Summarize document updates** (`logs/updated_docs.json`): for up to 5 entries,
-   read the diff file, and if the change is substantive (scores corrected, sections
-   added, license changed, results revised — not extraction noise), submit an
-   `annotate_version` proposal with 1-3 factual sentences quoting what changed.
+6. **Summarize document updates** (`logs/updated_docs.json`): entries are ordered
+   by `substantive_lines` (changed lines after page furniture is removed), biggest
+   first; take up to 5 in order. Versions whose diff is only furniture never appear
+   here (the monitor has already labelled them). Read the diff file, and if the
+   change is substantive (scores corrected, sections added, license changed,
+   results revised — not extraction noise), submit an `annotate_version` proposal
+   with 1-3 factual sentences quoting what changed.
    Plain text only: no URLs, no markup, ≤500 chars. If a diff is pure noise, skip
    it and say so in the run report:
    `{"action": "annotate_version", "slug": "…", "version_id": N,
      "summary": "Corrected GPT-5.5 pass@4 on protein binding from 0.4% to 1.5%; added a Change log section.",
      "justification": "…", "evidence_urls": ["…"]}`
-7. **Friction log**: append one JSON line per obstacle you hit (rejected proposals
-   you believe were wrong, unfetchable-but-alive pages, ambiguous criteria) to
-   `logs/friction.jsonl`: `{"ts": "...", "kind": "...", "detail": "..."}`.
+7. **Friction log**: one entry per obstacle you hit (rejected proposals you believe
+   were wrong, unfetchable-but-alive pages, ambiguous criteria), via
+   `.venv/bin/python scripts/log_note.py friction --kind KIND --detail "..." [--url U] [--slug S]`.
+   `--help` lists the fixed kinds; detail is plain text, max 1500 chars, one
+   problem, with the URL or slug in its own flag. The log is counted, not read, so:
+   an obstacle already in `logs/friction.jsonl` gets `--kind recurrence
+   --recurrence-of <ts of the earlier entry>` and one sentence, not a restatement;
+   a problem `logs/RESOLVED.md` lists as fixed gets `--kind regression` naming that
+   row; recipes and workarounds are not friction — put them in the run report.
 8. **Proposals**: if you see a recurring process problem, a schema/criteria
-   limitation, or a document class the pipeline cannot accommodate, append a dated
-   entry to `logs/PROPOSALS.md` (problem, suggested change, evidence). This is the ONLY
-   channel for such reports — never park work in review issues for humans; human
-   review time is the scarcest resource in this system. Rare is expected.
+   limitation, or a document class the pipeline cannot accommodate, write the entry
+   (problem, suggested change, evidence) to `/tmp/<name>.md` and run
+   `.venv/bin/python scripts/log_note.py proposal --title "..." --body-file /tmp/<name>.md`.
+   Check `logs/PROPOSALS.md` first: a proposal already there is not re-filed. This
+   is the ONLY channel for such reports — never park work in review issues for
+   humans; human review time is the scarcest resource in this system. Rare is expected.
 9. **Run report**: write `logs/run_report.md` — what you checked, proposed, and
    skipped, with the validator's verdict for each proposal (it prints JSON).
 
 ## Proposal format
 
-`propose_doc.py --json -` reads a JSON record from stdin:
+Write the record to `/tmp/<name>.json` with the Write tool, then run
+`propose_doc.py --json /tmp/<name>.json` (the Bash guard refuses heredocs and
+inline JSON; `printf '...' | propose_doc.py --json -` also works for short
+records). Small changes (`annotate_version`, `field_update`) can use the flag
+form, with `--related-url KIND=URL` (repeatable) for companions; see
+`propose_doc.py --help`. The record:
 
 ```json
 {
@@ -223,9 +257,10 @@ this class are usually HTML (program pages, dated news posts), and that is fine.
 **Scope discipline for `doc_type: other`** — reserve it for model-specific
 evaluation, risk, or incident reports that don't fit the other labels. NOT in scope,
 even from allowlisted publishers: partnership or product announcements, capability
-demos and showcases, policy/election/deprecation updates, developer tutorials, and
-general research essays that do not evaluate a named model. When in doubt, skip —
-the database catalogs model documentation, not lab blogs.
+demos and showcases (unless they report measured results for a named model, which
+passes the system-card test), policy/election/deprecation updates, developer
+tutorials, and general research essays that do not evaluate a named model. When in
+doubt, skip — the database catalogs model documentation, not lab blogs.
 
 **`covered_model_class`** (attested on every add): defined authoritatively in
 `config/criteria.yaml` — read it there; do not rely on memory. Operationally:
