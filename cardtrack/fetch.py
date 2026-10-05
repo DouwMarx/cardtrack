@@ -56,6 +56,23 @@ BLOCKED_STATUSES = {400, 401, 403, 406, 429, 503}
 IMPERSONATE_TRIGGER = BLOCKED_STATUSES
 NOT_FOUND_STATUSES = {404, 410}
 OK_STATUSES = {200, 206}
+# Rate limiting is transient like a 5xx, not a bot wall: going straight to the
+# impersonation fallback (also rate-limited) turned a one-minute limit into
+# document_retrievable=false and a lost lead for a day.
+RETRY_STATUSES = {429}
+DEFAULT_RETRY_DELAY_SECONDS = 2
+# Bounded low: the monitor probes ~330 URLs sequentially, so a host advertising
+# Retry-After: 60 across its pages would add minutes per page to Phase A.
+MAX_RETRY_DELAY_SECONDS = 15
+
+
+def retry_delay(retry_after: str | None) -> float:
+    """Seconds to wait before the one retry: Retry-After in delay-seconds form,
+    clamped to MAX_RETRY_DELAY_SECONDS; the default for an absent, HTTP-date or
+    malformed header (an HTTP-date is rare on 429s and not worth parsing)."""
+    if retry_after and retry_after.strip().isdigit():
+        return float(min(int(retry_after.strip()), MAX_RETRY_DELAY_SECONDS))
+    return float(DEFAULT_RETRY_DELAY_SECONDS)
 
 
 @dataclass
@@ -72,6 +89,7 @@ class FetchResult:
     truncated: bool = False
     error: str | None = None
     hops: list[str] = field(default_factory=list)
+    retry_after: str | None = None  # Retry-After header of a 429/5xx, as served
 
     @property
     def outcome(self) -> str:
@@ -114,8 +132,9 @@ def fetch(
     impersonate_fallback: bool = True,
 ) -> FetchResult:
     """GET with manual redirect handling, plus two recovery layers:
-    - one retry after a short pause on 5xx (a single transient upstream error must
-      not permanently burn a lead — rejected proposals are not retried by callers),
+    - one retry after a pause on 5xx or 429 (a single transient upstream error or
+      rate-limit must not permanently burn a lead — rejected proposals are not
+      retried by callers; a 429 honours Retry-After, bounded),
     - one retry with browser-TLS impersonation (curl_cffi) when bot-blocked
       (400/401/403/406/429/503), so bot-walled publishers don't bias the corpus.
     range_bytes limits the request to a prefix (the monitor's link probe; many
@@ -123,8 +142,9 @@ def fetch(
     result = _fetch_requests(url, max_bytes=max_bytes, timeout=timeout,
                              allow_private_hosts=allow_private_hosts,
                              range_bytes=range_bytes, session=session)
-    if not result.ok and result.status is not None and result.status >= 500:
-        time.sleep(2)
+    if not result.ok and result.status is not None and (
+            result.status >= 500 or result.status in RETRY_STATUSES):
+        time.sleep(retry_delay(result.retry_after))
         result = _fetch_requests(url, max_bytes=max_bytes, timeout=timeout,
                                  allow_private_hosts=allow_private_hosts,
                                  range_bytes=range_bytes, session=session)
@@ -201,6 +221,7 @@ def _fetch_requests(
         # terminal response
         result.content_type = (resp.headers.get("Content-Type") or "").split(";")[0].strip() or None
         if resp.status_code not in OK_STATUSES:
+            result.retry_after = resp.headers.get("Retry-After")
             resp.close()
             return result
         chunks: list[bytes] = []

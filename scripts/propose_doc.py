@@ -4,12 +4,14 @@ and human alike. Prints one JSON result line; exit 0 = proposal processed (see
 "status" field for the outcome), exit 2 = invocation error.
 
 Usage:
+  propose_doc.py --json proposal.json  # proposal record from a file (write it first;
+                                       # the sandbox allowlist refuses pipes/heredocs)
   propose_doc.py --json -              # proposal record on stdin
-  propose_doc.py --json proposal.json
   propose_doc.py --action add --url https://… --title … --publisher anthropic \
       --doc-type system_card --model "Claude Fable 5" --publication-date 2026-08-01 \
       --justification "…" --evidence-url https://… --source-of-lead manual \
-      --attest primary_source --attest about_a_specific_model_or_eval
+      --attest primary_source --attest about_a_specific_model_or_eval \
+      --related-url announcement=https://…
 """
 
 from __future__ import annotations
@@ -23,7 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from cardtrack.propose import process_proposal  # noqa: E402
+from cardtrack.propose import RELATED_URL_KINDS, process_proposal  # noqa: E402
 from cardtrack.repo import Repo  # noqa: E402
 
 
@@ -41,8 +43,9 @@ def build_parser() -> argparse.ArgumentParser:
                         "enforced over a rolling window inside the validator.")
     p.add_argument("--actor", default=None,
                    help="who is proposing (default: $CARDTRACK_ACTOR, else 'human')")
-    p.add_argument("--json", dest="json_src",
-                   help="proposal record as JSON: a file path, or '-' for stdin")
+    p.add_argument("--json", dest="json_src", metavar="PATH",
+                   help="proposal record as JSON: a file path (e.g. /tmp/p.json), "
+                        "or '-' for stdin. Alternative to the flags below.")
     # flag-based construction
     p.add_argument("--action", choices=["add", "new_version", "status_change",
                                         "field_update", "annotate_version"])
@@ -66,6 +69,12 @@ def build_parser() -> argparse.ArgumentParser:
                                       "| open_weight_permissive")
     p.add_argument("--risk-domain", action="append", default=[], dest="risk_domains",
                    help="repeatable: risk domain tag (see config/criteria.yaml)")
+    p.add_argument("--related-url", action="append", default=[], dest="related_urls",
+                   metavar="KIND=URL",
+                   help="repeatable: companion URL that is NOT this document, e.g. "
+                        "announcement=https://… (add; or field_update of "
+                        "related_urls, where the flags form the complete new list). "
+                        f"KIND is one of: {', '.join(sorted(RELATED_URL_KINDS))}")
     p.add_argument("--version-id", dest="version_id", type=int,
                    help="target version (annotate_version)")
     p.add_argument("--summary", help="what changed vs the previous version "
@@ -94,10 +103,21 @@ def _parse_json_or_string(value: str):
         return value
 
 
+def _parse_related_urls(values: list[str]) -> list[dict]:
+    out = []
+    for value in values:
+        kind, sep, url = value.partition("=")
+        if not sep or not url:
+            raise SystemExit(f"--related-url expects KIND=URL, got {value!r}")
+        out.append({"url": url, "kind": kind})  # kind validated by the validator
+    return out
+
+
 def proposal_from_args(args: argparse.Namespace) -> dict:
     if not args.action:
         raise SystemExit("either --json or --action is required (see --help)")
     proposal: dict = {"action": args.action}
+    related = _parse_related_urls(args.related_urls)
     if args.url:
         proposal["url"] = args.url
     if args.title:
@@ -116,6 +136,11 @@ def proposal_from_args(args: argparse.Namespace) -> dict:
             proposal["openness"] = args.openness
         if args.risk_domains:
             proposal["risk_domains"] = args.risk_domains
+        if related:
+            proposal["related_urls"] = related
+    if args.action == "field_update" and args.field == "related_urls" and related \
+            and args.new is None:
+        proposal["new"] = related
     if args.action == "annotate_version":
         proposal["version_id"] = args.version_id
         proposal["summary"] = args.summary

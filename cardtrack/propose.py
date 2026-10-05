@@ -295,13 +295,16 @@ def _window_cutoff() -> str:
     return (datetime.now(UTC) - timedelta(hours=CAP_WINDOW_HOURS)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def _count_recent_actions(conn: sqlite3.Connection, action: str) -> int:
+def _count_recent_actions(conn: sqlite3.Connection, action: str, actor: str) -> int:
     """Cap accounting over a rolling window keyed on the changelog's own timestamps.
     Deliberately NOT keyed on run_id: run ids are caller-supplied, and caps must be
-    guaranteed by deterministic code, never by caller diligence."""
+    guaranteed by deterministic code, never by caller diligence. Counted per actor:
+    an operator backfill (actor human) once consumed the agent's whole budget and
+    three verified documents went unwritten that day (2026-09-23)."""
     return conn.execute(
-        "SELECT COUNT(*) FROM changelog WHERE action = ? AND ts > ?",
-        (action, _window_cutoff()),
+        "SELECT COUNT(*) FROM changelog WHERE action = ? AND ts > ? "
+        "AND json_extract(detail, '$.actor') = ?",
+        (action, _window_cutoff(), actor),
     ).fetchone()[0]
 
 
@@ -487,7 +490,7 @@ def _handle_add(ctx: _Ctx, p: dict) -> ProposalResult:
         return _version_check(ctx, p, existing, routed_from="add")
 
     caps = repo.settings.get("caps", {})
-    if _count_recent_actions(conn, "add") >= int(
+    if _count_recent_actions(conn, "add", ctx.actor) >= int(
             caps.get("max_new_documents_per_run", 15)):
         return _reject(ctx, p, f"cap_exceeded: max_new_documents_per_run "
                                f"(rolling {CAP_WINDOW_HOURS}h)")
@@ -698,7 +701,7 @@ def _version_check(ctx: _Ctx, p: dict, doc: sqlite3.Row, routed_from: str | None
                               slug=doc["slug"], document_id=doc["id"],
                               version_id=known["id"], run_id=ctx.run_id)
 
-    if _count_recent_actions(conn, "new_version") >= int(
+    if _count_recent_actions(conn, "new_version", ctx.actor) >= int(
             caps.get("max_new_versions_per_run", 30)):
         return _reject(ctx, p, f"cap_exceeded: max_new_versions_per_run "
                                f"(rolling {CAP_WINDOW_HOURS}h)",

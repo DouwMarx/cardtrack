@@ -7,7 +7,9 @@ import json
 from cardtrack.db import connect
 from cardtrack.propose import process_proposal
 
-from .conftest import make_proposal
+from .conftest import ATTESTED, make_proposal
+
+ATTESTED_KEYS = sorted(ATTESTED)
 
 
 def counts(repo):
@@ -430,3 +432,76 @@ def test_openness_validated_on_add_and_field_update(repo, http_server):
             "new": retired, "justification": "nope",
             "evidence_urls": ["https://example.com/license"]}, "run3")
         assert bad2.status == "rejected"
+
+
+def test_caps_count_per_actor(repo_root, http_server):
+    """An operator backfill (actor human) must not consume the agent's budget, and
+    vice versa: each actor's rolling-window cap counts only its own writes."""
+    from cardtrack.repo import Repo
+
+    from .conftest import write_test_config
+
+    write_test_config(repo_root, http_server, caps={"max_new_documents_per_run": 2})
+    repo = Repo(root=repo_root)
+    for i in range(2):
+        http_server.set_html(f"/human{i}", f"Backfilled document {i}.")
+        r = process_proposal(repo, make_proposal(http_server, path=f"/human{i}",
+                                                 model_names=[f"HumanModel {i}"]),
+                             "backfill", actor="human")
+        assert r.status == "written"
+    http_server.set_html("/human2", "Backfilled document 2.")
+    r = process_proposal(repo, make_proposal(http_server, path="/human2",
+                                             model_names=["HumanModel 2"]),
+                         "backfill", actor="human")
+    assert r.status == "rejected" and "cap_exceeded" in r.reason, "the human's own cap"
+
+    http_server.set_html("/agent0", "Agent-found document.")
+    r = process_proposal(repo, make_proposal(http_server, path="/agent0",
+                                             model_names=["AgentModel 0"]),
+                         "nightly", actor="agent")
+    assert r.status == "written", (r.status, r.reason)
+
+
+def test_related_url_flag_on_add_and_field_update(repo_root, http_server):
+    """--related-url KIND=URL feeds related_urls without the --json route; an
+    invalid kind is still caught by the validator; --help names the kinds."""
+    from cardtrack.propose import RELATED_URL_KINDS
+
+    from .conftest import run_cli
+
+    http_server.set_html("/flagdoc", "Flag-built proposal document.")
+    base = ["--action", "add", "--url", http_server.url("/flagdoc"),
+            "--title", "Flag Doc", "--publisher", "testlab", "--doc-type", "system_card",
+            "--model", "FlagModel", "--publication-date", "2026-03-01",
+            "--justification", "j", "--safety-evals", "no",
+            *[a for k in ATTESTED_KEYS for a in ("--attest", k)]]
+    code, res, err = run_cli("propose_doc.py", *base, "--related-url",
+                             "bogus=https://example.com/x", root=repo_root)
+    assert code == 0 and res["status"] == "rejected" and "kind must be one of" in res["reason"]
+    code, res, err = run_cli("propose_doc.py", *base,
+                             "--related-url", "announcement=https://example.com/news",
+                             "--related-url", "paper=https://example.com/paper.pdf",
+                             root=repo_root)
+    assert code == 0 and res["status"] == "written", (res, err)
+    conn = connect(repo_root / "data" / "docs.sqlite")
+    stored = json.loads(conn.execute("SELECT related_urls FROM documents WHERE slug=?",
+                                     (res["slug"],)).fetchone()[0])
+    conn.close()
+    assert [r["kind"] for r in stored] == ["announcement", "paper"]
+
+    code, res, err = run_cli("propose_doc.py", "--action", "field_update",
+                             "--slug", res["slug"], "--field", "related_urls",
+                             "--related-url", "full_document=https://example.com/full.pdf",
+                             "--justification", "found the pdf", root=repo_root)
+    assert code == 0 and res["status"] == "written", (res, err)
+    conn = connect(repo_root / "data" / "docs.sqlite")
+    stored = json.loads(conn.execute("SELECT related_urls FROM documents WHERE slug=?",
+                                     (res["slug"],)).fetchone()[0])
+    conn.close()
+    assert stored == [{"url": "https://example.com/full.pdf", "kind": "full_document"}]
+
+    code, _, err = run_cli("propose_doc.py", "--action", "add", "--related-url", "nokind",
+                           root=repo_root)
+    assert code == 2 and "KIND=URL" in str(_)
+    _, help_text, _ = run_cli("propose_doc.py", "--help", root=repo_root)
+    assert all(k in help_text for k in RELATED_URL_KINDS) and "--json PATH" in help_text
