@@ -5,6 +5,10 @@
 # index_urls are pages Phase A diffs for new links. Some publishers bot-block
 # scripted fetches (OpenAI /news, Meta blog); index diffing quietly skips
 # failures and agent web search covers the gap.
+# Hugging Face orgs get two index_urls: the HTML org page and the JSON API listing
+# sorted by creation time. The HTML page orders repos by activity and lags new
+# uploads by days (Qwen3.8 surfaced 5 days late; a flagship Hunyuan release never
+# did); the API lists them the moment they are created.
 # Verified reachable with a browser UA on 2026-08-09.
 # scope (optional): what of this publisher's output is in scope. The agent MUST
 # honor it when triaging leads from that publisher's index pages — HF org pages
@@ -73,6 +77,7 @@ publishers:            # first-party
     homepage: https://qwen.ai
     index_urls:            # qwen.ai renders client-side (unfetchable); HF org covers releases
       - https://huggingface.co/Qwen
+      - https://huggingface.co/api/models?author=Qwen&sort=createdAt&direction=-1&limit=100
   thinking_machines:
     tier: 1
     display_name: Thinking Machines Lab
@@ -86,6 +91,7 @@ publishers:            # first-party
     index_urls:
       - https://api-docs.deepseek.com/news/
       - https://huggingface.co/deepseek-ai
+      - https://huggingface.co/api/models?author=deepseek-ai&sort=createdAt&direction=-1&limit=100
   tencent_hunyuan:
     tier: 1
     display_name: Tencent Hunyuan
@@ -94,6 +100,7 @@ publishers:            # first-party
     homepage: https://hunyuan.tencent.com
     index_urls:
       - https://huggingface.co/tencent
+      - https://huggingface.co/api/models?author=tencent&sort=createdAt&direction=-1&limit=100
   xiaomi:
     tier: 1
     display_name: Xiaomi MiMo
@@ -102,6 +109,7 @@ publishers:            # first-party
     homepage: https://huggingface.co/XiaomiMiMo
     index_urls:
       - https://huggingface.co/XiaomiMiMo
+      - https://huggingface.co/api/models?author=XiaomiMiMo&sort=createdAt&direction=-1&limit=100
   nvidia:
     tier: 1
     display_name: NVIDIA
@@ -110,12 +118,14 @@ publishers:            # first-party
     homepage: https://www.nvidia.com
     index_urls:
       - https://huggingface.co/nvidia
+      - https://huggingface.co/api/models?author=nvidia&sort=createdAt&direction=-1&limit=100
   moonshot_ai:
     tier: 1
     display_name: Moonshot AI
     homepage: https://www.moonshot.ai
     index_urls:
       - https://huggingface.co/moonshotai
+      - https://huggingface.co/api/models?author=moonshotai&sort=createdAt&direction=-1&limit=100
       - https://moonshotai.github.io/
   poolside:
     tier: 2
@@ -129,6 +139,7 @@ publishers:            # first-party
     homepage: https://www.stepfun.com
     index_urls:
       - https://huggingface.co/stepfun-ai
+      - https://huggingface.co/api/models?author=stepfun-ai&sort=createdAt&direction=-1&limit=100
   zai:
     tier: 1
     display_name: Z.ai (Zhipu AI)
@@ -137,6 +148,7 @@ publishers:            # first-party
     homepage: https://z.ai
     index_urls:            # z.ai blog renders client-side; HF org + docs release notes cover releases
       - https://huggingface.co/zai-org
+      - https://huggingface.co/api/models?author=zai-org&sort=createdAt&direction=-1&limit=100
       - https://docs.z.ai/release-notes/new-released
   minimax:
     tier: 2
@@ -146,6 +158,7 @@ publishers:            # first-party
     homepage: https://www.minimax.io
     index_urls:
       - https://huggingface.co/MiniMaxAI
+      - https://huggingface.co/api/models?author=MiniMaxAI&sort=createdAt&direction=-1&limit=100
       - https://www.minimax.io/news
   inclusion_ai:
     tier: 2
@@ -155,6 +168,7 @@ publishers:            # first-party
     homepage: https://huggingface.co/inclusionAI
     index_urls:
       - https://huggingface.co/inclusionAI
+      - https://huggingface.co/api/models?author=inclusionAI&sort=createdAt&direction=-1&limit=100
 
 evaluators:            # independent
   metr:
@@ -201,10 +215,10 @@ evaluators:            # independent
   us_caisi:
     tier: 1
     display_name: US CAISI (NIST)
-    homepage: https://www.nist.gov/caisi
-    index_urls:
-      - https://www.nist.gov/caisi
-      - https://www.nist.gov/blogs/caisi-research-blog
+    homepage: https://www.nist.gov/caissi
+    index_urls:            # /caisi 301s here since the CAISSI rename (checked 2026-10-05)
+      - https://www.nist.gov/caissi
+      - https://www.nist.gov/blogs/caissi-research-blog
   rand:
     tier: 1                       # scoped to CAST / Project Canary eval output
     display_name: RAND (CAST / Project Canary)
@@ -228,8 +242,9 @@ evaluators:            # independent
     tier: 2
     display_name: Palisade Research
     homepage: https://palisaderesearch.org
-    index_urls:
-      - https://palisaderesearch.org/blog
+    index_urls:            # research moved from /blog/<slug> to /research/<slug>
+      - https://palisaderesearch.org/research   # (both stored docs are 'moved'); /blog
+      - https://palisaderesearch.org/blog       # now holds essays and podcasts only
   redwood_research:
     tier: 2                       # control-methods research org; model evals incidental
     display_name: Redwood Research

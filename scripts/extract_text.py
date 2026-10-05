@@ -5,8 +5,11 @@
                          re-extract every version's text, overwrite the files that
                          changed, recompute fingerprints and prune furniture-only
                          duplicates. Dry-run by default; --apply to write.
-Run it after any change to extraction (bump DERIVED_LAYER_VERSION in
-cardtrack/extract.py) — the monitor refuses to run until the layer matches.
+  --check-derived        exit 0 if the stored layer matches the code and settings,
+                         1 (with the reason) if it is stale.
+Run the rebuild after any change to extraction (bump DERIVED_LAYER_VERSION in
+cardtrack/extract.py); run_daily.sh does it itself when --check-derived fails,
+so a deploy never leaves the monitor refusing to run.
 """
 
 from __future__ import annotations
@@ -18,7 +21,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from cardtrack.derived import reextract_all  # noqa: E402
+from cardtrack.db import connect  # noqa: E402
+from cardtrack.derived import DerivedLayerStale, check_derived_layer, reextract_all  # noqa: E402
 from cardtrack.extract import extract_text  # noqa: E402
 from cardtrack.repo import Repo  # noqa: E402
 
@@ -30,6 +34,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--file", help="extract a single local file to stdout")
     p.add_argument("--content-type", help="content type hint for --file")
     p.add_argument("--reextract-all", action="store_true")
+    p.add_argument("--check-derived", action="store_true")
     p.add_argument("--apply", action="store_true", help="write changes (default: dry run)")
     args = p.parse_args(argv)
 
@@ -40,6 +45,17 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[extract_text] extraction failed (method: {method})", file=sys.stderr)
             return 1
         print(text)
+        return 0
+    if args.check_derived:
+        repo = Repo.locate(args.root)
+        conn = connect(repo.db_path)
+        try:
+            check_derived_layer(conn, repo)
+        except DerivedLayerStale as e:
+            print(f"[extract_text] {e}", file=sys.stderr)
+            return 1
+        finally:
+            conn.close()
         return 0
     if args.reextract_all:
         stats = reextract_all(Repo.locate(args.root), apply=args.apply)

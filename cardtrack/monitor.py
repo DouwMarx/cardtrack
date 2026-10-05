@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import difflib
 import json
 import math
 import sqlite3
@@ -18,7 +19,14 @@ import requests
 from .canonical import canonicalize_url
 from .db import connect
 from .derived import check_derived_layer
-from .extract import _compiled_ignores, extract_text, fingerprint_text, sha256_bytes
+from .extract import (
+    DATE_LINE_PATTERN,
+    _compiled_ignores,
+    extract_text,
+    fingerprint_text,
+    sha256_bytes,
+    strip_furniture_lines,
+)
 from .fetch import fetch, probe
 from .identity import find_doc_by_url
 from .propose import process_proposal
@@ -26,6 +34,8 @@ from .repo import Repo, utcnow
 
 DEAD_STRIKES = 3
 BLOCKED_ESCALATION_RUNS = 3
+# Longest streak phase_a_summary reports; the dead/escalation rules only need 3.
+STREAK_WINDOW = 30
 CANDIDATE_TTL_DAYS = 14
 # Absolute backstop so the backlog stays bounded even if Phase B never succeeds.
 CANDIDATE_HARD_TTL_DAYS = 8 * CANDIDATE_TTL_DAYS
@@ -62,6 +72,27 @@ class _LinkCollector(HTMLParser):
             self._current_href = None
 
 
+def _is_hf_api_url(index_url: str) -> bool:
+    return urlsplit(index_url).path.rstrip("/").endswith("/api/models")
+
+
+def _hf_api_links(payload: bytes) -> list[tuple[str, str, str | None]]:
+    """huggingface.co/api/models?author=<org>&sort=createdAt&direction=-1 lists an
+    org's repos by creation time; the org's HTML page orders them by activity and
+    lags by days (Qwen3.8 surfaced 5 days late, a flagship Hunyuan release never).
+    Each entry becomes (href, link_text, createdAt), href relative to the API host."""
+    try:
+        models = json.loads(payload.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return []
+    links = []
+    for model in models if isinstance(models, list) else []:
+        model_id = model.get("id") if isinstance(model, dict) else None
+        if isinstance(model_id, str) and model_id:
+            links.append((f"/{model_id}", model_id, model.get("createdAt")))
+    return links
+
+
 def _record_check(conn: sqlite3.Connection, doc_id: int, run_id: str, check_type: str,
                   status: int | None, outcome: str, final_url: str | None = None,
                   byte_size: int | None = None) -> None:
@@ -84,6 +115,17 @@ def _recent_outcomes(conn: sqlite3.Connection, doc_id: int, check_type: str, n: 
         {"d": doc_id, "t": check_type, "n": n},
     ).fetchall()
     return [r["outcome"] for r in rows]
+
+
+def _streak(conn: sqlite3.Connection, doc_id: int, outcome: str) -> int:
+    """How many consecutive runs, the latest included, ended this doc's link check
+    in `outcome` (capped at STREAK_WINDOW)."""
+    n = 0
+    for o in _recent_outcomes(conn, doc_id, "link", STREAK_WINDOW):
+        if o != outcome:
+            break
+        n += 1
+    return n
 
 
 # A re-fetch whose extracted text shrinks below this share of the previous version is
@@ -139,6 +181,10 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                      "new_versions": 0, "candidates": 0, "budget_exhausted": False,
                      "content_collapsed": [], "extractor_drift": 0}
     blocked_escalations: list[dict] = []
+    # Every URL that 404'd or was bot-blocked THIS run, streak attached. The dead and
+    # escalation rules below only speak after 3 runs; the agent needs to see the
+    # first run (98 of 437 openai.com checks were blocked and it never saw one).
+    phase_a: dict[str, list[dict]] = {"blocked": [], "not_found": []}
 
     try:
         # ---- 1. link check ----
@@ -190,10 +236,11 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                     summary["moved"] += 1
             elif outcome == "not_found":
                 summary["not_found"] += 1
-                recent = _recent_outcomes(conn, doc["id"], "link", DEAD_STRIKES)
-                if (len(recent) == DEAD_STRIKES
-                        and all(o == "not_found" for o in recent)
-                        and doc["status"] != "dead"):
+                streak = _streak(conn, doc["id"], "not_found")
+                phase_a["not_found"].append({
+                    "slug": doc["slug"], "url": doc["canonical_url"],
+                    "http_status": result.status, "streak": streak})
+                if streak >= DEAD_STRIKES and doc["status"] != "dead":
                     process_proposal(repo, {
                         "action": "status_change", "slug": doc["slug"], "new": "dead",
                         "justification": f"HTTP {result.status} on {DEAD_STRIKES} "
@@ -203,8 +250,11 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                     summary["marked_dead"] += 1
             elif outcome == "blocked":
                 summary["blocked"] += 1
-                recent = _recent_outcomes(conn, doc["id"], "link", BLOCKED_ESCALATION_RUNS)
-                if len(recent) == BLOCKED_ESCALATION_RUNS and all(o == "blocked" for o in recent):
+                streak = _streak(conn, doc["id"], "blocked")
+                phase_a["blocked"].append({
+                    "slug": doc["slug"], "url": doc["canonical_url"],
+                    "http_status": result.status, "streak": streak})
+                if streak >= BLOCKED_ESCALATION_RUNS:
                     blocked_escalations.append({
                         "slug": doc["slug"], "url": doc["canonical_url"],
                         "http_status": result.status,
@@ -304,6 +354,8 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
 
         # ---- 3. index-page diff ----
         new_candidates: list[dict] = []
+        cutoff = (datetime.now(UTC) - timedelta(days=CANDIDATE_TTL_DAYS)
+                  ).strftime("%Y-%m-%dT%H:%M:%SZ")
         for category in ("publishers", "evaluators"):
             for pub_key, entry in (repo.sources.get(category) or {}).items():
                 for index_url in (entry or {}).get("index_urls") or []:
@@ -316,13 +368,17 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                     if not result.ok or result.content is None:
                         continue
                     bytes_used += len(result.content)
-                    collector = _LinkCollector()
-                    try:
-                        collector.feed(result.content.decode("utf-8", errors="replace"))
-                    except Exception:
-                        continue
+                    if _is_hf_api_url(index_url):
+                        links = _hf_api_links(result.content)
+                    else:
+                        collector = _LinkCollector()
+                        try:
+                            collector.feed(result.content.decode("utf-8", errors="replace"))
+                        except Exception:
+                            continue
+                        links = [(href, text, None) for href, text in collector.links]
                     seen_this_page: set[str] = set()
-                    for href, text in collector.links:
+                    for href, text, published_at in links:
                         absolute = urljoin(result.url, href)
                         try:
                             canonical = canonicalize_url(absolute)
@@ -345,11 +401,17 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                             "(url, index_url, publisher, link_text, first_seen) "
                             "VALUES (?, ?, ?, ?, ?)",
                             (canonical, index_url, pub_key, text, utcnow()))
-                        if not known_doc:
-                            new_candidates.append({
+                        # An HF API listing reaches back years (460 repos over the 10
+                        # orgs on 2026-10-05, 3 of them younger than the TTL): old
+                        # repos are baselined into index_links only, never queued.
+                        if not known_doc and not (published_at and published_at < cutoff):
+                            candidate = {
                                 "url": canonical, "publisher": pub_key,
                                 "index_url": index_url, "link_text": text,
-                            })
+                            }
+                            if published_at:
+                                candidate["published_at"] = published_at
+                            new_candidates.append(candidate)
                     conn.commit()
         # merge with the previous backlog: candidates stay listed until they become
         # documents or expire (the agent may skip a day; discovery must not be lossy)
@@ -361,8 +423,6 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                 backlog = json.loads(candidates_path.read_text()).get("candidates", [])
             except (json.JSONDecodeError, OSError):
                 backlog = []
-        cutoff = (datetime.now(UTC) - timedelta(days=CANDIDATE_TTL_DAYS)
-                  ).strftime("%Y-%m-%dT%H:%M:%SZ")
         # A candidate only "had its chance" if the agent actually ran after it
         # appeared — expiring leads during an agent outage silently loses them
         # (this is how the Fable 5.1 announcement nearly slipped through in
@@ -398,6 +458,7 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
                 "run_id": run_id, "generated_at": utcnow(),
                 "candidates": list(merged.values()),
                 "blocked_escalations": blocked_escalations,
+                "phase_a_summary": phase_a,
             }, ensure_ascii=False, indent=1),
             encoding="utf-8")
         conn.commit()
@@ -411,6 +472,23 @@ def run_monitor(repo: Repo, run_id: str) -> dict:
 
 UPDATED_DOCS_CAP = 20
 DIFF_CHAR_CAP = 20000
+# change_summary written by the monitor for versions whose diff is page furniture
+# only; the agent never sees them and the site shows this text in "What changed".
+FURNITURE_SUMMARY = "No substantive change: page furniture only (dates, teasers, sidebars)."
+
+
+def substantive_changed_lines(prev_text: str, cur_text: str,
+                              ignore_patterns: tuple[str, ...]) -> int:
+    """Changed lines between two versions once page furniture is set aside: the
+    fingerprint's own furniture rules plus whole-line dates. Zero means the version
+    exists only because of furniture (17 of the last 19 Anthropic versions in
+    2026-09: a dropped date line, rotating "Read more" teasers)."""
+    patterns = (*ignore_patterns, DATE_LINE_PATTERN)
+    a = [" ".join(ln.split()) for ln in strip_furniture_lines(prev_text, patterns)]
+    b = [" ".join(ln.split()) for ln in strip_furniture_lines(cur_text, patterns)]
+    matcher = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    return sum((i2 - i1) + (j2 - j1)
+               for tag, i1, i2, j1, j2 in matcher.get_opcodes() if tag != "equal")
 
 
 def emit_updated_docs(repo: Repo, conn: sqlite3.Connection, run_id: str) -> int:
@@ -418,12 +496,12 @@ def emit_updated_docs(repo: Repo, conn: sqlite3.Connection, run_id: str) -> int:
     no change_summary yet, with a capped unified diff on disk. The agent reads this,
     writes 1-3 factual sentences per entry via the annotate_version proposal. Listing
     ALL unsummarized versions (not just today's) makes the loop self-healing when the
-    agent skips a day."""
-    import difflib
-
+    agent skips a day. Furniture-only versions get FURNITURE_SUMMARY here instead and
+    never reach the agent; the rest are ordered by substantive changed lines so the
+    biggest real revisions are summarized first (the agent takes 5 per run)."""
     rows = conn.execute(
         """SELECT dv.id, dv.document_id, dv.fetched_at, dv.text_path, dv.change_summary,
-                  d.slug
+                  d.slug, d.canonical_url
            FROM document_versions dv JOIN documents d ON d.id = dv.document_id
            WHERE d.status != 'removed'
            ORDER BY dv.document_id, dv.fetched_at, dv.id""").fetchall()
@@ -443,8 +521,22 @@ def emit_updated_docs(repo: Repo, conn: sqlite3.Connection, run_id: str) -> int:
             cur_path = repo.root / cur["text_path"]
             if not prev_path.exists() or not cur_path.exists():
                 continue
-            a = prev_path.read_text(encoding="utf-8").splitlines()
-            b = cur_path.read_text(encoding="utf-8").splitlines()
+            prev_text = prev_path.read_text(encoding="utf-8")
+            cur_text = cur_path.read_text(encoding="utf-8")
+            substantive = substantive_changed_lines(prev_text, cur_text,
+                                                    repo.fingerprint_ignore_patterns)
+            if substantive == 0:
+                process_proposal(repo, {
+                    "action": "annotate_version", "slug": cur["slug"],
+                    "version_id": cur["id"], "summary": FURNITURE_SUMMARY,
+                    "justification": "Every changed line is page furniture (date line, "
+                                     "rotating teaser block, or a fingerprint ignore "
+                                     "pattern)",
+                    "evidence_urls": [cur["canonical_url"]],
+                }, run_id, actor="monitor", conn=conn)
+                continue
+            a = prev_text.splitlines()
+            b = cur_text.splitlines()
             diff_lines = list(difflib.unified_diff(a, b, lineterm="", n=2))
             added = sum(1 for line in diff_lines if line.startswith("+") and
                         not line.startswith("+++"))
@@ -457,9 +549,10 @@ def emit_updated_docs(repo: Repo, conn: sqlite3.Connection, run_id: str) -> int:
                 "slug": cur["slug"], "version_id": cur["id"],
                 "prev_version_id": prev["id"], "fetched_at": cur["fetched_at"],
                 "added_lines": added, "removed_lines": removed,
+                "substantive_lines": substantive,
                 "diff_path": str(diff_path.relative_to(repo.root)),
             })
-    entries.sort(key=lambda e: e["fetched_at"], reverse=True)
+    entries.sort(key=lambda e: (-e["substantive_lines"], e["fetched_at"]))
     entries = entries[:UPDATED_DOCS_CAP]
     (repo.logs_dir / "updated_docs.json").write_text(
         json.dumps({"run_id": run_id, "generated_at": utcnow(),

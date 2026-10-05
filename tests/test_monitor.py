@@ -283,3 +283,122 @@ def test_extractor_drift_is_labelled_not_reported_as_deletion(repo, http_server)
         "ORDER BY id DESC LIMIT 1", (added.document_id,)).fetchone()[0]
     conn.close()
     assert note and note.startswith("Extractor drift")
+
+
+def _text_route(*lines: str) -> Route:
+    # text/plain keeps the extracted lines exactly as served (no boilerplate removal)
+    return Route(body="\n".join(lines).encode(), content_type="text/plain")
+
+
+def test_furniture_only_version_is_marked_and_kept_from_the_agent(repo, http_server):
+    """17 of the last 19 Anthropic versions in 2026-09 differed only by a dropped date
+    line and rotating "Read more" teasers, and they crowded real revisions out of the
+    agent's 5-per-run summary budget. The monitor now labels them itself and orders the
+    rest by substantive changed lines."""
+    from cardtrack.monitor import FURNITURE_SUMMARY
+
+    body = "The model was evaluated on autonomy tasks and scored 40% on the suite."
+    http_server.routes["/furniture"] = _text_route("Jan 14, 2026", body,
+                                                   "Teaser about drones.", "Read more")
+    http_server.routes["/small"] = _text_route(body)
+    http_server.routes["/big"] = _text_route(body, "Section A.", "Section B.")
+    def add(path, name):  # seed() would overwrite the text route with HTML
+        result = process_proposal(repo, make_proposal(http_server, path=path,
+                                                      model_names=[name]), "seed")
+        assert result.status == "written"
+        return result
+
+    furn = add("/furniture", "FurnitureModel")
+    small = add("/small", "SmallModel")
+    big = add("/big", "BigModel")
+    http_server.routes["/furniture"] = _text_route(body, "Teaser about markets.", "Read more")
+    http_server.routes["/small"] = _text_route(body.replace("40%", "45%"))
+    http_server.routes["/big"] = _text_route(body, "Section A revised.", "Section B revised.",
+                                             "Section C added.")
+
+    summary = run_monitor(repo, "r1")
+    assert summary["new_versions"] == 3
+    queue = json.loads((repo.logs_dir / "updated_docs.json").read_text())["updated_docs"]
+    assert [e["slug"] for e in queue] == [big.slug, small.slug], \
+        "furniture left out; biggest real revision first"
+    assert queue[0]["substantive_lines"] == 5 and queue[1]["substantive_lines"] == 2
+    conn = connect(repo.db_path)
+    note = conn.execute(
+        "SELECT change_summary FROM document_versions WHERE document_id=? "
+        "ORDER BY id DESC LIMIT 1", (furn.document_id,)).fetchone()[0]
+    conn.close()
+    assert note == FURNITURE_SUMMARY
+
+
+def test_hf_api_index_is_parsed_as_json(repo_root, http_server):
+    """huggingface.co/api/models?author=<org>&sort=createdAt lists repos by creation
+    time, which the org's HTML page does not (Qwen3.8 surfaced 5 days late, a flagship
+    Hunyuan release never). Each entry becomes a candidate at /<id>."""
+    import yaml
+
+    from cardtrack.repo import Repo
+
+    api_path = "/api/models?author=testorg&sort=createdAt&direction=-1&limit=100"
+    fresh = (datetime.now(UTC) - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    old = (datetime.now(UTC) - timedelta(days=monitor_mod.CANDIDATE_TTL_DAYS + 1)
+           ).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    payload = json.dumps([
+        {"id": "testorg/new-model", "createdAt": fresh, "likes": 3},
+        {"id": "testorg/new-model", "createdAt": fresh},  # dup
+        {"id": "testorg/old-checkpoint", "createdAt": old},  # listings reach back years
+        {"_id": "entry without an id"},
+    ]).encode()
+    http_server.routes[api_path] = Route(body=payload, content_type="application/json")
+    sources_path = repo_root / "config" / "sources.yaml"
+    sources = yaml.safe_load(sources_path.read_text())
+    sources["publishers"]["testlab"]["index_urls"] = [http_server.url(api_path)]
+    sources_path.write_text(yaml.safe_dump(sources))
+    repo = Repo(root=repo_root)
+
+    summary = run_monitor(repo, "r1")
+    candidates = json.loads((repo.logs_dir / "candidates.json").read_text())["candidates"]
+    assert summary["candidates"] == 1
+    assert candidates[0]["url"] == http_server.url("/testorg/new-model")
+    assert candidates[0]["link_text"] == "testorg/new-model"
+    assert candidates[0]["published_at"] == fresh
+    assert candidates[0]["first_seen"] > fresh, \
+        "first_seen stays the discovery time, so the TTL cannot expire a repo on sight"
+    conn = connect(repo.db_path)
+    baselined = [r[0] for r in conn.execute("SELECT url FROM index_links ORDER BY url")]
+    conn.close()
+    assert baselined == [http_server.url("/testorg/new-model"),
+                         http_server.url("/testorg/old-checkpoint")], \
+        "a repo older than the TTL is baselined, never queued (460 such on day one)"
+
+    # a broken payload is skipped, not fatal, and the backlog survives
+    http_server.routes[api_path] = Route(body=b"<html>rate limited</html>",
+                                         content_type="application/json")
+    summary2 = run_monitor(repo, "r2")
+    assert summary2["candidates_new"] == 0 and summary2["candidates"] == 1
+
+
+def test_phase_a_summary_lists_blocked_and_not_found_every_run(repo, http_server):
+    """The agent's "investigate blocked URLs" step saw an empty list for three runs while
+    10 openai.com rows sat blocked; every blocked or 404 URL now appears from run 1
+    with its streak. The 3-run escalation and dead rules are unchanged."""
+    walled = seed(repo, http_server, "/walled", body="Walled content.",
+                  model_names=["WalledModel"])
+    gone = seed(repo, http_server, "/vanished", body="Vanished content.",
+                model_names=["VanishedModel"])
+    http_server.routes["/walled"] = Route(status=403, body=b"begone bot")
+    del http_server.routes["/vanished"]
+
+    run_monitor(repo, "r1")
+    out = json.loads((repo.logs_dir / "candidates.json").read_text())
+    assert out["blocked_escalations"] == []
+    seen = {k: [(e["slug"], e["http_status"], e["streak"]) for e in v]
+            for k, v in out["phase_a_summary"].items()}
+    assert seen == {"blocked": [(walled.slug, 403, 1)], "not_found": [(gone.slug, 404, 1)]}
+
+    run_monitor(repo, "r2")
+    run_monitor(repo, "r3")
+    out = json.loads((repo.logs_dir / "candidates.json").read_text())
+    assert out["phase_a_summary"]["blocked"][0]["streak"] == 3
+    assert out["phase_a_summary"]["not_found"][0]["streak"] == 3
+    assert [e["slug"] for e in out["blocked_escalations"]] == [walled.slug]
+    assert get_status(repo, gone.slug) == "dead"

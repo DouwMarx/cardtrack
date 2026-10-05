@@ -175,37 +175,71 @@ def _compiled_ignores(patterns: tuple[str, ...]) -> list[re.Pattern]:
     return [re.compile(p) for p in patterns]
 
 
-# Rotating recommendation footers, excluded from the fingerprint two ways:
-# (a) trailing alternating (blurb, "Read more") pairs are stripped from the end —
-# blog pages append 3 rotating post teasers with no heading before them;
-# (b) a "Related content" heading in the LAST QUARTER truncates there. Both are
-# bounded to the last quarter so a same-shaped line mid-document can never blind
-# change detection to real content below it.
+# Rotating recommendation blocks, excluded from the fingerprint line-wise:
+# (a) a "Related content" heading truncates the text. In the last quarter it always
+#     does; anywhere earlier only when the tail is at least two teaser groups, each
+#     at most title / blurb / "Read more" long. Short posts (an 18-line access
+#     policy) carry the block well before the last quarter; the shape condition is
+#     what keeps a real section below a same-named heading from being hidden. A real
+#     section shaped exactly like two teaser groups is indistinguishable at line
+#     level and is accepted. Measured 2026-10-05: all 31 stored tails qualify;
+# (b) trailing alternating (blurb, "Read more") pairs are stripped from the end —
+#     blog pages append 3 rotating post teasers with no heading before them. Bounded
+#     to the last quarter so a same-shaped line mid-document can never blind change
+#     detection to real content below it.
 FOOTER_PAIR_MARKER = "^Read more$"
 FOOTER_HEADING = "^Related content$"
+TEASER_GROUP_LINES = 3
+MIN_TEASER_GROUPS = 2
+
+# A line that is nothing but a date ("Jan 14, 2026", "05 July 2026", "2026-09-03",
+# optionally labelled "Updated"). Not a fingerprint ignore: a date-only edit still
+# mints a version, but the diff classifier treats it as furniture.
+_MONTH = (r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?"
+          r"|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?")
+DATE_LINE_PATTERN = (
+    r"(?i)^(?:(?:published|updated|last updated|posted|date)\s*[:\-]?\s*)?"
+    rf"(?:{_MONTH} \d{{1,2}},? \d{{4}}|\d{{1,2}} {_MONTH} \d{{4}}|\d{{4}}-\d{{2}}-\d{{2}})[.,]?$"
+)
+
+
+def _all_teasers(tail: list[str], marker: re.Pattern) -> bool:
+    """True when `tail` is nothing but teaser groups: each ends in a marker line, is
+    at most TEASER_GROUP_LINES long, and there are at least MIN_TEASER_GROUPS."""
+    if not tail or not marker.search(tail[-1]):
+        return False
+    markers = [i for i, line in enumerate(tail) if marker.search(line)]
+    starts = [-1] + markers[:-1]
+    return (len(markers) >= MIN_TEASER_GROUPS
+            and all(m - s <= TEASER_GROUP_LINES for s, m in zip(starts, markers, strict=True)))
+
+
+def strip_furniture_lines(text: str, ignore_patterns: tuple[str, ...]) -> list[str]:
+    """Lines of `text` minus dynamic page furniture: the recommendation blocks above
+    and every line matching `ignore_patterns` (settings.yaml
+    fingerprint.ignore_line_patterns — download counters, sidebars). Shared by the
+    fingerprint and by the diff classifier so "unchanged" means the same thing in
+    both places. Display text is never filtered."""
+    lines = text.split("\n")
+    floor = int(len(lines) * 0.75)
+    marker = _compiled_ignores((FOOTER_PAIR_MARKER,))[0]
+    heading = _compiled_ignores((FOOTER_HEADING,))[0]
+    for i, line in enumerate(lines):
+        if heading.search(line) and (i >= floor or _all_teasers(lines[i + 1:], marker)):
+            lines = lines[:i]
+            break
+    while len(lines) >= 2 and len(lines) > floor and marker.search(lines[-1]):
+        del lines[-2:]  # "Read more" plus the rotating teaser line above it
+    regexes = _compiled_ignores(ignore_patterns)
+    return [line for line in lines if not any(r.search(line) for r in regexes)]
 
 
 def normalize_for_fingerprint(text: str, ignore_patterns: tuple[str, ...] = ()) -> str:
-    """Whitespace-collapse, minus dynamic page furniture. `ignore_patterns`
-    (settings.yaml fingerprint.ignore_line_patterns) drop matching lines — download
-    counters, access-date stamps — and the footer rules above truncate rotating
-    recommendation footers, so furniture-only churn never mints a new document
-    version. Display text is never filtered; empty patterns = plain collapse."""
+    """Whitespace-collapse, minus dynamic page furniture (strip_furniture_lines), so
+    furniture-only churn never mints a new document version. Empty patterns = plain
+    collapse."""
     if ignore_patterns:
-        lines = text.split("\n")
-        floor = int(len(lines) * 0.75)
-        pair = _compiled_ignores((FOOTER_PAIR_MARKER,))[0]
-        while len(lines) >= 2 and len(lines) > floor and pair.search(lines[-1]):
-            del lines[-2:]  # "Read more" plus the rotating teaser line above it
-        heading = _compiled_ignores((FOOTER_HEADING,))[0]
-        for i in range(floor, len(lines)):
-            if heading.search(lines[i]):
-                lines = lines[:i]
-                break
-        regexes = _compiled_ignores(ignore_patterns)
-        lines = [line for line in lines
-                 if not any(r.search(line) for r in regexes)]
-        text = "\n".join(lines)
+        text = "\n".join(strip_furniture_lines(text, ignore_patterns))
     return " ".join(text.split())
 
 
@@ -225,7 +259,9 @@ def sha256_bytes(content: bytes) -> str:
 # (scripts/extract_text.py --reextract-all --apply).
 #   1  original
 #   2  footnote containers protected from the boilerplate remover (2026-09-23)
-DERIVED_LAYER_VERSION = 2
+#   3  "Related content" teaser block stripped wherever it sits, not only in the
+#      last quarter (2026-10-05)
+DERIVED_LAYER_VERSION = 3
 
 
 def derived_config_id(ignore_patterns: tuple[str, ...] = ()) -> str:

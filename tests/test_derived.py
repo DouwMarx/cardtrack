@@ -89,3 +89,27 @@ def test_stale_derived_layer_blocks_monitor_until_recomputed(repo, http_server):
     assert len(versions_of(repo, added.document_id)) == 1  # the churn version is gone
     summary = run_monitor(stale_repo, "r3")  # runs again, and the counter no longer mints
     assert summary["new_versions"] == 0
+
+
+def test_check_derived_cli_fails_when_stale_and_passes_after_rebuild(repo, http_server):
+    """run_daily.sh rebuilds the layer when this exits 1, so a deploy that bumps
+    DERIVED_LAYER_VERSION never leaves the monitor refusing to run."""
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    script = Path(__file__).resolve().parents[1] / "scripts" / "extract_text.py"
+    seed(repo, http_server, "/doc", "Stable body.</p><p>Downloads last month 12",
+         model_names=["GuardModel"])
+    run_monitor(repo, "r0")
+    cmd = [sys.executable, str(script), "--check-derived", "--root", str(repo.root)]
+    assert subprocess.run(cmd, capture_output=True, text=True).returncode == 0
+
+    stale_repo = set_ignore_patterns(repo, ["^Downloads last month"])
+    p = subprocess.run(cmd, capture_output=True, text=True)
+    assert p.returncode == 1 and "derived layer is stale" in p.stderr
+
+    rebuild = [sys.executable, str(script), "--reextract-all", "--apply", "--root", str(repo.root)]
+    assert subprocess.run(rebuild, capture_output=True, text=True).returncode == 0
+    assert subprocess.run(cmd, capture_output=True, text=True).returncode == 0
+    assert run_monitor(stale_repo, "r1")["new_versions"] == 0

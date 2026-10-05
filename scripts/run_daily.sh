@@ -62,6 +62,22 @@ echo "-- Phase A: roster sync"
 "${PY[@]}" scripts/roster.py --run-id "$RUN_ID" --root "$ROOT" \
   || echo "[run_daily] WARNING: roster sync crashed; previous overlay kept"
 
+# A change to extraction or the fingerprint ignore patterns stamps a new derived-
+# layer id, and the monitor refuses to run on texts built by the old one. Rebuild
+# from data/raw here instead of waiting for an operator; it is deterministic and
+# the result lands in this run's data commit.
+# Gated on pdftotext (bootstrap.sh installs it): without it the rebuild would
+# silently swap 96 PDF texts to the pypdf fallback, so the monitor's refusal
+# (exit 1, retried by systemd, health alert) is the better failure.
+if ! "${PY[@]}" scripts/extract_text.py --check-derived --root "$ROOT"; then
+  if command -v pdftotext >/dev/null; then
+    echo "-- Phase A: derived layer stale after a code/config change; rebuilding texts + fingerprints"
+    "${PY[@]}" scripts/extract_text.py --reextract-all --apply --root "$ROOT"
+  else
+    echo "[run_daily] derived layer stale but pdftotext is missing; not rebuilding (install poppler-utils)"
+  fi
+fi
+
 echo "-- Phase A: monitor"
 MON_JSON="$("${PY[@]}" scripts/monitor.py --run-id "$RUN_ID" --root "$ROOT")"
 echo "$MON_JSON"
@@ -89,28 +105,33 @@ if [ "$(setting agent.enabled false)" = "true" ]; then
   "${PY[@]}" scripts/state_summary.py --root "$ROOT" --out "$ROOT/logs/state_summary.json"
   GH_REPO="$(setting github.repo)"
   if [ -n "$GH_REPO" ] && command -v gh >/dev/null; then
+    # A failed `gh` call must not look like "no open issues" (friction, Aug-Sep):
+    # fetch_ok=false tells the agent the list is unknown, not empty.
+    ISSUES_OK=1
     gh issue list -R "$GH_REPO" --label data-error --state open \
       --json number,title,body,labels,url --limit 100 \
-      > "$ROOT/logs/.issues_a.json" || echo "[]" > "$ROOT/logs/.issues_a.json"
+      > "$ROOT/logs/.issues_a.json" || { ISSUES_OK=0; echo "[]" > "$ROOT/logs/.issues_a.json"; }
     gh issue list -R "$GH_REPO" --label missing-doc --state open \
       --json number,title,body,labels,url --limit 100 \
-      > "$ROOT/logs/.issues_b.json" || echo "[]" > "$ROOT/logs/.issues_b.json"
-    "${PY[@]}" - "$ROOT/logs/.issues_a.json" "$ROOT/logs/.issues_b.json" \
+      > "$ROOT/logs/.issues_b.json" || { ISSUES_OK=0; echo "[]" > "$ROOT/logs/.issues_b.json"; }
+    "${PY[@]}" - "$ISSUES_OK" "$ROOT/logs/.issues_a.json" "$ROOT/logs/.issues_b.json" \
       > "$ROOT/logs/open_issues.json" <<'MERGE'
 import json, sys
+ok = sys.argv[1] == "1"
 seen = {}
-for path in sys.argv[1:]:
+for path in sys.argv[2:]:
     try:
         with open(path) as f:
             for item in json.load(f):
                 seen[item["number"]] = item
     except Exception:
-        pass
-print(json.dumps(sorted(seen.values(), key=lambda x: x["number"]), indent=1))
+        ok = False
+print(json.dumps({"fetch_ok": ok,
+                  "issues": sorted(seen.values(), key=lambda x: x["number"])}, indent=1))
 MERGE
     rm -f "$ROOT/logs/.issues_a.json" "$ROOT/logs/.issues_b.json"
   else
-    echo "[]" > "$ROOT/logs/open_issues.json"
+    echo '{"fetch_ok": true, "issues": []}' > "$ROOT/logs/open_issues.json"
   fi
   AGENT_CMD="$(setting agent.cmd)"
   if [ -n "$AGENT_CMD" ]; then
@@ -303,7 +324,6 @@ if [ "$RETENTION_DAYS" -gt 0 ] 2>/dev/null; then
   find "$ROOT/logs/agent-transcripts" "$ROOT/logs/version_diffs" -mindepth 1 -maxdepth 1 \
     -mtime +"$RETENTION_DAYS" -exec rm -rf {} + 2>/dev/null || true
 fi
-
 
 if [ "$HOLD" -ne 0 ]; then
   echo "== run $RUN_ID HELD (nothing published; see logs/SECURITY_HOLD.md) =="

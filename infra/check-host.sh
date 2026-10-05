@@ -33,6 +33,7 @@ check ".env readable by this user only"    bash -c '[ "$(stat -c %a .env)" = 600
 check "pinned Claude Code"                 bash -c '[ "$(claude --version | cut -d" " -f1)" = "$(. infra/versions.env; echo $CLAUDE_CODE_VERSION)" ]'
 check "pinned uv"                          bash -c '[ "$(uv --version | cut -d" " -f2)" = "$(. infra/versions.env; echo $UV_VERSION)" ]'
 check "pinned Node.js"                     bash -c '[ "$(node --version)" = "v$(. infra/versions.env; echo $NODE_VERSION)" ]'
+check "pdftotext present (PDF text)"      bash -c 'command -v pdftotext >/dev/null'
 check "pinned rclone"                      bash -c '[ "$(rclone version | head -1)" = "rclone v$(. infra/versions.env; echo $RCLONE_VERSION)" ]'
 check "bubblewrap sandbox starts"          bash scripts/agent_sandbox.sh true
 check "git push authenticates (dry run)"   git push --dry-run origin HEAD:main
