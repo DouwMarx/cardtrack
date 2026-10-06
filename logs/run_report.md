@@ -1,93 +1,99 @@
-# cardtrack agent run — 2026-10-05 (run id 2026-10-05T06:18Z-local)
+# cardtrack agent run — 2026-10-06 (run id 2026-10-06T06:20Z-local)
 
-The last agent success was 2026-10-04T06:25:40Z, so the search window used the 72 h minimum lookback (from 2026-10-02).
-Today is Monday (UTC), so the weekly retrospective sweep ran. There were no open issues.
+The last agent success was 2026-10-05T06:25:33Z, so the search used the 72 h minimum lookback (from 2026-10-03).
+- Today is Tuesday, so the weekly retrospective sweep did not run.
+- `open_issues.json` returned `fetch_ok: true` with no open issues, so there was nothing to investigate.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | annotate_version | `openai-gpt-5-6-sol-access-policy` v742 (Daybreak trusted-access help article) | **written** (doc 271, version 742) |
-| 2 | field_update `related_urls` | `poolside-laguna-m-1-model-card`: add the Laguna M.1/XS.2 Technical Report PDF and arXiv 2605.27605 (kind `paper`) | **written** (doc 181) |
+| 1 | add `access_policy` | OpenAI "Accelerating the cyber defense ecosystem that protects us all" (GPT-5.4-Cyber, 2026-04-16) | **written**: `openai-gpt-5-4-cyber-access-policy` (doc 364, v749) |
+| 2 | add `independent_eval` | Redwood "Frontier models state different decision theory preferences depending on who's asking" (2026-09-30) | **written**: `redwood-research-claude-fable-5-1-independent-eval` (doc 365, v750) |
+| 3 | add `access_policy` | Anthropic "Developing Enterprise Frontier Safeguards with our customers" (Fable 5 / 5.1, 2026-09-01) | **written**: `anthropic-claude-fable-5-access-policy` (doc 366, v751) |
 
 Notes:
-- **#1:** The v646→v742 diff makes a real change to who can get access, so it is not noise:
-  - It adds a step-by-step "Set up Daybreak as an individual" section.
-  - It relaxes the rule that hardware keys must be your only login methods. Other passkeys may now be kept alongside a physical FIDO2 key.
-  - It drops the note that the `latest` aliases are unavailable on Amazon Bedrock.
-- **#2:** The weekly sweep found this report.
-  - I read the PDF: "Poolside Team, Laguna M.1/XS.2 Technical Report", dated May 25, 2026. It covers the same two models as the existing row, has agentic-coding evals, and has no safety evals.
-  - The existing row's canonical URL is the 2026-04-28 blog post, a different and earlier document. So I attached the report as a related `paper` instead of proposing a second row (which would duplicate the model coverage) or `full_document` (it is not the same document as the blog post).
 
-## Phase A candidates (23): none proposed
+- **#1** was flagged as unreadable in the 10-05 run.
+  - I read it with `read_doc.py`; browser impersonation returned HTTP 200.
+  - It is the follow-up to the 04-14 GPT-5.4-Cyber launch row: participant list, $10M grant credits, and GPT-5.4-Cyber access for CAISI and UK AISI.
+  - `restricted`, no evals, no risk tags.
+  - The page text has no date. 2026-04-16 comes from same-day BankInfoSecurity coverage.
+- **#2** is a Phase A candidate, first seen today.
+  - It reports measured sycophancy / "audience awareness" results for Claude Fable 5.1, Fable 5, Opus 5, Opus 5.5, Sonnet 5 and GPT-6 Astra (100 samples per condition).
+  - Tagged `harmful_manipulation`, `closed`.
+  - It is a cross-post of a LessWrong post dated 2026-09-30.
+- **#3** I found through the related-content block of a monitored Anthropic page.
+  - It sets enterprise access conditions for the named Mythos-class models: 30-day retention from Fable 5 onward, the EFS customer-held monitoring path, and an interim ZDR grant for Fable 5 and 5.1. There is a request-access form.
+  - This is a **borderline** `access_policy`, admitted under admit-and-flag (stated in `notes`). The gate is safeguard and data terms rather than a vetting program. If the operator disagrees, it is a single revert.
+  - Date 2026-09-01 is from coverage.
 
-There were no new candidates since yesterday: every `first_seen` is 10-02 or 10-03. All 23 were triaged and skipped in the 2026-10-04 run:
-- Sonnet 5.5 PDF: already cataloged.
-- Corporate news, essays, Epoch/RAND non-model items, the xAI changelog link, and HF papers/user pages: skipped.
-- NVIDIA PixelUMM and PixelDiT2: outside NVIDIA's scope note.
-- Meta responsible-scaling and math posts: name no model, or are showcases.
+## Phase A candidates (58)
 
-## Targeted search (2026-10-02 → 2026-10-05)
+- **Already triaged on 10-04** (first seen 10-02/10-03): corporate news, HF papers/user pages, Epoch/RAND non-model items, NVIDIA PixelUMM/PixelDiT2, Meta posts, the xAI changelog, and the Sonnet 5.5 PDF (already a related_url of `anthropic-claude-sonnet-5-5-system-card`). Not re-litigated.
+- **Palisade (14 links from the now-working /research index):** only the self-replication (2026-05-07) and robot shutdown-resistance (2026-02-12) reports are on or after the scope floor. Both are already catalogued; those rows' related_urls already hold the /research URLs. All others are 2025 or earlier, which I verified from the dated index listing, or are /blog. Skipped as below the floor.
+- **Redwood decision-theory post:** proposed (#2). The two Substack author profiles are skipped.
+- **inclusionAI/AI-Transparency (created 2026-09-24):**
+  - The first fetch returned 429; the retry returned 200.
+  - It holds EU AI Act Art. 53(1)(d) training-content summaries for 11 Ling/Ring/Ming lines. These are neither cards nor evals.
+  - Skipped, with a `schema_gap` friction line.
+- **Skipped as not documentation:**
+  - Anthropic Campus and Frontier Academy program pages: training programs, no model gate.
+  - Ten Mistral site navigation links.
+  - Apollo's Senate testimony post.
+  - Epoch "openai-coding-agent-spending".
 
-I ran about 40 queries across every allowlisted lab and evaluator, plus polling for every named access program. I found no uncatalogued cards, addenda, access policies or eval reports in the window. Every hit was already cataloged (GPT-6.1 Sol addendum, Sonnet 5.5, Argon pages, misalignment report of 10-02, Rosalind/Daybreak/Astra/Glasswing/LSVP/Claude Science pages, and others).
+## Targeted search (2026-10-03 → 2026-10-06)
 
-Specific checks:
-- **Gemini 4 Argon model card:** still 404.
-- **METR report on the Anthropic incidents:** not yet published.
-- **Kimi K3.1:** no evidence that it exists.
-- **LSVP:** no expansion and no dedicated program page.
-- **Cyber Verification Program:** no Mythos-class opening yet.
-- **StepFun Step 5 Preview** (2026-09-20, API only): there is no official card. The HF copy is an unofficial leak. Official weights and a card are reportedly due 2026-10-15, so a later run should poll then.
+**Coverage:**
+- About 16 searches across labs (Anthropic, OpenAI, Google DeepMind, Meta, xAI, Mistral, Chinese open-weight labs) and evaluators (UK AISI, METR, CAISI, Apollo, Transluce, SecureBio, FAR.AI, Epoch).
+- Polls of the access programs: LSVP, Cyber Verification Program, Glasswing, Daybreak, GPT-Rosalind, Gemini for Science / Co-Scientist, CodeMender, Fairwind, Isomorphic bioresilience.
+- I read the **OpenAI news RSS feed** (`openai.com/news/rss.xml`) directly; it returned 200 with pubDates.
 
-Skipped:
-- **Anthropic Transparency Hub** ("last updated Oct 2"): this is already a Phase A index URL, not a document.
-- **Apollo "Towards embedded evaluations for scheming propensities"** (2026-10-01): a methodology/policy piece on safety cases, with no results for a named model.
-- **inclusionAI Ling-3.0-flash-Fin:** a domain fine-tune. I could not confirm its date or any announcement, so it is not proposed.
+**Results:**
+- No new card, addendum or eval was published in the window. Every hit was already catalogued: GPT-6.1 Sol addendum, Opus 5.5 / Sonnet 5.5, METR Opus 5.5, Gemini 3.8 Flash / Live / Flash Cyber (Fairwind), Muse Spark 1.1, Grok 4.6 / 4.7, LSVP, GPT-5.4 TAC.
+- LSVP: no new program page or non-US expansion found beyond the Sep 2026 launch coverage.
+- Cyber Verification Program: still "Mythos access in the near future".
+- GPT-Rosalind pricing took effect on 10-05 (press only).
 
-OpenAI misalignment-report hub: there are no new reports since 2026-10-02. The two unnamed-model reports from 10-02 remain skipped under the unresolved gate (PROPOSALS 2026-09-29).
-
-## Weekly retrospective sweep (no recency filter)
-
-I picked the orgs whose newest entry is oldest: **typesafe** (no rows), **Palisade** (newest row 2026-05-07) and **poolside** (newest row 2026-07-13).
-- **poolside:** found the Laguna M.1/XS.2 technical report → proposal #2. Its other 2026 posts are about product, infrastructure or research. Malibu and Point predate the scope floor.
-- **Palisade:** its 2026 blog consists of podcasts, interviews and a channel launch. The only 2026 research (self-replication, 2026-05-07) and the robot shutdown-resistance post are already cataloged. Nothing new.
-- **typesafe:** the only first-party item is "Introducing System One Models and Jev" (2026-09-15).
-  - Jev outputs typed decisions and calibrated probabilities (classification and routing), so it falls in the auxiliary-model class.
-  - The post is a product announcement with no safety evals. Skipped (friction line).
+**OpenAI posts read via `read_doc.py` and skipped:**
+- "Our approach to EU text provenance rules" (10-05): provenance policy; the detector-access gating is for a watermark detector, not a model.
+- "Disrupting a coordinated model-distillation campaign" (09-30): a security incident with no named OpenAI model evaluated.
+- "OpenAI extends cyber access to Ukraine" (09-23): a Daybreak access extension that names no model. Same named-model gate as the 10-03 "Daybreak for Frontline Defenders" skip.
+- Help article 20001326 ("Additional safety checks…", flagged on 10-05): generic safeguard FAQ, no named model.
 
 ## Citation mining
 
-Recent rows (Sonnet 5.5, GLM-5.3 cyber post, Argon pages, GPT-6.1 Sol addendum, AISI GPT-6 Astra report, the OpenAI misalignment reports) and the misalignment-report index produced no new qualifying references beyond those already handled above.
+- The related-content block on the Anthropic incidents post (v565) led to **#3**.
+- "Previewing the Model Hardware Standard" (an agent–device spec research preview) and "Claude discovers a novel enzyme system" (a showcase) were skipped as not model documentation.
+- Last run already mined the recent rows (Sonnet 5.5, GPT-6.1 Sol addendum, Argon, AISI Astra); I did not repeat that.
 
-## Blocked-URL escalations (13 openai.com / help.openai.com)
+## Blocked-URL escalations (13 openai.com / help.openai.com, streak 5)
 
-- WebFetch still gets 403 on these URLs. I spot-checked `trusted-access-for-cyber`.
-- Search engines index all of these pages with current titles (Rosalind Biodefense, Path to Astra, Trusted Access for Cyber, the Daybreak overview, etc.), so they are alive behind a bot wall.
-- The pipeline itself stored a fresh version of the Daybreak help article today (v742).
+- **All alive.** `read_doc.py` fetched `trusted-access-for-cyber`, `path-to-astra` and the Daybreak help article, each HTTP 200 via browser_impersonation with full current text.
 - No `status_change` proposed.
+- The monitor's 403 streak is a false alarm (friction line).
+- **Recipe for future runs:** use `read_doc.py`, not WebFetch, for openai.com. The 10-03 to 10-05 runs logged this wall as `agent_fetch_blocked` even though the RESOLVED fix (c0680ef1) already covered it.
 
-Two uncatalogued OpenAI leads were seen only in search results and could not be read, so they were not proposed (friction line):
-- "Accelerating the cyber defense ecosystem that protects us all" (~2026-04-16);
-- help article 20001326, "Additional safety checks for biological and cybersecurity requests".
+## Document updates
 
-## Document updates (summarized 1)
+I took the top 5 in queue order, plus 2 more to check the pattern. **All were noise; none annotated.**
 
-- **v742** `openai-gpt-5-6-sol-access-policy`: substantive → annotated (#1).
-- **Noise, skipped** (code-snippet "pip install" line, download/Spaces counters, reordered HF eval widgets):
-  - v743 Nemotron-3-Nano-Omni
-  - v741 dots3-note-preview
-  - v740 Solar-Open2
-  - v738 Ling-2.5-1T
-  - v739 Ring-2.5-1T
-  - v716 Nemotron-3-Ultra
-  - v717 Cosmos3-Edge (also drops the HF usage-instructions header)
-- **Reviewed as noise on 2026-10-04:** v721–v736.
-- **Not opened:** none. All 20 entries in `updated_docs.json` have now been reviewed.
+- **v573** DeepSeek-V4-Pro and **v578** V4-Flash-0731: HF usage-snippet swap (chat/completions → completions), download/Spaces counters, reordered eval widget.
+- **v618 / v619** Palisade self-replication / robot shutdown: a stored "Redirecting…" stub replaced by the moved page's text. This is a URL-move artifact, not a revision.
+- **v565** `anthropic-claude-mythos-5-other-3`: hyphenation copyedits ("real time" → "real-time", etc.) and rotated related-content teasers.
+- **v678** Mythos 5.1 access page: dates dropped from the announcement list.
+- **v609** Hy3: download counters and eval-widget reorder.
+- **Not opened:** the remaining 13 entries (all ≤ 9 substantive lines, mostly HF cards of the same pattern).
+
+This contradicts the RESOLVED furniture fix, so I logged it as a regression.
 
 ## Friction / proposals
 
-I added 2 friction lines:
-- the openai.com bot wall, plus the two unreadable leads;
-- typesafe has no scope note, and why Jev was skipped.
+I added 4 friction lines:
+- `regression`: the furniture classifier lets HF snippet/widget churn, stub replacement and copyedits into the queue (RESOLVED row a4706386).
+- `other`: Phase A's 403 streak on 13 OpenAI URLs that the pipeline's own fetcher reads fine.
+- `index_gap`: the two access-policy posts added today never surfaced in candidates. It suggests `openai.com/news/rss.xml` as a cheap, dated OpenAI index URL.
+- `schema_gap`: EU AI Act training-content summaries.
 
-I submitted the CLI-flag proposals successfully, without using stdin JSON. No new PROPOSALS.md entry.
+No PROPOSALS.md entry: none of these needs more than a friction line yet.

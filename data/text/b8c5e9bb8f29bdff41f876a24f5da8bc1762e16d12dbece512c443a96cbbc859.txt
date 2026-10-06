@@ -67,33 +67,54 @@ We trained Nemotron 3 Ultra with an agent-focused post-training pipeline to impr
                                                              59.3
                  60       56.4 53.9                                                                                                                                                                                                                                                                                                             54.7
 
-                                                                                                   N3 Ultra NVFP4                                                                    N3 Ultra NVFP4                                                                    N3 Ultra NVFP4
+                                                                                                                                                                                                                                                                       N3 Ultra NVFP4
+                                                                                                   N3 Ultra NVFP4
+
+                                                                                                                                                                                     N3 Ultra NVFP4
                                                                            49.9                                                                                                                                                                                                                                                                                  50.4
 
-                                                                                   N3 Ultra BF16                                                                                                                                                       N3 Ultra BF16
+                                                                                                                                                                                                                                                       N3 Ultra BF16
+                                                                                   N3 Ultra BF16
+
                                                                                                                                                                                                                                                                                                              46.7 47.9
 
                                                                                                                                                                      N3 Ultra BF16
                                                                                                                                                                                                                                                                                                                                                                                                                       5.0
-
                                             N3 Ultra NVFP4
                            N3 Ultra BF16
+
                                                                                                                                                                                                                                                                                                                                N3 Ultra NVFP4
                                                                                                                                                                                                              Kimi
-                                                                                                                     GLM             Kimi             Qwen                                             GLM
-                 40                                                                                                                                                                                                  Qwen                                                                      Kimi   Qwen
+                                                                                                                                                      Qwen
+                                                                                                                     GLM
+
+                                                                                                                                     Kimi
+
+                                                                                                                                                                                                       GLM
+                 40
+
+                                                                                                                                                                                                                                                                                                      Qwen
+                                                                                                                                                                                                                     Qwen
+
+                                                                                                                                                                                                                                                                                               Kimi
 
                                                                                                                                                                                                                                                                                                               N3 Ultra BF16
                                                                                                                                                                                                                                                                                         GLM
                                                                                                                                                                                                                                                                                                                                                                         34.6
                                                                     Kimi
-                                                             GLM                                                                                                                                                                                                                                                                                GLM                                                                   4.5
-                                                                           Qwen                                                                                                                                                                                                                                                                                  Kimi
+                                                             GLM
+
+                                                                                                                                                                                                                                                                                                                                                GLM
+                                                                                                                                                                                                                                                                                                                                                                                                                      4.5
+                                                                           Qwen
+
+                                                                                                                                                                                                                                                                                                                                                                 Kimi
+
                                                                                                                                                                                                                                                                                                                                                                         Qwen
                  20
                                                                                                                                                                                                                                                                                                                                                                                                                       4.0
-
  Accuracy (%)
+
                                                                                                                                                                                                                                                                                                                                                                                                                3.7
                   0
                         Terminal Bench 2.1                                                   SWE-Bench                                                                        SWE-Bench                                                                  TauBench V3                                                           GDPVal                                                                                 3.5
@@ -107,30 +128,46 @@ We trained Nemotron 3 Ultra with an agent-focused post-training pipeline to impr
                                                                                                                     90.0 89.8                                90.2                                                                                                                                                                                                90.1
                                                                                                                                                                     86.6
                                                                                                                                                       81.2
-                                                                                                                                                                                                                                                                                                                                                                                                               Qwen
-                 80                                                                                                                                                                                                                                   76.1                              73.6                                                                                                                          2.0
 
-                                                                                                                     N3 Ultra BF16   N3 Ultra NVFP4
-                                                                                                                                                                                                                     N3 Ultra BF16   N3 Ultra NVFP4                                                                            N3 Ultra BF16    N3 Ultra NVFP4
+                                                                                                                                                                                                                                                                                                                                                                                                               Qwen
+                 80                                                                                                                                                                                                                  N3 Ultra NVFP4
+                                                                                                                                                                                                                                                      76.1                              73.6                                                                                                                          2.0
+
+                                                                                                                                                                                                                                                                                                                                                N3 Ultra NVFP4
+                                                                                                                                                                                                                     N3 Ultra BF16
+
+                                                                                                                                                                                                                                                                                                                               N3 Ultra BF16
+                                                                                                                                     N3 Ultra NVFP4
+                                                                                                                     N3 Ultra BF16
+
                  60       56.0 56.4                                 56.0
                                                                            53.0                                                                                                                                                                                                                                                                                                                                       1.5
-                                                                                                                                                                                                                                                                                                                                                                                                        1.2
-                                                                                                                                                                                                                                                                       Kimi
-                                                                                                                                                             Kimi                                                                                                                                                                                                Qwen
+                                                                                                                                                                                                                                                                       Kimi                                                                                                                             1.2
+
+                                                                                                                                                                                                                                                                                                                                                                 Qwen
+                                                                                                                                                             Kimi
+
                                                              46.0
                                                                                                                                                                      Qwen
-
                                             N3 Ultra NVFP4
-                                                                                                                                                                                                                                                                                                                                                                                                  1.0
 
+                                                                                                                                                                                                                                                                                                                                                                                                  1.0
                            N3 Ultra BF16
+
                                                                                                                                                       GLM
-                                                                                                                                                                                                                                                       GLM                              Qwen
+
+                                                                                                                                                                                                                                                                                        Qwen
+                                                                                                                                                                                                                                                       GLM
+
                  40                                                                                                                                                                                                                                                                                                                                                                                                   1.0
                                                                            Qwen
                                                                     Kimi
-                                                             GLM                                                                                                                                                                                                                                                                                                                                        Kimi
-                 20                                                                                                                                                                                                                                                                                                                                                                               GLM                 0.5
+
+                                                                                                                                                                                                                                                                                                                                                                                                        Kimi
+                                                             GLM
+
+                                                                                                                                                                                                                                                                                                                                                                                                  GLM
+                 20                                                                                                                                                                                                                                                                                                                                                                                                   0.5
 
                   0                                                                                                                                                                                                                                                                                                                                                                                                   0.0
                                            ProfBench                                                                          PinchBench                                                                                 IOI 2025                                                                               RULER @ 1M                                                                    ISL/OSL
@@ -196,8 +233,40 @@ Both MTP heads share the same parameters to enable robust autoregressive draftin
 in NVIDIA (2026) and consist of a single attention layer followed by a single MoE layer. The layer
 pattern and configuration for Nemotron 3 Ultra are shown in Figure 2 and Table 1, respectively.
                                                                                              Nemotron 3 Ultra 550B-A55B
+                 Latent MoE
 
-       Mamba-2   Latent MoE        Mamba-2   Attention   Latent MoE   Mamba-2    LatentMoE    Mamba-2    Attention   Latent MoE   Mamba-2    Latent MoE   Mamba-2   Attention   Latent MoE   Mamba-2    LatentMoE        Mamba-2   Latent MoE
+                                                         Latent MoE
+
+                                                                                                                     Latent MoE
+
+                                                                                                                                             Latent MoE
+
+                                                                                                                                                                                Latent MoE
+
+                                                                                                                                                                                                                                   Latent MoE
+                                                                                 LatentMoE
+
+                                                                                                                                                                                                        LatentMoE
+       Mamba-2
+
+                                   Mamba-2
+
+                                                                      Mamba-2
+
+                                                                                              Mamba-2
+
+                                                                                                                                  Mamba-2
+
+                                                                                                                                                          Mamba-2
+
+                                                                                                                                                                                             Mamba-2
+
+                                                                                                                                                                                                                         Mamba-2
+                                             Attention
+
+                                                                                                         Attention
+
+                                                                                                                                                                    Attention
 
                               x3                                            x2                                                          x3                                                         x3               x4
 
@@ -620,8 +689,9 @@ and zai-org/GLM-4.5-Base are shown in Table 2.
               
                                                                                                                                                                                                  
                                                                                                                                                                                                    
- 0 S W W                                                                                                                                                                                                                                  
-              
+ 0 S W W
+
+                                                                                                                                                                                                                                       
 
               
                                        3 V M K M R E P   T L E W I  
@@ -636,9 +706,10 @@ and zai-org/GLM-4.5-Base are shown in Table 2.
                                                                                                     
                                                                                                                                                                                                 
                                                                                                                                                                                                 
- 0 S W W      
+ 0 S W W
+
                                                                                                     
-                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                       
               
 
               
@@ -722,8 +793,10 @@ find a smoking gun that caused this instability, we found two interesting phenom
                                                                                                                                                               
 
                                                                                                                                                           
+ 0 S W W
 
- 0 S W W                                                                                                                                        0 S W W       
+                                                                                                                                                0 S W W
+                                                                                                                                                              
                
                                                                                                                                                               
                                                                                                                                                           
@@ -1720,8 +1793,8 @@ committed without additional sequential decoding steps.
                                                                       Per-trajectory rollout time (s)
                                                                                                         1750
                              2000                                                                                   MTP=5
-
      Mean rollout time (s)
+
                                                                                                         1500        Time saved by MTP=5
                              1800
                                                                                                         1250
@@ -2579,8 +2652,8 @@ is a free consequence of the per-token KV cache.
 
                                         7.0
 
-                 Relative Throughput
-                                              5.9
+                (Output tokens/s/GPU)
+                 Relative Throughput          5.9
                                         6.0
 
                                         5.0                                                                                     4.6
@@ -2589,14 +2662,22 @@ is a free consequence of the per-token KV cache.
                                                                                               3.9
                                         4.0                                  3.7
 
-                (Output tokens/s/GPU)                                                          NM3-Ultra-NVFP4
+                                                                                               NM3-Ultra-NVFP4
                                         3.0
+
                                                                                                                                 Qwen
-                                        2.0                                  Qwen
+                                                                             Qwen
+                                        2.0
                                                                       1.2
                                                                 1.0                                                1.0   0.9
                                         1.0
-                                                                GLM   Kimi                                         GLM   Kimi
+
+                                                                      Kimi
+                                                                GLM
+
+                                                                                                                   GLM
+
+                                                                                                                         Kimi
                                         0.0
                                                                 8k/64k                                             50k/2k
 

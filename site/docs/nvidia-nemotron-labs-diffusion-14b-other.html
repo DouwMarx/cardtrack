@@ -48,7 +48,7 @@
     <dd>1</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-diffusion-14b-other&amp;body=Document%3A%20nvidia-nemotron-labs-diffusion-14b-other%0AURL%3A%20https%3A//d1qx31qr3h6wln.cloudfront.net/publications/Nemotron_Diffusion_Tech_Report.pdf%0AFingerprint%3A%207e359e4b7e1ca0af4766aff2ac4ef6a81ab0828214aba2c4171751f93ea9def7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-diffusion-14b-other&amp;body=Document%3A%20nvidia-nemotron-labs-diffusion-14b-other%0AURL%3A%20https%3A//d1qx31qr3h6wln.cloudfront.net/publications/Nemotron_Diffusion_Tech_Report.pdf%0AFingerprint%3A%20785697792a5ee7e06d059f1ffb7043d66bc52e712a59341a3db71e5b3dcf59ca%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,7 +60,7 @@
           <td>2026-08-09T22:02:03Z</td>
           <td>application/pdf</td>
           <td>3,498,216</td>
-          <td><code title="7e359e4b7e1ca0af4766aff2ac4ef6a81ab0828214aba2c4171751f93ea9def7">7e359e4b7e1ca0af</code></td>
+          <td><code title="785697792a5ee7e06d059f1ffb7043d66bc52e712a59341a3db71e5b3dcf59ca">785697792a5ee7e0</code></td>
 <td><a href="https://data.systemcards.org/raw/7f30d82ab94cd55d98fdc104f51092dd5ecfa356ace158e0671cf199c160ec8a.pdf" rel="nofollow" title="archived copy, sha256 7f30d82ab94cd55d98fdc104f51092dd5ecfa356ace158e0671cf199c160ec8a">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
 </td>
         </tr>
@@ -157,8 +157,8 @@ Models on Hugging Face: Nemotron-Labs-Diffusion Model Family
                                                                                                                                                        is better
                                                                                                                             NLD-8B
                                                                                      Qwen3-8B                              (Quad. SS)
-
                                                               Average Accuracy (%)
+
                                                                                                                                          NLD-8B
         AR Mode                           Diffusion Mode                                        Ministral3-8B                           (Linear SS)
            Best for                 Highest Speed- of-Light                                      Qwen2.5-7B                                                                @ NVIDIA GB200
@@ -439,8 +439,11 @@ tured attention pattern, as shown in Fig. 3.                 ratios, which appli
                                                              = 0.3                  3.5                                           = 0.3
                                                              = 0.5                                                                = 0.5
               0.85                                           =1                                                                   =1
-       Loss                                                  = 1, no AR      Loss   3.0
-                                                                                                                                  = 1, no AR
+       Loss
+
+                                                                             Loss
+                                                             = 1, no AR                                                           = 1, no AR
+                                                                                    3.0
               0.80
 
               0.75                                                                  2.5
@@ -765,8 +768,8 @@ self-speculation in Sec. 3, which only commits a con-         exactly on every b
  2
  0                                                                                                 0
        Avg oleplay QA marize riting anities soning RAG STEM Math oding lingual                           Avg oleplay QA marize riting anities soning RAG STEM Math oding lingual
-                           W um Rea                             C ulti                                                       W um Rea                             C ulti
-         R         Sum        H                                  M
+         R                 W um Rea                             C ulti                                                       W um Rea                             C ulti
+                   Sum        H                                  M
                                                                                                            R         Sum        H                                  M
                                      Acceptance Rate                                                                                               TPF
 Figure 7 | Visualizing the acceptance rate and TPF across different SPEED-Bench categories for diffusion
@@ -1175,15 +1178,16 @@ Nemotron-Labs-Diffusion provides unique advantages
                            4000                                                            Autoregressive                                                                         FP8                        INT4 SOL                                                                                                                                                FP8
                                                                                                                                                                                                                12.36×                                                   1750                              SOL                                                                                        INT4 SOL
                                                                                            Linear SS                                                                              INT4-AWQ-Marlin                                                                                                                                                                    INT4-AWQ-Marlin
-
                                                                                                                                 Decode Throughput at c=1 (tok/sec)
-                                                                                                                                                                                                                989                                                                                                                                         250
 
+                                                                                                                                                                                                                989                                                                                                                                         250
                                                                                                                                                                                                                                       GPU Throughput at c=1 (tok/sec)
+
                            3500                                                            Qwen3-8B-Eagle3                                                           1000                                                                                                                                 5.75×                                                                                         9.03×
                                                                                                                                                                                                                                                                         1500                              1471                                                                                          223.1
+                                                                                                                                                                                                                                                                                                                              Throughput at c=1 (tok/sec)
+GPU Throughput (tok/sec)
 
-GPU Throughput (tok/sec)                                                                                                                                                                                                                                                                                                      Throughput at c=1 (tok/sec)
                                   BL=8
                            3000    c=64 c=64                                                                                                                                                                                                                                                                                                                                                     FP8 SOL
                                                                                                                                                                       800                                                                                                                                                                                   200                                   7.13×
@@ -1702,6 +1706,6 @@ where 𝜆 ∈ [0, 1] controls the interpolation.
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-05T06:23:03Z</p></footer>
+<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
 </body>
 </html>

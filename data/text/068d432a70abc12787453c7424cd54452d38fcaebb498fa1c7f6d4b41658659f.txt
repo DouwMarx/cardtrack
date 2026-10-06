@@ -445,8 +445,8 @@ comparing Grok 4.5 to Fable 5, Opus 4.8, Gemini 3.1 Pro, GPT-5.5, and GPT-5.6 So
                                               Gemini 3.1 Pro
 
                    40
-
        Score (%)
+
                             GPT-5.6 Sol
                               (max)
                    30
@@ -575,8 +575,8 @@ We also report accuracy against output tokens per task (higher and further left 
                                                                (max)
                          32             Grok 4.5
                                          (high)
-
           Accuracy (%)
+
                          31
                                                     GPT-5.5
                                                      (xhigh)
@@ -622,8 +622,8 @@ We report % correct against mean tokens per task (higher and further left is bet
                                                                GPT-5.6 Sol                  (max)
                                                                  (xhigh)
                    52.5
-
        % Correct
+
                    50.0
 
                    47.5

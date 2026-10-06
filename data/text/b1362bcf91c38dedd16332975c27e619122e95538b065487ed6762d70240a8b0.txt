@@ -99,8 +99,8 @@ Capabilities: Text-to-Image
 
 Capability          Gemini 3.1      Gemini 3.1      Gemini 2.5     Gemini 3        GPT-Image      Seedream       Grok
 Benchmark           Flash Image     Flash Image     Flash Image​   Pro Image​      1.5            5.0 Lite       Imagine
-                    (Thinking +                     (“Nano
                                                                    (“Nano                                        Image Pro
+                    (Thinking +                     (“Nano
                                                                    Banana Pro”)
                     Text Search +                   Banana”)
                     Image Search)
@@ -121,8 +121,8 @@ Capabilities: Editing
 
 Capability          Gemini 3.1      Gemini 3.1      Gemini 2.5     Gemini 3        GPT-Image      Seedream       Grok
 Benchmark           Flash Image     Flash Image     Flash Image​   Pro Image​      1.5            5.0 Lite       Imagine
-                    (Thinking +                     (“Nano
                                                                    (“Nano                                        Image Pro
+                    (Thinking +                     (“Nano
                                                                    Banana Pro”)
                     Text Search +                   Banana”)
                     Image Search

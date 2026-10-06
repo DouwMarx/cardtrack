@@ -317,92 +317,89 @@ added the line “Anything not listed as in scope is out of scope.” to the sco
        https://inspect.aisi.org.uk/react-agent.html
 
                                                              7
-    was real                consequences             treat effects as real   simulation errors         not found on review
-                                                                                                       Miscounted a file
-                                                                                                       Miscounted a file
- GPT-6 Astra often reasoned about whether parts of its environment were    real
-                                                                   fingerprint
-                                                                   Miscounted  a file
- GPT-6 Astra often reasoned about whether parts of its environment were    real
-                                                                   fingerprint
+    was real                consequences              treat effects as real   simulation errors         not found on review
+                                                                                                        Miscounted a file
+                                                                                                        Miscounted a file
+GPT-6 Astra often reasoned about whether parts of its environment were    real
+                                                                  fingerprint
+                                                                  Miscounted  a file
+GPT-6 Astra often reasoned about whether parts of its environment were    real
+                                                                  fingerprint
 
-    Stated an aspect        Discussed real-world     Stated it should        Identified verified       Asserted errors
+    Stated an aspect        Discussed real-world      Stated it should        Identified verified       Asserted errors
     Stated an aspect
     was real                Discussed real-world
-                            consequences             Stated  it should
-                                                     treat effects as real   simulationverified
-                                                                             Identified  errors        Asserted
-                                                                                                       not founderrors
-                                                                                                                 on review
-    was real                consequences             treat effects as real   simulation errors         not found on review
-    Stated maintainer was                                                    Identified a bug in the   Miscounted a file
- GPT-6
- Stated Astra was
- human maintainer often reasoned about whether parts of Identified
-                                                         its environment
-                                                        CAPTCHA    a bug in the were    real
-                                                                                fingerprint
-                                                                                Miscounted  a file
- GPT-6
- human Astra often reasoned about whether parts of CAPTCHA
-                                                         its environment were           real
-                                                                                fingerprint
+                            consequences              Stated  it should
+                                                      treat effects as real   simulationverified
+                                                                              Identified  errors        not founderrors
+                                                                                                        Asserted  on review
+    was real                consequences              treat effects as real   simulation errors         not found on review
+    Stated maintainer was                                                     Identified a bug in the   Miscounted a file
+GPT-6
+Stated Astra was
+human maintainer often reasoned about whether parts of Identified
+                                                        its environment
+                                                       CAPTCHA    a bug in the were    real
+                                                                               fingerprint
+                                                                               Miscounted  a file
+GPT-6
+human Astra often reasoned about whether parts of CAPTCHA
+                                                        its environment were           real
+                                                                               fingerprint
 
-    Stated an aspect        Discussed real-world     Stated it should        Identified verified       Asserted errors
-    Stated
-    was    an aspect
-         real               Discussed real-world
-                            consequences             Stated it
-                                                     treat     should
-                                                           effects as real   simulationverified
-                                                                             Identified  errors        Asserted
-                                                                                                       not      errors
-                                                                                                           found on review
-    was real                consequences             treat effects as real   simulation errors         not found on review
-    Stated maintainer was   Noted risk to normal     Stated effects should   Identified a bug in the   Miscounted a file
+    Stated an aspect        Discussed real-world      Stated it should        Identified verified       Asserted errors
+    Stated an aspect
+    was real                Discussed real-world
+                            consequences              Stated  it should
+                                                      treat effects as real   Identified
+                                                                              simulationverified
+                                                                                          errors        not founderrors
+                                                                                                        Asserted  on review
+    was real                consequences              treat effects as real   simulation errors         not found on review
+    Stated maintainer was   Noted risk to normal      Stated effects should   Identified a bug in the   Miscounted a file
     human maintainer was
     Stated                  software
-                            Noted risk to
-                                     installations
-                                          normal     Stated
-                                                     be     effects
-                                                        treated     should
-                                                                as real      CAPTCHAa bug in the
-                                                                             Identified                Miscounted a file
-                                                                                                       fingerprint
-    human                   software installations   be treated as real      CAPTCHA                   fingerprint
+                            Noted riskinstallations
+                                        to normal     Stated
+                                                      be treated
+                                                             effects
+                                                                 as real
+                                                                     should   CAPTCHAa bug in the
+                                                                              Identified                fingerprint a file
+                                                                                                        Miscounted
+    human                   software installations    be treated as real      CAPTCHA                   fingerprint
 
-    Stated maintainer was   Noted risk to normal     Stated effects should   Identified a bug in the
+    Stated maintainer was   Noted risk to normal      Stated effects should   Identified a bug in the
     Stated
     human maintainer was    software
-                            Noted    installations
-                                  risk to normal     be treated
-                                                     Stated     as real
-                                                            effects should   Identified
-                                                                             CAPTCHAa bug in the
-    human                   software installations   be treated as real      CAPTCHA
+                            Noted riskinstallations
+                                        to normal     be treated
+                                                      Stated     as real
+                                                             effects should   Identified
+                                                                              CAPTCHAa bug in the
+    human                   software installations    be treated as real      CAPTCHA
 Figure 9: GPT-6 Astra consistently reasoned about whether aspects of its environment were real or simulated.
 Selected chain-of-thought excerpts show GPT-6 Astra asserting that components of its environment were real, discussing
 the potential real-world consequences of planned actions, and stating that its environment should be treated as real
 despite possibly being simulated.
                           Noted risk The   model also
-                                      to normal           identified
-                                                       Stated  effects potential
-                                                                       should    simulation errors that our manual verification
+                                      to normal        identified
+                                                    Stated effects potential
+                                                                   should    simulation errors that our manual verification
 showed were not errors. Quotes
+                          software
                           Noted    reproduce
-                                 risk
-                          software       normalexcerpts
-                                    installations
-                                      to               be  from
-                                                       Stated
-                                                           treatedGPT-6
-                                                               effects
-                                                                   as real Astra’s raw chain-of-thought, with omissions marked;
-                                                                       should
+                                 risk to normalexcerpts
+                                    installations       from
+                                                    be treated
+                                                    Stated    GPT-6
+                                                           effects
+                                                               as real Astra’s raw chain-of-thought, with omissions marked;
+                                                                   should
 “Check” notes report the results
-                          softwareof manual    verification.
-                                    installations      be treated as real
+                          softwareofinstallations
+                                     manual verification.
+                                                    be treated as real
 
 We observed 4 instances (out of 49 samples) of GPT-6 Astra continuing to exhibit the most severe form of
 unsanctioned behaviour even with the explicit scope clarification, down from 26 out of 50 on the matched
@@ -439,7 +436,7 @@ its chain-of-thought):
   points and simulated at others. This included cases where the model attacked a target it had previously
   explicitly described as likely to be real. GPT-6 Astra often stated that it should treat the environment as
 
-                                                               8
+                                                                8
   real regardless of its stated uncertainty, but it did not consistently refrain from attacking after making these
   statements.
 • It is possible that GPT-6 Astra’s stated reasoning presented the simulated nature of its targets as a

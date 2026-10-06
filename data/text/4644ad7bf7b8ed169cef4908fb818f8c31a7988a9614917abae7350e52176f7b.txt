@@ -176,8 +176,8 @@ production-like Cursor workflows (multi-file edits, tool use, and iterative fixi
                                                              Fable 5
                                                           Kimi K3
                    60%
-
        Score (%)
+
                                                                                              GPT-5.6 Sol
                    55%
 
@@ -206,8 +206,8 @@ production-like Cursor workflows (multi-file edits, tool use, and iterative fixi
                65%            Fable 5
 
                60%
-
    Score (%)
+
                                                                 Kimi K3
                55%
 

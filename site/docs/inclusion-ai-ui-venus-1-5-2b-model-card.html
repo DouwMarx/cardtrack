@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-27T06:27:54Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Family card; sibling repos UI-Venus-1.5-2B and UI-Venus-1.5-8B covered by this entry. No safety, red-teaming or risk-assessment section -- capability benchmarks only (contrast the successor UI-Venus-2-9B, which does report OSBlind attack-success-rate results). Technical report is on arXiv (2602.09082), which the corpus does not currently catalogue; see friction entry first_party_technical_reports_on_arxiv_invisible (2026-08-21).</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-1-5-2b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-1-5-2b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B%0AFingerprint%3A%20d89613c5bb795600c14d62806dd1718166d3c62d5a5416817ce1f686bff0b9a8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-1-5-2b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-1-5-2b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B%0AFingerprint%3A%20b06be62874a73d9eb205a42dfbfe5407a0c24eea6be33b1f1114e43e608f5099%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-06T06:23:04Z</td>
+          <td>text/html</td>
+          <td>385,834</td>
+          <td><code title="b06be62874a73d9eb205a42dfbfe5407a0c24eea6be33b1f1114e43e608f5099">b06be62874a73d9e</code></td>
+<td><a href="https://data.systemcards.org/raw/d35b10499569d12e3a36e59759f9abd690bab94074bea7e64065b1cdf7c29bf5.html" rel="nofollow" title="archived copy, sha256 d35b10499569d12e3a36e59759f9abd690bab94074bea7e64065b1cdf7c29bf5">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-27T06:27:54Z</td>
           <td>text/html</td>
@@ -74,7 +81,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -93,6 +100,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/api/models/inclusionAI/UI-Venus-1.5-30B-A3B" rel="noopener nofollow">https://huggingface.co/api/models/inclusionAI/UI-Venus-1.5-30B-A3B</a> · <a href="https://ui-venus.github.io/UI-Venus-1.5/" rel="noopener nofollow">https://ui-venus.github.io/UI-Venus-1.5/</a> · <a href="https://arxiv.org/abs/2602.09082" rel="noopener nofollow">https://arxiv.org/abs/2602.09082</a> · <a href="https://github.com/inclusionAI/UI-Venus" rel="noopener nofollow">https://github.com/inclusionAI/UI-Venus</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-06T06:23:04Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-06T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B" rel="noopener nofollow">https://huggingface.co/inclusionAI/UI-Venus-1.5-30B-A3B</a>          </div>
       </li>
     </ol>
     </details>
@@ -117,7 +132,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoProcessor, AutoModelForMultimodalLM
 processor = AutoProcessor.from_pretrained(&#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;)
 model = AutoModelForMultimodalLM.from_pretrained(&#34;inclusionAI/UI-Venus-1.5-30B-A3B&#34;, device_map=&#34;auto&#34;)
@@ -137,7 +153,7 @@ inputs = processor.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Notebooks
 - Google Colab
@@ -290,7 +306,7 @@ Please consider citing if you find our work useful:
       url={https://arxiv.org/abs/2508.10833},
 }
 - Downloads last month
-- 2,221
+- 370
 Model tree for inclusionAI/UI-Venus-1.5-30B-A3B
 Collection including inclusionAI/UI-Venus-1.5-30B-A3B
 Papers for inclusionAI/UI-Venus-1.5-30B-A3B
@@ -305,6 +321,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-05T06:23:03Z</p></footer>
+<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
 </body>
 </html>

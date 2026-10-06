@@ -376,7 +376,9 @@ indicates expert baseline.
              100   90.3    88.4       90.1        88.7      86.8      85.9            87.2        85.6        85.6      81.0      82.0      77.1
               80
               60
-  Accuracy    40
+  Accuracy
+
+              40
               20
                0                       WMDP-Bio                                                           WMDP-Chem
                                   Muse Spark              Gemini 3.1 Pro         GPT-5.4          Kimi K2.5           Llama 4 Maverick
@@ -404,9 +406,7 @@ relevant to a 1P chat deployment. However, we believe that the overall level of 
                                                                            10
                                   100      93.7             87.3         89.9
                                                                                                         79.5
-
-  Precision (excl. abstentions)
-                                                                                      77.5
+  Precision (excl. abstentions)                                                       77.5
                                    80                                                                                     64.7
                                    60
                                    40
@@ -454,8 +454,8 @@ Agents (SA), containing information pertaining to individual CDC/USDA-regulated 
                       80                                74.7%
 
                                                                                             61.5%
-
   Refusal Rate (%)
+
                       60
 
                       40
@@ -503,8 +503,8 @@ attacks within a typical static adversarial attack portfolio. To this end, we me
 
                       80
                                                                                                                                   66.1%
-
   Refusal Rate (%)
+
                       60
 
                       40
@@ -538,8 +538,9 @@ Figure 8.
                                                                                            93.9%
                                                                                                                                                                                                       89.2%
                      80                                                   75.2%                                                                         80
+Refusal Rate (%)
 
-Refusal Rate (%)                                                                                                                     Refusal Rate (%)
+                                                                                                                                     Refusal Rate (%)
                                                                                                                63.8%
                      60                                                                                                                                 60
 
@@ -579,8 +580,8 @@ Refusal Rate (%)                                                                
                                        90                                                                                                                                                              84.9
                                                                                                                               80.9                             80.6
                                        80                                                                                                               76.0                                                                        73.7
-
                    Refusal Rate (%)
+
                                        70                                                                                                                                                                                    65.3
                                                                                                                                                                                                                      63.3
                                                                                                                                                                                                               56.4
@@ -610,8 +611,9 @@ Refusal Rate (%)                                                                
                                                                                                                                          96.2
 
                       90
+  Refusal Rate (%)
 
-  Refusal Rate (%)    80
+                      80
 
                       70
 
@@ -648,8 +650,8 @@ to further validate that we would not see uplift in such a scenario.
 2.2.1     Knowledge-Based Evaluations
 WMDP-Cyber. We test the level of poten-
 tially hazardous knowledge in cybersecurity                            100
-
                                                 MCQ Accuracy (%) ( )
+
                                                                              91.1   89.8   91.0   90.1   90.5
 on a subset of the Weapons of Mass De-
 struction Proxy (WMDP) benchmark (Li                                   75
@@ -738,8 +740,8 @@ all turns of the attacker side of the conversation, and is prompted to determine
 under test refused to comply with the social engineering request.
 As reported in the Muse Spark Safety &
 Preparedness Report, for models evaluated                                      20
-
                                                  Attack Success Rate (%) ( )
+
 without system level guardrails, compli-
                                                                                                                         13.1
 ance with social engineering requests is rel-                                  15
@@ -1138,15 +1140,50 @@ refusal are excluded from the set of sample-epochs over which knowledge or capab
 
                                                      28
                                           ing
-                                        pla t
+                                            t
+                                        pla
                                     tem
-                                 Co n                                            4.6           Pr
-                               rk                  rk                          us                 o
-                               pa                 pa                           Op             3.1
-                          se                    se             T-5 .4     ud             mi ni
-                             S                     S                    Cla
+
+                                                                                 4.6
+                                    n
+                                 Co
+
+                                                                                                  o
+                                                                                               Pr
+                                                                               us
+                               rk
+
+                                                   rk
+
+                                                                                              3.1
+                                                                               Op
+                               pa
+
+                                                  pa
+
+                                                                   .4
+                             S
+
+                                                   S
+
                                                                              e
-                        Mu                 Mu                GP                        Ge
+
+                                                                                            ni
+                                                               T-5
+
+                                                                          ud
+                          se
+
+                                                se
+
+                                                                                         mi
+                                                                        Cla
+                                                             GP
+                        Mu
+
+                                           Mu
+
+                                                                                       Ge
     Refusal Rates
   Social Engineering   100.0               31.2              99.5       99.6           86.9
                                                                                                       100

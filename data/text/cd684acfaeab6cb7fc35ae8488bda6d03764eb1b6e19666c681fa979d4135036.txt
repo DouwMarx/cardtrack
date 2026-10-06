@@ -421,8 +421,8 @@ We report reward against total tokens consumed (higher and further left is bette
               52.5                                            GPT-5.6 Sol (xhigh)
 
               50.0
-
      Reward
+
               47.5
                                                                       GPT-5.5 (xhigh)
 

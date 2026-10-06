@@ -198,8 +198,8 @@ benchmark.
                          Fable 5
 
                    60%                                   Kimi K3
-
        Score (%)
+
                                                                                             GPT-5.6 Sol
 
                    50%
@@ -227,8 +227,8 @@ benchmark.
                                Fable 5
 
                  60%
-
      Score (%)
+
                                                                  Kimi K3
 
                  50%

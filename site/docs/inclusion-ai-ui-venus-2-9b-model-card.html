@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-27T06:24:25Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. A UI-Venus-2-27B is named in the card&#39;s comparison tables but is not yet released; only the 9B weights are published. UI-Venus-2 technical report arXiv id is still a placeholder on the card. Predecessor UI-Venus-1.5 (Feb 2026) is not yet in the database.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%20e7005b5537d83853dc134c6b5d980cc85051a4fe1fd35736fef9546da5ebb1d7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ui-venus-2-9b-model-card&amp;body=Document%3A%20inclusion-ai-ui-venus-2-9b-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/UI-Venus-2-9B%0AFingerprint%3A%203748e93da72d0a966429d5ac6b6bbffb3b7d2f82ccc3f75bc80802b9b1ae98b1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-06T06:23:02Z</td>
+          <td>text/html</td>
+          <td>291,332</td>
+          <td><code title="3748e93da72d0a966429d5ac6b6bbffb3b7d2f82ccc3f75bc80802b9b1ae98b1">3748e93da72d0a96</code></td>
+<td><a href="https://data.systemcards.org/raw/a114d5ef88af17629288bea7c0438fccdebe5f53a391f890cb3e28fc12741761.html" rel="nofollow" title="archived copy, sha256 a114d5ef88af17629288bea7c0438fccdebe5f53a391f890cb3e28fc12741761">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-27T11:26:32Z</td>
           <td>text/html</td>
@@ -89,7 +96,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -148,6 +155,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/UI-Venus-2-9B" rel="noopener nofollow">https://huggingface.co/inclusionAI/UI-Venus-2-9B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-06T06:23:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-06T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/UI-Venus-2-9B" rel="noopener nofollow">https://huggingface.co/inclusionAI/UI-Venus-2-9B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -171,7 +186,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoProcessor, AutoModelForMultimodalLM
 processor = AutoProcessor.from_pretrained(&#34;inclusionAI/UI-Venus-2-9B&#34;)
 model = AutoModelForMultimodalLM.from_pretrained(&#34;inclusionAI/UI-Venus-2-9B&#34;, device_map=&#34;auto&#34;)
@@ -191,7 +207,7 @@ inputs = processor.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - Notebooks
@@ -429,7 +445,7 @@ Please cite the UI-Venus-2 technical report as follows:
   year    = {2025}
 }
 - Downloads last month
-- 8,127
+- 9,490
 Model tree for inclusionAI/UI-Venus-2-9B
 Base model
 Qwen/Qwen3.5-9B-Base</pre>
@@ -437,6 +453,6 @@ Qwen/Qwen3.5-9B-Base</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-05T06:23:03Z</p></footer>
+<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
 </body>
 </html>

@@ -27,8 +27,8 @@ Models on Hugging Face: Nemotron-Labs-Diffusion Model Family
                                                                                                                                                        is better
                                                                                                                             NLD-8B
                                                                                      Qwen3-8B                              (Quad. SS)
-
                                                               Average Accuracy (%)
+
                                                                                                                                          NLD-8B
         AR Mode                           Diffusion Mode                                        Ministral3-8B                           (Linear SS)
            Best for                 Highest Speed- of-Light                                      Qwen2.5-7B                                                                @ NVIDIA GB200
@@ -309,8 +309,11 @@ tured attention pattern, as shown in Fig. 3.                 ratios, which appli
                                                              = 0.3                  3.5                                           = 0.3
                                                              = 0.5                                                                = 0.5
               0.85                                           =1                                                                   =1
-       Loss                                                  = 1, no AR      Loss   3.0
-                                                                                                                                  = 1, no AR
+       Loss
+
+                                                                             Loss
+                                                             = 1, no AR                                                           = 1, no AR
+                                                                                    3.0
               0.80
 
               0.75                                                                  2.5
@@ -635,8 +638,8 @@ self-speculation in Sec. 3, which only commits a con-         exactly on every b
  2
  0                                                                                                 0
        Avg oleplay QA marize riting anities soning RAG STEM Math oding lingual                           Avg oleplay QA marize riting anities soning RAG STEM Math oding lingual
-                           W um Rea                             C ulti                                                       W um Rea                             C ulti
-         R         Sum        H                                  M
+         R                 W um Rea                             C ulti                                                       W um Rea                             C ulti
+                   Sum        H                                  M
                                                                                                            R         Sum        H                                  M
                                      Acceptance Rate                                                                                               TPF
 Figure 7 | Visualizing the acceptance rate and TPF across different SPEED-Bench categories for diffusion
@@ -1045,15 +1048,16 @@ Nemotron-Labs-Diffusion provides unique advantages
                            4000                                                            Autoregressive                                                                         FP8                        INT4 SOL                                                                                                                                                FP8
                                                                                                                                                                                                                12.36×                                                   1750                              SOL                                                                                        INT4 SOL
                                                                                            Linear SS                                                                              INT4-AWQ-Marlin                                                                                                                                                                    INT4-AWQ-Marlin
-
                                                                                                                                 Decode Throughput at c=1 (tok/sec)
-                                                                                                                                                                                                                989                                                                                                                                         250
 
+                                                                                                                                                                                                                989                                                                                                                                         250
                                                                                                                                                                                                                                       GPU Throughput at c=1 (tok/sec)
+
                            3500                                                            Qwen3-8B-Eagle3                                                           1000                                                                                                                                 5.75×                                                                                         9.03×
                                                                                                                                                                                                                                                                         1500                              1471                                                                                          223.1
+                                                                                                                                                                                                                                                                                                                              Throughput at c=1 (tok/sec)
+GPU Throughput (tok/sec)
 
-GPU Throughput (tok/sec)                                                                                                                                                                                                                                                                                                      Throughput at c=1 (tok/sec)
                                   BL=8
                            3000    c=64 c=64                                                                                                                                                                                                                                                                                                                                                     FP8 SOL
                                                                                                                                                                       800                                                                                                                                                                                   200                                   7.13×

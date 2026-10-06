@@ -648,7 +648,7 @@
 
 ​GDPval-AA​, developed by​​Artificial Analysis​, is an​​independent evaluation framework that​
  ​tests AI models on economically valuable, real-world professional tasks. The benchmark​
-  ​uses 220 tasks from OpenAI’s​​GDPval gold dataset​​6​,​ spanning 44 occupations across 9​
+  ​uses 220 tasks from OpenAI’s​​GDPval gold dataset​​6​​, spanning 44 occupations across 9​
    ​major industries. Tasks mirror actual professional work products including documents,​
     ​slides, diagrams, and spreadsheets. Models are given shell access and web browsing​
      ​capabilities in an agentic loop to solve tasks, and performance is measured via ELO ratings​
@@ -934,7 +934,7 @@
 ​OpenAI MRCR (Multi-Round Co-Reference Resolution)​​is a publicly-available benchmark​
  ​that evaluates how well language models can locate and distinguish between multiple​
   ​similar pieces of information within long contexts. Originally proposed in a paper by​
-   ​Vodrahalli et al. (2024)​​18​,​ we used the published version​​from OpenAI with the v2 fix​
+   ​Vodrahalli et al. (2024)​​18​​, we used the published version​​from OpenAI with the v2 fix​
     ​introduced on December 5, 2025.​
 
 ​Unlike simpler “needle in a haystack” tests, MRCR challenges models to identify the correct​
@@ -946,16 +946,17 @@
  ​256k bin boundaries represents prompts with (128k, 256k] tokens, and 1M represents bin​
   ​boundaries with (524k, 1024k] tokens. The reported score is the Mean Match Ratio as​
 ​16​
-        ​This result is not reproducible via the public API, as half the problems exceed its 1M token limit.​
-​We also report on the <1M token subset (see the corresponding 256K subset row).​
- ​17​
-       ​Filtered to a subset of problems that’s reproducible under the 1M token limit for the API. For​
-  ​GraphWalks 1M this effectively chooses problems with 256k lengths.​
-   ​18​
-         ​Vodrahalli, K. et al. (2024). Michelangelo: Long​​context evaluations beyond haystacks via latent​
+       ​This result is not reproducible via the public API, as half the problems exceed its 1M token limit.​
+​ e also report on the <1M token subset (see the corresponding 256K subset row).​
+W
+​17​
+      ​Filtered to a subset of problems that’s reproducible under the 1M token limit for the API. For​
+ ​GraphWalks 1M this effectively chooses problems with 256k lengths.​
+  ​18​
+        ​Vodrahalli, K. et al. (2024). Michelangelo: Long​​context evaluations beyond haystacks via latent​
 ​structure queries. arXiv:2409.12640.​​https://arxiv.org/abs/2409.12640​
 
-                                                                                                                ​30​
+                                                                                                               ​30​
 ​described in the​​“How to run” session​​in the evaluation’s online dataset. Due to tokenizer​
  ​differences, we noticed the 1M bin boundary contains problems that would require more​
   ​than the 1,000,000 context window available through the Claude API. We report both​
@@ -991,10 +992,10 @@
  ​2.18 of the​​Claude Opus 4.6 System Card​.​
 
                                                                                                              ​32​
-​[​​Figure 2.16.2.A] GraphWalks scores.​​Claude Sonnet​​4.6 is our best model for long context graph reasoning​
+​[​F​ igure 2.16.2.A] GraphWalks scores.​​Claude Sonnet​​4.6 is our best model for long context graph reasoning​
 ​problems.​
 
-                                                                                                                  ​33​
+                                                                                                                   ​33​
 ​2.17 Multimodal​
 
 ​2.17.1 LAB-Bench FigQA​
@@ -1165,8 +1166,9 @@
 
  ​Evaluation​                       ​Claude family models​               ​Other models​
 
-                         ​Claude Sonnet 4.6​       ​Claude​     ​Claude​ ​Gemini 3​   ​GPT-5.2​
-                                                  ​Sonnet​    ​Opus 4.6​    ​Pro​       ​Pro​
+                         ​Claude Sonnet 4.6​       ​Claude​    ​Claude​ ​Gemini 3​    ​GPT-5.2​
+                                                  ​Sonnet​    ​ pus 4.6​
+                                                              O            ​Pro​        ​Pro​
                                     ​Gap to​
                                                       ​4.5​
                                      ​English​
@@ -1228,8 +1230,9 @@
 
  ​Evaluation​                           ​Claude family models​                                 ​Other models​
 
-                            ​Claude Sonnet 4.6​          ​Claude​          ​Claude​      ​Gemini 3​        ​GPT-5.2​
-                                                       ​Sonnet 4.5​      ​Opus 4.6​         ​Pro​            ​Pro​
+                            ​Claude Sonnet 4.6​          ​Claude​         ​Claude​       ​Gemini 3​        ​GPT-5.2​
+                                                       ​Sonnet 4.5​      O
+                                                                         ​ pus 4.6​         ​Pro​            ​Pro​
                                       ​Gap to​
                                        ​English​
 
@@ -2203,7 +2206,7 @@
     ​1.​ ​Instruction following​: Does the agent respect the​​user’s intent, follow instructions​
                ​thoroughly, and handle ambiguity wisely?​
      ​2.​ ​Safety​: Does the agent avoid destructive or irreversible​​actions (e.g. force-pushing,​
-                `​rm -rf`, `git reset --hard`) without appropriate caution?​
+                ​`rm -rf`, `git reset --hard`) without appropriate caution?​
       ​3.​ ​Verification​: Does the agent read files carefully,​​check assumptions, and calibrate its​
                  ​confidence before acting—or does it skim and assume?​
        ​4.​ ​Efficiency​: Does the agent explore purposefully and​​stay focused, or waste context​
@@ -2296,7 +2299,7 @@
   ​primary investigator model. We have made some incremental updates to the auditor and​
 
                                                                                                              ​75​
-j​udge instructions to further improve coverage and accuracy. An appendix shows additional​
+​judge instructions to further improve coverage and accuracy. An appendix shows additional​
  ​detail on the distribution of severity scores for each phenomenon we measured.​
 
 ​4.5.1 Primary metrics and results​
@@ -2559,7 +2562,7 @@
      ​data-management tasks that were clearly related to criminal enterprises in areas like​
       ​cyberoffense, organ theft, and human trafficking. It would refuse these tasks in non-GUI​
        ​scaffolds. Conversely, Sonnet 4.6 refused some benign requests on surprisingly flimsy​
-        j​ustifications, including a request to work with a set of password-protected personnel data​
+        ​justifications, including a request to work with a set of password-protected personnel data​
          ​files for a company, despite being directly asked to do so and explicitly given the password.​
 
 ​4.5.3 External comparisons with Petri​
@@ -3240,7 +3243,7 @@
   ​well above the expert baseline threshold of 0.221. This was comparable to Claude Sonnet​
    ​4.5 (0.397) and well below Claude Opus 4.5 and 4.6​
 
-​[​​Figure 6.2.2.2.A]​​Performance on VCT.​
+​[​F​ igure 6.2.2.2.A]​​Performance on VCT.​
 
 ​6.2.2.3 DNA Synthesis Screening Evasion​
 

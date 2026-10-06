@@ -452,8 +452,8 @@ generation tasks, which we detail below.
 
 2.2.2. Generation Mode
 Cosmos 3 supports different modalities: language, vision, audio, and action. We denote clean vision, audio,
-and action tokens as 𝑣, 𝑠, and 𝑎, respectively, and their noisy counterparts with tildes: 𝑣˜, 𝑠˜, and ˜
-                                                                                                      𝑎. Given these
+and action tokens as 𝑣, 𝑠, and 𝑎, respectively, and their noisy counterparts with tildes: 𝑣˜, 𝑠˜, and 𝑎
+                                                                                                      ˜. Given these
 modalities, the supported generation modes are listed as follows:
 
    • Language. For language generation, the input contains only the autoregressive subsequence, and the
@@ -512,10 +512,10 @@ modalities, the supported generation modes are listed as follows:
    Video     𝑣𝑡−1        𝑣˜𝑡      𝑣˜𝑡+1          Video      𝑣𝑡−1        𝑣𝑡      𝑣𝑡+1          Video    𝑣𝑡−1          𝑣˜𝑡      𝑣˜𝑡+1
 
    Action           𝑎𝑡         𝑎𝑡+1              Action            𝑎
-                                                                   ˜𝑡        𝑎𝑡+1
-                                                                             ˜                Action          𝑎
-                                                                                                              ˜𝑡           𝑎𝑡+1
-                                                                                                                           ˜
+                                                                   ˜𝑡        𝑎
+                                                                             ˜𝑡+1             Action          𝑎
+                                                                                                              ˜𝑡           𝑎
+                                                                                                                           ˜𝑡+1
 
                 Tokens:               clean video         noisy video          clean action       noisy action
 
@@ -534,35 +534,54 @@ vision and action tokens. Language and special tokens are omitted for compactnes
 
           𝑣1AR   𝑣2AR   ···     𝑙1        𝑙2        ···    EOS   BOG   ˜1DM
                                                                        𝑣      ˜2DM
-                                                                              𝑣      ···   𝑠˜1     𝑠˜2     ···   𝑎1
-                                                                                                                 ˜      𝑎2
-                                                                                                                        ˜       ···                                                           Keys (K)
+                                                                              𝑣      ···   𝑠˜1     𝑠˜2     ···   𝑎
+                                                                                                                 ˜1     𝑎
+                                                                                                                        ˜2      ···                                                           Keys (K)
                                                                                                                                                                                    KAR                               KDM
 
                         AR subsequence                                               Diffusion subsequence
+
                                                                                                                                                                                                          M
-                                                                                                                                                                       𝑣 AR
-                                                                                                                                                                         1
-                                                                                                                                                                              ·
-                                                                                                                                                                              ··𝑙1
-                                                                                                                                                                                      ·
-                                                                                                                                                                                     ··     EOS
-                                                                                                                                                                                                  BO
-                                                                                                                                                                                                    G
                                                                                                                                                                                                         𝑣˜ D
-                                                                                                                                                                                                         1
+                                                                                                                                                                       𝑣 AR
+
+                                                                                                                                                                                                    G
+                                                                                                                                                                              ·
+
+                                                                                                                                                                                      ·
+
                                                                                                                                                                                                                ·
-                                                                                                                                                                                                               ··
-                                                                                                                                                                                                                𝑠˜1
+
                                                                                                                                                                                                                        ·
-                                                                                                                                                                                                                      ··      1
+
                                                                                                                                                                                                                                   ·
+                                                                                                                                                                                              S
+                                                                                                                                                                                                  BO
+
+                                                                                                                                                                                                                              1
+                                                                                                                                                                                            EO
+                                                                                                                                                                              ··
+
+                                                                                                                                                                                     ··
+
+                                                                                                                                                                                                               ··
+
+                                                                                                                                                                                                                      ··
+
                                                                                                                                                                                                                                   ··
-                                                                                                                                                                                                                             ˜𝑎
+                                                                                                                                                                                                                𝑠˜1
+                                                                                                                                                                                                         1
+                                                                                                                                                                         1
+
+                                                                                                                                                                                𝑙1
+
+                                                                                                                                                                                                                             𝑎˜
                                                                                                                                                                 𝑣1AR
                               Layer Norm                                                   Layer Norm                                                           ···
                                                                                                                                                                 𝑙1                Causal                            Masked
-                                                                                                                                                         QAR                   (triangular)                         (zero)
+
+                                                                                                                                                         QAR
+                                                                                                                                                                               (triangular)                         (zero)
                                                     Shared Multimodal Attention
                                                                                                                                                                 ···
 
@@ -576,10 +595,11 @@ vision and action tokens. Language and special tokens are omitted for compactnes
                                                                                                                                                                 ···
                               Layer Norm                                                   Layer Norm
                                                                                                                                                                 𝑠˜1                 Full                             Full
-                                                                                                                                                         QDM                       attend                           attend
-                                                                                                                                                                ···
-                                 MLP                                                              MLP                                                           𝑎1
-                                                                                                                                                                ˜
+
+                                                                                                                                                         QDM
+                                                                                                                                                                ···                attend                           attend
+                                 MLP                                                              MLP                                                           𝑎
+                                                                                                                                                                ˜1
                                                                                                                                                                 ···
                                      𝑙2        𝑙3     ···              𝑣1DM   𝑣2DM   ···   𝑠1      𝑠2      ···   𝑎1     𝑎2      ···
                                                                                                                                                                               AR causal self-attention
@@ -2750,8 +2770,11 @@ public benchmark suites, as well as custom evaluators developed specifically for
                             300              286.33                                                       4                                                                                                 Nano / PyTorch-OSS
                                                              vLLM-Omni                                                                   vLLM-Omni
                                                                                                                            3.44                                                                             Nano / vLLM-Omni
+  Total Latency (seconds)
 
-  Total Latency (seconds)                                                       Total Latency (seconds)                                                Total Latency (seconds)
+                                                                                Total Latency (seconds)
+
+                                                                                                                                                       Total Latency (seconds)
                                                                                                                                                                                  300                        Super / PyTorch-OSS
                                                                                                           3                              2.87
                                                                                                                                                                                                             Super / vLLM-Omni
@@ -2815,12 +2838,62 @@ autonomous driving, smart infrastructure, and general multimodal domains.
   individual benchmarks or group averages, and columns report model scores. Within each separated model
   block, best and second-best scores per row are shown in bold and underlined. † denotes a closed model.
 
-                                               Cosmos 3   Qwen3-VL   Cosmos-Reason2   Gemma-4   Gemini 3.1   Cosmos 3   Qwen3-VL   Cosmos-Reason2   Gemma-4   RynnBrain   MiMo-Embodied   Cosmos 3   Qwen3-VL   Cosmos-Reason2   Gemma-4   RynnBrain
+                                                                     Cosmos-Reason2
+
+                                                                                                                                   Cosmos-Reason2
+
+                                                                                                                                                                                                                Cosmos-Reason2
+                                                                                                                                                                          MiMo-Embodied
+                                                                                                Gemini 3.1
+
+                                                                                                                                                              RynnBrain
+
+                                                                                                                                                                                                                                           RynnBrain
+                                                          Qwen3-VL
+
+                                                                                                                        Qwen3-VL
+
+                                                                                                                                                                                                     Qwen3-VL
+                                               Cosmos 3
+
+                                                                                                             Cosmos 3
+
+                                                                                                                                                                                          Cosmos 3
+                                                                                      Gemma-4
+
+                                                                                                                                                    Gemma-4
+
+                                                                                                                                                                                                                                 Gemma-4
+                                                Super
+
+                                                                                                               Nano
+
+                                                                                                                                                                                            Edge
+                                                                                                  Pro†
                        Benchmark
 
-                                                                          32B                                                           8B                                     7B                                    2B
-                                                Super       32B                         31B       Pro†         Nano       8B                          E4B        8B                         Edge       2B                          E2B        2B
+                                                                                                                                                      E4B
 
+                                                                                                                                                                                                                                   E2B
+                                                            32B
+
+                                                                          32B
+
+                                                                                        31B
+
+                                                                                                                          8B
+
+                                                                                                                                        8B
+
+                                                                                                                                                                 8B
+
+                                                                                                                                                                               7B
+
+                                                                                                                                                                                                       2B
+
+                                                                                                                                                                                                                     2B
+
+                                                                                                                                                                                                                                              2B
                        MMBench-Dev              87.4 87.8              86.3            86.7       93.2        85.1       85.3        82.2            66.2 85.5 81.4                        76.6       77.2        73.6            60.2      81.9
                        RealWorldQA              79.2 80.3              76.1            71.8       81.8        72.2       73.2        68.2            61.0 72.5 72.0                        73.3       67.3        61.4            57.1      65.9
                        CVBench                  88.0 86.8              88.1            84.1       88.6        86.5       85.2        85.6            68.1 87.5 87.8                        84.9       78.7        78.7            56.1      85.7
@@ -2829,12 +2902,12 @@ autonomous driving, smart infrastructure, and general multimodal domains.
                        MVPBench                 70.3 58.6              62.2            27.0       59.4        66.9       51.6        54.2            32.8 50.1 43.3                        53.3       43.6        43.7            31.9      44.9
                        CountBenchQA             89.1 93.6              87.5            79.1       95.3        84.8       89.5        79.9            55.4 90.5 84.6                        89.9       87.5        79.7            56.9      86.0
                        AI2D                     87.8 88.2              87.5            88.9       93.8        85.0       84.8        83.6            78.2 85.7 83.2                        75.4       76.7        75.4            73.0      79.8
-
-   General
-                       DocVQA                   90.4 96.0              95.1            89.6       95.8        94.2       95.6        94.3            78.1 95.4 93.9                        86.8       92.8        89.9            73.4      91.8
-                       InfoVQA                  82.4 87.6              85.1            66.5       85.0        81.8       83.4        79.8            46.1 81.8 84.2                        60.1       71.7        65.0            37.8      70.5
-
 19 benchmarks
+
+                       DocVQA                   90.4 96.0              95.1            89.6       95.8        94.2       95.6        94.3            78.1 95.4 93.9                        86.8       92.8        89.9            73.4      91.8
+   General
+
+                       InfoVQA                  82.4 87.6              85.1            66.5       85.0        81.8       83.4        79.8            46.1 81.8 84.2                        60.1       71.7        65.0            37.8      70.5
                        OCRBench-v2              66.7 65.9              57.4            61.8       64.5        60.1       64.1        56.6            42.4 58.6 41.2                        43.7       54.2        50.1            37.8      41.0
                        LogicVista               55.9 47.9              46.1            57.0       81.9        43.2       41.8        37.4            31.5 40.3 39.6                        34.7       39.4        34.0            29.5      34.9
                        MMMU-Pro                 48.1 49.0              45.6            70.6       76.7        41.1       41.1        38.6            46.9 42.0 37.3                        26.4       32.3        26.9            39.9      30.3
@@ -2854,12 +2927,12 @@ autonomous driving, smart infrastructure, and general multimodal domains.
                        SparBench                54.9 48.0 42.9 46.6                               51.5        54.8       40.1        38.0 28.5 49.5 41.2                                   52.8       34.5        35.5 30.6                 47.8
                        RynnBrain-Area           53.0 53.1 50.4 58.7                               65.4        52.0       33.2        43.4 35.7 56.6 47.1                                   39.1       24.4        31.9 31.2                 58.1
                        RynnBrain-Spatial        34.5 16.8 42.2 32.4                               36.8        26.1       37.5        35.5 33.9 59.0 37.2                                   22.6       29.7        33.9 19.7                 55.7
-
-   Robotics
-                       RynnBrain-Trajectory     69.3 61.6 64.6 64.4                               71.3        67.9       54.8        64.4 63.5 61.1 61.1                                   58.7       54.7        61.1 60.9                 53.5
-                       RynnBrain-Affordance     84.6 84.2 86.8 87.8                               86.8        85.1       82.6        84.6 84.4 85.3 85.7                                   77.6       70.5        80.0 77.0                 90.4
-
 17 benchmarks
+
+                       RynnBrain-Trajectory     69.3 61.6 64.6 64.4                               71.3        67.9       54.8        64.4 63.5 61.1 61.1                                   58.7       54.7        61.1 60.9                 53.5
+   Robotics
+
+                       RynnBrain-Affordance     84.6 84.2 86.8 87.8                               86.8        85.1       82.6        84.6 84.4 85.3 85.7                                   77.6       70.5        80.0 77.0                 90.4
                        RynnBrain-Object         48.3 57.0 44.9 47.2                               51.5        39.8       49.2        42.0 35.2 71.6 33.5                                   24.0       41.2        30.1 26.7                 70.7
                        RynnBrain-Grounding      74.4 77.0 76.7 72.4                               82.8        72.9       68.8        72.5 59.3 74.2 57.8                                   51.6       33.1        54.3 31.1                 45.5
                        MMSIBench                41.8 33.0 31.4 32.3                               40.8        36.2       26.3        29.5 37.6 38.4 30.1                                   32.3       28.5        28.9 33.7                 33.2
@@ -2873,13 +2946,13 @@ autonomous driving, smart infrastructure, and general multimodal domains.
 
                        VANTAGE-2DGrounding      76.2 72.4 45.7                         45.1       46.9        75.6       73.3        66.9            10.1      67.6         59.4           49.8 65.1 56.3                          5.5      49.2
                        VANTAGE-Astro2D          81.5 76.8 22.6                         68.7       77.7        78.3       69.2        81.1            58.8      10.5         57.8           76.7 56.6 72.5                         48.4       0.0
-
 Smart Infrastructure
+
                        VANTAGE-2DPointing       72.9 75.6 74.0                         76.8       85.6        74.8       68.6        68.7            43.4      64.9         55.0           63.0 53.1 59.7                         31.7      60.3
+  9 benchmarks
+
                        VANTAGE-DVC              29.5 29.4 30.1                         29.6       30.2        31.4       29.6        32.5            14.3      28.4          2.2           20.9 0.8 28.5                           9.3       0.0
                        VANTAGE-EventVerif       71.3 60.0 73.6                         55.2       67.5        68.9       59.4        64.1            40.6      58.9         58.0           64.8 44.7 55.3                         27.6      41.6
-
-  9 benchmarks
                        VANTAGE-SOT              62.2 44.2 33.1                         54.7       72.7        59.2       33.1        37.7            16.0       4.8          9.2           18.7 29.8 26.7                         11.5       4.8
                        VANTAGE-Temporal         51.9 46.8 50.5                         33.0       41.7        48.0       43.3        47.3            16.9      20.1          5.9           39.1 35.2 39.0                          9.0      25.9
                        VANTAGE-VQA              69.5 71.3 70.3                         67.0       71.2        69.0       66.4        68.0            51.5      65.4         67.5           64.4 63.9 64.7                         46.2      62.9
@@ -2888,9 +2961,14 @@ Smart Infrastructure
                        Smart Infra. Avg.        62.6       56.1        48.5            51.3       58.6        61.0       52.7        55.6            29.4      39.5         38.6           47.9       42.4        47.7            22.0      31.0
 
                        LingoQA                  76.8       66.4        70.0            57.2       71.2        71.4       68.4        71.6            24.2      60.4         70.4           58.4 59.2 58.2                         19.0      50.2
-   Driving             AVSpecialCollision       79.3       37.3        77.3            32.3       54.0        79.0       34.0        74.0            33.3      33.7         37.3           66.7 36.3 74.3                         33.7      33.3
+3 benchmarks
+
+                       AVSpecialCollision       79.3       37.3        77.3            32.3       54.0        79.0       34.0        74.0            33.3      33.7         37.3           66.7 36.3 74.3                         33.7      33.3
+   Driving
+
                        AVSpecialStopBehavior    81.6       18.4        69.4            20.4       16.3        77.5       36.7        59.2            20.4      36.7         42.9           53.1 32.6 34.7                         20.4      36.7
-3 benchmarks           Driving Avg.             79.3       40.7        72.2            36.6       47.2        76.0       46.4        68.3            26.0      43.6         50.2           59.4       42.7        55.7            24.4      40.1
+
+                       Driving Avg.             79.3       40.7        72.2            36.6       47.2        76.0       46.4        68.3            26.0      43.6         50.2           59.4       42.7        55.7            24.4      40.1
 
                                                                                                                                                                                                                                                 51
                                   Cosmos 3: Omnimodal World Models for Physical AI
@@ -3614,9 +3692,7 @@ convergence and stronger downstream adaptation in the egocentric domain.
 
                                           Cosmos3-Nano
                        Ground Truth          (MT-init)                 Lingbot-World      HY-World 1.5
-
  Dolly out, Pan left
-
  Orbit right
 
 Figure 23: Camera forward dynamics comparison. Given complex realistic trajectories, Cosmos3-Nano
@@ -3651,13 +3727,9 @@ across vague prompts, default prompts and specific prompts. This split tests rob
                                     Cosmos 3: Omnimodal World Models for Physical AI
 
                                            Start                            End
-
      Ground Truth
-
-Cosmos3-Nano
-
              Ctrl-World
-
+Cosmos3-Nano
    (MT-init)
 
 Figure 24: Qualitative comparison for robotics forward dynamics. The generated frames closely follow the
@@ -3805,33 +3877,120 @@ and column domains for 4,000 iterations, while a diagonal cell is the correspond
                      Franka Panda   21.38      21.33      21.88   21.34     21.53                              Franka Panda   0.002   0.003   0.002   0.003   0.002
                                                                                      21.37             −0.75                                                                0.003
                               Dual Δ+0.00      Δ-0.05    Δ+0.51   Δ-0.03   Δ+0.15                                       Dual Δ-0.001 Δ-0.001 Δ-0.001 Δ-0.001 Δ-0.001                          −0.04
-
 Evaluation Dataset
-                              Au             C                  Go
-                                                               Ro ogl                                                   Au             C                 Go
-                                                                                                                                                        Ro ogl
-                                             M ame                                            (no synergy)                             M ame                                         (no synergy)
-                                                                  bo e                                                                                     bo e
-                                 tono         ot ra            W id   t                                                    tono         ot ra           W id   t
-                                                io                                                                                        io
-                                                                    ow                                                                                       ow
-                                  Ve mo                                                                                     Ve mo
-                                                                  25 X                                                                                     25 X
-                                    hi us         n     Fr an ka Pa
-                                                                      0
-                                                                                                                              hi us         n    Fr an ka P
-                                                                                                                                                        Si and
-                                                                                                                                                               0
-                                      cle                                                                                       cle
-                                                        Fr     Si nd
+
+                                    hi us
+
+                                              ot ra
+
+                                                                                                                              hi us
+
+                                                                                                                                        ot ra
+                                                                  bo e
+
+                                                                  25 X
+
                                                                   ng a
-                                                                     le                                                                          Fr        ng a
-                                                                                                                                                              le
-                                                           an ka Pa                                                                                 anka  Pa
-                                                                    n
+
                                                                  Du da
-                                                                     al                                                                                   Dunda
+
+                                                                                                                                                           bo e
+
+                                                                                                                                                           25 X
+
+                                                                                                                                                           ng a
+
+                                                                                                                                                          Dunda
+                                                                                              (no synergy)                                                                           (no synergy)
+                                                               Ro ogl
+
+                                                                                                                                                        Ro ogl
+                                                               Si nd
+
+                                                                                                                                                        Si and
+                                                                    ow
+
+                                                                                                                                                             ow
+                                                  n
+
+                                                                                                                                            n
+                                      cle
+
+                                                                      0
+
+                                                                                                                                cle
+
+                                                                                                                                                               0
+                                                                     le
+
+                                                                     al
+
+                                                                                                                                                              le
+
                                                                                                                                                               al
+                                             M ame
+
+                                                                                                                                       M ame
+                                  Ve mo
+
+                                                                      t
+
+                                                                                                                            Ve mo
+
+                                                                                                                                                               t
+                                                                    n
+                                                io
+
+                                                                                                                                          io
+                                                                 Pa
+
+                                                                 Pa
+
+                                                                                                                                                          Pa
+                                                                Go
+
+                                                                                                                                                         Go
+                                                                 id
+
+                                                                                                                                                          id
+
+                                                                                                                                                          P
+                                   no
+
+                                                                                                                             no
+                                             C
+
+                                                                                                                                       C
+                                                               W
+
+                                                                                                                                                        W
+                                                              ka
+
+                                                              ka
+
+                                                                                                                                                       ka
+
+                                                                                                                                                      ka
+                                 to
+
+                                                                                                                           to
+                                                           an
+
+                                                           an
+
+                                                                                                                                                    an
+
+                                                                                                                                                    an
+                              Au
+
+                                                                                                                        Au
+                                                        Fr
+
+                                                        Fr
+
+                                                                                                                                                 Fr
+
+                                                                                                                                                 Fr
                                                                                                (synergy)                                                                              (synergy)
                                                         Policy PSNR ↑                                                                            Policy MSE ↓
                                                                                                                                                                                               0.100
@@ -3875,34 +4034,118 @@ Evaluation Dataset
                                                                                      21.30                                                                                  0.062
                               Dual   Δ-0.03   Δ+0.01 Δ+0.04 Δ+0.01 Δ+0.02                                               Dual Δ-0.002 Δ+0.002 Δ+0.004 Δ+0.009 Δ+0.002
                                                                                                                                                                                               −0.100
+                                    hi us
 
-                              Au             C                                                                          Au             C
-                                                                Go
-                                                               Ro ogl                                                                                    Go
-                                                                                                                                                        Ro ogl
-                                             M ame                                            (no synergy)                             M ame                                         (no synergy)
-                                                                  bo e                                                                                     bo e
-                                 tono         ot ra            W id  t                                                     tono         ot ra           W id   t
-                                                io                                                                                        io
-                                                                   ow                                                                                        ow
-                                  Ve mo                                                                                     Ve mo
-                                                                  25 X                                                                                     25 X
-                                    hi us         n     Fr an ka Pa
-                                                                     0
-                                                                                                                              hi us         n    Fr anka  P
-                                                                                                                                                        Si and
-                                                                                                                                                               0
-                                      cle                                                                                       cle
-                                                        Fr     Si nd
+                                              ot ra
+
+                                                                                                                              hi us
+
+                                                                                                                                        ot ra
+                                                                  bo e
+
+                                                                  25 X
+
                                                                   ng a
-                                                                    le                                                                           Fr        ng a
-                                                                                                                                                              le
-                                                           an ka Pa                                                                                 an ka Pa
-                                                                    n
-                                                                 Du da
-                                                                    al                                                                                    Dunda
-                                                                                                                                                              al
 
+                                                                 Du da
+
+                                                                                                                                                           bo e
+
+                                                                                                                                                           25 X
+
+                                                                                                                                                           ng a
+
+                                                                                                                                                          Dunda
+                                                                                              (no synergy)                                                                           (no synergy)
+                                                               Ro ogl
+
+                                                                                                                                                        Ro ogl
+                                                               Si nd
+
+                                                                                                                                                        Si and
+                                                                   ow
+
+                                                                                                                                                             ow
+                                                  n
+
+                                                                                                                                            n
+                                      cle
+
+                                                                     0
+
+                                                                                                                                cle
+
+                                                                                                                                                               0
+                                                                    le
+
+                                                                    al
+
+                                                                                                                                                              le
+
+                                                                                                                                                              al
+                                             M ame
+
+                                                                                                                                       M ame
+                                  Ve mo
+
+                                                                     t
+
+                                                                                                                            Ve mo
+
+                                                                                                                                                               t
+                                                                    n
+                                                io
+
+                                                                                                                                          io
+                                                                 Pa
+
+                                                                 Pa
+
+                                                                                                                                                          Pa
+                                                                Go
+
+                                                                                                                                                         Go
+                                                                 id
+
+                                                                                                                                                          id
+
+                                                                                                                                                          P
+                                   no
+
+                                                                                                                             no
+                                             C
+
+                                                                                                                                       C
+                                                               W
+
+                                                                                                                                                        W
+                                                              ka
+
+                                                              ka
+
+                                                                                                                                                      ka
+
+                                                                                                                                                       ka
+                                 to
+
+                                                                                                                           to
+                                                           an
+
+                                                           an
+
+                                                                                                                                                    an
+
+                                                                                                                                                    an
+                              Au
+
+                                                                                                                        Au
+                                                        Fr
+
+                                                        Fr
+
+                                                                                                                                                 Fr
+
+                                                                                                                                                 Fr
                                                                                     Training / Co-trained Dataset
 
      Figure 28: Synergy study across ego-motion and robot manipulation domains. Rows denote evaluation
@@ -3937,8 +4180,8 @@ Evaluation Dataset
                                                                                                          20.0
                                                     23.20
                                       23.07
-
 Evaluation dataset
+
                          AgiBot                                                                                                                                         +1.43
                                                    Δ+0.13               0.05                                                                                 +1.38
 
@@ -5826,15 +6069,10 @@ Fig. 35 shows the modalities for one frame per scenario.
                                                                                                                103
                                               Cosmos 3: Omnimodal World Models for Physical AI
 
-                    RGB                       Depth                  Segmentation         Shaded Segmentation                 Edges
-
      Near-miss
-
      Fire
-
      Collision
-
-     Box pickup
+     Box pickup     RGB                       Depth                  Segmentation         Shaded Segmentation                 Edges
 
 Figure 35: SDG-Warehouse dataset. Sample view of the four scenarios and the annotations (RGB clips, metric
 depth, instance segmentation, shaded segmentation, and Canny edge).
@@ -5885,12 +6123,12 @@ the largest gain in the Robot domain (+0.89) and a strong Common Sense improveme
                                                                           centroids. CosSim is the mean of
                                                        SDG-SynHuman
                                                        SDG-Warehouse
-
-                                                                          max𝑗 cos(g𝑖 , c𝑗 ). MMD2 is an unbiased local
          10
-
+                                                                          max𝑗 cos(g𝑖 , c𝑗 ). MMD2 is an unbiased local
           8                                                               Maximum Mean Discrepancy (RBF kernel,
-UMAP-2                                                                    median-heuristic bandwidth). #Local is the
+UMAP-2
+
+                                                                          median-heuristic bandwidth). #Local is the
           6
                                                                           number of distinct centroids the source’s
           4
@@ -6161,14 +6399,10 @@ closely match the corresponding frames from simulator rollouts initialized from 
                                      Cosmos 3: Omnimodal World Models for Physical AI
 
                Sim Env
-
 Wrist Camera
                Pred
-
                Sim Env
-
 Left Camera
-
                Pred
 
    Figure 37: Predicted video vs. simulator rollout on RoboLab. For the wrist and left cameras, Sim Env shows
