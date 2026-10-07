@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:26:50Z</dd>
     <dt>Versions</dt>
-    <dd>5</dd>
+    <dd>6</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20moonshot-ai-kimi-k2-5-model-card&amp;body=Document%3A%20moonshot-ai-kimi-k2-5-model-card%0AURL%3A%20https%3A//huggingface.co/moonshotai/Kimi-K2.5%0AFingerprint%3A%20de12859195fe6447a4b1b9556098e3a7e03ebf12a79284cd8a0a10fa0d134e80%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20moonshot-ai-kimi-k2-5-model-card&amp;body=Document%3A%20moonshot-ai-kimi-k2-5-model-card%0AURL%3A%20https%3A//huggingface.co/moonshotai/Kimi-K2.5%0AFingerprint%3A%207037fe4b84d6a0f80606ca406d046804d35d2c844ecdcd3826a5ee4e0c17a1ce%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:48Z</td>
+          <td>text/html</td>
+          <td>661,447</td>
+          <td><code title="7037fe4b84d6a0f80606ca406d046804d35d2c844ecdcd3826a5ee4e0c17a1ce">7037fe4b84d6a0f8</code></td>
+<td><a href="https://data.systemcards.org/raw/0f7af50acd34fa02fd4d2004c06acfa4040c2190690dec3eebef38737785f425.html" rel="nofollow" title="archived copy, sha256 0f7af50acd34fa02fd4d2004c06acfa4040c2190690dec3eebef38737785f425">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-28T06:18:14Z</td>
           <td>text/html</td>
@@ -102,7 +109,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 8 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -179,6 +186,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/moonshotai/Kimi-K2.5" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K2.5</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:48Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/moonshotai/Kimi-K2.5" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K2.5</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -202,7 +217,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoProcessor, AutoModel
 processor = AutoProcessor.from_pretrained(&#34;moonshotai/Kimi-K2.5&#34;, trust_remote_code=True)
 model = AutoModel.from_pretrained(&#34;moonshotai/Kimi-K2.5&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
@@ -222,7 +238,7 @@ inputs = processor.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -579,7 +595,7 @@ If you find K2.5 useful for your research, please kindly cite K2.5 technical rep
       url={https://arxiv.org/abs/2602.02276},
 }
 - Downloads last month
-- 317,440
+- 337,078
 Model tree for moonshotai/Kimi-K2.5
 Spaces using moonshotai/Kimi-K2.5 100
 Collection including moonshotai/Kimi-K2.5
@@ -588,14 +604,14 @@ Evaluation results
 - Idavidrein/gpqa · Diamond leaderboard
 - GPQA Diamond View evaluation results source87.37 *
 - default View evaluation results87.6
-- mercor/apex-agents · Apex Agents View evaluation results  source leaderboard14.4 *
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   50.7
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results  source leaderboard70.8 *
-- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   87.1</pre>
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   50.7
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   87.1
+- PaddlePaddle/Real5-OmniDocBench leaderboard</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

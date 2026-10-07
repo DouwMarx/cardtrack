@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:28Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>MIT licence. First Ring-line document in the corpus; shares the Ling and Ring 2.6 technical report with Ling-2.6-1T and Ling-2.6-flash.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.6-1T%0AFingerprint%3A%2040096e2b369d41de477b5a9bfa9922c985c8faa11dd65956c98056ed64387688%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.6-1T%0AFingerprint%3A%203d36e3495a2a1dbc6929b738beeb8626e4037253a3a518a6b5cf507de41c27fc%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:43Z</td>
+          <td>text/html</td>
+          <td>417,911</td>
+          <td><code title="3d36e3495a2a1dbc6929b738beeb8626e4037253a3a518a6b5cf507de41c27fc">3d36e3495a2a1dbc</code></td>
+<td><a href="https://data.systemcards.org/raw/2e7a8ebd8eb81b6e28d5d90d140400cec9a8fd206a2cd3fcc1ca31250110eb40.html" rel="nofollow" title="archived copy, sha256 2e7a8ebd8eb81b6e28d5d90d140400cec9a8fd206a2cd3fcc1ca31250110eb40">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-28T06:18:09Z</td>
           <td>text/html</td>
@@ -89,7 +96,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -134,6 +141,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:43Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -151,7 +166,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;inclusionAI/Ring-2.6-1T&#3
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;inclusionAI/Ring-2.6-1T&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Notebooks
@@ -283,7 +299,7 @@ Training content summary
 The public training-content summary identifying Ring-2.6-1T is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
 This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
 - Downloads last month
-- 1,121
+- 1,174
 Spaces using inclusionAI/Ring-2.6-1T 4
 Collection including inclusionAI/Ring-2.6-1T
 Paper for inclusionAI/Ring-2.6-1T
@@ -296,6 +312,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

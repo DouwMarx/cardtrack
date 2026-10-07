@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:24Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Quantised siblings Step-3.5-Flash-FP8 (2026-05-23) and Step-3.5-Flash-GGUF (2026-05-28) are re-uploads covered by this card, not separate rows.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-3-5-flash-model-card&amp;body=Document%3A%20stepfun-step-3-5-flash-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-3.5-Flash%0AFingerprint%3A%201aa8465b4fda1d24657792e72cb29fc4b4d2b8e25e75eb34416c8ea36608c6fe%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-3-5-flash-model-card&amp;body=Document%3A%20stepfun-step-3-5-flash-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-3.5-Flash%0AFingerprint%3A%20f36bd8749b4fa4ac5c1814120e55893b037d66cb3948d454cd294137de090a98%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:41Z</td>
+          <td>text/html</td>
+          <td>428,729</td>
+          <td><code title="f36bd8749b4fa4ac5c1814120e55893b037d66cb3948d454cd294137de090a98">f36bd8749b4fa4ac</code></td>
+<td><a href="https://data.systemcards.org/raw/cbec168405c9eeea6d8268055a54e909dac513c2b8c6e8bd87472d3562455829.html" rel="nofollow" title="archived copy, sha256 cbec168405c9eeea6d8268055a54e909dac513c2b8c6e8bd87472d3562455829">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-28T06:18:06Z</td>
           <td>text/html</td>
@@ -88,7 +95,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -124,6 +131,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/stepfun-ai/Step-3.5-Flash" rel="noopener nofollow">https://huggingface.co/stepfun-ai/Step-3.5-Flash</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:41Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/stepfun-ai/Step-3.5-Flash" rel="noopener nofollow">https://huggingface.co/stepfun-ai/Step-3.5-Flash</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -141,7 +156,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;stepfun-ai/Step-3.5-Flash&
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;stepfun-ai/Step-3.5-Flash&#34;, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(&#34;stepfun-ai/Step-3.5-Flash&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
@@ -155,7 +171,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -606,7 +622,7 @@ If you find this project useful in your research, please cite our technical repo
 License
 This project is open-sourced under the Apache 2.0 License.
 - Downloads last month
-- 145,948
+- 212,018
 Model tree for stepfun-ai/Step-3.5-Flash
 Spaces using stepfun-ai/Step-3.5-Flash 94
 Collection including stepfun-ai/Step-3.5-Flash
@@ -616,17 +632,16 @@ PaCoRe: Learning to Scale Test-Time Compute with Parallel Coordinated Reasoning
 Step-3 is Large yet Affordable: Model-system Co-design for Cost-effective Decoding
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results  source leaderboard83.5
-- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results  source leaderboard84.4
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results  source leaderboard74.4
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results  source leaderboard84.4
+- cais/hle · Hle View evaluation results  source23.1 *
+- harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results  source leaderboard51
 - internlm/WildClawBench leaderboard
-- Overall View evaluation resultssource26.7
-- Avg Time View evaluation resultssource430
-- Avg Cost View evaluation resultssource6.6
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results source leaderboard</pre>
+- Overall View evaluation resultssource26.7</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

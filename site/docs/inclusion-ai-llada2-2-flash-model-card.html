@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:29Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Card notes &#39;more results will be released in the upcoming technical report&#39;, so expect revisions.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada2-2-flash-model-card&amp;body=Document%3A%20inclusion-ai-llada2-2-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA2.2-flash%0AFingerprint%3A%203209a5c8f8f2f7290e08e9123b9e186907d8df38684e0314cc98f5ffed4f7f33%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada2-2-flash-model-card&amp;body=Document%3A%20inclusion-ai-llada2-2-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA2.2-flash%0AFingerprint%3A%2084d088810c761928d1a45cae5f59e5ad1ee0536f391a34f360e23c6b27a7f8c4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:44Z</td>
+          <td>text/html</td>
+          <td>238,069</td>
+          <td><code title="84d088810c761928d1a45cae5f59e5ad1ee0536f391a34f360e23c6b27a7f8c4">84d088810c761928</code></td>
+<td><a href="https://data.systemcards.org/raw/caa062bbcf4f777212709b3057a8a023951887a3f3a07b13d8e8e8d5692e4de0.html" rel="nofollow" title="archived copy, sha256 caa062bbcf4f777212709b3057a8a023951887a3f3a07b13d8e8e8d5692e4de0">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-21T07:37:29Z</td>
           <td>text/html</td>
@@ -74,7 +81,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -94,6 +101,14 @@
           <div class="evidence">Evidence:
 <a href="https://github.com/inclusionAI/LLaDA2.X/blob/main/LLaDA2_2_tech_report.pdf" rel="noopener nofollow">https://github.com/inclusionAI/LLaDA2.X/blob/main/LLaDA2_2_tech_report.pdf</a> · <a href="https://huggingface.co/api/models/inclusionAI/LLaDA2.2-flash/commits/main" rel="noopener nofollow">https://huggingface.co/api/models/inclusionAI/LLaDA2.2-flash/commits/main</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:44Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/LLaDA2.2-flash" rel="noopener nofollow">https://huggingface.co/inclusionAI/LLaDA2.2-flash</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -111,7 +126,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;inclusionAI/LLaDA2.2-flash
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;inclusionAI/LLaDA2.2-flash&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Notebooks
@@ -272,11 +288,11 @@ This project is licensed under the terms of the Apache License 2.0.
 For questions, collaboration opportunities, or feedback, please reach out via Hugging Face or open an issue in the repository.
 Join us in advancing open, efficient, and intelligent diffusion language models for agentic applications.
 - Downloads last month
-- 1,203</pre>
+- 710</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

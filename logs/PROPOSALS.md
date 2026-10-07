@@ -1958,3 +1958,13 @@ Concrete case: Upstage was added on 2026-09-22 with one catalogued row (Solar Op
 - `upstage.ai/blog/en/solar-pro-4` (dated 2026-08-11).
 - Artificial Analysis articles on Solar Pro 4 and Solar Mini 4.
 - Document 362 (written today).
+---
+
+## 2026-10-07 — Phase A's per-document check reports openai.com rows as 403 that the pipeline's own impersonation fetcher reads fine
+
+**Problem.** Phase A reports every openai.com / help.openai.com row as HTTP 403 (13 rows at streak 6, a 14th at streak 1) and escalates them to task 5 each run. On 2026-10-06 and 2026-10-07 `scripts/read_doc.py`, which reuses the pipeline's own fetcher, read path-to-astra, accelerating-cyber-defense-ecosystem and the Daybreak help article with HTTP 200 via `browser_impersonation`. So the streak measures the monitor's first fetch attempt, not whether the document is reachable. Two costs follow: (1) each run re-verifies 13+ live pages by hand, and (2) these rows get no new versions, so revisions to OpenAI access-policy pages (Daybreak tiers, Rosalind terms) are invisible to the change monitor.
+
+**Suggested change.** Have the monitor's per-document check take the same impersonation fallback that `read_doc.py` uses before recording a 403 and incrementing `streak`. Or, if the fallback already runs, record the final transport outcome rather than the first attempt. A row should only escalate when the impersonation fetch also fails.
+
+**Evidence.** `logs/candidates.json` `phase_a_summary.blocked` (run 2026-10-07T06:16Z-local); friction entries 2026-10-06T06:29:51Z and the 2026-10-07 recurrence; run reports for 2026-10-06 and 2026-10-07, task 5.
+

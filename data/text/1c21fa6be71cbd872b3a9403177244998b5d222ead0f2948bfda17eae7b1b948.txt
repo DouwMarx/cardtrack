@@ -1,0 +1,12 @@
+June 30, 2026Blog
+Deprecatedv1.5
+Leanstral 1.5
+An updated Lean 4 formal proof engineering model optimised for automated theorem proving and autoformalization. 119B total parameters, 6.5B active.
+Modalities
+Context
+256k
+Max output
+128k
+This model is deprecated and is being phased out.
+Deprecation date9/29/2026
+Other Models

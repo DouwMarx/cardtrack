@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:26Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Successor to Step-Audio-R1; the &#39;Realtime&#39; variant is this same card.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-audio-r1-1-model-card&amp;body=Document%3A%20stepfun-step-audio-r1-1-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-Audio-R1.1%0AFingerprint%3A%20e52aae0b5c5ffff1d933edef9bd7e40cd8477aec7316389827ca98755a5a8f21%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-audio-r1-1-model-card&amp;body=Document%3A%20stepfun-step-audio-r1-1-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-Audio-R1.1%0AFingerprint%3A%2022427848a7405a2933a2af5f6c45fff9658aa74c1a95c7f95612706dbf4660a6%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:41Z</td>
+          <td>text/html</td>
+          <td>198,405</td>
+          <td><code title="22427848a7405a2933a2af5f6c45fff9658aa74c1a95c7f95612706dbf4660a6">22427848a7405a29</code></td>
+<td><a href="https://data.systemcards.org/raw/f89d373bf3e10eccaf4acd58e41cd457ad1ab312a12b97aa4974c64d15f1c4ce.html" rel="nofollow" title="archived copy, sha256 f89d373bf3e10eccaf4acd58e41cd457ad1ab312a12b97aa4974c64d15f1c4ce">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-21T07:37:26Z</td>
           <td>text/html</td>
@@ -74,7 +81,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -94,6 +101,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.stepfun.com/studio/audio" rel="noopener nofollow">https://www.stepfun.com/studio/audio</a> · <a href="https://huggingface.co/spaces/stepfun-ai/Step-Audio-R1" rel="noopener nofollow">https://huggingface.co/spaces/stepfun-ai/Step-Audio-R1</a> · <a href="https://huggingface.co/api/models/stepfun-ai/Step-Audio-R1.1/commits/main" rel="noopener nofollow">https://huggingface.co/api/models/stepfun-ai/Step-Audio-R1.1/commits/main</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:41Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/stepfun-ai/Step-Audio-R1.1" rel="noopener nofollow">https://huggingface.co/stepfun-ai/Step-Audio-R1.1</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -105,7 +120,8 @@
         use the <a href="https://huggingface.co/stepfun-ai/Step-Audio-R1.1" rel="noopener nofollow">original</a> for reading)</summary>
       <pre class="extracted" data-pagefind-body>Instructions to use stepfun-ai/Step-Audio-R1.1 with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
 - Libraries
--  Transformers How to use stepfun-ai/Step-Audio-R1.1 with Transformers: # Load model directly
+-  Transformers How to use stepfun-ai/Step-Audio-R1.1 with Transformers: # pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;stepfun-ai/Step-Audio-R1.1&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Notebooks
@@ -188,11 +204,11 @@ python3 -m vllm.entrypoints.openai.api_server \
     --chat-template &#39;{%- macro render_content(content) -%}{%- if content is string -%}{{- content.replace(&#34;&lt;audio_patch&gt;\n&#34;, &#34;&lt;audio_patch&gt;&#34;) -}}{%- elif content is mapping -%}{{- content[&#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39;] if &#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39; in content else content[&#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39;] -}}{%- elif content is iterable -%}{%- for item in content -%}{%- if item.type == &#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39; -%}{{- item[&#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39;] if &#39;&#34;&#39;&#34;&#39;value&#39;&#34;&#39;&#34;&#39; in item else item[&#39;&#34;&#39;&#34;&#39;text&#39;&#34;&#39;&#34;&#39;] -}}{%- elif item.type == &#39;&#34;&#39;&#34;&#39;audio&#39;&#34;&#39;&#34;&#39; -%}&lt;audio_patch&gt;{%- endif -%}{%- endfor -%}{%- endif -%}{%- endmacro -%}{%- if tools -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;system\n&#39;&#34;&#39;&#34;&#39; -}}{%- if messages[0][&#39;&#34;&#39;&#34;&#39;role&#39;&#34;&#39;&#34;&#39;] == &#39;&#34;&#39;&#34;&#39;system&#39;&#34;&#39;&#34;&#39; -%}{{- render_content(messages[0][&#39;&#34;&#39;&#34;&#39;content&#39;&#34;&#39;&#34;&#39;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;tool_json_schemas\n&#39;&#34;&#39;&#34;&#39; + tools|tojson + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- else -%}{%- if messages[0][&#39;&#34;&#39;&#34;&#39;role&#39;&#34;&#39;&#34;&#39;] == &#39;&#34;&#39;&#34;&#39;system&#39;&#34;&#39;&#34;&#39; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;system\n&#39;&#34;&#39;&#34;&#39; + render_content(messages[0][&#39;&#34;&#39;&#34;&#39;content&#39;&#34;&#39;&#34;&#39;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- endif -%}{%- for message in messages -%}{%- if message[&#34;role&#34;] == &#34;user&#34; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;human\n&#39;&#34;&#39;&#34;&#39; + render_content(message[&#34;content&#34;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- elif message[&#34;role&#34;] == &#34;assistant&#34; -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;assistant\n&#39;&#34;&#39;&#34;&#39; + (render_content(message[&#34;content&#34;]) if message[&#34;content&#34;] else &#39;&#34;&#39;&#34;&#39;&#39;&#34;&#39;&#34;&#39;) -}}{%- set is_last_assistant = true -%}{%- for m in messages[loop.index:] -%}{%- if m[&#34;role&#34;] == &#34;assistant&#34; -%}{%- set is_last_assistant = false -%}{%- endif -%}{%- endfor -%}{%- if not is_last_assistant -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- elif message[&#34;role&#34;] == &#34;function_output&#34; -%}{%- else -%}{%- if not (loop.first and message[&#34;role&#34;] == &#34;system&#34;) -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;&#39;&#34;&#39;&#34;&#39; + message[&#34;role&#34;] + &#39;&#34;&#39;&#34;&#39;\n&#39;&#34;&#39;&#34;&#39; + render_content(message[&#34;content&#34;]) + &#39;&#34;&#39;&#34;&#39;&lt;|EOT|&gt;&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt -%}{{- &#39;&#34;&#39;&#34;&#39;&lt;|BOT|&gt;assistant\n&lt;think&gt;\n&#39;&#34;&#39;&#34;&#39; -}}{%- endif -%}&#39;
 After the service starts, it will listen on localhost:9999.
 - Downloads last month
-- 330</pre>
+- 782</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:23:18Z</dd>
     <dt>Versions</dt>
-    <dd>6</dd>
+    <dd>7</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro%0AFingerprint%3A%203d92e7808858ac2bbafc45aec8bfabc0ddcfc2a2eb1f6d8e9f6e991ba9fd4d6d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-pro-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-pro-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4-Pro%0AFingerprint%3A%20b27e5bc3c2890e06c2d161237032f8b59beac3017ea25797e3c3e9ad411cc5ff%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:45Z</td>
+          <td>text/html</td>
+          <td>458,486</td>
+          <td><code title="b27e5bc3c2890e06c2d161237032f8b59beac3017ea25797e3c3e9ad411cc5ff">b27e5bc3c2890e06</code></td>
+<td><a href="https://data.systemcards.org/raw/69e1ef2b49d6fbb6a01c53f96fcbe8aae4f18b2dec55b6a04f0898b1346b4090.html" rel="nofollow" title="archived copy, sha256 69e1ef2b49d6fbb6a01c53f96fcbe8aae4f18b2dec55b6a04f0898b1346b4090">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-01T06:21:53Z</td>
           <td>text/html</td>
@@ -109,7 +116,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 10 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -194,6 +201,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:45Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -207,7 +222,8 @@
 - Libraries
 -  Transformers How to use deepseek-ai/DeepSeek-V4-Pro with Transformers: # Use a pipeline as a high-level helper
 from transformers import pipeline
-pipe = pipeline(&#34;text-generation&#34;, model=&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)# Load model directly
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4-Pro&#34;, device_map=&#34;auto&#34;)
@@ -410,7 +426,7 @@ Citation
 Contact
 If you have any questions, please raise an issue or contact us at service@deepseek.com.
 - Downloads last month
-- 441,758
+- 435,434
 Model tree for deepseek-ai/DeepSeek-V4-Pro
 Spaces using deepseek-ai/DeepSeek-V4-Pro 100
 Collection including deepseek-ai/DeepSeek-V4-Pro
@@ -418,15 +434,15 @@ Paper for deepseek-ai/DeepSeek-V4-Pro
 Evaluation results
 - openai/gsm8k · Gsm8k View evaluation results    leaderboard   92.6
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   90.1
-- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   87.5
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   80.6
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   55.4
-- benchflow/skillsbench · Skillsbench V1 1 View evaluation results  source leaderboard50.1 *
-- actava/chi-bench leaderboard</pre>
+- agents-last-exam/agents-last-exam leaderboard
+- Overall Pass Rate View evaluation resultssourceharness=openclaw; harness_variant=not reported; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.12.39 *
+- Overall Score View evaluation resultssourceharness=openclaw; harness_variant=not reported; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.27.62 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

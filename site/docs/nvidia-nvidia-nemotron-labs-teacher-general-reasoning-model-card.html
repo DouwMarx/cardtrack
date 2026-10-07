@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-08-15T08:34:05Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Sibling card URLs covered by this entry: /nvidia/NVIDIA-Nemotron-Labs-Teacher-STEM, -Competition-Coding, -Chat, -Instruction-Following. has_safety_evals false: no safety, red-team or risk section in any of the five cards. Flagging honestly that notable_release is the weakest attestation here: at the time of this run the repos are one day old with ~0 downloads and 0-2 likes, and no NVIDIA blog or newsroom announcement for the teacher suite could be found; the attestation rests on first-party publication with complete model cards on the official org, and on the corpus precedent of NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16. Curate out if that judgement is wrong.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-labs-teacher-general-reasoning-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-labs-teacher-general-reasoning-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning%0AFingerprint%3A%2085988cb063bfa326fc65f6bcee1dd9accaa99f6516d083fb0320afd5a0d506b3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-labs-teacher-general-reasoning-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-labs-teacher-general-reasoning-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning%0AFingerprint%3A%20b3abd700dff5c62ebfb4c7009b36ffaa8a988c4574dc3aa075f22d842bdc150f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:39Z</td>
+          <td>text/html</td>
+          <td>407,482</td>
+          <td><code title="b3abd700dff5c62ebfb4c7009b36ffaa8a988c4574dc3aa075f22d842bdc150f">b3abd700dff5c62e</code></td>
+<td><a href="https://data.systemcards.org/raw/902b2575b88700277bedf3c904adcd39541e3a665436bc5e9953a29700773561.html" rel="nofollow" title="archived copy, sha256 902b2575b88700277bedf3c904adcd39541e3a665436bc5e9953a29700773561">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-22T06:19:05Z</td>
           <td>text/html</td>
@@ -85,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -127,6 +134,14 @@
           <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:39Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -144,7 +159,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/NVIDIA-Nemotron-Lab
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning&#34;, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-Labs-Teacher-General-Reasoning&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
@@ -158,7 +174,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Notebooks
 - Google Colab
@@ -945,11 +961,11 @@ Citation
   note   = {White Paper}
 }
 - Downloads last month
-- 366</pre>
+- 646</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>

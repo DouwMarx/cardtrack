@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:26:26Z</dd>
     <dt>Versions</dt>
-    <dd>6</dd>
+    <dd>7</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20moonshot-ai-kimi-k3-model-card&amp;body=Document%3A%20moonshot-ai-kimi-k3-model-card%0AURL%3A%20https%3A//huggingface.co/moonshotai/Kimi-K3%0AFingerprint%3A%2037138a7b8b625855fff2a76b8ba1cce94c94dc6fd936b3b29e0239daec0ef2fd%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20moonshot-ai-kimi-k3-model-card&amp;body=Document%3A%20moonshot-ai-kimi-k3-model-card%0AURL%3A%20https%3A//huggingface.co/moonshotai/Kimi-K3%0AFingerprint%3A%203ca3f91aaa68f61b12aa05a7f9cb736136f40847dc44e4231124c592a802c59f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-07T06:17:47Z</td>
+          <td>text/html</td>
+          <td>583,102</td>
+          <td><code title="3ca3f91aaa68f61b12aa05a7f9cb736136f40847dc44e4231124c592a802c59f">3ca3f91aaa68f61b</code></td>
+<td><a href="https://data.systemcards.org/raw/071e15a783bcf6da0f1ae24472b079e93f2c855730cf9094906dc5bcf9c98dea.html" rel="nofollow" title="archived copy, sha256 071e15a783bcf6da0f1ae24472b079e93f2c855730cf9094906dc5bcf9c98dea">archived copy</a></td>          <td class="change-summary">Extractor drift: 1 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-10-01T06:21:54Z</td>
           <td>text/html</td>
@@ -109,7 +117,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 11 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -194,6 +202,23 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/moonshotai/Kimi-K3" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K3</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:47Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/moonshotai/Kimi-K3" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K3</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-07T06:17:47Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-07T06:16Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 1 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/moonshotai/Kimi-K3" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K3</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -207,17 +232,8 @@
 - Libraries
 -  Transformers How to use moonshotai/Kimi-K3 with Transformers: # Use a pipeline as a high-level helper
 from transformers import pipeline
-pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;moonshotai/Kimi-K3&#34;, trust_remote_code=True)
-messages = [
-    {
-        &#34;role&#34;: &#34;user&#34;,
-        &#34;content&#34;: [
-            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
-            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
-        ]
-    },
-]
-pipe(text=messages)# Load model directly
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;moonshotai/Kimi-K3&#34;, trust_remote_code=True)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModel
 model = AutoModel.from_pretrained(&#34;moonshotai/Kimi-K3&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Inference
@@ -468,22 +484,21 @@ Both the code repository and the model weights are released under the Kimi K3 Li
 8. Contact Us
 If you have any questions, please reach out at support@moonshot.ai.
 - Downloads last month
-- 1,302,723
+- 1,265,400
 Model tree for moonshotai/Kimi-K3
-Spaces using moonshotai/Kimi-K3 72
+Spaces using moonshotai/Kimi-K3 76
 Collection including moonshotai/Kimi-K3
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results leaderboard
 - datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   67.5
-- mercor/apex-agents · Apex Agents View evaluation results leaderboard
-- llamaindex/ExtractBench leaderboard
-- Mean View evaluation resultssourcePipeline name: kimi_k3_extract_oneshot_structured_output_file; served via Fireworks hosted API83.17 *
-- Short View evaluation resultssourcePipeline name: kimi_k3_extract_oneshot_structured_output_file; served via Fireworks hosted API94.64 *
-- Medium View evaluation resultssourcePipeline name: kimi_k3_extract_oneshot_structured_output_file; served via Fireworks hosted API69.64 *</pre>
+- agents-last-exam/agents-last-exam leaderboard
+- Overall Pass Rate
+- harness=claude_code; harness_variant=thinking-max; attempted=149/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation. View evaluation resultssource26.97 *
+- harness=kimi_code; harness_variant=thinking-max; attempted=149/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation. View evaluation resultssource</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-06T06:29:30Z</p></footer>
+<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
 </body>
 </html>
