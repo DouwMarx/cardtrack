@@ -1,101 +1,103 @@
-# cardtrack agent run — 2026-10-07 (run id 2026-10-07T06:16Z-local)
+# cardtrack agent run — 2026-10-08 (run id 2026-10-08T06:19Z-local)
 
-- Last agent success was 2026-10-06T06:30:41Z, so the search used the 72 h minimum lookback (from 2026-10-04). Yesterday's run had already searched broadly through 10-06, so today's search focused on 10-06/07 releases plus a silent-org sweep (publications since 2026-09-20).
-- Wednesday: the weekly retrospective sweep did not run.
-- `open_issues.json`: `fetch_ok: true`, no open issues. Task 4 had nothing to do.
+- **Lookback:** the last agent success was 2026-10-07T06:27:16Z, so the search used the 72 h minimum lookback (from 2026-10-05).
+- **Weekly retrospective sweep:** not run (today is Thursday).
+- **Open issues:** `open_issues.json` has `fetch_ok: true` and no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | add `access_policy` | Anthropic "Expanding the Cyber Verification Program" (2026-10-06) | **written**: `anthropic-claude-opus-5-5-access-policy` (doc 367, v767) |
-| 2 | add `model_card` | Google DeepMind Nano Banana 2.1 model card (2026-10-06) | **written**: `google-deepmind-nano-banana-2-1-model-card` (doc 368, v768) |
-| 3 | add `model_card` | Mistral "Introducing Mistral Large 4" (2026-10-06) | **written**: `mistral-mistral-large-4-model-card` (doc 369, v769) |
-| 4 | add `model_card` | Upstage "Solar Mini 4" blog (2026-09-23) | **written**: `upstage-solar-mini-4-model-card` (doc 370, v770) |
-| 5 | field_update `related_urls` | doc 367: CVP Help Center overview + CVP security requirements (both `other`) | **written** |
-| 6 | field_update `model_names` | `anthropic-claude-opus-access-policy`: + Opus 5.5, Sonnet 5.5, Mythos 5.1 | **written** |
-| 7 | field_update `openness` → `restricted` | `anthropic-claude-opus-access-policy` (now names Mythos 5.1) | **written** |
-| 8 | annotate_version | `mistral-leanstral-1-5-model-card` v753 (Public Preview → Deprecated, deprecation date 9/29/2026) | **written** |
-| 9 | annotate_version | `palisade-research-gpt-5-4-independent-eval` v618 (redirect stub → report text at /research) | **written** |
-| 10 | annotate_version | `palisade-research-grok-4-grok-4-0709-independent-eval` v619 (same) | **written** |
+| 1 | add `system_card` | Anthropic "System Card: Claude Haiku 5.5" (2026-10-07) | **written**: `anthropic-claude-haiku-5-5-system-card` (doc 371, v781) |
+| 2 | add `addendum` | OpenAI "GPT-6 Sol and GPT-6 Luna: October 2026 update" (2026-10-07) | **written**: `openai-gpt-6-sol-october-addendum` (doc 372, v782) |
+| 3 | add `independent_eval` | Epoch AI "InnovationEval" (2026-10-07) | **written**: `epoch-ai-claude-fable-5-independent-eval` (doc 373, v783) |
+| 4 | add `independent_eval` | Epoch AI "EBR-bench update" (2026-10-07) | **written**: `epoch-ai-gpt-6-astra-independent-eval-3` (doc 374, v784) |
+| 5 | annotate_version | `google-deepmind-gemini-3-8-live-model-card` v779 | **written** |
 
 Notes:
 
-- **#1 CVP expansion.**
-  - Three vetted tiers: Defense, Red Team and Specialized. Specialized is reviewed with the US government, and Glasswing members move into it.
-  - Names Opus 5.5, Sonnet 5.5 and Mythos 5.1, so it is `restricted`.
-  - Tagged `cyber`, with `has_safety_evals: true`. The post reports a CyScenarioBench safeguard test per tier: every task blocked without CVP; 46/50 trials blocked in Defense; 34/50 completed with no blocks in Red Team, vs 67.6% with no safeguards.
+- **#1 Haiku 5.5**
+  - Canonical URL is the stable `anthropic.com/claude-haiku-5-5-system-card`, which redirects to the CDN PDF (dated October 7, 2026, 13 MB). The CDN PDF and the announcement are recorded as related_urls.
+  - Tagged with all five domains:
+    - `cbrn`: CB-1/CB-2 evals.
+    - `cyber`: ExploitBench, CyScenarioBench, BEB and ExploitGym.
+    - `loss_of_control`: AI R&D/AECI, alignment-risk update, SHADE-Arena/LinuxArena and CoT controllability.
+    - `harmful_manipulation`: behavioral-audit sycophancy and delusion metrics.
+    - `societal_harm`: child safety, mental health, bias and elections.
+  - `closed`.
+- **#2 GPT-6 October**
+  - Canonical URL is the PDF; the deploymentsafety HTML is the `web_version` and "GPT-6 for everyone" is the `announcement`.
+  - Model names follow the precedent of the GPT-5.6 August addendum: "GPT-6 Sol (October)" and "GPT-6 Luna (October)".
+  - Tagged `cbrn`, `cyber`, `loss_of_control` and `societal_harm`:
+    - Bio tables at both High and Critical thresholds.
+    - ExploitBench and SEC-Bench Pro.
+    - Alignment tests on obeying restrictions and auto-review, plus deception.
+    - Under-18 and mental-health evals.
+  - `closed`.
+- **#3 InnovationEval**
+  - End-to-end AI R&D evaluation, with main results on Fable 5 and GPT-5.6 Sol and contaminated results on Fable 5.1 and GPT-6 Astra.
+  - Documents misleading claims (seed farming and undisclosed run selection). Tagged `loss_of_control`.
   - The validator named the slug after the first model.
-- **#2 Nano Banana 2.1.**
-  - Image-generation card built on Gemini 3.6 Flash.
-  - Safety content: human red-teaming results (child-safety launch thresholds met) and a Frontier Safety assessment that relies on the Gemini 3.1 Pro / 3.7 Flash evals. Tagged `societal_harm` for the child-safety red-team; this is a light tag.
-  - The page says "Published: October 2026"; the day comes from the 10-06 launch coverage. `closed`.
-- **#3 Mistral Large 4.**
-  - The announcement is the canonical URL because the docs page (`docs.mistral.ai/models/mistral-large-4-0`, in related_urls) has only specs and pricing. This follows the Robostral Navigate precedent.
-  - Reports Cybench 93% and an 82% vulnerability reproduce-and-patch result, so tagged `cyber`. Red-teaming with vetted partners at reduced moderation is mentioned, but no results are given.
-  - Weights are due at the end of October. `closed` for now; the notes ask for a re-check once the weights license is verifiable.
-- **#4 Solar Mini 4.** Found by the silent-org sweep; Upstage is an OpenRouter-overlay publisher. The blog is the card, as with Solar Pro 4. Capability benchmarks only, `has_safety_evals: false`, `closed`. The date is from Artificial Analysis and press.
-- **#6/#7.** Help Center article 14604842 (row 304, status `moved`) has been renamed "Cyber Verification Program" and now covers the three tiers for the 5.5 / Mythos 5.1 models.
+- **#4 EBR-bench update**
+  - New results under the card ban for Fable 5.1, Opus 5, GPT-5.6 Sol and GPT-6 Astra, plus a multi-agent scaffold experiment.
+  - `loss_of_control` follows the tag on the original EBR-bench row (`epoch-ai-gpt-5-5-independent-eval-2`), which is linked as `other`.
+- **#5 Gemini 3.8 Live v779:** adds Gemini Enterprise Agent Platform as a channel for the two TTS models. The rest is PDF page numbers.
 
-## Phase A candidates (67)
+## Phase A candidates (79)
 
-- **Already triaged in earlier runs:** items first seen 10-02 to 10-06, including corporate news, HF papers/user pages, NVIDIA PixelUMM/PixelDiT2, Epoch/RAND non-model items, the Meta posts, the xAI changelog, Mistral navigation links, Campus/Frontier Academy, the Redwood items and the Apollo testimony.
-  - The Sonnet 5.5 PDF is already a related_url of `anthropic-claude-sonnet-5-5-system-card`.
-  - Palisade /research links: only self-replication (2026-05-07) and robot shutdown resistance (2026-02-12) are on or after the floor. Both are catalogued. I re-checked the dates of all 13 others today; all are 2023–2025.
-  - inclusionAI/AI-Transparency (EU Art. 53(1)(d) training-content summaries): skipped again, not a card or eval.
+- **Already triaged in earlier runs:** everything first seen 10-02 to 10-07; see the 10-07 report. Nothing about those has changed.
 - **New today:**
-  - CVP: #1.
-  - Nano Banana 2.1: #2.
-  - Mistral Large 4: #3.
-  - EmbeddingGemma 2 blog and model card: skipped, embeddings are auxiliary.
-  - Cursor "Remote control for local agents": product changelog, skipped.
-  - METR "AI systems could cover up misbehavior" (10-06): skipped. It is a proof-of-concept XSS in the Inspect transcript viewer, not an evaluation of a named model.
-  - Epoch semiconductor / Chinese AI revenue publications: not model evals, skipped.
-- **Also skipped:**
-  - "Claude-shaped science" (guest essay on BootLoops; evaluates no model).
-  - UK AISI "Building a more secure environment for evaluating dangerous capabilities" (evaluation-infrastructure security; no named model).
-  - Meta "Developing Capable Models Responsibly" (Superintelligence Scaling Framework update; no named model).
+  - Haiku 5.5 (#1), GPT-6 October (#2), InnovationEval (#3) and EBR-bench update (#4).
+  - Skipped:
+    - Epoch "cyber incidents flat since Fable 5": a population poll, with no named-model evaluation.
+    - UK AISI "Transect": eval-transcript tooling, with no model evaluated.
+    - FAR.AI "AI-enabled terrorism" (UNGA 81, dated 09-22): an event recap.
+    - NVIDIA HF blog on Nemotron IOI/IMO gold: competition fine-tunes of the catalogued Nemotron 3 Ultra, so it fails the distinct-release test.
+    - `nvidia/music-flamingo-hf`: an old research model (page: "we have released a new checkpoint"), and the activity is only an update.
+    - `nvidia/Cosmos-Embed1-448p-anomaly-detection`: auxiliary detector.
+    - NVIDIA datasets, HF paper pages, HF user profiles and the `tencent/EVIE-4.5B` discussion thread: not documents.
+    - `mistral.ai/javascript:openAxeptioCookies()/`: a cookie-consent link parsed as a URL.
 
 ## Targeted search
 
-- **Searches run:**
-  - Generic searches: system cards, model releases on 10-06, AISI reports, OpenAI system cards.
-  - Program polls: LSVP, Claude Science, Gemini for Science, GPT-Rosalind, CVP.
-  - METR/Apollo evals of Opus 5.5 / GPT-6.1 Sol.
-  - A subagent sweep of 24 orgs whose newest row is older than about 14 days (Chinese open-weight labs, xAI, Meta, Thinking Machines, poolside, Upstage, Apollo, Transluce, SaferAI, FAR.AI, SecureBio, RAND, CAISI, Epoch, Palisade).
-- **Already catalogued:** GPT-6.1 Sol, GPT-6 Luna/Sol, Grok 4.7, MiMo-V2.6, Opus/Sonnet 5.5, the METR Opus 5.5 report, all the GPT-Rosalind rows (GA pricing 10-05 is press-only) and LSVP. No LSVP expansion or new program page was found.
-- **Found but not proposed:**
-  - **StepFun Step 5 Preview** (2026-09-20): the only primary doc is an 850-character Chinese platform guide covering capabilities and how to connect, with no results. StepFun says weights ship 2026-10-15. Watch for the HF card then and propose that.
-  - **InclusionAI Ling-3.1-flash** (09-30): no primary card. The HF repo returns 401, and it is API-trial only, with open source promised after a two-week trial. Hold.
-  - **Moonshot Kimi K2.8 Preview** (09-11): only a Kimi Code changelog entry. No card, blog or weights.
-  - **Transluce "Early rogue AI agent activity… on urlquery.net"** (~09-23): an incident report on an unnamed OpenAI agent swarm. It names no model, so it fails the named-model gate. This class is already the subject of the 2026-09-29 proposal, so it is not re-filed.
-  - MiniMax-M3.1-Flash-Preview: no model card. GLM-5.3-FlashX: same weights as GLM-5.3-Flash. Hy Image 3.5 preview: not investigated beyond the sweep; low priority.
-- **No new documents:** DeepSeek, Z.ai, NVIDIA, Meta, Thinking Machines, poolside, Apollo, SaferAI, FAR.AI, SecureBio, RAND, CAISI (rebranded CAISSI), Epoch, Palisade.
+- A subagent swept 10-05 to 10-08: lab cards, evaluator blogs (METR, AISI, Apollo, Epoch, CAISSI, SecureBio, FAR.AI, Palisade, Gray Swan, Irregular, Transluce, SaferAI) and program polls (Rosalind, Daybreak, Glasswing/Mythos, LSVP, CVP, Claude Science, Gemini for Science/Co-Scientist, CodeMender). It found **no further in-scope documents**.
+- **Third-party evals:** none yet of Haiku 5.5 or the GPT-6 October models.
+- **Held leads:**
+  - **StepFun Step 5:** no card in the stepfun-ai org. `SHSLab/Step-5-Preview-BF16` is a third-party, possibly leaked repo and must not be catalogued as StepFun's. Weights are expected 10-15.
+  - **Ling-3.1-flash:** still trial-API only.
+  - **Mistral Large 4:** the HF repo is an "Upcoming release" placeholder (ETA 2026-10-31) with no license. Row 369 stays `closed`; re-check openness after the release.
+- **Watch: Reflection AI "Beam"** (blog 10-05). A 501B open-weight model with Apache 2.0 promised, and a card, tech report and safety evals promised for later in October. Reflection is not on either allowlist. Not proposed for allowlisting yet; revisit once the documentation exists.
+- **Rejected:**
+  - Anthropic "Claude discovers a novel enzyme system" (research announcement).
+  - Epoch "Can AI automate AI R&D yet?" (appears to be the InnovationEval publication).
+- **Coverage gap:** Meta, xAI, Cohere, AI21, IBM, Reka, poolside, Thinking Machines, Cursor, Hunyuan and MiMo were covered only by general searches today. Yesterday's silent-org sweep checked most of them.
 
 ## Citation mining
 
-- The CVP post links its Help Center tier details. I read both Help Center pages and added them as related_urls (#5). The overview article was already row 304, so I updated it instead (#6, #7).
-- Nano Banana 2.1 cites the Gemini 3.6 Flash, 3.7 Flash and 3.1 Pro cards, all already catalogued.
-- Mistral Large 4 cites Artificial Analysis and Cybench, which are third-party benchmarks rather than evaluator reports.
+- **Haiku 5.5 card:** cites SecureBio VCT, Epoch ECI, Irregular CyScenarioBench and the Gray Swan IPI benchmark/Shade (with UK AISI and CAISSI). These are all benchmarks or tools, not evaluation reports, so there is nothing new to propose.
+- **GPT-6 October update:** cites the GPT-6 Astra and GPT-5.6 cards, both already catalogued.
 
 ## Blocked-URL escalations (task 5)
 
-- All 13 escalated openai.com / help.openai.com rows (streak 6), plus `openai-gpt-5-4-cyber-access-policy` (streak 1), are **alive**.
-- `read_doc.py` returned HTTP 200 via browser_impersonation for path-to-astra, accelerating-cyber-defense-ecosystem and the Daybreak help article.
+- All 13 escalated openai.com/help.openai.com rows (streak 7) and `openai-gpt-5-4-cyber-access-policy` (streak 2) are **alive**.
+- I sampled seven with `read_doc.py` and all returned HTTP 200 via browser_impersonation: accelerating-cyber-defense-ecosystem, introducing-new-capabilities-to-gpt-rosalind, introducing-gpt-rosalind, pacing-model-development-cyber-capabilities, trusted-access-for-cyber, hugging-face-model-evaluation-security-incident, and the Daybreak help article. The Rosalind capabilities page needed a second attempt, so the wall is intermittent.
 - No status changes were proposed.
-- This is a monitor false alarm, the second run in a row: logged as `recurrence`, and a proposal was filed (below).
+- The Rosalind page confirms access is still "through our trusted-access program", so `restricted` remains correct for the Rosalind rows.
 
 ## Document updates (task 6)
 
-I took the top 5 by substantive_lines:
+Top 5 by substantive_lines:
 
-1. `deepseek-deepseek-v4-pro-model-card` v573: **noise**. HF code-snippet widgets switched chat→completions examples, the download count changed, and leaderboard widget rows were reordered. Skipped.
-2. `deepseek-deepseek-v4-flash-0731-model-card` v578: **noise** (same widget churn, download/Spaces counts). Skipped.
-3. `mistral-leanstral-1-5-model-card` v753: substantive, the model was deprecated. Annotated (#8). The page is still live, so no status change.
-4. `palisade-research-gpt-5-4-independent-eval` v618: a redirect stub replaced by the real page text after the /blog→/research move. Annotated as a capture artifact, not a revision (#9).
-5. `palisade-research-grok-4-grok-4-0709-independent-eval` v619: same (#10). The stub versions (v508/v509) predate the current queue. The 2026-09-06 proposal on redirect stubs already covers this, so it is not re-filed.
+1. `deepseek-deepseek-v4-1-flash-model-card` v773: **noise**. HF snippet swap (completions → chat/completions with an image example), download/Spaces counters and a reordered eval-leaderboard widget. Skipped.
+2. `deepseek-deepseek-v4-pro-model-card` v573: **noise**, as judged on 10-06/10-07. Skipped.
+3. `deepseek-deepseek-v4-flash-0731-model-card` v578: **noise**, as judged on 10-06/10-07. Skipped.
+4. `google-deepmind-gemini-3-8-live-model-card` v779: substantive but minor. Annotated (#5).
+5. `anthropic-claude-mythos-5-other-3` v565: **noise** (hyphenation and teaser rotation), as judged on 10-06. Skipped.
+
+The noise versions are never annotated, so they stay at the head of the queue every day.
 
 ## Friction and proposals
 
-- Friction: `recurrence` of 2026-10-06T06:29:51Z (Phase A reports live openai.com pages as 403).
-- Proposal filed: "Phase A's per-document check reports openai.com rows as 403 that the pipeline's own impersonation fetcher reads fine". The monitor should take the impersonation fallback before counting a block streak. Today these rows also never get new versions.
+- **Friction 1:** `recurrence` of 2026-10-06T06:29:48Z. The furniture classifier still passes HF snippet/widget churn, now on v773, which was fetched today, so it is not a retroactivity gap.
+- **Friction 2:** `recurrence` of 2026-10-06T06:29:51Z. Phase A's openai.com 403 streak is a false alarm, now at streak 7.
+- **No new proposals.** The openai.com 403 issue was filed 2026-10-07. The furniture-classifier miss is in friction and does not yet need a separate proposal.

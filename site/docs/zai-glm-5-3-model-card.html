@@ -55,12 +55,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:52Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Cyber evals (CyberGym, ExploitGym, ExploitBench) are reported as capability results, not as a safety assessment; no safety, alignment or red-team section. Custom GLM-5.3 licence, not MIT. GLM-5.3-BF16 is a dtype re-upload of this same card, not a separate document. Z.ai blog (z.ai/blog/glm-5.3) was unreachable from the curation sandbox; NVIDIA NIM co-hosted card (build.nvidia.com/z-ai/glm-5-3/modelcard) rendered empty and could not be verified. US CAISI&#39;s independent assessment of GLM-5.3 cyber capabilities is catalogued separately (us-caisi-glm-5-3-independent-eval).</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-3-model-card&amp;body=Document%3A%20zai-glm-5-3-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.3%0AFingerprint%3A%202cf8c3e43f7cdb7fb61a1d15d826c15c78d9b238681d6e4174089a27e2787e6f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-3-model-card&amp;body=Document%3A%20zai-glm-5-3-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.3%0AFingerprint%3A%20bd941890e83c07e5b6b65d56e16ed92e67ce4ceb28f01efcda2ba30785bb9d45%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -68,6 +68,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-08T06:20:42Z</td>
+          <td>text/html</td>
+          <td>449,045</td>
+          <td><code title="bd941890e83c07e5b6b65d56e16ed92e67ce4ceb28f01efcda2ba30785bb9d45">bd941890e83c07e5</code></td>
+<td><a href="https://data.systemcards.org/raw/567351640cc4a79418bc9c6786a5bdecee40a40ce2205bdca18d24b3c46cf0fd.html" rel="nofollow" title="archived copy, sha256 567351640cc4a79418bc9c6786a5bdecee40a40ce2205bdca18d24b3c46cf0fd">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-29T06:21:08Z</td>
           <td>text/html</td>
@@ -91,7 +98,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -120,6 +127,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/zai-org/GLM-5.3" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.3</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-08T06:20:42Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-08T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/zai-org/GLM-5.3" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.3</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -139,7 +154,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;zai-org/GLM-5.3&#34;)
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;zai-org/GLM-5.3&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;zai-org/GLM-5.3&#34;, device_map=&#34;auto&#34;)
@@ -153,7 +169,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -276,7 +292,7 @@ If you find GLM-5.3 useful in your research, please cite our technical report:
       url={https://arxiv.org/abs/2602.15763},
 }
 - Downloads last month
-- 1,358,295
+- 1,507,787
 - datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   66.9
 - harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
 - harborframework/terminal-bench · Terminalbench 3 View evaluation results leaderboard
@@ -286,6 +302,6 @@ If you find GLM-5.3 useful in your research, please cite our technical report:
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
+<footer><p>Data updated 2026-10-08T06:25:02Z</p></footer>
 </body>
 </html>

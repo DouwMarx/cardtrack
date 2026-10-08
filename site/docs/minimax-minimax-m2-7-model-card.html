@@ -50,12 +50,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:13Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>API availability preceded open weights by three weeks (announcement 2026-03-18, weights 2026-04-09). Covered in the family technical report arXiv 2605.26494.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m2-7-model-card&amp;body=Document%3A%20minimax-minimax-m2-7-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M2.7%0AFingerprint%3A%20dc42a5b3293f45dce6941244d19ba391d26df00c49a01986123465e9760a42ca%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m2-7-model-card&amp;body=Document%3A%20minimax-minimax-m2-7-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M2.7%0AFingerprint%3A%208d2814d61f9150486fe24fd6a19f0bc0646dc4ae740207a5afdf87d0a9d9a70b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -63,6 +63,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-08T06:20:39Z</td>
+          <td>text/html</td>
+          <td>374,650</td>
+          <td><code title="8d2814d61f9150486fe24fd6a19f0bc0646dc4ae740207a5afdf87d0a9d9a70b">8d2814d61f915048</code></td>
+<td><a href="https://data.systemcards.org/raw/55757e5692c4de5aaf14b935b7f93246958a3af2fb36e939442d0cfc3137b0c3.html" rel="nofollow" title="archived copy, sha256 55757e5692c4de5aaf14b935b7f93246958a3af2fb36e939442d0cfc3137b0c3">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-29T06:21:05Z</td>
           <td>text/html</td>
@@ -86,7 +93,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -115,6 +122,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.7" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M2.7</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-08T06:20:39Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-08T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.7" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M2.7</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -132,7 +147,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;MiniMaxAI/MiniMax-M2.7&#34
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;MiniMaxAI/MiniMax-M2.7&#34;, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(&#34;MiniMaxAI/MiniMax-M2.7&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
@@ -146,7 +162,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -247,22 +263,22 @@ Please refer to our Tool Calling Guide.
 Contact Us
 Contact us at model@minimax.io.
 - Downloads last month
-- 1,177,692
+- 973,172
 Model tree for MiniMaxAI/MiniMax-M2.7
 Spaces using MiniMaxAI/MiniMax-M2.7 100
 Collection including MiniMaxAI/MiniMax-M2.7
 Evaluation results
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   56.2
+- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   76.5
+- benchflow/skillsbench · Skillsbench V1 1 View evaluation results  source leaderboard34.9 *
 - internlm/WildClawBench leaderboard
 - Overall View evaluation resultssource33.8
 - Avg Time View evaluation resultssource
-- Avg Cost View evaluation resultssource7.2
-- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   76.5
-- benchflow/skillsbench · Skillsbench V1 1 View evaluation results  source leaderboard34.9 *</pre>
+- Avg Cost View evaluation resultssource7.2</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
+<footer><p>Data updated 2026-10-08T06:25:02Z</p></footer>
 </body>
 </html>

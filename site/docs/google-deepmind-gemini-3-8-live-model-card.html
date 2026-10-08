@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-09-16T13:01:38Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-8-live-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-8-live-model-card%0AURL%3A%20https%3A//storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf%0AFingerprint%3A%20f3df49ef8afdd2cd822af7535d226c843b04655611e9f23312a93b412b3ad362%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-gemini-3-8-live-model-card&amp;body=Document%3A%20google-deepmind-gemini-3-8-live-model-card%0AURL%3A%20https%3A//storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf%0AFingerprint%3A%202cd56f3d147004eea9a6f6249ec023c97996cc398a546b4ea16af6c512c05747%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-08T06:21:12Z</td>
+          <td>application/pdf</td>
+          <td>213,102</td>
+          <td><code title="2cd56f3d147004eea9a6f6249ec023c97996cc398a546b4ea16af6c512c05747">2cd56f3d147004ee</code></td>
+<td><a href="https://data.systemcards.org/raw/03eec576c3550abe25951f1181c73e25c4223c3ca258c31a0cbaf265aca73cd5.pdf" rel="nofollow" title="archived copy, sha256 03eec576c3550abe25951f1181c73e25c4223c3ca258c31a0cbaf265aca73cd5">archived copy</a></td>          <td class="change-summary">Added Gemini Enterprise Agent Platform to the distribution channels listed for Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS. The other differences are page-number markers from a re-rendered PDF; evaluation, safety and frontier-safety text is unchanged.
+</td>
+        </tr>
         <tr>
           <td>2026-09-29T06:21:29Z</td>
           <td>application/pdf</td>
@@ -84,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -130,6 +138,23 @@
           <div class="just">The current version (v677) of the Gemini 3.8 Audio model card PDF now defines &#39;Gemini 3.8 Audio&#39; as Live, Live Extended Thinking, Flash TTS and Flash-Lite TTS. It lists inputs, outputs and distribution channels for the two TTS models and extends the frontier-safety statement to them. One family card covering several variants should list all model_names.</div>
           <div class="evidence">Evidence:
 <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-08T06:21:12Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-08T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf" rel="noopener nofollow">https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Audio-Model-Card.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-08T06:25:02Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-08T06:19Z-local · agent · lead: manual</span>
+          <div class="just">change_summary: null → "Added Gemini Enterprise Agent Platform to the distribution channels listed for Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS. The other differences are page-number markers from a re-rendered PDF; evaluation, safety and frontier-safety text is unchanged."</div>
+          <div class="just">Diff v677 to v779 adds one availability surface for two models; the rest is PDF pagination.</div>
+          <div class="evidence">Evidence:
+<a href="https://deepmind.google/models/model-cards/" rel="noopener nofollow">https://deepmind.google/models/model-cards/</a>          </div>
       </li>
     </ol>
     </details>
@@ -180,6 +205,8 @@ Outputs
    ●​ Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking: Audio and text, with 64K
       token output. With Live Avatar: Audio, video, and text, with 24K token output.
    ●​ Gemini 3.8 Flash TTS and 3.8 Flash-Lite TTS: Audio, with 64K token output.
+
+                                                                                               1
 Architecture
 Gemini 3.8 Audio models are based on Gemini 3 Pro. For more information about the
 model architecture, see the Gemini 3 Pro model card.
@@ -208,6 +235,8 @@ software for Gemini 3 Pro, see the Gemini 3 Pro model card.
 Distribution
 Gemini 3.8 Audio is distributed in the following channels; respective documentation
 shared in line:
+
+                                                                                       2
 Gemini 3.8 Live
 
    ●​   Gemini API
@@ -226,15 +255,17 @@ Gemini 3.8 Live Extended Thinking
 
 Gemini 3.8 Flash TTS
 
-   ●​ Gemini API
-   ●​ Google AI Studio
-   ●​ Gemini Notebook
+   ●​   Gemini API
+   ●​   Google AI Studio
+   ●​   Gemini Notebook
+   ●​   Gemini Enterprise Agent Platform
 
 Gemini 3.8 Flash-Lite TTS
 
-   ●​ Gemini API
-   ●​ Google AI Studio
-   ●​ Google Vids​
+   ●​   Gemini API
+   ●​   Google AI Studio
+   ●​   Google Vids
+   ●​   Gemini Enterprise Agent Platform​
 
 Our models are available to downstream providers via an application program interface
 (API) and subject to relevant terms of use. There is no required hardware or software to
@@ -242,6 +273,8 @@ use the model. For AI Studio and Gemini API, see the Gemini API Additional Terms
 Service; for Gemini Enterprise Agent Platform, see Google Cloud Platform Terms of
 Service. For more information, see Gemini Model API instructions and Gemini API
 quickstart.
+
+                                                                                           3
 Evaluation
 
 Approach
@@ -275,6 +308,8 @@ The knowledge cutoff date is January 2025.
 
 For more information about the known limitations for Gemini 3.8 Audio, see the Gemini 3
 Pro model card.
+
+                                                                                          4
 Acceptable Usage
 For more information about the acceptable usage for Gemini 3.8 Audio, see the Gemini 3
 Pro model card.
@@ -306,6 +341,8 @@ Additional information: For more information about the evaluation approach for G
 Safety Policies
 For more information about the safety policies for Gemini 3.8 Audio, see the Gemini 3 Pro
 model card.
+
+                                                                                         5
 Frontier Safety Assessment
 Gemini 3.8 Audio is part of the Gemini 3 series of models. To assess Gemini 3.8 Audio for
 frontier safety, we rely on our evaluations of Gemini 3.7 Flash as outlined in our latest
@@ -322,11 +359,13 @@ Card.
 
 Risks and Mitigations
 For more information about the risks and mitigations for Gemini 3.8 Audio, see the Gemini
-3 Pro model card.</pre>
+3 Pro model card.
+
+                                                                                            6</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-07T06:26:28Z</p></footer>
+<footer><p>Data updated 2026-10-08T06:25:02Z</p></footer>
 </body>
 </html>
