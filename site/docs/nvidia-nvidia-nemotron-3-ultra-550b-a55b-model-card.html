@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:32:41Z</dd>
     <dt>Versions</dt>
-    <dd>6</dd>
+    <dd>7</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16%0AFingerprint%3A%20f9e3836341dddf3e948a8655c640add1b980f59bdeb5bce1e7f9618f74392735%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16%0AFingerprint%3A%20867d0e7b370d26f80f67bb72f06ee4c0414ce5e5db47584e2663314f176fe687%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-09T06:21:30Z</td>
+          <td>text/html</td>
+          <td>541,597</td>
+          <td><code title="867d0e7b370d26f80f67bb72f06ee4c0414ce5e5db47584e2663314f176fe687">867d0e7b370d26f8</code></td>
+<td><a href="https://data.systemcards.org/raw/cc992cf4444d277a9bd1ac97a4fe563e55be42a7dbb98c4deb6e27b8bbd3754f.html" rel="nofollow" title="archived copy, sha256 cc992cf4444d277a9bd1ac97a4fe563e55be42a7dbb98c4deb6e27b8bbd3754f">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-02T06:17:35Z</td>
           <td>text/html</td>
@@ -109,7 +116,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 10 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -194,6 +201,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-09T06:21:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-09T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -211,7 +226,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/NVIDIA-Nemotron-3-U
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16&#34;, device_map=&#34;auto&#34;)
@@ -225,7 +241,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -1045,14 +1061,16 @@ Citation
   note   = {White Paper}
 }
 - Downloads last month
-- 293,955
+- 683,479
 Model tree for nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
-Spaces using nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 6
+Spaces using nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 9
 Collections including nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
-Article mentioning nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
+Articles mentioning nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
+One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO
+Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel
 Evaluation results
-- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   87 *
 - TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results    leaderboard   86.8
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   87 *
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   71.9
 - harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results    leaderboard   56.4 *
 - SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results    leaderboard   67.7
@@ -1063,6 +1081,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-08T06:25:02Z</p></footer>
+<footer><p>Data updated 2026-10-09T06:26:57Z</p></footer>
 </body>
 </html>

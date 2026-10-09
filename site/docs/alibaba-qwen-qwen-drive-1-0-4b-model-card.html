@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-09-05T06:30:44Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>has_safety_evals is false as a deliberate judgment call: the card&#39;s WaymoQA safety and at-fault metrics are domain driving-behaviour benchmarks, not dangerous-capability evaluations, red-teaming, or a misuse risk assessment, so counting them would dilute the site&#39;s safety filter. Publication date taken as the arXiv technical report date (2609.00111); the HF repo appeared on the Qwen org page on 2026-09-03.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen-drive-1-0-4b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen-drive-1-0-4b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen-Drive-1.0-4B%0AFingerprint%3A%208f75e2a3abe1ef4725f8e19a54d4337acb63e6f8448b73feea20cd3f3c4da89a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen-drive-1-0-4b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen-drive-1-0-4b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen-Drive-1.0-4B%0AFingerprint%3A%204bf725107e7a3d4d318817703fd58c8d8f7f3e54ef33d675c433baaf740b66ac%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-09T06:21:50Z</td>
+          <td>text/html</td>
+          <td>325,967</td>
+          <td><code title="4bf725107e7a3d4d318817703fd58c8d8f7f3e54ef33d675c433baaf740b66ac">4bf725107e7a3d4d</code></td>
+<td><a href="https://data.systemcards.org/raw/6a66fc1bb617beb3b5366e63fd2cec28e940f49dc31820ce9526d97ac3e71c67.html" rel="nofollow" title="archived copy, sha256 6a66fc1bb617beb3b5366e63fd2cec28e940f49dc31820ce9526d97ac3e71c67">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-24T06:19:15Z</td>
           <td>text/html</td>
@@ -84,7 +91,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -113,6 +120,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen-Drive-1.0-4B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen-Drive-1.0-4B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-09T06:21:50Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-09T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen-Drive-1.0-4B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen-Drive-1.0-4B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -136,7 +151,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import QwenDriveForPlanning
 model = QwenDriveForPlanning.from_pretrained(&#34;Qwen/Qwen-Drive-1.0-4B&#34;, device_map=&#34;auto&#34;)
 - Notebooks
@@ -353,7 +369,7 @@ If you find our work helpful, feel free to give us a cite.
       url={https://arxiv.org/abs/2609.00111},
 }
 - Downloads last month
-- 6,194
+- 5,903
 Model tree for Qwen/Qwen-Drive-1.0-4B
 Base model
 Qwen/Qwen3.5-4B-Base</pre>
@@ -361,6 +377,6 @@ Qwen/Qwen3.5-4B-Base</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-08T06:25:02Z</p></footer>
+<footer><p>Data updated 2026-10-09T06:26:57Z</p></footer>
 </body>
 </html>
