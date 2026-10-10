@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:48:33Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-labs-3-puzzle-75b-a9b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-labs-3-puzzle-75b-a9b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16%0AFingerprint%3A%2057edf052a45062d0b3dacca6e5e95ed71c5accff4f295bb906d2e2dba98e92d1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-labs-3-puzzle-75b-a9b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-labs-3-puzzle-75b-a9b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16%0AFingerprint%3A%205b573a7f21214ac585dcf07edbc4fc10d3c969a233cfd36d54ff21dee0afecb7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-10T06:17:37Z</td>
+          <td>text/html</td>
+          <td>413,394</td>
+          <td><code title="5b573a7f21214ac585dcf07edbc4fc10d3c969a233cfd36d54ff21dee0afecb7">5b573a7f21214ac5</code></td>
+<td><a href="https://data.systemcards.org/raw/01f7e81c4b83e08dbfcc23215624ebd420ace40e508ae23dc8dd6c63a04b381b.html" rel="nofollow" title="archived copy, sha256 01f7e81c4b83e08dbfcc23215624ebd420ace40e508ae23dc8dd6c63a04b381b">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T20:48:33Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -125,6 +132,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-10T06:17:37Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-10T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -142,7 +157,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/NVIDIA-Nemotron-Lab
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-BF16&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Notebooks
@@ -613,11 +629,11 @@ We advise against circumvention of any provided safety guardrails contained in t
 For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, and Privacy Subcards.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 2,195</pre>
+- 799</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-09T06:26:57Z</p></footer>
+<footer><p>Data updated 2026-10-10T06:18:55Z</p></footer>
 </body>
 </html>
