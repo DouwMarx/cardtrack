@@ -1,0 +1,20 @@
+[
+ {"slug": "nvidia-nvidia-nemotron-3-super-120b-a12b-model-card", "version": 786, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: auto-generated usage snippet (pip line, max_new_tokens 40->256), download/Spaces counters, eval-widget rows reordered, AIME/HMMT added, SWE-bench harness rows dropped.",
+  "notable": "", "confidence": "high"},
+ {"slug": "minimax-minimax-m2-7-model-card", "version": 775, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: auto-generated usage snippet updated, download counter changed, eval-widget rows reordered with identical values.",
+  "notable": "", "confidence": "high"},
+ {"slug": "upstage-solar-open-2-model-card", "version": 740, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: usage snippet pip line added, download and Spaces counters changed, eval-widget rows reordered with identical values.",
+  "notable": "", "confidence": "high"},
+ {"slug": "anthropic-claude-mythos-5-1-access-policy", "version": 780, "category": "content_major", "score_change": false, "license_change": false, "safety_related": true, "model_scope_change": false, "correction": false, "growth_direction": "grew",
+  "summary": "Cyber Verification Program now covers Opus 5.5, Sonnet 5.5, Mythos 5.1; US-only and 'near future' caveats removed; Life Sciences program no longer invite-only beta.",
+  "notable": "Anthropic broadened Mythos 5.1 access policy: cyber verification now includes Mythos and the US-organizations-only restriction language was dropped.", "confidence": "medium"},
+ {"slug": "nvidia-nemotron-3-nano-omni-30b-a3b-reasoning-model-card", "version": 743, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: usage snippet pip line added, download and Spaces counters changed.",
+  "notable": "", "confidence": "high"},
+ {"slug": "inclusion-ai-ring-2-5-1t-model-card", "version": 739, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: usage snippet pip line added and download counter changed.",
+  "notable": "", "confidence": "high"}
+]

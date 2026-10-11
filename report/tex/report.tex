@@ -94,9 +94,10 @@ of substantive pairs found did not fall (\subPre{} before, \subPost{} after, ove
 precision per flag rose from
 about \precisionPre\% to \precisionPost\%. The \emph{before} side is incomplete: \nVersionsMissing{} versions that
 the changelog records as written are no longer in the database, \nVersionsMissingPreFilter{} of them from
-before the recompute; \nClassifiedPurgedWord{} of them are the footnote purge described below and the cause of the
-rest is not recorded, so pairs of every kind are missing there. The remaining leak is evaluation-widget rows that end in a score,
-which the bullet-anchored patterns do not match. In document terms, \nDocsSubstantive{} of \nTracked{}
+before the recompute. Only \nClassifiedPurged{} of them had been classified: \nClassifiedPurgedFootnoteWord{} were the
+footnote purge described below and \nClassifiedPurgedTeaserWord{} were Anthropic ``Related content'' teaser rotations,
+removed when the text layer was rebuilt on \teaserRebuildPretty{} to strip that block. The cause for the other
+\nVersionsMissingUnclassified{} is not recorded, so the \emph{before} figures may lack pairs of any kind. In document terms, \nDocsSubstantive{} of \nTracked{}
 tracked documents (\shareDocsSubstantive\%) changed substantively during the window, an estimated
 \kmHtmlThirty\% of HTML and \kmPdfThirty\% of PDF documents within 30 days of tracking; the two curves
 in Figure~\ref{fig:changes}b are not distinguishable at this sample size.
@@ -110,20 +111,23 @@ propagated with its change log into \notablePropagatedMax{} OpenAI documents tha
 (\exPropagated), and the GPT-6 Astra system card gained an appendix covering GPT-6 Sol and Luna
 and corrected Astra's HealthBench results after an evaluation misconfiguration, with dated entries
 (\exAstraAppendix), then, with another dated entry, a second appendix on ``dots'', always-on agents built on
-Astra, with prompt-injection red-teaming and monitor-evasion results (\exAstraDots); xAI (\exGrokLog) and Anthropic (\exAnthropicLog) each added one dated log. Second, edits
+Astra, with prompt-injection red-teaming and monitor-evasion results (\exAstraDots); xAI added a dated log (\exGrokLog), and Anthropic two: one on a research post (\exAnthropicLog) and one
+clarifying that its Life Sciences Verification Program form registers interest rather than taking applications (\exLifeSciLog). Second, edits
 without a change log exist: an NVIDIA card revised a tool-calling score downward and dropped its research-only
 use restriction with no note (\exVoiceChat).
 A date label does not settle when an edit was made either: METR replaced a one-line pointer on its red-teaming of Anthropic's internal agent monitoring with the findings
 themselves, including routes to disabling monitors, under a heading dated months before the tracker's first
 capture, although every earlier successful content check found the page unchanged (\exMetrMonitoring). Third,
-documents change scope: OpenAI rebuilt its Daybreak cyber-access tiers to add GPT-6 Sol, Luna and Astra and to
-require extra approval for GPT-5.6-Cyber (\exDaybreakTiers); Anthropic's cyber-safeguards page now excludes
-Opus 5.5 and Sonnet 5.5 (\exCyberScope); NVIDIA's Cosmos 3 cards were each cut back to a single model
-(\exCosmos); and inclusionAI added a ``training content summary'' linking a public training-data statement
-to several of its cards (\exTrainingSummary). A caution the other way: the previous edition found that apparent deletions of
+access policies change scope: OpenAI rebuilt its Daybreak cyber-access tiers to add GPT-6 Sol, Luna and Astra and to
+require extra approval for GPT-5.6-Cyber (\exDaybreakTiers), and later let other passkeys coexist with the required
+hardware key (\exDaybreakKeys). Anthropic's cyber-safeguards page first excluded Opus 5.5 and Sonnet 5.5 (\exCyberScope),
+then was retitled ``Cyber Verification Program'' and rewritten around three access tiers covering them and Mythos 5.1
+(\exCvpRewrite); its Mythos page now says the same and no longer says access is limited to US organisations (\exCvpExpand). Model cards narrow too: NVIDIA cut each Cosmos 3 card back to a single model
+(\exCosmos). Separately, inclusionAI added a ``training content summary'' linking a public training-data statement
+to several of its cards (\exTrainingSummary). A caution the other way: checking the raw captures showed that apparent deletions of
 Anthropic footnotes were extractor artefacts. The publisher had wrapped its footnotes in an element whose class
 name contains ``footer'', which the boilerplate remover discards, while the raw HTML still held every
-footnote. The extractor has since been fixed and \nClassifiedPurgedWord{} classified versions, the artefacts among them, were deleted
+footnote. The extractor has since been fixed and \nClassifiedPurgedFootnoteWord{} classified versions affected by it were deleted
 from the database.\extractorArtefactSentence{} A fingerprint tracker cannot tell disclosed from
 undisclosed edits, or edits from extraction bugs, but it produces the diff that lets a human tell.
 
@@ -152,11 +156,10 @@ to 4\,\% of web references in scholarly articles from 2012 were already rotten w
 moved via permanent redirect (\movesPerDocYear{} per document-year: site restructures, a trailing slash, the
 typo fix and the soft-gone pages below). Bot blocking is the larger nuisance: \docsEverBlocked{} documents
 were refused with HTTP 403 at least once, \topBlockedHostDocs{} of them OpenAI
-documents on \topBlockedHost. For most of the window the blocks were intermittent (overall a median of \blockedPersistenceMedian\% of
-later checks), consistent with rate-based bot detection, but in the last week most of the blocked OpenAI pages
-were refused in most runs; whether that reflects the site or the tracker's move to a server host at the end of September is not known, and block
-rates depend on the fetch client's fingerprint as much as on the site \cite{gundelach2026}. This matters
-because OpenAI is also the publisher whose documents carried most of the dated corrections above. The
+documents on \topBlockedHost. Before October the blocks came and went: after its first 403, the median blocked document was refused on
+\blockedPersistenceMedian\% of later checks, consistent with rate-based bot detection\blockStreakSentence{} and block
+rates depend on the fetch client's fingerprint as much as on the site \cite{gundelach2026}. The system-card PDFs on
+\texttt{deploymentsafety.openai.com}, which carried most of the dated corrections above, were not blocked. The
 quietest failures were invisible to the link checker: \nSoftGoneWord{} pages kept returning HTTP 200 while
 their body became a two-line client-side redirect stub (\texttt{meta refresh} plus a canonical link to the
 new location), and only the content fingerprint noticed. For at least \softGoneDaysMin{} days the link
@@ -168,7 +171,7 @@ was temporary because the publisher had moved rather than removed the content.
 \section{Discovery is fast}
 For the \nLagLive{} documents published after the backfill, the median delay from publication to first
 tracking was \lagMedianDays{} days and \lagWithinSevenDays\% were tracked within a week. Leads from index
-diffs and from the monitor's own candidate queue were tracked within two days (median
+diffs and from the monitor's own candidate queue were tracked fastest (median
 \lagLeadFastRange{} days); free-form agent search took \lagLeadAgentSearch{} days and manual submissions
 \lagLeadManual{} days.
 
@@ -192,12 +195,13 @@ On the science: a longer horizon allows a hazard model of edit rates by publishe
 aligning detected edits with publishers' change logs and with Watchtower's disclosed and undisclosed tags
 would estimate the disclosed fraction; classifying every minted version in the pipeline would turn the
 appendix into a live feed. On the instrument: re-fetch every document daily instead of a 15\,\% rotation
-(the whole corpus is under 400\,MB and the link probe already touches every URL), so edits are dated to the
+with conditional requests, so edits are dated to the
 day; treat a body that collapses to a redirect stub as a soft 404 and re-point moved documents; extend the footnote
 pre-clean to the newer footnote markup, stop skipping tab panels, and diff the raw capture alongside the extracted text so extractor regressions
 are never read as deletions; extend the furniture patterns to widget rows that end in a
 score.
 
+\vspace{-6pt}
 \bibliographystyle{unsrtnat}
 \scriptsize
 \setlength{\bibsep}{0pt}

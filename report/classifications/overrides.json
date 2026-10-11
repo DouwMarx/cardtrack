@@ -46,5 +46,15 @@
   "version": 561,
   "category": "extraction_noise",
   "reason": "The 'Fourth Eon' launch-partner paragraph and quote are still present in the raw HTML of v561 as a tab button and tab panel paragraph (6 occurrences, as in v462). Extractor skipped a tab panel; not a publisher deletion. Verified 2026-10-04 against data/raw. Earlier editions reported this as a deleted launch partner."
+ },
+ {
+  "slug": "anthropic-claude-opus-access-policy",
+  "version": 774,
+  "category": "content_major",
+  "flags": {
+   "safety_related": true,
+   "model_scope_change": true
+  },
+  "reason": "Flag correction only: the sub-agent set license_change for a rewrite of the Cyber Verification Program access tiers (it called this a judgement call); the diff changes no licence or terms-of-use text, and the sibling access-policy pairs v742 and v780 were labelled without it. Category and other flags kept. Checked against the diff 2026-10-11 by the unattended run."
  }
 ]

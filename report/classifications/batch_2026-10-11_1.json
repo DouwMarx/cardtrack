@@ -1,0 +1,18 @@
+[
+ {"slug": "anthropic-claude-opus-access-policy", "version": 774, "category": "content_major", "score_change": false, "license_change": true, "safety_related": true, "model_scope_change": true, "correction": false, "growth_direction": "grew",
+  "summary": "Article rewritten: Cyber Verification Program now has three access tiers covering Opus 5.5, Sonnet 5.5, Mythos 5.1; new application, security, eligibility, FAQ sections.",
+  "notable": "Anthropic restructured its cyber-safeguard access policy into tiered CVP access (Defense, Red Team, Specialized with US-government review), extending coverage to Opus 5.5, Sonnet 5.5 and Mythos 5.1; the stored change_summary calling this extractor drift is wrong.",
+  "confidence": "high"},
+ {"slug": "poolside-laguna-xs-2-1-model-card", "version": 756, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF chrome: auto-generated 'use this model' snippet (pip line, max_new_tokens 40->256), download counter, Spaces count.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "alibaba-qwen-qwen3-5-397b-a17b-model-card", "version": 736, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF download counter and eval-widget leaderboard rows reordered/added (SWE-bench Multilingual added, AIME 2026 row dropped).",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "inclusion-ai-ling-2-6-1t-model-card", "version": 761, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF chrome: auto-generated snippet pip install line, download counter 1,291->1,472, Spaces count 17->16.",
+  "notable": "",
+  "confidence": "high"}
+]

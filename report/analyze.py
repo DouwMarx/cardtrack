@@ -40,6 +40,7 @@ for d in (OUT, FIG, TAB):
     os.makedirs(d, exist_ok=True)
 
 FILTER_RECOMPUTE = "2026-08-31T08:40:00Z"   # furniture-aware fingerprint recompute run (08:41-10:13Z)
+TEASER_REBUILD = "2026-10-05T13:16:07Z"     # commit a4706386: teaser block stripped, derived layer rebuilt
 KM_MIN_AT_RISK = 10   # Kaplan-Meier curves are drawn only while this many documents remain at risk
 BACKFILL_END = "2026-08-11"       # first_seen before this = supervised backfill, not discovery
 
@@ -352,6 +353,21 @@ for did, lst in per_doc_outcomes.items():
 R["blocked_persistence_median"] = float(np.median(blocked_persist)) if blocked_persist else float("nan")
 R["first_blocked_date"] = min((x["ts"] for lst in per_doc_outcomes.values() for x in lst
                                if x["outcome"] == "blocked"), default="")[:10]
+# Trailing streak of days on which every valid link check on the top blocked host was refused:
+# distinguishes intermittent rate-based blocking from a host that now refuses the tracker outright.
+_top_host = R["blocked_docs_by_host"][0][0] if R["blocked_docs_by_host"] else None
+_host_days = collections.defaultdict(list)
+for did, lst in per_doc_outcomes.items():
+    if re.sub(r"^https?://([^/]+).*$", r"\1", doc_by_id[did]["canonical_url"]) == _top_host:
+        for x in lst:
+            _host_days[x["ts"][:10]].append(x["outcome"] == "blocked")
+_streak = []
+for d in sorted(_host_days, reverse=True):
+    if not all(_host_days[d]):
+        break
+    _streak.append(d)
+R["top_host_all_blocked_days"] = len(_streak)
+R["top_host_all_blocked_since"] = min(_streak) if _streak else ""
 # moved docs
 moved = [cl for cl in changelog if cl["action"] == "status_change" and cl["d"].get("new") == "moved"]
 R["moved_events"] = [{"slug": cl["d"].get("slug"), "date": cl["ts"][:10],
@@ -506,8 +522,9 @@ for o in overrides:
     r = cls.get((o["slug"], int(o["version"])))
     if r:
         r["category"] = o["category"]
+        # Flags are cleared unless the override sets them explicitly ("flags": {...}).
         for flag in ("score_change", "license_change", "safety_related", "model_scope_change", "correction"):
-            r[flag] = False
+            r[flag] = bool(o.get("flags", {}).get(flag, False))
         r["override_reason"] = o["reason"]
 # Entries with "verified": false are conservative reclassifications that could not be checked
 # against the raw capture; the report's "the raw HTML still held every footnote" claim counts only
@@ -527,14 +544,30 @@ R["n_footnote_artefact_docs"] = len({o["slug"] for o in _live_verified if "footn
 R["n_tabpanel_artefact_docs"] = len({o["slug"] for o in _live_verified if "tab panel" in o["reason"].lower()})
 R["n_overrides_purged"] = sum(1 for o in overrides if (o["slug"], int(o["version"])) not in _live)
 R["n_classified_purged"] = sum(1 for k in cls if k not in _live)
+# Two purges so far: the footnote-artefact versions (deleted before the 2026-09-29 snapshot after the
+# extractor fix) and teaser-only versions (Anthropic "Related content" rotations, gone after the
+# 2026-10-05 derived-layer rebuild that strips the teaser block, commit a4706386). The footnote purge is
+# listed explicitly (versions absent from the database before a4706386, per its git history); any other
+# purged classified version is counted with the teaser rebuild.
+FOOTNOTE_PURGE = {
+    ("anthropic-claude-opus-4-7-other-3", 235), ("anthropic-claude-mythos-preview-other", 206),
+    ("anthropic-claude-fable-5-other", 208), ("anthropic-claude-mythos-preview-other-4", 210),
+    ("anthropic-claude-opus-4-6-other-5", 259), ("anthropic-claude-opus-4-7-other", 276),
+    ("anthropic-claude-fable-5-addendum", 274), ("anthropic-claude-fable-5-addendum-2", 275),
+    ("anthropic-claude-mythos-preview-other-2", 207), ("anthropic-claude-opus-4-6-other-3", 323),
+    ("anthropic-claude-haiku-4-5-other", 211), ("anthropic-claude-opus-4-6-other-2", 232),
+}
+R["n_classified_purged_footnote"] = sum(1 for k in cls if k not in _live and k in FOOTNOTE_PURGE)
+R["n_classified_purged_teaser"] = R["n_classified_purged"] - R["n_classified_purged_footnote"]
 # Versions the changelog says were written but that are no longer in document_versions (matched on
 # document + content hash). Almost all predate the fingerprint recompute, so the "before" side of every
-# pre/post comparison is missing pairs; the cause beyond the documented footnote purge is not recorded.
+# pre/post comparison is missing pairs; the cause beyond the two documented purges is not recorded.
 _have = {(v["document_id"], v["content_hash"]) for v in versions}
 _gone = [cl for cl in changelog if cl["action"] == "new_version"
          and (cl["document_id"], cl["d"].get("content_hash")) not in _have]
 R["n_versions_missing"] = len(_gone)
 R["n_versions_missing_pre_filter"] = sum(1 for cl in _gone if cl["ts"] < FILTER_RECOMPUTE)
+R["n_versions_missing_unclassified"] = R["n_versions_missing"] - R["n_classified_purged"]
 slug_to_doc = {d["slug"]: d for d in docs}
 for p in pairs:
     p["cls"] = cls.get((p["slug"], p["version"]))
@@ -550,9 +583,22 @@ for cl in changelog:
         url_updates[cl["document_id"]].append(cl["ts"])
 # A move recorded by the monitor inside the interval is also tracker-side: after a 301 the monitor
 # stores the redirect target's content as a new version of the old row (Palisade, 2026-09-24).
+# Exception: a redirect that only renames the slug of the same article (same host, same numeric
+# article id, e.g. support.claude.com/en/articles/14604842-<slug>, 2026-10-07) serves the same document,
+# so a content change across it is the publisher's edit, not a capture of a different page.
+def _same_article(a: str, b: str) -> bool:
+    strip = lambda u: re.sub(r"/(\d{5,})-[^/]*/?$", r"/\1", u.split("?")[0])
+    return strip(a) == strip(b) and re.search(r"/\d{5,}-[^/]*/?$", a.split("?")[0]) is not None
+n_slug_renames = 0
 for cl in changelog:
     if cl["action"] == "status_change" and cl["d"].get("new") == "moved":
+        _from = doc_by_id[cl["document_id"]]["canonical_url"]
+        _to = re.sub(r"^.*redirects to ", "", cl["d"].get("justification", "")).strip().rstrip(".")
+        if _same_article(_from, _to):
+            n_slug_renames += 1
+            continue
         url_updates[cl["document_id"]].append(cl["ts"])
+R["n_slug_rename_moves"] = n_slug_renames
 # The 2026-08-31 canonical_url updates were logged 0-5 s AFTER the new version's fetched_at, so shift
 # the whole interval by a small tolerance: an update logged just after the previous version belongs to
 # the previous pair, not this one (Gemini PDF edits v481/v513 were otherwise counted as migrations).
@@ -806,7 +852,8 @@ OUTC = [("ok", PAL["blue"], "reachable"), ("blocked", PAL["orange"], "bot-blocke
         ("error", PAL["yellow"], "fetch error")]
 bottom = np.zeros(len(run_rows))
 for key, col, lab in OUTC:
-    vals = np.array([pct(r[key], r["n_link"]) for r in run_rows])
+    # r["ok"] already includes permanent redirects (reachable), which get their own segment here
+    vals = np.array([pct(r[key] - (r["redirect"] if key == "ok" else 0), r["n_link"]) for r in run_rows])
     ax.bar(dates, vals, bottom=bottom, color=col, width=0.8, lw=0, label=lab)
     bottom += vals
 for r, d in zip(run_rows, dates):
@@ -1136,6 +1183,10 @@ BODY_EXAMPLES = {
     "exVoiceChat":[("nvidia-nvidia-nemotronlabs-voicechat-11b-model-card", 317)],
     "exDaybreakTiers": [("openai-gpt-5-6-sol-access-policy", 646)],
     "exCyberScope": [("anthropic-claude-opus-access-policy", 671)],
+    "exCvpExpand": [("anthropic-claude-mythos-5-1-access-policy", 780)],
+    "exCvpRewrite": [("anthropic-claude-opus-access-policy", 774)],
+    "exDaybreakKeys": [("openai-gpt-5-6-sol-access-policy", 742)],
+    "exLifeSciLog": [("anthropic-claude-mythos-5-1-access-policy-2", 752)],
     "exCosmos": [("nvidia-cosmos3-super-model-card", 613), ("nvidia-cosmos3-edge-model-card", 614)],
     "exTrainingSummary": [("inclusion-ai-ling-3-0-tiny-model-card", 634), ("inclusion-ai-ling-2-6-1t-model-card", 659),
                           ("inclusion-ai-ling-2-6-flash-model-card", 660), ("inclusion-ai-ring-2-6-1t-model-card", 661),
@@ -1189,10 +1240,13 @@ for k, v in R.items():
     elif isinstance(v, bool):
         lines.append(f"\\newcommand{{\\{macro_name(k)}}}{{{fmt(v)}}}")
 WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
+# Above twelve, the Word macros fall back to the numeral, so a count that grows past the table
+# does not leave the prose with an undefined macro.
 for k, v in R.items():
-    if isinstance(v, int) and not isinstance(v, bool) and 0 <= v < len(WORDS):
-        lines.append(f"\\newcommand{{\\{macro_name(k)}Word}}{{{WORDS[v]}}}")
-        lines.append(f"\\newcommand{{\\{macro_name(k)}WordCap}}{{{WORDS[v].capitalize()}}}")
+    if isinstance(v, int) and not isinstance(v, bool) and v >= 0:
+        word = WORDS[v] if v < len(WORDS) else fmt(v)
+        lines.append(f"\\newcommand{{\\{macro_name(k)}Word}}{{{word}}}")
+        lines.append(f"\\newcommand{{\\{macro_name(k)}WordCap}}{{{word.capitalize()}}}")
 # Sentences whose wording depends on the data are chosen here, not with \\ifnum in report.tex:
 # the HTML edition (pandoc) does not evaluate TeX conditionals and would print both branches.
 def _w(n):
@@ -1220,11 +1274,19 @@ else:
           + (parse_ts(R['first_run_log_date']).strftime('%-d %B') if R['first_run_log_date'] else 'no date')
           + ": production moved from a laptop to a server at the end of September (repository history), and the "
           "laptop's journal and run logs are not in the snapshot, so this edition cannot match outages to resume "
-          "events. The previous edition, whose snapshot still held them, traced the outages to runs started the "
+          "events. Earlier editions, whose snapshots still held them, traced the outages to runs started the "
           "moment the laptop woke from suspend, before Wi-Fi was back (the timer is \\texttt{Persistent=true}); the "
           "last outage coincides with a runner change that retries the run when the host wakes without network. "
           "Neither is re-checked here.")
 lines.append(f"\\newcommand{{\\outageCauseSentence}}{{{_s}}}")
+if R["top_host_all_blocked_days"] >= 3:
+    _s = (f", but since {parse_ts(R['top_host_all_blocked_since'] + 'T00:00:00Z').strftime('%-d %B')} every link check on "
+          f"\\texttt{{{texesc(_top_host)}}} has been refused ({_w(R['top_host_all_blocked_days'])} consecutive days of checks), "
+          "while content re-fetches of the same pages still succeeded; whether that reflects the site or the tracker's "
+          "move to a server host at the end of September is not known,")
+else:
+    _s = ";"
+lines.append(f"\\newcommand{{\\blockStreakSentence}}{{{_s}}}")
 _s = ""
 if R["n_agent_failed_runs"]:
     _s = (f"Among runs with a run log, the curation agent failed in {R['n_agent_failed_runs']}, "
@@ -1242,12 +1304,14 @@ lines.append(f"\\newcommand{{\\lastOutagePretty}}{{{parse_ts(R['last_outage_date
 lines.append(f"\\newcommand{{\\lastRunLogPretty}}{{{parse_ts(R['last_run_log_date']).strftime('%-d %B') if R['last_run_log_date'] else 'n/a'}}}")
 lines.append(f"\\newcommand{{\\firstRunLogPretty}}{{{parse_ts(R['first_run_log_date']).strftime('%-d %B') if R['first_run_log_date'] else 'n/a'}}}")
 lines.append(f"\\newcommand{{\\filterRecomputePretty}}{{{parse_ts(FILTER_RECOMPUTE).strftime('%-d %B')}}}")
+lines.append(f"\\newcommand{{\\teaserRebuildPretty}}{{{parse_ts(TEASER_REBUILD).strftime('%-d %B')}}}")
 for name, ids in example_ids.items():
     lines.append(f"\\newcommand{{\\{name}}}{{{ids}}}")
 lines.append(f"\\newcommand{{\\topPublisher}}{{{texesc(R['by_publisher'][0][0].replace('_', ' '))}}}")
 lines.append(f"\\newcommand{{\\topPublisherN}}{{{R['by_publisher'][0][1]}}}")
 lines.append(f"\\newcommand{{\\topBlockedHost}}{{{texesc(R['blocked_docs_by_host'][0][0]) if R['blocked_docs_by_host'] else 'none'}}}")
 lines.append(f"\\newcommand{{\\topBlockedHostDocs}}{{{R['blocked_docs_by_host'][0][1] if R['blocked_docs_by_host'] else 0}}}")
+lines.append(f"\\newcommand{{\\topHostAllBlockedSincePretty}}{{{parse_ts(R['top_host_all_blocked_since'] + 'T00:00:00Z').strftime('%-d %B') if R['top_host_all_blocked_since'] else 'never'}}}")
 lines.append(f"\\newcommand{{\\topBlockedHostChecks}}{{{R['blocked_by_host'][0][1] if R['blocked_by_host'] else 0}}}")
 lines.append(f"\\newcommand{{\\topRejectClass}}{{{texesc(R['rejects_by_class'][0][0])}}}")
 lines.append(f"\\newcommand{{\\topRejectN}}{{{R['rejects_by_class'][0][1]}}}")
@@ -1358,7 +1422,7 @@ md.append(md_table(["openness", "n"], [(pretty(k), n) for k, n in R["by_openness
 md.append(md_table(["risk domain", "n"], R["risk_domains"]) + "\n")
 md.append("![corpus](figures/fig_corpus.png)\n")
 md.append("## 2. Runs and tracker reliability\n")
-md.append(md_table(["run", "date", "links", "ok", "blocked", "redirect", "404", "error", "fp changed", "fp unchanged", "fp error", "outage", "s since resume", "agent failed", "adds"],
+md.append(md_table(["run", "date", "links", "reachable (incl. redirect)", "blocked", "redirect", "404", "error", "fp changed", "fp unchanged", "fp error", "outage", "s since resume", "agent failed", "adds"],
                    [(r["run_id"], r["date"], r["n_link"], r["ok"], r["blocked"], r["redirect"], r["not_found"], r["error"], r["fp_changed"], r["fp_unchanged"], r["fp_error"], r["outage"], r["sec_since_resume"] if r["sec_since_resume"] is None else int(r["sec_since_resume"]), r["agent_failed"], r["adds"]) for r in run_rows]) + "\n")
 md.append(f"- Runs: {R['n_runs']} over {R['calendar_days_span']} calendar days ({R['n_missing_days']} days without a run). Monitor outages (all link checks errored): {R['n_outage_runs']} ({fmt(R['share_outage_runs'])}%), " + (f"of which {R['n_resume_triggered_outages']} started within 2 minutes of the laptop resuming from suspend; {R['n_outages_not_resume']} outages were not resume-triggered. Resume-triggered runs that nevertheless succeeded: {R['n_resume_triggered_valid']}." if R["n_journal_resumes"] else "the snapshot's journal has no suspend/resume events (the earlier host's journal is not in the snapshot), so outages cannot be matched to resumes."))
 md.append(f"- Median seconds between resume and run start: outage runs {fmt(R['median_sec_since_resume_outage'])}, valid runs {fmt(R['median_sec_since_resume_valid'])}. Longest outage streak: {R['longest_outage_streak']} runs.")

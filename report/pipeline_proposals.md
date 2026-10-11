@@ -177,3 +177,36 @@ the day at the same request count; in the reverse order it mints furniture faste
   are now overrides (`extraction_noise`). Other substantive deletions cited in the report body were
   checked against raw and hold (NVIDIA VoiceChat v317, Gemini Omni v432, Cosmos3 v613/v614, UI-Mate v376,
   Mistral Small 4 v461).
+
+## 7. Additions from the 2026-10-11 edition
+
+- **Hugging Face snippet template minted ~40 furniture versions in one week.** Of the 49 new version pairs
+  this week, 41 were page furniture, and 37 of them carry the same Hugging Face-side edit to the
+  auto-generated "How to use ... with Transformers" snippet (a `# pip install -U transformers accelerate`
+  line, often with `max_new_tokens` 40 to 256), across cards from 13 publishers. Proposal: treat the
+  "Instructions to use <repo> with libraries ..." snippet block as furniture in the fingerprint and in the
+  monitor's furniture-only classifier (a4706386), as is already done for download counters.
+- **Drift annotation on a full rewrite (anthropic-claude-opus-access-policy v671 to v774).** The monitor
+  annotated this pair "Extractor drift: 1 line(s) missing from the extracted text are still present in the
+  raw capture; not a publisher deletion", but the diff is +63/-34 lines: the article was retitled
+  "Cyber Verification Program" and rewritten with three access tiers covering Opus 5.5, Sonnet 5.5 and
+  Mythos 5.1. Proposal: only emit the drift summary when the dropped lines are the *whole* diff, never when
+  the pair also adds substantive lines.
+- **Same-article slug renames read as moves.** The same document's canonical URL started returning 301 on
+  2026-10-07 to `.../articles/14604842-cyber-verification-program` (same help-center article id). The
+  monitor marked it `moved`, so the report's migration rule would have excluded the pair from
+  publisher-change statistics, although the content change is a publisher rewrite. Proposal for the
+  monitor: when a 301 target differs only in the slug (same host, same numeric article id), re-point the
+  canonical URL and keep the status `active`. The report now exempts such same-article slug renames from
+  the migration rule (`_same_article` in analyze.py), which restores this pair to Appendix A.
+- **openai.com now refuses every link check.** Since 2026-10-02 every valid link check on openai.com (13
+  documents) returned 403 (help.openai.com's one document too), while all 16 content re-fetches of the same
+  openai.com pages in that period succeeded, and deploymentsafety.openai.com was never blocked. That points
+  at the link probe's request (a Range GET) rather than the host IP, though it is not proven. 1 October, already on the
+  server host, was all-ok. Proposal: send the link probe with the same client and headers as the content
+  fetcher (or fall back to it on 403) before counting a 403, and record the fetch client in each run log.
+- **Teaser-only versions were purged without a changelog record.** The derived-layer rebuild after
+  a4706386 removed 10 classified versions (all Anthropic "Related content" rotations) from
+  `document_versions`, while the changelog still records them as written; 120 changelog `new_version` rows
+  no longer have a stored version. Proposal: log a `version_purged` changelog action with the reason when a
+  rebuild deletes versions, so the report can attribute missing versions instead of calling them unrecorded.

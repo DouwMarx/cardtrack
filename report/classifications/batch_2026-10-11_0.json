@@ -1,0 +1,18 @@
+[
+ {"slug": "deepseek-deepseek-v4-1-flash-model-card", "version": 773, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF chrome: auto-generated usage snippets switched to image chat-completions examples, download/Spaces counters rose, eval-widget rows swapped ExtractBench for ParseBench.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "anthropic-claude-mythos-preview-other-7", "version": 731, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Header dateline 'Apr 29, 2026' dropped; related-article teasers at footer rotated. Article body unchanged.",
+  "notable": "",
+  "confidence": "medium"},
+ {"slug": "inclusion-ai-ling-2-5-1t-model-card", "version": 738, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF auto-generated snippet gained a pip install comment; monthly downloads counter 611 -> 802. Card body unchanged.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "tencent-hunyuan-hy-embodied-vlm-1-0-model-card", "version": 791, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF auto-generated snippet gained a pip install comment; monthly downloads counter 1,111 -> 649. Card body unchanged.",
+  "notable": "",
+  "confidence": "high"}
+]

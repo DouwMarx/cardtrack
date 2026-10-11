@@ -1,0 +1,20 @@
+[
+ {"slug": "minimax-minimax-m3-model-card", "version": 777, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF chrome: auto-generated 'use this model' snippet (pip comment, max_new_tokens 40->256), download count, Spaces count, eval-widget rows reordered.",
+  "notable": "", "confidence": "high"},
+ {"slug": "alibaba-qwen-qwen3-8-27b-model-card", "version": 754, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: auto-generated code snippet tweak, download counter, eval-widget rows swapped (Terminal-bench/WildClawBench out, ParseBench leaderboard in).",
+  "notable": "", "confidence": "high"},
+ {"slug": "anthropic-claude-mythos-5-1-access-policy-2", "version": 752, "category": "content_minor", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": true, "growth_direction": "grew",
+  "summary": "Links reworded from 'apply'/'submit an application' to 'join waitlist'/'register interest'; changelog dated Sept 30, 2026 added; related-content footer rotated.",
+  "notable": "Anthropic added a dated changelog to the LSVP post saying the linked form is an expression of interest, not an application, which is a visible correction to access-program wording.", "confidence": "high"},
+ {"slug": "zai-glm-5-3-model-card", "version": 778, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: auto-generated code snippet (pip comment, max_new_tokens 40->256) and download counter updated.",
+  "notable": "", "confidence": "high"},
+ {"slug": "anthropic-claude-opus-4-6-other-2", "version": 730, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Date stamp 'Mar 6, 2026' dropped from page header; related-article teasers rotated (Frontier Academy, Barclays in; LSVP out). Body unchanged.",
+  "notable": "", "confidence": "high"},
+ {"slug": "nvidia-nvidia-nemotron-labs-3-puzzle-75b-a9b-model-card", "version": 793, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF chrome only: pip comment added to auto-generated snippet; monthly downloads 2,195 -> 799.",
+  "notable": "", "confidence": "high"}
+]
