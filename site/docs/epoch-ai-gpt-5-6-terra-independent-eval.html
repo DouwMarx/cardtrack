@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-09-13T07:12:02Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Measures time-to-first-token vs context length; GPT models scale near-quadratically, Claude models near-linearly. Performance/inference-efficiency study, not a safety or capability eval - admitted under the admit_and_flag policy and worth a curation second look.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20epoch-ai-gpt-5-6-terra-independent-eval&amp;body=Document%3A%20epoch-ai-gpt-5-6-terra-independent-eval%0AURL%3A%20https%3A//epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude%0AFingerprint%3A%203e89a644e190ca900adc6a1e8a298b27f345cd5f7a9dce8b670519c2f7b10324%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20epoch-ai-gpt-5-6-terra-independent-eval&amp;body=Document%3A%20epoch-ai-gpt-5-6-terra-independent-eval%0AURL%3A%20https%3A//epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude%0AFingerprint%3A%2032a81ebb6e6c4f0b88dd87566cb823efe6435084c7911c94ee5a23c91e0e791a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-11T06:19:08Z</td>
+          <td>text/html</td>
+          <td>152,298</td>
+          <td><code title="32a81ebb6e6c4f0b88dd87566cb823efe6435084c7911c94ee5a23c91e0e791a">32a81ebb6e6c4f0b</code></td>
+<td><a href="https://data.systemcards.org/raw/0f7f59766d2e5510bfc14c29335e821607b0f47c49eb8de2f3ab96890587bf4f.html" rel="nofollow" title="archived copy, sha256 0f7f59766d2e5510bfc14c29335e821607b0f47c49eb8de2f3ab96890587bf4f">archived copy</a></td>          <td class="change-summary">Extractor drift: 6 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-09-13T07:12:02Z</td>
           <td>text/html</td>
@@ -74,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -94,6 +102,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude" rel="noopener nofollow">https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude</a> · <a href="https://epoch.ai/latest" rel="noopener nofollow">https://epoch.ai/latest</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-11T06:19:08Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-11T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude" rel="noopener nofollow">https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-11T06:19:08Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-11T06:17Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 6 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude" rel="noopener nofollow">https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude</a>          </div>
       </li>
     </ol>
     </details>
@@ -145,8 +170,7 @@ Another way to see the divergence is to look at the marginal TTFT cost of adding
 Table 2. Marginal TTFT added by an additional 10,000 input tokens at different context lengths. The 10M values are extrapolated beyond the measured range. Claude models use a linear extrapolation, so the marginal time is constant.
 Extrapolating to these higher contexts makes the significance of the scaling difference clearer. At 10 million tokens, the quadratic curves for the GPT models imply roughly a 7–8× increase in marginal TTFT per additional token relative to 1 million tokens. This would greatly decrease the feasibility of serving these models.
 This creates a different tradeoff for long-horizon agentic systems. If serving costs continue to scale linearly with context at these higher token limits, it could become economical to keep more history in the agent’s context as memory. This would allow the memory to be handled at the model level. If serving costs instead scale quadratically with context, then it may be better to use external memory systems and aggressive compaction.
-Appendix
-A. Measurement setup
+Appendix A. Measurement setup
 A.1 Request construction and shared-prefix caching
 For each model, prompts were crafted as follows.
 {fixed cached prefix}{16-digit nonce}{target-length-specific text}{fixed task instruction}
@@ -173,30 +197,30 @@ Each regression also includes a sum-to-zero fixed effect for each block to accou
 A.5 Why use a shared prefix?
 We adopted the shared-prefix method after early Claude runs with caching disabled showed very high TTFT variability at each context length. After adopting the shared prefix, we found that the variability decreased substantially. For Sonnet 5 specifically, median absolute deviation dropped from 0.318 to 0.136 seconds at 100,000 context and from 0.352 to 0.107 seconds at 250,000 context. Despite this improvement, Opus still remained significantly noisier than other models.
 We did not do in-depth studies comparing cached versus uncached. The purpose of the shared prefix is to hold cache identity fixed. We hypothesize that the reduced noise may reflect a narrower serving cohort or more stable routing. For example, cache affinity might mean that all requests route to the same datacenter or worker engine. While there is some documentation on how routing may change based on cache, there is not enough information for us to make any concrete statements about it.
-B. Common scaling model
+Appendix B. Common scaling model
 For request \(i\) in block \(j\), \(y_{ij}\) is the observed TTFT and \(x_i\) is the input length in millions of tokens. We fit
 \[\mu_{ij} = \alpha + \beta x_i + \gamma x_i^{2} + \delta_j\]
 where \(\mu_{ij}\) is the fitted latency and \(\delta_j\) is a block effect, with
 \[\sum \delta_j = 0\]
 The linear fit sets \(\gamma\) = 0.
 We use the same latency curve for all three estimators below. What changes is how the remaining variation in TTFT is treated.
-C. Student-t regression
+Appendix C. Student-t regression
 Our main fit uses a Student-t likelihood with four degrees of freedom:
 \[y_{ij} \sim t_4(\mu_{ij}, \sigma)\]
 The heavy-tailed likelihood limits the influence of unusually slow requests. We leave \(\gamma\) unconstrained, so the fitted curve is free to have positive, zero, or negative curvature.
-D. Stochastic-frontier regression
+Appendix D. Stochastic-frontier regression
 As a robustness check, we also fit a model where some of the measured latency can come from additional positive delay:
 \[y_{ij} = \mu_{ij} + \epsilon_{ij} + d_{ij}\]\[\epsilon_{ij} \sim N(0, \sigma^{2})\]\[d_{ij} \sim \mathrm{Exponential}(\lambda), \quad d_{ij} \geq 0\]
 Here \(\epsilon_{ij}\) is the symmetric residual term. The \(d_{ij}\) term represents extra latency that can only increase TTFT, for example from queueing or other serving contention.
 For this fit we constrain \(\beta\) ≥ 0 and \(\gamma\) ≥ 0. The resulting \(\mu_{ij}\) curve can be interpreted as an estimate of latency with the modeled positive delay removed.
 Because the exponential term is continuous, every request receives some positive modeled delay, even if that delay is very small.
-E. Spike-plus-contention regression
+Appendix E. Spike-plus-contention regression
 The frontier model does not allow a request to have exactly zero contention delay. We therefore also fit a mixture model that does:
 \[y_{ij} = \mu_{ij} + \epsilon_{ij} + C_{ij} d_{ij}\]\[\epsilon_{ij} \sim N(0, \sigma^{2})\]\[C_{ij} \sim \mathrm{Bernoulli}(\pi)\]\[d_{ij} \sim \mathrm{Exponential}(\lambda)\]
 If \(C_{ij}\) = 0, the request has no modeled contention delay. If \(C_{ij}\) = 1, it receives an additional positive delay drawn from the exponential distribution.
 The fitted \(\pi\) is therefore the estimated mixture probability for the contended component, while \(1/\lambda\) is the mean added delay conditional on contention.
 As with the frontier fit, we constrain \(\beta\) ≥ 0 and \(\gamma\) ≥ 0. To prevent the clean-component width from collapsing toward zero, \(\sigma\) is anchored using negative residuals from a quadratic Huber pilot fit and held fixed during each frontier and spike fit. The reported Huber intervals use a 5,000-replicate whole-block bootstrap of a quadratic Huber refit, while frontier and spike-plus-contention intervals use 200 whole-block bootstrap replicates with \(\sigma\) re-estimated in each replicate. Requests from the same chronological block are resampled together.
-F. Final fit results
+Appendix F. Final fit results
 Table A2. Student-t quadratic fits, with x measured in millions of input tokens:
 | Model | α | β | γ | σ |
 |---|---|---|---|---|
@@ -234,7 +258,7 @@ Table A6. Whole-block bootstrap γ intervals for the asymmetric estimators:
 | Sonnet | [0, 0.93] | [0, 1.03] |
 | Opus | [0, 8.33] | [0, 8.24] |
 The results strongly support positive curvature for Terra and Sol. Sonnet is at the zero-curvature boundary in both asymmetric point estimates, while Opus remains inconclusive.
-G. GPT-6 Astra
+Appendix G. GPT-6 Astra
 Measurements of Astra’s TTFT scaling show that it still has a significant quadratic component, similar to the GPT-5.6 models.
 Table A7. Quadratic-versus-linear evidence for GPT-6 Astra:
 | Model | 2Δlog L | LR p | ΔAICc | Huber 95% γ interval | Huber % γ &gt; 0 |
@@ -244,12 +268,20 @@ Table A8. Student-t quadratic fits for GPT-6 Astra, with x measured in millions 
 | Model | α | β | γ | σ |
 |---|---|---|---|---|
 | GPT-6 Astra | 1.4814 | 20.4760 | 11.6319 | 0.4858 |
-H. Code
+Appendix H. GPT-6 Sol and GPT-6.1 Sol
+We extended our measurements to GPT-6 Sol and GPT-6.1 Sol. GPT-6 Sol closely follows GPT-5.6 Sol across the measured context range. GPT-6.1 Sol is slower at the shortest context tested, but its latency grows more slowly and is lower at the longest context.
+| Fitted quantity | GPT-6 Sol | GPT-6.1 Sol | 6.1 versus 6 |
+|---|---|---|---|
+| TTFT at ~50k tokens | 1.32 s | 2.34 s | 1.02 s higher (77%) |
+| TTFT at ~850k tokens | 17.43 s | 15.14 s | 2.29 s lower (13%) |
+| Quadratic coefficient γ | 11.70 | 4.77 | 59% lower |
+For the fitted baseline \(\mathrm{TTFT} = \alpha + \beta x + \gamma x^{2}\), TTFT is in seconds and \(x\) is in millions of input tokens. Values are fitted point estimates.
+Appendix I. Code
 Code for the benchmark, model fitting, and reproduction of the figures is available in the repository:</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-10T06:18:55Z</p></footer>
+<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
 </body>
 </html>

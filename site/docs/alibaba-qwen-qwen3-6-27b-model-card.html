@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-19T06:27:40Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Card contains extensive language and vision-language benchmark tables but no safety section, red-teaming or risk assessment - zero occurrences of safety/risk/red-team/jailbreak/misuse in 62 KB of card text. FP8 variant at Qwen/Qwen3.6-27B-FP8 is a quantization, not catalogued. Lead: base-model citation in https://huggingface.co/tencent/UI-Mate-27B</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-6-27b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-6-27b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.6-27B%0AFingerprint%3A%206d4747cfdd6bf4b99987a2168825791ba2fd717c3c2ca32dc7b2160c09cebd20%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-6-27b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-6-27b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.6-27B%0AFingerprint%3A%20297a5d2e0c3cd05761c6b8ac57812c88d84d31a12cc48002747739ce171cc9fe%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-11T06:18:37Z</td>
+          <td>text/html</td>
+          <td>510,081</td>
+          <td><code title="297a5d2e0c3cd05761c6b8ac57812c88d84d31a12cc48002747739ce171cc9fe">297a5d2e0c3cd057</code></td>
+<td><a href="https://data.systemcards.org/raw/48072e37585f65940ce10b001c3a4a13d1ab8c147eefa3dccb66b3aa3c196dc5.html" rel="nofollow" title="archived copy, sha256 48072e37585f65940ce10b001c3a4a13d1ab8c147eefa3dccb66b3aa3c196dc5">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-25T06:19:08Z</td>
           <td>text/html</td>
@@ -89,7 +96,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -149,6 +156,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen3.6-27B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.6-27B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-11T06:18:37Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-11T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.6-27B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.6-27B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -172,7 +187,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoProcessor, AutoModelForMultimodalLM
 processor = AutoProcessor.from_pretrained(&#34;Qwen/Qwen3.6-27B&#34;)
 model = AutoModelForMultimodalLM.from_pretrained(&#34;Qwen/Qwen3.6-27B&#34;, device_map=&#34;auto&#34;)
@@ -192,7 +208,7 @@ inputs = processor.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -709,22 +725,23 @@ If you find our work helpful, feel free to give us a cite.
     url    = {https://qwen.ai/blog?id=qwen3.6-27b}
 }
 - Downloads last month
-- 2,992,723
+- 2,277,803
 Model tree for Qwen/Qwen3.6-27B
 Spaces using Qwen/Qwen3.6-27B 100
 Collection including Qwen/Qwen3.6-27B
 Evaluation results
-- Idavidrein/gpqa · Diamond View evaluation results leaderboard
-- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results leaderboard
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
+- MMMU/MMMU_Pro · Mmmu Pro Vision View evaluation results leaderboard
 - TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results leaderboard
-- internlm/WildClawBench leaderboard
-- Overall View evaluation resultssource</pre>
+- Idavidrein/gpqa · Diamond View evaluation results leaderboard
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
+- MathArena/hmmt_feb_2026 · MathArena Hmmt Feb 2026 View evaluation results leaderboard
+- SWE-bench/SWE-bench_Multilingual · Swe Bench Multilingual Resolved View evaluation results leaderboard
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results leaderboard</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-10T06:18:55Z</p></footer>
+<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
 </body>
 </html>

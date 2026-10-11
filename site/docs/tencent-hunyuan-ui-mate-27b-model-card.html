@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-08-18T07:29:52Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Family release: UI-Mate-9B is the same card content at https://huggingface.co/tencent/UI-Mate-9B (created 2026-08-14T04:55Z, one entry per the size-variant rule). Repo createdAt 2026-08-14T04:55:07Z, lastModified 2026-08-17T00:19Z per the HF API.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-ui-mate-27b-model-card&amp;body=Document%3A%20tencent-hunyuan-ui-mate-27b-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/UI-Mate-27B%0AFingerprint%3A%20a3fc0d96904813108332a81451c0e17c4f58c7d2d61af5193477f53326a1be0a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-ui-mate-27b-model-card&amp;body=Document%3A%20tencent-hunyuan-ui-mate-27b-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/UI-Mate-27B%0AFingerprint%3A%20aa1890a5806dbe47e34556aa89f8dfcd93a926d365f7b5ba63d3eb3d45d96eb4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-11T06:18:35Z</td>
+          <td>text/html</td>
+          <td>252,222</td>
+          <td><code title="aa1890a5806dbe47e34556aa89f8dfcd93a926d365f7b5ba63d3eb3d45d96eb4">aa1890a5806dbe47</code></td>
+<td><a href="https://data.systemcards.org/raw/36ea91a80d1415d2f8ef25cf8aa94d3ba2a4b843ba5b852182b117969c8cf78b.html" rel="nofollow" title="archived copy, sha256 36ea91a80d1415d2f8ef25cf8aa94d3ba2a4b843ba5b852182b117969c8cf78b">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-25T06:18:30Z</td>
           <td>text/html</td>
@@ -85,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -136,6 +143,14 @@
           <div class="just">change_summary: null → "Rescoped the card to instruction-only computer use: removed the demonstration-guided mode description, its evaluation table (e.g. OSWorkerBench strict success 17.17 vs 35.35 with one demonstration) and the demonstration pipeline section, now assigning that mode to a separate UI-Mate-democua-27B checkpoint in a new checkpoint table (27B, 9B, democua-27B). Added Project Page, GitHub and arXiv links and completed the citation with arXiv 2608.15930."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-11T06:18:35Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-11T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/UI-Mate-27B" rel="noopener nofollow">https://huggingface.co/tencent/UI-Mate-27B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -159,7 +174,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoProcessor, AutoModelForMultimodalLM
 processor = AutoProcessor.from_pretrained(&#34;tencent/UI-Mate-27B&#34;)
 model = AutoModelForMultimodalLM.from_pretrained(&#34;tencent/UI-Mate-27B&#34;, device_map=&#34;auto&#34;)
@@ -179,7 +195,7 @@ inputs = processor.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Notebooks
 - Google Colab
@@ -376,11 +392,11 @@ Citation
   year          = {2026},
 }
 - Downloads last month
-- 421</pre>
+- 767</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-10T06:18:55Z</p></footer>
+<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
 </body>
 </html>

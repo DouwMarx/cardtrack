@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-13T06:26:41Z</dd>
     <dt>Versions</dt>
-    <dd>6</dd>
+    <dd>7</dd>
     <dt>Notes</dt>
     <dd>has_safety_evals=false is honest and is itself the finding: the card contains ZERO occurrences of safety, red-team, risk, harmful, misuse, refusal or dangerous - it is a capability-benchmark and usage card only, with no safety section, for a 2.4T frontier-class open-weight release. openness=open_weight_restrictive verified from the LICENSE file: custom &#39;Qwen3.8-Max License&#39; requiring prominent model-name attribution above 100M MAU or $20M monthly revenue, and a separate commercial licence for model-as-a-service or AI work-assistant providers above $50M revenue over 12 months - not an Apache/MIT-class permissive licence. publication_date is the Hugging Face repo creation date (createdAt 2026-08-08T01:50:52Z via the HF API); the card&#39;s own bibtex says only &#39;August 2026&#39; and the qwen.ai blog post it cites is unfetchable, so the repo creation date is the best-supported date for this document. Sibling Qwen/Qwen3.8-2.4T-A95B-FP8 (created 2026-08-08) deliberately NOT proposed: quantization of the same release.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-2-4t-a95b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-2-4t-a95b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-2.4T-A95B%0AFingerprint%3A%20d6d11dce0f360ca59107855d8f90d1a9729f33659546dfe12c929c49bfa492f9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-2-4t-a95b-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-2-4t-a95b-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-2.4T-A95B%0AFingerprint%3A%20cb1c96d12d0affea99aaf30ee958e9fbc936b8167eac5a714536972c91fed0c0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-11T06:18:35Z</td>
+          <td>text/html</td>
+          <td>396,450</td>
+          <td><code title="cb1c96d12d0affea99aaf30ee958e9fbc936b8167eac5a714536972c91fed0c0">cb1c96d12d0affea</code></td>
+<td><a href="https://data.systemcards.org/raw/1671e25595b0fb4f4e10a125268bae9abbe89405820de024291ccecb269142eb.html" rel="nofollow" title="archived copy, sha256 1671e25595b0fb4f4e10a125268bae9abbe89405820de024291ccecb269142eb">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-04T06:20:53Z</td>
           <td>text/html</td>
@@ -112,7 +119,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 10 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -195,6 +202,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-11T06:18:35Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-11T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -212,7 +227,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;Qwen/Qwen3.8-2.4T-A95B&#34
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;Qwen/Qwen3.8-2.4T-A95B&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;Qwen/Qwen3.8-2.4T-A95B&#34;, device_map=&#34;auto&#34;)
@@ -226,7 +242,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -467,9 +483,9 @@ If you find our work helpful, feel free to give us a cite.
     year = {2026}
 }
 - Downloads last month
-- 35,650
+- 32,082
 Model tree for Qwen/Qwen3.8-2.4T-A95B
-Spaces using Qwen/Qwen3.8-2.4T-A95B 16
+Spaces using Qwen/Qwen3.8-2.4T-A95B 22
 Collection including Qwen/Qwen3.8-2.4T-A95B
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   92.6
@@ -484,6 +500,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-10T06:18:55Z</p></footer>
+<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
 </body>
 </html>

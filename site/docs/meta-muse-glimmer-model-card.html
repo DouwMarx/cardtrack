@@ -51,12 +51,12 @@
     <dt>First seen</dt>
     <dd>2026-08-12T06:24:38Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
     <dt>Notes</dt>
     <dd>Announcement blog: research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model (2026-08-10). Companion eval methodology report at research.meta.ai/static/muse-glimmer-methodology proposed separately. Card cross-references the Muse Spark Safety &amp; Preparedness Report already in the database. HF repo created 2026-08-09, published with the Aug 10 announcement.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-glimmer-model-card&amp;body=Document%3A%20meta-muse-glimmer-model-card%0AURL%3A%20https%3A//huggingface.co/meta-models/Muse-Glimmer-30B%0AFingerprint%3A%20b28f080fd9911a9b551a7676ff1782d8e2bc134c1ed833ac7764bd5a9de1bdd8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-glimmer-model-card&amp;body=Document%3A%20meta-muse-glimmer-model-card%0AURL%3A%20https%3A//huggingface.co/meta-models/Muse-Glimmer-30B%0AFingerprint%3A%203f3b1ce5fb695a61301b9c32353a9db372d57310ef9d474dd8501dcdf44ee09f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-11T06:18:32Z</td>
+          <td>text/html</td>
+          <td>403,710</td>
+          <td><code title="3f3b1ce5fb695a61301b9c32353a9db372d57310ef9d474dd8501dcdf44ee09f">3f3b1ce5fb695a61</code></td>
+<td><a href="https://data.systemcards.org/raw/a5764ff58a0a23c4a5d36b8af925dcfa1dacce4dc52429be95124b85dbdcc434.html" rel="nofollow" title="archived copy, sha256 a5764ff58a0a23c4a5d36b8af925dcfa1dacce4dc52429be95124b85dbdcc434">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-25T06:19:01Z</td>
           <td>text/html</td>
@@ -95,7 +102,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -161,6 +168,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/meta-models/Muse-Glimmer-30B" rel="noopener nofollow">https://huggingface.co/meta-models/Muse-Glimmer-30B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-11T06:18:32Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-11T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/meta-models/Muse-Glimmer-30B" rel="noopener nofollow">https://huggingface.co/meta-models/Muse-Glimmer-30B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -184,7 +199,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoProcessor, AutoModelForMultimodalLM
 processor = AutoProcessor.from_pretrained(&#34;meta-models/Muse-Glimmer-30B&#34;)
 model = AutoModelForMultimodalLM.from_pretrained(&#34;meta-models/Muse-Glimmer-30B&#34;, device_map=&#34;auto&#34;)
@@ -204,7 +220,7 @@ inputs = processor.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -461,26 +477,26 @@ All artifacts are released under Apache 2.0:
 | Perception encoder | Frozen ViT-G/14 vision encoder (~1.8B params) |
 Where to send questions or comments about the model: Please provide any feedback, comments or bug reports on the model through the Hugging Face page at https://huggingface.co/meta-models/. For more technical information about generation parameters and recipes for how to use Muse Glimmer in applications, please see the developer documentation.
 - Downloads last month
-- 311,531
+- 250,866
 Model tree for meta-models/Muse-Glimmer-30B
-Spaces using meta-models/Muse-Glimmer-30B 21
+Spaces using meta-models/Muse-Glimmer-30B 30
 Collection including meta-models/Muse-Glimmer-30B
 Papers for meta-models/Muse-Glimmer-30B
 DFlash: Block Diffusion for Flash Speculative Decoding
 Perception Encoder: The best visual embeddings are not at the output of the network
 Evaluation results
+- MMMU/MMMU_Pro · Mmmu Pro Standard 10 Options View evaluation results leaderboard
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   83.5
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results leaderboard
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results leaderboard
-- harborframework/terminal-bench-2.1 · Terminalbench 2 1 View evaluation results leaderboard
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
-- internlm/WildClawBench · Overall View evaluation results leaderboard
-- MMMU/MMMU_Pro · Mmmu Pro Standard 10 Options View evaluation results leaderboard
-- cais/hle · Hle View evaluation results      22</pre>
+- cais/hle · Hle View evaluation results      22
+- benchflow/skillsbench · Skillsbench V1 1 View evaluation results leaderboard</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-10T06:18:55Z</p></footer>
+<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
 </body>
 </html>
