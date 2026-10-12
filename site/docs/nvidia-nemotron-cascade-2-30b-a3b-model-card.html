@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:59:57Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-cascade-2-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-cascade-2-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B%0AFingerprint%3A%20dba246da1873b2483cba55a265004a65fa6d8df20ae1a0e22bf76f41d0b5e282%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-cascade-2-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-cascade-2-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B%0AFingerprint%3A%205081ae5431ad49bb024f5c2c2fbba7bf81ee6a10cf6d29bde84016a67321d524%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-12T06:21:36Z</td>
+          <td>text/html</td>
+          <td>329,723</td>
+          <td><code title="5081ae5431ad49bb024f5c2c2fbba7bf81ee6a10cf6d29bde84016a67321d524">5081ae5431ad49bb</code></td>
+<td><a href="https://data.systemcards.org/raw/35960e99fb7f063d6fcf269eed33499a361194328e757af55daf3fd4b63b11db.html" rel="nofollow" title="archived copy, sha256 35960e99fb7f063d6fcf269eed33499a361194328e757af55daf3fd4b63b11db">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T20:59:57Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -117,6 +124,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-12T06:21:36Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-12T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -134,7 +149,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/Nemotron-Cascade-2-
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/Nemotron-Cascade-2-30B-A3B&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
@@ -148,7 +164,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Notebooks
 - Google Colab
@@ -401,19 +417,20 @@ Citation
   year={2026}
 }
 - Downloads last month
-- 38,197
+- 5,948
 Model tree for nvidia/Nemotron-Cascade-2-30B-A3B
-Spaces using nvidia/Nemotron-Cascade-2-30B-A3B 3
+Spaces using nvidia/Nemotron-Cascade-2-30B-A3B 8
 Collection including nvidia/Nemotron-Cascade-2-30B-A3B
 Paper for nvidia/Nemotron-Cascade-2-30B-A3B
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   76.1
+- MathArena/hmmt_feb_2026 · MathArena Hmmt Feb 2026 View evaluation results leaderboard
 - .eval_results/hle.yaml error
 - .eval_results/mmlu_pro.yaml error</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
+<footer><p>Data updated 2026-10-12T06:28:18Z</p></footer>
 </body>
 </html>

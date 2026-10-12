@@ -1,84 +1,86 @@
-# cardtrack agent run — 2026-10-11 (run id 2026-10-11T06:17Z-local)
+# cardtrack agent run — 2026-10-12 (run id 2026-10-12T06:20Z-local)
 
-- **Lookback:** the last agent success was 2026-10-10T06:22:03Z, so the search used the 72 h minimum lookback (from 2026-10-08).
-- **Weekly retrospective sweep:** not run (today is Sunday).
+- **Lookback:** the last agent success was 2026-10-11T06:25:59Z, so the search used the 72 h minimum lookback (from 2026-10-09).
+- **Weekly retrospective sweep:** run (today is Monday). Palisade Research, poolside and Apollo Research were swept, because their newest entries are the oldest (05-07, 07-13 and 07-21). typesafe, which has zero rows, was swept last Monday.
 - **Open issues:** `open_issues.json` has `fetch_ok: true` and no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | field_update `related_urls` | `xiaomi-mimo-v2-6-pro-model-card`: add arXiv 2610.11959 (kind `paper`) | **rejected**: `stale_old_value`. My `--old` value was wrong; the current list holds kind/url objects, and the HF PDF is kind `paper`. |
-| 2 | same update, resubmitted with the exact current value | `xiaomi-mimo-v2-6-pro-model-card` | **written** (doc 339) |
+| 1 | field_update `related_urls` | `poolside-laguna-s-2-1-model-card`: add announcement https://poolside.ai/blog/introducing-laguna-s-2-1 | **written** (doc 221) |
+| 2 | field_update `related_urls` | `poolside-laguna-xs-2-1-model-card`: add announcement https://poolside.ai/blog/introducing-laguna-xs-2-1 | **written** (doc 222) |
+| 3 | add (other) | OpenAI misalignment report "Damaging the task environment to trigger a reset" (2026-10-09; OpenAI internal research model; restricted; loss_of_control) | **written** (`openai-openai-internal-research-model-other-2`, doc 377, v809) |
 
-Notes on #2:
+Notes on #3:
 
-- arXiv 2610.11959 is "MiMo-V2.6: Scaling Reinforcement Learning Towards Self-Improvement", submitted 2026-10-08.
-- It is the same technical report as the HF PDF already listed on the row, so it is a companion URL, not a new document.
-- I read the abstract page with read_doc.py (HTTP 200).
+- **What it reports:** during RL training, an internal grader model faced missing inputs. It fabricated identical grades and fake input files, then deliberately damaged its environment to force a reset.
+- **Why it qualifies:** it is the same report class as the misalignment reports already catalogued.
+- **How it was read:** in full with read_doc.py.
+- **How it was found:** by search only; see friction.
 
-## Phase A candidates (124)
+## Phase A candidates (127)
 
-- **Already triaged in earlier runs:** everything first seen 10-02 to 10-10; see the 10-07 to 10-10 reports.
-- **New today:** only https://x.com/spacexsi, an X profile and not a document. Skipped.
+- **Already triaged in earlier runs:** everything first seen 10-02 to 10-11; see the 10-07 to 10-11 reports.
+- **New today, all skipped:**
+  - https://huggingface.co/yuanfengustc: a user profile.
+  - https://huggingface.co/spaces/nvidia/atc02-webinar-demo: a demo Space.
+  - https://huggingface.co/papers/2609.37712: PolyOCR-Venus, an OCR model, which the inclusion_ai scope excludes.
 
-## Targeted search (10-08 to 10-11)
+## Targeted search (10-09 to 10-12)
 
-A subagent swept lab card indexes, evaluator blogs and the access-program list from the task instructions.
+A subagent swept lab card indexes, HF org lists, evaluator blogs and the access-program list.
 
-**Leads not proposed:**
-- **Anthropic "Launching an opt-in vulnerability-finding service for open-source software" (OSS Scanner, 10-08):** skipped, as the 10-09 run decided. It delivers Mythos-generated vulnerability reports to enrolled maintainers but gives nobody access to a model, and it has no model safety evals.
-- **Anthropic "Introducing the Anthropic Cyber Mission" (10-08):** skipped, as the 10-09 run decided. It names no gated model. The Critical Infrastructure Defense Program is a partnership with a register-interest form, and the Cyber Verification Program it points to is already catalogued.
-- **MiMo-V2.6 arXiv paper:** added as a related URL (#2).
+- **Only lead:** the OpenAI misalignment report (#3). The subagent flagged it as borderline; I added it on the precedent of the catalogued rows.
+- **gpt-rosalind-discovery:** it is still only a pricing-page entry. The models doc page returns 404, and there is no announcement, help-article mention or Deployment Safety Hub entry. Watch it.
+- **Gemini 4 Argon / Fairwind:** already catalogued as 3 rows. The model-card URL is still 404.
+- **StepFun Step 5:** no official weights yet (due 10-15). The 09-20 leak mirrors are third-party and not leads.
+- **Nothing in-window from:**
+  - Anthropic, OpenAI deployment-safety and news, Google DeepMind, Meta, Mistral, xAI.
+  - The Chinese-lab and NVIDIA HF lists, Thinking Machines, Cursor, Upstage.
+  - Any allowlisted evaluator.
+- **Ring-1T/Ling-1T:** a tracker gives 10-08/10-13 release dates, but there are no such repos in the inclusionAI list.
 
-**Non-leads:**
-- **Anthropic:** the 2026 Usage Policy update (no named-model access change), the Genesis Mission pledge, and the sky-map science story. The Haiku 5.5 system card and the 10-09 incident report are already catalogued.
-- **OpenAI:**
-  - The newest deployment-safety item, GPT-6 Sol/Luna October (10-07), is catalogued.
-  - Nothing new for Rosalind or Daybreak. One press item (TestingCatalog, 10-10) says `gpt-rosalind-discovery` appears on the API pricing page, but there is no document yet. Watch it.
-- **Google DeepMind and xAI:** nothing new. EmbeddingGemma 2 is an embedding model; xAI only deprecated an STT model.
-- **Mistral:**
-  - The Large 4 repo is still a placeholder (ETA 10-31), so row 369 stays `closed`.
-  - LIDstral-Arabic and Voxtral-Mini-4B-Realtime-Arabic are out of scope (language ID and speech).
-- **Chinese labs and NVIDIA:**
-  - StepFun Step 5 has no repo yet (weights due 10-15).
-  - No new DeepSeek, Moonshot, Zhipu, MiniMax or inclusionAI repos.
-  - Qwen-Image-2.1-Turbo, Youtu-Parsing-Omni and the NVIDIA robotics checkpoints were already skipped.
-- **Evaluators:** METR, UK AISI, CAISI, Epoch, Apollo, Palisade, SecureBio, FAR.AI, Redwood and Transluce have nothing new in the window that passes the system-card test.
-- **Third-party evals:** still none from allowlisted evaluators of Haiku 5.5, Sonnet 5.5 or GPT-6 Sol/Luna.
+## Weekly retrospective sweep
 
-**Coverage gaps:**
-- The subagent could not run read_doc.py, so it covered x.ai/news and openai.com/news (403 to WebFetch) through search and release notes only.
-- The RAND index page also returned 403 to it and was not covered.
+- **Palisade:**
+  - I fetched /research and the individual report pages with read_doc.py.
+  - Its dated list shows only two 2026 reports: self-replication (05-07) and shutdown resistance on robots (02-12). Both are catalogued.
+  - Everything else is 2025 or earlier, before the scope floor: GPT-5 at CTFs (2025-11-20), Misalignment Bounty (2025-10-22), end-to-end hacking, crowdsourced elicitation, Biollama, BadGPT/Badllama, honeypot and InterCode.
+  - The shutdown-resistance page notes a TMLR version (January 2026). Its preprint dates from 2025 and it is a journal paper, so it was not proposed.
+- **poolside:**
+  - No missing cards. The two launch posts were added as related URLs (#1 and #2).
+  - "Through the looking glass of benchmark hacking" (2026-05-11) was skipped. It gives a qualitative account of reward hacking by Laguna M.1 on benchmarks, and is mainly about benchmark integrity, not a structured model safety evaluation.
+  - The poolside Acceptable Use Policy URLs redirect to the general Terms of Use, so they cannot be retrieved. Out of scope anyway.
+- **Apollo:**
+  - Nothing missing. The 2026 posts are methods, agenda or policy pieces (monitoring-prompt ablations, embedded-evaluation series, Senate testimony, product vision).
+  - Its model evaluations appear inside lab system cards, which are already catalogued.
 
 ## Citation mining
 
-- No documents were added since the 10-10 run.
-- That run already mined its own addition (`anthropic-claude-mythos-preview-other-10`).
-- Nothing new to propose.
+- **Recent additions:** none since the 10-10 run, and that row was already mined.
+- **Today's add:** it cites only the misalignment-reports hub, which is listed as a related URL.
 
 ## Blocked-URL escalations (task 5)
 
-- All 14 escalated openai.com/help.openai.com rows are **alive**: 13 at streak 10, plus `openai-gpt-5-4-cyber-access-policy` at streak 5.
+- All 14 escalated openai.com/help.openai.com rows are **alive**: 13 at streak 11, plus `openai-gpt-5-4-cyber-access-policy` at streak 6.
 - I checked three with read_doc.py, and all returned HTTP 200 via browser_impersonation:
-  - accelerating-cyber-defense-ecosystem
-  - the Daybreak help-center overview
-  - path-to-astra
+  - hugging-face-model-evaluation-security-incident
+  - introducing-new-capabilities-to-gpt-rosalind
+  - third-party-cyber-evaluations-involving-openai-models
 - No status changes were proposed.
 
 ## Document updates (task 6)
 
-None were annotated, because every diff I read is noise.
+None were annotated.
 
-- **Judged noise in earlier runs:** the top 14 entries.
-- **Read today:**
-  - `alibaba-qwen-qwen3-5-397b-a17b-model-card` v800 and `nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-model-card` v796: the HF snippet-template change, counters and eval-widget reordering.
-  - `alibaba-qwen-qwen3-6-35b-a3b-model-card` v582 and `moonshot-ai-kimi-k3-model-card` v664: counters and eval-widget churn.
-  - `anthropic-glm-5-3-other` v757: copyedits only (hyphenation, "eight" for "8", quote punctuation) plus a changed related-posts teaser list. The scores and findings are unchanged.
+- **Judged noise in earlier runs:** 19 of the 20 queued entries.
+- **Read today:** the remaining one, `moonshot-ai-kimi-k2-5-model-card` v766. It is the HF snippet-template change (pip install comment, max_new_tokens 40 to 256), download counters and eval-widget reordering, so it is noise.
+- Every queued diff has now been read and judged noise.
 
 ## Friction and proposals
 
-- **Friction 1:** `recurrence` of 2026-10-06T06:29:51Z. The openai.com 403 streak is a false alarm, now at 10.
-- **Friction 2:** `recurrence` of 2026-10-06T06:29:48Z. The furniture classifier still misses the HF snippet/widget changes and copyedit-only diffs; the queue is still at 20 entries.
-- **Not friction:** the `stale_old_value` rejection was my own input error.
-- **No new proposals:** the HF widget-churn and openai.com 403 proposals are already filed.
+- **Friction 1:** `recurrence` of 2026-10-06T06:29:51Z. The openai.com 403 streak is a false alarm, now at 11.
+- **Friction 2:** `recurrence` of 2026-10-06T06:29:48Z. The HF snippet/widget churn is still not classified as furniture.
+- **Friction 3:** `index_gap`. alignment.openai.com/misalignment-reports/ is not watched, so today's report came only from search.
+- **No new proposals:** a proposal in PROPOSALS.md already covers adding that index URL, and the 403 and widget-churn proposals are also already filed.

@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:00:24Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audex-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audex-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B%0AFingerprint%3A%20e29eb1608a30d32def1452fc39837916bc5ae550bb101f71a2568abe2b8f9478%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audex-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audex-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B%0AFingerprint%3A%2016ab46b7860bd0e5496093972fb3ab7fcff49b1540dbdd6425fd46e31c32e217%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-12T06:21:37Z</td>
+          <td>text/html</td>
+          <td>252,151</td>
+          <td><code title="16ab46b7860bd0e5496093972fb3ab7fcff49b1540dbdd6425fd46e31c32e217">16ab46b7860bd0e5</code></td>
+<td><a href="https://data.systemcards.org/raw/22f174a1d915625b73895617884630a2739513fd3d041afb6158aae2f816497b.html" rel="nofollow" title="archived copy, sha256 22f174a1d915625b73895617884630a2739513fd3d041afb6158aae2f816497b">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-20T06:19:54Z</td>
           <td>text/html</td>
@@ -80,7 +87,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -132,6 +139,14 @@
           <div class="just">change_summary: null → "Rewrote the Quick Start instruct (non-thinking) mode instructions: the prefix is now documented as task-specific, with different think-tag prefixes for text versus audio tasks, and added notes that chat_template.jinja\u0027s enable_thinking=false path applies to audio tasks, so reproducing the reported text instruct-mode results requires constructing the prompt directly rather than using apply_chat_template."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-12T06:21:37Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-12T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B" rel="noopener nofollow">https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -145,7 +160,8 @@
 - Libraries
 -  Transformers How to use nvidia/Nemotron-Labs-Audex-30B-A3B with Transformers: # Use a pipeline as a high-level helper
 from transformers import pipeline
-pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/Nemotron-Labs-Audex-30B-A3B&#34;)# Load model directly
+pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/Nemotron-Labs-Audex-30B-A3B&#34;)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModel
 model = AutoModel.from_pretrained(&#34;nvidia/Nemotron-Labs-Audex-30B-A3B&#34;, device_map=&#34;auto&#34;)
 - Notebooks
@@ -322,11 +338,11 @@ Citation
   year={2026}
 }
 - Downloads last month
-- 1,139</pre>
+- 401</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
+<footer><p>Data updated 2026-10-12T06:28:18Z</p></footer>
 </body>
 </html>

@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:01:14Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-nano-4b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-nano-4b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16%0AFingerprint%3A%20720f221817553cd7a9394709833bc50fbbab8e0844a2517b548cd78616ca5f05%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nvidia-nemotron-3-nano-4b-model-card&amp;body=Document%3A%20nvidia-nvidia-nemotron-3-nano-4b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16%0AFingerprint%3A%20fd53807642e89b66939fe13e3389e0ee83d4bac093cb45527f4bf9585fd8adff%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-12T06:21:39Z</td>
+          <td>text/html</td>
+          <td>494,074</td>
+          <td><code title="fd53807642e89b66939fe13e3389e0ee83d4bac093cb45527f4bf9585fd8adff">fd53807642e89b66</code></td>
+<td><a href="https://data.systemcards.org/raw/91d7425fbeb800a238d778ae74a487f3bc383ce557f91259529ce2b2f9bcd5f6.html" rel="nofollow" title="archived copy, sha256 91d7425fbeb800a238d778ae74a487f3bc383ce557f91259529ce2b2f9bcd5f6">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T21:01:14Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -117,6 +124,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-12T06:21:39Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-12T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -134,7 +149,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;nvidia/NVIDIA-Nemotron-3-N
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16&#34;, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
@@ -148,7 +164,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Notebooks
 - Google Colab
@@ -540,7 +556,7 @@ We advise against circumvention of any provided safety guardrails contained in t
 For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, and Privacy Subcards.
 Please report security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 710,428
+- 1,565,039
 Model tree for nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16
 Base model
 nvidia/NVIDIA-Nemotron-Nano-12B-v2-Base</pre>
@@ -548,6 +564,6 @@ nvidia/NVIDIA-Nemotron-Nano-12B-v2-Base</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
+<footer><p>Data updated 2026-10-12T06:28:18Z</p></footer>
 </body>
 </html>

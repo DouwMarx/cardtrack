@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:01:44Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy-embodied-0-5-mot-2b-model-card&amp;body=Document%3A%20tencent-hunyuan-hy-embodied-0-5-mot-2b-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/HY-Embodied-0.5%0AFingerprint%3A%20fc1bb711708e96e316b3a5b8ab9a3194f5bf91f8927ff8d2812d241fb6bcc71a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy-embodied-0-5-mot-2b-model-card&amp;body=Document%3A%20tencent-hunyuan-hy-embodied-0-5-mot-2b-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/HY-Embodied-0.5%0AFingerprint%3A%20ed9f1049fe86f0a95c8a24a1b4aa0fa2c9bce795ff276b39f6ab95871731147c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-12T06:21:40Z</td>
+          <td>text/html</td>
+          <td>281,002</td>
+          <td><code title="ed9f1049fe86f0a95c8a24a1b4aa0fa2c9bce795ff276b39f6ab95871731147c">ed9f1049fe86f0a9</code></td>
+<td><a href="https://data.systemcards.org/raw/5faeee8d8fcc9403e0f3aaf21bac24421f941b2dbddb9807dc9d3d57ead3ffda.html" rel="nofollow" title="archived copy, sha256 5faeee8d8fcc9403e0f3aaf21bac24421f941b2dbddb9807dc9d3d57ead3ffda">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T21:01:44Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -109,6 +116,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/tencent/HY-Embodied-0.5" rel="noopener nofollow">https://huggingface.co/tencent/HY-Embodied-0.5</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-12T06:21:40Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-12T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/HY-Embodied-0.5" rel="noopener nofollow">https://huggingface.co/tencent/HY-Embodied-0.5</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -132,7 +147,8 @@ messages = [
         ]
     },
 ]
-pipe(text=messages)# Load model directly
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForImageTextToText
 model = AutoModelForImageTextToText.from_pretrained(&#34;tencent/HY-Embodied-0.5&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Notebooks
@@ -435,11 +451,11 @@ If you find it useful for your research and applications, please cite our paper 
 🙏 Acknowledgements
 We thank the Hugging Face community for their support and the open-source contributions that made this implementation possible.
 - Downloads last month
-- 266</pre>
+- 347</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-11T06:25:32Z</p></footer>
+<footer><p>Data updated 2026-10-12T06:28:18Z</p></footer>
 </body>
 </html>
