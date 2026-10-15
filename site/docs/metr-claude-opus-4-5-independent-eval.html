@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:30:04Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-5-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-5-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-1-29-time-horizon-1-1/%0AFingerprint%3A%20b9b7b5c73ecc992ff9784f154962293fb2f3b65a8ccb134cbdcada808066f7c0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-5-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-5-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-1-29-time-horizon-1-1/%0AFingerprint%3A%20df3401400d0e04b3934d442bb98d211563f8a42c1a6756317d78f4a6253a87d5%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-15T06:18:52Z</td>
+          <td>text/html</td>
+          <td>71,772</td>
+          <td><code title="df3401400d0e04b3934d442bb98d211563f8a42c1a6756317d78f4a6253a87d5">df3401400d0e04b3</code></td>
+<td><a href="https://data.systemcards.org/raw/eff0956261b8c8be5224bb8816b221d765c1c1c76913cccc6d87629c28740b51.html" rel="nofollow" title="archived copy, sha256 eff0956261b8c8be5224bb8816b221d765c1c1c76913cccc6d87629c28740b51">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T21:30:04Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -119,6 +126,14 @@
           <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-15T06:18:52Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-15T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-1-29-time-horizon-1-1/" rel="noopener nofollow">https://metr.org/blog/2026-1-29-time-horizon-1-1/</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -151,7 +166,7 @@ First, we compare the TH1 trend to a hybrid trend, where we use TH1 estimates fo
 Second, we compare the TH1.1 and TH1 trends since 2023, where we have data from both methods. Note that we have estimated fewer models with TH1.1, so the sets of models used to estimate these trends are mostly overlapping but not identical. The post-2023 doubling-time is 131 days under TH1.1, compared to 165 days under TH1, meaning progress is estimated to be 20% more rapid under TH1.1.
 The change in trend is due to our estimates of older models shifting down (different versions of GPT-4 see estimates fall by 35% and 57% respectively), and estimates of recent models shifting up (GPT-5 and Opus 4.5 rise by 55% and 11% respectively). The TH1.1 doubling time is within the confidence intervals for TH1’s doubling time, however those confidence intervals represent the likelihood of getting the same estimate with an entirely new set of tasks, while in fact there is substantial overlap in the tasks contained in TH1.1 and TH1.2 We also report below the doubling time since 2024: this was at 109 days under TH1, and falls to 89 days under TH1.1.
 Overall we believe it’s likely the new tasks are drawn from a slightly different distribution of difficulty, as such they reflect a slightly different underlying trend in time horizon. This is a natural consequence of updating our pool of tasks without having a rigid selection criteria. We believe the new task suite to be overall an improvement, and so worth this slight change in the quantity being estimated.
-The process of updating our task suite has highlighted the importance of defining the distribution of tasks which we wish to measure performance over. We previously have described principles used in selecting tasks for measuring time horizon in a variety of places. Our time horizon paper (Kwa et al.) described the suite as “datasets designed to capture skills required for research or software engineering, and included RE-Bench, a subset of HCAST, and a new set of short tasks (SWAA). We also described principles for task selection in our task bounty desiderata, and in our cross-domain time-horizon blog post.
+The process of updating our task suite has highlighted the importance of defining the distribution of tasks which we wish to measure performance over. We previously have described principles used in selecting tasks for measuring time horizon in a variety of places. Our time horizon paper (Kwa et al.) described the suite as “datasets designed to capture skills required for research or software engineering,” and included RE-Bench, a subset of HCAST, and a new set of short tasks (SWAA). We also described principles for task selection in our task bounty desiderata, and in our cross-domain time-horizon blog post.
 We are working on raising the ceiling of our capabilities measurements.
 As discussed above, even our Time Horizon 1.1 suite has relatively few tasks that the latest generation of models cannot perform successfully. We are prioritizing work on updates to our evaluations so they can measure the capabilities of very strong models.
 Appendices
@@ -220,6 +235,6 @@ We also ran three models on the new task suite in both Vivaria and Inspect. We f
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-14T06:20:41Z</p></footer>
+<footer><p>Data updated 2026-10-15T06:26:45Z</p></footer>
 </body>
 </html>

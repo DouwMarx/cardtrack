@@ -1968,3 +1968,13 @@ Concrete case: Upstage was added on 2026-09-22 with one catalogued row (Solar Op
 
 **Evidence.** `logs/candidates.json` `phase_a_summary.blocked` (run 2026-10-07T06:16Z-local); friction entries 2026-10-06T06:29:51Z and the 2026-10-07 recurrence; run reports for 2026-10-06 and 2026-10-07, task 5.
 
+---
+
+## 2026-10-15 — HF index misses placeholder repos that are filled after creation (sort by lastModified too)
+
+Problem: the HF index source (`/api/models?author=X&sort=createdAt`) only surfaces a repo when it is created. Labs increasingly create an empty placeholder repo at API launch and fill it with the card and weights weeks later. On 2026-10-15, StepFun's official Step 5 Preview card landed in `stepfun-ai/Step-5-Preview`, a repo created on 2026-09-20 as a placeholder. Phase A never listed it; only the NVFP4 quant created 10-14 appeared. The agent found it only because earlier run reports had noted the announced weights date. Mistral Large 4 (weights "end of October") is the next likely case.
+
+Suggested change: add a second HF API pass per allowlisted org using `sort=lastModified&direction=-1&limit=50`. Emit a candidate when a repo's card grows past a minimal size (e.g. README over 2 KB) for the first time, or when a repo seen earlier with an empty or missing README now has one. Keep it to repos not already catalogued.
+
+Evidence: friction entry 2026-10-15T06:26:58Z. HF API for stepfun-ai/Step-5-Preview shows createdAt 2026-09-20T03:15:06Z and lastModified 2026-10-15T01:28:10Z. The candidates.json for run 2026-10-15T06:17Z-local contains only Step-5-Preview-NVFP4. Run logs 10-05 to 10-14 track "Step 5 weights due 10-15" by hand.
+

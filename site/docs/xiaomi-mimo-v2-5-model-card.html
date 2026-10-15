@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:30:45Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20xiaomi-mimo-v2-5-model-card&amp;body=Document%3A%20xiaomi-mimo-v2-5-model-card%0AURL%3A%20https%3A//huggingface.co/XiaomiMiMo/MiMo-V2.5%0AFingerprint%3A%201ebb4e1de55a52ef13e5aa51e4300683db9e3241bfc53fe14364da30b6699378%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20xiaomi-mimo-v2-5-model-card&amp;body=Document%3A%20xiaomi-mimo-v2-5-model-card%0AURL%3A%20https%3A//huggingface.co/XiaomiMiMo/MiMo-V2.5%0AFingerprint%3A%209f8e5694983754f532af5e46b6d6af9beeef35190779b309820fabee821bc5b8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-15T06:18:38Z</td>
+          <td>text/html</td>
+          <td>370,492</td>
+          <td><code title="9f8e5694983754f532af5e46b6d6af9beeef35190779b309820fabee821bc5b8">9f8e5694983754f5</code></td>
+<td><a href="https://data.systemcards.org/raw/e2eb3bb724ed758d100474de6ecaabd3728b9e8ee29ebe02969c81111ff5cdec.html" rel="nofollow" title="archived copy, sha256 e2eb3bb724ed758d100474de6ecaabd3728b9e8ee29ebe02969c81111ff5cdec">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T20:30:45Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -123,6 +130,14 @@
           <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-15T06:18:38Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-15T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/XiaomiMiMo/MiMo-V2.5" rel="noopener nofollow">https://huggingface.co/XiaomiMiMo/MiMo-V2.5</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -140,7 +155,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;XiaomiMiMo/MiMo-V2.5&#34;,
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;XiaomiMiMo/MiMo-V2.5&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
 - Inference
@@ -337,14 +353,14 @@ Citation
 Contact
 For questions or feedback, reach us at mimo@xiaomi.com or join our community:
 - Downloads last month
-- 399,157
+- 186,705
 Model tree for XiaomiMiMo/MiMo-V2.5
-Spaces using XiaomiMiMo/MiMo-V2.5 2
+Spaces using XiaomiMiMo/MiMo-V2.5 4
 Collection including XiaomiMiMo/MiMo-V2.5
 Evaluation results
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   56.1
-- InternScience/ResearchClawBench · Overall View evaluation results leaderboard
 - harborframework/terminal-bench-2.0 · Terminalbench 2 View evaluation results leaderboard
+- InternScience/ResearchClawBench · Overall View evaluation results leaderboard
 - claw-eval/Claw-Eval leaderboard
 - General View evaluation resultssourcePass³% | N=3 | 161 tasks62.1 *
 - Multimodal View evaluation resultssource
@@ -353,6 +369,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-14T06:20:41Z</p></footer>
+<footer><p>Data updated 2026-10-15T06:26:45Z</p></footer>
 </body>
 </html>
