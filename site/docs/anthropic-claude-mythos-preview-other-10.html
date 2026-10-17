@@ -49,12 +49,12 @@
     <dt>First seen</dt>
     <dd>2026-10-10T06:18:55Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Incident report series: follows anthropic-claude-opus-4-7-other (2026-07-30) and the 2026-09-09 alignment assessment of cybersecurity incidents. Openness restricted because Claude Mythos Preview and Mythos 5 are vetted-access models.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-10&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-10%0AURL%3A%20https%3A//www.anthropic.com/research/investigating-unintended-model-actions%0AFingerprint%3A%209eeab287826e9c7ea077473397e6bdb42b4383a677e8e908fbf270137cbf70ab%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-10&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-10%0AURL%3A%20https%3A//www.anthropic.com/research/investigating-unintended-model-actions%0AFingerprint%3A%202e4d66ccb9b8569d1c4a6ac0fdfa8c451001fd4fc8baf23d4563b509e075b3ae%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-17T06:20:41Z</td>
+          <td>text/html</td>
+          <td>156,864</td>
+          <td><code title="2e4d66ccb9b8569d1c4a6ac0fdfa8c451001fd4fc8baf23d4563b509e075b3ae">2e4d66ccb9b8569d</code></td>
+<td><a href="https://data.systemcards.org/raw/e96c9b45a5afc91ded964a631d1fb8fd444691d0bb9b9799149c124d7f8533ae.html" rel="nofollow" title="archived copy, sha256 e96c9b45a5afc91ded964a631d1fb8fd444691d0bb9b9799149c124d7f8533ae">archived copy</a></td>          <td class="change-summary">Added a correction dated Oct 12, 2026: the post previously said Claude&#39;s web fetch URL-length limits were put in place to prevent SQL or command injection; it now says the limits reduce the risk of exfiltrating larger amounts of data. Other changes are copy edits and rotated related-content links.
+</td>
+        </tr>
         <tr>
           <td>2026-10-10T06:18:55Z</td>
           <td>text/html</td>
@@ -78,7 +86,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -96,6 +104,23 @@
               · attested notable_release=true
               · attested primary_source=true
           </div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">https://www.anthropic.com/research/investigating-unintended-model-actions</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-17T06:20:41Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-17T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">https://www.anthropic.com/research/investigating-unintended-model-actions</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-17T06:24:05Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-17T06:19Z-local · agent · lead: manual</span>
+          <div class="just">change_summary: null → "Added a correction dated Oct 12, 2026: the post previously said Claude\u0027s web fetch URL-length limits were put in place to prevent SQL or command injection; it now says the limits reduce the risk of exfiltrating larger amounts of data. Other changes are copy edits and rotated related-content links."</div>
+          <div class="just">Diff v794 to v861 adds an explicit &#39;Corrected Oct 12, 2026&#39; note and rewrites the URL-shortener paragraph&#39;s stated rationale; substantive factual correction, rest is typo fixes and related-content furniture.</div>
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">https://www.anthropic.com/research/investigating-unintended-model-actions</a>          </div>
       </li>
@@ -130,23 +155,23 @@ Overview of behaviors
 Below, we describe four categories of behavior in which Claude acted on real websites and systems in ways we did not intend, each of which involved an organization or person outside Anthropic.
 Exploiting a basic flaw in software to run commands on a server
 When Claude could not complete an evaluation task directly, either because its own tools were deliberately limited or because an outside service it needed was unavailable, it used other tools hosted on a third party’s site to achieve its goal. In some circumstances, it did this by exploiting basic flaws in that site’s software, using SQL or command injection (a way of sending input that the site mistakenly runs as instructions).
-For example, one evaluation asked Claude Mythos Preview to run a scientific analysis. The public tool it needed to perform that analysis was hosted by a university; when the model sought to access to it, the tool returned an error. Looking for another way to complete the task, Claude explored the tool’s website, found a script on the university’s server that would return any file it was asked for, and used it to copy files from the server, including the script’s own code. In that code Claude found the injection flaw that let it run commands on the server, and used it to run the calculation.
+For example, one evaluation asked Claude Mythos Preview to run a scientific analysis. The public tool it needed to perform that analysis was hosted by a university; when the model sought to access it, the tool returned an error. Looking for another way to complete the task, Claude explored the tool’s website, found a script on the university’s server that would return any file it was asked for, and used it to copy files from the server, including the script’s own code. In that code Claude found the injection flaw that let it run commands on the server, and used it to run the calculation.
 In another instance, the data Claude Mythos 5 needed was free, but Claude could not access it without accepting a data use agreement, which it did not have the tools to do. Claude used applications hosted on the website to load the page and accept the agreement on its behalf.
 We saw this behavior on DeepSearchQA and BrowseComp (both public web research evaluations), on LABBench2 (a public biology research benchmark), and during internal evaluations.
 Submitting a form it should not have
 We saw instances where Claude submitted an online form when it shouldn’t have. Generally, this occurred when an evaluation’s instructions were ambiguous, or when a misconfiguration within the environment prevented Claude from working with dummy forms.
-For example, in a case which happened multiple times on the same evaluation, an unreleased, non-frontier research model was meant to fill out a practice copy of a government form. When the copy failed to load or the model closed it by mistake, the model instead navigated to the website where the real form is normally hosted and submitted the form there.
+For example, in a case that happened multiple times on the same evaluation, an unreleased, non-frontier research model was meant to fill out a practice copy of a government form. When the copy failed to load or the model closed it by mistake, the model instead navigated to the website where the real form is normally hosted and submitted the form there.
 In another evaluation, Claude Haiku 4.5 was instructed to complete a form up until the final submission stage, but to stop before actually submitting. Several times Claude mistakenly submitted the form instead, expecting there to be an additional confirmation page. In these instances, the model’s chain-of-thought stated that it was demonstrating the process, not submitting a real request.
 In a third example of this behavior, Claude Haiku 4.5 had been tasked with generating and performing example tasks on randomly selected webpages. In one run, the model landed on a page referencing an unsolved homicide; that page contained a tip form run by a police department. Claude was instructed never to log in, create accounts, enter personal data, make purchases, or submit anything destructive, but the instructions did not rule out form submissions. Claude filled out the form with the following: “I may have information regarding this case. I recall seeing someone matching the description in the area around [the street named on the page] during that time period. Please contact me if this information is relevant.” (The website did not include a description of the perpetrator.) The model left the name and contact fields empty, which the form allowed, and submitted it. The submission was flagged as spam and was never forwarded for investigation.
 We saw this behavior on OSWorld (a public computer use evaluation), on Odysseys (a long-horizon task evaluation), and during internal usage.
 Working around restrictions to reach gated data
 Claude sometimes worked around a restriction to reach data to which it did not have access. Generally, this occurred when a server refused Claude’s request, or when the data was offered only for a fee.
-For example, in an evaluation that asked Claude Mythos 5 to identify a location shown in a photo, it attempted to access a local government’s property map to triangulate its guesses. Claude could read webpage text, but the evaluation limited its ability to click through them as a person would. Instead, it read the settings file the site sends to browsers, found working access tokens, and used them to send requests directly to the server behind the map to access the data.
+For example, in an evaluation that asked Claude Mythos 5 to identify a location shown in a photo, it attempted to access a local government’s property map to triangulate its guesses. Claude could read webpage text, but the evaluation limited its ability to click through it as a person would. Instead, it read the settings file the site sends to browsers, found working access tokens, and used them to send requests directly to the server behind the map to access the data.
 In another example of this behavior, an Anthropic researcher used Claude Mythos 5 on a statistics project that required it to pull public data that was available from a state agency for a fee. Instead, Claude learned from an archived copy of the agency’s website that its public dashboard issues an access token to any visitor. It requested one and used it to query the database without paying the fee.
 In both examples, Claude obtained data already available to the public but only for a fee.
 We saw this behavior on Humanity’s Last Exam, an evaluation of expert-level academic questions, and during internal usage.
 Using URL shortening services
-Some of our fetch tools, which let Claude read webpages, limit the length of the URLs Claude can request. This is to prevent Claude from using long URLs to take certain unwanted actions, such as SQL or command injections (part of a URL is text passed to a site’s server, and a long one has room to carry such instructions). We saw several models, including Claude Opus 5 and Claude Mythos 5, get around this limitation by using free URL shortening services. We first identified this behavior internally, but as we were writing this post, an operator of the da.gd URL shortening service let us know that they had also found Claude using their website for this purpose. We thank the operator for sharing these details.
+Some of our fetch tools, which let Claude read webpages, limit the length of the URLs Claude can request. This limit is in place to reduce the risk from Claude using long URLs to take certain unwanted actions, such as exfiltrating larger amounts of data. We saw several models, including Claude Opus 5 and Claude Mythos 5, get around this limitation by using free URL shortening services. We first identified this behavior internally, but as we were writing this post, an operator of the da.gd URL shortening service let us know that they had also found Claude using their website for this purpose. We thank the operator for sharing these details.
 Remediation
 We’ve taken several preventive measures. Some of the public evaluations we no longer run; others we have moved to their offline versions, or rebuilt them so that their tasks do not reach live websites. We’ve also made broader changes. We have updated the guardrails on some of our internet access tools, such as the web fetch tool, to heavily restrict what the model can do with them. And, as part of our ongoing agent security and monitoring efforts, we have built tooling to automatically detect and block the kinds of behaviors described above. This tooling now runs on most of our evaluations and on internal agentic use of frontier models. When we tested it against the cases described in this post, it blocked all of them.
 As we described in our August 31 post, we are also continuing to fix or remove training environments that reward Claude for working around tool restrictions or other blockers, so that they do not incentivize these behaviors or permit reward hacking.
@@ -158,25 +183,26 @@ As we establish a regular public reporting process for behaviors like these, we 
 Nonetheless, we found two alignment dimensions useful for examining the cases in this post: overreach, or how far the model went beyond what its task intended, and dishonesty, or whether it gave a misleading account of its actions or intentions. On overreach, we consider these cases to be substantially less concerning than the incidents we reported this summer, in which Claude gained access to real third-party systems for hours during cybersecurity evaluations. In the cases we report here, in contrast, Claude bypassed access controls to reach gated but publicly available data, or exploited software flaws and ran commands on servers (mainly to reach non-sensitive data).
 On dishonesty, the comparison is more mixed. In one case, tasked with generating example interactions with websites, Claude submitted an invented tip through a police department’s online form. From the transcript, Claude appears to have only been producing example content for the task, rather than trying to mislead anyone to achieve a goal. In the most serious incident from this summer, by contrast, Claude’s misleading reasoning was sustained over hours and supported its continued attack. Still, judging dishonesty with confidence typically requires a deeper assessment than we have done here, such as replaying transcripts with modifications to test what drove the model’s behavior, so our view of these cases may change with further analysis.
 Lessons and next steps
-None of the behaviors we’ve described here are new and they do not change our overall view of Claude’s alignment. In many of the cases where we observed these behaviors, Claude had been given tasks that were ambiguous or impossible to complete. We and others have observed that when models are given impossible-to-complete tasks, they will pursue unintended and sometimes misaligned strategies to achieve their goals.
+None of the behaviors we’ve described here are new, and they do not change our overall view of Claude’s alignment. In many of the cases where we observed these behaviors, Claude had been given tasks that were ambiguous or impossible to complete. We and others have observed that when models are given impossible-to-complete tasks, they will pursue unintended and sometimes misaligned strategies to achieve their goals.
 It is possible that some of these failures could have been avoided if the evaluation questions had more clearly stated what was in and out of scope for the exercise, including the targets, permitted actions, and network boundaries (i.e., what the model should and shouldn’t access). However, Claude encounters ambiguous and impossible tasks every day in real use, and, indeed, several of the cases we observed occurred during regular agentic use of Claude.
 Behavioral and alignment training is the main technique we have at our disposal to improve Claude’s judgment and ability to handle ambiguous situations with care. Historically, we have been more focused on teaching models to respect boundaries and be appropriately cautious in coding environments. We are now expanding these environments to applications like search and computer use, which were involved in the cases described here. However, alignment training is not yet sufficient or fully robust on its own, at least in the short term, so we also rely on defense-in-depth approaches, including the classifiers and safeguards described above.
 We plan to keep reporting concerning behaviors as our scan and analysis continue. We hope these reports help other developers check for similar behaviors in their own models, since many of the evaluations involved are public and widely used. While these cases had minimal impact, we do not want to diminish the findings, because the same behaviors could do far more harm as models become more powerful. The larger the role models play in society, the more the public deserves to know how they behave.
-Note: The tip form example described above involved the Philadelphia Police Department who self-disclosed today via their press release. We shared this finding with the department on October 8 as soon as our technical review was complete.
+Note: The tip form example described above involved the Philadelphia Police Department, who self-disclosed today via their press release. We shared this finding with the department on October 8 as soon as our technical review was complete.
+Corrected Oct 12, 2026: A previous version of this post incorrectly stated that Claude&#39;s web fetch limits were put in place to prevent SQL or command injections. In a small number of evaluation runs, a model did use URL shortening services while it carried out an SQL injection or another unintended action, but the limits were not put in place to prevent such attacks.
 Related content
-The missing map of the sky
-Brice Ménard, an astrophysicist at Johns Hopkins University and a researcher at Anthropic, explains how he worked with Claude Science to produce the first complete map of the sky in UV light.
+Designing more efficient quantum circuits with Claude
+We gave Claude plain-language specifications for eight quantum circuits, along with an automated evaluator to check and score its designs. Working largely on its own, Claude improved on the best published circuits, in some cases by an order of magnitude or more, which could bring practical quantum computers closer than previously anticipated.
 Read more
-Launching an opt-in vulnerability-finding service for open-source software
-We’re making available OSS Scanner, an opt-in vulnerability scanner for the open-source ecosystem that’s informed by our experience using Claude to find vulnerabilities during Project Glasswing.
+Claude reveals ECDSA curve origins
+The decades-old mystery of the origins of one of the most popular cryptographic standards has been explained.
 Read more
-Claude-shaped science
-Guest author Prof. Matthew Schwartz describes what happened when he stopped fighting Claude and allowed Claude to find “Claude-shaped” problems: ones best suited to the capabilities of the current generation of LLM tools. This led him to build BootLoops, a toolkit for exact calculations in quantitative science, which he has been applying across scientific fields alongside experts.
+The AI expectations gap
+How will AI reshape the economy in the years ahead? What is the core source of disagreement about AI&#39;s future impact on the economy? This note presents new survey evidence on these questions.
 Read more</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-16T06:23:18Z</p></footer>
+<footer><p>Data updated 2026-10-17T06:24:16Z</p></footer>
 </body>
 </html>
