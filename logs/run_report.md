@@ -1,88 +1,82 @@
-# cardtrack agent run — 2026-10-17 (run id 2026-10-17T06:19Z-local)
+# cardtrack agent run — 2026-10-18 (run id 2026-10-18T06:16Z-local)
 
-- **Lookback:** the last agent success was 2026-10-16T06:24:04Z, so the search used the 72 h minimum (2026-10-14 to 10-17).
-- **Weekly retrospective sweep:** not run (today is Saturday).
+- **Lookback:** the last agent success was 2026-10-17T06:25:18Z, so the search used the 72 h minimum (2026-10-15 to 10-18).
+- **Weekly retrospective sweep:** not run (today is Sunday).
 - **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | add (independent_eval) | Epoch AI "Open-weight models trail closed models in cyber capabilities by 6–7 months" (2026-10-16; restricted; cyber) https://epoch.ai/data-insights/open-closed-cyber-eci-gap | **written** (`epoch-ai-glm-5-3-independent-eval`, doc 394, v864) |
-| 2 | annotate_version | `anthropic-claude-mythos-preview-other-10` v861 | **written** |
+| 1 | add (model_card) | DeepSeek-V4.1-Flash-1017 model card (2026-10-17; open_weight_permissive, MIT; no safety evals) https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017 | first try **rejected** (`document_retrievable=false: HTTP 429`); after a pause and a successful fetch, the identical resubmission was **written** (`deepseek-deepseek-v4-1-flash-1017-model-card`, doc 395, v875) |
+| 2 | annotate_version | `openai-gpt-5-6-sol-access-policy` v869 (Daybreak trusted-access overview) | **written** |
 
-### #1 Epoch Cyber ECI open/closed gap
+### #1 DeepSeek-V4.1-Flash-1017
 
-- **Findings:**
-  - Cyber ECI scores for 57 models, fit over 35 cyber benchmarks and 324 results drawn from UK AISI, CAISI, Irregular and developer reports.
-  - GLM-5.3 is the top open-weight model at 160. It sits above GPT-5.4 (157) and below Mythos Preview (165) and GPT-5.5 (162), which puts the open cyber frontier 6–7 months behind closed models.
-  - Opus 5.5 and GPT-6 Astra lead at 171.
-- **Precedent:** follows the claude-ds-eci and astra-eci-breakdown rows.
-- **Openness:** `restricted`, because Claude Mythos Preview (limited access) is a named comparator. The validator assigned slug `…-glm-5-3-…`, after the first named model.
-- **Date:** "Oct. 16, 2026" is on the page, by Jaeho Lee and Alexander Barry.
+- **Source:** Phase A lead from api-docs.deepseek.com/news/news261017 ("Wish-Driven Programming Made Real", dated 2026-10-17). The post announces the checkpoint as live on web, app and API, with open weights on HF and ModelScope.
+- **Card contents:** it describes itself as a "minor update" to V4.1-Flash. It has its own benchmark table: HLE 42.6 vs 36.8, Terminal-Bench 4.0 42.3 vs 31.2, Agents' Last Exam 35.4 vs 31.8, and others. It links the existing V4.1 technical report.
+- **Why a separate row:** the document-unit rule (separate card at a separate URL). This follows the precedent of the V4-Flash-0731 and V4-Pro-0813 rows.
+- **Not proposed:** the ModelScope copy is a mirror host.
+- **Retry:** the first rejection was an HF rate limit, not a missing document. My own fetch of the page also got 429 at that time, and it returned 200 before I resubmitted. This is logged as friction (regression of the RESOLVED.md 429 row).
 
-### #2 Mythos unintended-actions post (v861)
+### #2 Daybreak overview v869
 
-- Anthropic added a "Corrected Oct 12, 2026" note: the stated reason for the web-fetch URL-length limits changed from "prevent SQL/command injection" to "reduce the risk of data exfiltration".
-- Everything else in the diff is copy edits and rotated related-content links.
+- **Tier removed:** the separate "Daybreak Red with additional model approval" tier for GPT-5.6-Cyber is gone.
+- **Daybreak Red now covers:** "cyber models like GPT-5.5-Cyber" plus Astra and **Astra Minor**.
+- **Model table:** GPT-6.1-Sol added, with standard safeguards in Blue and reduced refusals in the Red tiers.
+- **Instructions:** Codex CLI instructions added.
 
 ## Phase A candidates
 
-- **Already triaged in earlier runs:** everything first seen 10-06 to 10-16.
-- **New today (55), all skipped:**
-  - **Anthropic:**
-    - "Claude reveals ECDSA curve origins" (Frontier Red Team): a capability showcase by an unnamed "internal research model" with no measured results.
-    - "Designing more efficient quantum circuits with Claude": a science showcase.
-    - Three Economics posts (expectations gap, employment, expectations for the future) and Claude for Google Workspace: out of scope.
-  - **Epoch:** open-closed-cyber-eci-gap was **proposed (#1)**.
-  - **METR Time Horizon 1.1:** already in the DB as `metr-claude-opus-4-5-independent-eval` (URL `2026-1-29` vs `2026-01-29`, so a mirror).
-  - **SecureBio:**
-    - "Response to Anthropic's update on independent evaluators": an organisational post. It notes Anthropic revised its tier description; there is no Anthropic row for that post.
-    - "Nature Sets a Baseline, Not a Ceiling" (both URLs): a policy essay.
-  - **NIST CAISSI/NSA/CISA "Key practices for incident readiness and response in SI training":** voluntary guidance that names no model.
-  - **Redwood "Screwtape" adversarial transcript editing:** a monitor red-teaming method. Its target monitor is unnamed, and Opus 4.8 and Gemini 3.1 Pro are used only as proxy monitors, so it fails the system-card test.
-  - **NVIDIA Nemotron Labs Dory1.0-4B (BF16/NVFP4/MXFP8/GGUF, released 10-16):** a general-purpose LLM and in NVIDIA's scope, but with no NVIDIA announcement outside HF. Search finds only the HF repos and an aggregator blog calling it "a quiet HF release", so it fails notability. **Watch** for a blog or tech report.
-  - **NVIDIA, other:** GLM-5.3-Flash-FP4-Local is a quant artifact and lidarverse is out of scope.
-  - **Tencent:**
-    - Hy-Memory-30B-A3B: an auxiliary memory-writer model.
-    - Qwen3-8B-DSpine and the DSpine collection: a speculative-decoding drafter.
-  - **Not documents:** Cursor changelog, DeepSeek search guide, HF listing/profile/collection/discussion URLs.
+- **Already triaged in earlier runs:** everything first seen 10-06 to 10-17.
+- **New today (8):**
+  - DeepSeek news261017 and V4.1-Flash-1017: **proposed (#1)**. The news post is recorded as the announcement.
+  - NVIDIA Nemotron-3.5-Parse: skipped. It is a document/OCR parser, and NVIDIA's scope note explicitly excludes OCR/parse models; the card has no safety evals.
+  - Tencent Hy-Memory collection and Hy-Memory-30B-A3B-FP8: skipped. It is an auxiliary memory model (skipped yesterday), and FP8 is a quantization.
+  - NVIDIA aisimulate-fpm-dataset discussion: not a document.
+  - MiniMax Code download page: a product page.
 
-## Targeted search (10-14 to 10-17)
+## Targeted search (10-15 to 10-18)
 
+- **Astra Minor:** the name appears only in the Daybreak help-centre doc and in leak/social coverage. OpenAI has published no card, announcement or system card. Watch for one.
 - **Already in the DB:**
-  - Haiku 5.5 system card
+  - Haiku 5.5
   - GPT-6 Sol/Luna October update
-  - GPT-Live-1.1
-  - Gemini 4 Argon (GA on 10-13)
-  - Anthropic CVP three-tier expansion: news/cyber-verification-program, covered by The Hacker News on 10-07
-  - LSVP: news/life-sciences-verification-program
+  - Gemini 4 Argon and Fairwind
+  - Mistral Large 4
+  - Muse Spark Open card and evaluation methodology
+  - CVP three-tier expansion
+  - LSVP
   - Rosalind Academic Plan
+  - GPT-6.1 Sol addendum
 - **No new documents in window:**
   - xAI: no Grok 5 card
-  - Qwen, DeepSeek, Kimi, MiniMax, GLM
-  - METR, Apollo, Transluce, UK AISI
-  - Glasswing, Claude Science, Daybreak, Gemini for Science, Flash Cyber, CodeMender
-- **Muse Spark Open full evaluation report:** still not published; keep watching.
+  - Qwen, Kimi, GLM, MiniMax
+  - METR, Apollo, UK AISI
+  - Glasswing, Claude Science, Daybreak, Rosalind Biodefense, Gemini for Science
+- **Silent-org check:** no gaps found. Microsoft MAI-Voice/Transcribe and Amazon Nova 2.5 Sonic (both early October) had already been looked at in earlier runs' triage; not reopened.
+- **Ignored:** a third-party blog claims a "cancelled GPT-6.1", which contradicts the primary sources (the GPT-6.1 Sol addendum in the DB, and the Daybreak doc listing GPT-6.1-Sol).
 
 ## Citation mining
 
-- **Today's Epoch add:** its sources are the CAISI GLM-5.3 assessment (already `us-caisi-glm-5-3-independent-eval`), UK AISI, Irregular and developer cards. There is nothing new to add.
-- **Yesterday's adds:** already mined in the 10-16 run.
+- **DeepSeek-1017 card:** it cites only the V4.1-Flash technical report, already a related URL of the V4.1-Flash row.
+- **Yesterday's Epoch add:** already mined in the 10-17 run.
 
 ## Blocked-URL escalations (task 5)
 
-- **Streaks:** 14 openai.com/help.openai.com rows are at streak 16 (11 for accelerating-cyber-defense-ecosystem). The Rosalind Academic Plan row is a fresh block at streak 1.
-- **Change from earlier runs:** read_doc.py now also gets HTTP 403 on every URL I tried: accelerating-cyber-defense-ecosystem, introducing-the-rosalind-academic-plan, the Daybreak help article, path-to-astra, and introducing-gpt-rosalind twice. WebFetch also gets 403.
-- **Why they are still treated as alive:** 403 is a bot block, not a 404, and web search still returns introducing-gpt-rosalind with current content. No status changes were proposed.
+- **Streaks:** 14 openai.com/help.openai.com rows are at streak 17 (12 for accelerating-cyber-defense-ecosystem). The Rosalind Academic Plan row is at streak 2.
+- **read_doc.py works again today:** browser impersonation fetched introducing-the-rosalind-academic-plan and path-to-astra with HTTP 200 and full content. Yesterday's read_doc 403 regression looks transient, and the Daybreak help article was re-fetched by the monitor (v869).
+- **Status:** all rows are alive. No status changes proposed.
 
 ## Document updates (task 6)
 
-- **Annotated:** one new version since the last run, Mythos v861 (#2).
-- **Not annotated:** the other 19 queued entries were fetched before the last agent run and were judged noise then (HF widget, counter, sample-code and furniture churn).
+- **Annotated:** Daybreak v869 (#2).
+- **Skipped as noise:**
+  - Epoch GPT-5.6 Terra TTFT v870: appendix headings changed "Appendix A." to "Appendix A:", nothing else.
+  - inclusionAI Ling-2.5-1T v865 and Ring-2.5-1T v866: an HF usage-widget sample code change and a download counter.
+- **Remaining 16 queued entries:** fetched before the last agent run and judged noise in earlier runs.
 
 ## Friction and proposals
 
-- **Friction, one entry:** a `regression` against RESOLVED.md row 17 (read_doc.py as the fix for openai.com 403s). Its browser-impersonation fetch, which worked on every run from 10-07 to 10-16, now gets 403 too.
-- **Impact:** any new OpenAI document published while this lasts cannot be read, and therefore cannot be proposed.
-- **No new proposals.** The 403 issue was already filed in PROPOSALS.md on 10-07.
+- **Friction, one entry:** a `regression` against the RESOLVED.md row "429 went straight to impersonation with no pause" (0d82f8c2). The validator again rejected an add on an HF 429 that cleared on resubmission.
+- **No new proposals.** The 429 retry idea was already filed in PROPOSALS.md (the entry that cites the 2026-09-24 and 09-25 429 friction).

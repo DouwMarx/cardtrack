@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:36:07Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-8-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-8-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-07-21-expenditure-horizon/%0AFingerprint%3A%2040f799002337f197d1fe577223752080b416ba8aca92af55b4b7c723165bb66a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-8-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-8-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-07-21-expenditure-horizon/%0AFingerprint%3A%20d63ee6dcfce6c92cb92b6ce8ce3e2c79c600188edbe4805f5f917ae746555507%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-18T06:17:45Z</td>
+          <td>text/html</td>
+          <td>159,109</td>
+          <td><code title="d63ee6dcfce6c92cb92b6ce8ce3e2c79c600188edbe4805f5f917ae746555507">d63ee6dcfce6c92c</code></td>
+<td><a href="https://data.systemcards.org/raw/4a0959dbcc54da13a93082cfaf0e1b952e1cb01f7f4d28099d0a6cc0ea7ed217.html" rel="nofollow" title="archived copy, sha256 4a0959dbcc54da13a93082cfaf0e1b952e1cb01f7f4d28099d0a6cc0ea7ed217">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-26T06:19:13Z</td>
           <td>text/html</td>
@@ -91,7 +98,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -153,6 +160,14 @@
         <span class="ts">2026-09-26T06:19:13Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-09-26T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" rel="noopener nofollow">https://metr.org/blog/2026-07-21-expenditure-horizon/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-18T06:17:45Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-18T06:16Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" rel="noopener nofollow">https://metr.org/blog/2026-07-21-expenditure-horizon/</a>          </div>
@@ -431,8 +446,8 @@ Appendix C: Studying Data Contamination in NanoGPT
 We originally did some runs starting from an older 5-minute record (#12, Nov 19 2024), the data from which we do not use as evidence in the main post. On these runs, we found evidence the models were likely aware of NanoGPT contributions subsequent to the starting checkpoint (i.e. contamination).
 When asked directly about what the recent NanoGPT speedrun records are, both Opus-4.7 (training cutoff Jan 2026) and Opus-4.8 (training cutoff May 2026) can name specific records such as attention window warmup (#13), value embeddings (#14), and logit soft-capping (#18).
 In older runs with Opus-4.7 starting from record #12, it also directly mentioned applying this:
-  (#14) &gt; Let me apply known speedrun improvements. First key win: value embeddings (separate token-keyed embedding flowing into V of first/last few layers).
-  (#19) &gt; Let me restore baseline LRs and implement FP8 lm_head — known big speedup since lm_head matmul dominates:
+(#14) Let me apply known speedrun improvements. First key win: value embeddings (separate token-keyed embedding flowing into V of first/last few layers).
+(#19) Let me restore baseline LRs and implement FP8 lm_head — known big speedup since lm_head matmul dominates:
 In GPT-5.5’s (training cutoff Dec 2025) agent run, it does not explicitly mention that its introduced optimizations are from memory. However, very similar optimizations to records #18, #22, and #24 are used. We find it hard to prove that these optimizations are not from memory even if the model doesn’t explicitly say so.
 Model performance on these runs is likely significantly better than it would be without this contamination.
 Note that the preliminary runs we use in the main post are started (at record #78) safely outside the knowledge cutoff of all models except Opus-4.8. However, when we probed the same way for records subsequent to #78, no model — including Opus-4.8 — showed knowledge of them, passing the memorization test.
@@ -464,6 +479,6 @@ These hardening decisions were made after multiple rounds of elicitation and obs
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-17T06:24:16Z</p></footer>
+<footer><p>Data updated 2026-10-18T06:21:58Z</p></footer>
 </body>
 </html>

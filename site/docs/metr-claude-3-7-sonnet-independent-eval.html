@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:55:58Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-3-7-sonnet-independent-eval&amp;body=Document%3A%20metr-claude-3-7-sonnet-independent-eval%0AURL%3A%20https%3A//metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/%0AFingerprint%3A%20f74bb518644eb0cead0128a7029c30f9bc181f3f951c00e4dbd26851697df3d7%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-3-7-sonnet-independent-eval&amp;body=Document%3A%20metr-claude-3-7-sonnet-independent-eval%0AURL%3A%20https%3A//metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/%0AFingerprint%3A%20bb0d89122e6263dc7435c69ffc854ca485a83bcac61e5498f936f0fcc3c495e3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-18T06:17:47Z</td>
+          <td>text/html</td>
+          <td>244,863</td>
+          <td><code title="bb0d89122e6263dc7435c69ffc854ca485a83bcac61e5498f936f0fcc3c495e3">bb0d89122e6263dc</code></td>
+<td><a href="https://data.systemcards.org/raw/7e5250d6b01f52385561da5be664e3b1d103c90ff199031beef54c5a1ca05ad2.html" rel="nofollow" title="archived copy, sha256 7e5250d6b01f52385561da5be664e3b1d103c90ff199031beef54c5a1ca05ad2">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-20T06:20:05Z</td>
           <td>text/html</td>
@@ -84,7 +91,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -141,6 +148,14 @@
         <span class="run">run manual-20260831T152033Z · human</span>
           <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
+      </li>
+      <li>
+        <span class="ts">2026-10-18T06:17:47Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-18T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" rel="noopener nofollow">https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/</a>          </div>
       </li>
     </ol>
     </details>
@@ -238,21 +253,21 @@ In early 2025, METR published results showing that open-source developers were s
 In general, these results caution against naive extrapolation of some benchmarks to real-world usefulness. The results above focus on SWE-bench Verified, but we suspect similar lessons apply to other benchmarks interpreted in the context of human workflows, e.g., GDPval-AA, UpBench, etc.
 Appendix: Additional Results
 A1. Conditional Maintainer Merge Rate
-The main results impute maintainer failure for patches that fail the automated grader. An alternative is to look at just the false positive rate: among patches that *pass* the automated grader, what share do maintainers actually merge? This avoids any assumption about false negatives. Figure 1 shows that AI-generated patches that pass the automated grader are merged at a lower rate than human golden patches, though we caution against direct AI-vs-human comparisons given the different conditions under which these patches were produced.
+  The main results impute maintainer failure for patches that fail the automated grader. An alternative is to look at just the false positive rate: among patches that pass the automated grader, what share do maintainers actually merge? This avoids any assumption about false negatives. Figure 1 shows that AI-generated patches that pass the automated grader are merged at a lower rate than human golden patches, though we caution against direct AI-vs-human comparisons given the different conditions under which these patches were produced.
 A2. Sample Representativeness
-Our maintainer sample covers 3 of 12 SWE-bench Verified repos (scikit-learn, Sphinx, pytest), comprising 95 of 500 issues. Figure 2 compares the automated grader pass rates on our subset against the full dataset, showing close alignment and suggesting our subset is not biased by task difficulty.
+  Our maintainer sample covers 3 of 12 SWE-bench Verified repos (scikit-learn, Sphinx, pytest), comprising 95 of 500 issues. Figure 2 compares the automated grader pass rates on our subset against the full dataset, showing close alignment and suggesting our subset is not biased by task difficulty.
 A3. False Negative Correction
-Our main analysis assumes all patches that fail the automated grader would also fail maintainer review (i.e., no false negatives). To test robustness, we estimate the grader&#39;s false-negative rate from a small subset of 31 patches covering 27 issues where maintainers reviewed automated-grader-failing patches. We found only 1/27 (3.7%) issues where the automated grader rejected valid patches. Figure 3 shows that correcting for this estimated false-negative rate yields similar results.
+  Our main analysis assumes all patches that fail the automated grader would also fail maintainer review (i.e., no false negatives). To test robustness, we estimate the grader’s false-negative rate from a small subset of 31 patches covering 27 issues where maintainers reviewed automated-grader-failing patches. We found only 1/27 (3.7%) issues where the automated grader rejected valid patches. Figure 3 shows that correcting for this estimated false-negative rate yields similar results.
 A4. Raw (Unnormalized) Pass Rates
-The main results normalize by the golden baseline (68% maintainer merge rate on human patches). Figure 4 shows raw, unnormalized pass rates. Under this specification, maintainer merge rates are roughly one-third to one-half of automated grader pass rates, and the difference in the rate of improvement  is 15.5 pp/yr.
+  The main results normalize by the golden baseline (68% maintainer merge rate on human patches). Figure 4 shows raw, unnormalized pass rates. Under this specification, maintainer merge rates are roughly one-third to one-half of automated grader pass rates, and the difference in the rate of improvement is 15.5 pp/yr.
 A5. Raw (Unnormalized) Progress-Based Pass Rates
-Figure 5 shows the same unnormalized view using our alternative measure of PR success - that maintainers rated progress towards a mergeable PR is over 80%.
+  Figure 5 shows the same unnormalized view using our alternative measure of PR success - that maintainers rated progress towards a mergeable PR is over 80%.
 A6. SOTA Models Only
-The trend result (widening gap over time) is sensitive to which models are included. Figure 6 restricts the sample to models that were state-of-the-art at their time of release. The trend difference is smaller and not statistically significant under this restriction, illustrating the fragility of the trend finding.
+  The trend result (widening gap over time) is sensitive to which models are included. Figure 6 restricts the sample to models that were state-of-the-art at their time of release. The trend difference is smaller and not statistically significant under this restriction, illustrating the fragility of the trend finding.
 A7. Results by Repository
-Figures 7–9 show results separately for each repo. The level gap between automated grader and maintainer pass rates holds across all three repos. The trend result holds for Sphinx and pytest but is noisy and does not hold for scikit-learn.
+  Figures 7–9 show results separately for each repo. The level gap between automated grader and maintainer pass rates holds across all three repos. The trend result holds for Sphinx and pytest but is noisy and does not hold for scikit-learn.
 A8. Ordering Effects
-Maintainers reviewed the same issue multiple times across different models, which could bias assessment if earlier reviews influence later ones. To test for this problem, we construct a PR level dataset that records which wave the PR was in. Recall PRs are reviewed in waves, where each wave includes a single issue at most once. We regress the maintainer merge decision on wave number, controlling for model and issue fixed effects. If seeing an issue multiple times before made maintainers harsher, then we would expect the coefficient on wave to be negative and vice versa if it made them more lenient. Table 1 shows no evidence of ordering effects: the wave coefficient is 0.016 (SE: 0.037, p = 0.67) and the partial R² for wave is about 0.001, indicating wave order explains very little of merge decisions.
+  Maintainers reviewed the same issue multiple times across different models, which could bias assessment if earlier reviews influence later ones. To test for this problem, we construct a PR level dataset that records which wave the PR was in. Recall PRs are reviewed in waves, where each wave includes a single issue at most once. We regress the maintainer merge decision on wave number, controlling for model and issue fixed effects. If seeing an issue multiple times before made maintainers harsher, then we would expect the coefficient on wave to be negative and vice versa if it made them more lenient. Table 1 shows no evidence of ordering effects: the wave coefficient is 0.016 (SE: 0.037, p = 0.67) and the partial R² for wave is about 0.001, indicating wave order explains very little of merge decisions.
 Table 1: Linear Regression of Merge Decision on Wave Order
 | Variable | Coefficient | P-value |
 |---|---|---|
@@ -285,6 +300,6 @@ Summary. We find strong evidence that the level of time horizon is overstated by
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-17T06:24:16Z</p></footer>
+<footer><p>Data updated 2026-10-18T06:21:58Z</p></footer>
 </body>
 </html>
