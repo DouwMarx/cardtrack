@@ -1,0 +1,22 @@
+[
+ {"slug": "anthropic-claude-mythos-preview-other-10", "version": 861, "category": "content_major", "score_change": false, "license_change": false, "safety_related": true, "model_scope_change": false, "correction": true, "growth_direction": "grew",
+  "summary": "Added Oct 12 correction: URL-length limits on web fetch now described as reducing data-exfiltration risk, not preventing SQL/command injection. Copy edits; related links rotated.",
+  "notable": "Anthropic issued a dated correction to its account of why Claude's web-fetch guardrails exist, reframing them from injection prevention to data-exfiltration risk reduction.",
+  "confidence": "medium"},
+ {"slug": "alibaba-qwen-qwen3-6-35b-a3b-model-card", "version": 831, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only Hugging Face chrome changed: download count, Spaces count, and eval-widget leaderboard rows rotated (GPQA/SWE-bench Pro/ParseBench out, MMLU-Pro/AIME/ExtractBench in).",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card", "version": 843, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only Hugging Face chrome changed: download count up, Spaces count 9 to 6, GPQA widget row reordered.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "stepfun-stepaudio-3-realtime-model-card", "version": 839, "category": "content_major", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "grew",
+  "summary": "arXiv abstract page now lists a v3 revision (12 Oct 2026, 926 KB); abstract text unchanged, so the paper's actual changes aren't visible here.",
+  "notable": "The StepAudio 3 Realtime report was revised to v3, with the PDF back near v1 size (926 KB vs 367 KB for v2).",
+  "confidence": "low"},
+ {"slug": "mistral-leanstral-1-5-model-card", "version": 811, "category": "metadata_minor", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "shrank",
+  "summary": "Removed a lone 'Modalities' heading line from the docs page; the rest of the model card is unchanged.",
+  "notable": "",
+  "confidence": "medium"}
+]

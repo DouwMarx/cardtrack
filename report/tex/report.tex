@@ -111,10 +111,14 @@ propagated with its change log into \notablePropagatedMax{} OpenAI documents tha
 (\exPropagated), and the GPT-6 Astra system card gained an appendix covering GPT-6 Sol and Luna
 and corrected Astra's HealthBench results after an evaluation misconfiguration, with dated entries
 (\exAstraAppendix), then, with another dated entry, a second appendix on ``dots'', always-on agents built on
-Astra, with prompt-injection red-teaming and monitor-evasion results (\exAstraDots); xAI added a dated log (\exGrokLog), and Anthropic two: one on a research post (\exAnthropicLog) and one
-clarifying that its Life Sciences Verification Program form registers interest rather than taking applications (\exLifeSciLog). Second, edits
+Astra, with prompt-injection red-teaming and monitor-evasion results (\exAstraDots); xAI added a dated log (\exGrokLog), and Anthropic three: one on a research post (\exAnthropicLog), one
+clarifying that its Life Sciences Verification Program form registers interest rather than taking applications (\exLifeSciLog),
+and a dated correction to a post on evaluation incidents, which had wrongly said that the web-fetch URL-length limit
+was there to prevent SQL or command injection (\exFetchCorrection). Second, edits
 without a change log exist: an NVIDIA card revised a tool-calling score downward and dropped its research-only
-use restriction with no note (\exVoiceChat).
+use restriction with no note (\exVoiceChat), Mistral's Large~4 page changed the model's stated number of active
+parameters (\exMistralParams), and Epoch AI appended fits for two further models to a published
+latency study without a revision notice (\exEpochAppendix).
 A date label does not settle when an edit was made either: METR replaced a one-line pointer on its red-teaming of Anthropic's internal agent monitoring with the findings
 themselves, including routes to disabling monitors, under a heading dated months before the tracker's first
 capture, although every earlier successful content check found the page unchanged (\exMetrMonitoring). Third,
@@ -122,7 +126,8 @@ access policies change scope: OpenAI rebuilt its Daybreak cyber-access tiers to 
 require extra approval for GPT-5.6-Cyber (\exDaybreakTiers), and later let other passkeys coexist with the required
 hardware key (\exDaybreakKeys). Anthropic's cyber-safeguards page first excluded Opus 5.5 and Sonnet 5.5 (\exCyberScope),
 then was retitled ``Cyber Verification Program'' and rewritten around three access tiers covering them and Mythos 5.1
-(\exCvpRewrite); its Mythos page now says the same and no longer says access is limited to US organisations (\exCvpExpand). Model cards narrow too: NVIDIA cut each Cosmos 3 card back to a single model
+(\exCvpRewrite); its Mythos page now says the same and no longer says access is limited to US organisations (\exCvpExpand), and the
+program page now bars using a CVP grant to build or run client-facing products, which need separate approval (\exCvpClient). Model cards narrow too: NVIDIA cut each Cosmos 3 card back to a single model
 (\exCosmos). Separately, inclusionAI added a ``training content summary'' linking a public training-data statement
 to several of its cards (\exTrainingSummary). A caution the other way: checking the raw captures showed that apparent deletions of
 Anthropic footnotes were extractor artefacts. The publisher had wrapped its footnotes in an element whose class
@@ -153,11 +158,11 @@ published baselines for young pages: Pew found 8\,\% of pages under one year old
 \cite{pew2024}, deep links in the Wayback corpus have a median lifetime of 1.3 years \cite{garg2024}, and 1
 to 4\,\% of web references in scholarly articles from 2012 were already rotten when checked
 \cite{klein2014}. Moves are more common: \nMovedEvents{} documents
-moved via permanent redirect (\movesPerDocYear{} per document-year: site restructures, a trailing slash, the
-typo fix and the soft-gone pages below). Bot blocking is the larger nuisance: \docsEverBlocked{} documents
+moved via permanent redirect (\movesPerDocYear{} per document-year: site restructures, a trailing slash, slug fixes
+including the typo fix, and the soft-gone pages below). Bot blocking is the larger nuisance: \docsEverBlocked{} documents
 were refused with HTTP 403 at least once, \topBlockedHostDocs{} of them OpenAI
-documents on \topBlockedHost. Before October the blocks came and went: after its first 403, the median blocked document was refused on
-\blockedPersistenceMedian\% of later checks, consistent with rate-based bot detection\blockStreakSentence{} and block
+documents on \topBlockedHost. Before \topHostAllBlockedSincePretty{} the blocks came and went: after its first 403, the median document blocked by then was refused on
+\blockedPersistenceMedianPreStreak\% of its later checks up to that date, consistent with rate-based bot detection\blockStreakSentence{} and block
 rates depend on the fetch client's fingerprint as much as on the site \cite{gundelach2026}. The system-card PDFs on
 \texttt{deploymentsafety.openai.com}, which carried most of the dated corrections above, were not blocked. The
 quietest failures were invisible to the link checker: \nSoftGoneWord{} pages kept returning HTTP 200 while

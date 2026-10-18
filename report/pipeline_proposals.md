@@ -210,3 +210,22 @@ the day at the same request count; in the reverse order it mints furniture faste
   `document_versions`, while the changelog still records them as written; 120 changelog `new_version` rows
   no longer have a stored version. Proposal: log a `version_purged` changelog action with the reason when a
   rebuild deletes versions, so the report can attribute missing versions instead of calling them unrecorded.
+
+## 8. Additions from 2026-10-18
+
+- **The Hugging Face snippet template is still minting furniture versions.** Of the 52 new version pairs
+  this week, 34 were page furniture. 21 pairs fetched since 10 October carry the same
+  `# pip install -U transformers accelerate` / `max_new_tokens` edit to the auto-generated snippet (see §7).
+  Classifiers also label it inconsistently: one card (tencent-hunyuan-hy3 v840) got `metadata_minor` and
+  was overridden to furniture. The §7 proposal still stands.
+- **The drift annotation hid a substantive extension (epoch-ai-gpt-5-6-terra-independent-eval v556 to v804).**
+  The monitor's summary was "Extractor drift: 6 line(s) missing ... not a publisher deletion", but the
+  pair adds a new appendix with fitted latencies for GPT-6 Sol and GPT-6.1 Sol. The "missing" lines were
+  appendix headings that had been reformatted ("B." to "Appendix B."). This is the second case after
+  anthropic-claude-opus-access-policy v774 (§7). Same proposal: emit the drift summary only when the
+  dropped lines are the whole diff.
+- **The "Related content" teaser block is still in the stored text of new Anthropic captures.** The text
+  of anthropic-claude-mythos-preview-other-10 v794 and v861 both contain the block, and the v861 diff
+  rotates three teasers alongside a real dated correction. If the 5 October rebuild was meant to strip
+  the block from newly extracted text too, it is not doing so for this page's markup. Proposal: check
+  the teaser-stripping selector against the current anthropic.com news/research templates.

@@ -368,6 +368,17 @@ for d in sorted(_host_days, reverse=True):
     _streak.append(d)
 R["top_host_all_blocked_days"] = len(_streak)
 R["top_host_all_blocked_since"] = min(_streak) if _streak else ""
+# The same persistence measure restricted to checks before that trailing all-blocked streak, so the
+# report's "before the streak, blocks came and went" claim is not diluted by the streak itself.
+_cut = R["top_host_all_blocked_since"] if R["top_host_all_blocked_days"] >= 3 else "9999"
+_bp_pre = []
+for did, lst in per_doc_outcomes.items():
+    pre = [x for x in lst if x["ts"][:10] < _cut]
+    b = [x for x in pre if x["outcome"] == "blocked"]
+    if b:
+        _bp_pre.append(pct(len(b), sum(1 for x in pre if x["ts"] >= b[0]["ts"])))
+R["blocked_persistence_median_pre_streak"] = float(np.median(_bp_pre)) if _bp_pre else float("nan")
+R["n_docs_blocked_pre_streak"] = len(_bp_pre)
 # moved docs
 moved = [cl for cl in changelog if cl["action"] == "status_change" and cl["d"].get("new") == "moved"]
 R["moved_events"] = [{"slug": cl["d"].get("slug"), "date": cl["ts"][:10],
@@ -1187,6 +1198,10 @@ BODY_EXAMPLES = {
     "exCvpRewrite": [("anthropic-claude-opus-access-policy", 774)],
     "exDaybreakKeys": [("openai-gpt-5-6-sol-access-policy", 742)],
     "exLifeSciLog": [("anthropic-claude-mythos-5-1-access-policy-2", 752)],
+    "exFetchCorrection": [("anthropic-claude-mythos-preview-other-10", 861)],
+    "exMistralParams": [("mistral-mistral-large-4-model-card", 829)],
+    "exEpochAppendix": [("epoch-ai-gpt-5-6-terra-independent-eval", 804)],
+    "exCvpClient": [("anthropic-claude-opus-access-policy", 832)],
     "exCosmos": [("nvidia-cosmos3-super-model-card", 613), ("nvidia-cosmos3-edge-model-card", 614)],
     "exTrainingSummary": [("inclusion-ai-ling-3-0-tiny-model-card", 634), ("inclusion-ai-ling-2-6-1t-model-card", 659),
                           ("inclusion-ai-ling-2-6-flash-model-card", 660), ("inclusion-ai-ring-2-6-1t-model-card", 661),
@@ -1293,6 +1308,7 @@ if R["n_agent_failed_runs"]:
           f"{R['n_agent_failed_on_outage']} of them outage runs where its credential refresh had no network either. ")
 _k, _g = R["n_runs_agent_known"], R["n_fully_good_runs"]
 _s += (f"Both runs with a run log had both phases healthy." if _k == 2 and _g == 2
+       else f"All {_k} runs with a run log had both phases healthy." if _k == _g
        else f"Of the {_k} runs with a run log, {_g} had both phases healthy.")
 lines.append(f"\\newcommand{{\\agentPhaseSentence}}{{{_s}}}")
 # a few derived convenience macros

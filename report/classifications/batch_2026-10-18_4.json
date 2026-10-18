@@ -1,0 +1,20 @@
+[
+ {"slug": "meta-muse-glimmer-model-card", "version": 795, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF download/Spaces counters, eval-widget rows reordered/added/removed, and auto-generated usage snippet (pip comment, max_new_tokens 40->256) changed.",
+  "notable": "", "confidence": "medium"},
+ {"slug": "nvidia-nvidia-nemotron-3-super-120b-a12b-model-card", "version": 844, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF download count, Spaces count, and eval-widget sidebar rows changed (SWE-bench harness rows added, GPQA/HMMT rows removed).",
+  "notable": "", "confidence": "high"},
+ {"slug": "alibaba-qwen-qwen3-8-flash-next-model-card", "version": 810, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF download count, Spaces count, and eval-widget leaderboard rows changed; document body unchanged.",
+  "notable": "", "confidence": "high"},
+ {"slug": "inclusion-ai-ring-2-6-1t-model-card", "version": 821, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF download count, Spaces count, and reordering of eval-widget rows changed.",
+  "notable": "", "confidence": "high"},
+ {"slug": "anthropic-claude-opus-access-policy", "version": 832, "category": "content_minor", "score_change": false, "license_change": true, "safety_related": true, "model_scope_change": false, "correction": false, "growth_direction": "grew",
+  "summary": "Added 'Building client-facing products' section: CVP grants cover internal security work only; productizing (e.g. running on customer code) needs separate approval.",
+  "notable": "Anthropic clarified that Cyber Verification Program access may not be used for client-facing products without a separate productization approval.", "confidence": "high"},
+ {"slug": "xai-grok-4-6-other", "version": 850, "category": "metadata_minor", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Single word change: framework owner name 'SpaceXAI' changed to 'SpaceXSI' in the closing links sentence.",
+  "notable": "", "confidence": "medium"}
+]

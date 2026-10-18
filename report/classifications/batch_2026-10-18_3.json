@@ -1,0 +1,20 @@
+[
+ {"slug": "alibaba-qwen-qwen3-8-2-4t-a95b-model-card", "version": 797, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF auto-generated usage snippet tweaked (pip install comment, max_new_tokens 40->256); download count and Spaces count changed.",
+  "notable": "", "confidence": "high"},
+ {"slug": "alibaba-qwen-qwen3-8-2-4t-a95b-model-card", "version": 863, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF chrome: download counter, Spaces count, and eval-widget leaderboard row reordering.",
+  "notable": "", "confidence": "high"},
+ {"slug": "xiaomi-mimo-v2-5-model-card", "version": 842, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF usage snippet gained pip install comment; download counter, Spaces count changed; eval-widget rows reordered.",
+  "notable": "", "confidence": "high"},
+ {"slug": "tencent-hunyuan-ui-mate-27b-model-card", "version": 798, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF auto-generated usage snippet tweaked (pip install comment, max_new_tokens 40->256); download counter 421->767.",
+  "notable": "", "confidence": "high"},
+ {"slug": "inclusion-ai-ling-2-6-flash-model-card", "version": 820, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF chrome: download counter, Spaces count, and eval-widget leaderboard row reordering.",
+  "notable": "", "confidence": "high"},
+ {"slug": "mistral-mistral-large-4-model-card", "version": 829, "category": "content_minor", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": true, "growth_direction": "same",
+  "summary": "Stated active parameter count for Mistral Large 4 silently changed from 49 billion to 52 billion.",
+  "notable": "Mistral silently revised Mistral Large 4's active-parameter count from 49B to 52B in its launch post without an update note.", "confidence": "medium"}
+]

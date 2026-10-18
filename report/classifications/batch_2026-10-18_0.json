@@ -1,0 +1,22 @@
+[
+ {"slug": "epoch-ai-gpt-5-6-terra-independent-eval", "version": 804, "category": "content_major", "score_change": true, "license_change": false, "safety_related": false, "model_scope_change": true, "correction": false, "growth_direction": "grew",
+  "summary": "New Appendix H adds GPT-6 Sol and GPT-6.1 Sol TTFT measurements and fitted-coefficient table; appendix headings renamed, Code moved to Appendix I.",
+  "notable": "Epoch quietly extended a published latency study to two newer GPT models via an appendix, without a revision notice.",
+  "confidence": "high"},
+ {"slug": "alibaba-qwen-qwen-agentworld-35b-a3b-model-card", "version": 838, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Only HF auto-generated usage snippet (pip comment, max_new_tokens 40->256) and download counter changed; card body unchanged.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "inclusion-ai-ling-3-0-flash-model-card", "version": 836, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF download counter, Spaces count (24->22), and eval-widget leaderboard row order changed; no document body change.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "tencent-hunyuan-hy-embodied-0-5-mot-2b-model-card", "version": 808, "category": "furniture", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "HF auto-generated snippet gained a pip install comment and download counter changed (266->347); card body unchanged.",
+  "notable": "",
+  "confidence": "high"},
+ {"slug": "meta-muse-spark-1-1-other", "version": 813, "category": "extraction_noise", "score_change": false, "license_change": false, "safety_related": false, "model_scope_change": false, "correction": false, "growth_direction": "same",
+  "summary": "Page title line dropped from extracted text (still present in raw capture); body text identical.",
+  "notable": "",
+  "confidence": "high"}
+]
