@@ -1,82 +1,79 @@
-# cardtrack agent run — 2026-10-18 (run id 2026-10-18T06:16Z-local)
+# cardtrack agent run — 2026-10-19 (run id 2026-10-19T06:16Z-local)
 
-- **Lookback:** the last agent success was 2026-10-17T06:25:18Z, so the search used the 72 h minimum (2026-10-15 to 10-18).
-- **Weekly retrospective sweep:** not run (today is Sunday).
-- **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
+- **Lookback:** last agent success was 2026-10-18T06:22:50Z, so the search used the 72 h minimum (2026-10-16 to 10-19).
+- **Weekly retrospective sweep:** run (Monday). Orgs: Moonshot AI, Thinking Machines, SaferAI. Palisade and poolside have older newest entries but were swept on 10-05 and 10-12 (Apollo on 10-12), so I rotated to the next three.
+- **Open issues:** `fetch_ok: true`, no open issues. Task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|--------|--------|---------|
-| 1 | add (model_card) | DeepSeek-V4.1-Flash-1017 model card (2026-10-17; open_weight_permissive, MIT; no safety evals) https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017 | first try **rejected** (`document_retrievable=false: HTTP 429`); after a pause and a successful fetch, the identical resubmission was **written** (`deepseek-deepseek-v4-1-flash-1017-model-card`, doc 395, v875) |
-| 2 | annotate_version | `openai-gpt-5-6-sol-access-policy` v869 (Daybreak trusted-access overview) | **written** |
+| 1 | add (other) | Kimi K3 technical report, 2026-07-27, https://raw.githubusercontent.com/MoonshotAI/Kimi-K3/main/k3_tech_report.pdf (open_weight_restrictive; has_safety_evals true; cyber) | **written** (`moonshot-ai-kimi-k3-other`, doc 396, v877) |
+| 2 | add (other) | Kimi K2.5 technical report, 2026-01-30, https://raw.githubusercontent.com/MoonshotAI/Kimi-K2.5/master/tech_report.pdf (open_weight_permissive; has_safety_evals false) | **written** (`moonshot-ai-kimi-k2-5-other`, doc 397, v878) |
 
-### #1 DeepSeek-V4.1-Flash-1017
+### #1 Kimi K3 technical report
 
-- **Source:** Phase A lead from api-docs.deepseek.com/news/news261017 ("Wish-Driven Programming Made Real", dated 2026-10-17). The post announces the checkpoint as live on web, app and API, with open weights on HF and ModelScope.
-- **Card contents:** it describes itself as a "minor update" to V4.1-Flash. It has its own benchmark table: HLE 42.6 vs 36.8, Terminal-Bench 4.0 42.3 vs 31.2, Agents' Last Exam 35.4 vs 31.8, and others. It links the existing V4.1 technical report.
-- **Why a separate row:** the document-unit rule (separate card at a separate URL). This follows the precedent of the V4-Flash-0731 and V4-Pro-0813 rows.
-- **Not proposed:** the ModelScope copy is a mirror host.
-- **Retry:** the first rejection was an HF rate limit, not a missing document. My own fetch of the page also got 429 at that time, and it returned 200 before I resubmitted. This is logged as friction (regression of the RESOLVED.md 429 row).
+- **What it is:** a 47-page PDF in the official GitHub repo, linked as "Full Report" from the README. It is a separate document from the catalogued HF card.
+- **Date:** the first commit is 2026-07-27, the same day as the weights. The PDF was revised 07-28 and 08-06.
+- **Safety content:** section 6.2.2, Cyber Security Evaluation, covers two tiers:
+  - vulnerability discovery: 16 previously unknown vulnerabilities confirmed;
+  - a 36-task exploit-development suite: 14/36 solved vs 8/36 for GLM-5.2, with the kernel track mostly unsolved.
 
-### #2 Daybreak overview v869
+  The HF card has no comparable section.
+- **Citations:** the report cites the joint UK AISI/CAISI Kimi K3 assessment, which is already catalogued (both copies, plus SecureBio's).
+- **Openness:** the Kimi K3 License requires a separate agreement for Model-as-a-Service operators above USD 20M revenue, so open_weight_restrictive.
 
-- **Tier removed:** the separate "Daybreak Red with additional model approval" tier for GPT-5.6-Cyber is gone.
-- **Daybreak Red now covers:** "cyber models like GPT-5.5-Cyber" plus Astra and **Astra Minor**.
-- **Model table:** GPT-6.1-Sol added, with standard safeguards in Blue and reduced refusals in the Red tiers.
-- **Instructions:** Codex CLI instructions added.
+### #2 Kimi K2.5 technical report
+
+- **What it is:** the same pattern: a "Full Report" PDF in the official repo, first committed 2026-01-30.
+- **Safety content:** none. CyberGym is only one row in the coding benchmark table, so has_safety_evals is false and no domains are tagged.
+- **Openness:** the "Modified MIT" license adds only a display-attribution clause, so open_weight_permissive. I couldn't read the existing K2.5 card row's openness to cross-check it, so an operator may want to confirm the two are consistent.
+- **Not proposed:** the K2.6 repo 404s, and the K2.7-Code card links no report. The arXiv "An Independent Safety Evaluation of Kimi K2.5" (2604.03121) is by authors outside the allowlist.
 
 ## Phase A candidates
 
-- **Already triaged in earlier runs:** everything first seen 10-06 to 10-17.
-- **New today (8):**
-  - DeepSeek news261017 and V4.1-Flash-1017: **proposed (#1)**. The news post is recorded as the announcement.
-  - NVIDIA Nemotron-3.5-Parse: skipped. It is a document/OCR parser, and NVIDIA's scope note explicitly excludes OCR/parse models; the card has no safety evals.
-  - Tencent Hy-Memory collection and Hy-Memory-30B-A3B-FP8: skipped. It is an auxiliary memory model (skipped yesterday), and FP8 is a quantization.
-  - NVIDIA aisimulate-fpm-dataset discussion: not a document.
-  - MiniMax Code download page: a product page.
+- **Already triaged:** everything first seen 10-06 to 10-18 was triaged in earlier runs.
+- **New today:**
+  - Anthropic "Investing in the public benefit" (public-benefit-fund): skipped. It is corporate governance and equity, with no model.
+  - FAR.AI "Telling FIBS" (/fibs): skipped. It is a deception-probe and monitoring method plus a dataset; Qwen3.5-397B and Opus 5.5 appear only as subjects or baselines, so it fails the system-card test.
+  - 11 NVIDIA `cosmos3-nano-libero10-sdg-export-*` repos: skipped. They are experiment checkpoints with no announcement, i.e. checkpoint drops.
 
-## Targeted search (10-15 to 10-18)
+## Targeted search (10-16 to 10-19)
 
-- **Astra Minor:** the name appears only in the Daybreak help-centre doc and in leak/social coverage. OpenAI has published no card, announcement or system card. Watch for one.
-- **Already in the DB:**
-  - Haiku 5.5
-  - GPT-6 Sol/Luna October update
-  - Gemini 4 Argon and Fairwind
-  - Mistral Large 4
-  - Muse Spark Open card and evaluation methodology
-  - CVP three-tier expansion
-  - LSVP
-  - Rosalind Academic Plan
-  - GPT-6.1 Sol addendum
-- **No new documents in window:**
-  - xAI: no Grok 5 card
-  - Qwen, Kimi, GLM, MiniMax
-  - METR, Apollo, UK AISI
-  - Glasswing, Claude Science, Daybreak, Rosalind Biodefense, Gemini for Science
-- **Silent-org check:** no gaps found. Microsoft MAI-Voice/Transcribe and Amazon Nova 2.5 Sonic (both early October) had already been looked at in earlier runs' triage; not reopened.
-- **Ignored:** a third-party blog claims a "cancelled GPT-6.1", which contradicts the primary sources (the GPT-6.1 Sol addendum in the DB, and the Daybreak doc listing GPT-6.1-Sol).
+- **Already in the DB:** GPT-Live-1.1 system card; DeepSeek V4.1-Flash-1017; Gemini 4 Argon card and safety report; Haiku 5.5; the GPT-6 Sol/Luna October update; the Rosalind Academic Plan.
+- **Nothing new found:**
+  - Access programs: Glasswing/CVP (merger already catalogued), LSVP, Claude Mythos, Claude Science, Daybreak, Rosalind Biodefense, Gemini Flash Cyber/CodeMender, Gemini for Science.
+  - xAI: no Grok 5 card.
+  - Astra Minor: still leak coverage only.
+  - Chinese open-weight labs.
+  - UK AISI and METR. METR's 10-14 posts are policy and methods pieces, triaged earlier.
+- **Watch:** a TestingCatalog report says Claude Fable 5.5 has reached partners ahead of an imminent release. There is no first-party document yet. `gpt-rosalind-discovery` is still only on the pricing page.
+
+## Retrospective sweep
+
+- **Moonshot AI:** the HF cards for K2.5, K2.6, K2.7-Code and K3 were all catalogued, but the two GitHub technical reports were not. Both are now proposed (#1, #2).
+- **Thinking Machines:** the news index lists nothing in scope since Inkling-Small. The newer posts are Tinker anniversary, text-to-SQL RL and safety research grants; all four Inkling/TML rows are present.
+- **SaferAI:** the GLM-5.2 evaluation and the DeepMind safety-case review are both present. Nothing newer is model-specific. The research index is client-rendered (256 chars via read_doc), so I checked by site search.
 
 ## Citation mining
 
-- **DeepSeek-1017 card:** it cites only the V4.1-Flash technical report, already a related URL of the V4.1-Flash row.
-- **Yesterday's Epoch add:** already mined in the 10-17 run.
+- **K3 report:** its safety citations (AISI/CAISI, SecureBio) are already in the DB. Artificial Analysis, Vals and Arena are not allowlisted.
+- **K2.5 report:** no safety citations.
+- **Yesterday's DeepSeek add:** already mined.
 
 ## Blocked-URL escalations (task 5)
 
-- **Streaks:** 14 openai.com/help.openai.com rows are at streak 17 (12 for accelerating-cyber-defense-ecosystem). The Rosalind Academic Plan row is at streak 2.
-- **read_doc.py works again today:** browser impersonation fetched introducing-the-rosalind-academic-plan and path-to-astra with HTTP 200 and full content. Yesterday's read_doc 403 regression looks transient, and the Daybreak help article was re-fetched by the monitor (v869).
-- **Status:** all rows are alive. No status changes proposed.
+- **Streaks:** 15 openai.com/help.openai.com rows, at streak 18 (13 for accelerating-cyber-defense-ecosystem, 3 for the Rosalind Academic Plan).
+- **Spot checks:** read_doc.py fetched introducing-the-rosalind-academic-plan, accelerating-cyber-defense-ecosystem and hugging-face-model-evaluation-security-incident with HTTP 200 via browser_impersonation.
+- **Status:** all alive. No status changes proposed.
 
 ## Document updates (task 6)
 
-- **Annotated:** Daybreak v869 (#2).
-- **Skipped as noise:**
-  - Epoch GPT-5.6 Terra TTFT v870: appendix headings changed "Appendix A." to "Appendix A:", nothing else.
-  - inclusionAI Ling-2.5-1T v865 and Ring-2.5-1T v866: an HF usage-widget sample code change and a download counter.
-- **Remaining 16 queued entries:** fetched before the last agent run and judged noise in earlier runs.
+- **Nothing to annotate:** no new versions since the last run. All 20 queued entries were fetched on or before 2026-10-18T06:17Z and judged in earlier runs: the 10-18 Epoch and inclusionAI diffs were judged noise yesterday, and the rest even earlier.
 
 ## Friction and proposals
 
-- **Friction, one entry:** a `regression` against the RESOLVED.md row "429 went straight to impersonation with no pause" (0d82f8c2). The validator again rejected an add on an HF 429 that cleared on resubmission.
-- **No new proposals.** The 429 retry idea was already filed in PROPOSALS.md (the entry that cites the 2026-09-24 and 09-25 429 friction).
+- **Friction, two entries:**
+  - a `recurrence` of the openai.com 403 false-alarm (2026-10-06T06:29:51Z);
+  - an `ambiguous_criteria` entry: no written rule says whether a lab technical report next to a catalogued HF card is its own row or a related_url. The corpus does both (NVIDIA rows vs DeepSeek related_url); today I followed the NVIDIA and document-unit precedent.
+- **No new proposals.**
