@@ -51,12 +51,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:46:41Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>The card cites the GLM-4.5 technical report (arXiv 2508.06471, Aug 2025, before the scope floor) rather than a GLM-4.7 report. Parent model GLM-4.7 (2025-12-22) is out of scope by date. Z.ai blog (z.ai/blog/glm-4.7) unreachable from the curation sandbox.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-4-7-flash-model-card&amp;body=Document%3A%20zai-glm-4-7-flash-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-4.7-Flash%0AFingerprint%3A%209f66783815280fa738e2d0a004fee9f294b46a6f11d92a86c383271db25ba8cf%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-4-7-flash-model-card&amp;body=Document%3A%20zai-glm-4-7-flash-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-4.7-Flash%0AFingerprint%3A%207529d73c8df0799dd5bbe93efa36630bdc15db6ca3d14eb3de4b95b28ca03b56%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-21T06:21:30Z</td>
+          <td>text/html</td>
+          <td>323,348</td>
+          <td><code title="7529d73c8df0799dd5bbe93efa36630bdc15db6ca3d14eb3de4b95b28ca03b56">7529d73c8df0799d</code></td>
+<td><a href="https://data.systemcards.org/raw/0a02470e30ef3946e05a1d077480b500d08be757815771317f6ffc1f22116a7f.html" rel="nofollow" title="archived copy, sha256 0a02470e30ef3946e05a1d077480b500d08be757815771317f6ffc1f22116a7f">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-22T11:46:41Z</td>
           <td>text/html</td>
@@ -80,7 +87,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -101,6 +108,14 @@
           <div class="evidence">Evidence:
 <a href="https://docs.z.ai/release-notes/new-released" rel="noopener nofollow">https://docs.z.ai/release-notes/new-released</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-21T06:21:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-21T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/zai-org/GLM-4.7-Flash" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-4.7-Flash</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -118,7 +133,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;zai-org/GLM-4.7-Flash&#34;
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;zai-org/GLM-4.7-Flash&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;zai-org/GLM-4.7-Flash&#34;, device_map=&#34;auto&#34;)
@@ -132,7 +148,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -305,7 +321,7 @@ If you find our work useful in your research, please consider citing the followi
       url={https://arxiv.org/abs/2508.06471},
 }
 - Downloads last month
-- 1,843,941
+- 1,085,125
 Model tree for zai-org/GLM-4.7-Flash
 Spaces using zai-org/GLM-4.7-Flash 100
 Collection including zai-org/GLM-4.7-Flash
@@ -319,6 +335,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-20T06:21:32Z</p></footer>
+<footer><p>Data updated 2026-10-21T06:28:16Z</p></footer>
 </body>
 </html>

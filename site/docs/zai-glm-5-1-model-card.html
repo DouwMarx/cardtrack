@@ -52,12 +52,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:55Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>docs.z.ai/guides/llm/glm-5.1 is API usage documentation with a benchmark summary; the HF card is the fuller primary document so it is the canonical row. GLM-5.1-FP8 is a quantised re-upload. Z.ai blog (z.ai/blog/glm-5.1) unreachable from the curation sandbox.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-1-model-card&amp;body=Document%3A%20zai-glm-5-1-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.1%0AFingerprint%3A%20996569f3a43aeb0978cc08baa0a4dc55c438b46908aceaf620b872eb92773409%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-1-model-card&amp;body=Document%3A%20zai-glm-5-1-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.1%0AFingerprint%3A%2082edf9ff95a9d163b365a666df2a0f3d0456de199cf0aa049423200772992212%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -65,6 +65,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-21T06:21:27Z</td>
+          <td>text/html</td>
+          <td>383,878</td>
+          <td><code title="82edf9ff95a9d163b365a666df2a0f3d0456de199cf0aa049423200772992212">82edf9ff95a9d163</code></td>
+<td><a href="https://data.systemcards.org/raw/786f54eb6bcdfad5ea737d286951ced37808174c6d2cbb952d8d62ec8969513c.html" rel="nofollow" title="archived copy, sha256 786f54eb6bcdfad5ea737d286951ced37808174c6d2cbb952d8d62ec8969513c">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-22T11:44:55Z</td>
           <td>text/html</td>
@@ -81,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -102,6 +109,14 @@
           <div class="evidence">Evidence:
 <a href="https://docs.z.ai/release-notes/new-released" rel="noopener nofollow">https://docs.z.ai/release-notes/new-released</a> · <a href="https://docs.z.ai/guides/llm/glm-5.1" rel="noopener nofollow">https://docs.z.ai/guides/llm/glm-5.1</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-21T06:21:27Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-21T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/zai-org/GLM-5.1" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.1</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -119,7 +134,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;zai-org/GLM-5.1&#34;)
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;zai-org/GLM-5.1&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;zai-org/GLM-5.1&#34;, device_map=&#34;auto&#34;)
@@ -133,7 +149,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -251,7 +267,7 @@ If you find GLM-5.1 or GLM-5 useful in your research, please cite our technical 
       url={https://arxiv.org/abs/2602.15763},
 }
 - Downloads last month
-- 80,257
+- 554,492
 Model tree for zai-org/GLM-5.1
 Spaces using zai-org/GLM-5.1 84
 Collection including zai-org/GLM-5.1
@@ -259,15 +275,15 @@ Paper for zai-org/GLM-5.1
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   86.2
 - ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   58.4 *
-- IntelligenceLab/Long-Horizon-Terminal-Bench · Lhtb Solved View evaluation results  source  leaderboard   2 *
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results    leaderboard   95.3
-- harborframework/terminal-bench-2.0 · Terminalbench 2 leaderboard
-- default View evaluation results63.5
-- agent: Terminus 2(Claude Code) View evaluation results</pre>
+- benchflow/skillsbench · Skillsbench V1 1 View evaluation results  source leaderboard
+- actava/chi-bench leaderboard
+- Chi Bench View evaluation results source
+- Prior Authorization View evaluation results source
+- Utilization Management View evaluation results source</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-20T06:21:32Z</p></footer>
+<footer><p>Data updated 2026-10-21T06:28:16Z</p></footer>
 </body>
 </html>

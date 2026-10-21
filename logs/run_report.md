@@ -1,74 +1,89 @@
-# cardtrack agent run — 2026-10-20 (run id 2026-10-20T06:18Z-local)
+# cardtrack agent run — 2026-10-21 (run id 2026-10-21T06:19Z-local)
 
-- **Lookback:** last agent success was 2026-10-19T06:26:14Z, so the search used the 72 h minimum (2026-10-17 to 10-20).
-- **Weekly retrospective sweep:** not run. Today is Tuesday; the sweep ran yesterday.
+- **Lookback:** last agent success was 2026-10-20T06:26:25Z, so the search used the 72 h minimum (2026-10-18 to 10-21).
+- **Weekly retrospective sweep:** not run. Today is Wednesday.
 - **Open issues:** `fetch_ok: true`, no open issues. Task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
-None this run. Nothing new in scope that I could read and that wasn't already catalogued.
+| # | Action | Target | Verdict |
+|---|---|---|---|
+| 1 | add | METR, "Review of the 'Misalignment in high-stakes settings' section in Anthropic's Risk Report: August 2026" (metr.org/assets/misalignment-risk-report-august-2026-review.pdf, 2026-10-20) | **written** → `metr-claude-mythos-5-independent-eval` (doc 398) |
+| 2 | annotate_version | `google-deepmind-gemini-4-argon-system-card` v901 | **written** |
+| 3 | annotate_version | same v901, corrected summary (replaces #2) | **written** |
+
+- **#1 METR review:**
+  - Canonical URL is the full PDF. The blog post is recorded as its `announcement`, and the Anthropic risk report as `other`.
+  - Models: Claude Mythos 5 and Claude Fable 5. METR ran its sycophancy experiment on Fable 5.
+  - Openness: `restricted`, because Mythos 5 is vetted-access only.
+  - Risk domains: `loss_of_control` (covert capabilities, monitoring, sandbagging pathways) and `harmful_manipulation`. The second is for METR's own controlled experiment on Claude rating the report more favourably when it thinks it is talking to the authors.
+  - It follows the earlier METR row reviewing the February 2026 risk report.
+- **#2 / #3 Argon annotation:**
+  - The first summary was written from `logs/version_diffs/…-v901.diff`, which is truncated: 115 of about 600 changed lines, with no marker. A whitespace-insensitive diff of the two stored `data/text` files showed more changes, so I resubmitted.
+  - **New footnote:** a few early RL runs used an auxiliary reward-hacking penalty that took the model's thoughts as input. Verified in the live PDF.
+  - **Revised evaluation-awareness figures:** 35% → 37.8%, and on realism-rewritten prompts 10%/11% → 8%/10% Strong/Weak.
+  - **Other:** judge-rubric clarifications. Everything else is renumbering and wording.
 
 ## Phase A candidates
 
-- **Already triaged:** everything first seen 10-06 to 10-19 was triaged in earlier runs.
-- **New today (first seen 2026-10-20):**
-  - Claude Haiku 5.5 System Card PDF (www-cdn): already in the DB. It is a related_url of `anthropic-claude-haiku-5-5-system-card`.
-  - anthropic.com/claude-opus-5-5-system-card: redirects to the PDF that is already the canonical URL of `anthropic-claude-opus-5-5-system-card`. No change needed.
-  - MiniMax "M3.1 Flash" launch post (minimax.io/blog/minimax-m31f): read it, but **deferred**.
-    - It is a short launch announcement with headline benchmarks (CyberGym 82%, DeepSWE 73.7%, OSWorld V2 61.7). There is no model card or tech report yet, and the post says "Model weights will be released later". MarkTechPost reports the weights for Oct 23.
-    - Proposing the post now would likely give two rows for one release once the HF card lands. The HF card will be the canonical URL, with this post as its `announcement` related_url.
-    - **Watch:** propose huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash (or similar) when it appears, with publication date 2026-10-19 for the announcement.
-  - InclusionAI Ming-3.0 repos (audio-flash, audio-tiny, asr-tiny, tts-tiny, tts-0.5B, collection, and README discussions): skipped.
-    - The inclusion_ai scope note covers only the Ling/LLaDA LLM lines and flagship agents.
-    - The ASR and TTS repos are auxiliary single-task models.
-    - Ming-3.0-audio-flash, an audio-language MoE, is excluded by the publisher scope note.
-  - SecureBio "Response to Anthropic's update on independent evaluators" (securebio.org copy): skipped. It is a statement about evaluator access terms with no model evaluation. The Substack copy was triaged on 10-17.
-  - tencent Hy-Memory-30B-A3B-GGUF: skipped as a quantized variant. The base Hy-Memory-30B-A3B is a long-term-memory writer, an auxiliary task model with no safety evals, so it is out of scope too.
-  - The rest were skipped:
-    - x.ai/partners and cursor.com/blog/navan (a customer story)
-    - HF user profiles
-    - HF papers (BlenderWorld benchmark, zai unified-multimodal paper)
-    - NVIDIA datasets and checkpoints: Cosmos-AnomalyGen-*, cdf-*, physical-plausibility-evaluator, simready status
+- **Already triaged:** everything first seen 10-08 to 10-20 was handled in earlier runs.
+- **New today (first seen 2026-10-21):**
+  - METR risk-report review: proposed (#1).
+  - **Mistral Voxtral 3:** read it, skipped. It is a family of single-task ASR (Voxtral Small/Mini/Realtime Transcribe 3) and TTS (Voxtral Mini TTS 3) models plus an SDK. These are auxiliary models under `covered_model_class`, with no safety evals.
+  - **Anthropic transparency-page links:**
+    - The CDN PDFs c886650a… (Opus 4.8 system card) and 037f0685… (Opus 4.7 system card) are already in the DB as html rows.
+    - The Opus 5, Sonnet 5, Fable 5 & Mythos 5 and Opus 4.6 system-card links are all in the DB.
+    - The web.archive.org copies are mirrors.
+  - **Anthropic science posts** (scorpion-toxin binder design; novel CRISPR-like enzyme system): read both, skipped.
+    - The binder post says the work was done by "an internal research model" and names no model. The enzyme post names no model either.
+    - They fail the named-model gate. The open 2026-09-29 proposal already covers incident and research reports about unnamed internal models.
+  - **NVIDIA Cosmos3-H-Dreams / Cosmos3-H-Embodied-Nano / Cosmos3-Nano-Sim-* / Transfer-Auto:** skipped. They are surgical-robotics and simulation fine-tunes and checkpoints of Cosmos3-Nano, which the DB already covers (`nvidia-cosmos3-edge-other`). That makes them variants, not distinct releases.
+  - **NVIDIA RFD4-Proteina** (Baker Lab × NVIDIA protein design model): skipped. It is a domain biomolecular design model outside the NVIDIA scope note and outside `covered_model_class`, and its card has no safety or biosecurity evals.
+  - **Rest:** skipped as navigation or noise.
+    - Anthropic news category pages, search, press kit, claude-on-mars feature, source-control post, distillation-defenses /news mirror
+    - x.ai incident-sweep (product post)
+    - Nemotron 3.5 retriever/embed (auxiliary)
+    - NVIDIA datasets, HF profiles and discussions
+    - Palisade podcast, NIST consortium page, SecureBio Bluesky, MiniMax contact page
 
-## Targeted search (10-17 to 10-20)
+## Targeted search (10-18 to 10-21)
 
-- **Already in the DB:**
-  - GPT-6.1 Sol addendum, GPT-6 Astra system card, GPT-6 Sol/Luna October update
-  - Haiku 5.5, Opus 5.5
-  - Gemini 4 Argon (card, system card, Fairwind access rows), Nano Banana 2.1
-  - Muse Spark Open (card plus eval methodology), Muse Wonder
-  - Mistral Large 4, Step-5-Preview, Ling-3.1-flash, DeepSeek-V4.1-Flash-1017
-  - CVP (including the 10-06 tier expansion help article), LSVP
-  - Rosalind Academic Plan
-- **Unreadable:** OpenAI "Advancing coding in low-resource programming languages" (2026-10-19, openai.com/index/low-resource-programming-languages/).
-  - Per coverage, it reports COBOL-migration and MultiLangBench results for GPT-6.1 Sol and GPT-6 Astra.
-  - read_doc.py and WebFetch both returned 403, so I could not read it and did not propose it.
-  - If it gets read later, it is a borderline capability showcase: it reports measured results for named models, but it is not a safety document.
-- **Nothing new found:**
-  - Access programs: Glasswing/Mythos, CVP, LSVP, Claude Science, Daybreak, Rosalind Biodefense, Gemini for Science, Flash Cyber.
-  - xAI: still no Grok 5 card.
-  - Claude Fable 5.5: no first-party document yet.
-  - Evaluators: METR, UK AISI and Apollo have no new model-specific reports in the window.
+- **Queries:** generic system/model-card queries for October 2026, trusted/restricted-access programs, AISI, OpenAI addenda, Chinese labs, evaluators (Apollo/Epoch/Irregular), Google/Meta/xAI, Anthropic news.
+- **Already in DB:**
+  - Haiku 5.5, GPT-6 Sol/Luna October update
+  - Gemini 4 Argon safety report and Fairwind
+  - Muse Wonder, Grok 4.7
+  - CVP three-tier expansion, Mythos 5.1, Rosalind Academic Plan
+  - DeepSeek-V4.1-Flash-1017, GLM-5.3 (Apollo, Epoch), Epoch GPT-6 Astra rows
+  - Solar Pro 4 / Mini 4 / Open 2, SaferAI GLM-5.2
+- **MiniMax M3.1 Flash:** still no HF card or tech report. Coverage puts the weights on Oct 23. Same watch item as yesterday: propose the HF card when it lands.
+- **Irregular** (Gemini 4 Argon on 10-13, Reflection Beam on 10-16): not allowlisted. A proposal to add Irregular was filed 2026-09-09 and is not re-filed.
+- **Transluce, "Early rogue AI agent activity… urlquery.net"** (transluce.org/agent-activity) and its companion us-canada-gov page: read, not proposed. The activity is attributed only to "agent swarms previously attributed to OpenAI" and no model is named, so it hits the same named-model gap as the 2026-09-29 proposal. If that gate is relaxed, this should be added: substantive loss-of-control and cyber incident evidence.
+- **OpenAI "Advancing coding in low-resource programming languages"** (10-19): still 403 to both read_doc.py and WebFetch, so it is still untriaged.
+- **Orgs with few rows:** no new documents found for Thinking Machines, Poolside, Upstage, Transluce, SaferAI or Palisade. I could not run a script to compute per-org silence (the sandbox refused it), so this check was a sample of the low-count orgs.
 
 ## Citation mining
 
-- Recent adds (Kimi K3 and K2.5 technical reports from 10-19, DeepSeek-V4.1-Flash-1017 from 10-18) were already mined in yesterday's run.
-- No new adds this run, so nothing further to mine.
+- **METR review citations:** Anthropic's August 2026 Risk Report, the Mythos Preview system card, "An alignment assessment of recent cybersecurity incidents", and "Investigating three real-world incidents in our cybersecurity evaluations". All four are in the DB.
+- **Data gap, not fixed:** `anthropic-claude-mythos-5-other-2` (the August 2026 Risk Report) has `publication_date: null`.
+  - Its canonical URL redirects to the redacted PDF, so the row is fine apart from the date.
+  - Secondary coverage gives 2026-08-14, but neither the PDF text nor the transparency page states a day, so I did not propose a `field_update` from a secondary source.
 
 ## Blocked-URL escalations (task 5)
 
-- **Streaks:** 15 openai.com/help.openai.com rows: streak 19 for 13 of them, 14 for accelerating-cyber-defense-ecosystem, and 4 for the Rosalind Academic Plan.
-- **Spot checks today:**
-  - read_doc.py returned **HTTP 403** on hugging-face-model-evaluation-security-incident, path-to-astra, introducing-the-rosalind-academic-plan and the Daybreak help article. WebFetch also returned 403. This matches 10-17; on 10-19 the same fetcher got HTTP 200 via browser_impersonation.
-  - The pages still appear in today's search results with current titles and content (e.g. introducing-gpt-rosalind, rosalind-biodefense, the HF incident post), so they are bot-blocked, not gone.
-- **Status:** all treated as alive. No status changes proposed.
+- **Status:** 15 openai.com/help.openai.com rows. Streak 20 for 13 of them, 15 for accelerating-cyber-defense-ecosystem, 5 for the Rosalind Academic Plan.
+- **Spot checks:** read_doc.py returned HTTP 403 on introducing-the-rosalind-academic-plan and accelerating-cyber-defense-ecosystem.
+- **Treated as alive:** today's search results still return introducing-new-capabilities-to-gpt-rosalind and rosalind-biodefense with current titles, so these are bot blocks, not dead pages. No status changes.
 
 ## Document updates (task 6)
 
-- **Nothing to annotate:** no new versions since the last run.
-- The newest queued entry was fetched 2026-10-18T06:17Z. All 20 queued entries were judged in earlier runs (yesterday's report covers the 10-18 Epoch and inclusionAI diffs as noise).
+- **Argon v901:** annotated (see #2/#3).
+- **zai GLM-5.1 v894, GLM-5.2 v893, GLM-5.3-Flash v892** (new today): pure Hugging Face furniture, so skipped. The changes are the transformers snippet (max_new_tokens 40→256, pip comment), download/Spaces counters, and community eval-results widget entries. None are author content.
+- **Remaining 16 queued entries:** judged in earlier runs.
 
 ## Friction and proposals
 
-- **Friction, one entry:** a `recurrence` of the 10-17 regression entry (2026-10-17T06:24:44Z). openai.com 403s defeat read_doc.py again, and this time they blocked triage of a new OpenAI post.
-- **No new proposals.**
+- **Friction, two entries:**
+  - `other`: the v901 version diff is silently truncated.
+  - `recurrence` of 2026-10-20T06:24:59Z: openai.com 403s.
+- **No new proposals.** Irregular (09-09) and the named-model gate for incident reports (09-29) are already in PROPOSALS.md.

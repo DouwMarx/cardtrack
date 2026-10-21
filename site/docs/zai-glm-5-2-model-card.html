@@ -53,12 +53,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:54Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Verified co-hosted copy: Mistral lists &#39;Z.ai GLM 5.2&#39; at docs.mistral.ai/models/zai-glm-5-2 (published 2026-08-06, public preview) but it is a hosting/product listing without benchmarks or licence text, so it is recorded here as co_published only, not proposed under mistral. GLM-5.2-FP8 is a quantised re-upload of this same card. Card header now points new_version at GLM-5.3-BF16. Independent evals of GLM-5.2 in the database: us-caisi-glm-5-2-independent-eval, uk-aisi-glm-5-2-independent-eval, saferai-glm-5-2-independent-eval. Z.ai blog unreachable from the curation sandbox.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-2-model-card&amp;body=Document%3A%20zai-glm-5-2-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.2%0AFingerprint%3A%20eb8fba638affdd35945a17de090a62c392ad3da74b7ac2a7aa95fab8aff75f97%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-2-model-card&amp;body=Document%3A%20zai-glm-5-2-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.2%0AFingerprint%3A%201d60c5a1ff088b3bfaeba39889079b8a28f409374482b3b81de6628ec858701b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -66,6 +66,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-21T06:21:26Z</td>
+          <td>text/html</td>
+          <td>440,173</td>
+          <td><code title="1d60c5a1ff088b3bfaeba39889079b8a28f409374482b3b81de6628ec858701b">1d60c5a1ff088b3b</code></td>
+<td><a href="https://data.systemcards.org/raw/7134d62b5a826ba8ac19e86711baeeff0f7ad6e47fae818c76c84aaa703dd45f.html" rel="nofollow" title="archived copy, sha256 7134d62b5a826ba8ac19e86711baeeff0f7ad6e47fae818c76c84aaa703dd45f">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-22T11:44:54Z</td>
           <td>text/html</td>
@@ -82,7 +89,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -103,6 +110,14 @@
           <div class="evidence">Evidence:
 <a href="https://docs.z.ai/release-notes/new-released" rel="noopener nofollow">https://docs.z.ai/release-notes/new-released</a> · <a href="https://docs.mistral.ai/models/zai-glm-5-2" rel="noopener nofollow">https://docs.mistral.ai/models/zai-glm-5-2</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-21T06:21:26Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-21T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/zai-org/GLM-5.2" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.2</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -120,7 +135,8 @@ pipe = pipeline(&#34;text-generation&#34;, model=&#34;zai-org/GLM-5.2&#34;)
 messages = [
     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
 ]
-pipe(messages)# Load model directly
+pipe(messages)# pip install -U transformers accelerate
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained(&#34;zai-org/GLM-5.2&#34;)
 model = AutoModelForCausalLM.from_pretrained(&#34;zai-org/GLM-5.2&#34;, device_map=&#34;auto&#34;)
@@ -134,7 +150,7 @@ inputs = tokenizer.apply_chat_template(
 	return_dict=True,
 	return_tensors=&#34;pt&#34;,
 ).to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=40)
+outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
 - HuggingChat
@@ -272,7 +288,7 @@ If you find GLM-5.2 useful in your research, please cite our technical report:
       url={https://arxiv.org/abs/2602.15763},
 }
 - Downloads last month
-- 962,716
+- 390,974
 Model tree for zai-org/GLM-5.2
 Spaces using zai-org/GLM-5.2 100
 Collection including zai-org/GLM-5.2
@@ -283,15 +299,15 @@ Article mentioning zai-org/GLM-5.2
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   91.2
 - datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   46.2
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   62.1
-- IntelligenceLab/Long-Horizon-Terminal-Bench · Lhtb Solved View evaluation results  source  leaderboard   1 *
-- harborframework/terminal-bench-2.1 · Terminalbench 2 1 leaderboard
-- Terminus-2 harness (temperature=1.0, top_p=1.0, 256K context, max_episodes=500). View evaluation results81 *
-- Best reported harness: Claude Code 2.1.167 (temperature=1.0, top_p=0.95, max_new_tokens=131072, no wall-clock limit, averaged over 5 runs). View evaluation results82.7 *</pre>
+- agents-last-exam/agents-last-exam leaderboard
+- Overall Pass Rate View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.20.39 *
+- Overall Score View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.41.09 *
+- Ale Cli Pass Rate View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=104/105; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.23.81 *
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   62.1</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-20T06:21:32Z</p></footer>
+<footer><p>Data updated 2026-10-21T06:28:16Z</p></footer>
 </body>
 </html>
