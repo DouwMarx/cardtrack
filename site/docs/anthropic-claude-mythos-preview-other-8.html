@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:48:29Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-8&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-8%0AURL%3A%20https%3A//www.anthropic.com/research/glasswing-initial-update%0AFingerprint%3A%205c462877d745880c5dd75d4183689a7db53456df474ee4d7aeba97ebf7468617%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-8&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-8%0AURL%3A%20https%3A//www.anthropic.com/research/glasswing-initial-update%0AFingerprint%3A%209f0d7a1bd27435ace6bc58b6947321c17e05ca7bc696c1dc92367963430e11b4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-22T06:19:03Z</td>
+          <td>text/html</td>
+          <td>222,465</td>
+          <td><code title="9f0d7a1bd27435ace6bc58b6947321c17e05ca7bc696c1dc92367963430e11b4">9f0d7a1bd27435ac</code></td>
+<td><a href="https://data.systemcards.org/raw/2295780ec0750ed93c06dddfb3488c4f2739ba38b5f0c6b65abb0fa17edc21a1.html" rel="nofollow" title="archived copy, sha256 2295780ec0750ed93c06dddfb3488c4f2739ba38b5f0c6b65abb0fa17edc21a1">archived copy</a></td>          <td class="change-summary">Extractor drift: 1 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-08-10T09:48:29Z</td>
           <td>text/html</td>
@@ -76,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -145,6 +153,23 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/glasswing-initial-update" rel="noopener nofollow">https://www.anthropic.com/research/glasswing-initial-update</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-22T06:19:03Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-22T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/glasswing-initial-update" rel="noopener nofollow">https://www.anthropic.com/research/glasswing-initial-update</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-22T06:19:03Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-22T06:17Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 1 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/glasswing-initial-update" rel="noopener nofollow">https://www.anthropic.com/research/glasswing-initial-update</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -154,8 +179,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://www.anthropic.com/research/glasswing-initial-update" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Project Glasswing: An initial update
-Last month, we launched Project Glasswing, our collaborative effort to secure the world’s most critical software before increasingly capable AI models can be turned against it.
+      <pre class="extracted" data-pagefind-body>Last month, we launched Project Glasswing, our collaborative effort to secure the world’s most critical software before increasingly capable AI models can be turned against it.
 Since then, we and our approximately 50 partners have used Claude Mythos Preview to find more than ten thousand high- or critical-severity vulnerabilities across the most systemically important software in the world. Progress on software security used to be limited by how quickly we could find new vulnerabilities. Now it’s limited by how quickly we can verify, disclose, and patch the large numbers of vulnerabilities found by AI.
 In this post, we discuss what we’ve learned about this critical challenge for cybersecurity in the first weeks of Project Glasswing. We focus on the early public evidence of Mythos Preview’s performance, on the initial results of our effort to scan thousands of open-source software projects, and on what this progress means for cyberdefenders today. We also cover what to expect next from Project Glasswing, and how we’re thinking about releasing Mythos-class models in the future.
 Our early results
@@ -205,18 +229,11 @@ What&#39;s next for Project Glasswing
 The speed of AI progress means that models as capable as Mythos Preview will soon be developed by many different AI companies. At present, no company—including Anthropic—has developed safeguards strong enough to prevent such models from being misused and potentially causing severe harm. That is why we have yet to release Mythos-class models to the public. But it’s also why we began Project Glasswing: if a similarly capable model is released without such safeguards, it will soon become dramatically cheaper and easier for almost anyone in the world to exploit flawed software.
 Glasswing helps the most systemically important cyber defenders gain an asymmetric advantage. However, there is an urgent need for as many organizations as possible to shore up their cyber defenses. We hope that our generally available models, and the new tools, resources, and research we’re providing to accompany them, will support those organizations to improve their cybersecurity posture.
 Next, we will work with critical partners—including US and allied governments—to expand Project Glasswing to additional partners. And in the near future, once we’ve developed the far stronger safeguards we need, we look forward to making Mythos-class models available through a general release.
-On the far side of these risks, there’s an encouraging world available to us: one in which important code is hardened far better than it is today, and in which hacking is far less prevalent. There are many obstacles, but we’re nonetheless confident that Project Glasswing can help get us there.
-Related content
-Discovering cryptographic weaknesses with Claude
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
-Read more
-Project Pilot: Can AI control a drone?
-Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
-Read more</pre>
+On the far side of these risks, there’s an encouraging world available to us: one in which important code is hardened far better than it is today, and in which hacking is far less prevalent. There are many obstacles, but we’re nonetheless confident that Project Glasswing can help get us there.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-21T06:28:16Z</p></footer>
+<footer><p>Data updated 2026-10-22T06:25:06Z</p></footer>
 </body>
 </html>

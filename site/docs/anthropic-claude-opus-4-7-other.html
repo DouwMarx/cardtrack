@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:46:00Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-7-other&amp;body=Document%3A%20anthropic-claude-opus-4-7-other%0AURL%3A%20https%3A//www.anthropic.com/news/investigating-incidents-cybersecurity-evals%0AFingerprint%3A%20925641b320c6862aaeb9acb92ce3823cf055b3dc143870394cde8ec4d1bd9434%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-4-7-other&amp;body=Document%3A%20anthropic-claude-opus-4-7-other%0AURL%3A%20https%3A//www.anthropic.com/news/investigating-incidents-cybersecurity-evals%0AFingerprint%3A%205dc0b7bb6472637b140aa8bb2ff91bcb4f01cd181c572366263d9fefe83bd618%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-22T06:18:52Z</td>
+          <td>text/html</td>
+          <td>224,489</td>
+          <td><code title="5dc0b7bb6472637b140aa8bb2ff91bcb4f01cd181c572366263d9fefe83bd618">5dc0b7bb6472637b</code></td>
+<td><a href="https://data.systemcards.org/raw/62e40a8fff1fea6b54a06184ed7305c51c4582fb372149d5a91b0ac63f607e20.html" rel="nofollow" title="archived copy, sha256 62e40a8fff1fea6b54a06184ed7305c51c4582fb372149d5a91b0ac63f607e20">archived copy</a></td>          <td class="change-summary">Extractor drift: 3 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-08-09T21:46:00Z</td>
           <td>text/html</td>
@@ -76,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -134,6 +142,23 @@
           <div class="just">openness: "closed" → "restricted"</div>
           <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-22T06:18:52Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-22T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener nofollow">https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-22T06:18:52Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-22T06:17Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 3 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener nofollow">https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -143,10 +168,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Investigating three real-world incidents in our cybersecurity evaluations
-In a review of our cybersecurity evaluation transcripts, we found three incidents in which a Claude model reached the internet from within or while interacting with a third-party evaluation environment, and then gained unauthorized access to the real systems of three different organizations.
-Below we describe what happened, how it happened, and what we’re changing. We encourage other AI labs to perform similar reviews. This post reflects our current understanding; we&#39;ll update it if any details change.
-On July 21, OpenAI disclosed that several of their models had broken out of an isolated test environment by exploiting a previously unknown (“zero-day”) vulnerability. The models went on to access the production infrastructure of Hugging Face, a platform for open-source machine learning models and AI datasets.
+      <pre class="extracted" data-pagefind-body>On July 21, OpenAI disclosed that several of their models had broken out of an isolated test environment by exploiting a previously unknown (“zero-day”) vulnerability. The models went on to access the production infrastructure of Hugging Face, a platform for open-source machine learning models and AI datasets.
 In response to this incident, we began a large-scale retrospective review of our own cybersecurity evaluations. In particular, we looked for evidence that Claude—like the OpenAI models that accessed Hugging Face—was able to access the internet from within testing environments that should have been sealed off.
 After reviewing 141,006 evaluation runs where Claude could have obtained internet access, we identified three incidents in which a model accessed the internet from within or while interacting with the evaluation environment of Irregular, one of our third-party evaluation partners, and then gained unauthorized access to the production infrastructure of three different organizations.
 In all three incidents, Claude had been tasked with a capture-the-flag challenge, one of the ways we assess a model’s cyber capabilities. The model is given a fictional scenario and told that a piece of secret information (the “flag”) has been hidden on a different machine on the network, and its objective is to break in and retrieve it. The challenge is left open-ended, and no particular method is prescribed.
@@ -199,14 +221,11 @@ We began this review after OpenAI disclosed that its models had escaped an isola
 - While there is not a perfectly sharp distinction between the two, we believe these incidents to be closer to a harness and operational failure than a model alignment failure. Our models were told they had no internet access and to capture the flag, while in fact being misconfigured to have internet access. This led them to believe—arguably reasonably—that the real environments they encountered were simulations.
 - Notably, our most recent model, on realizing that it was working in a real environment, stopped its pursuit of the evaluation goal.
 These facts give us cautious optimism that with tighter monitoring and controls around evaluation infrastructure, as well as continued investment in alignment, this type of risk can be overcome.
-Updated Aug 3: Corrected the name of the evaluation in which the OpenAI/Hugging Face incident occurred.
-Footnotes
-- We routinely test internal research prototypes like this one. It is not planned for general release.
-- We generally store traces for benchmark evaluations. We have carefully audited these two benchmarks in particular for signs of harm because the OpenAI/Hugging Face incident occurred during an evaluation of ExploitGym.</pre>
+Updated Aug 3: Corrected the name of the evaluation in which the OpenAI/Hugging Face incident occurred.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-21T06:28:16Z</p></footer>
+<footer><p>Data updated 2026-10-22T06:25:06Z</p></footer>
 </body>
 </html>
