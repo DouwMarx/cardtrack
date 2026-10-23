@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniMax-M3.1-Flash model card — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=7285ecd5de">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a> <a href="../analysis.html">Analysis</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">MiniMax-M3.1-Flash model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.minimax.io" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">minimax</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>MiniMax-M3.1-Flash</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-10-23</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">announcement</span>
+        <a href="https://www.minimax.io/blog/minimax-m31f" rel="noopener nofollow">https://www.minimax.io/blog/minimax-m31f</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-10-23T06:23:23Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m3-1-flash-model-card&amp;body=Document%3A%20minimax-minimax-m3-1-flash-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash%0AFingerprint%3A%206d5bd35665be5b10d549378d78665942ab7027f7222626ebc5c9fa14a13f7527%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-10-23T06:23:23Z</td>
+          <td>text/html</td>
+          <td>286,787</td>
+          <td><code title="6d5bd35665be5b10d549378d78665942ab7027f7222626ebc5c9fa14a13f7527">6d5bd35665be5b10</code></td>
+<td><a href="https://data.systemcards.org/raw/011e32413697c03a0522ab394e9545615b028429bcfe90f253f43cc40d13bc74.html" rel="nofollow" title="archived copy, sha256 011e32413697c03a0522ab394e9545615b028429bcfe90f253f43cc40d13bc74">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-10-23T06:23:23Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-10-23T06:17Z-local · agent · lead: index_diff</span>
+          <div class="just">Official Hugging Face model card for MiniMax-M3.1-Flash, a new release in the MiniMax-M LLM line (in scope per the minimax scope note). It is a ~428B-total/23B-active native multimodal MoE with 1M context, and the card documents architecture changes vs M3 (sparse attention throughout, quantization-aware training, DSpark speculative decoding) plus a 15-benchmark comparison table (Automation-Bench, BankerToolBench, DeepSWE, OSWorld 2.0, CyberGym 82.2, HLE, etc.). The model was officially announced on the MiniMax blog (Oct 19, 2026, API launch, weights &#39;released later&#39;) and covered independently; the weights/card went public on HF on 2026-10-23 (repo created 10-17 while private, last modified 10-23). Distinct from the existing MiniMax-M3 row. The card has only capability benchmarks (CyberGym is reported as a capability score, no risk assessment), so has_safety_evals is false. License is the minimax-community license (HF license: other / minimax-community), hence open_weight_restrictive.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://www.minimax.io/blog/minimax-m31f" rel="noopener nofollow">https://www.minimax.io/blog/minimax-m31f</a> · <a href="https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use MiniMaxAI/MiniMax-M3.1-Flash with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use MiniMaxAI/MiniMax-M3.1-Flash with Transformers: # Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;, trust_remote_code=True)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+pipe(text=messages)# pip install -U transformers accelerate
+# Load model directly
+from transformers import AutoProcessor, AutoModelForMultimodalLM
+processor = AutoProcessor.from_pretrained(&#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;, trust_remote_code=True)
+model = AutoModelForMultimodalLM.from_pretrained(&#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+inputs = processor.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=256)
+print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Notebooks
+- Google Colab
+- Kaggle
+- Local Apps Settings
+-  vLLM  How to use MiniMaxAI/MiniMax-M3.1-Flash with vLLM: Install from pip and serve model# Install vLLM from pip:
+pip install vllm
+# Start the vLLM server:
+vllm serve &#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Dockerdocker model run hf.co/MiniMaxAI/MiniMax-M3.1-Flash
+-  SGLang  How to use MiniMaxAI/MiniMax-M3.1-Flash with SGLang: Install from pip and serve model# Install SGLang from pip:
+pip install sglang
+# Start the SGLang server:
+python3 -m sglang.launch_server \
+    --model-path &#34;MiniMaxAI/MiniMax-M3.1-Flash&#34; \
+    --host 0.0.0.0 \
+    --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;Use Docker imagesdocker run --gpus all \
+    --shm-size 32g \
+    -p 30000:30000 \
+    -v ~/.cache/huggingface:/root/.cache/huggingface \
+    --env &#34;HF_TOKEN=&lt;secret&gt;&#34; \
+    --ipc=host \
+    lmsysorg/sglang:latest \
+    python3 -m sglang.launch_server \
+        --model-path &#34;MiniMaxAI/MiniMax-M3.1-Flash&#34; \
+        --host 0.0.0.0 \
+        --port 30000
+# Call the server using curl (OpenAI-compatible API):
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
+	-H &#34;Content-Type: application/json&#34; \
+	--data &#39;{
+		&#34;model&#34;: &#34;MiniMaxAI/MiniMax-M3.1-Flash&#34;,
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
+	}&#39;
+-  Docker Model Runner  How to use MiniMaxAI/MiniMax-M3.1-Flash with Docker Model Runner: docker model run hf.co/MiniMaxAI/MiniMax-M3.1-Flash
+MiniMax-M3.1-Flash is a native multimodal mixture-of-experts model for coding, agentic workflows, computer use, and cybersecurity. It supports text, image, and video inputs with a context window of up to 1M tokens.
+Building on MiniMax-M3, M3.1-Flash improves task performance and inference efficiency with sparse attention throughout the model, quantization-aware training, and DSpark speculative decoding.
+Highlights:
+- Agentic performance: A generational leap in agentic tasks, coding, and cybersecurity — 76.2 on BankerToolBench, 73.7% on DeepSWE v1.1, 61.7 on OSWorld V2, 29.6 on Agents&#39; Last Exam, and 82.2 on CyberGym.
+- Efficient by design: Sparse attention throughout, quantization-aware training, and DSpark speculative decoding improve inference efficiency.
+Model at a Glance
+- Architecture: Native multimodal mixture-of-experts (MoE)
+- Parameters: Approximately 428B total; 23B activated per token
+- Inputs / output: Text, image, and video inputs; text output
+- Context window: Up to 1,000,000 tokens
+- Attention: MiniMax Sparse Attention (MSA) throughout the model
+- Speculative decoding: DSpark draft head included
+Benchmarks
+| Benchmark | MiniMax M3.1 Flash | DeepSeek V4.1 Flash-1017 | DeepSeek V4.1 Flash | Kimi K3 | GLM-5.3 | GPT-5.6 Sol | Opus 5 |
+|---|---|---|---|---|---|---|---|
+| Automation-Bench v1.0.6 | 62.8 | 60.5 | 54.8 | 46.7 | 48.8 | 45.8 | 50.3 |
+| BankerToolBench | 76.2 | — | 73.7 | 69.1 | 74.5 | 74.6 | 76.2 |
+| GDP.pdf AA | 20.8 | — | 12.8 | 22.0 | 11.2 | 27.2 | 21.6 |
+| Terminal Bench 4.0 | 38.1 | 42.3 | 31.2 | 12.6 | 37.9 | 39.9 | 51.8 |
+| LOCA-Bench 256K | 60.3 | — | — | 49.7 | 50.3 | 60.0 | 53.7 |
+| Agents’ Last Exam | 29.6 | — | — | 28.3 | — | 30.6 | 32.2 |
+| OSWorld 2.0 | 61.7 | — | 54.3 | 58.3 | — | 65.7 | 70.6 |
+| PostTrain Bench v1.1 | 39.3 | — | 30.5 | 36.6 | 37.5 | 36.2 | 40.4 |
+| DeepSWE v1.1 | 73.7 | 77.0 | 74.2 | 67.5 | 66.9 | 73.0 | 74.0 |
+| NL2Repo-Bench | 61.2 | 68.2 | 65.4 | 58.0 | 58.0 | 56.8 | 75.3 |
+| SWE Refactor Bench | 23.0 | — | 11.8 | 19.5 | 10.4 | 28.5 | 31.0 |
+| CyberGym | 82.2 | — | — | 80.0 | 84.5 | 83.6 | — |
+| BabyVision (with tools) | 91.0 | 92.5 | 89.6 | 85.7 | — | 88.9 | 94.1 |
+| HLE (without tools) | 43.4 | 42.6 | 39.2 | 43.5 | 42.3 | 49.5 | 55.6 |
+| CharXiv RQ | 82.5 | — | 69.0 | 84.8 | — | 85.2 | 83.7 |
+Evaluation Notes
+- Automation-Bench v1.0.6: 600 publicly released tasks.
+- BankerToolBench: OpenCode 1.17.18; MiniMax-M2.7 judge.
+- GDP.pdf AA: Taken directly from Artificial Analysis.
+- Terminal Bench 4.0: Codex 0.149.1.
+- LOCA-Bench 256K: Official implementation.
+- Agents’ Last Exam: Official Overall setting; full-set results from the official ALE leaderboard only. Blank = no official result (CLI-only excluded), not zero.
+- OSWorld 2.0: 0808 Full release; highest reported per model at release, except DeepSeek V4.1 (in-house reproduction).
+- PostTrain Bench v1.1: Claude Code 2.1.251, 512K context; otherwise official setup.
+- DeepSWE v1.1: mini-SWE-agent 2.4.5, 512K context.
+- NL2Repo-Bench: Claude Code 2.1.233, 512K context; reward hacking = 0; two inconsistent tasks corrected (scores use the corrected set).
+- SWE Refactor Bench: Claude Code 2.1.220, 200K context; otherwise official setup.
+- CyberGym: Claude Code 2.1.263, 1M context.
+- BabyVision (with tools): Claude Code 2.1.285; min image side 1,500 px.
+- HLE (without tools): Text-only subset (2,158 questions).
+- CharXiv RQ: GPT-5.5 judge.
+Results are for the official weights; third-party quantizations may differ.
+What’s New in M3.1-Flash
+M3.1-Flash retains M3’s core mixture-of-experts architecture, with three main changes:
+- Sparse attention throughout: the first three full-attention layers are replaced with sparse attention.
+- Quantization-aware training: the routed MoE experts and the attention paths are quantized during training, reducing memory footprint and improving serving efficiency.
+- DSpark speculative decoding: DSpark replaces the earlier EAGLE-like MTP approach. The release includes the draft head for use with compatible serving implementations.
+How to Use
+Local Deployment
+Download the model:
+hf download MiniMaxAI/MiniMax-M3.1-Flash --local-dir MiniMax-M3.1-Flash
+We recommend the following inference frameworks to serve the model:
+- SGLang — see SGLang cookbook.
+- vLLM — see vLLM recipe.
+- TokenSpeed — see TokenSpeed recipe.
+Additional integrations in progress: Transformers, KTransformers, unsloth, and ATOM.
+Multi-Chip Deployment
+FlagOS — see Multi-Chip Support and Downloads.
+Inference Settings
+Recommended sampling settings: temperature=1.0 and top_p=0.95.
+For reasoning, set reasoning_effort in the chat template: low, medium, high, xhigh, or max.
+The model supports a context window of up to 1M tokens. Usable context length and throughput depend on GPU memory and the serving configuration.
+Contact Us
+Contact us at model@minimax.io.
+- Downloads last month
+- 357</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-10-23T06:25:05Z</p></footer>
+</body>
+</html>

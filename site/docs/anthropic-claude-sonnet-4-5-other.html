@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:26:34Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-sonnet-4-5-other&amp;body=Document%3A%20anthropic-claude-sonnet-4-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/cyber-toolkits-update%0AFingerprint%3A%20531413aa50c52de57dd421e5d5b597459e18989369794eb901b74245724c8c58%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-sonnet-4-5-other&amp;body=Document%3A%20anthropic-claude-sonnet-4-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/cyber-toolkits-update%0AFingerprint%3A%2009842599a5689da8f04cd303c6670145dfdc02f735c8058dc9321b48c314ba97%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-23T06:19:50Z</td>
+          <td>text/html</td>
+          <td>661,877</td>
+          <td><code title="09842599a5689da8f04cd303c6670145dfdc02f735c8058dc9321b48c314ba97">09842599a5689da8</code></td>
+<td><a href="https://data.systemcards.org/raw/60e88dde35227587a8053dc1f12191e7ebfb5f35b85498af979db13739027e6d.html" rel="nofollow" title="archived copy, sha256 60e88dde35227587a8053dc1f12191e7ebfb5f35b85498af979db13739027e6d">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-29T07:46:23Z</td>
           <td>text/html</td>
@@ -83,7 +90,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -152,6 +159,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/cyber-toolkits-update" rel="noopener nofollow">https://www.anthropic.com/research/cyber-toolkits-update</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-23T06:19:50Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-23T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/cyber-toolkits-update" rel="noopener nofollow">https://www.anthropic.com/research/cyber-toolkits-update</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -161,15 +176,13 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://www.anthropic.com/research/cyber-toolkits-update" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Subscribe to the Frontier Red Team newsletter
-Get updates on our latest red-teaming research and findings.
-Frontier Red Team
+      <pre class="extracted" data-pagefind-body>AI models are showing a greater ability to find and exploit vulnerabilities on realistic cyber ranges
 In a recent evaluation of AI models’ cyber capabilities, current Claude models can now succeed at multistage attacks on networks with dozens of hosts using only standard, open-source tools, instead of the custom tools needed by previous generations. This illustrates how barriers to the use of AI in relatively autonomous cyber workflows are rapidly coming down, and highlights the importance of security fundamentals like promptly patching known vulnerabilities.
 Last year, we wrote about experiments with Carnegie Mellon University’s CyLab in which we placed Claude in simulated networks that are more sophisticated and realistic than the environments typical of capture-the-flag-style cyber competitions. At that time, Claude (and other frontier AI models) needed assistance from a custom cyber toolkit, which takes the AI’s high-level instructions about how to attack and converts them into specific low-level commands, in order to completely succeed on any of these 25-50 host networks.
 We have continued collaborating with Incalmo to run evaluations on these cyber ranges (simulated network environments for security testing). A notable development during the testing of Claude Sonnet 4.5 is that the model can now succeed on a minority of the networks without the custom cyber toolkit needed by previous generations. In particular, Sonnet 4.5 can now exfiltrate all of the (simulated) personal information in a high-fidelity simulation of the Equifax data breach—one of the costliest cyber attacks in history—using only a Bash shell on a widely-available Kali Linux host (standard, open-source tools for penetration testing; not a custom toolkit). Sonnet 4.5 accomplishes this by instantly recognizing a publicized CVE and writing code to exploit it without needing to look it up or iterate on it. Recalling that the original Equifax breach happened by exploiting a publicized CVE that had not yet been patched, the prospect of highly competent and fast AI agents leveraging this approach underscores the pressing need for security best practices like prompt updates and patches.
 It’s important not to overstate the status quo. Claude does not succeed every time in these tests; Sonnet 4.5 succeeded autonomously on the Equifax cyber range in two of five trials. Also, for five of the nine networks it could not make progress without the custom cyber toolkit. But the trajectory of models first needing specialized tools and then being able to operate without them (or using only publicly available tools) is consistent with other trends we have observed in AI progress. We believe it presages further improvement in the cyber domain. And this improvement is happening quickly: Claude Sonnet 3.5, which was released a little over a year before Claude Sonnet 4.5, could not succeed at the Equifax simulation in any of the five trials without use of the specialized cyber toolkit. This trajectory, in conjunction with real-world examples like the recent AI-orchestrated cyber espionage campaign, shows the need for substantial research into how best to equip cyber defenders with the AI-enabled tools they will need to keep pace.
 You can read more about these tests at Incalmo’s website or in the Claude Sonnet 4.5 system card (see Section 5 and, especially, Section 5.3). Below, we also present annotated excerpts of the evaluation transcripts. The full transcripts follow in the appendix.
-Thanks to Brian Singer for the data and assistance in preparing this post.
+Appendix: full transcripts
 See below for the full transcripts:
 Claude Sonnet 3.5 with Bash and Kali
 2024-11-02 23:17:21,767 INFO:LLM logger initialized
@@ -3352,16 +3365,13 @@ Claude Sonnet 4.5 with Bash and Kali
                 3. **Data Exposure**: Sensitive customer data stored in plaintext JSON files
                 The penetration test successfully demonstrated a complete attack chain from initial access to critical
                 data exfiltration.
-            Guest writer and physicist Matt von Hippel shares what happened when he issued a challenge to AI companies to solve a problem in his former subfield of theoretical physics.
-Read more
-To see what works and what breaks when agents are sent into a market, we made a miniature market of Claudes.
-Read more
-Claude made the open-source models that scientists use to predict and design biomolecules faster and more memory-efficient. Claude optimized more than 30 of these models in just under four weeks, speeding them up roughly 4x on average. It also created a low-memory mode that enables the accurate prediction of biomolecular systems larger than 10,000 tokens (amino acids, nucleotides, and atoms from small molecules and ions) on a single NVIDIA GPU node.
-Read more</pre>
+            Authors &amp; Acknowledgments
+Acknowledgements
+Thanks to Brian Singer for the data and assistance in preparing this post.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-22T06:25:06Z</p></footer>
+<footer><p>Data updated 2026-10-23T06:25:05Z</p></footer>
 </body>
 </html>

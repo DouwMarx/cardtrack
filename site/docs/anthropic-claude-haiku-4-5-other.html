@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:07:08Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-haiku-4-5-other&amp;body=Document%3A%20anthropic-claude-haiku-4-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/teaching-claude-why%0AFingerprint%3A%2064b0738f43b6e943509111e5ebded4c6d5bc391dcc5938b198fbc3cbe90bf6e9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-haiku-4-5-other&amp;body=Document%3A%20anthropic-claude-haiku-4-5-other%0AURL%3A%20https%3A//www.anthropic.com/research/teaching-claude-why%0AFingerprint%3A%201fb7c1ea3d704b968f8c8b31b8db9f4614e77423af21d2eb63505846471d19ff%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-23T06:19:47Z</td>
+          <td>text/html</td>
+          <td>233,750</td>
+          <td><code title="1fb7c1ea3d704b968f8c8b31b8db9f4614e77423af21d2eb63505846471d19ff">1fb7c1ea3d704b96</code></td>
+<td><a href="https://data.systemcards.org/raw/88f02d65b278608f2bab451c77143afde4c1a9cc08deafc7c5609b014fc07452.html" rel="nofollow" title="archived copy, sha256 88f02d65b278608f2bab451c77143afde4c1a9cc08deafc7c5609b014fc07452">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:07:08Z</td>
           <td>text/html</td>
@@ -75,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -141,6 +148,14 @@
           <div class="just">openness: "closed" → "restricted"</div>
           <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-23T06:19:47Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-23T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/teaching-claude-why" rel="noopener nofollow">https://www.anthropic.com/research/teaching-claude-why</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -150,8 +165,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://www.anthropic.com/research/teaching-claude-why" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Teaching Claude why
-Last year, we released a case study on agentic misalignment. In experimental scenarios, we showed that AI models from many different developers sometimes took egregiously misaligned actions when they encountered (fictional) ethical dilemmas. For example, in one heavily discussed example, the models blackmailed engineers to avoid being shut down.
+      <pre class="extracted" data-pagefind-body>Last year, we released a case study on agentic misalignment. In experimental scenarios, we showed that AI models from many different developers sometimes took egregiously misaligned actions when they encountered (fictional) ethical dilemmas. For example, in one heavily discussed example, the models blackmailed engineers to avoid being shut down.
 When we first published this research, our most capable frontier models were from the Claude 4 family. This was also the first model family for which we ran a live alignment assessment during training;1 agentic misalignment was one of several behavioral issues that surfaced. Thus, after Claude 4, it was clear we needed to improve our safety training and, since then, we have made significant updates to our safety training.
 We use agentic misalignment as a case study to highlight some of the techniques we found to be surprisingly effective. Indeed, since Claude Haiku 4.5, every Claude model2 has achieved a perfect score on the agentic misalignment evaluation—that is, the models never engage in blackmail, where previous models would sometimes do so up to 96% of the time (Opus 4). Not only that, but we’ve continued to see improvements to other behaviors on our automated alignment assessment.
 In this post, we’ll discuss a few of the updates we’ve made to alignment training. We’ve learned four main lessons from this work:
@@ -188,21 +202,11 @@ When mixing these augmented environments with the simple chat environments, we s
 Discussion
 Agentic misalignment was one of the first major alignment failures we found in our models and required establishing new mitigation processes—ones that have since become standard for us.
 We are encouraged by this progress, but significant challenges remain. Fully aligning highly intelligent AI models is still an unsolved problem. Model capabilities have not yet reached the point where alignment failures like blackmail propensity would pose catastrophic risks, and it remains to be seen if the methods we’ve discussed will continue to scale. In addition, although recent Claude models perform well on most of our alignment metrics, we acknowledge that our auditing methodology is not yet sufficient to rule out scenarios in which Claude would choose to take catastrophic autonomous action.
-We are optimistic about further efforts to discover alignment failures in current models so that we can understand and address the limitations of our current methods—before transformative AI models are built. We are also excited to see further work attempting to understand more deeply why the methods we’ve described work so well—and how to further improve on this training.
-Footnotes
-- Published in the Claude 4 system card, beginning on p.22.
-- Sonnet 4.5 scored well under 1%, but not quite 0; Haiku 4.5, Opus 4.5, Opus 4.6, Sonnet 4.6, Mythos preview, and Opus 4.7 all score 0. The results on more recent models may be confounded by the presence of information about the evaluation in the pre-training corpus.
-Related content
-Discovering cryptographic weaknesses with Claude
-cryptographic algorithms. The first attack significantly weakens HAWK, a digital signature scheme that was built for a future world where quantum computers are able to break existing standards. The second identifies a new way to attack round-reduced AES, the most widely used symmetric cipher.
-Read more
-Project Pilot: Can AI control a drone?
-Working with Andon Labs, we’ve developed a new series of evaluations that assess AI models’ ability to use a flying drone, culminating in a new benchmark: Drone-Bench.
-Read more</pre>
+We are optimistic about further efforts to discover alignment failures in current models so that we can understand and address the limitations of our current methods—before transformative AI models are built. We are also excited to see further work attempting to understand more deeply why the methods we’ve described work so well—and how to further improve on this training.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-22T06:25:06Z</p></footer>
+<footer><p>Data updated 2026-10-23T06:25:05Z</p></footer>
 </body>
 </html>
