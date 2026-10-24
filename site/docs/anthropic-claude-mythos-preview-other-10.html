@@ -49,12 +49,12 @@
     <dt>First seen</dt>
     <dd>2026-10-10T06:18:55Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Incident report series: follows anthropic-claude-opus-4-7-other (2026-07-30) and the 2026-09-09 alignment assessment of cybersecurity incidents. Openness restricted because Claude Mythos Preview and Mythos 5 are vetted-access models.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-10&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-10%0AURL%3A%20https%3A//www.anthropic.com/research/investigating-unintended-model-actions%0AFingerprint%3A%202e4d66ccb9b8569d1c4a6ac0fdfa8c451001fd4fc8baf23d4563b509e075b3ae%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-mythos-preview-other-10&amp;body=Document%3A%20anthropic-claude-mythos-preview-other-10%0AURL%3A%20https%3A//www.anthropic.com/research/investigating-unintended-model-actions%0AFingerprint%3A%20601af86dc1e423f22edc5ac087ec1be82712ea38783e257b02d4dc8e532a8a09%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-24T06:16:45Z</td>
+          <td>text/html</td>
+          <td>222,487</td>
+          <td><code title="601af86dc1e423f22edc5ac087ec1be82712ea38783e257b02d4dc8e532a8a09">601af86dc1e423f2</code></td>
+<td><a href="https://data.systemcards.org/raw/fa660c5c50ffb616c6f77ed524314c68651ed61359cab98002021536486efbf0.html" rel="nofollow" title="archived copy, sha256 fa660c5c50ffb616c6f77ed524314c68651ed61359cab98002021536486efbf0">archived copy</a></td>          <td class="change-summary">Extractor drift: 1 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-10-17T06:20:41Z</td>
           <td>text/html</td>
@@ -86,7 +94,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -124,6 +132,23 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">https://www.anthropic.com/research/investigating-unintended-model-actions</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-24T06:16:45Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-24T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">https://www.anthropic.com/research/investigating-unintended-model-actions</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-24T06:16:45Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-24T06:15Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 1 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">https://www.anthropic.com/research/investigating-unintended-model-actions</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -133,8 +158,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://www.anthropic.com/research/investigating-unintended-model-actions" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Investigating unintended model actions in our evaluations and internal use
-This report describes examples of unintended model actions we’ve observed during evaluations and internal use of Claude. It is part of our effort to publish more frequent standalone reports on model behavior and alignment beyond our system cards, which we publish with each model release, and our risk reports, which we publish every three to six months as part of our Responsible Scaling Policy. We believe it’s important to be transparent about what we see our models do during testing and use.
+      <pre class="extracted" data-pagefind-body>This report describes examples of unintended model actions we’ve observed during evaluations and internal use of Claude. It is part of our effort to publish more frequent standalone reports on model behavior and alignment beyond our system cards, which we publish with each model release, and our risk reports, which we publish every three to six months as part of our Responsible Scaling Policy. We believe it’s important to be transparent about what we see our models do during testing and use.
 The behaviors can be grouped into four categories:
 - Claude exploiting a basic flaw in software to run commands on a server;
 - Claude submitting a sensitive form on a real website when it should not have;
@@ -188,21 +212,11 @@ It is possible that some of these failures could have been avoided if the evalua
 Behavioral and alignment training is the main technique we have at our disposal to improve Claude’s judgment and ability to handle ambiguous situations with care. Historically, we have been more focused on teaching models to respect boundaries and be appropriately cautious in coding environments. We are now expanding these environments to applications like search and computer use, which were involved in the cases described here. However, alignment training is not yet sufficient or fully robust on its own, at least in the short term, so we also rely on defense-in-depth approaches, including the classifiers and safeguards described above.
 We plan to keep reporting concerning behaviors as our scan and analysis continue. We hope these reports help other developers check for similar behaviors in their own models, since many of the evaluations involved are public and widely used. While these cases had minimal impact, we do not want to diminish the findings, because the same behaviors could do far more harm as models become more powerful. The larger the role models play in society, the more the public deserves to know how they behave.
 Note: The tip form example described above involved the Philadelphia Police Department, who self-disclosed today via their press release. We shared this finding with the department on October 8 as soon as our technical review was complete.
-Corrected Oct 12, 2026: A previous version of this post incorrectly stated that Claude&#39;s web fetch limits were put in place to prevent SQL or command injections. In a small number of evaluation runs, a model did use URL shortening services while it carried out an SQL injection or another unintended action, but the limits were not put in place to prevent such attacks.
-Related content
-Designing more efficient quantum circuits with Claude
-We gave Claude plain-language specifications for eight quantum circuits, along with an automated evaluator to check and score its designs. Working largely on its own, Claude improved on the best published circuits, in some cases by an order of magnitude or more, which could bring practical quantum computers closer than previously anticipated.
-Read more
-Claude reveals ECDSA curve origins
-The decades-old mystery of the origins of one of the most popular cryptographic standards has been explained.
-Read more
-The AI expectations gap
-How will AI reshape the economy in the years ahead? What is the core source of disagreement about AI&#39;s future impact on the economy? This note presents new survey evidence on these questions.
-Read more</pre>
+Corrected Oct 12, 2026: A previous version of this post incorrectly stated that Claude&#39;s web fetch limits were put in place to prevent SQL or command injections. In a small number of evaluation runs, a model did use URL shortening services while it carried out an SQL injection or another unintended action, but the limits were not put in place to prevent such attacks.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-23T06:25:05Z</p></footer>
+<footer><p>Data updated 2026-10-24T06:21:17Z</p></footer>
 </body>
 </html>
