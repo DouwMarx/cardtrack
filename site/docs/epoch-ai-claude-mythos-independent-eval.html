@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T08:44:49Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20epoch-ai-claude-mythos-independent-eval&amp;body=Document%3A%20epoch-ai-claude-mythos-independent-eval%0AURL%3A%20https%3A//epoch.ai/data-insights/cve-severity-spike-july-2026%0AFingerprint%3A%205f8cccf303953d1a19da31082d4aecaf5dcfd35c94926accb714cfb5e11014b9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20epoch-ai-claude-mythos-independent-eval&amp;body=Document%3A%20epoch-ai-claude-mythos-independent-eval%0AURL%3A%20https%3A//epoch.ai/data-insights/cve-severity-spike-july-2026%0AFingerprint%3A%20211d08419806e296af37180c44ed4c26da102fd392b8e476946920cb19da2562%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-25T06:21:30Z</td>
+          <td>text/html</td>
+          <td>128,446</td>
+          <td><code title="211d08419806e296af37180c44ed4c26da102fd392b8e476946920cb19da2562">211d08419806e296</code></td>
+<td><a href="https://data.systemcards.org/raw/c16e4160450932f16b6872f924c3015f5c035467c577176d2f4e335281c27f8a.html" rel="nofollow" title="archived copy, sha256 c16e4160450932f16b6872f924c3015f5c035467c577176d2f4e335281c27f8a">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-10T08:44:49Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -119,6 +126,14 @@
           <div class="just">openness: "closed" → "restricted"</div>
           <div class="just">The row&#39;s model_names include at least one vetted-access model (Mythos-class, GPT-Cyber-class, or an internal-only research model). Openness policy 2026-09-04: openness = the most restricted class among the models in model_names (restricted &lt; closed &lt; open_weight_restrictive &lt; open_weight_permissive), so the site&#39;s restricted-access filter surfaces every document covering a gated model. Corpus audit found the old spans-classes omission rule was applied to only 5 of 41 spanning rows.</div>
       </li>
+      <li>
+        <span class="ts">2026-10-25T06:21:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-25T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://epoch.ai/data-insights/cve-severity-spike-july-2026" rel="noopener nofollow">https://epoch.ai/data-insights/cve-severity-spike-july-2026</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -134,7 +149,12 @@ In April 2026, Anthropic announced that its latest internal model (Claude Mythos
 We show that the number of Common Vulnerabilities and Exposures (CVEs) has kept climbing since these announcements. In June, notable organizations published around 1,550 high- and critical-severity CVEs — more than 3× the monthly record prior to the Claude Mythos Preview announcement. July’s total reached around 2,500, about 5× that pre-Mythos record.
 These disclosure figures are not the only indication that frontier AI cyber capabilities are now meaningful. In late July, OpenAI reported that GPT-5.6 Sol, working together with a more capable unreleased internal model, autonomously hacked Hugging Face while attempting to cheat on a cybersecurity benchmark — chaining at least three previously unknown security vulnerabilities across OpenAI’s and Hugging Face’s systems (see also this independent analysis of the incident). Anthropic subsequently reported that its own models had compromised external providers’ systems on multiple occasions during evaluations (though the company says the models did not find or exploit any complex vulnerabilities). As our Gradient Update on the OpenAI incident argues, expert assessments and cyber benchmarks had already suggested that frontier models were capable of executing this kind of attack.
 Data
+Our Cyber Vulnerability Reports hub visualizes data from cve.org, a public repository of CVE reports from software companies and third-party security researchers. We focus our analysis on CVEs reported by 21 notable organizations to avoid capturing noisy submissions from less reputable sources. These notable organizations include:
+Microsoft · Google · Apple · Adobe · Oracle · Cisco · IBM · Red Hat · Intel · AMD · NVIDIA · Qualcomm · Samsung · SAP · Amazon (AWS) · VMware (Broadcom) · GitHub (own products) · Linux · Mozilla · Apache · OpenSSL
 Assumptions and limitations
+Our figures come from publicly disclosed vulnerabilities, which do not include discovered but not publicly disclosed vulnerabilities. Anthropic claims that their Project Glasswing alone has identified over 10,000 high- and critical-severity vulnerabilities.
+While some of the increase in observed vulnerability disclosure is almost certainly due to increased feasibility of discovery, the spike may also be caused in part by an increase in the amount of interest in discovering bugs.
+Severity ratings and disclosure records are revised over time as CVEs are scored and amended after publication, so historical monthly counts can shift. Our figures for 2025 are now somewhat higher than those shown in our earlier insight on this data, which raises the pre-Mythos monthly record from roughly 440 to roughly 490 high- and critical-severity CVEs. The comparisons above use the revised figures.
 Download this data
 Explore this data
 Explore trends in software and hardware vulnerabilities (CVEs) since 2020 — how counts and severity have changed over time, broken down by the organizations that report them.</pre>
@@ -142,6 +162,6 @@ Explore trends in software and hardware vulnerabilities (CVEs) since 2020 — ho
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-24T06:21:17Z</p></footer>
+<footer><p>Data updated 2026-10-25T06:24:17Z</p></footer>
 </body>
 </html>

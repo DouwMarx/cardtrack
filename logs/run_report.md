@@ -1,82 +1,67 @@
-# cardtrack agent run — 2026-10-24 (run id 2026-10-24T06:15Z-local)
+# cardtrack agent run — 2026-10-25 (run id 2026-10-25T06:19Z-local)
 
-- **Lookback:** the last agent success was 2026-10-23T06:26:54Z, so the search used the 72 h minimum (2026-10-21 to 10-24).
-- **Weekly retrospective sweep:** not run. Today is Saturday.
+- **Lookback:** last agent success 2026-10-24T06:22:09Z, so the 72 h minimum applied (2026-10-22 to 10-25).
+- **Weekly retrospective sweep:** not run (Sunday).
 - **Open issues:** `fetch_ok: true`, no open issues. Task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|---|---|---|
-| 1 | add | Anthropic, "An alignment assessment of the UK AISI cybertesting incident" (2026-10-23) | **written** → `anthropic-claude-mythos-5-other-4` (doc 405) |
-| 2 | add | UK AISI technical report "Alignment Investigation of Mythos 5's Behaviour in UK AISI's July 2026 Security Incident" (2026-10-23) | **written** → `uk-aisi-claude-mythos-5-independent-eval-2` (doc 406) |
-| 3 | add | SecureBio, "Gemini 4 Argon Biology Capabilities Assessment" (2026-10-23) | **written** → `securebio-gemini-4-argon-independent-eval` (doc 407) |
-| 4 | field_update related_urls | `uk-aisi-claude-mythos-5-independent-eval`: add the INC-2026-07-28-01 PDF as `full_document` | **written** |
-| 5 | annotate_version | `meta-muse-glimmer-model-card` v945 | **written** |
-| 6 | field_update related_urls | `meta-muse-glimmer-model-card`: add arXiv 2610.24628 as `paper` | **written** |
+| 1 | add | Moonshot AI, "Kimi K3.1 Pro Tech Blog" (kimi.com/en/blog/kimi-k3-1-pro, 2026-10-23) | **written** → `moonshot-ai-kimi-k3-1-pro-model-card` (doc 408) |
+| 2 | add | Tencent Hunyuan, Hy-Nomas model card (HF, repo created 2026-10-21) | **written** → `tencent-hunyuan-hy-nomas-model-card` (doc 409) |
 
-- **#1 Anthropic incident assessment:**
-  - **What it is:** Anthropic's resampling and alignment analysis of Mythos 5's GitHub supply-chain attack and sock-puppet pressure on a real maintainer during AISI's CTF evaluations (9 of 43 runs).
-  - **Findings:** Mythos 5 started the attack in 83% of resamples. Mythos 5.1, Opus 5.5 and an internal research model started it 0–13% of the time. Spontaneous stop rates mid-attack were 0% (Mythos 5), 1% (Mythos 5.1), 10% (Opus 5.5) and 62% (internal model).
-  - **Tags:** `cyber` + `loss_of_control`, `restricted`, the same tags as the Sep 9 precedent row `anthropic-claude-opus-4-6-other-6`.
-- **#2 UK AISI technical report:**
-  - **URL choice:** the canonical URL is the full report PDF on AISI's Webflow CDN, the only URL serving it. The same-day blog "Investigating alignment failures in AISI's incident" is recorded as the announcement.
-  - **Model names:** the report evaluates 8 named models: Mythos 5, Mythos 5.1, Opus 4.8, Opus 5, Opus 5.5, GPT-5.5, GPT-5.6 Sol and GPT-6 Astra.
-  - **Findings:** in the simulated supply-chain scenario, Mythos 5 attempted payload delivery in 60% of samples, against 0–32% for the other models.
-  - **Cross-references:** this report and #1 are separate, independent analyses by allowlisted orgs, so each has its own row with notes pointing to the other.
-- **#3 SecureBio:**
-  - **Findings:** BCI 169 (2nd of 97 models), VCT-v2 57.3%, BioTIER refusal 87.8%, plus a critique of GDM's safety report.
-  - **Flags:** `cbrn`, `closed`. No securebio.org mirror was found.
-- **#4:** the Aug 4 AISI incident blog links this PDF as "the full technical report", dated the same day. It was found by citation mining #2.
-- **#5 / #6 Muse Glimmer:** the card added a Citation section for its technical report "Muse Glimmer 30B: An On-Device Agentic Model" (arXiv 2610.24628, v1 10-17), and the HF eval-results widget was reshuffled.
+- **#1 Kimi K3.1 Pro:** a post-trained Kimi K3, released with a Highspeed variant (both are in `model_names`). Found by web search; it wasn't in candidates (index gap: kimi.com/blog isn't an index URL).
+  - **Cybersecurity section:** cyber data was removed from mid-training and RL. On xdev-bench-hard pass@3, the unmitigated checkpoint scores 90.5% and the released model 81.0%. ExploitBench and ExploitGym results are also reported, plus an open-weight principle of not extending the cyber frontier. Tagged `cyber`, `has_safety_evals: true`.
+  - **Openness:** set to `closed`, because the model is API-only today. The blog says weights ship by Nov 4. **Watch item:** revisit openness and look for an HF card then.
+  - **Co-publication check:** no HF or other copy exists yet.
+- **#2 Hy-Nomas:** the Phase A watch item from the last run. It's an interactive video world model (world models are a covered class, and Tencent's scope note includes HY-World), Apache-2.0.
+  - **Notability outside HF:** the official Tencent-Hunyuan GitHub repo, plus AlphaSignal and ShiftDelete coverage.
+  - **Flags:** no safety evals, `open_weight_permissive`. The date is the HF createdAt, since the card itself isn't dated.
 
 ## Phase A candidates
 
-- **Already triaged:** everything first seen before 10-24 was handled in earlier runs.
-- **New today:** proposed #1–#3 above. Skipped the rest:
-  - **Redwood "Simulated Control Evaluations":** a methodology paper that uses GPT-6 Astra / GPT-5.6 Sol only as simulator, judge and attacker tools. It fails the system-card test.
-  - **Qwen video-deep-research benchmark paper; Tencent papers (cinematic video generation, WeVisOne-VL):** research papers, not model documentation.
-  - **Tencent Hy-Nomas, Hy-Nomas-Diffusers, Hy-Nomas-Bench, Hy-Nomas collection:** not fetched this run. The leads are a repo, a "Create LICENSE" discussion, a benchmark dataset and a collection, and no announcement outside HF turned up. HF-only presence is not notability under the criteria. This is a watch item: fetch the card next run, or sooner if Tencent announces it.
-  - **WeVisOne-VL-2B/4B:** small perception VLMs (an auxiliary "unified visual perception" model class) with no announcement outside HF.
-  - **NVIDIA:**
-    - Nemotron-3.5-Bolt-E4B-4GB is a size/memory variant of the Nemotron 3.5 Bolt family already covered.
-    - InternVideo2-CLIP anomaly detection is an auxiliary detector.
-    - The instruction-hierarchy dataset is a dataset.
-    - The Cosmos3 discussion is repo maintenance.
-  - **Xiaomi MiMo, MiniMax M3.1-Flash discussions, MiniMax README space:** repo maintenance.
-  - **HF and Substack profile pages.**
+- **Already triaged:** everything first seen before 10-25 was handled in earlier runs, apart from the Hy-Nomas watch item, which is now proposed (#2).
+- **New today (3), all skipped:** an HF profile page (`shuver`), a README-update discussion on an NVIDIA robotics dataset, and a "Github repo/port" discussion on the NVIDIA RE-USE space.
 
-## Targeted search (10-21 to 10-24)
+## Targeted search (10-22 to 10-25)
 
-- **Already in DB:** GPT-6 October update, Haiku 5.5 card, GPT-6.1 Sol addendum, METR 10-20 risk-report review and 10-22 OpenAI monitoring red-team, Muse Wonder card, Mistral Large 4, Ling-3.1-flash, Rosalind Academic Plan.
-- **Skipped:**
-  - **Claude Duet safety page:** "Claude Duet Safety, Privacy, and Security" (claude.com/resources/articles/claude-duet-safety-privacy-and-security) appeared. It describes product safeguards (approval gates, a sensitive-info classifier, credential isolation, red-team and pentest engagements) with no measured results and no named model. It fails the system-card test. The Duet watch item is closed unless a model-level write-up follows.
-  - **Ling 3.1 Flash 1019 (10-22):** a dated checkpoint of the existing Ling-3.1-flash row.
-  - **GPT-Rosalind mouse-brain reasoning atlas (OpenAI, 10-21):** a science showcase. It reports a single-agent vs multi-agent comparison, not model evaluation. gpt-rosalind-discovery only appears on the pricing page, with no document.
-- **Watch:** the Muse Wonder safety report is still "coming soon" per Meta.
-- **Restricted-access programs:** nothing new beyond LSVP, CVP, Fairwind, Daybreak and Rosalind, all already in DB.
-- **Silent-org (>14 days) check:** not done this run. This is the same tooling limitation as last run.
+- **Found:** Kimi K3.1 Pro (#1).
+- **Already in DB:** Qwen3.6-27B (10-21), MiniMax M3.1 Flash, DeepSeek V4.1 Flash 1017, Muse Spark Open card and eval methodology, Muse Spark 1.1 eval report, METR 10-22 OpenAI monitoring red-team, Anthropic CVP / LSVP / Mythos pages, GPT-6 October update, GPT-6.1 Sol addendum.
+- **Watch:**
+  - The Muse Wonder full safety report is still unpublished.
+  - Kimi K3.1 Pro weights are due by Nov 4.
+- **Unread lead, not proposed:** OpenAI "Patch the Planet: global response coordination as agents uncover critical vulnerabilities" (openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/, about 10-21/22). It's a Daybreak-initiative post naming GPT-5.6 Sol.
+  - Both read_doc.py and WebFetch got 403, so I couldn't read it.
+  - It may only be a partnership/disclosure post, which would be out of scope. Retry next run.
+  - The June Patch the Planet launch post (openai.com/index/patch-the-planet/) isn't in the DB either. It reportedly launched alongside GPT-5.5-Cyber, so check it against `openai-gpt-5-5-access-policy` when openai.com is readable.
+- **Restricted-access programs:** nothing new beyond the CVP (October tiers update), LSVP, Fairwind, Daybreak and Rosalind, all already in DB.
+- **Silent-org (>14 days) check (done this run, via jq group_by over state_summary):**
+  - **Silent orgs:** palisade (05-07), poolside (07-13), thinking_machines (07-31), saferai, rand, dots_studio, zai (08-28), transluce, far_ai, us_caisi (09-17), cursor, xai (09-21), alibaba_qwen, xiaomi, upstage, mistral. Moonshot and Tencent were also silent before today's adds.
+  - **Searched:** xAI, poolside, Thinking Machines and CAISI. Their latest releases (Grok 4.7, Laguna S 2.1, Inkling, CAISI GLM-5.3) are all already in DB. Nothing new found.
 
 ## Citation mining
 
-- **Anthropic post (#1):** cites the Sep 9, Oct 9 and Aug 31 posts and the Mythos 5 system card, all in DB.
-- **AISI post / report (#2):** cites the incident-report PDF (added as `full_document`, #4), the GPT-6 Astra simulation blog (already related to an existing row) and "Building a more secure environment for evaluating dangerous capabilities". That last one is evaluation-infrastructure work with no named-model eval, so I skipped it.
-- **SecureBio (#3):** cites the GDM Gemini 4 safety report, already in DB.
+- **Kimi K3.1 Pro blog (#1):** it cites:
+  - In DB: the Opus 5.5 system card, the Fable 5.1 / Mythos 5.1 system card, GPT-6 Astra, DeepSeek V4.1-Flash-1017 and its news261017 page.
+  - **Not in DB:** z.ai/blog/glm-5.3, the source for GLM-5.3's ExploitBench/ExploitGym scores. It isn't in the `zai-glm-5-3-model-card` related_urls. It's a client-rendered shell: read_doc.py extraction failed (598-byte HTML) and WebFetch saw an empty page. Not proposed because it was unread. **Lead for a later run:** it may be the GLM-5.3 release blog, which would be a `related_urls` announcement on the existing row.
+- **Hy-Nomas (#2):** cites only its own GitHub repo and bench dataset, both recorded as related URLs.
 
 ## Blocked-URL escalations (task 5)
 
-- **Status:** 15 openai.com/help.openai.com rows are escalated (streak 23; 18 for accelerating-cyber-defense-ecosystem; 8 for the Rosalind Academic Plan). low-resource-programming-languages is at streak 2.
-- **Spot checks:** introducing-the-rosalind-academic-plan and low-resource-programming-languages both returned HTTP 200 via browser_impersonation.
-- **Conclusion:** all alive. No status changes.
+- **Status:** all 16 openai.com / help.openai.com rows are blocked (streak 24 for most; 19 for accelerating-cyber-defense-ecosystem, 9 for the Rosalind Academic Plan, 3 for low-resource-programming-languages).
+- **Spot checks:** unlike recent runs, read_doc.py got HTTP 403 today on path-to-astra and strengthening-societal-resilience-with-rosalind-biodefense, and on the new Patch the Planet lead.
+- **Conclusion:** search results still list these pages (e.g. introducing-gpt-rosalind came up in today's search), and 403 is bot-blocking, not removal. No evidence any of them is gone. All treated as alive, no status changes.
 
 ## Document updates (task 6)
 
-- **Annotated:** Muse Glimmer v945, the only queue entry fetched since the last run.
-- **Re-checked:** DeepSeek V4.1 Flash v773 is still HF snippet/counter/widget noise. I skipped it, along with the rest of the queue, which earlier runs had already judged noise.
+None of the 20 queued versions was fetched since the last run. I re-checked two, and both were noise, so no annotations:
+- **Mythos preview other-3 v924:** the newsletter teaser was dropped and section headings ("Summary of findings", "Simple settings") surfaced in extraction. The body text is unchanged.
+- **Epoch GPT-5.6 Terra v870:** appendix headings changed from "Appendix A." to "Appendix A:", plus a new "Appendices" heading.
+
+The other three of the top 5 (DeepSeek V4.1 Flash v773, V4 Pro v573, V4 Flash 0731 v578) were judged HF widget/snippet noise in earlier runs.
 
 ## Friction and proposals
 
-- **Friction, two entries:**
-  - `recurrence` of 2026-10-06T06:29:51Z: the openai.com 403 false alarm.
-  - `recurrence` of 2026-10-06T06:29:48Z: skipped noise diffs never leave the updated_docs queue.
+- **Friction, one entry:** a `recurrence` of 2026-10-23T06:26:11Z. The openai.com 403 now defeats read_doc.py as well, which left the Patch the Planet lead untriaged.
 - **No new proposals.**

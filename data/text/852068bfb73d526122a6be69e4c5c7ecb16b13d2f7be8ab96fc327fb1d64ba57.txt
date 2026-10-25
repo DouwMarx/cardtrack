@@ -1,0 +1,7 @@
+Epoch's work is free to use, distribute, and reproduce provided the source and authors are credited under the Creative Commons BY license.
+Learn more about this graph
+Using Domain-specific Epoch Capabilities Index results, we compare the relative math and software engineering abilities of Claude models from Anthropic by looking at their general ECIs, Math-ECIs and SWE-ECIs. We include only models from Anthropic with at least 2 math and 2 SWE benchmarks from the selection of benchmarks used to calculate the ECI.
+See our documentation for Domain-specific ECI for details on our methodology.
+Limitations
+Domain-specific ECI scores can be used to compare performance relative to other model releases, but not to track the absolute performance or progress trends in different domains. See our methodology for further information.
+Models also differ in the number of math and SWE benchmark results they have. If a model has a disproportionate number of math benchmarks, these will have greater influence on their general ECI. All models included in our analysis have at least two scores in each domain, with an average of 3.2 SWE benchmark results and 3.4 math benchmark results. The most extreme ratio observed is 4 math benchmarks to 2 SWE benchmarks.
