@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "google-deepmind-gemini-4-argon-system-card",
+  "version": 901,
+  "category": "content_minor",
+  "score_change": true,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": true,
+  "growth_direction": "grew",
+  "summary": "Footnote qualifies 'we avoid training against our monitors', citing early-RL reward-hacking penalty over thoughts (Sec. 3.4.5.2); eval-awareness rates revised; 'mitigated as if at CCL' dropped.",
+  "notable": "Without a revision note, the Gemini 4 Argon safety report qualified its claim that it avoids training against chain-of-thought monitors by pointing to an already-disclosed reward-hacking penalty that saw the model's thoughts, revised its evaluation-awareness rates, and deleted the sentence 'We mitigated as if at CCL regardless' from a CBRN section.",
+  "confidence": "medium"
+ }
+]

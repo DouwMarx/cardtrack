@@ -1,6 +1,6 @@
 {
  "model": "claude-opus-5-5",
- "skill_url": "https://github.com/DouwMarx/cardtrack/blob/72e639fa01f5fe1f3bf2f7c7cfa1e98a08ccd836/.claude/skills/cardtrack-report/SKILL.md",
- "generated_at": "2026-10-18T02:09:16Z",
- "snapshot": "2026-10-17T06:24:16+00:00"
+ "skill_url": "https://github.com/DouwMarx/cardtrack/blob/d2c253b7ab48583609aea378a389dbed31e58343/.claude/skills/cardtrack-report/SKILL.md",
+ "generated_at": "2026-10-25T02:14:59Z",
+ "snapshot": "2026-10-24T06:21:17+00:00"
 }

@@ -229,3 +229,31 @@ the day at the same request count; in the reverse order it mints furniture faste
   rotates three teasers alongside a real dated correction. If the 5 October rebuild was meant to strip
   the block from newly extracted text too, it is not doing so for this page's markup. Proposal: check
   the teaser-stripping selector against the current anthropic.com news/research templates.
+
+## 9. Additions from 2026-10-25
+
+- **An anthropic.com template change broke extraction on 26 pages in four days (verified).** Between
+  2026-10-21 and 2026-10-24, 26 of 29 new Anthropic version pairs were extractor artefacts. The extracted text
+  started including section headings, but dropped the article title, the footnote block (12 pages now
+  store footnote-less versions; the raw HTML of every one still holds the footnotes, and in the two pages counted,
+  the word "footnote" now occurs 3.4 and 6 times as often in the raw HTML), whole tables that are now built from `div`
+  elements (anthropic-claude-fable-5-addendum-3 v934 lost its classifier and CJS scoring tables;
+  anthropic-claude-mythos-preview-other-3 v924 its four tables), code listings (opus-4-6-other-5 v916)
+  and in one case a body paragraph with evaluation numbers (anthropic-claude-mythos-preview-other-7 v933).
+  Two sub-agents labelled such losses `content_minor`. All were checked against `data/raw/` and recorded
+  as verified overrides. The section 3 pre-clean no longer covers the current markup. Proposal: add
+  v910/v911/v922/v934 raw files as extractor regression fixtures and re-extract the affected pages. The
+  asymmetric raw check in section 4 would have stopped all 26 from being minted as new versions.
+- **The same table loss outside Anthropic.** epoch-ai-glm-5-3-independent-eval v951 lost its entire Cyber
+  ECI score table (61 lines) from the extracted text while the raw HTML kept it, so this is not specific to
+  one publisher's template.
+- **Drift annotations undercount, and fire on substantive pairs (third case).** The monitor's
+  "Extractor drift: N line(s) missing" summaries this week said "1 line" for v951 (61 table rows lost) and
+  v934 (2 lines claimed, about 40 lost). They also fired on anthropic-claude-mythos-5-1-access-policy v904, which
+  carries a real publisher edit: "to ensure" became "in an effort to ensure" in the page's safety-testing
+  sentence. This is the third case after v774 and v804 (sections 7 and 8). Proposal: count every dropped
+  line, not just the first matching block, and emit the drift summary only when the dropped lines are the
+  whole diff.
+- **Report-runner note.** `report/data/docs.sqlite` is a 0-byte stray file (dated 2026-10-11) next to
+  the real `docs.sqlite.snapshot`. The scripts read the latter, but ad-hoc queries against the former silently
+  see an empty database. `snapshot.sh` could delete the stray file.

@@ -1,0 +1,72 @@
+[
+ {
+  "slug": "nvidia-nemotron-3-5-super-vl-other",
+  "version": 920,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Date 2026-10-14 -> 2026-10-21; mid-training section adds pointer to Singhal et al. 2026 recipe paper (new reference); 16 contributors added; paragraph reflow.",
+  "notable": "",
+  "confidence": "medium"
+ },
+ {
+  "slug": "anthropic-claude-haiku-4-5-other",
+  "version": 926,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Extracted text lost title line, both footnotes and related-content footer; raw HTML of v119 and v926 both still contain the footnotes.",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "apollo-research-claude-haiku-4-5-independent-eval",
+  "version": 873,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only the 'More papers' sidebar changed: new Oct 14 2026 Codex auto-review red-teaming teaser added, January 'product vision' entry dropped.",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "anthropic-claude-fable-5-addendum",
+  "version": 910,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Extracted text lost title, footnote 1 (fallback reduction figures) and related-content footer; raw HTML of v101 and v910 both contain footnote.",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "google-deepmind-gemini-4-argon-access-policy",
+  "version": 900,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "One-phrase edit in intro: 'delivers frontier performance in complex workflows' became 'delivers frontier performance to help in complex workflows'.",
+  "notable": "Google quietly softened the wording of Argon's headline capability claim after publication.",
+  "confidence": "medium"
+ }
+]

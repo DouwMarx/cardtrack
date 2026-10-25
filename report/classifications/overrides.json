@@ -68,5 +68,89 @@
   "version": 811,
   "category": "furniture",
   "reason": "Consistency correction: a single 'Modalities' label dropped from Mistral's docs spec widget; the identical change on the sibling Leanstral page (mistral-leanstral-model-card v812, same day) was labelled furniture. Checked against the diff 2026-10-18 by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-haiku-4-5-other",
+  "version": 926,
+  "category": "extraction_noise",
+  "reason": "Both dropped footnotes ('Published in the Claude 4 system card...' and the 'confounded by the presence of information about the evaluation' note) are present in the raw HTML of v119 and v926 (2 occurrences each); v926 uses heavier footnote markup (42 'footnote' occurrences vs 7). Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-fable-5-addendum",
+  "version": 910,
+  "category": "extraction_noise",
+  "reason": "Footnote 1 ('roughly 67% on Claude.ai, 55% on Cowork...') is present in the raw HTML of v101 and v910 (2 occurrences each); v910 uses heavier footnote markup (17 'footnote' occurrences vs 5). Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other-7",
+  "version": 933,
+  "category": "extraction_noise",
+  "reason": "Reclassified from content_minor: the 'removed' Mythos Preview reliability paragraph ('The headline accuracy numbers tell you how often...', incl. the 86% figure) is present in the raw HTML of both v731 and v933 (2 occurrences each); only the extracted text lost it, in the same 2026-10-18..24 Anthropic template change that dropped titles and related-content blocks. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other-4",
+  "version": 925,
+  "category": "extraction_noise",
+  "reason": "Reclassified from content_minor: footnote 1 ('We report results from Claude Opus 4.7 because it was our most advanced non-Mythos-class model...') is present in the raw HTML of both v691 and v925 (2 occurrences each); extractor artefact, not a publisher deletion. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-6-other-6",
+  "version": 888,
+  "category": "metadata_minor",
+  "reason": "Reclassified from content_minor: the cyber-evaluation scope footnote ('explicitly define what is in and out of scope') and the author list are present in the raw HTML of both v669 and v888 (2 occurrences each), so their loss is an extractor artefact. The only publisher-side change is that the BibTeX citation block (@misc{anthropic2026cyberincidentsalignment...}) is absent from the v888 raw HTML (2 -> 0 occurrences): a citation-format change. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-fable-5-addendum-2",
+  "version": 911,
+  "category": "extraction_noise",
+  "reason": "All four dropped footnotes (Enterprise-seat Fable 5 allowance; 'bypass' vs 'jailbreak'; software vulnerabilities; CVSS) are present in the raw HTML of v681 and v911 (2 occurrences each). Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other-2",
+  "version": 922,
+  "category": "extraction_noise",
+  "reason": "The six dropped footnotes (e.g. the OpenSSL/wolfSSL note) are present in the raw HTML of v688 and v922 (2 occurrences each). Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-6-other-5",
+  "version": 916,
+  "category": "extraction_noise",
+  "reason": "The dropped code listings and footnote [1] (iterElemsFunctions) are present in the raw HTML of v683 and v916 (2 occurrences each); 92 of 97 removed lines over 25 characters match the new raw capture, the rest are the newsletter and related-content blocks. Extractor artefact; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-mythos-5-other-3",
+  "version": 950,
+  "category": "extraction_noise",
+  "reason": "The six dropped footnotes (e.g. 'verified the classifier would have flagged the incidents...') are present in the raw HTML of v565 and v950 (2 occurrences each). Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-7-other",
+  "version": 912,
+  "category": "extraction_noise",
+  "reason": "The dropped intro ('we found three incidents') and both footnotes ('We routinely test internal research prototypes...', 'We generally store traces...') are present in the raw HTML of v103 and v912. Extractor artefact, not a publisher deletion; sub-agent label kept, safety flag cleared. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-7-other-3",
+  "version": 936,
+  "category": "extraction_noise",
+  "reason": "The dropped footnotes (e.g. 'We define values as normative considerations...', the page-56 refusal-rate note) are present in the raw HTML of v131 and v936. Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-fable-5-addendum-3",
+  "version": 934,
+  "category": "extraction_noise",
+  "reason": "The dropped classifier-category and CJS scoring tables ('Intended classifier behavior', 'Already public or in confirmed use...') are present in the raw HTML of v129 and v934 (2 occurrences each); <table> elements went from 8 to 0 and div-based ARIA tables (role=table/row) from 0 to 51, which the extractor skips. Not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other-3",
+  "version": 924,
+  "category": "extraction_noise",
+  "reason": "The four dropped tables (e.g. the model/provider list with 'claude_agent_sdk', 10 occurrences in both) are present in the raw HTML of v690 and v924. The raw HTML replaced <table> elements (4 in v690, 0 in v924) with div-based ARIA tables (role=table/row, 47 in v924), which the extractor skips. Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "epoch-ai-glm-5-3-independent-eval",
+  "version": 951,
+  "category": "extraction_noise",
+  "reason": "The dropped Cyber ECI score table (e.g. 'Cyber ECI scores of open- and closed-weight models', GPT-3.5 Turbo 112.21, Llama 3-70B) is present in the raw HTML of v864 and v951 (same occurrence counts). Both raw captures still use one <table> element, so the cause differs from the Anthropic div-table change and is not established. Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
  }
 ]

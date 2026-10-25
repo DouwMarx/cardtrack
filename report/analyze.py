@@ -551,8 +551,16 @@ R["n_overrides_unverified"] = sum(1 for o in overrides
 # Verified extractor artefacts still in the database, by cause, counted as distinct documents:
 # footnotes the extractor fix did not prevent, and tab panels the extractor skipped.
 _live_verified = [o for o in overrides if (o["slug"], int(o["version"])) in _live and o.get("verified", True)]
-R["n_footnote_artefact_docs"] = len({o["slug"] for o in _live_verified if "footnote" in o["reason"].lower()})
+R["n_footnote_artefact_docs"] = len({o["slug"] for o in _live_verified if o["category"] == "extraction_noise"
+                                      and "footnote" in o["reason"].lower()})
 R["n_tabpanel_artefact_docs"] = len({o["slug"] for o in _live_verified if "tab panel" in o["reason"].lower()})
+# Tables the extractor stopped capturing (2026-10 markup change); tab-panel cases are counted above.
+_table_slugs = {o["slug"] for o in _live_verified if o["category"] == "extraction_noise"
+                and "table" in o["reason"].lower() and "tab panel" not in o["reason"].lower()}
+R["n_table_artefact_docs"] = len(_table_slugs)
+# Anthropic replaced <table> with div-based ARIA tables (role=table), which the extractor skips.
+R["n_table_artefact_docs_aria"] = len({o["slug"] for o in _live_verified if o["slug"] in _table_slugs
+                                       and "aria" in o["reason"].lower()})
 R["n_overrides_purged"] = sum(1 for o in overrides if (o["slug"], int(o["version"])) not in _live)
 R["n_classified_purged"] = sum(1 for k in cls if k not in _live)
 # Two purges so far: the footnote-artefact versions (deleted before the 2026-09-29 snapshot after the
@@ -1202,6 +1210,9 @@ BODY_EXAMPLES = {
     "exMistralParams": [("mistral-mistral-large-4-model-card", 829)],
     "exEpochAppendix": [("epoch-ai-gpt-5-6-terra-independent-eval", 804)],
     "exCvpClient": [("anthropic-claude-opus-access-policy", 832)],
+    "exArgonRevision": [("google-deepmind-gemini-4-argon-system-card", 901)],
+    "exDaybreakCyberTier": [("openai-gpt-5-6-sol-access-policy", 869)],
+    "exMythosHedge": [("anthropic-claude-mythos-5-1-access-policy", 904)],
     "exCosmos": [("nvidia-cosmos3-super-model-card", 613), ("nvidia-cosmos3-edge-model-card", 614)],
     "exTrainingSummary": [("inclusion-ai-ling-3-0-tiny-model-card", 634), ("inclusion-ai-ling-2-6-1t-model-card", 659),
                           ("inclusion-ai-ling-2-6-flash-model-card", 660), ("inclusion-ai-ring-2-6-1t-model-card", 661),
@@ -1271,11 +1282,18 @@ _s = ""
 if _fn:
     _s += (f" The fix did not catch every case: {_w(_fn)} Anthropic page{'s' if _fn != 1 else ''} still "
            "store versions without footnotes that the raw HTML of the same captures holds.")
+_tb = R["n_table_artefact_docs"]
+if _tb:
+    _ta = R["n_table_artefact_docs_aria"]
+    _s += (f" {_w(_tb).capitalize()} page{'s' if _tb != 1 else ''} similarly lost whole tables from the extracted "
+           "text while the raw HTML kept them"
+           + (f"; on {_w(_ta) if _ta < _tb else 'all'} of them" + (" the publisher" if _ta < _tb else "")
+              + " had rebuilt the tables from \\texttt{div} elements" if _ta else "") + ".")
 if _tp:
     _s += (f" Checking the raw capture also overturned {_w(_tp)} apparent deletion{'s' if _tp != 1 else ''} "
            "that earlier editions reported, among them OpenAI's removal of a prompt-response table and of a named "
            "launch partner: the content is still on the page, in tab panels the extractor skipped.")
-if _fn or _tp:
+if _fn or _tp or _tb:
     _s += " All of these count as extraction noise."
 lines.append(f"\\newcommand{{\\extractorArtefactSentence}}{{{_s}}}")
 if R["n_journal_resumes"]:

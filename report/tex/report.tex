@@ -56,7 +56,7 @@ believed. Hard loss is rare: \docsEverNotFound{} of \nDocsWithValidChecks{} docu
 \nDeadWord{} of them for good, too few to estimate a link-rot rate over this window. The quieter failure is
 a page that keeps answering HTTP 200: \nSoftGoneWord{} pages served a redirect stub for at least
 \softGoneDaysMin{} days, visible only to content fingerprinting until the publisher added real redirects. A
-host-side fault cost \shareOutageRuns\% of the daily runs their checks, none since \lastOutagePretty{}
+host-side fault wiped out the checks of \shareOutageRuns\% of the daily runs, none since \lastOutagePretty{}
 (Appendix~\ref{app:runs}), so the change counts above are lower bounds
 and their detection dates run late.
 \end{abstract}
@@ -86,7 +86,7 @@ are the tracker's own doing, so the diff compares two captures, not two revision
 migrated on \filterRecomputePretty{} from announcement pages to full PDFs, and first captures of a redirect
 target after a recorded move. The remaining \nPubPairs{} publisher-side
 pairs were classified by reading the text diffs (Figure~\ref{fig:changes}a): \sharePubNonchange\% were
-Hugging Face download counters, evaluation-widget rows, footers or PDF re-extraction artefacts,
+Hugging Face download counters, evaluation-widget rows, footers or HTML extraction artefacts,
 \sharePubSubstantive\% changed the document's content and \sharePubMajor\% were major edits. On
 \filterRecomputePretty{} the fingerprint was also recomputed to ignore known furniture. This cut the
 per-check change-flag rate from \shareFpChangedPreFilter\% to \shareFpChangedPostFilter\% while the number
@@ -118,22 +118,32 @@ was there to prevent SQL or command injection (\exFetchCorrection). Second, edit
 without a change log exist: an NVIDIA card revised a tool-calling score downward and dropped its research-only
 use restriction with no note (\exVoiceChat), Mistral's Large~4 page changed the model's stated number of active
 parameters (\exMistralParams), and Epoch AI appended fits for two further models to a published
-latency study without a revision notice (\exEpochAppendix).
+latency study without a revision notice (\exEpochAppendix). Google DeepMind's Gemini 4 Argon safety report, with no
+revision note, limited its statement that it avoids training against its monitors to the AI control monitors, in a
+footnote adding that in a few early RL runs a reward-hacking penalty inadvertently took the model's thoughts as input
+(already disclosed in a later section); it also revised its evaluation-awareness rates and deleted ``We mitigated as
+if at CCL regardless'' from its CBRN evaluations (\exArgonRevision); Anthropic's Mythos page now says the company tests its models ``in an effort to ensure'', rather than ``to
+ensure'', that they meet its standards for safety, security and reliability (\exMythosHedge).
 A date label does not settle when an edit was made either: METR replaced a one-line pointer on its red-teaming of Anthropic's internal agent monitoring with the findings
 themselves, including routes to disabling monitors, under a heading dated months before the tracker's first
-capture, although every earlier successful content check found the page unchanged (\exMetrMonitoring). Third,
+capture, although every earlier successful content check found the page unchanged (\exMetrMonitoring).
+
+Third,
 access policies change scope: OpenAI rebuilt its Daybreak cyber-access tiers to add GPT-6 Sol, Luna and Astra and to
-require extra approval for GPT-5.6-Cyber (\exDaybreakTiers), and later let other passkeys coexist with the required
-hardware key (\exDaybreakKeys). Anthropic's cyber-safeguards page first excluded Opus 5.5 and Sonnet 5.5 (\exCyberScope),
+require extra approval for GPT-5.6-Cyber (\exDaybreakTiers), later let other passkeys coexist with the required
+hardware key (\exDaybreakKeys), and then removed the GPT-5.6-Cyber tier from its tier summary, although its access matrix still lists it,
+and added GPT-6.1 Sol to the matrix (\exDaybreakCyberTier). Anthropic's cyber-safeguards page first excluded Opus 5.5 and Sonnet 5.5 (\exCyberScope),
 then was retitled ``Cyber Verification Program'' and rewritten around three access tiers covering them and Mythos 5.1
 (\exCvpRewrite); its Mythos page now says the same and no longer says access is limited to US organisations (\exCvpExpand), and the
 program page now bars using a CVP grant to build or run client-facing products, which need separate approval (\exCvpClient). Model cards narrow too: NVIDIA cut each Cosmos 3 card back to a single model
 (\exCosmos). Separately, inclusionAI added a ``training content summary'' linking a public training-data statement
-to several of its cards (\exTrainingSummary). A caution the other way: checking the raw captures showed that apparent deletions of
+to several of its cards (\exTrainingSummary).
+
+A caution the other way: checking the raw captures showed that apparent deletions of
 Anthropic footnotes were extractor artefacts. The publisher had wrapped its footnotes in an element whose class
 name contains ``footer'', which the boilerplate remover discards, while the raw HTML still held every
-footnote. The extractor has since been fixed and \nClassifiedPurgedFootnoteWord{} classified versions affected by it were deleted
-from the database.\extractorArtefactSentence{} A fingerprint tracker cannot tell disclosed from
+footnote. The extractor has since been fixed and the versions it had truncated were deleted from the database
+(the footnote purge above).\extractorArtefactSentence{} A fingerprint tracker cannot tell disclosed from
 undisclosed edits, or edits from extraction bugs, but it produces the diff that lets a human tell.
 
 \begin{table}[!htb]
@@ -150,7 +160,7 @@ Appendix~\ref{app:changes}.}
 Excluding host-side outage runs and the \nTrackerErrorsValidRuns{} probes that never reached a server leaves
 \nValidLinkChecks{} valid link checks over \nDocsWithValidChecks{} documents (\docYearsObserved{}
 document-years, including documents later removed from the corpus), of which \shareLinkOk\% succeeded.
-Hard loss is rare: \docsEverNotFound{} documents ever returned a 404 (\notfoundDocsPerDocYear{} per
+Hard loss is rare: \docsEverNotFoundWord{} documents ever returned a 404 (\notfoundDocsPerDocYear{} per
 document-year). The monitor declared \nDeadWord{} of them dead after three consecutive 404s, a FAR.AI
 evaluation of the cyber safeguards of Alibaba's Qoder agent (Qwen3.8-Max); the other was a slug typo that the publisher fixed with a
 redirect. \docsEverNotFoundWordCap{} cases cannot give a reliable rate over \trackingWeeks{} weeks, but they are not out of line with
@@ -176,8 +186,8 @@ was temporary because the publisher had moved rather than removed the content.
 \section{Discovery is fast}
 For the \nLagLive{} documents published after the backfill, the median delay from publication to first
 tracking was \lagMedianDays{} days and \lagWithinSevenDays\% were tracked within a week. Leads from index
-diffs and from the monitor's own candidate queue were tracked fastest (median
-\lagLeadFastRange{} days); free-form agent search took \lagLeadAgentSearch{} days and manual submissions
+diffs and from the monitor's own candidate queue were tracked in a median of
+\lagLeadFastRange{} days; free-form agent search took \lagLeadAgentSearch{} days and manual submissions
 \lagLeadManual{} days.
 
 \section{Limitations}
@@ -202,7 +212,7 @@ would estimate the disclosed fraction; classifying every minted version in the p
 appendix into a live feed. On the instrument: re-fetch every document daily instead of a 15\,\% rotation
 with conditional requests, so edits are dated to the
 day; treat a body that collapses to a redirect stub as a soft 404 and re-point moved documents; extend the footnote
-pre-clean to the newer footnote markup, stop skipping tab panels, and diff the raw capture alongside the extracted text so extractor regressions
+pre-clean to the newer footnote markup, stop skipping tab panels and tables built from \texttt{div} elements, and diff the raw capture alongside the extracted text so extractor regressions
 are never read as deletions; extend the furniture patterns to widget rows that end in a
 score.
 
