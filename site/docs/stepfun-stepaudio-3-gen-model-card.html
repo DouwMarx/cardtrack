@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-09-15T08:24:16Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-stepaudio-3-gen-model-card&amp;body=Document%3A%20stepfun-stepaudio-3-gen-model-card%0AURL%3A%20https%3A//arxiv.org/abs/2609.12945%0AFingerprint%3A%2054b656c6e44164f8c384c953a287c2ac128d5bf14235fe6c6dec9ce0490df97c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-stepaudio-3-gen-model-card&amp;body=Document%3A%20stepfun-stepaudio-3-gen-model-card%0AURL%3A%20https%3A//arxiv.org/abs/2609.12945%0AFingerprint%3A%205b5be92e0f06d0c3edd91e6bd7e1e5230f6b33d3299f8215454a84f0d25feba9%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-26T06:21:25Z</td>
+          <td>text/html</td>
+          <td>53,506</td>
+          <td><code title="5b5be92e0f06d0c3edd91e6bd7e1e5230f6b33d3299f8215454a84f0d25feba9">5b5be92e0f06d0c3</code></td>
+<td><a href="https://data.systemcards.org/raw/8984d3642ab523b4ddd942472f7dec308a5e288b2aef486f19de676a4e1eabd9.html" rel="nofollow" title="archived copy, sha256 8984d3642ab523b4ddd942472f7dec308a5e288b2aef486f19de676a4e1eabd9">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-09-15T08:24:16Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -97,6 +104,14 @@
           <div class="evidence">Evidence:
 <a href="https://arxiv.org/abs/2609.12945" rel="noopener nofollow">https://arxiv.org/abs/2609.12945</a> · <a href="https://arxiv.org/html/2609.12945v1" rel="noopener nofollow">https://arxiv.org/html/2609.12945v1</a> · <a href="https://huggingface.co/papers/2609.12945" rel="noopener nofollow">https://huggingface.co/papers/2609.12945</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-26T06:21:25Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-26T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2609.12945" rel="noopener nofollow">https://arxiv.org/abs/2609.12945</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -112,6 +127,7 @@
 View PDF HTML (experimental)
             Abstract:We introduce StepAudio 3 Gen, a general-purpose audio generation model that supports zero-shot text-to-speech (TTS), voice design, vocal generation, sound effects, music, vibe speech, and mixtures of multiple audio types within a unified framework. At its core, StepAudio 3 Gen is a discrete autoregressive generator that models audio directly over residual vector quantization (RVQ) tokens, departing from the diffusion Transformer-based continuous generation paradigm prevalent in recent general audio models. Its StepAudio Tokenizer represents general audio at 12.5 Hz in a shared $16 \times 2048$ residual code space, jointly quantizing semantic and waveform-level acoustic features so that each code layer preserves both types of information. For generation, the backbone predicts the first codebook along the time axis using autoregressive modeling, while a lightweight causal Transformer completes the remaining fifteen codebooks along the codebook axis. Our study further identifies three key design principles: (1) interference-aware progressive pretraining for acquiring audio capabilities while preserving the textual abilities of the large language model, (2) RVQ Adaptor for effectively incorporating multi-codebook acoustic representations, and (3) discrete autoregressive modeling over a shared representation across general audio domains. With progressive pretraining, multi-task instruction training, and supervised fine-tuning, StepAudio 3 Gen achieves state-of-the-art performance on both TTS and voice design, while retaining strong generation capabilities across speech, vocals, sound effects, and music. Audio samples are available at this https URL.
 
+Additional Features
 Current browse context:
 cs.SD
 
@@ -154,6 +170,6 @@ Have an idea for a project that will add value for arXiv&#39;s community? Learn 
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-25T06:24:17Z</p></footer>
+<footer><p>Data updated 2026-10-26T06:29:23Z</p></footer>
 </body>
 </html>

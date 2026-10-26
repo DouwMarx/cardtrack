@@ -53,10 +53,10 @@
     <dt>First seen</dt>
     <dd>2026-10-13T06:23:15Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-wonder-model-card&amp;body=Document%3A%20meta-muse-wonder-model-card%0AURL%3A%20https%3A//research.meta.ai/static/muse-wonder-model-card%0AFingerprint%3A%20566451014703b19b2652a9842efb0633adcc8e049d8700eda6eab9a0a1dfbd51%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20meta-muse-wonder-model-card&amp;body=Document%3A%20meta-muse-wonder-model-card%0AURL%3A%20https%3A//research.meta.ai/static/muse-wonder-model-card%0AFingerprint%3A%202e12113e609b0745acbf3051842f407d9543c7daefec9fc6883cc2bbeaae6fcc%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -64,6 +64,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-26T06:21:49Z</td>
+          <td>application/pdf</td>
+          <td>410,388</td>
+          <td><code title="2e12113e609b0745acbf3051842f407d9543c7daefec9fc6883cc2bbeaae6fcc">2e12113e609b0745</code></td>
+<td><a href="https://data.systemcards.org/raw/09be1bc9870954c4bc5254bac715e319f5d0b29399cbc25e852f330e5be8a639.pdf" rel="nofollow" title="archived copy, sha256 09be1bc9870954c4bc5254bac715e319f5d0b29399cbc25e852f330e5be8a639">archived copy</a></td>          <td class="change-summary">Corrected the Muse Wonder Full ExploitGym result from 92 flags (21 intended) to 20 intended flags after a harness fix that includes the intended vulnerability in prompts, with an update note dated 23 October 2026; the table now reports intended flags only. Meta states the change does not alter its moderate-or-lower risk threshold.
+</td>
+        </tr>
         <tr>
           <td>2026-10-13T06:23:15Z</td>
           <td>application/pdf</td>
@@ -80,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -100,6 +108,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://research.meta.ai/blog/muse-wonder" rel="noopener nofollow">https://research.meta.ai/blog/muse-wonder</a> · <a href="https://research.meta.ai/static/muse-wonder-model-card" rel="noopener nofollow">https://research.meta.ai/static/muse-wonder-model-card</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-26T06:21:49Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-26T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://research.meta.ai/static/muse-wonder-model-card" rel="noopener nofollow">https://research.meta.ai/static/muse-wonder-model-card</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-26T06:29:23Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-10-26T06:19Z-local · agent · lead: manual</span>
+          <div class="just">change_summary: null → "Corrected the Muse Wonder Full ExploitGym result from 92 flags (21 intended) to 20 intended flags after a harness fix that includes the intended vulnerability in prompts, with an update note dated 23 October 2026; the table now reports intended flags only. Meta states the change does not alter its moderate-or-lower risk threshold."</div>
+          <div class="just">Diff v973 vs v815 replaces the ExploitGym score and its footnote in section 4 (risk assessments); CyberGym and ExploitBench are unchanged; remaining changes are whitespace.</div>
+          <div class="evidence">Evidence:
+<a href="https://research.meta.ai/blog/muse-wonder" rel="noopener nofollow">https://research.meta.ai/blog/muse-wonder</a>          </div>
       </li>
     </ol>
     </details>
@@ -278,8 +303,8 @@ General
       Terminal-Bench 4.0, SciCode, AA-LCR, AA-Omniscience, CritPt, and Humanity’s
       Last Exam, into a single score. The result source is Artificial Analysis, and the
       primary metric is the index score.
-4.​ Risk assessments under the Meta Superintelligence Scaling
-    Framework
+4. Risk assessments under the Meta Superintelligence Scaling
+   Framework
 Results below are from Muse Wonder Full, our most capable variant, which is why the
 assessment covers every model in the family. Under the Meta Superintelligence Scaling
 Framework, a model reaches the high risk threshold when its deployment could
@@ -295,18 +320,20 @@ decision to deploy.
 Cyber Capability Evaluations
 Results
 
-                      Evaluation                             Muse Wonder Full
+                      Evaluation                              Muse Wonder Full
 
-                      CyberGym                                      88.4%
+                      CyberGym                                       88.4%
 
-                      ExploitBench                                  58.9%
+                      ExploitBench                                   58.9%
 
-                      ExploitGym                                      92*
+                      ExploitGym                                       20*
 
-*Note on ExploitGym scoring. Muse Wonder Full succeeded in capturing 92 flags. A verification pass, run with a
-GPT-cyber verifier and independently confirmed with Gemini 3.1 Pro, found that 21 of those used the intended
-vulnerability, while the other 71 were captured through unintended vulnerabilities. ExploitGym&#39;s published
-ranking counts only intended-vulnerability exploitations, so 21 is the figure comparable to the published ranking.
+*Updated ExploitGym Evaluations (23 October 2026). After correcting our harness to include the intended
+vulnerability in the model’s prompts, as recommended by the benchmark, we reran the evaluation. Muse
+Wonder Full succeeded in capturing 20 intended flags (instead of the 92 total flags and 21 intended flags
+originally reported). We have updated the table above to reflect the intended flag results only, as this is also
+how results are officially reported on the public leaderboard. These updated evaluations do not require us to
+adjust our “moderate or lower” risk threshold for Muse Wonder Full.
 
 Cyber Robustness Evaluations (Adversarial Refusal)
 We evaluate our models for adversarial robustness, particularly the ability to resist a
@@ -503,6 +530,6 @@ Interaction, Protein Design, and Sequence Analysis.</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-25T06:24:17Z</p></footer>
+<footer><p>Data updated 2026-10-26T06:29:23Z</p></footer>
 </body>
 </html>
