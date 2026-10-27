@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:28Z</dd>
     <dt>Versions</dt>
-    <dd>5</dd>
+    <dd>6</dd>
     <dt>Notes</dt>
     <dd>MIT licence. First Ring-line document in the corpus; shares the Ling and Ring 2.6 technical report with Ling-2.6-1T and Ling-2.6-flash.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.6-1T%0AFingerprint%3A%2038116f6cd39424121f6db7477e2d1fd458404cda1ea24efa057dd65ccaed4c5a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ring-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ring-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ring-2.6-1T%0AFingerprint%3A%207b584aec3f8f207d27dad7cfcb9930bd483957e4ba3cd00ad41e63a3f0c206b2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-27T06:21:25Z</td>
+          <td>text/html</td>
+          <td>418,632</td>
+          <td><code title="7b584aec3f8f207d27dad7cfcb9930bd483957e4ba3cd00ad41e63a3f0c206b2">7b584aec3f8f207d</code></td>
+<td><a href="https://data.systemcards.org/raw/a6a28b77392e42b246c5fbcb3f1a5b6c50378d75304adf5a914f11ded08fd56e.html" rel="nofollow" title="archived copy, sha256 a6a28b77392e42b246c5fbcb3f1a5b6c50378d75304adf5a914f11ded08fd56e">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-14T06:17:34Z</td>
           <td>text/html</td>
@@ -103,7 +110,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -164,6 +171,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-10-27T06:21:25Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-27T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ring-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ring-2.6-1T</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -183,8 +198,21 @@ messages = [
 ]
 pipe(messages)# pip install -U transformers accelerate
 # Load model directly
-from transformers import AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;inclusionAI/Ring-2.6-1T&#34;, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(&#34;inclusionAI/Ring-2.6-1T&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+messages = [
+    {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who are you?&#34;},
+]
+inputs = tokenizer.apply_chat_template(
+	messages,
+	add_generation_prompt=True,
+	tokenize=True,
+	return_dict=True,
+	return_tensors=&#34;pt&#34;,
+).to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=256)
+print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Notebooks
 - Google Colab
 - Kaggle
@@ -314,19 +342,19 @@ Training content summary
 The public training-content summary identifying Ring-2.6-1T is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
 This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
 - Downloads last month
-- 1,319
-Spaces using inclusionAI/Ring-2.6-1T 5
+- 1,622
+Spaces using inclusionAI/Ring-2.6-1T 4
 Collection including inclusionAI/Ring-2.6-1T
 Paper for inclusionAI/Ring-2.6-1T
 Evaluation results
-- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results    leaderboard   95.83 *
-- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   74 *
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   88.27 *
+- SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results    leaderboard   74 *
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results    leaderboard   95.83 *
 - claw-eval/Claw-Eval · General View evaluation results    leaderboard   63.82 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-26T06:29:23Z</p></footer>
+<footer><p>Data updated 2026-10-27T06:25:53Z</p></footer>
 </body>
 </html>

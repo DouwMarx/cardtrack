@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:29Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Apache-2.0. Card notes &#39;more results will be released in the upcoming technical report&#39;, so expect revisions.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada2-2-flash-model-card&amp;body=Document%3A%20inclusion-ai-llada2-2-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA2.2-flash%0AFingerprint%3A%2084d088810c761928d1a45cae5f59e5ad1ee0536f391a34f360e23c6b27a7f8c4%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-llada2-2-flash-model-card&amp;body=Document%3A%20inclusion-ai-llada2-2-flash-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/LLaDA2.2-flash%0AFingerprint%3A%200facfd6546ba54dd0f27c17fcc79a977888cbd2ef08ea390624f2ab361d01454%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-27T06:21:26Z</td>
+          <td>text/html</td>
+          <td>231,336</td>
+          <td><code title="0facfd6546ba54dd0f27c17fcc79a977888cbd2ef08ea390624f2ab361d01454">0facfd6546ba54dd</code></td>
+<td><a href="https://data.systemcards.org/raw/30006e521836b18a5e19e75960a8ebf3f52ff5129cef76b37f19eb052b761a6d.html" rel="nofollow" title="archived copy, sha256 30006e521836b18a5e19e75960a8ebf3f52ff5129cef76b37f19eb052b761a6d">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-07T06:17:44Z</td>
           <td>text/html</td>
@@ -81,7 +88,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -105,6 +112,14 @@
         <span class="ts">2026-10-07T06:17:44Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-10-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/LLaDA2.2-flash" rel="noopener nofollow">https://huggingface.co/inclusionAI/LLaDA2.2-flash</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-27T06:21:26Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-27T06:19Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/LLaDA2.2-flash" rel="noopener nofollow">https://huggingface.co/inclusionAI/LLaDA2.2-flash</a>          </div>
@@ -281,18 +296,39 @@ To achieve optimal performance, we recommend starting with the following setting
 If you are in mainland China, we strongly recommend accessing our model from 🤖 ModelScope
 Deployment
 SGLang
-SGLang deployment support is coming soon.
+You can serve LLaDA2.2-flash through an OpenAI-compatible API using SGLang.
+Install SGLang from the latest main branch:
+git clone https://github.com/sgl-project/sglang.git
+cd sglang
+pip install -e &#34;python&#34;
+For environment requirements, see the SGLang installation guide.
+Launch the server with the following command. This example uses eight NVIDIA GPUs:
+python3 -m sglang.launch_server \
+  --model-path inclusionAI/LLaDA2.2-flash \
+  --trust-remote-code \
+  --dllm-algorithm JointThresholdInDel \
+  --moe-runner-backend triton \
+  --tp-size 8 \
+  --context-length 131072 \
+  --max-running-requests 8 \
+  --host 0.0.0.0 \
+  --port 30000
+Adjust --tp-size and --max-running-requests according to your hardware
+and available GPU memory.
+JointThresholdInDel currently uses greedy decoding, with default settings
+of block_size=32, threshold=0.5, edit_threshold=0.0, and
+max_post_edit_steps=16.
 🌐 License
 This project is licensed under the terms of the Apache License 2.0.
 🤝 Contact &amp; Collaboration
 For questions, collaboration opportunities, or feedback, please reach out via Hugging Face or open an issue in the repository.
 Join us in advancing open, efficient, and intelligent diffusion language models for agentic applications.
 - Downloads last month
-- 710</pre>
+- 801</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-26T06:29:23Z</p></footer>
+<footer><p>Data updated 2026-10-27T06:25:53Z</p></footer>
 </body>
 </html>

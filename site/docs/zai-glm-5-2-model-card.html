@@ -53,12 +53,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:54Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Verified co-hosted copy: Mistral lists &#39;Z.ai GLM 5.2&#39; at docs.mistral.ai/models/zai-glm-5-2 (published 2026-08-06, public preview) but it is a hosting/product listing without benchmarks or licence text, so it is recorded here as co_published only, not proposed under mistral. GLM-5.2-FP8 is a quantised re-upload of this same card. Card header now points new_version at GLM-5.3-BF16. Independent evals of GLM-5.2 in the database: us-caisi-glm-5-2-independent-eval, uk-aisi-glm-5-2-independent-eval, saferai-glm-5-2-independent-eval. Z.ai blog unreachable from the curation sandbox.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-2-model-card&amp;body=Document%3A%20zai-glm-5-2-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.2%0AFingerprint%3A%201d60c5a1ff088b3bfaeba39889079b8a28f409374482b3b81de6628ec858701b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-2-model-card&amp;body=Document%3A%20zai-glm-5-2-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.2%0AFingerprint%3A%2039256153cec146b6d6db9e5d8ad49194094ae296403ffb2fc2d6f1b95bad0864%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -66,6 +66,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-27T06:21:46Z</td>
+          <td>text/html</td>
+          <td>426,828</td>
+          <td><code title="39256153cec146b6d6db9e5d8ad49194094ae296403ffb2fc2d6f1b95bad0864">39256153cec146b6</code></td>
+<td><a href="https://data.systemcards.org/raw/a297be1cb11ecc2c0e0c805a0c0aab9cf7ecc85708adacb7e1c6d29f66df18fa.html" rel="nofollow" title="archived copy, sha256 a297be1cb11ecc2c0e0c805a0c0aab9cf7ecc85708adacb7e1c6d29f66df18fa">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-21T06:21:26Z</td>
           <td>text/html</td>
@@ -89,7 +96,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -114,6 +121,14 @@
         <span class="ts">2026-10-21T06:21:26Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-10-21T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/zai-org/GLM-5.2" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.2</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-27T06:21:46Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-27T06:19Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/zai-org/GLM-5.2" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.2</a>          </div>
@@ -288,7 +303,7 @@ If you find GLM-5.2 useful in your research, please cite our technical report:
       url={https://arxiv.org/abs/2602.15763},
 }
 - Downloads last month
-- 390,974
+- 293,941
 Model tree for zai-org/GLM-5.2
 Spaces using zai-org/GLM-5.2 100
 Collection including zai-org/GLM-5.2
@@ -298,16 +313,16 @@ GLM-5: from Vibe Coding to Agentic Engineering
 Article mentioning zai-org/GLM-5.2
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   91.2
-- datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   46.2
+- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   62.1
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 leaderboard
+- Terminus-2 harness (temperature=1.0, top_p=1.0, 256K context, max_episodes=500). View evaluation results81 *
+- Best reported harness: Claude Code 2.1.167 (temperature=1.0, top_p=0.95, max_new_tokens=131072, no wall-clock limit, averaged over 5 runs). View evaluation results82.7 *
 - agents-last-exam/agents-last-exam leaderboard
-- Overall Pass Rate View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.20.39 *
-- Overall Score View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.41.09 *
-- Ale Cli Pass Rate View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=104/105; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.23.81 *
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   62.1</pre>
+- Overall Pass Rate View evaluation resultssourceharness=claude_code; harness_variant=max; attempted=146/152; official leaderboard snapshot=2026-10-01T20:39:17.826877+00:00; values are percentages (0-100); equal-task aggregation; unattempted tasks contribute zero; pass threshold score&gt;=0.999. This is an official leaderboard export, not an HF-verified evaluation.20.39 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-26T06:29:23Z</p></footer>
+<footer><p>Data updated 2026-10-27T06:25:53Z</p></footer>
 </body>
 </html>

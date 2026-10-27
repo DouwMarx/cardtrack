@@ -1,99 +1,102 @@
-# cardtrack agent run — 2026-10-26 (run id 2026-10-26T06:19Z-local)
+# cardtrack agent run — 2026-10-27 (run id 2026-10-27T06:19Z-local)
 
-- **Lookback:** the last agent success was 2026-10-25T06:28:00Z, so the 72 h minimum applied (2026-10-23 to 10-26).
-- **Weekly retrospective sweep:** done (Monday). I chose RAND, dots_studio and Z.ai. Their newest entries are 08-11, 08-14 and 08-28. The three orgs with older newest entries were swept in the last two weeks: Palisade and poolside on 10-12, Thinking Machines and SaferAI on 10-19.
+- **Lookback:** the last agent success was 2026-10-26T06:30:25Z, so the 72 h minimum applied (2026-10-24 to 10-27).
+- **Weekly retrospective sweep:** not run. Today is Tuesday, and Monday's sweep ran in the 10-26 run.
 - **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|---|---|---|
-| 1 | add | NVIDIA Nemotron 3.5 Bolt E4B 4GB model card (HF, GA 2026-10-23) | **written** → `nvidia-nemotron-3-5-bolt-e4b-4gb-model-card` (doc 410, v976) |
-| 2 | add | Z.ai GLM-Image model card (HF, released 2026-01-14) | **written** → `zai-glm-image-model-card` (doc 411, v977) |
-| 3 | add | RAND RR-A3892-2, "AI agents put offensive cyber within reach of novices" (PDF, 2026-06-25) | **written** → `rand-claude-opus-4-6-independent-eval` (doc 412, v978) |
-| 4 | annotate_version | `meta-muse-wonder-model-card` v973 | **written** |
+| 1 | add | OpenAI "Addendum to GPT-6 Astra System Card: GPT-6.1 Terra" (PDF, 2026-10-26) | **written** → `openai-gpt-6-1-terra-addendum` (doc 413, v998) |
+| 2 | add | SecureBio "ReproBAIT: A Benchmark for Reproducing Biological AI Tools" (substack, 2026-10-26) | **written** → `securebio-claude-opus-5-independent-eval` (doc 414, v999) |
+| 3 | add | UK AISI "Can AI coding agents rebuild biological AI tools from a paper?" (2026-10-26) | **written** → `uk-aisi-claude-opus-5-independent-eval` (doc 415, v1000) |
+| 4 | field_update | `securebio-gemini-4-argon-independent-eval`: add the securebio.org copy as related_urls `web_version` | **written** |
+| 5 | annotate_version | `anthropic-claude-opus-access-policy` v990 (CVP help article) | **written** |
 
-### #1 Nemotron 3.5 Bolt E4B 4GB
-- **Lead:** found by search on benchlm.ai. Phase A surfaced the HF repo on 10-24, and that run skipped it as "a size variant of Bolt 74B".
-- **Why I reversed that:** it's a distinct model. It is post-trained from Gemma 4 E4B, a different base than Bolt 74B. It also has its own card, research page and technical report (dated 2026-10-23). Under the 10-05 document-unit rule in criteria.yaml, that makes it a separate row.
-- **Canonical URL:** follows the Bolt 74B precedent. The HF card is canonical, with the research page (announcement) and the tech-report PDF (paper) as related URLs.
+### #1 GPT-6.1 Terra addendum
+- **Lead:** Phase A (deploymentsafety.openai.com index).
+- **Read:** the landing page and the full PDF, both read via read_doc. The announcement (openai.com/index/introducing-gpt-6-1-terra/) was readable today via browser impersonation.
+- **Canonical URL:** the PDF, with the HTML page as `web_version` and the announcement as `announcement`. This follows the GPT-6.1 Sol addendum row.
+- **Contents:**
+  - Treated as Critical in cyber and High in bio/chem.
+  - Evals: ExploitBench, Sandbox Bench and self-improvement evals; alignment evals (auto-review, honeypot, blocker deception, Codex deployment simulation); CoT controllability and monitor evasion; U18 and mental-health benchmarks.
 - **Flags:**
-  - `has_safety_evals: false`. There are only boilerplate subcard pointers and an AdvBench subset inside VoiceBench.
-  - `open_weight_permissive`, because the weights are under OpenMDW-1.1.
+  - Tags: cbrn, cyber, loss_of_control, societal_harm (same as the Sol addendum).
+  - `closed`: the model is on the public API as gpt-6.1-terra, plus ChatGPT and Codex.
 
-### #2 GLM-Image
-- **Lead:** found by the retrospective sweep. The HF API listing of zai-org shows a repo created on 2026-01-08 that the pipeline had never seen.
-- **What it is:** a 9B autoregressive + 7B diffusion text-to-image model, MIT license.
-- **Notability:** VentureBeat and The Batch covered it.
-- **Scope note:** the zai note names only the "GLM LLM/VLM line" and excludes CogView *point releases*. GLM-Image is a flagship GLM-branded release, so I admitted it under `admit_and_flag` and recorded the ambiguity in notes.
-- **Date and blog:** the date is the public announcement (Jan 14). The z.ai tech blog is client-rendered and I didn't read it, so it isn't recorded.
+### #2 and #3 ReproBAIT (co-published)
+- **What it is:** a bio dangerous-capability eval, built by SecureBio with UK AISI. Four named coding agents (Claude Opus 5, GPT-5.6 Sol, Kimi K3, Qwen3.8-2.4T) tried to rebuild biological AI tools in a sandbox.
+- **Results:** ProteinMPNN reproduction fidelity was 96.5%, 91.3%, 86.3% and 73.4% for the four agents respectively. No agent rebuilt RFdiffusion3, and most successful rebuilds cost under $20.
+- **Criteria:** it passes the system-card test, the same way the VCT v2 row did.
+- **Two rows:** both orgs are allowlisted, so each org's own copy is its own row (co-publication rule), cross-referenced in notes and `co_published` related URLs. AISI's post is a shorter summary of the same work.
+- **Preprint:** arXiv 2610.19810 (submitted 10-14, different title) is recorded as `paper`. It isn't the same document, so it is not the canonical URL. The securebio.org mirror is recorded as `web_version` on the SecureBio row.
+- **Flags:** tagged `cbrn`; `closed` (the most restricted of the four models is closed).
 
-### #3 RAND RR-A3892-2
-- **Lead:** found by the retrospective sweep.
-- **What it is:** the follow-up to RR-A3892-1, which is already in the DB. RAND Europe re-ran its CTF challenges with Claude Code on Sonnet 4.6 and Opus 4.6. Every challenge was solved in under an hour, for under $20 in total.
-- **Flags:** passes the system-card test; tagged `cyber`; `closed`. The HTML landing page is recorded as the announcement.
+### #4 SecureBio Argon related URL
+- **Why:** Phase A surfaced securebio.org/blog/gemini-4-argon-biology-capabilities-assessment/. Its text is identical to the existing substack row, so it is a mirror and gets no add.
+- **What I did:** recorded it as `web_version`, following the GPT-6 Astra SecureBio row.
 
-### #4 Muse Wonder v973
-- **What changed:** the ExploitGym result was corrected from 92 flags (21 intended) to 20 intended flags, after a harness fix described in a 23 Oct update note. Meta says its risk threshold is unchanged.
-- **Caveats:**
-  - This version was ranked 12th in the queue, outside the top 5. I read it because it had been fetched today.
-  - The evidence URL I cited was the Muse Wonder blog post, not the card URL (research.meta.ai/static/muse-wonder-model-card).
+### #5 CVP v990
+- **What changed:** CVP managed-service applications are now open, while customer-facing products are at the expression-of-interest stage only. Approval now has to be assigned to a workspace, role or account before it takes effect. Google Cloud access now requires the Advanced AI Safety Addendum and enabling data sharing.
+- **Note:** this row's status is `moved` with no publication date. I didn't investigate this run.
 
-## Phase A candidates
+## Phase A candidates (48 new today)
 
-Eight were new today, and all were skipped:
-- **Profile pages:** two HF profiles (zecongtanghku, Jy1112).
-- **Ling-3.1-flash discussions (2):** code-fix PRs.
-- **inclusionAI/LBS-27B:** the README is empty.
-- **HiSTEVE 1.0 (Tencent paper):** a research Minecraft VLA agent, not a flagship agent.
-- **Qwen/BabelArena:** a benchmark dataset.
-- **MiniMax-M3 collection:** M3 is already in the DB.
+- **Proposed:** GPT-6.1 Terra addendum (#1), the ReproBAIT SecureBio and AISI posts (#2, #3), and the SecureBio Argon mirror as a related URL (#4).
+- **Skipped:**
+  - **UK AISI "Pretraining data filtering in open-weight biological models":** safeguard research on ESM-2 protein models AISI retrained itself. It doesn't evaluate a released named model, so it fails the system-card test.
+  - **Anthropic S-1 filing:** corporate, not model documentation.
+  - **Cursor Agent SDK (blog + changelog):** product launch.
+  - **Tencent Hy-SimulMT-30B-A3B (+FP8/GGUF/Interleave):** machine translation, excluded by the tencent scope note.
+  - **WeVisOne-VL discussions, DiagSafe dataset:** discussions and a dataset, not model documentation.
+  - **NVIDIA (excluded by the nvidia scope note):**
+    - llama-nv-embed-reasoning-3b is an embedding model.
+    - MotionBricks is a motion-generation component, not GR00T.
+    - The FLORA paper is a paper link.
+    - The isaacsim-assets repo and its discussion are assets.
+  - **inclusionAI:**
+    - ZwZ-2B is a tiny 2B VLM outside the Ling/LLaDA lines.
+    - The *-singprobe repos are probes on other labs' models.
+  - **MiniMax discussions (3):** doc renames.
+  - **Qwen:** the Qwen-Image-PE paper and the BlenderWorld discussion, neither of which is model documentation.
+  - **Epoch "AI impacts observatory":** a topic hub.
+  - **Redwood "A basic case for accelerating conceptual reasoning capabilities":** an essay.
+  - **Profile pages:** the substack and HF author profiles.
+- Everything first seen before today was triaged in earlier runs.
 
-Everything first seen before today was triaged in earlier runs.
+## Targeted search (10-24 to 10-27)
 
-## Targeted search (10-23 to 10-26)
-
-- **New and proposed:** Bolt E4B (#1).
-- **Already in DB or handled:** Kimi K3.1 Pro, MiniMax M3.1 Flash, Gemini 4 Argon (all rows plus Fairwind), Haiku 5.5, the GPT-6 October update, and the CVP/LSVP pages. Mistral Voxtral 3 was skipped on 10-21 as an ASR/TTS family.
-- **openai.com was readable today** (read_doc, browser_impersonation). That let me clear last run's unread lead.
-  - **"Patch the Planet: global response coordination…" (coordinated-disclosure post):** skipped. It is a disclosure-framework and partnership post, with no measured evaluation. GPT-5.6 Sol is only named as the tool Calif used.
-  - **June "Patch the Planet" launch post:** skipped. It's a partnership with Trail of Bits, HackerOne and Calif, and it gates no named model.
-  - **"Daybreak for Frontline Defenders" ($1B subsidized Daybreak access):** skipped. It's an access expansion, but it names no model or model family, only "Daybreak cyber models". That fails the named-model gate, which is already discussed in PROPOSALS.md.
-- **Restricted-access programs:** nothing new. Gemini for Science, Co-Scientist and CodeMender (Argon partner access from 10-13) are covered by existing rows.
-
-## Weekly retrospective sweep
-
-- **Z.ai:** I compared all 2026 repos in the HF API with the DB.
-  - **Added:** GLM-Image (#2).
-  - **Skipped:** SCAIL-2, an MIT research character-animation model outside the GLM line, from a github.io project page. The rest are -FP8/-BF16 re-uploads or GLM-OCR.
-- **dots_studio:** nothing new. Every 2026 repo apart from dots3-note is OCR or TTS (auxiliary). The dots3-note card still says "Full Report (coming soon)". **Watch item:** the technical report.
-- **RAND:**
-  - **Added:** RR-A3892-2 (#3).
-  - **Skipped:** RR-A3797-1 (bio benchmarking), published Nov 2025, before the scope floor.
-  - **Already in DB:** RR-A4741-1/-2, RR-A4591-1, RR-A3892-1, RR-A5000-1 and RR-A5055-1.
-  - **Out of scope:** the "Open-Weight AI Models Require Proportional Evaluation" perspective is a policy essay.
+- **GPT-6.1 Terra:** proposed (#1).
+- **Nanbeige4.3-33B (HF, 10-25):** Nanbeige is not on either allowlist. Skipped.
+- **METR 10-20 review of Anthropic's August Risk Report:** already in DB (`metr-claude-mythos-5-independent-eval`). METR's 10-22 agent-monitoring red-team post is also in DB.
+- **Restricted-access polling:** nothing new in the window.
+  - CVP / Glasswing merge (10-06), LSVP and Claude Science are in DB.
+  - The GPT-Rosalind and Daybreak news is older and already handled.
+  - Searches turned up nothing new for Gemini for Science or CodeMender.
 
 ## Citation mining
 
-- **RR-A3892-2:** its references are UK AISI's Mythos Preview cyber evaluation (in DB), red.anthropic.com/2026/mythos-preview (redirects to anthropic.com/research/mythos-preview, which is in DB as `anthropic-claude-mythos-preview-other`), and RR-A3892-1 (in DB).
-- **Bolt E4B report:** cites Bolt 74B and Gemma 4 E4B, both in DB.
-- **GLM-5.3 blog lead (z.ai/blog/glm-5.3):** still client-rendered, not retried.
+- **Terra addendum:** cites the GPT-6 Astra card and GPT-6.1 Sol, both in DB.
+- **ReproBAIT:** its only new reference is the arXiv preprint, recorded as `paper`.
 
 ## Blocked-URL escalations (task 5)
 
-- **What Phase A reports:** all 16 openai.com / help.openai.com rows return 403 (streak 25 for most, 20 for accelerating-cyber-defense-ecosystem, 10 for the Rosalind Academic Plan, 4 for low-resource-programming-languages).
-- **Spot check:** read_doc.py got HTTP 200 today on path-to-astra, low-resource-programming-languages, introducing-the-rosalind-academic-plan, the Daybreak help article and strengthening-societal-resilience-with-rosalind-biodefense. The content was intact.
-- **Conclusion:** all are alive. The 403 is bot-blocking, so there are no status changes.
+- **What Phase A reports:** all 16 openai.com / help.openai.com rows return 403 (streak 26; 21, 11 and 5 for the newer ones).
+- **Spot check:** read_doc.py got HTTP 200 via browser_impersonation today on hugging-face-model-evaluation-security-incident, pacing-model-development-cyber-capabilities, the Daybreak TAC help article and trusted-access-for-cyber.
+- **Conclusion:** all are alive, so there are no status changes.
 
 ## Document updates (task 6)
 
-- **Top 4 (DeepSeek V4.1 Flash v773, Mythos preview other-3 v924, V4 Pro v573, V4 Flash 0731 v578):** judged noise in earlier runs and not re-read.
-- **#5, GLM-5.2 other v974 (Anthropic Frontier Red Team, the IoT self-replication post):** noise. The newsletter teaser was dropped, section headings ("Introduction", "A. Inference setup", "Appendix" and so on) surfaced in extraction, and one small window-time table no longer extracts. The body text is unchanged. No annotation.
-- **Beyond the top 5:** Muse Wonder v973 was substantive and is annotated (#4).
+- **Top 5:** v773, v924, v573, v578 and v974 were all judged noise in earlier runs and were not re-read.
+- **Beyond the top 5, read because they were fetched today:**
+  - **anthropic-claude-opus-access-policy v990:** substantive, annotated (#5).
+  - **inclusion-ai-llada2-2-flash-model-card v980:** the "coming soon" SGLang note was replaced with deploy instructions. That is usage docs, not results or terms, so it is skipped.
+  - **inclusion-ai-ring-2-6-1t-model-card v979:** a code-snippet expansion, reordered eval widgets and a download count. Noise, skipped.
 
 ## Friction and proposals
 
 - **Friction, two recurrences:**
-  - The openai.com 403 false alarm (of 2026-10-25T06:26:44Z).
-  - The stale updated_docs queue, where noise-judged versions keep occupying the top-5 window (of 2026-10-24T06:21:27Z).
+  - The openai.com 403 false alarm (of 2026-10-26T06:29:40Z).
+  - The stale updated_docs top-5 window (of 2026-10-24T06:21:27Z).
 - **No new proposals.**
