@@ -111,7 +111,7 @@ report:
   # boundary. Agent/Task: the skill fans out classification and review sub-agents.
   cmd: >-
     env -u ANTHROPIC_API_KEY
-    claude -p "$(cat prompts/REPORT.md)" --model fable
+    claude -p "$(cat prompts/REPORT.md)" --model claude-fable-5-1
     --max-turns 400 --output-format text
     --allowedTools "Read" "Glob" "Grep" "Write" "Edit" "Bash" "Agent" "Task"
 
