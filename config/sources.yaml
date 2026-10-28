@@ -251,5 +251,12 @@ evaluators:            # independent
     homepage: https://www.redwoodresearch.org
     index_urls:
       - https://blog.redwoodresearch.org/archive
+  fangcun_ai:
+    tier: 2                       # Tsinghua spin-out (founded 2026-01); one report so far
+    display_name: Fangcun AI      # (2026-10-26, DeepSeek V4.1 Flash), AEF-1 self-attested, not an
+    homepage: https://fangcunleap.com   # AEF member; affiliations self-reported. Re-review at report 2.
+    index_urls:            # no feed or reports index; /research links each PDF directly
+      - https://fangcunleap.com/research
+      - https://fangcunleap.com/en/research
 # Consciously excluded: MLCommons/AILuminate — vendor-consortium benchmark program,
 # no model-specific 2026 eval publications (vetted 2026-08-10).

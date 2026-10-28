@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-28T06:24:07Z",
+ "generated_at": "2026-10-28T17:36:01Z",
  "publishers": {
   "anthropic": {
    "display_name": "Anthropic",
@@ -170,6 +170,11 @@
    "display_name": "Redwood Research",
    "homepage": "https://www.redwoodresearch.org",
    "independent": true
+  },
+  "fangcun_ai": {
+   "display_name": "Fangcun AI",
+   "homepage": "https://fangcunleap.com",
+   "independent": true
   }
  },
  "risk_domains": {
@@ -237,6 +242,36 @@
    "content_type": "text/html",
    "version_fetched_at": "2026-10-28T06:24:06Z",
    "content_fingerprint": "eb37b86359a9a5ec94a7c711dea589a30bde7212f8be1f06acd049746f65702c",
+   "version_count": 1
+  },
+  {
+   "slug": "fangcun-ai-deepseek-v4-1-flash-1017-independent-eval",
+   "title": "Evaluating DeepSeek V4.1 Flash-1017 for loss of control and harmful manipulation risks",
+   "publisher": "fangcun_ai",
+   "doc_type": "independent_eval",
+   "is_independent": 1,
+   "model_names": [
+    "DeepSeek-V4.1-Flash-1017"
+   ],
+   "publication_date": "2026-10-26",
+   "canonical_url": "https://fangcunleap.com/public/reports/fangcun_eval_deepseek_v4_1_flash_1017.pdf",
+   "alt_urls": [],
+   "status": "active",
+   "first_seen": "2026-10-28T17:36:01Z",
+   "last_checked": "2026-10-28T17:36:01Z",
+   "last_changed": "2026-10-28T17:36:01Z",
+   "source_of_lead": "manual",
+   "safety_evals": 1,
+   "openness": "open_weight_permissive",
+   "risk_domains": [
+    "harmful_manipulation",
+    "loss_of_control"
+   ],
+   "related_urls": [],
+   "content_hash": "f99e6972d364470a4c128e8815a18168baa485d73ad1764f05bf0c8008e9bf36",
+   "content_type": "application/pdf",
+   "version_fetched_at": "2026-10-28T17:36:01Z",
+   "content_fingerprint": "6274a6547e532991405a5402ee4d45850228b8c0b86ae226dc1e76be37ceaac8",
    "version_count": 1
   },
   {
