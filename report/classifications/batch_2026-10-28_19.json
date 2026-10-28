@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "moonshot-ai-kimi-k3-model-card",
+  "version": 982,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF page chrome changed: download counter, Spaces-using count, and eval-widget leaderboard rows (ExtractBench removed, agents-last-exam added). Body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

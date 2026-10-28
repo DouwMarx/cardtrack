@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "nvidia-nvidia-nemotron-3-ultra-550b-a55b-model-card",
+  "version": 1004,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF download counter rose 1,008,838 to 1,229,401; terminal-bench eval-widget leaderboard row reordered with unchanged 56.4 value. Document body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

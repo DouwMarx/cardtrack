@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "alibaba-qwen-qwen3-8-2-4t-a95b-model-card",
+  "version": 734,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF download counter (54,588 to 35,650), Spaces-using count (11 to 16), and cais/hle 43.6 eval-widget row reordered; body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "anthropic-claude-opus-4-6-other-2",
+  "version": 730,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Related-article footer rotated (added Frontier Academy and Barclays items, dropped LSVP item); 'Mar 6, 2026' date line no longer rendered; article body unchanged.",
+  "safety_implication": "",
+  "notable": "The page no longer renders its publication date, which slightly weakens provenance for readers citing the post.",
+  "confidence": "medium"
+ }
+]

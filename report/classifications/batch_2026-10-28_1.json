@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "upstage-solar-open-2-model-card",
+  "version": 740,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF chrome only: download counter 3,985->3,568, Spaces-using 2->4, eval-widget rows reordered with identical scores, HF code snippet gained pip-install comment.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

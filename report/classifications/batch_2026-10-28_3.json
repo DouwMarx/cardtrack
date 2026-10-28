@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "alibaba-qwen-qwen3-5-397b-a17b-model-card",
+  "version": 736,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF download counter rose (199,713 to 391,204); eval-widget rows reshuffled: AIME 2026 row dropped, SWE-bench Multilingual 69.3 added, MMLU-Pro 87.8 shown. README body unchanged.",
+  "safety_implication": "",
+  "notable": "The HF eval widget silently swapped a MathArena AIME 2026 row (93.33) for SWE-bench Multilingual (69.3), but the card text itself did not change.",
+  "confidence": "high"
+ },
+ {
+  "slug": "inclusion-ai-ring-2-5-1t-model-card",
+  "version": 739,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF auto-generated Transformers usage snippet gained a '# pip install -U transformers accelerate' comment line; download counter 4,070 to 4,094. README body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "medium"
+ }
+]

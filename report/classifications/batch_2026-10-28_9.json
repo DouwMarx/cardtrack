@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "anthropic-glm-5-2-other",
+  "version": 974,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Section headings (Introduction, A-G, Appendix A-F) now present; two-row replication-time table removed from body; newsletter header and related-article footers dropped.",
+  "safety_implication": "",
+  "notable": "The summary table giving full inference-setup times (71-150h Gemma4-26B, 28-51h Qwen3.5-9B) no longer appears, though the underlying per-window figures remain in Appendix C.",
+  "confidence": "medium"
+ },
+ {
+  "slug": "epoch-ai-claude-opus-4-7-independent-eval",
+  "version": 958,
+  "category": "content_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Added a Limitations section: domain-specific ECI is relative-only, and models have uneven math vs SWE benchmark counts (avg 3.4 vs 3.2, max 4:2).",
+  "safety_implication": "",
+  "notable": "Epoch added caveats that domain-specific ECI should not be read as absolute performance or progress trends, qualifying the headline Claude math-vs-SWE claim.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "google-deepmind-gemini-4-argon-access-policy-2",
+  "version": 1001,
+  "category": "content_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Access-request route changed from 'fill in our form' to 'contact your Cloud account team', adding a Google Cloud get-started link; one subheading dropped by extractor drift.",
+  "safety_implication": "Early access to frontier cyber-capable models under Fairwind now routes through Google Cloud account teams, implying eligibility is gated on being a Cloud customer.",
+  "notable": "The public application form for the Fairwind defender-access program was replaced by a Cloud-sales channel, narrowing who can practically request access without any announced policy change.",
+  "confidence": "high"
+ }
+]

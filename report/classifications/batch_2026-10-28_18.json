@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "anthropic-claude-fable-5-access-policy",
+  "version": 968,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only deletions: page title line, 21-line customer/partner testimonial block, and Related-content footer; EFS announcement, how-it-works, and getting-started prose unchanged.",
+  "safety_implication": "",
+  "notable": "The testimonial carousel dropped out of extraction (pipeline attributes it to extractor drift, raw capture not available locally to confirm); the safeguards description itself is untouched.",
+  "confidence": "medium"
+ }
+]

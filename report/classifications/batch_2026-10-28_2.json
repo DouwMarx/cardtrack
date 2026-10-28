@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "openai-gpt-5-6-sol-access-policy",
+  "version": 742,
+  "category": "content_major",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "New 'Set up Daybreak as an individual' checklist section; hardware-key rule relaxed (other passkeys may coexist with a FIDO2 key); Bedrock alias-unavailability note removed.",
+  "safety_implication": "Access gating for cyber-capable Daybreak models loosened: hardware keys no longer need to be the sole login methods; synced passkeys may coexist with a qualifying FIDO2 key.",
+  "notable": "OpenAI quietly relaxed the account-security precondition for individual access to its cyber-capable Daybreak models while adding a formal onboarding checklist.",
+  "confidence": "high"
+ }
+]

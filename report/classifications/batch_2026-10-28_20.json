@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "google-deepmind-diffusiongemma-26b-a4b-model-card",
+  "version": 1006,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Architecture spec table reformatted from one flattened row into a proper 10-row table with a 'Property | DiffusionGemma 26B A4B' header; all values unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

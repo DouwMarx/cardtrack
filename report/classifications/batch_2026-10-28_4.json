@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "nvidia-nemotron-3-nano-omni-30b-a3b-reasoning-model-card",
+  "version": 743,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF chrome changed: auto-generated Transformers usage snippet gained a pip-install comment, downloads counter updated, Spaces count 11 to 17.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "anthropic-claude-sonnet-4-5-other-2",
+  "version": 729,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only the 'Related content' footer rotated to three different Anthropic blog teasers; the Constitutional Classifiers article body is unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "inclusion-ai-ling-2-5-1t-model-card",
+  "version": 738,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF 'Downloads last month' counter 611 -> 802 and an auto-generated '# pip install -U transformers accelerate' comment in the HF use-this-model snippet; README body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "medium"
+ }
+]

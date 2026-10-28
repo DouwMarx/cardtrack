@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "anthropic-claude-fable-5-addendum-4",
+  "version": 732,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only the 'Related content' footer changed: two new promo links (Frontier Academy, Barclays) replaced Accenture and LSVP links. Statement body untouched.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other-7",
+  "version": 731,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Page header 'Apr 29, 2026' date line dropped and related-posts footer swapped (BootLoops, robot index, Interviewer study). Article body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "medium"
+ }
+]

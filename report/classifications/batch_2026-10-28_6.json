@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "anthropic-claude-mythos-5-other",
+  "version": 735,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Three related-article footer teasers swapped for newer posts; the 'Aug 13, 2026' header date line no longer rendered. Article body unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "medium"
+ },
+ {
+  "slug": "anthropic-claude-opus-4-7-other-4",
+  "version": 733,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only the 'Related content' footer changed: two teasers replaced and a third added. Election-safeguards body text unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

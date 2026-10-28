@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "dots-studio-dots3-note-preview-model-card",
+  "version": 741,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "HF chrome only: download counter 915->922, Spaces 1->2, eval-widget rows reshuffled (Claw-Eval, Skillsbench added; Apex, Video-MME dropped); HF install-hint comment in auto snippet.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

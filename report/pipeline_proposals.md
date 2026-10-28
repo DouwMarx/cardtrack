@@ -257,3 +257,28 @@ the day at the same request count; in the reverse order it mints furniture faste
 - **Report-runner note.** `report/data/docs.sqlite` is a 0-byte stray file (dated 2026-10-11) next to
   the real `docs.sqlite.snapshot`. The scripts read the latter, but ad-hoc queries against the former silently
   see an empty database. `snapshot.sh` could delete the stray file.
+
+## 10. Additions from 2026-10-28
+
+- **Raw captures since 2 October are not on the briefing host.** 293 of the 890 stored versions
+  (every version fetched since 2026-10-02, 54 of them this window) have no file at their `raw_path`
+  under `data/raw/` on the machine that runs the report, although `data/text/` is complete. The
+  skill's "check the raw capture before believing a deletion" step therefore cannot run for any pair
+  minted on the server. This edition relied on the monitor's own fetch-time check instead. Proposal:
+  have `snapshot.sh` pull `data/raw/` from the tracker host (it is 565 MB today), or have the monitor
+  store its raw-check verdict per dropped line so the report can audit it without the bytes.
+- **Drift annotation on a substantive pair, fourth case.** google-deepmind-gemini-4-argon-access-policy-2
+  v835 to v1001 carries "Extractor drift: 1 line(s) missing ... not a publisher deletion", and the dropped
+  subheading is indeed drift, but the same diff replaces "fill in our form" with "contact your Cloud
+  account team" in the Fairwind access route. Same proposal as sections 7 to 9: emit the drift summary
+  only when the dropped lines are the whole diff.
+- **Hugging Face eval-widget rows still mint most versions.** 25 of the 44 pairs this window are HF
+  chrome: download counters and leaderboard widget rows. In 15 of those 25 diffs an added line is a
+  Terminal-Bench 2.0/2.1 widget row (Kimi K2.5/K2.7, DeepSeek V4.1, GLM-5.x, Nemotron 3, Step 3.5/5,
+  Hy3/Hy4, MiMo, Ling 3.1), i.e. one leaderboard's arrival minted versions across publishers. The
+  furniture fingerprint ignores the counters but not the widget rows. Proposal (restated): strip the "Evaluation results" sidebar block, or any line ending in
+  "leaderboard <number>", before fingerprinting.
+- **anthropic.com title and testimonial drift continues.** Four pages re-fetched 25 to 27 October
+  (v963, v968, v969, v987) lost the article title line and, on two, the customer or researcher
+  testimonial blocks from the extracted text; the monitor's raw check attributed all four to the
+  extractor. Section 9's regression-fixture proposal covers this.
