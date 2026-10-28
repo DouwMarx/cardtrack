@@ -1978,3 +1978,13 @@ Suggested change: add a second HF API pass per allowlisted org using `sort=lastM
 
 Evidence: friction entry 2026-10-15T06:26:58Z. HF API for stepfun-ai/Step-5-Preview shows createdAt 2026-09-20T03:15:06Z and lastModified 2026-10-15T01:28:10Z. The candidates.json for run 2026-10-15T06:17Z-local contains only Step-5-Preview-NVFP4. Run logs 10-05 to 10-14 track "Step 5 weights due 10-15" by hand.
 
+---
+
+## 2026-10-28 — The agent cannot dismiss a version it judged noise, so the same five versions hold the updated_docs top 5 every day
+
+**Problem.** The agent has no way to record "I read this diff and it is noise", so a version it judges noise stays in `logs/updated_docs.json` forever. The queue is sorted by `substantive_lines`, so the same high-churn noise versions hold the top of it every day. Since 2026-10-24, the top 5 (the agent's daily budget under task 6) has been four or five of the same versions every run: deepseek-v4-1-flash v773, claude-mythos-preview-other-3 v924, deepseek-v4-pro v573, deepseek-v4-flash-0731 v578 and glm-5-2-other v974. Every run either re-reads them or skips them by memory of earlier run reports. New versions, including substantive ones, get pushed to rank 6 and below; the Muse Wonder v973 revision sat at rank 12. The furniture classifier (RESOLVED, a4706386) only catches page furniture. Diffs that are real text changes with no informational value (code-snippet expansions, table re-layout, download counts) pass through it.
+
+**Suggested change.** Add a dismissal path, either a `dismiss_version` action in propose_doc.py or `annotate_version` with a `noise: true` flag and an optional one-line reason. It would label the version as reviewed-noise (the same terminal state the monitor gives furniture), dropping it from the queue. Optionally, log the dismissal reasons so the furniture classifier can learn new patterns (e.g. HF snippet expansion).
+
+**Evidence.** Friction recurrences of 2026-10-24T06:21:27Z on 10-26, 10-27 and 10-28. Today the top 5 is again v773/v924/v573/v578/v974, all judged noise in earlier runs. The only version fetched today (diffusiongemma v1006, a parameter table reformatted from one line to rows) sits at rank 15.
+

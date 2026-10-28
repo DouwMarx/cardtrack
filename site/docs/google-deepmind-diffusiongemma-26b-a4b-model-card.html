@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:36:11Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-diffusiongemma-26b-a4b-model-card&amp;body=Document%3A%20google-deepmind-diffusiongemma-26b-a4b-model-card%0AURL%3A%20https%3A//ai.google.dev/gemma/docs/diffusiongemma/model_card%0AFingerprint%3A%20fbf43751ac08e2bf11c0b1975e4697415f2cb6a54bc7d448344e83845a6749e2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20google-deepmind-diffusiongemma-26b-a4b-model-card&amp;body=Document%3A%20google-deepmind-diffusiongemma-26b-a4b-model-card%0AURL%3A%20https%3A//ai.google.dev/gemma/docs/diffusiongemma/model_card%0AFingerprint%3A%20ae1c19f3149ef98daadb3b6a38f9e02733004caa2a37497a37c18ef9d01b9ec8%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-28T06:21:37Z</td>
+          <td>text/html</td>
+          <td>159,378</td>
+          <td><code title="ae1c19f3149ef98daadb3b6a38f9e02733004caa2a37497a37c18ef9d01b9ec8">ae1c19f3149ef98d</code></td>
+<td><a href="https://data.systemcards.org/raw/b5b47a3c20e117804fbc8984242ae6c415ea7d4f107a5f43f77e0442ecb58105.html" rel="nofollow" title="archived copy, sha256 b5b47a3c20e117804fbc8984242ae6c415ea7d4f107a5f43f77e0442ecb58105">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T20:36:11Z</td>
           <td>text/html</td>
@@ -72,7 +79,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -100,6 +107,14 @@
           <div class="just">Verified on HF: license tag apache-2.0 and ungated (no Gemma Terms click-through). Gemma 4-generation models moved off the Gemma Terms to Apache-2.0, so permissive despite the Gemma name.</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/google/diffusiongemma-26B-A4B-it" rel="noopener nofollow">https://huggingface.co/google/diffusiongemma-26B-A4B-it</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-28T06:21:37Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-28T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://ai.google.dev/gemma/docs/diffusiongemma/model_card" rel="noopener nofollow">https://ai.google.dev/gemma/docs/diffusiongemma/model_card</a>          </div>
       </li>
     </ol>
     </details>
@@ -131,7 +146,18 @@ DiffusionGemma is engineered to reduce the sequential bottlenecks of standard ca
 The encoder operates in a prefill capacity, processing the initial prompt and generating the KV cache. The decoder then utilizes bidirectional attention to process an input block (a &#39;canvas&#39;) of tokens, accessing the cached context via cross-attention.
 During inference, DiffusionGemma leverages multi-canvas sampling. Rather than generating one token at a time, the model iteratively denoises a full block of tokens using a diffusion sampler. Once a canvas is fully denoised, it is processed by the encoder and appended to the KV cache, after which the model generates the next canvas. This block-autoregressive approach facilitates text generation at higher speeds.
 DiffusionGemma
-| Total Parameters | 25.2B | | Active Parameters | 3.8B | | Layers | 30 | | Sliding Window | 1024 tokens | | Context Length | Up to 256K tokens | | Canvas Length | 256 | | Vocabulary Size | 262K | | Expert Count | 8 active / 128 total and 1 shared | | Supported Modalities | Text, Image | | Vision Encoder Parameters | ~550M |
+| Property | DiffusionGemma 26B A4B |
+|---|---|
+| Total Parameters | 25.2B |
+| Active Parameters | 3.8B |
+| Layers | 30 |
+| Sliding Window | 1024 tokens |
+| Context Length | Up to 256K tokens |
+| Canvas Length | 256 |
+| Vocabulary Size | 262K |
+| Expert Count | 8 active / 128 total and 1 shared |
+| Supported Modalities | Text, Image |
+| Vision Encoder Parameters | ~550M |
 Benchmark Results
 These models were evaluated against a large collection of different datasets and metrics to cover different aspects of text generation. Evaluation results marked in the table are for instruction-tuned models, with the recommended Entropy Bound (EB) sampler (see Best Practices below).
 | Benchmark | DiffusionGemma 26B A4B | Gemma 4 26B A4B |
@@ -277,6 +303,6 @@ At the time of release, this is a low-latency, high-performance open vision-lang
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-27T06:25:53Z</p></footer>
+<footer><p>Data updated 2026-10-28T06:24:07Z</p></footer>
 </body>
 </html>
