@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Weekly research report (systemd cardtrack-report.timer). Regenerates report/ with
-# the sandboxed agent following .claude/skills/cardtrack-report/SKILL.md, converts
-# it to the site's Analysis page (report/published/), and commits it. The next
-# daily run deploys it. Holds the same lock as run_daily.sh, so they never overlap.
+# Weekly research report (systemd cardtrack-report.timer). Has the sandboxed agent
+# rewrite report/report.md following .claude/skills/cardtrack-report/SKILL.md,
+# converts it to the site's Analysis page (report/published/) under the published
+# checks (word cap, minimum figures), and commits it. The next daily run deploys it.
+# Holds the same lock as run_daily.sh, so they never overlap.
 set -euo pipefail
 SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ROOT="${CARDTRACK_ROOT:-$SCRIPT_ROOT}"
@@ -32,6 +33,19 @@ exec > >(tee -a "$ROOT/logs/$RUN_ID.log") 2>&1
 echo "== cardtrack weekly report $RUN_ID (role=$ROLE) =="
 
 "$ROOT/report/run.sh" snapshot "$ROOT"
+# A stale checkout (a dev clone that was not pulled) would publish an edition that
+# reports the tracker as dark. Refuse when the newest recorded run is too old.
+MAX_AGE="$(setting report.max_snapshot_age_days 3)"
+NEWEST_RUN="$("${PY[@]}" - "$ROOT/report/data/docs.sqlite.snapshot" <<'PYEOF'
+import sqlite3, sys
+c = sqlite3.connect(sys.argv[1])
+print(c.execute("SELECT COALESCE(MAX(ts), '') FROM link_checks").fetchone()[0][:10])
+PYEOF
+)"
+if [ -n "$NEWEST_RUN" ] && [ "$(( ($(date -u +%s) - $(date -u -d "$NEWEST_RUN" +%s)) / 86400 ))" -gt "$MAX_AGE" ]; then
+  echo "[report] REFUSED: newest recorded run is $NEWEST_RUN, older than $MAX_AGE days (report.max_snapshot_age_days); pull first"
+  exit 5
+fi
 "$ROOT/report/run.sh" pairs "$ROOT"
 SKILL_SHA="$(git -C "$ROOT" rev-parse HEAD)"
 START_MARK="$ROOT/state/.report_started"
@@ -47,13 +61,14 @@ if [ -d "$ROOT/.agent-home/.claude/projects" ]; then
   mkdir -p "$ROOT/logs/agent-transcripts"
   cp -r "$ROOT/.agent-home/.claude/projects" "$ROOT/logs/agent-transcripts/$RUN_ID" 2>/dev/null || true
 fi
-if [ "$RC" -ne 0 ] || ! [ "$ROOT/report/tex/report.pdf" -nt "$START_MARK" ] \
+if [ "$RC" -ne 0 ] || ! [ "$ROOT/report/report.md" -nt "$START_MARK" ] \
     || ! [ -s "$ROOT/report/out/RUN_SUMMARY.md" ]; then
-  echo "[report] FAILED: agent exit $RC, or no rebuilt PDF / RUN_SUMMARY.md; nothing published"
+  echo "[report] FAILED: agent exit $RC, or report.md not rewritten / no RUN_SUMMARY.md; nothing published"
   # never half-publish; on a dev checkout keep the edits for inspection
   if [ "$ROLE" = "prod" ]; then
     git -C "$ROOT" checkout -- report 2>/dev/null || true
-    git -C "$ROOT" clean -fdq report/published 2>/dev/null || true
+    # drop the failed edition's untracked files too (keep paid-for classifications)
+    git -C "$ROOT" clean -fdq -e classifications report 2>/dev/null || true
   fi
   exit 3
 fi
@@ -81,7 +96,15 @@ GH_REPO="$(setting github.repo)"
 STAGE="$(mktemp -d)"
 "${PY[@]}" scripts/report_html.py --report-dir "$ROOT/report" --out "$STAGE" \
   --model "$MODEL" \
-  --skill-url "https://github.com/$GH_REPO/blob/$SKILL_SHA/.claude/skills/cardtrack-report/SKILL.md"
+  --skill-url "https://github.com/$GH_REPO/blob/$SKILL_SHA/.claude/skills/cardtrack-report/SKILL.md" \
+  --max-words "$(setting report.max_words 1200)" --min-figures "$(setting report.min_figures 3)" \
+  || { echo "[report] FAILED: the edition did not pass the published checks; nothing published"
+       rm -rf "$STAGE"
+       if [ "$ROLE" = "prod" ]; then
+         git -C "$ROOT" checkout -- report 2>/dev/null || true
+         git -C "$ROOT" clean -fdq -e classifications report 2>/dev/null || true
+       fi
+       exit 4; }
 
 # Everything under report/ is agent-written and about to be public. Literal scan
 # (zero false positives): quoting third-party documents must not trip regexes.

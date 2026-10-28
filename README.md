@@ -12,8 +12,7 @@ Live site: https://systemcards.org (also reachable at https://cards.douwmarx.com
 Requirements: Python ≥3.11 with [uv](https://docs.astral.sh/uv/), and for the full
 pipeline: `node`/`npx` (Pagefind + wrangler), `pdftotext` (poppler; optional —
 falls back to pypdf), `gh` (optional — GitHub issues loop), `bwrap` (optional —
-agent sandbox), the `claude` CLI (agent phase), and for the weekly report `pandoc`,
-`latexmk` and TeX Live.
+agent sandbox), the `claude` CLI (agent phase), and for the weekly report `pandoc`.
 
 Production host: `infra/` turns a fresh Debian 13 server into production over SSH;
 see [infra/README.md](infra/README.md). The exact Debian package
@@ -176,10 +175,14 @@ itself being down (no commit for 48 h).
 
 `scripts/run_report.sh` has a sandboxed agent (writable: `report/` only) follow
 [.claude/skills/cardtrack-report/SKILL.md](.claude/skills/cardtrack-report/SKILL.md)
-to regenerate the research report in `report/`. `scripts/report_html.py` converts the
-LaTeX to HTML with pandoc into `report/published/`, and the site renders it at
-`/analysis.html` with a disclaimer naming the model that wrote it and linking the
-skill at the commit used. Maintainers steer the report by editing the skill.
+to write this week's `report/report.md`: an open-ended investigation of a database
+snapshot whose lead points at safety-relevant changes in the tracked documents.
+`scripts/report_html.py` converts it with pandoc into `report/published/`, turning each
+`##` section into a collapsible block and refusing the edition over the word cap or
+under the figure minimum (`report.max_words`, `report.min_figures`). The site renders
+it at `/analysis.html` with a disclaimer naming the model that wrote it and linking
+the skill at the commit used. Maintainers steer the report by editing the skill;
+`report/run.sh html` previews an edition with the same checks.
 
 ## Operational notes
 

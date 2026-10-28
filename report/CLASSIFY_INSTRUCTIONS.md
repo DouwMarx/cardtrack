@@ -37,7 +37,10 @@ first 400 and last 200 lines and sample the middle; you may also grep the diff f
   (NOT the HF eval-widget sidebar).
 - `license_change`: license or terms-of-use text changed.
 - `safety_related`: the change touches safety evaluation, risk, red-teaming, mitigation, or policy
-  sections (not just a mention).
+  sections (not just a mention). When true, also fill `safety_implication` (below): what a safety
+  reader should take from the change, e.g. "cyber safeguards no longer cover Opus 5.5",
+  "HealthBench scores corrected downward after an eval misconfiguration", "monitor-evasion
+  results added". Empty when false.
 - `model_scope_change`: the set of models/variants/sizes documented changed.
 - `correction`: the change reads as an erratum / correction / retraction of an earlier claim.
 - `growth_direction`: one of `grew`, `shrank`, `same` (net document body length, ignoring furniture).
@@ -48,6 +51,7 @@ Write a JSON list to the output path given in your prompt, one object per input 
 {"slug": ..., "version": <int>, "category": ..., "score_change": bool, "license_change": bool,
  "safety_related": bool, "model_scope_change": bool, "correction": bool, "growth_direction": ...,
  "summary": "<= 25 words, concrete, what actually changed>",
+ "safety_implication": "<= 30 words when safety_related, else empty string>",
  "notable": "<one sentence if this change is interesting to a reader tracking AI documentation transparency, else empty string>",
  "confidence": "high|medium|low"}
 

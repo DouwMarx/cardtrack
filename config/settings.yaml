@@ -99,12 +99,19 @@ report:
   # SKILL.md; maintainers steer the report by editing that skill.
   enabled: true
   timeout_seconds: 7200
+  # Published checks (scripts/report_html.py fails the edition otherwise): words
+  # outside tables, and figures. The Analysis page is a briefing, not a paper.
+  max_words: 1200
+  min_figures: 3
+  # Refuse an edition when the newest recorded run in the snapshot is older than
+  # this (a dev clone that was not pulled would otherwise report the tracker as dark).
+  max_snapshot_age_days: 3
   # No web tools: everything the report needs is in the snapshot and report/.
   # Bash is unrestricted because the bwrap sandbox (writable: report/ only) is the
   # boundary. Agent/Task: the skill fans out classification and review sub-agents.
   cmd: >-
     env -u ANTHROPIC_API_KEY
-    claude -p "$(cat prompts/REPORT.md)" --model opus
+    claude -p "$(cat prompts/REPORT.md)" --model fable
     --max-turns 400 --output-format text
     --allowedTools "Read" "Glob" "Grep" "Write" "Edit" "Bash" "Agent" "Task"
 

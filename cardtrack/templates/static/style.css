@@ -181,7 +181,13 @@ footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 0.75r
 .report .disclaimer p { margin: 0.2rem 0; }
 .report .disclaimer .edition { color: var(--muted); font-size: 0.9em; }
 .report .report-title { font-size: 1.5rem; line-height: 1.25; }
-.report .abstract { color: var(--muted); border-left: 3px solid var(--line); padding-left: 0.8rem; }
+.report details.section { border-top: 1px solid var(--line); padding: 0.4rem 0 0.6rem; }
+.report details.section > summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 0.5rem; }
+.report details.section > summary::-webkit-details-marker { display: none; }
+.report details.section > summary::before { content: "▸"; color: var(--muted); font-size: 0.9em; }
+.report details.section[open] > summary::before { content: "▾"; }
+.report details.section > summary h2 { margin: 0.3rem 0; font-size: 1.15rem; }
+.report details.section > summary:hover h2 { color: var(--accent); }
 .report figure { margin: 1.2rem 0; }
 .report img { max-width: 100%; height: auto; background: #fff; border-radius: 4px; }
 .report figcaption { color: var(--muted); font-size: 0.9em; margin-top: 0.4rem; }

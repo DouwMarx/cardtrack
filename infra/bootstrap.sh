@@ -18,11 +18,10 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
 # git/curl/ca: fetch + clone; bubblewrap: agent sandbox; poppler-utils: PDF text;
 # gh: issues and push auth; sqlite3: report
-# snapshot; rclone: R2 archive backup; pandoc/latexmk/texlive: weekly report.
+# snapshot; rclone: R2 archive backup; pandoc: weekly report.
 apt-get install -y -q --no-install-recommends \
   git curl ca-certificates rsync xz-utils unzip bubblewrap poppler-utils gh sqlite3 \
-  pandoc latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
-  texlive-bibtex-extra lmodern python3 jq unattended-upgrades systemd-container
+  pandoc python3 jq unattended-upgrades systemd-container
 
 # Node.js, pinned (versions.env), from the official release, checksum-verified.
 # Installed under /opt and linked into /usr/local/bin, which precedes /usr/bin.

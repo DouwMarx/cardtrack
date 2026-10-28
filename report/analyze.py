@@ -10,8 +10,9 @@ classifications/*.json written by the classification sub-agents):
   pairs/version_pairs.json    version-pair manifest
   classifications/*.json      sub-agent classifications of version pairs
 
-Outputs (under out/): results.json, macros.tex, tables/*.tex, figures/*.pdf,
-comprehensive_report.md. The LaTeX report only \\input's these; nothing is typed by hand.
+Outputs (under out/): results.json (every number, plus appendix_rows: each substantive
+change with URL and version ids), tables/*.md, figures/*.png, comprehensive_report.md.
+The report agent reads these and may import this module's data or extend it.
 """
 import collections
 import datetime as dt
@@ -21,7 +22,6 @@ import math
 import os
 import re
 import sqlite3
-import sys
 
 import matplotlib
 import numpy as np
@@ -96,13 +96,6 @@ def fmt(v):
             return f"{v:.1f}"
         return f"{v:.2f}" if abs(v) < 1 else f"{v:.1f}"
     return str(v)
-
-
-def texesc(s):
-    s = str(s).replace("\\quad", "\x00QUAD").replace("\\%", "\x00PCT")
-    s = (s.replace("\\", "/").replace("&", "\\&").replace("%", "\\%").replace("_", "\\_")
-         .replace("#", "\\#").replace("$", "\\$").replace("~", "\\textasciitilde{}"))
-    return s.replace("\x00QUAD", "\\quad").replace("\x00PCT", "\\%")
 
 
 def pretty(name):
@@ -823,7 +816,6 @@ R["adds_per_valid_run_mean"] = float(np.mean([r["adds"] for r in run_rows if not
 
 # ------------------------------------------------------------------ figures
 def save(fig, name):
-    fig.savefig(os.path.join(FIG, name + ".pdf"))
     fig.savefig(os.path.join(FIG, name + ".png"), dpi=170)
     plt.close(fig)
 
@@ -902,7 +894,7 @@ run_ids = [r["run_id"] for r in run_rows]
 run_index = {rid: i for i, rid in enumerate(run_ids)}
 order = sorted(tracked, key=lambda d: (d["publisher"], d["id"]))
 CODE = {"none": 0, "ok": 1, "blocked": 2, "redirect_permanent": 3, "not_found": 4, "error": 5, "outage": 6}
-COLS = ["#ffffff", "#cde2fb", PAL["orange"], PAL["violet"], PAL["red"], PAL["yellow"], GREY]
+COLS = ["#f4f3ef", "#cde2fb", PAL["orange"], PAL["violet"], PAL["red"], PAL["yellow"], GREY]
 M = np.zeros((len(order), len(run_ids)), dtype=int)
 row_of = {d["id"]: i for i, d in enumerate(order)}
 for ch in checks:
@@ -942,7 +934,7 @@ ax.tick_params(length=0)
 handles = [Patch(color=COLS[1], label="reachable"), Patch(color=COLS[2], label="bot-blocked"),
            Patch(color=COLS[3], label="permanent redirect"), Patch(color=COLS[4], label="404"),
            Patch(color=COLS[5], label="fetch error"), Patch(color=COLS[6], label="monitor outage"),
-           Patch(facecolor="white", edgecolor=INK2, label="not yet tracked")]
+           Patch(facecolor=COLS[0], edgecolor=INK2, lw=0.5, label="not yet tracked")]
 ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.3), ncol=4, handlelength=1.2,
           columnspacing=1.0)
 save(fig, "fig_heatmap")
@@ -1050,41 +1042,33 @@ ax2.legend(handlelength=1.4)
 ax2.set_title("(b) change-flag rate per run")
 save(fig, "fig_fingerprint")
 
-# ------------------------------------------------------------------ tables (LaTeX fragments)
-def write_table(name, header, rows, align=None):
-    align = align or "l" + "r" * (len(header) - 1)
-    lines = ["\\begin{tabular}{" + align + "}", "\\toprule",
-             " & ".join(texesc(h) for h in header) + " \\\\", "\\midrule"]
+# ------------------------------------------------------------------ tables (Markdown, out/tables/*.md)
+def mdesc(s):
+    return str(s).replace("|", "\\|").replace("\n", " ")
+
+
+def write_table(name, header, rows, align=None, caption="", label=""):
+    """A Markdown pipe table the report can include verbatim (align/label are legacy no-ops)."""
+    lines = ([caption, ""] if caption else [])
+    lines += ["| " + " | ".join(mdesc(h) for h in header) + " |", "|" + "---|" * len(header)]
     for r in rows:
-        lines.append(" & ".join(texesc(x) if isinstance(x, str) else fmt(x) for x in r) + " \\\\")
-    lines += ["\\bottomrule", "\\end{tabular}"]
-    open(os.path.join(TAB, name + ".tex"), "w").write("\n".join(lines) + "\n")
+        lines.append("| " + " | ".join(mdesc(x) if isinstance(x, str) else fmt(x) for x in r) + " |")
+    open(os.path.join(TAB, name + ".md"), "w").write("\n".join(lines) + "\n")
 
 
-def longtable(name, header, rows, align, caption="", label=""):
-    head = ["\\toprule", " & ".join(header) + " \\\\", "\\midrule"]
-    lines = ["\\begin{longtable}{" + align + "}"]
-    if caption:
-        lines.append("\\caption{" + caption + "}" + ("\\label{" + label + "}" if label else "") + " \\\\")
-    lines += head + ["\\endfirsthead"] + head + ["\\endhead"]
-    for r in rows:
-        lines.append(" & ".join(r) + " \\\\")
-    lines += ["\\bottomrule", "\\end{longtable}"]
-    open(os.path.join(TAB, name + ".tex"), "w").write("\n".join(lines) + "\n")
+longtable = write_table
 
-
-
-write_table("doc_types", ["Document type", "Tracked", "Share (\\%)"],
+write_table("doc_types", ["Document type", "Tracked", "Share (%)"],
             [(pretty(k), n, pct(n, len(tracked))) for k, n in R["by_doc_type"]])
 write_table("publishers", ["Publisher", "Tracked"],
             [(k.replace("_", " "), n) for k, n in R["by_publisher"][:12]])
-write_table("cat_counts", ["Category", "Pairs", "Share (\\%)"],
+write_table("cat_counts", ["Category", "Pairs", "Share (%)"],
             [(CAT_LAB[k], n, pct(n, len(classified))) for k, n in R["cat_counts"]])
 write_table("cat_by_content_type", ["Page type", "Pairs"] + [CAT_LAB[k] for k in CATS],
             [(pretty(k), n, *v) for k, n, v in R["cat_by_content_type"]])
 write_table("cat_by_publisher", ["Publisher", "Pairs"] + [CAT_LAB[k] for k in CATS],
             [(k.replace("_", " "), n, *v) for k, n, v in R["cat_by_publisher"] if n >= 4])
-write_table("link_outcomes", ["Outcome (valid runs)", "Checks", "Share (\\%)", "Documents ever"],
+write_table("link_outcomes", ["Outcome (valid runs)", "Checks", "Share (%)", "Documents ever"],
             [(pretty(k), n, pct(n, len(valid_link)), ever.get(k, 0)) for k, n in R["valid_link_outcomes"]])
 # The resume column only means something when the snapshot's journal has resume events.
 _res = bool(R["n_journal_resumes"])
@@ -1094,7 +1078,6 @@ longtable("runs_by_day", ["Run", "Links", "Reachable", "Blocked", "Errors", "Con
             str(r["fp_changed"]), "yes" if r["outage"] else "")
            + (("" if r["sec_since_resume"] is None else str(int(r["sec_since_resume"])),) if _res else ())
            + (("failed" if r["agent_failed"] else "ok") if r["agent_known"] else "no log",) for r in run_rows],
-          "@{}l" + "r" * (9 if _res else 8) + "@{}",
           caption="Every daily run: link probes and their outcomes, content checks, whether the run was a full outage, "
                   + ("seconds between the host's last resume from suspend and the run start, " if _res else "")
                   + "and the agent phase.",
@@ -1104,10 +1087,10 @@ write_table("runs", ["Metric", "Value"], [
     ("Calendar days spanned", R["calendar_days_span"]),
     ("Days with no run", R["n_missing_days"]),
     ("Runs with every link check failing (monitor outage)", R["n_outage_runs"]),
-    ("\\quad of which started within 2 min of resume from suspend", R["n_resume_triggered_outages"]),
+    ("of which started within 2 min of resume from suspend", R["n_resume_triggered_outages"]),
     ("Runs with partial fetch errors", R["n_partial_runs"]),
     ("Runs whose curation agent failed", R["n_agent_failed_runs"]),
-    ("\\quad of which authentication (OAuth) failures", R["n_agent_auth_failed"]),
+    ("of which authentication (OAuth) failures", R["n_agent_auth_failed"]),
     ("Runs where both monitor and agent succeeded", R["n_fully_good_runs"]),
     ("Longest consecutive outage streak (runs)", R["longest_outage_streak"]),
 ])
@@ -1116,10 +1099,9 @@ write_table("lag_by_lead", ["Lead source", "Documents", "Median lag (days)"],
 write_table("rejects", ["Rejection reason", "Proposals"], R["rejects_by_class"])
 write_table("field_updates", ["Field", "Updates"], [(pretty(k), n) for k, n in R["field_updates_by_field"]])
 write_table("moved", ["Date", "Document", "Redirect target"],
-            [(m["date"], m["slug"], m["to"]) for m in R["moved_events"]], align="lll")
+            [(m["date"], m["slug"], m["to"]) for m in R["moved_events"]])
 write_table("notable", ["Date", "Publisher", "What changed"],
-            [(n["date"], n["publisher"].replace("_", " "), n["summary"]) for n in R["notable"][:12]],
-            align="llp{9.2cm}")
+            [(n["date"], n["publisher"].replace("_", " "), n["summary"]) for n in R["notable"][:12]])
 # Report table: publisher-side changes that a transparency reader cares about, chosen by rule:
 # corrections, license changes, pages that went away, then the largest major changes; by date.
 sel = []
@@ -1182,251 +1164,52 @@ for i, p in enumerate(sub_pairs, 1):
     fl = ", ".join(f.replace("_change", "").replace("_related", "").replace("model_scope", "scope")
                    for f in flags if p["cls"].get(f))
     app_rows.append((
-        f"A{i}", p["fetched"][:10], texesc(p["publisher"].replace("_", " ")),
-        texesc(p["title"][:60] + ("..." if len(p["title"]) > 60 else "")) + "\\newline\\url{" + p["url"] + "}",
-        CAT_SHORT[p["cls"]["category"]] + (" (" + fl + ")" if fl else "") + f"\\newline v{p['prev_version']}$\\to$v{p['version']}",
-        texesc(p["cls"]["summary"].replace("~", "approx. "))))
+        f"A{i}", p["fetched"][:10], mdesc(p["publisher"].replace("_", " ")),
+        mdesc(p["title"][:60] + ("..." if len(p["title"]) > 60 else "")) + "<br>" + p["url"],
+        CAT_SHORT[p["cls"]["category"]] + (" (" + fl + ")" if fl else "") + f"<br>v{p['prev_version']}→v{p['version']}",
+        mdesc(p["cls"]["summary"].replace("~", "approx. "))))
 longtable("appendix_changes", ["Id", "Detected", "Publisher", "Document and canonical URL", "Category (flags), versions",
-                               "What changed (classifier summary)"], app_rows, "@{}lp{1.5cm}p{1.4cm}p{5.0cm}p{2.1cm}p{4.8cm}@{}",
+                               "What changed (classifier summary)"], app_rows,
           caption="All substantive publisher-side changes with URL and version ids.", label="tab:appendix")
 R["n_appendix_rows"] = len(app_rows)
-# Appendix ids of the pairs the body text names as examples, so each claim points at its row.
-# Keys are the report.tex macro names; a pair missing from the appendix renders as "A?" and warns.
-_app_id = {(p["slug"], p["version"]): f"A{i}" for i, p in enumerate(sub_pairs, 1)}
-BODY_EXAMPLES = {
-    "exAstraAppendix": [("openai-gpt-6-astra-system-card", 620)],
-    "exAstraDots": [("openai-gpt-6-astra-system-card", 720)],
-    "exMetrMonitoring": [("metr-claude-opus-4-6-independent-eval-4", 725)],
-    "exGrokLog": [("xai-grok-4-6-model-card", 357)],
-    "exAnthropicLog": [("anthropic-claude-opus-4-6-other-6", 579)],
-    "exVoiceChat":[("nvidia-nvidia-nemotronlabs-voicechat-11b-model-card", 317)],
-    "exDaybreakTiers": [("openai-gpt-5-6-sol-access-policy", 646)],
-    "exCyberScope": [("anthropic-claude-opus-access-policy", 671)],
-    "exCvpExpand": [("anthropic-claude-mythos-5-1-access-policy", 780)],
-    "exCvpRewrite": [("anthropic-claude-opus-access-policy", 774)],
-    "exDaybreakKeys": [("openai-gpt-5-6-sol-access-policy", 742)],
-    "exLifeSciLog": [("anthropic-claude-mythos-5-1-access-policy-2", 752)],
-    "exFetchCorrection": [("anthropic-claude-mythos-preview-other-10", 861)],
-    "exMistralParams": [("mistral-mistral-large-4-model-card", 829)],
-    "exEpochAppendix": [("epoch-ai-gpt-5-6-terra-independent-eval", 804)],
-    "exCvpClient": [("anthropic-claude-opus-access-policy", 832)],
-    "exArgonRevision": [("google-deepmind-gemini-4-argon-system-card", 901)],
-    "exDaybreakCyberTier": [("openai-gpt-5-6-sol-access-policy", 869)],
-    "exMythosHedge": [("anthropic-claude-mythos-5-1-access-policy", 904)],
-    "exCosmos": [("nvidia-cosmos3-super-model-card", 613), ("nvidia-cosmos3-edge-model-card", 614)],
-    "exTrainingSummary": [("inclusion-ai-ling-3-0-tiny-model-card", 634), ("inclusion-ai-ling-2-6-1t-model-card", 659),
-                          ("inclusion-ai-ling-2-6-flash-model-card", 660), ("inclusion-ai-ring-2-6-1t-model-card", 661),
-                          ("inclusion-ai-ling-3-0-flash-vl-model-card", 662),
-                          ("inclusion-ai-ling-3-0-flash-model-card", 713)],
-}
-example_ids = {}
-for name, keys in BODY_EXAMPLES.items():
-    ids = [_app_id.get(k, "A?") for k in keys]
-    if "A?" in ids:
-        print(f"WARNING: body example {name} not in appendix: {keys}", file=sys.stderr)
-    example_ids[name] = ", ".join(ids)
-_prop = max(groups, key=lambda g: g["n"]) if groups else None
-example_ids["exPropagated"] = ", ".join(sorted(
-    (_app_id.get((p["slug"], p["version"]), "A?") for p in _prop["members"]),
-    key=lambda s: int(s[1:]) if s[1:].isdigit() else 0)) if _prop else "A?"
-app_gone = [(f"S{i}", g["date"], texesc(g["slug"]), "\\url{" + slug_to_doc[g["slug"]]["canonical_url"] + "}",
+app_gone = [(f"S{i}", g["date"], mdesc(g["slug"]), slug_to_doc[g["slug"]]["canonical_url"],
              (f"{g['resolved_as']} {g['resolved']}" if g["resolved"] else "still HTTP 200"))
             for i, g in enumerate(R["soft_gone"], 1)]
-app_moved = [(m["date"], texesc(m["slug"]), "\\url{" + m["from"] + "}", "\\url{" + m["to"] + "}") for m in R["moved_events"]]
-longtable("appendix_moved", ["Date", "Document", "Old canonical URL", "Redirect target"], app_moved, "@{}lp{3.6cm}p{5.6cm}p{5.6cm}@{}",
+app_moved = [(m["date"], mdesc(m["slug"]), m["from"], m["to"]) for m in R["moved_events"]]
+longtable("appendix_moved", ["Date", "Document", "Old canonical URL", "Redirect target"], app_moved,
           caption="Documents whose canonical URL now permanently redirects.", label="tab:moved")
 longtable("appendix_soft_gone", ["Id", "Detected", "Document", "URL that kept returning HTTP 200", "Resolved"], app_gone,
-          "@{}llp{4.6cm}p{6.4cm}p{2.2cm}@{}",
           caption="Pages whose body became a redirect stub while the URL kept returning HTTP 200, and when the "
                   "tracker first recorded a real redirect (moved) or a 404 (dead) for them.", label="tab:softgone")
 R["notable_propagated_max"] = max(g["n"] for g in groups) if groups else 0
 R["report_notable_n"] = len(rows)
 write_table("notable_report", ["Date", "Publisher: document", "Kind", "What changed (classifier summary)"],
-            rows, align="lp{4.1cm}lp{7.9cm}")
+            rows)
 write_table("flags", ["Flag", "Pairs", "Of which substantive"],
             [(f.replace("_", " "), a, b) for (f, a), (_, b) in zip(R["flag_counts"], R["flag_counts_substantive"])])
 
-# ------------------------------------------------------------------ macros
-DIGITS = {"0": "Zero", "1": "One", "2": "Two", "3": "Three", "4": "Four", "5": "Five",
-          "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine"}
-
-
-def macro_name(key):
-    parts = key.split("_")
-    name = parts[0] + "".join(p.capitalize() for p in parts[1:])
-    name = "".join(DIGITS.get(ch, ch) for ch in name)
-    name = re.sub(r"[^A-Za-z]", "", name)
-    return name
-
-
-lines = ["% generated by analyze.py -- do not edit"]
-for k, v in R.items():
-    if isinstance(v, (int, float, str)) and not isinstance(v, bool):
-        lines.append(f"\\newcommand{{\\{macro_name(k)}}}{{{texesc(fmt(v))}}}")
-    elif isinstance(v, bool):
-        lines.append(f"\\newcommand{{\\{macro_name(k)}}}{{{fmt(v)}}}")
-WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
-# Above twelve, the Word macros fall back to the numeral, so a count that grows past the table
-# does not leave the prose with an undefined macro.
-for k, v in R.items():
-    if isinstance(v, int) and not isinstance(v, bool) and v >= 0:
-        word = WORDS[v] if v < len(WORDS) else fmt(v)
-        lines.append(f"\\newcommand{{\\{macro_name(k)}Word}}{{{word}}}")
-        lines.append(f"\\newcommand{{\\{macro_name(k)}WordCap}}{{{word.capitalize()}}}")
-# Sentences whose wording depends on the data are chosen here, not with \\ifnum in report.tex:
-# the HTML edition (pandoc) does not evaluate TeX conditionals and would print both branches.
-def _w(n):
-    return WORDS[n] if 0 <= n < len(WORDS) else f"{n:,}"
-_fn, _tp = R["n_footnote_artefact_docs"], R["n_tabpanel_artefact_docs"]
-_s = ""
-if _fn:
-    _s += (f" The fix did not catch every case: {_w(_fn)} Anthropic page{'s' if _fn != 1 else ''} still "
-           "store versions without footnotes that the raw HTML of the same captures holds.")
-_tb = R["n_table_artefact_docs"]
-if _tb:
-    _ta = R["n_table_artefact_docs_aria"]
-    _s += (f" {_w(_tb).capitalize()} page{'s' if _tb != 1 else ''} similarly lost whole tables from the extracted "
-           "text while the raw HTML kept them"
-           + (f"; on {_w(_ta) if _ta < _tb else 'all'} of them" + (" the publisher" if _ta < _tb else "")
-              + " had rebuilt the tables from \\texttt{div} elements" if _ta else "") + ".")
-if _tp:
-    _s += (f" Checking the raw capture also overturned {_w(_tp)} apparent deletion{'s' if _tp != 1 else ''} "
-           "that earlier editions reported, among them OpenAI's removal of a prompt-response table and of a named "
-           "launch partner: the content is still on the page, in tab panels the extractor skipped.")
-if _fn or _tp or _tb:
-    _s += " All of these count as extraction noise."
-lines.append(f"\\newcommand{{\\extractorArtefactSentence}}{{{_s}}}")
-if R["n_journal_resumes"]:
-    _s = (f"The snapshot does not record why the outages stopped. "
-          f"The systemd journal explains {R['n_resume_triggered_outages']} of them: the run started within two minutes "
-          f"of the laptop waking from suspend (median {fmt(R['median_sec_since_resume_outage'])}\\,s after resume, versus "
-          f"{fmt(R['median_sec_since_resume_valid'])}\\,s for healthy runs). The timer is \\texttt{{Persistent=true}}, so a "
-          "trigger missed while asleep fires at the moment of resume, before Wi-Fi is back, and every probe fails instantly.")
-else:
-    _s = ("This snapshot holds no suspend or resume events, and its run logs begin on "
-          + (parse_ts(R['first_run_log_date']).strftime('%-d %B') if R['first_run_log_date'] else 'no date')
-          + ": production moved from a laptop to a server at the end of September (repository history), and the "
-          "laptop's journal and run logs are not in the snapshot, so this edition cannot match outages to resume "
-          "events. Earlier editions, whose snapshots still held them, traced the outages to runs started the "
-          "moment the laptop woke from suspend, before Wi-Fi was back (the timer is \\texttt{Persistent=true}); the "
-          "last outage coincides with a runner change that retries the run when the host wakes without network. "
-          "Neither is re-checked here.")
-lines.append(f"\\newcommand{{\\outageCauseSentence}}{{{_s}}}")
-if R["top_host_all_blocked_days"] >= 3:
-    _s = (f", but since {parse_ts(R['top_host_all_blocked_since'] + 'T00:00:00Z').strftime('%-d %B')} every link check on "
-          f"\\texttt{{{texesc(_top_host)}}} has been refused ({_w(R['top_host_all_blocked_days'])} consecutive days of checks), "
-          "while content re-fetches of the same pages still succeeded; whether that reflects the site or the tracker's "
-          "move to a server host at the end of September is not known,")
-else:
-    _s = ";"
-lines.append(f"\\newcommand{{\\blockStreakSentence}}{{{_s}}}")
-_s = ""
-if R["n_agent_failed_runs"]:
-    _s = (f"Among runs with a run log, the curation agent failed in {R['n_agent_failed_runs']}, "
-          f"{R['n_agent_failed_on_outage']} of them outage runs where its credential refresh had no network either. ")
-_k, _g = R["n_runs_agent_known"], R["n_fully_good_runs"]
-_s += (f"Both runs with a run log had both phases healthy." if _k == 2 and _g == 2
-       else f"All {_k} runs with a run log had both phases healthy." if _k == _g
-       else f"Of the {_k} runs with a run log, {_g} had both phases healthy.")
-lines.append(f"\\newcommand{{\\agentPhaseSentence}}{{{_s}}}")
-# a few derived convenience macros
-lines.append(f"\\newcommand{{\\snapshotDatePretty}}{{{snapshot_ts.strftime('%-d %B %Y')}}}")
-lines.append(f"\\newcommand{{\\firstSeenMinPretty}}{{{parse_ts(R['first_seen_min']).strftime('%-d %B %Y')}}}")
-_sg_res = sorted(g["resolved"] for g in R["soft_gone"] if g["resolved"])
-lines.append(f"\\newcommand{{\\softGoneResolvedPretty}}{{{parse_ts(_sg_res[-1]).strftime('%-d %B') if _sg_res else 'n/a'}}}")
-lines.append(f"\\newcommand{{\\lastOutagePretty}}{{{parse_ts(R['last_outage_date']).strftime('%-d %B') if R['last_outage_date'] else 'n/a'}}}")
-lines.append(f"\\newcommand{{\\lastRunLogPretty}}{{{parse_ts(R['last_run_log_date']).strftime('%-d %B') if R['last_run_log_date'] else 'n/a'}}}")
-lines.append(f"\\newcommand{{\\firstRunLogPretty}}{{{parse_ts(R['first_run_log_date']).strftime('%-d %B') if R['first_run_log_date'] else 'n/a'}}}")
-lines.append(f"\\newcommand{{\\filterRecomputePretty}}{{{parse_ts(FILTER_RECOMPUTE).strftime('%-d %B')}}}")
-lines.append(f"\\newcommand{{\\teaserRebuildPretty}}{{{parse_ts(TEASER_REBUILD).strftime('%-d %B')}}}")
-for name, ids in example_ids.items():
-    lines.append(f"\\newcommand{{\\{name}}}{{{ids}}}")
-lines.append(f"\\newcommand{{\\topPublisher}}{{{texesc(R['by_publisher'][0][0].replace('_', ' '))}}}")
-lines.append(f"\\newcommand{{\\topPublisherN}}{{{R['by_publisher'][0][1]}}}")
-lines.append(f"\\newcommand{{\\topBlockedHost}}{{{texesc(R['blocked_docs_by_host'][0][0]) if R['blocked_docs_by_host'] else 'none'}}}")
-lines.append(f"\\newcommand{{\\topBlockedHostDocs}}{{{R['blocked_docs_by_host'][0][1] if R['blocked_docs_by_host'] else 0}}}")
-lines.append(f"\\newcommand{{\\topHostAllBlockedSincePretty}}{{{parse_ts(R['top_host_all_blocked_since'] + 'T00:00:00Z').strftime('%-d %B') if R['top_host_all_blocked_since'] else 'never'}}}")
-lines.append(f"\\newcommand{{\\topBlockedHostChecks}}{{{R['blocked_by_host'][0][1] if R['blocked_by_host'] else 0}}}")
-lines.append(f"\\newcommand{{\\topRejectClass}}{{{texesc(R['rejects_by_class'][0][0])}}}")
-lines.append(f"\\newcommand{{\\topRejectN}}{{{R['rejects_by_class'][0][1]}}}")
-lines.append(f"\\newcommand{{\\topFieldUpdated}}{{{texesc(pretty(R['field_updates_by_field'][0][0]))}}}")
-lines.append(f"\\newcommand{{\\topFieldUpdatedN}}{{{R['field_updates_by_field'][0][1]}}}")
-lines.append(f"\\newcommand{{\\nDocTypes}}{{{len(R['by_doc_type'])}}}")
-lines.append(f"\\newcommand{{\\shareModelCards}}{{{fmt(pct(dict(R['by_doc_type']).get('model_card', 0), len(tracked)))}}}")
-lines.append(f"\\newcommand{{\\shareSystemCards}}{{{fmt(pct(dict(R['by_doc_type']).get('system_card', 0), len(tracked)))}}}")
-lines.append(f"\\newcommand{{\\shareIndependentEvals}}{{{fmt(pct(dict(R['by_doc_type']).get('independent_eval', 0), len(tracked)))}}}")
-lines.append(f"\\newcommand{{\\nSystemCards}}{{{dict(R['by_doc_type']).get('system_card', 0)}}}")
-lines.append(f"\\newcommand{{\\nModelCards}}{{{dict(R['by_doc_type']).get('model_card', 0)}}}")
-lines.append(f"\\newcommand{{\\nIndependentEvals}}{{{dict(R['by_doc_type']).get('independent_eval', 0)}}}")
-lines.append(f"\\newcommand{{\\nHtmlPairs}}{{{R['cat_by_content_type'][0][1]}}}")
-lines.append(f"\\newcommand{{\\nPdfPairs}}{{{R['cat_by_content_type'][1][1]}}}")
-html_v = R["cat_by_content_type"][0][2]
-pdf_v = R["cat_by_content_type"][1][2]
-lines.append(f"\\newcommand{{\\shareHtmlNonchange}}{{{fmt(pct(html_v[0] + html_v[1], R['cat_by_content_type'][0][1]))}}}")
-lines.append(f"\\newcommand{{\\sharePdfNonchange}}{{{fmt(pct(pdf_v[0] + pdf_v[1], R['cat_by_content_type'][1][1]))}}}")
-lines.append(f"\\newcommand{{\\sharePdfSubstantive}}{{{fmt(pct(pdf_v[3] + pdf_v[4] + pdf_v[5], R['cat_by_content_type'][1][1]))}}}")
-lines.append(f"\\newcommand{{\\shareHtmlSubstantive}}{{{fmt(pct(html_v[3] + html_v[4] + html_v[5], R['cat_by_content_type'][0][1]))}}}")
+# ------------------------------------------------------------------ derived results for the report
+# Every substantive publisher-side change as data (the appendix table above, structured), so the
+# report can cite "A12" and link the document and version ids without retyping anything.
+R["appendix_rows"] = [dict(
+    id=f"A{i}", detected=p["fetched"][:10], publisher=p["publisher"], slug=p["slug"], title=p["title"],
+    url=p["url"], doc_type=p["doc_type"], category=p["cls"]["category"],
+    flags=[f for f in flags if p["cls"].get(f)], prev_version=p["prev_version"], version=p["version"],
+    summary=p["cls"]["summary"], safety_implication=p["cls"].get("safety_implication") or "",
+    notable=p["cls"].get("notable") or "", confidence=p["cls"].get("confidence"))
+    for i, p in enumerate(sub_pairs, 1)]
 pub_flags = {f: sum(1 for p in classified if not p["migration"] and p["cls"].get(f)) for f in flags}
 R["flag_counts_publisher_side"] = list(pub_flags.items())
-lines.append(f"\\newcommand{{\\nFlagScore}}{{{pub_flags['score_change']}}}")
-lines.append(f"\\newcommand{{\\nFlagLicense}}{{{pub_flags['license_change']}}}")
-lines.append(f"\\newcommand{{\\nFlagSafety}}{{{pub_flags['safety_related']}}}")
-lines.append(f"\\newcommand{{\\nFlagScope}}{{{pub_flags['model_scope_change']}}}")
-lines.append(f"\\newcommand{{\\nFlagCorrection}}{{{pub_flags['correction']}}}")
-lines.append(f"\\newcommand{{\\nCatMajor}}{{{cat_counts.get('content_major', 0)}}}")
-lines.append(f"\\newcommand{{\\nCatMinor}}{{{cat_counts.get('content_minor', 0)}}}")
-lines.append(f"\\newcommand{{\\nCatReplacement}}{{{cat_counts.get('replacement', 0)}}}")
-lines.append(f"\\newcommand{{\\nCatFurniture}}{{{cat_counts.get('furniture', 0)}}}")
-lines.append(f"\\newcommand{{\\nCatNoise}}{{{cat_counts.get('extraction_noise', 0)}}}")
-lines.append(f"\\newcommand{{\\nCatMetadata}}{{{cat_counts.get('metadata_minor', 0)}}}")
-lines.append(f"\\newcommand{{\\nLeadSources}}{{{len(R['lead_share'])}}}")
-top_lead = R["lead_share"][0] if R["lead_share"] else ("none", 0)
-lines.append(f"\\newcommand{{\\topLead}}{{{texesc(top_lead[0].replace('_', ' '))}}}")
-lines.append(f"\\newcommand{{\\topLeadShare}}{{{fmt(pct(top_lead[1], sum(n for _, n in R['lead_share'])))}}}")
-lines.append(f"\\newcommand{{\\lagPseventyfive}}{{{fmt(R['lag_p75_days'])}}}")
-lines.append(f"\\newcommand{{\\lagPninety}}{{{fmt(R['lag_p90_days'])}}}")
-lines.append(f"\\newcommand{{\\lagWithinThreeDays}}{{{fmt(R['lag_share_within_3d'])}}}")
-lines.append(f"\\newcommand{{\\lagWithinSevenDays}}{{{fmt(R['lag_share_within_7d'])}}}")
-lines.append(f"\\newcommand{{\\kmHtmlThirty}}{{{fmt(R['km_html_changed_by_30d'])}}}")
-lines.append(f"\\newcommand{{\\kmPdfThirty}}{{{fmt(R['km_pdf_changed_by_30d'])}}}")
-lines.append(f"\\newcommand{{\\shareNotFoundDocs}}{{{fmt(pct(R['docs_ever_not_found'], R['n_docs_with_valid_checks']))}}}")
-lines.append(f"\\newcommand{{\\shareBlockedDocs}}{{{fmt(pct(R['docs_ever_blocked'], R['n_docs_with_valid_checks']))}}}")
-lines.append(f"\\newcommand{{\\shareMovedDocs}}{{{fmt(pct(R['n_moved_events'], R['n_docs_with_valid_checks']))}}}")
-lines.append(f"\\newcommand{{\\shareResumeOutages}}{{{fmt(pct(R['n_resume_triggered_outages'], R['n_outage_runs']))}}}")
-lines.append(f"\\newcommand{{\\shareFullyGoodRuns}}{{{fmt(pct(R['n_fully_good_runs'], R['n_runs_agent_known']))}}}")
-lines.append(f"\\newcommand{{\\shareAgentFailedRuns}}{{{fmt(pct(R['n_agent_failed_runs'], R['n_runs']))}}}")
-lines.append(f"\\newcommand{{\\nOutageStreakDays}}{{{R['longest_outage_streak']}}}")
-lines.append(f"\\newcommand{{\\nNotable}}{{{len(R['notable'])}}}")
-lines.append(f"\\newcommand{{\\trackingWeeks}}{{{fmt(R['tracking_days'] / 7)}}}")
-lead_med = {k: m for k, _n, m in R["lag_by_lead"]}
-for key, name in (("index_diff", "IndexDiff"), ("phase_a_candidate", "PhaseA"), ("agent_search", "AgentSearch"),
-                  ("manual", "Manual"), ("index_page", "IndexPage"), ("citation", "Citation")):
-    lines.append(f"\\newcommand{{\\lagLead{name}}}{{{fmt(lead_med[key]) if key in lead_med else 'n/a'}}}")
-# "median X to Y days" for the two fast lead sources; collapses to "X" when both round the same.
-_fast = sorted({fmt(lead_med[k]) for k in ("phase_a_candidate", "index_diff") if k in lead_med}, key=float)
-lines.append(f"\\newcommand{{\\lagLeadFastRange}}{{{' to '.join(_fast) if _fast else 'n/a'}}}")
 flags_pre = sum(r["fp_changed"] for r in run_rows if r["ts"] < FILTER_RECOMPUTE)
 flags_post = sum(r["fp_changed"] for r in run_rows if r["ts"] >= FILTER_RECOMPUTE)
 sub_pre = sum(1 for p in classified if p["era"] == "pre" and not p["migration"] and p["cls"]["category"] in SUBSTANTIVE)
 sub_post = sum(1 for p in classified if p["era"] == "post" and not p["migration"] and p["cls"]["category"] in SUBSTANTIVE)
 R["flags_pre"], R["flags_post"], R["sub_pre"], R["sub_post"] = flags_pre, flags_post, sub_pre, sub_post
 R["precision_pre"], R["precision_post"] = pct(sub_pre, flags_pre), pct(sub_post, flags_post)
-for k in ("flags_pre", "flags_post", "sub_pre", "sub_post", "precision_pre", "precision_post"):
-    lines.append(f"\\newcommand{{\\{macro_name(k)}}}{{{fmt(R[k])}}}")
+R["filter_recompute"] = FILTER_RECOMPUTE
 worst = max((r for r in run_rows if r["partial"]), key=lambda r: r["error"], default=None)
-lines.append(f"\\newcommand{{\\worstPartialDate}}{{{parse_ts(worst['ts']).strftime('%-d %B') if worst else 'n/a'}}}")
-lines.append(f"\\newcommand{{\\worstPartialErrors}}{{{worst['error'] if worst else 0}}}")
-lines.append(f"\\newcommand{{\\worstPartialN}}{{{worst['n_link'] if worst else 0}}}")
-lines.append(f"\\newcommand{{\\firstRunPretty}}{{{parse_ts(run_rows[0]['ts']).strftime('%-d %B')}}}")
-conf = dict(R["conf"])
-lines.append(f"\\newcommand{{\\nConfHigh}}{{{conf.get('high', 0)}}}")
-lines.append(f"\\newcommand{{\\nConfMedium}}{{{conf.get('medium', 0)}}}")
-lines.append(f"\\newcommand{{\\nConfLow}}{{{conf.get('low', 0)}}}")
-lines.append(f"\\newcommand{{\\nOpenaiDocs}}{{{dict(R['by_publisher']).get('openai', 0)}}}")
-lines.append(f"\\newcommand{{\\nOutageRunsWithAdds}}{{{sum(1 for r in run_rows if r['outage'] and r['adds'] > 0)}}}")
-lines.append(f"\\newcommand{{\\firstMoveDate}}{{{parse_ts(R['moved_events'][0]['date']).strftime('%-d %B') if R['moved_events'] else 'n/a'}}}")
-lines.append(f"\\newcommand{{\\nNotableRows}}{{{len(rows)}}}")
-open(os.path.join(OUT, "macros.tex"), "w").write("\n".join(lines) + "\n")
+R["worst_partial_run"] = {"date": worst["ts"][:10], "errors": worst["error"], "probes": worst["n_link"]} if worst else None
+R["n_outage_runs_with_adds"] = sum(1 for r in run_rows if r["outage"] and r["adds"] > 0)
 
 # ------------------------------------------------------------------ results.json + comprehensive report
 json.dump(R, open(os.path.join(OUT, "results.json"), "w"), indent=1, default=str)

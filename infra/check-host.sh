@@ -52,6 +52,6 @@ check "R2 private + public buckets readable" bash -c '
   RCLONE_S3_ACCESS_KEY_ID="$(envget R2_ACCESS_KEY_ID .)" RCLONE_S3_SECRET_ACCESS_KEY="$(envget R2_SECRET_ACCESS_KEY .)" \
   RCLONE_S3_ENDPOINT="$(envget R2_ENDPOINT .)"; export RCLONE_S3_ACCESS_KEY_ID RCLONE_S3_SECRET_ACCESS_KEY RCLONE_S3_ENDPOINT
   for b in "$(envget R2_BUCKET .)" "$(envget R2_PUBLIC_BUCKET .)"; do rclone lsf --max-depth 1 ":s3:$b" >/dev/null || exit 1; done'
-check "report toolchain (latexmk, pandoc)" bash -c 'command -v latexmk && command -v pandoc'
+check "report toolchain (pandoc)" bash -c 'command -v pandoc'
 exit "$FAIL"
 REMOTE

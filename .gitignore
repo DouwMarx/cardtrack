@@ -47,12 +47,3 @@ infra/prod.env
 report/data/
 report/pairs/
 report/out/
-report/tex/*.pdf
-report/tex/*.png
-report/tex/*.aux
-report/tex/*.bbl
-report/tex/*.blg
-report/tex/*.fdb_latexmk
-report/tex/*.fls
-report/tex/*.log
-report/tex/*.out
