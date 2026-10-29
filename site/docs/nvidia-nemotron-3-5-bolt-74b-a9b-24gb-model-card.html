@@ -50,10 +50,10 @@
     <dt>First seen</dt>
     <dd>2026-10-16T06:22:22Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card&amp;body=Document%3A%20nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB%0AFingerprint%3A%20544150c6261ada704d850850aa04eb2ef7814be82bd7e8a52c221fe5285edf7e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card&amp;body=Document%3A%20nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB%0AFingerprint%3A%206ea2b8174899e9ac4b3add00d8e6a25b3e90e45007cab6421104b7e0d4f3c1eb%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-29T06:26:25Z</td>
+          <td>text/html</td>
+          <td>494,779</td>
+          <td><code title="6ea2b8174899e9ac4b3add00d8e6a25b3e90e45007cab6421104b7e0d4f3c1eb">6ea2b8174899e9ac</code></td>
+<td><a href="https://data.systemcards.org/raw/04624d51a2b99590e7937bfee65e6d58275d7beb10413be3c86be8a200421511.html" rel="nofollow" title="archived copy, sha256 04624d51a2b99590e7937bfee65e6d58275d7beb10413be3c86be8a200421511">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-16T06:22:22Z</td>
           <td>text/html</td>
@@ -77,7 +84,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -97,6 +104,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/" rel="noopener nofollow">https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/</a> · <a href="https://www.unite.ai/nvidia-releases-open-nemotron-3-5-super-vl-and-bolt-edge-models/" rel="noopener nofollow">https://www.unite.ai/nvidia-releases-open-nemotron-3-5-super-vl-and-bolt-edge-models/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-29T06:26:25Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-29T06:21Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB</a>          </div>
       </li>
     </ol>
     </details>
@@ -281,7 +296,7 @@ For more details on how to deploy and use the model — see the Quick Start Guid
 License/Terms of Use
 Governing Terms: Use of the models is governed by the OpenMDW License Agreement, version 1.1.
 Benchmarks
-| Benchmark | Qwen3.6-35B-A3B BF16 | Gemma4 26B-A4B-BF16 | Nemotron 3.5 Lightning 30B-A3B-BF16 | Nemotron 3.5 Bolt 74B-A9B-24GB (IQ2) |
+| Benchmark | Qwen3.6-35B-A3B BF16 | Gemma4 26B-A4B-IT-BF16 | Nemotron 3.5 Lightning 30B-A3B-BF16 | Nemotron 3.5 Bolt 74B-A9B-24GB (IQ2) |
 |---|---|---|---|---|
 | GDPVal-AA-V2 | 25.75 | 15.33 | 18.26 | 28.47 |
 | Terminal-Bench 2.1 | 44.38 | 37.22 | 23.46 | 50.98 |
@@ -293,7 +308,7 @@ Benchmarks
 | AA-LCR | 61.06 | 57.56 | 49.19 | 64.06 |
 | AA-Omniscience non-hallucination | 65.85 | 14.22 | 68.81 | 61.27 |
 | PinchBench | 88.07 | 74.70 | 83.43 | 87.82 |
-| MCP-Atlas | 51.20* | — | 46.4 | 52.20 |
+| MCP-Atlas | 51.20* | 48.4 | 46.4 | 52.20 |
 | BrowseComp | 48.74 | 26.30 | 36.81 | 66.75 |
 | WebArena (vision) | 36.60 | 38.2 | — | 50.86 |
 *The reported MCP-Atlas score for Qwen3.6-35B-A3B-BF16 is 62.8; we measured 51.2 on the 500 public MCP-Atlas tasks.
@@ -724,11 +739,11 @@ We advise against circumvention of any provided safety guardrails contained in t
 For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, Explainability, Safety &amp; Security, and Privacy Subcards.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 58</pre>
+- 11,715</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-28T17:36:01Z</p></footer>
+<footer><p>Data updated 2026-10-29T06:28:27Z</p></footer>
 </body>
 </html>
