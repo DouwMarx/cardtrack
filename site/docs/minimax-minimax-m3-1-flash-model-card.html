@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-10-23T06:23:23Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m3-1-flash-model-card&amp;body=Document%3A%20minimax-minimax-m3-1-flash-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash%0AFingerprint%3A%206d5bd35665be5b10d549378d78665942ab7027f7222626ebc5c9fa14a13f7527%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m3-1-flash-model-card&amp;body=Document%3A%20minimax-minimax-m3-1-flash-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash%0AFingerprint%3A%202e4062670a557f5490eafcf664b96101b18684e6d29c2e145ab08e56c82ff7bc%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-10-30T06:19:02Z</td>
+          <td>text/html</td>
+          <td>336,504</td>
+          <td><code title="2e4062670a557f5490eafcf664b96101b18684e6d29c2e145ab08e56c82ff7bc">2e4062670a557f54</code></td>
+<td><a href="https://data.systemcards.org/raw/a84a52153550dcbcd88a2aa2958d1a9e09d4a79371727707ec37c5454e4612fb.html" rel="nofollow" title="archived copy, sha256 a84a52153550dcbcd88a2aa2958d1a9e09d4a79371727707ec37c5454e4612fb">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-23T06:23:23Z</td>
           <td>text/html</td>
@@ -75,7 +82,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -95,6 +102,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://www.minimax.io/blog/minimax-m31f" rel="noopener nofollow">https://www.minimax.io/blog/minimax-m31f</a> · <a href="https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-10-30T06:19:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-10-30T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash</a>          </div>
       </li>
     </ol>
     </details>
@@ -142,6 +157,8 @@ inputs = processor.apply_chat_template(
 ).to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
+- Inference
+- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -307,11 +324,20 @@ The model supports a context window of up to 1M tokens. Usable context length an
 Contact Us
 Contact us at model@minimax.io.
 - Downloads last month
-- 357</pre>
+- 15,738
+Model tree for MiniMaxAI/MiniMax-M3.1-Flash
+Spaces using MiniMaxAI/MiniMax-M3.1-Flash 7
+Collection including MiniMaxAI/MiniMax-M3.1-Flash
+Paper for MiniMaxAI/MiniMax-M3.1-Flash
+Evaluation results
+- harborframework/terminal-bench · Terminalbench 4 View evaluation results leaderboard
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
+- agents-last-exam/agents-last-exam · Overall Pass Rate View evaluation results leaderboard
+- cais/hle · Hle View evaluation results      43.4 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-10-29T06:28:27Z</p></footer>
+<footer><p>Data updated 2026-10-30T06:25:02Z</p></footer>
 </body>
 </html>
