@@ -1988,3 +1988,23 @@ Evidence: friction entry 2026-10-15T06:26:58Z. HF API for stepfun-ai/Step-5-Prev
 
 **Evidence.** Friction recurrences of 2026-10-24T06:21:27Z on 10-26, 10-27 and 10-28. Today the top 5 is again v773/v924/v573/v578/v974, all judged noise in earlier runs. The only version fetched today (diffusiongemma v1006, a parameter table reformatted from one line to rows) sits at rank 15.
 
+---
+
+## 2026-10-31 — Microsoft AI publishes model cards (MAI-Code, MAI-Image) but is not an allowlisted publisher
+
+**Problem.** Microsoft AI (MAI) publishes formal model cards for its first-party models, and none of them are in the corpus, because Microsoft is not in `config/sources.yaml` or `config/sources.generated.yaml`. It is also absent from the OpenRouter roster, because MAI models ship inside Microsoft products (GitHub Copilot, Copilot, Bing/Designer) rather than via OpenRouter. So the overlay mechanism will never pick it up. The agent cannot propose any of these cards because the validator's allowlist check rejects them.
+
+**Evidence (found 2026-10-31 by web search; the MAI-Code-1.1-Flash card was read in full):**
+- Model-card PDFs under https://microsoft.ai/pdf/:
+  - MAI-Code-1.1-Flash: released 2026-08-11. 138B total / 5B active MoE, served in GitHub Copilot. The card reports safety evals on CyberBench, CyberSecEval and SecRepo.
+  - MAI-Code-1-Flash.
+  - MAI-Image-2 (2026-03-18), MAI-Image-2e, MAI-Image-2.5, MAI-Image-2.5-Flash, MAI-Image-2.5-Pro (2026-07-23) and MAI-Image-2.6/2.6-Flash. The image cards describe pre- and post-mitigation safety evaluation across eight harm categories.
+- The MAI-Code-1.1-Flash card names MAI-Thinking-1 as a dependency, so a general-purpose MAI reasoning model exists and probably has a card too.
+- github.com/microsoft/MAI-Code is the official release hub. Press on 2026-10-30/31 covered MAI-Code-1.1-Flash's 3-bit local build in Copilot.
+
+**Suggested change.**
+- Add a `microsoft_ai` publisher to `config/sources.yaml`: tier 2, homepage https://microsoft.ai.
+- index_urls: the microsoft.ai news page and https://github.com/microsoft/MAI-Code.
+- A scope note: "MAI-* first-party models (MAI-Thinking, MAI-Code, MAI-Image, MAI-Voice) with model cards. NOT: Azure-hosted third-party models, Phi small-model HF repos unless announced with a card, Copilot product feature posts."
+- Then backfill the existing microsoft.ai/pdf model cards. Phi should be decided separately (huggingface.co/microsoft is a large mixed org).
+

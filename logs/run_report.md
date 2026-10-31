@@ -1,108 +1,100 @@
-# cardtrack agent run — 2026-10-30 (run id 2026-10-30T06:17Z-local)
+# cardtrack agent run — 2026-10-31 (run id 2026-10-31T06:17Z-local)
 
-- **Lookback:** the last agent success was 2026-10-29T06:30:34Z, so the 72 h minimum applied (2026-10-27 to 10-30).
-- **Weekly retrospective sweep:** not run. Today is Friday.
+- **Lookback:** the last agent success was 2026-10-30T06:26:09Z, so the 72 h minimum applied (2026-10-28 to 10-31).
+- **Weekly retrospective sweep:** not run. Today is Saturday.
 - **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Action | Target | Verdict |
 |---|---|---|---|
-| 1 | add | OpenAI "Addendum to GPT-6 Luna System Card: October 29, 2026 Update" (PDF), addendum | **written** → `openai-gpt-6-luna-october-29-addendum` (doc 421, v1024) |
-| 2 | add | Mistral "Le Chonk: Built for Coders, Trusted by Defenders" (Mistral Large 4 open-weight release, 2026-10-29), model_card | **written** → `mistral-mistral-large-4-model-card-2` (doc 422, v1025) |
-| 3 | add | Epoch AI "AI can turn security fixes into working exploits before users receive an update" (GLM-5.3 patch-gap, 2026-10-29), independent_eval | **written** → `epoch-ai-glm-5-3-independent-eval-2` (doc 423, v1026) |
-| 4 | field_update | `fangcun-ai-deepseek-v4-1-flash-1017-independent-eval`: related_urls + paper=huggingface.co/papers/2610.35671 | **written** |
-| 5 | annotate_version | `metr-gpt-5-5-independent-eval` v1022 | **written** |
+| 1 | add | OpenAI "GPT-Rosalind-6 System Card Addendum" (PDF, 2026-10-30), addendum | **written** → `openai-gpt-rosalind-6-addendum` (doc 424, v1029) |
+| 2 | field_update | `securebio-gpt-6-astra-independent-eval`: related_urls + SecureBio erratum page | **written** |
+| 3 | annotate_version | `openai-gpt-5-6-sol-access-policy` v1027 (Daybreak help article) | **written** |
 
-### #1 GPT-6 Luna (October 29) addendum
-- **Canonical URL:** the PDF. The deploymentsafety HTML page is recorded as `web_version`. The URL slug says "october-28" but the document is dated 2026-10-29.
-- **Content:** a new checkpoint that is "more concise, less agreeable." It is treated as High in bio/chem and High in cyber, and below High on AI self-improvement.
-- **Results it reports:**
-  - ExploitBench 46.19% and SEC-Bench Pro 51.75%.
-  - Bio High and Critical tables.
-  - Prompt-injection robustness 94.50%, down from 95.80% for the October 7 Luna.
-  - Higher factual-error rates than the October 7 Luna.
-  - Under-18 and mental-health evals.
-  - Alignment evals: auto-review, warnings, blocker deception, broken search tool.
-- **Flags:** risk tags cbrn, cyber, loss_of_control, societal_harm; openness `closed`.
-- **Not tagged harmful_manipulation:** the reduced agreeableness is stated as a goal, but no sycophancy eval is reported.
+### #1 GPT-Rosalind-6 addendum
+- **Canonical URL:** the PDF. The deploymentsafety HTML page is recorded as `web_version`.
+- **Date:** 2026-10-30, from the Deployment Safety Hub index ("Oct 30, 2026"). The ChatGPT Business release notes confirm GPT-6 Rosalind Research began rolling out that day. The PDF itself only says "October 2026".
+- **What it is:** trusted-access only. It uses the same weights as GPT-6 Astra but has a different refusal boundary and its own deployment. It is treated as a distinct named release, like the Rosalind-5.5 card, which is noted in `notes`.
+- **Preparedness ratings:** High bio/chem. Critical cyber, inherited from Astra. Below High on self-improvement.
+- **Bio/chem High evals:**
+  - ProtocolQA 42.0%.
+  - TroubleshootingBench 59.0%.
+  - Biorisk cons@32 78.3%.
+  - Multi-select Virology 59.9%.
+  - After refusal adjustment, three of the four exceed their thresholds.
+- **Bio/chem Critical evals:** all four are below threshold.
+- **Biosecurity safeguard benchmarks:** Severe 98.1%, Sensitive 79.0%.
+- **Cyber:** a historical-jailbreak regression on ExploitBench tasks (14.3%).
+- **Alignment and monitoring evals:** blocker deception, sabotage, CoT controllability.
+- **Flags:** risk tags cbrn, cyber, loss_of_control; openness `restricted`. Not tagged societal_harm, because the addendum has no such evals.
+- **No openai.com announcement post was found.** Search turned up only the help-center release note and third-party coverage.
 
-### #2 Mistral Large 4 open-weight release
-- **What it is:** a distinct release, an improved RL checkpoint now shipped with weights. The existing row is the 10-06 preview post.
-- **Safety content:**
-  - 96.6% refusal on malicious cyber requests.
-  - AA Cyber Index 51%.
-  - B3 agent security: 97.1% of attacks resisted.
-  - A live-traffic finding of "potential for uplift to conduct real attacks," with guardrails being modified.
-  - Vetted, contract-gated preview access to an unnamed cyber-specialized variant.
-- **Related URLs:** the HF card (`mistralai/Mistral-Large-4-1T-A52B`) as `weights`; it has architecture and usage information only, no safety evals. The preview post as `other`.
-- **Openness:** `open_weight_restrictive`. The license is a modified MIT that requires a separate commercial license for Model-as-a-Service operators.
-- **Still pending:** a full technical report is announced as "coming soon." Watch for it.
+### #2 SecureBio erratum
+- **The correction:** the GPT-6 Astra WCB score of 61.6% ± 0.6% was run with web search enabled. Corrected with search disabled, it is 59.2% ± 0.6%. SecureBio says its conclusions are unchanged.
+- **Why not a new row:** it corrects an existing report, so it was added as a companion URL (kind `other`).
+- **Existing companions kept,** with their kinds set to: PDF → `full_document`, securebio.org blog → `web_version`, OpenAI Astra hub → `other`.
+  - I could not read the stored kinds (no DB access), so these may differ from what was there before.
+- **Related upstream change:** search shows the GPT-6 Astra system card changelog also records the correction. The monitor should pick that up as a new version of the Astra row.
 
-### #3 Epoch GLM-5.3 patch-gap eval
-- **Findings:** GLM-5.3, running autonomously, built working file-exfiltration exploits against all six Firefox releases from 09-17 to 10-26.
-  - It took about 12 h at fastest, at a marginal cost of about $1k per version.
-  - Chrome attempts have not succeeded.
-  - No refusals were hit from any provider.
-- **Date:** from WebFetch ("Oct. 29, 2026").
-- **Not a duplicate:** this is a different document from the 10-16 Epoch ECI-gap data insight.
-- **Openness omitted:** GLM-5.3 uses a custom `glm-5.3` license (HF `license:other`) that I did not verify.
+## Phase A candidates (21 first seen today)
 
-### #4 Fangcun paper link
-- **What it is:** the HF Papers page 2610.35671, which surfaced via the Qwen org page, is the paper version of the Fangcun DeepSeek V4.1 Flash-1017 evaluation already in DB.
-- **Action:** added as a companion `paper` URL, not as a new row.
-
-## Phase A candidates (24 first seen today)
-
-- **Proposed:** the Luna addendum (#1), Le Chonk (#2), the Epoch patch-gap report (#3), and the Fangcun paper link (#4).
+- **Proposed:** the Rosalind-6 addendum (#1) and the SecureBio erratum (#2).
 - **Skipped:**
-  - **Mistral `/industry/cybersecurity/`:** a sales landing page with no named model or access conditions.
-  - **Epoch data insight "ai-computing-capacity-additions-doubling":** a compute-trend chart, not a model evaluation.
-  - **Qwen org:** the Co-Design Bench paper (a benchmark paper) and the Wiselnn profile.
-  - **Tencent:** the WeVisCut paper and repo (a video-editing agent with no external announcement), the MLLM retrieval-heads paper, and two profiles.
-  - **NVIDIA:** the Nemotron 3.5 Transcribe FP8 and NVFP4 quants (ASR, auxiliary, and quant re-uploads), four datasets, and one profile.
-  - **inclusionAI:** Ling-3.0-flash-Sante-fp8 (a quant of an existing row), the Intrinsic Distribution Matching paper, and two profiles.
+  - **Epoch "biorxiv-llms-vs-ai-tools":** a data insight on LLM-use trends in preprints. It does not evaluate a model.
+  - **Cursor security notice:** a malicious claude-code extension in Cursor's marketplace. This is a supply-chain incident, not model documentation.
+  - **NVIDIA "nemotron-halloween":** an HF blog showcase of existing models with no evals. Also skipped: two Cosmos3 discussion threads, the DeepSeek-V4.1-Flash-1017-NVFP4 quant re-host, and one profile.
+  - **Tencent:** the Youtu collection and the Youtu-Parsing-Omni paper. Document parsing is an auxiliary model class.
+  - **inclusionAI:** the ZwZ2 4B/9B/27B GGUF quants. ZwZ2 is a GRPO perception fine-tune of Qwen3.6, outside the inclusion_ai scope note.
+  - **MiniMax:** an M3.1-Flash community discussion and five navigation links (console, pricing, M Plan, blog, agent).
+  - **DeepSeek:** an API docs markdown link.
 - Everything first seen before today was triaged in earlier runs.
 
-## Targeted search (10-27 to 10-30)
+## Targeted search (10-28 to 10-31)
 
-- **New in the window:** GPT-6 Luna (Oct 29) addendum, Mistral Large 4 open weights, and the Epoch patch-gap report (all proposed).
-- **Already in DB:** Gemini 4 Carbon (10-28), Genie 4 (10-27, `google-deepmind-genie-4-access-policy`), Kimi K3.1 Pro (10-23), Claude Haiku 5.5, and GPT-Rosalind-5.5.
-- **DeepSeek V4.1 Flash 1017 Cyber (10-29):** an abliterated, refusal-removed variant released and gated by Inference.net ("approved access only"). It is not a DeepSeek publication, Inference.net is not allowlisted, and it is a derivative of an existing row. I skipped it.
-- **Qwen 4:** still unreleased. An Apsara attendee reports the CTO saying "next week." Re-check from about 11-02.
-- **xAI:** still silent since Grok 4.7 (09-21), and there is no Grok 5 card.
-- **Evaluators:** nothing new from METR, Apollo, AISI or CAISI in the window, apart from METR's 10-29 revision of its GPT-5.5 monitoring post (annotated, #5).
-- **Restricted-access polling:** nothing new.
-  - CVP (10-06), LSVP and Fairwind (via Carbon) are covered.
-  - No new Daybreak, Rosalind, Glasswing, Claude Science, Gemini for Science or CodeMender documents.
-  - Anthropic's 10-28 drug-development progress item (from press) is a research/progress post with no access program. Not pursued.
+- **Rosalind-6:** the only new in-scope primary document found (#1).
+- **Already in DB:** Mistral Large 4 open weights (10-29), Gemini 4 Carbon / Fairwind (10-28), GPT-6.1 Terra (10-26), and GPT-6 Sol/Luna October.
+- **OpenAI Model Spec update (10-29):** a general behavior policy that does not evaluate a named model. Skipped under the doc_type `other` scope rule.
+- **Microsoft MAI-Code-1.1-Flash** (press on 10-30/31 about a 3-bit local build):
+  - Microsoft is not allowlisted, so I proposed nothing.
+  - Search found 8 MAI model-card PDFs on microsoft.ai. I read the MAI-Code-1.1-Flash card: released 2026-08-11, with cyber safety evals. None of these cards are in the DB.
+  - Filed as a proposal (below).
+- **Still unreleased:** Qwen 4 (no card, weights or API as of 10-29) and xAI Grok 5 (no card).
+- **Evaluators:** nothing new from METR, Apollo, AISI or CAISI in the window.
+- **Restricted-access polling:**
+  - Rosalind-6 Research is covered by #1. It does not broaden eligibility beyond earlier announcements such as the Rosalind Academic Plan.
+  - The Daybreak changes are covered by #3.
+  - Nothing new from LSVP, CVP, Glasswing, Claude Science, Gemini for Science or CodeMender.
 
 ## Citation mining
 
-- **Luna addendum:** cites the GPT-6 Luna October 7 card (in DB as `openai-gpt-6-sol-october-addendum`), the GPT-6 Astra system card (in DB) and the GPT-5.6 system card (GPT-Red).
-- **Epoch report:** cites Mythos and Glasswing/Daybreak material, all already cataloged.
-- **Mistral post:** cites Artificial Analysis and Cognition benchmarks (not allowlisted, not reports).
+- **Rosalind-6:** cites the GPT-6 Astra system card and the GPT-Rosalind-5.5 system card. Both are in DB.
+- **SecureBio erratum:** cites only its parent report.
 - **Result:** no new leads.
 
 ## Blocked-URL escalations (task 5)
 
-- **What Phase A reports:** all 16 openai.com / help.openai.com rows return 403 (streak 29).
-- **Today's spot check:** read_doc.py got 403 on introducing-gpt-rosalind and low-resource-programming-languages.
-- **Evidence they are alive:** both are still listed with their titles in openai.com-restricted search results.
-- **Conclusion:** this is bot-blocking, not removal, so there are no status changes.
+- **What Phase A reports:** all 16 openai.com / help.openai.com rows return 403 (streak 30; 25, 15 and 9 for the newer ones).
+- **Today's agent-side check:** read_doc.py returned HTTP 200 via browser_impersonation on three pages, unlike the last few runs:
+  - path-to-astra
+  - trusted-access-for-cyber
+  - strengthening-societal-resilience-with-rosalind-biodefense
+  - It also reached help.openai.com.
+- **Conclusion:** the pages are alive, so there are no status changes. This is the agent-side-OK / Phase-A-403 split already filed in PROPOSALS.md (2026-10-07).
 
 ## Document updates (task 6)
 
 - **Top 5:** v773, v924, v1015, v573 and v578 were all judged noise in earlier runs and were not re-read.
-- **metr-gpt-5-5-independent-eval v1022 (new today, rank 16):** substantive.
-  - The remediation-status sentence was revised from "all vulnerabilities patched" to "most patched, one fix in progress."
-  - A dated Update log (Oct 29) and a publication-delay footnote were added.
-  - Annotated (#5).
+- **openai-gpt-5-6-sol-access-policy v1027 (new today, rank 7):** substantive.
+  - It adds a "Using GPT-6.1 Terra with Daybreak" section: reduced cyber refusals are available to Daybreak Red only, with explicit per-request enablement.
+  - From gpt-6.1-terra on, omitting `access_programs.cyber` now gives standard refusals instead of the highest tier.
+  - Annotated (#3).
+- **Ranks 6 and 8-20:** all predate today and were handled in earlier runs. Not re-read.
 
 ## Friction and proposals
 
-- **Friction, two recurrences:**
-  - The openai.com 403 (of 2026-10-29T06:29:57Z).
-  - The stale updated_docs top 5 (of 2026-10-29T06:29:59Z).
-- **Friction, one new tooling entry:** the Bash guard refuses grep regexes with `{m,n}` quantifiers or alternation after a pipe, which blocked date extraction from page source. The workaround was WebFetch.
-- **New proposals:** none. Both recurring problems already have entries in PROPOSALS.md.
+- **Friction, one recurrence:** the stale updated_docs top 5 (of 2026-10-30T06:25:31Z).
+- **No openai.com 403 entry today:** the agent-side fetch succeeded.
+- **New proposal:** "Microsoft AI publishes model cards (MAI-Code, MAI-Image) but is not an allowlisted publisher".
+  - It suggests a `microsoft_ai` source entry with a scope note, followed by a backfill of the microsoft.ai/pdf cards.
+  - PROPOSALS.md had no earlier Microsoft entry.
