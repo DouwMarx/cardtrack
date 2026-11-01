@@ -152,5 +152,29 @@
   "version": 951,
   "category": "extraction_noise",
   "reason": "The dropped Cyber ECI score table (e.g. 'Cyber ECI scores of open- and closed-weight models', GPT-3.5 Turbo 112.21, Llama 3-70B) is present in the raw HTML of v864 and v951 (same occurrence counts). Both raw captures still use one <table> element, so the cause differs from the Anthropic div-table change and is not established. Extractor artefact, not a publisher deletion; sub-agent label kept. Verified 2026-10-25 against data/raw by the unattended run."
+ },
+ {
+  "slug": "anthropic-claude-opus-other",
+  "version": 1013,
+  "category": "extraction_noise",
+  "reason": "Sub-agent label kept, now verified against data/raw by the unattended run 2026-11-01: every dropped indicator-of-compromise line, hash and heading checked (e.g. 'ms365-live[.]com' 4/4, 'awstore[.]cloud' 2/2, 'GTG-15001: Deceptive dating app network' 2/4) is present in the raw HTML of both v549 and v1013. The raw HTML replaced <table> elements (32 in v549, 0 in v1013) with div-based ARIA tables (role=table: 0 -> 32), the same template change recorded on 2026-10-25 for v924/v934. The monitor's drift note said 73 lines; 236 removed lines over 40 characters have no counterpart in the new extraction. Not a publisher deletion."
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other",
+  "version": 1015,
+  "category": "extraction_noise",
+  "reason": "Sub-agent label kept (it was medium confidence), now verified against data/raw by the unattended run 2026-11-01: all seven dropped footnotes (e.g. the Firefox 147 test-harness caveat, the SHA-3 commitment note, the Cyber Verification Program note) are present in the raw HTML of both v685 and v1015 (2 occurrences each); the word 'footnote' occurs 15 times in v685 and 56 in v1015, i.e. heavier footnote markup the extractor skips. Only the newsletter box and three related-article teasers were really removed from the page (furniture). Not a publisher deletion."
+ },
+ {
+  "slug": "anthropic-claude-opus-4-6-other",
+  "version": 1014,
+  "category": "extraction_noise",
+  "reason": "Sub-agent label kept, verified against data/raw by the unattended run 2026-11-01: the dropped quoted-reasoning blocks, the OpenSC strcat code listing and the LZW bullet list are present in the raw HTML of both v684 and v1014 (2 occurrences each). Only the newsletter box and related-article teasers were removed from the page. The monitor's drift note said 23 lines; 29 body lines were lost. Not a publisher deletion."
+ },
+ {
+  "slug": "anthropic-claude-mythos-preview-other-9",
+  "version": 1012,
+  "category": "extraction_noise",
+  "reason": "Sub-agent label kept (it was medium confidence), now verified against data/raw by the unattended run 2026-11-01: all three dropped footnotes (Bellingcat/OSINT caveat, 'anchor-given' vs 'vague issue' prompt variants, GeoGuessr Duels timing caveat) are present in the raw HTML of both v682 and v1012 (2 occurrences each). The monitor emitted no drift note for this pair. Not a publisher deletion."
  }
 ]

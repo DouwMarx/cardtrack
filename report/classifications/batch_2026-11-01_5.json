@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "metr-gpt-5-5-independent-eval",
+  "version": 1022,
+  "category": "content_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": true,
+  "growth_direction": "grew",
+  "summary": "Remediation claim softened from 'all production-safeguard vulnerabilities patched' to 'most patched, one fix in progress'; publication-delay footnote and Oct 29 update log added.",
+  "safety_implication": "Not every monitoring vulnerability METR flagged is fixed yet; one remains open, which OpenAI says does not affect its misuse safeguards stack.",
+  "notable": "METR publicly logged a downward revision of OpenAI's remediation claim after OpenAI feedback, quoting the original sentence, and the scope qualifier shifted from 'production safeguards' to 'misuse safeguards'.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "anthropic-claude-opus-4-6-other",
+  "version": 1014,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Extractor dropped Claude's quoted reasoning, code snippets and LZW bullet list (still in raw HTML); section headings now extracted; newsletter box and related-article footer removed.",
+  "safety_implication": "",
+  "notable": "The only real page change is removed furniture (newsletter signup, Read-more teasers); the 29 lost body lines are trafilatura drift on blockquotes/code, verified present in the raw capture.",
+  "confidence": "high"
+ }
+]

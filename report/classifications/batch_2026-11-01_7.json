@@ -1,0 +1,32 @@
+[
+ {
+  "slug": "alibaba-qwen-qwen3-5-397b-a17b-model-card",
+  "version": 1023,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF chrome changed: download counter 667,204 to 946,038; eval-widget leaderboard rows reordered, Video-MME-v2 rows dropped, OmniCompass row added.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card",
+  "version": 1017,
+  "category": "content_minor",
+  "score_change": true,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Benchmark table: Gemma4 comparison column relabeled 26B-A4B-IT-BF16; missing Gemma4 MCP-Atlas score filled in as 48.4. Download counter also changed.",
+  "safety_implication": "",
+  "notable": "NVIDIA quietly backfilled a competitor's blank MCP-Atlas cell (48.4) and clarified the Gemma4 baseline is the instruction-tuned variant.",
+  "confidence": "high"
+ }
+]

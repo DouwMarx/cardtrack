@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "anthropic-claude-mythos-preview-other",
+  "version": 1015,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Page re-render: section headings now extracted, footnote markers [n] became bare digits, footnote texts and newsletter/related-article chrome dropped; body paragraphs identical.",
+  "safety_implication": "",
+  "notable": "The seven footnotes (including the Firefox test-harness caveat and the Cyber Verification Program note) vanished from the extracted text while their in-body markers remain, so the extractor is now missing footnote content on this page.",
+  "confidence": "medium"
+ }
+]

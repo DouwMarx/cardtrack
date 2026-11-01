@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "openai-gpt-5-6-sol-access-policy",
+  "version": 1027,
+  "category": "content_major",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": true,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "New 'Using GPT-6.1 Terra with Daybreak' section; Terra requires explicit Daybreak Red enablement, no default to highest tier; Codex notes updated; typo/link-label fixes.",
+  "safety_implication": "GPT-6.1 Terra gets reduced cyber refusals only for Daybreak Red with explicit opt-in; omitting access_programs.cyber now yields standard refusals rather than max tier.",
+  "notable": "OpenAI tightened the Daybreak default for its newest model: reduced cyber refusals are now opt-in per request for GPT-6.1 Terra instead of on-by-default on surfaces without a toggle.",
+  "confidence": "medium"
+ }
+]

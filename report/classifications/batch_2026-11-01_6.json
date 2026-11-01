@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "nvidia-nemotron-3-5-super-vl-other",
+  "version": 1016,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Header date 2026-10-21 -> 2026-10-27; author 'Erik Arakelyan' added to contributor list; 'Yifang Zhang' corrected to 'Yifan Zhang'. Body otherwise unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ }
+]

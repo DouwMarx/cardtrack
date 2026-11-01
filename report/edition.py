@@ -50,7 +50,12 @@ OUT = os.path.join(HERE, "out")
 FIG = os.path.join(OUT, "figures")
 TAB = os.path.join(OUT, "tables")
 REPO = os.path.dirname(HERE)
-LAST_EDITION_SNAPSHOT = "2026-10-24T06:21:17Z"   # published/meta.json of the 2026-10-25 edition
+LAST_EDITION_SNAPSHOT = "2026-10-28T06:24:07Z"   # fallback: published/meta.json of the 2026-10-28 edition
+try:   # the published edition's snapshot time, normalised to the DB's "...Z" form so string comparisons work
+    _m = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "published", "meta.json")))
+    LAST_EDITION_SNAPSHOT = dt.datetime.fromisoformat(_m["snapshot"].replace("Z", "+00:00")).astimezone(dt.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+except (OSError, KeyError, ValueError):
+    pass
 TOP_HOST = "openai.com"
 STREAK_START = "2026-10-02"
 
@@ -248,8 +253,15 @@ ax.set_xlabel("week of detection (Monday)")
 ax.set_ylabel("stored version changes")
 ax.axvline(wks.index(dt.date(2026, 8, 31)) - 0.5, color=PAL["red"], lw=0.8, ls="--")
 ax.text(wks.index(dt.date(2026, 8, 31)) - 0.4, bottom.max() * 0.97, "furniture filter\nrecomputed", fontsize=6, color=PAL["red"], va="top")
-ax.text(len(wks) - 1, bottom[-1] + 1.5, "this edition\n(3 days)", fontsize=6, color=INK2, ha="center")
+_last_run = parse_ts(R["runs"][-1]["ts"]).date()   # the last daily run in the snapshot, i.e. the last day the final bar can cover
+E["weekly_last_bar_to"] = _last_run.isoformat()
+ax.text(len(wks) - 1, bottom[-1] + 1.5, f"partial week\n(to {_last_run.strftime('%d %b')})", fontsize=6, color=INK2, ha="center")
 ax.set_ylim(0, bottom.max() * 1.15)
+if dt.date(2026, 10, 19) in wks:   # the anthropic.com template change (28 October edition) dominates that week
+    _i = wks.index(dt.date(2026, 10, 19))
+    _y = weeks[wks[_i]]["furniture"] + weeks[wks[_i]]["extraction_noise"] / 2
+    ax.annotate("anthropic.com template\nchange (extractor, not edits)", xy=(_i - 0.36, _y), xytext=(_i - 2.9, _y + 14),
+                fontsize=6, color=INK2, ha="center", arrowprops=dict(arrowstyle="-", color=INK2, lw=0.6))
 ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.28), ncol=6, handlelength=1, columnspacing=0.8)
 fig.savefig(os.path.join(FIG, "fig_weekly.png"), dpi=170)
 plt.close(fig)

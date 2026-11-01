@@ -1,0 +1,47 @@
+[
+ {
+  "slug": "minimax-minimax-m3-1-flash-model-card",
+  "version": 1021,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF page chrome changed: download counter 357 -> 15,738, new Inference/HuggingChat menu items, model tree, Spaces, Paper link, eval-widget rows (HLE 43.4).",
+  "safety_implication": "",
+  "notable": "The HF eval widget and a Paper link appeared, suggesting MiniMax added model-index metadata and an arXiv reference to the repo without changing the card body.",
+  "confidence": "high"
+ },
+ {
+  "slug": "anthropic-claude-sonnet-4-5-other",
+  "version": 1020,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Single heading casing/spelling change: 'Authors & Acknowledgments' became 'Authors & acknowledgements'; no body content changed.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "high"
+ },
+ {
+  "slug": "apollo-research-anthropic-auto-mode-independent-eval",
+  "version": 1028,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "One line added: author byline 'Author: Monika Jotautaitė' inserted before the post's opening paragraph; no other changes.",
+  "safety_implication": "",
+  "notable": "Apollo added a named author attribution to its auto-mode monitor red-teaming writeup, which previously carried no byline.",
+  "confidence": "high"
+ }
+]

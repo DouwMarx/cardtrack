@@ -1,115 +1,113 @@
-# cardtrack briefing, 28 October 2026: Meta corrects a cyber score, Anthropic opens CVP managed services, Google reroutes Fairwind access
+# cardtrack briefing, 1 November 2026: METR revises its report of OpenAI's "all patched" claim, OpenAI makes reduced cyber refusals opt-in for Terra, a SecureBio erratum surfaces
 
-As of the 2026-10-28 snapshot, the four daily runs since the 25 October edition stored 54 new versions and added 10 documents. Eight of the 44 version pairs compared were substantive; five carry the classifier's safety flag. Each diff below was read in full.
+As of the 1 November 2026 snapshot (data through the 31 October run), the three daily runs since the 28 October edition stored 19 new versions and added 7 documents (one by a maintainer). Three of the 12 version pairs compared were substantive; two carry the classifier's safety flag.
 
-- **Meta corrected a cyber-capability score in the Muse Wonder model card** ([document](https://systemcards.org/docs/meta-muse-wonder-model-card.html), v815→v973). The ExploitGym result in the Meta Superintelligence Scaling Framework risk assessment went from 92 flags (21 on the intended vulnerability) to 20 intended flags. A note dated 23 October 2026 says the harness now tells the model which vulnerability to target, as the benchmark recommends, and that the "moderate or lower" risk threshold stands. The 71 captures through unintended vulnerabilities no longer appear. One of 17 changes in the corpus with a dated note.
-- **Anthropic's Cyber Verification Program (CVP) help page opened applications for managed services** ([document](https://systemcards.org/docs/anthropic-claude-opus-access-policy.html), v889→v990). Approved partners may now run less-restricted cyber models against customers' systems under a new Cyber Defender Partner Addendum; customers receive only finished deliverables. Customer-facing products stay closed. A new line says approval alone does not activate access. The Google Cloud row now also requires accepting an Advanced AI Safety Addendum, and data sharing with Anthropic moves from per project to per model and location.
-- **Google DeepMind's Fairwind Program no longer points applicants to a form** ([document](https://systemcards.org/docs/google-deepmind-gemini-4-argon-access-policy-2.html), v835→v1001). The access-request line changed from "fill in our form" to "contact your Cloud account team", with a Google Cloud get-started link for non-customers. No note on the page.
-- **Epoch AI revised the baseline behind its "5x the pre-Mythos record" headline on disclosed CVEs** (Common Vulnerabilities and Exposures; [document](https://systemcards.org/docs/epoch-ai-claude-mythos-independent-eval.html), v154→v960). The pre-Mythos monthly record moved from about 440 to about 490 high- and critical-severity CVEs. New limitations say undisclosed findings are not counted (Anthropic claims over 10,000 from Project Glasswing) and that interest, not only capability, may drive the spike. Disclosed in the text, undated.
+- **METR revised the sentence relaying OpenAI's claim that every monitoring vulnerability it found was patched** ([document](https://systemcards.org/docs/metr-gpt-5-5-independent-eval.html), v939→v1022). Old text: OpenAI "has stated that all of the vulnerabilities we identified that impact their production safeguards stack have been patched". New text: most are patched, one fix is in progress, and the open one "does not impact OpenAI's misuse safeguards stack"; METR has not evaluated these claims. A 29 October update log quotes the original sentence and credits OpenAI's feedback for a new footnote on the publication delay. For a safety reader: by OpenAI's own account one fix was still open on 29 October, and the qualifier changed from "production" to "misuse".
+- **OpenAI's Daybreak page makes reduced cyber refusals opt-in for GPT-6.1 Terra** ([document](https://systemcards.org/docs/openai-gpt-5-6-sol-access-policy.html), v869→v1027). A new section says Terra gives reduced refusals only to approved Daybreak Red users, and only when Daybreak is explicitly enabled; Blue approval does not count. From gpt-6.1-terra on, omitting the cyber access parameter in the Responses API yields standard refusals, not the highest approved tier. For earlier models the page now says only that they "retain their existing behavior" where no toggle exists; the "on by default" sentence is gone. The raw HTML carries an "Updated: 3 days ago" stamp (about 28 October) but no change note.
+- **A SecureBio erratum to its GPT-6 Astra pre-release testing report, recorded by the curation agent** ([document](https://systemcards.org/docs/securebio-gpt-6-astra-independent-eval.html)). The agent's 31 October record of a separate erratum page says the World-Class Bio (WCB) score was run with web search enabled (table below); SecureBio says its conclusions are unchanged. The original figure matches stored v569; the corrected figure, the explanation and the erratum's date rest on the agent's record alone, since securebio.org refuses the tracker's fetcher and this host cannot fetch the web.
 
-The fifth safety-flagged edit adds one related-work paragraph to Anthropic's reward-seeker post ([document](https://systemcards.org/docs/anthropic-hacker-opus-other.html), v474→v962); no finding changes.
-
-## This week's edits: 8 substantive changes among 44 version pairs
-
-| Window: 2026-10-24 snapshot to 2026-10-28 snapshot | Count |
+| SecureBio erratum, as recorded by the curation agent | Value |
 |---|---|
-| Daily runs | 4 |
-| New stored versions (10 are first versions of new documents) | 54 |
-| Version pairs compared (publisher side) | 44 |
-| Page furniture (Hugging Face counters and eval-widget rows: 25) | 27 |
-| Extraction drift (document unchanged, extractor dropped lines) | 5 |
-| Metadata or formatting only | 4 |
-| Substantive (content minor 5, major 3) | 8 |
-| Of which safety-flagged | 5 |
+| WCB score in the stored report (run with web search enabled, per the erratum) | 61.6% ± 0.6% |
+| Corrected score (web search disabled, per the erratum) | 59.2% ± 0.6% |
 
-- Beyond the lead, Epoch AI added limitations to two posts on its Epoch Capabilities Index (ECI) and a data section to one (A80, A83). One now states that GPT-6 Astra and Claude Fable 5.1 have overlapping 90% confidence intervals on every index variant, which qualifies the post's "leads on math" title. No revision note in either diff.
-- Four anthropic.com pages re-fetched between 25 and 27 October lost their title line from the extracted text, two of them also testimonial quotes (v963, v968, v969, v987). The monitor compared the dropped lines with the raw capture at fetch time and attributed all four to the extractor.
-- The substantive share this week (8 of 44) is in line with the whole window (87 of 437 publisher-side pairs). The extraction-noise spike in the week of 19 October (27 pairs) is the anthropic.com template change reported in the previous edition.
+## This week's edits: 3 substantive changes among 12 version pairs
 
-![Stored version changes per week of detection, by what the diff contained. Publisher-side pairs only; the last bar covers Monday 26 to Wednesday 28 October.](figures/fig_weekly.png)
+| Window: 2026-10-28 snapshot to 2026-11-01 snapshot (runs of 29 to 31 October) | Count |
+|---|---|
+| Daily runs | 3 |
+| New stored versions (7 are first versions of new documents) | 19 |
+| Version pairs compared (publisher side) | 12 |
+| Page furniture (Hugging Face counters and eval-widget rows) | 2 |
+| Extraction drift (document unchanged, extractor dropped lines; all on anthropic.com) | 4 |
+| Metadata or formatting only | 3 |
+| Substantive (content minor 2, major 1) | 3 |
+| Of which safety-flagged | 2 |
+
+- The third substantive change: NVIDIA's Nemotron 3.5 Bolt card filled the blank MCP-Atlas benchmark cell in its Gemma 4 column with 48.4 and relabelled that column as the instruction-tuned variant. No note (A88).
+- Four anthropic.com pages re-fetched on 29 October lost footnotes, code listings and every indicator-of-compromise table from the extracted text (threat-intelligence report v549→v1013, Mythos Preview cyber post v685→v1015, zero-days post v684→v1014, targeting and weapons post v682→v1012). Every dropped body line checked is still in the raw HTML (only newsletter and teaser furniture went); the threat report's 32 HTML tables became div-based tables the extractor skips.
+- Metadata only: NVIDIA's Nemotron 3.5 technical report PDF re-dated 21 to 27 October with one author added; Apollo Research added a byline; Anthropic recased a heading.
+
+![Stored version changes per week of detection, by what the diff contained. Publisher-side pairs only; the last bar covers Monday 26 to Saturday 31 October, of which 29 to 31 October are new this edition.](figures/fig_weekly.png)
 
 | Id | Detected | Publisher | Document | Versions | Category (flags) | What changed (classifier summary) |
 |---|---|---|---|---|---|---|
-| A80 | 2026-10-25 | epoch ai | [Claude overperforms at software engineering and un...](https://systemcards.org/docs/epoch-ai-claude-opus-4-7-independent-eval.html) | v152→v958 | minor | Added a Limitations section: domain-specific ECI is relative-only, and models have uneven math vs SWE benchmark counts (avg 3.4 vs 3.2, max 4:2). |
-| A81 | 2026-10-25 | epoch ai | [Disclosed CVEs: July Reached 5x the Pre-Mythos Rec...](https://systemcards.org/docs/epoch-ai-claude-mythos-independent-eval.html) | v154→v960 | major (score, safety, correction) | Data section filled (21 source organizations listed); Assumptions and limitations added; pre-Mythos monthly CVE record revised upward from ~440 to ~490. |
-| A82 | 2026-10-25 | anthropic | [Training a Misaligned Reward Seeker](https://systemcards.org/docs/anthropic-hacker-opus-other.html) | v474→v962 | minor (safety) | One related-work paragraph added citing Hojmark et al. (2026) on measuring reward seeking via grader-belief SDF in OpenAI o3 and gpt-oss-120b. |
-| A83 | 2026-10-26 | epoch ai | [GPT-6 Astra leads on math benchmarks, but not on s...](https://systemcards.org/docs/epoch-ai-gpt-6-astra-independent-eval.html) | v592→v970 | major | Data section filled in (cutoff date, benchmark lists, per-model benchmark-count table) and three limitations bullets added on small benchmark counts, refit drift, and relative ECIs. |
-| A84 | 2026-10-26 | meta | [Muse Wonder Model Card](https://systemcards.org/docs/meta-muse-wonder-model-card.html) | v815→v973 | minor (score, safety, correction) | ExploitGym result for Muse Wonder Full corrected from 92 (21 intended) to 20 intended flags after harness fix; dated update note (23 Oct 2026) replaces footnote. |
-| A85 | 2026-10-27 | inclusion ai | [LLaDA2.2-flash model card](https://systemcards.org/docs/inclusion-ai-llada2-2-flash-model-card.html) | v763→v980 | minor | Deployment/SGLang placeholder ('coming soon') replaced with full SGLang install and launch_server instructions, including JointThresholdInDel decoding defaults; download counter bumped. |
-| A86 | 2026-10-27 | anthropic | [Real-time cyber safeguards on Claude Opus and Sonn...](https://systemcards.org/docs/anthropic-claude-opus-access-policy.html) | v889→v990 | major (license, safety) | CVP productization rules added: managed-service applications open, products interest-only; approval now needs workspace activation; Google Cloud requires Advanced AI Safety Addendum and data sharing. |
-| A87 | 2026-10-28 | google deepmind | [Fairwind Program — Google DeepMind](https://systemcards.org/docs/google-deepmind-gemini-4-argon-access-policy-2.html) | v835→v1001 | minor (safety) | Access-request route changed from 'fill in our form' to 'contact your Cloud account team', adding a Google Cloud get-started link; one subheading dropped by extractor drift. |
+| A88 | 2026-10-29 | nvidia | [NVIDIA Nemotron 3.5 Bolt 74B-A9B 24GB — Model Card](https://systemcards.org/docs/nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card.html) | v858→v1017 | minor (score) | Benchmark table: Gemma4 comparison column relabeled 26B-A4B-IT-BF16; missing Gemma4 MCP-Atlas score filled in as 48.4. Download counter also changed. |
+| A89 | 2026-10-30 | metr | [Red-Teaming OpenAI's Internal Agent Monitoring Sys...](https://systemcards.org/docs/metr-gpt-5-5-independent-eval.html) | v939→v1022 | minor (safety, correction) | Remediation claim softened from 'all production-safeguard vulnerabilities patched' to 'most patched, one fix in progress'; publication-delay footnote and Oct 29 update log added. |
+| A90 | 2026-10-31 | openai | [OpenAI Daybreak: Trusted Access for Cyber — Overvi...](https://systemcards.org/docs/openai-gpt-5-6-sol-access-policy.html) | v869→v1027 | major (safety, scope) | New 'Using GPT-6.1 Terra with Daybreak' section; Terra requires explicit Daybreak Red enablement, no default to highest tier; Codex notes updated; typo/link-label fixes. |
 
-## Who discloses edits: 17 of 87 substantive changes carry a dated note in their summary
+## Corrections: 22 of 90 substantive changes since 11 August carry the classifier's correction flag
 
-Rule applied to every substantive publisher-side change since 11 August: "dated note" when the classifier's summary of the diff mentions a change log, erratum, or an update or correction with a date; otherwise "called silent" when the classifier described the edit as silent, quiet or undisclosed; otherwise "neither". The rule reads the classifier's summary, not the full document. "Neither" means unknown: it includes undated in-text disclosures such as Epoch's revised baseline in the lead (A81).
+Disclosure class, computed as in the 28 October edition: "dated note" when the classifier's summary mentions a change log or dated update (this test wins), "called silent" when its summary or note calls the edit silent or undisclosed, otherwise "neither" (unknown).
 
-| Publisher | Substantive changes | Summary mentions a dated note | Summary calls the edit silent | Neither |
-|---|---|---|---|---|
-| nvidia | 14 | 1 | 3 | 10 |
-| openai | 14 | 10 | 1 | 3 |
-| anthropic | 13 | 4 | 1 | 8 |
-| inclusion ai | 11 | 0 | 2 | 9 |
-| google deepmind | 9 | 0 | 2 | 7 |
-| metr | 4 | 0 | 0 | 4 |
-| epoch ai | 4 | 0 | 1 | 3 |
-| tencent hunyuan | 3 | 0 | 1 | 2 |
-| all publishers | 87 | 17 | 13 | 57 |
+| Publisher | Corrections | Of which a score | Dated note | Called silent | Neither |
+|---|---|---|---|---|---|
+| openai | 6 | 6 | 6 | 0 | 0 |
+| inclusion ai | 4 | 1 | 0 | 2 | 2 |
+| anthropic | 3 | 0 | 3 | 0 | 0 |
+| nvidia | 2 | 1 | 0 | 1 | 1 |
+| epoch ai | 1 | 1 | 0 | 0 | 1 |
+| google deepmind | 1 | 1 | 0 | 1 | 0 |
+| meta | 1 | 1 | 1 | 0 | 0 |
+| metr | 1 | 0 | 1 | 0 | 0 |
+| mistral | 1 | 0 | 0 | 1 | 0 |
+| redwood research | 1 | 0 | 0 | 1 | 0 |
+| xai | 1 | 1 | 1 | 0 | 0 |
+| all publishers | 22 | 12 | 12 | 6 | 4 |
 
-- OpenAI dates most of its edits: system-card change logs (one correction propagated with its log into five PDFs) and dated update lines on web pages. Meta's dated note is this week's ExploitGym correction. xAI's Grok 4.6 revision carries a change log, yet the classifier called three of its score corrections silent; the rule files it under "dated note".
-- Hugging Face model cards are edited most and annotated least: of inclusionAI's and NVIDIA's 25 substantive edits, one carries a dated notice.
-- Only the Midas Project's hand-curated Watchtower logs such edits publicly, with disclosed and undisclosed tags; it is a lower bound, as is this count.
+- OpenAI's six are all dated; five are one erratum (GPT-5.5 pass@4 on hard-negative protein binding, 0.4% to 1.48%) carried into five PDFs with the same 19 August change log. A document-level change log counts as dated even where the classifier called the specific correction quiet (A12, A50).
+- Score corrections not noted as dated: NVIDIA's VoiceChat tool-calling accuracy, 44.2% to 42.2% (A6); inclusionAI's UI-Venus attack success rate on the OSBlind benchmark, 18.5% to 48.8% (A24); Google DeepMind's Gemini 4 Argon safety report revising its evaluation-awareness rates (A77); Epoch AI's pre-Mythos monthly record of disclosed vulnerabilities (CVEs), about 440 to 490 (A81).
+- Wording corrections not noted as dated: Mistral's active-parameter count, Redwood's softened control claim, inclusionAI's context window and parameter flip-flop, NVIDIA's chat-template note. The dated ones are Anthropic's three and METR's this week.
+- 15 of the 22 carry the classifier's safety flag. Disclosure classes read the classifier's text, not the page.
 
-![Substantive publisher-side changes since 11 August 2026 by what the classifier summary says about disclosure, for publishers with at least three.](figures/fig_disclosure.png)
+![Every substantive change carrying the correction flag since 11 August 2026, by publisher and detection date. Colour: what the classifier's text says about disclosure.](figures/fig_corrections.png)
 
-## New documents: 10 added, median 1.8 days after publication
+## New documents: 7 added, all but one within a day of publication
 
 | Tracked since | Publisher | Type | Document | Published | Lag (days) | Lead source |
 |---|---|---|---|---|---|---|
-| 2026-10-25 | moonshot ai | model card | [Kimi K3.1 Pro Tech Blog: Advancing Open Intelligence](https://systemcards.org/docs/moonshot-ai-kimi-k3-1-pro-model-card.html) | 2026-10-23 | 2 | agent search |
-| 2026-10-25 | tencent hunyuan | model card | [Hy-Nomas: Towards Free-Form Interactive World Generation (...](https://systemcards.org/docs/tencent-hunyuan-hy-nomas-model-card.html) | 2026-10-21 | 4 | phase a |
-| 2026-10-26 | nvidia | model card | [NVIDIA Nemotron 3.5 Bolt E4B 4GB model card](https://systemcards.org/docs/nvidia-nemotron-3-5-bolt-e4b-4gb-model-card.html) | 2026-10-23 | 3 | agent search |
-| 2026-10-26 | zai | model card | [GLM-Image model card](https://systemcards.org/docs/zai-glm-image-model-card.html) | 2026-01-14 | 285 | agent search |
-| 2026-10-26 | rand | independent eval | [AI agents put offensive cyber within reach of novices: Com...](https://systemcards.org/docs/rand-claude-opus-4-6-independent-eval.html) | 2026-06-25 | 123 | agent search |
-| 2026-10-27 | openai | addendum | [Addendum to GPT-6 Astra System Card: GPT-6.1 Terra](https://systemcards.org/docs/openai-gpt-6-1-terra-addendum.html) | 2026-10-26 | 1 | phase a |
-| 2026-10-27 | securebio | independent eval | [ReproBAIT: A Benchmark for Reproducing Biological AI Tools](https://systemcards.org/docs/securebio-claude-opus-5-independent-eval.html) | 2026-10-26 | 1 | phase a |
-| 2026-10-27 | uk aisi | independent eval | [Can AI coding agents rebuild biological AI tools from a pa...](https://systemcards.org/docs/uk-aisi-claude-opus-5-independent-eval.html) | 2026-10-26 | 1 | phase a |
-| 2026-10-28 | inclusion ai | model card | [Ling-3.1-flash-1019 model card](https://systemcards.org/docs/inclusion-ai-ling-3-1-flash-1019-model-card.html) | 2026-10-27 | 1 | phase a |
-| 2026-10-28 | google deepmind | access policy | [Genie 4: A new generation of world simulation](https://systemcards.org/docs/google-deepmind-genie-4-access-policy.html) | 2026-10-27 | 1 | phase a |
+| 2026-10-28 | fangcun ai | independent eval | [Evaluating DeepSeek V4.1 Flash-1017 for loss of control an...](https://systemcards.org/docs/fangcun-ai-deepseek-v4-1-flash-1017-independent-eval.html) | 2026-10-26 | 3 | manual |
+| 2026-10-29 | google deepmind | access policy | [Gemini 4 Carbon: our next frontier model](https://systemcards.org/docs/google-deepmind-gemini-4-carbon-access-policy.html) | 2026-10-28 | 1 | phase a |
+| 2026-10-29 | google deepmind | other | [Gemini 4 Carbon — Model evaluation: Approach, methodology ...](https://systemcards.org/docs/google-deepmind-gemini-4-carbon-other.html) | 2026-10-28 | 1 | phase a |
+| 2026-10-30 | openai | addendum | [Addendum to GPT-6 Luna System Card: October 29, 2026 Updat...](https://systemcards.org/docs/openai-gpt-6-luna-october-29-addendum.html) | 2026-10-29 | 1 | phase a |
+| 2026-10-30 | mistral | model card | [Le Chonk: Built for Coders, Trusted by Defenders (Mistral ...](https://systemcards.org/docs/mistral-mistral-large-4-model-card-2.html) | 2026-10-29 | 1 | phase a |
+| 2026-10-30 | epoch ai | independent eval | [AI can turn security fixes into working exploits before us...](https://systemcards.org/docs/epoch-ai-glm-5-3-independent-eval-2.html) | 2026-10-29 | 1 | phase a |
+| 2026-10-31 | openai | addendum | [GPT-Rosalind-6 System Card Addendum](https://systemcards.org/docs/openai-gpt-rosalind-6-addendum.html) | 2026-10-30 | 1 | phase a |
 
-- For safety readers: OpenAI's GPT-6.1 Terra addendum to the GPT-6 Astra system card; two evaluations of Claude Opus 5 rebuilding biological AI tools (SecureBio's ReproBAIT and the UK AI Security Institute's report); RAND's report on agents putting offensive cyber within reach of novices; Google DeepMind's Genie 4 access terms.
-- "Phase a" is the monitor's own index-diff candidate queue; "agent search" is the curation agent's free search, which found the two catch-ups (a RAND report from June, a GLM-Image card from January). The rest were tracked within five days of publication.
-- The corpus stands at 385 tracked documents from 33 publishers.
+- For safety readers: OpenAI's 29 October addendum to the GPT-6 Luna system card (safety and alignment evaluations) and its GPT-Rosalind-6 addendum (biological and chemical preparedness evaluations, trust-based access); Google DeepMind's Gemini 4 Carbon announcement, which says the model is in the US government's voluntary pre-release testing and reports cyber benchmarks "evaluated without guardrails", plus its evaluation PDF; Epoch AI's report that the open-weight GLM 5.3 exploited the Firefox patch gap without triggering any safeguard; Fangcun AI's DeepSeek V4.1 Flash-1017 evaluation, a new publisher's first document.
+- The corpus stands at 392 tracked documents from 34 publishers.
 
-## Tracker reliability: 40 clean runs in a row; openai.com still refuses the probe
+## Tracker reliability: 43 clean runs in a row; raw captures restored on the briefing host
 
-| Measure (as of 2026-10-28) | Value |
+| Measure (as of 2026-11-01) | Value |
 |---|---|
-| Runs since the last monitor outage (22 September) | 40 |
+| Runs since the last monitor outage (22 September) | 43 |
 | Runs this window with every link check failing | 0 |
-| Documents refused with HTTP 403 in every run this window | 16 |
-| Of which on openai.com (rest: help.openai.com) | 15 |
-| Consecutive days with every openai.com probe refused | 27 (since 2 October) |
-| Content re-fetches of openai.com pages during the streak: HTTP 200 / 403 | 52 / 4 |
+| Documents whose link probe got HTTP 403 in every run this window | 16 |
+| Of which on openai.com (the other is the Daybreak page on help.openai.com) | 15 |
+| Of the 16, with a successful content re-fetch (HTTP 200) since 2 October | 14 |
+| Consecutive days with every openai.com probe refused | 30 (since 2 October) |
+| Content re-fetches of openai.com pages during the streak: HTTP 200 / 403 | 58 / 7 |
 | Documents behind a permanent redirect / dead (404) | 10 / 1 |
-| Stored versions without a raw capture on the briefing host | 293 of 890 (all but one stored since 2 October) |
-| Monitor raw-capture checks of dropped lines (since 26 September / this window) | 36 / 7 |
+| Stored versions without a raw capture on the briefing host (previous edition) | 1 of 909 (293 of 890) |
+| Monitor raw-capture checks of dropped lines (since 26 September / this window) | 38 / 2 |
 
-- openai.com refuses the link probe; content re-fetches of the same pages mostly succeed, so edits there are still seen. Blocked: 10 access-policy pages, 6 other pages.
-- The heatmap shows the watched window per document. Grey columns are host-side outage runs, the last on 22 September. Purple rows are documents behind permanent redirects, four of them since 7 October, including the CVP page in the lead; the red row is the one dead document, a FAR.AI evaluation returning 404 since 26 September.
-- Raw captures of versions stored since 2 October are absent from the host that writes this briefing, so this edition could not re-read raw HTML for them. The extraction-drift labels above rest on the monitor's own fetch-time check.
+- Raw captures are now complete on this host except the hand-added Fangcun PDF, so the four Anthropic artefacts were verified directly.
+- That check fired on two of the four pairs and undercounted both: it reported 73 and 23 missing lines where 236 and 29 body lines were lost. The two pairs that lost only footnotes got no note.
+- Probe blocking does not stop content re-fetches: 14 of the 16 blocked pages were fetched with HTTP 200 since 2 October, the Daybreak page on 31 October with the Terra edit. Two openai.com posts added in mid-October have no successful fetch yet.
 
-![Link-check outcome per document (rows, grouped by publisher) and daily run (columns).](figures/fig_heatmap.png)
+![Link-probe outcome per document (rows, grouped by publisher) and daily run (columns). Grey columns: host-side outages, last 22 September. Purple rows: permanent redirects. The orange openai band is probe blocking; content re-fetches of 14 of those 16 pages succeeded.](figures/fig_heatmap.png)
 
 ## Method, caveats and provenance
 
-- Source: a read-only snapshot of the cardtrack database taken 2026-10-28. Numbers trace to `out/results.json`, `out/edition.json` and the tables above.
-- Every consecutive version pair is diffed on extracted text and labelled by a large language model (LLM) sub-agent following a written taxonomy; 376 labels are high confidence, 89 medium, 8 low. 22 labels were overridden after checks against raw captures in earlier editions.
+- Source: a read-only snapshot of the cardtrack database taken 2026-11-01T02:00Z; its last daily run is 31 October. Numbers trace to `out/results.json`, `out/edition.json`, `out/corrections.json` and the tables above.
+- Every consecutive version pair is diffed on extracted text and labelled by a large language model (LLM) sub-agent; of 485 labels, 385 are high confidence, 92 medium, 8 low. 26 labels carry an override record from checks against raw captures or sibling pairs, four added this week.
 - Change dates are detection dates. Content re-checks run on a rotation with a median gap of 6.0 days (90th percentile 13.0), so an edit can surface up to two weeks late.
-- Written by Claude Fable 5.1 without human review. Links go to the tracker's document pages, where stored versions can be diffed.
+- Written by Claude Fable 5.1 without human review. Links go to the tracker's document pages, where stored versions can be diffed; for the four Anthropic pages above, those diffs show extractor losses.
 
-## Appendix: every substantive change since 11 August (A1 to A87)
+## Appendix: every substantive change since 11 August (A1 to A90)
 
-Detection dates lag the edit by up to one re-check interval. Version ids refer to `document_versions` rows in the database. Summaries are the classifier's own text, acronyms included.
+Version ids refer to `document_versions` rows. Summaries are the classifier's own text.
 
 | Id | Detected | Publisher | Document and canonical URL | Category (flags), versions | What changed (classifier summary) |
 |---|---|---|---|---|---|
@@ -200,3 +198,6 @@ Detection dates lag the edit by up to one re-check interval. Version ids refer t
 | A85 | 2026-10-27 | inclusion ai | LLaDA2.2-flash model card<br>https://huggingface.co/inclusionAI/LLaDA2.2-flash | minor<br>v763→v980 | Deployment/SGLang placeholder ('coming soon') replaced with full SGLang install and launch_server instructions, including JointThresholdInDel decoding defaults; download counter bumped. |
 | A86 | 2026-10-27 | anthropic | Real-time cyber safeguards on Claude Opus and Sonnet<br>https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet | major (license, safety)<br>v889→v990 | CVP productization rules added: managed-service applications open, products interest-only; approval now needs workspace activation; Google Cloud requires Advanced AI Safety Addendum and data sharing. |
 | A87 | 2026-10-28 | google deepmind | Fairwind Program — Google DeepMind<br>https://deepmind.google/fairwind-program/ | minor (safety)<br>v835→v1001 | Access-request route changed from 'fill in our form' to 'contact your Cloud account team', adding a Google Cloud get-started link; one subheading dropped by extractor drift. |
+| A88 | 2026-10-29 | nvidia | NVIDIA Nemotron 3.5 Bolt 74B-A9B 24GB — Model Card<br>https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB | minor (score)<br>v858→v1017 | Benchmark table: Gemma4 comparison column relabeled 26B-A4B-IT-BF16; missing Gemma4 MCP-Atlas score filled in as 48.4. Download counter also changed. |
+| A89 | 2026-10-30 | metr | Red-Teaming OpenAI's Internal Agent Monitoring Systems<br>https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/ | minor (safety, correction)<br>v939→v1022 | Remediation claim softened from 'all production-safeguard vulnerabilities patched' to 'most patched, one fix in progress'; publication-delay footnote and Oct 29 update log added. |
+| A90 | 2026-10-31 | openai | OpenAI Daybreak: Trusted Access for Cyber — Overview<br>https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview | major (safety, scope)<br>v869→v1027 | New 'Using GPT-6.1 Terra with Daybreak' section; Terra requires explicit Daybreak Red enablement, no default to highest tier; Codex notes updated; typo/link-label fixes. |

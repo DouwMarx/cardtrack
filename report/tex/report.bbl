@@ -1,0 +1,48 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{The Midas Project}(2026)]{midas2026}
+{The Midas Project}.
+\newblock {AI Safety Watchtower}.
+\newblock themidasproject.com/watchtower, accessed 2026-09-22, 2026.
+
+\bibitem[{Pew Research Center}(2024)]{pew2024}
+{Pew Research Center}.
+\newblock When online content disappears.
+\newblock Technical report, Pew Research Center, May 2024.
+
+\bibitem[Garg et~al.(2024)Garg, Alam, Ayala, Nelson, and Weigle]{garg2024}
+Kritika Garg, Sawood Alam, Daniel Ayala, Michael~L. Nelson, and Michele~C.
+  Weigle.
+\newblock Some {URLs} are immortal, most are ephemeral.
+\newblock Web Science and Digital Libraries Research Group blog, Old Dominion
+  University, September 2024.
+\newblock ws-dl.blogspot.com, 2024-09-20.
+
+\bibitem[Klein et~al.(2014)Klein, Van~de Sompel, Sanderson, Shankar,
+  Balakireva, Zhou, and Tobin]{klein2014}
+Martin Klein, Herbert Van~de Sompel, Robert Sanderson, Harihar Shankar,
+  Lyudmila Balakireva, Ke~Zhou, and Richard Tobin.
+\newblock Scholarly context not found: One in five articles suffers from
+  reference rot.
+\newblock \emph{PLOS ONE}, 9\penalty0 (12):\penalty0 e115253, 2014.
+\newblock \doi{10.1371/journal.pone.0115253}.
+
+\bibitem[Gundelach et~al.(2026)Gundelach, M{\"u}hlhauser, and
+  Herrmann]{gundelach2026}
+Robin Gundelach, Michael M{\"u}hlhauser, and Dominik Herrmann.
+\newblock Detecting bot detection: Prevalence, techniques, and implications for
+  web measurement research.
+\newblock arXiv:2606.14525, 2026.
+
+\bibitem[Zittrain et~al.(2014)Zittrain, Albert, and Lessig]{zittrain2014}
+Jonathan Zittrain, Kendra Albert, and Lawrence Lessig.
+\newblock Perma: Scoping and addressing the problem of link and reference rot
+  in legal citations.
+\newblock \emph{Harvard Law Review Forum}, 127:\penalty0 176, 2014.
+
+\end{thebibliography}

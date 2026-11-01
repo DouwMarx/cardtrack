@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "anthropic-claude-opus-other",
+  "version": 1013,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Page re-rendered without HTML tables (32 to 0); extractor flattened tables, dropped bullets, IOC lists and some headings. All text still present in raw HTML.",
+  "safety_implication": "",
+  "notable": "The extracted text appears to lose every indicator-of-compromise list and several tables from Anthropic's threat report, but the raw HTML still contains all of them; a text-only reader would wrongly conclude the IOCs were withdrawn.",
+  "confidence": "high"
+ }
+]

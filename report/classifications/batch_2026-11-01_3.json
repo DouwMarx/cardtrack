@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "anthropic-claude-mythos-preview-other-9",
+  "version": 1012,
+  "category": "extraction_noise",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Nine section headings now extracted; three footnote texts and newsletter/related-article chrome dropped. All body paragraphs and scores unchanged.",
+  "safety_implication": "",
+  "notable": "The three methodological footnotes (including the GeoGuessr human-baseline timing caveat) no longer appear in extracted text while the body still cites them, suggesting a page-template change rather than a content edit.",
+  "confidence": "medium"
+ }
+]

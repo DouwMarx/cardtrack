@@ -282,3 +282,39 @@ the day at the same request count; in the reverse order it mints furniture faste
   (v963, v968, v969, v987) lost the article title line and, on two, the customer or researcher
   testimonial blocks from the extracted text; the monitor's raw check attributed all four to the
   extractor. Section 9's regression-fixture proposal covers this.
+
+## 11. Additions from 2026-11-01
+
+- **Raw captures are back on the briefing host.** 908 of 909 stored versions have their `raw_path` file
+  under `data/raw/` (section 10 reported 293 missing). The one gap is v1011, the Fangcun AI PDF a
+  maintainer added by hand on 2026-10-28 from another machine. Proposal: have the manual `add` path
+  copy the capture into `data/raw/` like the monitor does, or have `snapshot.sh` report the count of
+  missing raw files so the briefing can say so.
+- **The anthropic.com div-table change now hits the threat-intelligence report (verified).** v549 to v1013 of
+  anthropic-claude-opus-other: 32 `<table>` elements in the old raw HTML, 0 in the new, 32 `role="table"`
+  divs instead. The extracted text lost every indicator-of-compromise table and list (236 removed lines
+  over 40 characters with no counterpart in the new extraction), while the page is unchanged. Three more
+  Frontier Red Team pages (v1012, v1014, v1015) lost footnotes and code listings the same day. All four
+  were checked against `data/raw/` and recorded as overrides. Same proposal as section 9: extract
+  `role="table"` grids and the new footnote markup; add v1013 as a regression fixture.
+- **Drift annotation undercounts and misses footnote-only losses (fifth and sixth case).** The monitor's
+  note said 73 lines for v1013 (236 lost) and 23 for v1014 (29 lost); v1012 and v1015, which lost only
+  footnotes and furniture, got no note at all, so a reader of the document page sees the footnotes
+  vanish with no explanation. Proposal (restated): count every dropped line, and emit the note whenever
+  all dropped lines are found in the new raw capture, not only when a threshold is met.
+- **Errata published as separate pages are invisible to version tracking.** SecureBio's erratum to its
+  GPT-6 Astra pre-release testing report (WCB 61.6% run with web search enabled, corrected to 59.2%)
+  lives at a new URL; the curation agent recorded it as a `related_urls` entry of kind `other`
+  (changelog 2026-10-31T06:23:15Z, document 312). The tracked Substack copy has one stored version. The
+  briefing could only quote the agent's justification text. Proposal: add a `related_urls` kind
+  `erratum`, store a capture of such pages, and surface them in the daily run summary so the briefing
+  can read the erratum itself.
+- **Link probe blocked while the content fetch succeeds, on the same page.** help.openai.com's Daybreak
+  page returned 403 to the link probe on every run since 2026-10-28, yet the 2026-10-31 content fetch
+  got HTTP 200 and stored v1027 (the GPT-6.1 Terra edit in the lead). openai.com shows the same pattern
+  (58 content fetches with 200 against 7 with 403 during the 30-day probe-blocked streak). Proposal: let
+  a successful content fetch count as a reachability observation for that run, so the heatmap does not
+  paint pages red that the tracker is in fact reading.
+- **Report-runner note.** `edition.py` carried a hand-edited `LAST_EDITION_SNAPSHOT`; it now reads
+  `published/meta.json` and falls back to the constant. The previous edition's `appendix_changes.md`
+  header row starts on line 3 of the file, not line 4; this edition's first HTML build failed on that.
