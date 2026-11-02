@@ -49,12 +49,12 @@
     <dt>First seen</dt>
     <dd>2026-10-26T06:24:33Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Phase A surfaced the HF repo on 2026-10-24 and that run skipped it as a size variant of Bolt 74B; re-evaluated under the 2026-10-05 document-unit clarification (separate card, separate base model).</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-3-5-bolt-e4b-4gb-model-card&amp;body=Document%3A%20nvidia-nemotron-3-5-bolt-e4b-4gb-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB%0AFingerprint%3A%2031af18cf68700a6eaa1f6c53dca2d27741d39e42637cfdcb68cf82e3a1c78041%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-3-5-bolt-e4b-4gb-model-card&amp;body=Document%3A%20nvidia-nemotron-3-5-bolt-e4b-4gb-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB%0AFingerprint%3A%2016d2a926780b128a654d9fd51eaccd2a342d6ce7aa74471fa3486a12bee70389%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-02T06:17:06Z</td>
+          <td>text/html</td>
+          <td>506,681</td>
+          <td><code title="16d2a926780b128a654d9fd51eaccd2a342d6ce7aa74471fa3486a12bee70389">16d2a926780b128a</code></td>
+<td><a href="https://data.systemcards.org/raw/c3c28c347789bb1f41b836cc23750b51cc2b3db3a885fd988bfa44057910cc26.html" rel="nofollow" title="archived copy, sha256 c3c28c347789bb1f41b836cc23750b51cc2b3db3a885fd988bfa44057910cc26">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-26T06:24:33Z</td>
           <td>text/html</td>
@@ -78,7 +85,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +105,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://research.nvidia.com/labs/nemotron/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB/" rel="noopener nofollow">https://research.nvidia.com/labs/nemotron/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB/</a> · <a href="https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-Technical-Report.pdf" rel="noopener nofollow">https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-Technical-Report.pdf</a> · <a href="https://benchlm.ai/model-updates" rel="noopener nofollow">https://benchlm.ai/model-updates</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-02T06:17:06Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-02T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB" rel="noopener nofollow">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB</a>          </div>
       </li>
     </ol>
     </details>
@@ -120,7 +135,8 @@ model = AutoModel.from_pretrained(&#34;nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB&#
 - Google Colab
 - Kaggle
 - Local Apps Settings
--  llama.cpp  How to use nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB with llama.cpp: Install (macOS, Linux)curl -LsSf https://llama.app/install.sh | sh # Start a local OpenAI-compatible server with a web UI: llama serve -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: llama cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Install from WinGet (Windows)winget install llama.cpp # Start a local OpenAI-compatible server with a web UI: llama serve -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: llama cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Use pre-built binary# Download pre-built binary from: # https://github.com/ggerganov/llama.cpp/releases # Start a local OpenAI-compatible server with a web UI: ./llama-server -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: ./llama-cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Build from source codegit clone https://github.com/ggerganov/llama.cpp.git cd llama.cpp cmake -B build cmake --build build -j --target llama-server llama-cli # Start a local OpenAI-compatible server with a web UI: ./build/bin/llama-server -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: ./build/bin/llama-cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Use Dockerdocker model run hf.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M
+-  llama.cpp  How to use nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB with llama.cpp: Install (macOS, Linux)curl -LsSf https://llama.app/install.sh | sh # Start a local OpenAI-compatible server with a web UI: llama serve -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: llama cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Install from WinGet (Windows)winget install llama.cpp # Start a local OpenAI-compatible server with a web UI: llama serve -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: llama cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Build from source codegit clone https://github.com/ggml-org/llama.cpp.git cd llama.cpp cmake -B build cmake --build build -j --target llama-app # Start a local OpenAI-compatible server with a web UI: ./build/bin/llama serve -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M # Run inference directly in the terminal: ./build/bin/llama cli -hf nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M Use Dockerdocker model run hf.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB:Q4_K_M
+- Llama new
 - LM Studio
 - Jan
 -  vLLM  How to use nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB with vLLM: Install from pip and serve model# Install vLLM from pip:
@@ -759,7 +775,7 @@ We advise against circumvention of any provided safety guardrails contained in t
 For more detailed information on ethical considerations for this model, please see the Model Card++ Bias, Explainability, Safety &amp; Security, and Privacy Subcards.
 Please report model quality, risk, security vulnerabilities or NVIDIA AI Concerns here.
 - Downloads last month
-- 17,599
+- 83,901
 4-bit
 Model tree for nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB
 Base model
@@ -768,6 +784,6 @@ google/gemma-4-E4B</pre>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-01T06:21:27Z</p></footer>
+<footer><p>Data updated 2026-11-02T06:19:57Z</p></footer>
 </body>
 </html>

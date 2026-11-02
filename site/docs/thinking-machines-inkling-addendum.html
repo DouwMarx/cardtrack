@@ -51,10 +51,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T21:27:56Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-inkling-addendum&amp;body=Document%3A%20thinking-machines-inkling-addendum%0AURL%3A%20https%3A//thinkingmachines.ai/blog/a-safe-path-to-open-weights/%0AFingerprint%3A%20fc63eb5e528a8dc63e12520e9116fd360645fcc5da3bfd7084d8695139566cd3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-inkling-addendum&amp;body=Document%3A%20thinking-machines-inkling-addendum%0AURL%3A%20https%3A//thinkingmachines.ai/blog/a-safe-path-to-open-weights/%0AFingerprint%3A%20d512090020ee9c179f7671de9facf54d247b567be11d9ef35790338888f7ba70%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-02T06:17:15Z</td>
+          <td>text/html</td>
+          <td>73,789</td>
+          <td><code title="d512090020ee9c179f7671de9facf54d247b567be11d9ef35790338888f7ba70">d512090020ee9c17</code></td>
+<td><a href="https://data.systemcards.org/raw/c7d6b9dbbec24a4bbb3d89b58274635349e49d6486068d18f67124914c22acca.html" rel="nofollow" title="archived copy, sha256 c7d6b9dbbec24a4bbb3d89b58274635349e49d6486068d18f67124914c22acca">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-22T06:19:09Z</td>
           <td>text/html</td>
@@ -86,7 +93,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 6 changelog entries
+    <summary>Show 7 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -144,6 +151,14 @@
           <div class="just">risk_domains: ["cbrn", "cyber", "loss_of_control", "safeguard_robustness", "societal_harm"] → ["cbrn", "cyber", "loss_of_control", "societal_harm"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-11-02T06:17:15Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-02T06:15Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/" rel="noopener nofollow">https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -153,7 +168,7 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>Abstract: Safe open-weight models are public goods, as they put AI development and safety work in many hands and make training choices inspectable. Open models also carry real misuse risks, and release is irreversible. To release safely, we must consider both the model and the ecosystem it enters. For the model, we conduct robust safety testing and research whether dangerous capabilities can be decoupled from general intelligence. For the ecosystem, we invest in its readiness through staged releases, supporting defenders, and collaboration with safety researchers. By iteratively choosing the most open option the evidence supports while building up the ecosystem&#39;s resilience, we can move toward openness safely.
+      <pre class="extracted" data-pagefind-body>Abstract: Safe open-weight models are public goods, as they put AI development and safety work in many hands and make training choices inspectable. Open models also carry real misuse risks, and release is irreversible. To release safely, we must consider both the model and the ecosystem it enters. For the model, we conduct robust safety testing and research whether dangerous capabilities can be decoupled from general intelligence. For the ecosystem, we invest in its readiness through staged releases, supporting defenders, and collaboration with safety researchers. By iteratively choosing the most open option the evidence supports while building up the ecosystem’s resilience, we can move toward openness safely.
 The mission of Thinking Machines is to build AI that extends human will and judgment. In pursuit of that mission, we recently released Inkling and Inkling-Small, two open-weight language models that anyone can own, run, and customize.
 Strong open-weight models put AI development in many hands. We believe that this is a good thing: the knowledge of what AI should do lives with the people doing the work, so they should be able to shape their models directly. All models, including our own, carry the assumptions and biases of those who trained it; open weights make those choices inspectable and revisable. Without strong open models, training and deployment expertise risks becoming concentrated in a few labs, leaving everyone else less able to understand, adapt, or govern the technology.
 Open-weight models carry misuse risks
@@ -192,7 +207,7 @@ Fine-tuning APIs like Tinker add a stage between inference access and open weigh
 Each stage does specific work:
 - Give defenders early inference access, so they can find weaknesses, patch systems, and anticipate future misuse. Anthropic’s Project GlassWing did this with Claude Mythos Preview by providing early access to a small group of trusted organizations to allow them to prepare defenses before the model reached the public. This mirrors responsible disclosure in security, where vendors get a private window to ship patches before a flaw goes public.
 - Give vetted defenders fine-tuning access so they can build and strengthen the layers that detect and block risks. The winning DARPA AI Cyber Challenge team fine-tuned a model to find and fix software vulnerabilities; OpenAI’s gpt-oss-safeguard models are fine-tuned from open gpt-oss weights into policy-guided safety classifiers. Both are defensive layers built by fine-tuning—and accessible fine-tuning is what lets defenders everywhere build their own.
-- Give vetted safety researchers white-box access to encourage novel safety work. We understand how shallow refusal safeguards are — bypassable through adversarial token-level optimizationUniversal and Transferable Adversarial Attacks on Aligned Language Models (Zou et al, 2023), removable via a single direction in activation spaceRefusal in Language Models Is Mediated by a Single Direction (Arditi et al, 2024), and concentrated in just the first few output tokens Safety Alignment Should Be Made More Than Just a Few Tokens Deep (Qi et al, 2024) — only because researchers could study open weights directly. Fine-tuning also lets us study the true capability ceilings of models in dangerous domains.Estimating Worst-Case Frontier Risks of Open-Weight LLMs (Wallace et al, 2025) Similar to crash testing for cars, white-box testing lets us study model failure modes in-depth, under controlled conditions, to prevent real-world harm.
+- Give vetted safety researchers white-box access to encourage novel safety work. We understand how shallow refusal safeguards are—bypassable through adversarial token-level optimizationUniversal and Transferable Adversarial Attacks on Aligned Language Models (Zou et al, 2023), removable via a single direction in activation spaceRefusal in Language Models Is Mediated by a Single Direction (Arditi et al, 2024), and concentrated in just the first few output tokens Safety Alignment Should Be Made More Than Just a Few Tokens Deep (Qi et al, 2024)—only because researchers could study open weights directly. Fine-tuning also lets us study the true capability ceilings of models in dangerous domains.Estimating Worst-Case Frontier Risks of Open-Weight LLMs (Wallace et al, 2025) Similar to crash testing for cars, white-box testing lets us study model failure modes in-depth, under controlled conditions, to prevent real-world harm.
 - Give the public monitored access before opening fully, so we can assess misuse patterns that may appear once controls come off, and support the ecosystem to prepare in advance.
 These stages are not a fixed sequence that automatically ends with releasing the model’s weights. Instead, we think of them as a way to gather evidence and build resilience while moving towards greater openness. Progression should depend on what we learn about the model and whether the surrounding ecosystem is ready.
 This post offers a high-level framework, not a complete release standard. Important questions remain: what evidence should justify moving from one stage to the next, how uncertainty should affect that decision, what changes in capability or accessibility should pause progression, and how ecosystem readiness should be measured. We plan to publish a more detailed framework covering evaluations, access criteria, and stop conditions as we learn from Inkling and future models.
@@ -204,6 +219,6 @@ We will shortly launch Tinker safety grants: funding for the community to streng
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-01T06:21:27Z</p></footer>
+<footer><p>Data updated 2026-11-02T06:19:57Z</p></footer>
 </body>
 </html>
