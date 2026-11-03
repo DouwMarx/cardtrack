@@ -1,0 +1,10 @@
+April 28, 2026Blog
+Deprecatedv26.04
+Mistral Medium 3.5
+Our frontier-class multimodal model optimized for agentic and coding use cases. Released as open weights under a Modified MIT license.
+Context
+256k
+This model is deprecated. Use Mistral Large 4 for new integrations.
+Deprecation date10/31/2026
+ReplacementMistral Large 4
+Other Models
