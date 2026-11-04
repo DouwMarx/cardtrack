@@ -2008,3 +2008,13 @@ Evidence: friction entry 2026-10-15T06:26:58Z. HF API for stepfun-ai/Step-5-Prev
 - A scope note: "MAI-* first-party models (MAI-Thinking, MAI-Code, MAI-Image, MAI-Voice) with model cards. NOT: Azure-hosted third-party models, Phi small-model HF repos unless announced with a card, Copilot product feature posts."
 - Then backfill the existing microsoft.ai/pdf model cards. Phi should be decided separately (huggingface.co/microsoft is a large mixed org).
 
+---
+
+## 2026-11-04 — Mark truncated version diffs explicitly
+
+Problem: precomputed diffs in `logs/version_diffs/` can stop silently long before the change set that `updated_docs.json` reports, and nothing marks them as truncated. On 2026-11-04 the GPT-6 Astra system card v1057 diff was 210 lines covering only the table-of-contents page shift, against substantive_lines 569. The real change was a new 2026-10-30 change-log entry recording SecureBio's corrected WCB score (61.6% to 59.2%) and the corrected figure in section 10.1.1. Neither appears in the diff. An agent that trusts the diff would label this score correction as page-number noise. This is the second occurrence: the Gemini 4 Argon v901 diff stopped mid-hunk on 2026-10-21 (friction 2026-10-21T06:28:26Z).
+
+Suggested change: when the diff writer caps output, append an explicit trailer such as `# TRUNCATED after N of M changed lines`. Expose `diff_truncated: true` in the `updated_docs.json` entry so the agent knows to read the stored version text. For PDFs, consider ordering hunks so that a single page-number shift (one changed line per TOC entry) does not consume the budget first, for example by collapsing TOC-only hunks.
+
+Evidence: `logs/version_diffs/openai-gpt-6-astra-system-card-v1057.diff` (ends at line 211 inside the TOC); the stored v1057 text in `data/text/003c5fbc…e60.txt`, lines 172-181 and 2666; friction entries 2026-10-21T06:28:26Z and 2026-11-04T06:25:25Z.
+

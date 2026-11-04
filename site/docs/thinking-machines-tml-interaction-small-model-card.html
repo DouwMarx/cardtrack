@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-17T06:24:20Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Research preview; no public weights. openness=closed verified two ways: huggingface.co/thinkingmachines carries only Inkling, Inkling-Small and their NVFP4 quantizations (no TML-Interaction repo), and a site-wide HF search for &#39;TML-Interaction&#39; returns zero repos, while the post itself describes a gated research preview collecting feedback and research-grant applications. Backlog find, not a new link: this URL has been sitting in logs/candidates.json with first_seen 2026-08-09T19:39:09Z, unproposed across every run since.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-tml-interaction-small-model-card&amp;body=Document%3A%20thinking-machines-tml-interaction-small-model-card%0AURL%3A%20https%3A//thinkingmachines.ai/blog/interaction-models/%0AFingerprint%3A%20a5f7b01011b6fb9dba008c77faa47cc947a3f9da3e744091f66716523898773b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-tml-interaction-small-model-card&amp;body=Document%3A%20thinking-machines-tml-interaction-small-model-card%0AURL%3A%20https%3A//thinkingmachines.ai/blog/interaction-models/%0AFingerprint%3A%20d9d516498ff6c6e092b84247a4f61e5b7b5c512e55f359adcdf5a4435b4d9dae%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-04T06:20:08Z</td>
+          <td>text/html</td>
+          <td>192,044</td>
+          <td><code title="d9d516498ff6c6e092b84247a4f61e5b7b5c512e55f359adcdf5a4435b4d9dae">d9d516498ff6c6e0</code></td>
+<td><a href="https://data.systemcards.org/raw/0cbc61ee330908b0669e9f66ac65557d848fa679edf9813efb672638ab23fcb4.html" rel="nofollow" title="archived copy, sha256 0cbc61ee330908b0669e9f66ac65557d848fa679edf9813efb672638ab23fcb4">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-24T06:22:03Z</td>
           <td>text/html</td>
@@ -82,7 +89,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -116,6 +123,14 @@
         <span class="run">run manual-20260831T101552Z · human</span>
           <div class="just">change_summary: null → "No substantive change detected (page furniture or extraction noise)."</div>
           <div class="just">Change-summary backfill (2026-08-31): drafted from the stored version diff.</div>
+      </li>
+      <li>
+        <span class="ts">2026-11-04T06:20:08Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-04T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener nofollow">https://thinkingmachines.ai/blog/interaction-models/</a>          </div>
       </li>
     </ol>
     </details>
@@ -152,10 +167,10 @@ Our approach
 An interaction model is in constant two-way exchange with the user—perceiving and responding at the same time. Some domains take such interactivity as a given—the physical world demands that robotics and autonomous vehicles operate in real time. Audio full-duplex modelsMoshi, PersonaPlex, nemotron-voicechat, Seeduplex. are another example where interaction is bidirectional and continuous.
 Applying the same principle, we set out to build an interaction model native to this regime—one that perceives and responds in the same continuous loop, across audio, video, and text. The result is a system architected around two ideas: a time-aware interaction model that maintains real-time presence, and an asynchronous background model that handles sustained reasoning, tool use, and longer-horizon work.
 System overview
-The interaction model is in constant exchange with the user. When a task requires deeper reasoning than can be produced instantaneously, the interaction model delegates to a background model that runs asynchronously.This approach builds upon prior work like Qwen-omni, KAME, MoshiRAG. The interaction model remains present throughout — answering follow-ups, taking new input, holding the thread — and integrates background results into the conversation as they arrive.
-This split lets the user benefit from both responsiveness as well as the full extent of intelligence: the planning, tool-use, and agentic workflows of reasoning models at the response latency of non-thinking ones. Note that both the background and interaction models are intelligent — on its own, the interaction model is also competitive on both interactive and intelligence benchmarks.
+The interaction model is in constant exchange with the user. When a task requires deeper reasoning than can be produced instantaneously, the interaction model delegates to a background model that runs asynchronously.This approach builds upon prior work like Qwen-omni, KAME, MoshiRAG. The interaction model remains present throughout—answering follow-ups, taking new input, holding the thread—and integrates background results into the conversation as they arrive.
+This split lets the user benefit from both responsiveness as well as the full extent of intelligence: the planning, tool-use, and agentic workflows of reasoning models at the response latency of non-thinking ones. Note that both the background and interaction models are intelligent—on its own, the interaction model is also competitive on both interactive and intelligence benchmarks.
 The interaction model
-Our starting point is continuous audio and video — modalities that are inherently real-time. Text can wait, but a live conversation cannot. By designing around the hardest case first, we arrive at an architecture that is natively multimodal, time-aware, and capable of handling concurrent input and output streams across all modalities. Several design choices make this possible.
+Our starting point is continuous audio and video—modalities that are inherently real-time. Text can wait, but a live conversation cannot. By designing around the hardest case first, we arrive at an architecture that is natively multimodal, time-aware, and capable of handling concurrent input and output streams across all modalities. Several design choices make this possible.
 Time-aligned micro-turns. The interaction model works with micro-turns continuously interleaving the processing of 200ms worth of input and generation of 200ms worth of output. Rather than consuming a complete user-turn and generating a complete response, both input and output tokens are treated as streams. Working with 200ms chunks of these streams enables near real-time concurrency of multiple input and output modalities.
 With this design, there are no artificial turn boundaries that the model must adhere to. In contrast, most existing real-time systems require a harness that predicts turn boundaries in order for the turn-based models to feel real-time and responsive.Moshi, PersonaPlex, and Nemotron Voicechat are examples of full duplex systems that do not use harnesses to detect turns. They are smaller scale models focused on latency rather than intelligence benchmarks. This harness is made out of components like voice-activity-detection (VAD) that are meaningfully less intelligent than the model itself. This precludes a variety of interaction modes like proactive interjections (“interrupt when I say something wrong”) or reactions to visual cues (“tell me when I’ve written a bug in my code”). Moreover, the model can do things like speak while listening (“translate from spanish to english live”) or watching (“live-commentate this sports game”).
 Thus, all of these different interaction modes that require special harnesses today become special-cases of what the model can do and improve in quality as we scale up model size and training data.
@@ -164,7 +179,7 @@ Inference optimization. At inference time, 200ms chunks require frequent prefill
 Trainer-sampler alignment. We’ve found bitwise trainer-sampler alignment to be useful for training stability as well as debugging the various components of our system. We implement batch-invariant kernels with minimal (&lt;5%) e2e performance overhead.Funnily enough, for some period of time using the batch-invariant kernels was actually faster e2e, due to the custom communication kernels which were not only batch-invariant but also much lower latency. To highlight two particular kernels:
 - All-reduce and reduce-scatter: We use NVLS to implement low-latency comm kernels which are deterministic on Blackwell, and achieve bitwise alignment between somewhat different parallelism strategies (i.e. Sequence Parallelism and Tensor Parallelism).
 - Attention: The primary challenge with attention is Split-KV, which can typically lead to inconsistent accumulation orders between decode and prefill.Work done in collaboration with Colfax However, we can maintain consistent accumulation order by choosing to split consistently between decode and prefill. For example, we could split SMs to process 4096 tokens at a time (left-aligned), achieving good efficiency in both prefill and decode.
-Coordination between interaction and background models. When the interaction model delegates, it sends a rich context package — not a standalone query, but the full conversation. Results stream back as the background model produces them, and the interaction model interleaves these updates into the conversation at a moment appropriate to what the user is currently doing, rather than as an abrupt context switch.
+Coordination between interaction and background models. When the interaction model delegates, it sends a rich context package—not a standalone query, but the full conversation. Results stream back as the background model produces them, and the interaction model interleaves these updates into the conversation at a moment appropriate to what the user is currently doing, rather than as an abrupt context switch.
 Safety. Because real-time interaction stresses safety differently than turn-based exchanges, our safety work focused on two axes: modality-appropriate refusals and long-horizon robustness. To make refusals colloquial in speech, we use a text-to-speech model to generate refusal and over-refusal training data covering a range of disallowed topics, with the refusal boundary calibrated to favor naturally-phrased, but no less firm, refusals. To improve robustness across extended speech-to-speech conversations, we used an automated red-teaming harness to generate multi-turn refusal data, while maintaining close behavioral parity with the model’s text-based refusals.
 Benchmarks
 Intelligence and interactivity frontier
@@ -227,6 +242,6 @@ Or use the BibTeX citation:
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-03T06:23:57Z</p></footer>
+<footer><p>Data updated 2026-11-04T06:25:06Z</p></footer>
 </body>
 </html>
