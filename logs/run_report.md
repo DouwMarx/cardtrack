@@ -1,89 +1,104 @@
-# cardtrack agent run — 2026-11-04 (run id 2026-11-04T06:16Z-local)
+# cardtrack agent run — 2026-11-05 (run id 2026-11-05T06:16Z-local)
 
-- **Lookback:** the last agent success was 2026-11-03T06:24:48Z, so the 72 h minimum applied (2026-11-01 to 11-04).
-- **Weekly retrospective sweep:** not run. Today is Wednesday.
+- **Lookback:** the last agent success was 2026-11-04T06:26:14Z, so the 72 h minimum applied (2026-11-02 to 11-05).
+- **Weekly retrospective sweep:** not run. Today is Thursday.
 - **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
+All 9 proposals were **written**.
+
 | Proposal | Verdict |
 |---|---|
-| add `https://securebio.substack.com/p/kimi-k31-pro-biology-capabilities` (SecureBio, `independent_eval`, 2026-11-03) | **written** → `securebio-kimi-k3-1-pro-independent-eval` (doc 427, v1060) |
-| annotate_version `openai-gpt-6-astra-system-card` v1057 | **written** |
-| annotate_version `openai-gpt-6-astra-system-card` v1057 (resubmitted correction) | **written** |
+| add ChatGPT Images 2.6 System Card (PDF, 2026-11-04) | written → `openai-chatgpt-images-2-6-system-card` (doc 428, v1061) |
+| field_update `moonshot-ai-kimi-k3-1-pro-model-card` openness closed → open_weight_restrictive | written |
+| field_update `moonshot-ai-kimi-k3-1-pro-model-card` related_urls (+ HF weights) | written |
+| field_update `securebio-kimi-k3-1-pro-independent-eval` openness closed → open_weight_restrictive | written |
+| add OpenAI misalignment report "Suppressing misalignment monitoring alerts and disabling misalignment monitoring" (GPT-6.1 Sol, GPT-6 Astra; 2026-10-20) | written → `openai-gpt-6-1-sol-other` (doc 429) |
+| add OpenAI misalignment report "Circumventing internet restrictions through an external browser" (internal research model; 2026-10-15) | written → `openai-openai-internal-research-model-other-5` (doc 430) |
+| add OpenAI misalignment report "Accessing and changing internal systems during dashboard research" (HPIM; 2026-10-15) | written → `openai-hpim-openai-highly-persistent-internal-model-other-3` (doc 431) |
+| add OpenAI misalignment report "Unauthorized communication via temporary file hosting services" (unreleased internal model; 2026-09-16) | written → `openai-openai-unreleased-internal-model-other` (doc 432) |
+| add OpenAI "Periodic Summary of Internal Use Catastrophic-Risk Assessments" (Jun 4 – Sep 4, 2026; publication_date null) | written → `openai-gpt-6-astra-other-4` (doc 433) |
 
-About the SecureBio add:
-- **Results reported:**
-  - Bio Capabilities Index 149 (CI 144–156): 2nd of 36 open-weight models, 19th overall.
-  - BioTIER-refuse 33.6% (Kimi K3: 26.9%) and BioTIER-permit 99.9%.
-  - VCT-v2 46.2%, MBCT 60.7%, WCB 51.5%, HPCT 63.5%.
-  - It notes that Moonshot published no system card or safety report for K3.1 Pro.
+**ChatGPT Images 2.6:**
+- **Canonical URL:** the PDF is canonical; the deploymentsafety HTML page is recorded as `web_version`.
+- **Content:**
+  - 3,077-prompt adversarial eval for Sunburst and Flare vs their 2.5 baselines. Flare's unblocked-unsafe rate went from 1.49% to 2.14%, not statistically significant.
+  - GIF moderation recall of 77.7%.
+  - An image-modality Preparedness assessment: neither model crosses Bio High or Cyber High, and precautionary High-bio mitigations are applied.
 - **Fields set:**
-  - risk_domains: cbrn
-  - has_safety_evals: true
-  - openness: closed. The moonshotai account on Hugging Face has no K3.1 repo yet; its newest is Kimi-K3, from 06-13. One search summary claimed the weights were released on 10-26, but the HF API contradicts it.
-- **Follow-up:** Moonshot promised the weights "by November 4". If they land, openness should become open_weight_*, which needs a later field_update.
-- **Canonical URL and related URLs:**
-  - The Substack post is canonical, following the Gemini 4 Argon precedent.
-  - The securebio.org copy is recorded as `web_version`.
-  - Kimi's launch post is recorded as `other`.
-- **Authors:** Shiv Muthupandiyan and Farhan Azam.
+  - risk_domains: cbrn, cyber, societal_harm
+  - openness: closed
+- **Tag choice:** I did not carry over `harmful_manipulation` from the 2.5 row. Provenance is described there, not evaluated.
 
-About the Astra v1057 annotation:
-- **What changed:** a new change-log bullet dated 2026-10-30. SecureBio corrected Astra's WCB score from 61.6% to 59.2%, because the original run had web search enabled. Section 10.1.1 now reads 59.2% vs 67.6% for GPT-5.6 Sol.
-- **Why I resubmitted:** my first summary misnamed the comparator as "GPT-6 Sol". The resubmission fixes it. Both were written, so please check that the second one superseded the first.
-- **Diff truncated:** the precomputed diff showed only the TOC page shift. I found the real change by reading the stored version text. Friction and a proposal are filed (below).
+**Kimi K3.1 Pro (follow-up from yesterday):**
+- **Weights released:** `moonshotai/Kimi-K3.1-Pro` went up on HF on 2026-11-02 (repo createdAt). The README calls it open-weight.
+- **License:** the custom "Kimi K3.1-Pro License". It is an MIT-style grant, but Model-as-a-Service operators with more than $20M revenue need a separate agreement for commercial use, and large products must carry attribution. That makes it use-restricted, so I set `open_weight_restrictive` on both rows.
+- **Related URLs:** the existing quickstart URL kept its original kind `other` with no note (checked against the 10-25 transcript), so nothing was lost when the list was replaced.
 
-## Phase A candidates (11 first seen today)
+**OpenAI misalignment reports:**
+- **Lead:** today's Phase A Redwood post "OpenAI agents keep disabling monitoring". A search for its source turned up four hub reports that the DB had never seen.
+- **Hub page:** the index at alignment.openai.com/misalignment-reports/ is client-rendered, so read_doc sees no list.
+- **Openness:** the Sol/Astra report is `closed`, since both models are on the public API and the incidents were in internal deployment. The other three cover internal-only models, so they are `restricted`.
+- **Publication dates:** I used each page's "Report updated" date. That is the only date the pages show.
+- **Precedent caveat:** the 09-16 file-hosting report is probably one of the five 09-16 internal-model reports the 09-25 run skipped under the named-model gate.
+  - The PROPOSALS entry of 2026-09-29 is still unresolved.
+  - The corpus has since added three more "OpenAI internal research model" reports (10-09), so I followed that precedent.
+  - If the operator picks option (b) there, docs 430 and 432 should be reviewed together with doc 354.
 
-One was proposed: the SecureBio K3.1 Pro assessment. The securebio.org duplicate of the same post went into related_urls, not a second row.
+**Internal-use risk summary (doc 433):**
+- **What it is:** the public version of OpenAI's quarterly SB 53 report to California OES, cited by the Redwood post.
+- **Content:** per-threat assessments for GPT-6 Astra and an unreleased "Internal Model" covering cyber, AI R&D sabotage, CBRN, weight exfiltration and rogue internal deployment.
+- **Publication date:** the PDF has no date. It cites a 2026-09-25 publication, so it came out on or after that date. openai.com/trust-and-transparency/ returned 403, and I could not read HTTP headers, so I submitted `null`, which routes it to review.
+- **Earlier edition:** the `_2026_1.pdf` URL returns 404.
 
-Skipped:
-- **DeepMind "Agentic cheminformatics with Google Antigravity":**
-  - It is a capability walkthrough with no named model and no measured results.
-  - It mentions an application offer (10,000 scientists get the top Antigravity tier free). There is still no named model, and the Antigravity science page is already a related URL on `google-deepmind-gemini-co-scientist-access-policy`.
-- **MiniMax `agent.minimax.io`:** a product page for MiniMax Code.
-- **nvidia/NVIDIA-NemotronLabs-AI-for-Media-Sports-Basketball:** a domain application model with no safety evals. That is not a covered class under the NVIDIA scope note.
-- **Discussion threads:**
-  - Cosmos3 docs fix
-  - isaacsim-assets
-  - Ling-3.1-flash modeling fix
-  - ConceptEdit-12M licensing question
-- **Profiles:** HF @arthurzzZ and Substack @farhanazam.
+## Phase A candidates (26 first seen today)
 
-Everything first seen before today was triaged in earlier runs.
+- **Proposed:**
+  - ChatGPT Images 2.6.
+  - Kimi-K3.1-Pro HF repo, as field updates to existing rows rather than an add (same model as the catalogued Kimi blog card).
+  - Redwood "OpenAI agents keep disabling monitoring", used as a citation lead only. It is commentary on OpenAI's reports, not an independent eval, so it does not pass the system-card test.
+- **Skipped:**
+  - **Anthropic "Investigating vault particles with Claude":** a science showcase with no model evaluation.
+  - **nvidia/NV-Raw2Insights-US:** a small ultrasound CNN, not a covered class.
+  - **Other nvidia items:** USDCraft-10K dataset, isaacsim-assets discussion #10, paper 2611.05306.
+  - **MiniMax-M3.1-Flash discussion #7:** a community eval-results PR.
+  - **Epoch items:** "TPU production doubling" (data insight) and "ECI Bayesian methodology" (methodology, no model eval).
+  - **Profiles:** HF @bigmoyan and @FuryMartin, Substack @alecharris27.
+- **Earlier candidates:** everything first seen before today was triaged in earlier runs.
 
-## Targeted search (11-01 to 11-04)
+## Targeted search (11-02 to 11-05)
 
-Nothing else to add.
-- **OpenAI "Broad access through consistent standards":** it covers the usage policy that takes effect 11-20 (gateway/router approval, SafetyID). Per search, it is a general policy update with no named model. It is also unreadable (403 from read_doc and WebFetch), so I skipped it.
-- **Qwen 4:** still unshipped.
-- **Pre-deployment evals:** METR, AISI, Apollo and Epoch have nothing new.
-- **Access programs:** search found nothing new for CVP, Fairwind, TAC or Daybreak beyond what is catalogued.
+- **Searched for:**
+  - system/model cards from Anthropic, Google DeepMind, xAI, Meta, Mistral, Qwen and DeepSeek;
+  - AISI, METR and Apollo evals;
+  - restricted-access programs (CVP, Daybreak, Mythos, Rosalind).
+- **Found:** nothing new beyond the OpenAI items above.
+- **Already catalogued:** the CVP expansion (10-06), Gemini 3.8 Flash and Flash Cyber, and Gemini 4 Argon.
+- **"DeepSeek V4.1 Flash 1017 Cyber":** a refusal-removed listing on a third-party inference host, not a DeepSeek release. Skipped.
+- **OpenAI "Daybreak models are now available on AWS":** read via read_doc using browser impersonation. It dates to about 2026-08-11 per the AWS posts and is a distribution-channel post for the already-catalogued Daybreak program. Skipped.
+- **Mythos 5.5 / Fable 5.5:** only leak coverage so far, nothing released.
 
 ## Citation mining
 
-- **SecureBio K3.1 Pro post:** cites the Kimi K3.1 Pro launch post (in the DB) and the SecureBio dashboard (not a document).
-- **Astra change log:** points to SecureBio's Astra erratum, which is already a related URL on `securebio-gpt-6-astra-independent-eval`.
-- **Result:** no new leads.
+- **Redwood post:** cites the monitoring incident report (added), the internal-use risk report (added), "How we detect frontier model misalignment" (in DB), the Hugging Face incident report (in DB), and the GPT-6 Astra system card (in DB).
+- **Images 2.6 card:** cites only its 2.0 and 2.5 predecessors, both in DB.
 
 ## Blocked-URL escalations (task 5)
 
-- **Phase A:** the same 16 openai.com / help.openai.com URLs returned 403 again (streaks 13 to 30).
-- **Agent-side check:** search still indexes path-to-astra, the Rosalind Academic Plan post and the Daybreak expansion post under their titles.
-- **Result:** the pages are alive, so there are no status changes.
+- **Phase A:** the same 16 openai.com / help.openai.com URLs returned 403 again (streaks 14 to 30).
+- **My own fetches:** read_doc got 403 on path-to-astra and introducing-gpt-rosalind.
+- **Alive check:** search still indexes the Rosalind Academic Plan post, low-resource-programming-languages and the Daybreak expansion post under their titles. The pages are alive, so there are no status changes.
 
 ## Document updates (task 6)
 
-- **v1056 (Fangcun, DeepSeek-V4.1-Flash-1017 eval):** noise. The PDF was re-rendered with scrambled figure-label extraction and one TOC page number moved from 85 to 84. Not annotated.
-- **v1057 (GPT-6 Astra system card):** substantive and annotated (above).
-- **Ranks 3 to 7** (v773, v924, v1015, v573, v578): judged noise in earlier runs, so I did not re-read them.
+There were no new versions. All 20 updated_docs entries (top five v1056, v773, v924, v1015, v573) were judged noise or annotated in earlier runs. Nothing was annotated.
 
 ## Friction and proposals
 
 Friction, three recurrences:
-1. Diff truncation (recurrence of 2026-10-21T06:28:26Z).
-2. The stale updated_docs entries (recurrence of 2026-11-03T06:24:15Z).
-3. The openai.com 403s (recurrence of 2026-11-03T06:24:15Z).
+1. The misalignment-report hub is still unwatched (recurrence of 2026-11-02T06:20:46Z).
+2. The openai.com 403s, now intermittent per URL (recurrence of 2026-11-04T06:25:28Z).
+3. The stale updated_docs entries (recurrence of 2026-11-04T06:25:26Z).
 
-New proposal: "Mark truncated version diffs explicitly" (2026-11-04).
+No new proposal. The hub-watching and named-model-gate proposals (2026-09-25 and 2026-09-29) are already filed.
