@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T15:58:11Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-gpt-5-6-sol-independent-eval&amp;body=Document%3A%20metr-gpt-5-6-sol-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-06-26-gpt-5-6-sol/%0AFingerprint%3A%20f1c9a65292a14fd3b4ef8f8343a5ad12c8fc8321daa9a8144d645818d5e4a2ab%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-gpt-5-6-sol-independent-eval&amp;body=Document%3A%20metr-gpt-5-6-sol-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-06-26-gpt-5-6-sol/%0AFingerprint%3A%206becb9cbef416b2c37094153928298f6bad5597cf2a6b44f01262b8290b1df4b%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-07T06:20:45Z</td>
+          <td>text/html</td>
+          <td>59,264</td>
+          <td><code title="6becb9cbef416b2c37094153928298f6bad5597cf2a6b44f01262b8290b1df4b">6becb9cbef416b2c</code></td>
+<td><a href="https://data.systemcards.org/raw/524cf0a273619668651a4e9fef3ebf93091ebac21774b011ad89b3ade118c517.html" rel="nofollow" title="archived copy, sha256 524cf0a273619668651a4e9fef3ebf93091ebac21774b011ad89b3ade118c517">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T15:58:11Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -138,6 +145,14 @@
           <div class="just">risk_domains: ["ai_rnd", "loss_of_control"] → ["loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-11-07T06:20:45Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-06-26-gpt-5-6-sol/" rel="noopener nofollow">https://metr.org/blog/2026-06-26-gpt-5-6-sol/</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -162,12 +177,13 @@ We consider this to be a reassuring sign about OpenAI’s ability to catch catas
 - Extensive monitoring of internal deployments that surfaced relevant incidents
 - Sharing information about internal incidents with METR
 If future models display much fewer undesirable propensities, we could become more concerned about catastrophic misalignment, as we’d be worried that models may have learned to evade detection. This seems especially plausible given that the incidents reported by OpenAI include attempts to instruct another instance to conceal evidence of misalignment, and a higher rate of attempts to deceive or circumvent restrictions, and that METR observed substantial situational awareness and reasoning about the evaluation environment. As training and iteration continues, we need to ensure the models aren’t just learning to be more successful at evading the monitoring system. This is impossible to validate in a traditional pre-deployment evaluation paradigm, as it requires deep access to internal systems.
+Footnotes
 -
-      We think it’s valuable for AI developers to be able to share specific technical details with third parties without this information being shared further, and it’s very reasonable for AI developers to review 3rd-party eval reports to ensure no accidental sharing of sensitive IP. We had an informal understanding with OpenAI that their review was checking for confidentiality / IP issues, rather than approving conclusions about safety or risk. We did not make changes to conclusions, takeaways or tone (or any other changes we considered problematic) based on their review. We are able to freely publish parts of the evaluation that depended only on information that is now public. However, we expect some readers will want us to note that OpenAI would have had the legal right to block us from sharing conclusions about risk that depended on non-public information. Given that, this evaluation shouldn’t be interpreted as robust formal oversight or accountability that the public can be relying on METR to provide. That being said, we think this evaluation is an excellent step forward and we are very supportive of prototyping the mechanics and content of third-party evaluation setups without the additional friction of a formalized oversight relationship. ↩</pre>
+      We think it’s valuable for AI developers to be able to share specific technical details with third parties without this information being shared further, and it’s very reasonable for AI developers to review 3rd-party eval reports to ensure no accidental sharing of sensitive IP. We had an informal understanding with OpenAI that their review was checking for confidentiality / IP issues, rather than approving conclusions about safety or risk. We did not make changes to conclusions, takeaways or tone (or any other changes we considered problematic) based on their review. We are able to freely publish parts of the evaluation that depended only on information that is now public. However, we expect some readers will want us to note that OpenAI would have had the legal right to block us from sharing conclusions about risk that depended on non-public information. Given that, this evaluation shouldn’t be interpreted as robust formal oversight or accountability that the public can be relying on METR to provide. That being said, we think this evaluation is an excellent step forward and we are very supportive of prototyping the mechanics and content of third-party evaluation setups without the additional friction of a formalized oversight relationship. ↩︎</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-06T06:27:15Z</p></footer>
+<footer><p>Data updated 2026-11-07T06:24:31Z</p></footer>
 </body>
 </html>

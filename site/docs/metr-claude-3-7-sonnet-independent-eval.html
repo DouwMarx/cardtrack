@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:55:58Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-3-7-sonnet-independent-eval&amp;body=Document%3A%20metr-claude-3-7-sonnet-independent-eval%0AURL%3A%20https%3A//metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/%0AFingerprint%3A%20bb0d89122e6263dc7435c69ffc854ca485a83bcac61e5498f936f0fcc3c495e3%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-3-7-sonnet-independent-eval&amp;body=Document%3A%20metr-claude-3-7-sonnet-independent-eval%0AURL%3A%20https%3A//metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/%0AFingerprint%3A%20fb511a62bd10e99b54239a2ab822c4e208105e5b8bdfc021fefafec79d586714%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-07T06:20:05Z</td>
+          <td>text/html</td>
+          <td>248,674</td>
+          <td><code title="fb511a62bd10e99b54239a2ab822c4e208105e5b8bdfc021fefafec79d586714">fb511a62bd10e99b</code></td>
+<td><a href="https://data.systemcards.org/raw/7a90c07e9730409b3b10d78db061ad6ce0a6aaf8bfe1ba057eee5de6a2864117.html" rel="nofollow" title="archived copy, sha256 7a90c07e9730409b3b10d78db061ad6ce0a6aaf8bfe1ba057eee5de6a2864117">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-18T06:17:47Z</td>
           <td>text/html</td>
@@ -91,7 +98,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -153,6 +160,14 @@
         <span class="ts">2026-10-18T06:17:47Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-10-18T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" rel="noopener nofollow">https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-07T06:20:05Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-07T06:16Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" rel="noopener nofollow">https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/</a>          </div>
@@ -282,24 +297,25 @@ Methodology. For each evaluation criterion (automated grader and maintainer merg
 Results. The automated grader gives substantially higher time horizons than maintainer review. For example, Claude Sonnet 4.5 has an approximately 50-minute time horizon according to the automated grader but only about an 8-minute time horizon according to maintainers—roughly a 7× overstatement. This level difference is our most robust finding from the time horizon analysis.
 Trend. Figure 12 plots time horizons against model release dates. We want to heavily caveat this figure. The only robust conclusion is that the level of time horizon is overstated by a large amount when using the automated grader versus maintainer review. Although it would be tempting to also conclude that the trend is slower under maintainer review, this finding is extremely noisy. The confidence interval for the difference in doubling time ranges from −158 months to 2 months, which is so wide that it is hard to take seriously. Moreover, this result is not very robust to different design decisions. Because SWE-bench data has fairly minimal time horizon dispersion, drawing robust, sufficiently powered conclusions about the rate of improvement is difficult.
 Summary. We find strong evidence that the level of time horizon is overstated by a large amount when using the automated grader versus maintainer review. However, we are unable to draw confident conclusions about the rate of improvement.
+Footnotes
 -
-      100% of golden patches pass the automated grader, so this adjustment makes no difference for scores given by the automated grader. ↩
+      100% of golden patches pass the automated grader, so this adjustment makes no difference for scores given by the automated grader. ↩︎
 -
-      Note we use runs taken prior to Epoch’s recent harness update. These scores tend to lag the scores given by model providers. Plausibly this implies the Epoch harness is less optimized to high scores on the benchmarks. We guess that this largely affects the automated and the maintainer scores equally, but this is an interesting question for future research. ↩
+      Note we use runs taken prior to Epoch’s recent harness update. These scores tend to lag the scores given by model providers. Plausibly this implies the Epoch harness is less optimized to high scores on the benchmarks. We guess that this largely affects the automated and the maintainer scores equally, but this is an interesting question for future research. ↩︎
 -
-      For the first few patches, we included these files but instructed maintainers to ignore them. After that point, we manually edited the patches to exclude the additional files. ↩
+      For the first few patches, we included these files but instructed maintainers to ignore them. After that point, we manually edited the patches to exclude the additional files. ↩︎
 -
-      Note that these 31 patches were not intentionally randomly selected, but rather occurred in the pilot and a secondary check. These patches are not included in the main analysis as they are treated as automated failures. ↩
+      Note that these 31 patches were not intentionally randomly selected, but rather occurred in the pilot and a secondary check. These patches are not included in the main analysis as they are treated as automated failures. ↩︎
 -
-      About 2% of the Epoch patches were corrupted and excluded from our analysis ↩
+      About 2% of the Epoch patches were corrupted and excluded from our analysis ↩︎
 -
-      We do not claim they cannot figure out the source of the patch. In particular, golden patches were merged into the repo, so that could be a giveaway to the source (although we do not reveal that the human patches are golden). Moreover, AI-written code often makes certain mistakes or employs certain styles that could allow maintainers to guess the source of the patch. ↩
+      We do not claim they cannot figure out the source of the patch. In particular, golden patches were merged into the repo, so that could be a giveaway to the source (although we do not reveal that the human patches are golden). Moreover, AI-written code often makes certain mistakes or employs certain styles that could allow maintainers to guess the source of the patch. ↩︎
 -
-      The maintainers are not told that these are the golden patches, only that some of the PRs that they will review are from humans. ↩</pre>
+      The maintainers are not told that these are the golden patches, only that some of the PRs that they will review are from humans. ↩︎</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-06T06:27:15Z</p></footer>
+<footer><p>Data updated 2026-11-07T06:24:31Z</p></footer>
 </body>
 </html>

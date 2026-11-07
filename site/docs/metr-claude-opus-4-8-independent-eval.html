@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:36:07Z</dd>
     <dt>Versions</dt>
-    <dd>4</dd>
+    <dd>5</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-8-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-8-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-07-21-expenditure-horizon/%0AFingerprint%3A%20d63ee6dcfce6c92cb92b6ce8ce3e2c79c600188edbe4805f5f917ae746555507%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-8-independent-eval&amp;body=Document%3A%20metr-claude-opus-4-8-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-07-21-expenditure-horizon/%0AFingerprint%3A%20fe30ce6681ed2ba077b43db57591a987eec9ce09a574161a9c7e713793bca9fb%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-07T06:20:02Z</td>
+          <td>text/html</td>
+          <td>162,589</td>
+          <td><code title="fe30ce6681ed2ba077b43db57591a987eec9ce09a574161a9c7e713793bca9fb">fe30ce6681ed2ba0</code></td>
+<td><a href="https://data.systemcards.org/raw/f6f4fffc18a56c53939c10990a5c35ab66c914cf2c7b799336c54b96ec138475.html" rel="nofollow" title="archived copy, sha256 f6f4fffc18a56c53939c10990a5c35ab66c914cf2c7b799336c54b96ec138475">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-18T06:17:45Z</td>
           <td>text/html</td>
@@ -98,7 +105,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 8 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -168,6 +175,14 @@
         <span class="ts">2026-10-18T06:17:45Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-10-18T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" rel="noopener nofollow">https://metr.org/blog/2026-07-21-expenditure-horizon/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-07T06:20:02Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-07T06:16Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" rel="noopener nofollow">https://metr.org/blog/2026-07-21-expenditure-horizon/</a>          </div>
@@ -463,22 +478,23 @@ Additionally, our setup does not run the exact code from the commit records. We 
 -
     The model returns logits, not a loss. The agent’s code must implement an eval_forward method that returns logits. The protected validator computes cross-entropy from those logits over a fixed validation set. This blocks agents from directly fabricating achieved validation loss.
 These hardening decisions were made after multiple rounds of elicitation and observing agents attempting to cheat on initial versions of our task in the above described ways.
+Footnotes
 -
-      AI capability growth has been heavily dependent on a long string of algorithmic efficiency wins, in addition to growth in training compute and training data. As an illustration, algorithmic progress has reduced the compute required to train a GPT-2-level LLM by around 700X since 2019 (tweet) and the financial cost has fallen farther due to reductions in the price of compute (itself partly due to algorithmic progress). ↩
+      AI capability growth has been heavily dependent on a long string of algorithmic efficiency wins, in addition to growth in training compute and training data. As an illustration, algorithmic progress has reduced the compute required to train a GPT-2-level LLM by around 700X since 2019 (tweet) and the financial cost has fallen farther due to reductions in the price of compute (itself partly due to algorithmic progress). ↩︎
 -
-      Note we wish to estimate the local returns to expenditure, and this can be approximated with a ratio between dollars and percentage-point improvement. A more global curve is likely to be a power law, discussed further below. ↩
+      Note we wish to estimate the local returns to expenditure, and this can be approximated with a ratio between dollars and percentage-point improvement. A more global curve is likely to be a power law, discussed further below. ↩︎
 -
-      RE-bench shows human and agentic scaling curves, against both time and expenditure (not including experiment compute), but does not calibrate agent ability by the intersection with the human curve. PaperBench does the same. METR’s time horizon paper (Kwa et al., 2025) calibrates a model’s time horizon against success rates over a set of problems, but without inference-scaling. ↩
+      RE-bench shows human and agentic scaling curves, against both time and expenditure (not including experiment compute), but does not calibrate agent ability by the intersection with the human curve. PaperBench does the same. METR’s time horizon paper (Kwa et al., 2025) calibrates a model’s time horizon against success rates over a set of problems, but without inference-scaling. ↩︎
 -
-      We could use a similar approach to measure the “calendar time” or the “number of queries to evaluation function” expenditure horizons, although we’d either need to convert these to dollars or pick a fixed budget for the other resources. ↩
+      We could use a similar approach to measure the “calendar time” or the “number of queries to evaluation function” expenditure horizons, although we’d either need to convert these to dollars or pick a fixed budget for the other resources. ↩︎
 -
-      RE-bench reports a few alternatives: compute time-budget (Figure 2); wall-clock time (Figure 5); expenditure (Figure 11). ↩
+      RE-bench reports a few alternatives: compute time-budget (Figure 2); wall-clock time (Figure 5); expenditure (Figure 11). ↩︎
 -
-      Thanks to Brendan Halstead for this observation. ↩</pre>
+      Thanks to Brendan Halstead for this observation. ↩︎</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-06T06:27:15Z</p></footer>
+<footer><p>Data updated 2026-11-07T06:24:31Z</p></footer>
 </body>
 </html>

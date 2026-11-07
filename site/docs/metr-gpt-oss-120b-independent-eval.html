@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:55:46Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-gpt-oss-120b-independent-eval&amp;body=Document%3A%20metr-gpt-oss-120b-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-04-01-fine-tuning-cot-controllability/%0AFingerprint%3A%209d87e598d474bd67fe780c04d1c2bbc645bb1c1ca51896eddc9e0953e97f1402%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-gpt-oss-120b-independent-eval&amp;body=Document%3A%20metr-gpt-oss-120b-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-04-01-fine-tuning-cot-controllability/%0AFingerprint%3A%2070b3e520338365a081e049009ae20d8064dda2b8e2c9b8cfa0d195ed241a0273%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-07T06:20:04Z</td>
+          <td>text/html</td>
+          <td>81,234</td>
+          <td><code title="70b3e520338365a081e049009ae20d8064dda2b8e2c9b8cfa0d195ed241a0273">70b3e520338365a0</code></td>
+<td><a href="https://data.systemcards.org/raw/5935dd0781f6c61e89b586f3b05392b0c80129c2138f0787170ec01b07bcac8b.html" rel="nofollow" title="archived copy, sha256 5935dd0781f6c61e89b586f3b05392b0c80129c2138f0787170ec01b07bcac8b">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:55:46Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 3 changelog entries
+    <summary>Show 4 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -111,6 +118,14 @@
         <span class="run">run manual-20260831T100834Z · human</span>
           <div class="just">risk_domains: [] → ["loss_of_control"]</div>
           <div class="just">Risk-domain backfill (2026-08-31 classification pass): Fine-tuning stress test of CoT controllability motivated by models evading CoT monitors; quantitative ReasonIF/CoTControl results — monitorability/control research per conventions</div>
+      </li>
+      <li>
+        <span class="ts">2026-11-07T06:20:04Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-04-01-fine-tuning-cot-controllability/" rel="noopener nofollow">https://metr.org/blog/2026-04-01-fine-tuning-cot-controllability/</a>          </div>
       </li>
     </ol>
     </details>
@@ -190,18 +205,19 @@ In this CoTControl example, both gpt-oss-20b and its finetune start out by follo
 SFT dataset examples
 We select two examples from our SFT datasets, random except for light filtering for shorter transcript examples. First we show an SFT example for GPT-OSS 120B with an uppercase ReasonIF instruction.
 Second, we show an SFT example for Qwen3-32B with a multilinguality ReasonIF instruction.
+Footnotes
 -
-      All plots in this post use 80% Wald confidence intervals. ↩
+      All plots in this post use 80% Wald confidence intervals. ↩︎
 -
-      As is discussed in Chen et al., it is possible for a model to be able to control its reasoning traces without this control being elicitable with prompt-specified instructions. As an example, a model could be intrinsically motivated to control its reasoning independent of the instructions given to it in the prompt. However, for the purpose of this note, we focus solely on reasoning instruction following, and leave other kinds of motivations for future work. ↩
+      As is discussed in Chen et al., it is possible for a model to be able to control its reasoning traces without this control being elicitable with prompt-specified instructions. As an example, a model could be intrinsically motivated to control its reasoning independent of the instructions given to it in the prompt. However, for the purpose of this note, we focus solely on reasoning instruction following, and leave other kinds of motivations for future work. ↩︎
 -
-      LR=1e-4, batch size=4, Adam optimization with beta1=0.9, beta2=0.95, LoRA rank=32, epochs=1 ↩
+      LR=1e-4, batch size=4, Adam optimization with beta1=0.9, beta2=0.95, LoRA rank=32, epochs=1 ↩︎
 -
-      For instruction types in ReasonIF, we mapped english_capital, json_format, and reasoning_language mapping to style, no_comma and number_words to suppression, and end_checker to addition. ↩</pre>
+      For instruction types in ReasonIF, we mapped english_capital, json_format, and reasoning_language mapping to style, no_comma and number_words to suppression, and end_checker to addition. ↩︎</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-06T06:27:15Z</p></footer>
+<footer><p>Data updated 2026-11-07T06:24:31Z</p></footer>
 </body>
 </html>

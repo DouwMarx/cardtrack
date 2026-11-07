@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T22:56:09Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-5-independent-eval-2&amp;body=Document%3A%20metr-claude-opus-4-5-independent-eval-2%0AURL%3A%20https%3A//metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/%0AFingerprint%3A%204c6f2d4b81e11a3bfa035cb67cd24bba167ddc3773c46122ccb501b0f85f270f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-claude-opus-4-5-independent-eval-2&amp;body=Document%3A%20metr-claude-opus-4-5-independent-eval-2%0AURL%3A%20https%3A//metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/%0AFingerprint%3A%2038ec9a56704f64c1289c27944446ab4eb650934238ebcb7f5c8fc75064b7c942%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-07T06:20:05Z</td>
+          <td>text/html</td>
+          <td>67,882</td>
+          <td><code title="38ec9a56704f64c1289c27944446ab4eb650934238ebcb7f5c8fc75064b7c942">38ec9a56704f64c1</code></td>
+<td><a href="https://data.systemcards.org/raw/b143cccce029b5d278208d99b608675ec603e3800c07c263780121a25eba112d.html" rel="nofollow" title="archived copy, sha256 b143cccce029b5d278208d99b608675ec603e3800c07c263780121a25eba112d">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-08-09T22:56:09Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 5 changelog entries
+    <summary>Show 6 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -126,6 +133,14 @@
           <div class="just">risk_domains: ["ai_rnd"] → ["loss_of_control"]</div>
           <div class="just">Taxonomy simplification: dropped safeguard_robustness (a mitigation layer, not a risk domain) and folded ai_rnd into loss_of_control per the 5-tag EU CoP mirror.</div>
       </li>
+      <li>
+        <span class="ts">2026-11-07T06:20:05Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-07T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/" rel="noopener nofollow">https://metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -171,20 +186,21 @@ Our wrappers of the Codex and Claude Code scaffolds are still rough around the e
 Conclusion
 From these results, I conclude that, for GPT-5 and Opus 4.5, using Codex and Claude Code doesn’t make a huge difference for the time horizon of the model. Combined with our results for other models in the past, this makes me think that the difference probably isn’t huge for other recent models either. I expect that we’ll keep periodically measuring the differences as new models come in.
 On some level, it’s not surprising that Codex and Claude Code don’t beat the default agents out of the park. Those scaffolds are mostly used in an interactive setting, where a human user often checks in on the agent’s work. In contrast, agents perform our time horizon tasks autonomously, without any human input. Also, the distribution of the types of tasks is probably moderately different in the real world compared to our task suite.
+Footnotes
 -
-      Before we switched our infrastructure from Vivaria to Inspect, we primarily used Triframe and Modular. Modular is very similar to ReAct. ↩
+      Before we switched our infrastructure from Vivaria to Inspect, we primarily used Triframe and Modular. Modular is very similar to ReAct. ↩︎
 -
-      We performed some initial experiments with Claude Code with Sonnet 3.7 in April 2025, as well as trying out Claude Code with Opus 4, and trying out Codex for the GPT-5.1-Codex Max report. We didn’t see major improvements over our scaffolds in any of these experiments. ↩
+      We performed some initial experiments with Claude Code with Sonnet 3.7 in April 2025, as well as trying out Claude Code with Opus 4, and trying out Codex for the GPT-5.1-Codex Max report. We didn’t see major improvements over our scaffolds in any of these experiments. ↩︎
 -
-      We originally developed Triframe to use with o1-preview, but I consider it mostly to be optimized around reasoning models in general rather than OpenAI models in particular. ↩
+      We originally developed Triframe to use with o1-preview, but I consider it mostly to be optimized around reasoning models in general rather than OpenAI models in particular. ↩︎
 -
-      We also have some preliminary measurements of the time horizon of Opus 4.5 using Triframe and GPT-5 using ReAct. It seems that Opus 4.5 does better with ReAct and GPT-5 does better with Triframe. ↩
+      We also have some preliminary measurements of the time horizon of Opus 4.5 using Triframe and GPT-5 using ReAct. It seems that Opus 4.5 does better with ReAct and GPT-5 does better with Triframe. ↩︎
 -
-      Due to a scoring issue, I ran both agents with a different version of the scaffold (without token usage messages) on just one HCAST task family (out of 69 HCAST task families). ↩</pre>
+      Due to a scoring issue, I ran both agents with a different version of the scaffold (without token usage messages) on just one HCAST task family (out of 69 HCAST task families). ↩︎</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-06T06:27:15Z</p></footer>
+<footer><p>Data updated 2026-11-07T06:24:31Z</p></footer>
 </body>
 </html>
