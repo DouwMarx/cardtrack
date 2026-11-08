@@ -1,8 +1,8 @@
 {
  "model": "claude-fable-5-1",
- "skill_url": "https://github.com/DouwMarx/cardtrack/blob/7e760ed44ccae37d1570725fa025eb1fca205aa9/.claude/skills/cardtrack-report/SKILL.md",
- "generated_at": "2026-11-01T02:24:35Z",
- "snapshot": "2026-10-31T06:23:20+00:00",
- "words": 1195,
+ "skill_url": "https://github.com/DouwMarx/cardtrack/blob/546d7904b0bfbdbd17852e1b995fdc6befb3098e/.claude/skills/cardtrack-report/SKILL.md",
+ "generated_at": "2026-11-08T02:21:18Z",
+ "snapshot": "2026-11-07T06:24:31+00:00",
+ "words": 1193,
  "figures": 3
 }

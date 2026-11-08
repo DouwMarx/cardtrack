@@ -255,9 +255,9 @@ ax.axvline(wks.index(dt.date(2026, 8, 31)) - 0.5, color=PAL["red"], lw=0.8, ls="
 ax.text(wks.index(dt.date(2026, 8, 31)) - 0.4, bottom.max() * 0.97, "furniture filter\nrecomputed", fontsize=6, color=PAL["red"], va="top")
 _last_run = parse_ts(R["runs"][-1]["ts"]).date()   # the last daily run in the snapshot, i.e. the last day the final bar can cover
 E["weekly_last_bar_to"] = _last_run.isoformat()
-ax.text(len(wks) - 1, bottom[-1] + 1.5, f"partial week\n(to {_last_run.strftime('%d %b')})", fontsize=6, color=INK2, ha="center")
-ax.set_ylim(0, bottom.max() * 1.15)
-if dt.date(2026, 10, 19) in wks:   # the anthropic.com template change (28 October edition) dominates that week
+ax.text(len(wks) - 1, bottom[-1] + 2.5, f"partial week\n(to {_last_run.strftime('%d %b')})", fontsize=6, color=INK2, ha="center", va="bottom")
+ax.set_ylim(0, bottom.max() * 1.22)
+if False:   # the anthropic.com template-change callout was for the 28 October edition
     _i = wks.index(dt.date(2026, 10, 19))
     _y = weeks[wks[_i]]["furniture"] + weeks[wks[_i]]["extraction_noise"] / 2
     ax.annotate("anthropic.com template\nchange (extractor, not edits)", xy=(_i - 0.36, _y), xytext=(_i - 2.9, _y + 14),

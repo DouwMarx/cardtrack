@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "openai-gpt-6-astra-system-card",
+  "version": 1057,
+  "category": "content_minor",
+  "score_change": true,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": true,
+  "growth_direction": "grew",
+  "summary": "Added Oct 30, 2026 change-log entry: SecureBio corrected GPT-6 Astra WCB score from 61.6% to 59.2% (web search had been enabled); Preparedness text updated.",
+  "safety_implication": "SecureBio's World Class Bio score for GPT-6 Astra revised downward (61.6% to 59.2%) after a web-search misconfiguration; gap to GPT-5.6 Sol widens, conclusions unchanged.",
+  "notable": "A third-party bio-capability evaluator (SecureBio) issued a post-publication erratum, and OpenAI logged it in a dated change-log entry rather than silently editing the figure.",
+  "confidence": "high"
+ }
+]

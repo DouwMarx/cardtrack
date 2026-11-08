@@ -176,5 +176,28 @@
   "version": 1012,
   "category": "extraction_noise",
   "reason": "Sub-agent label kept (it was medium confidence), now verified against data/raw by the unattended run 2026-11-01: all three dropped footnotes (Bellingcat/OSINT caveat, 'anchor-given' vs 'vague issue' prompt variants, GeoGuessr Duels timing caveat) are present in the raw HTML of both v682 and v1012 (2 occurrences each). The monitor emitted no drift note for this pair. Not a publisher deletion."
+ },
+ {
+  "slug": "anthropic-claude-mythos-5-other-4",
+  "version": 1078,
+  "category": "metadata_minor",
+  "reason": "Reclassified from content_minor (safety, correction) by the unattended run 2026-11-08 after a reviewer check. The removed sentence ('The compaction notes that it began this cycle with told the model to explore a GitHub attack.') is syntactically broken and its claim survives unchanged elsewhere on the page: the body of v1078 still says the model 'wrote compaction notes in cycle 3 that stated it should proceed by investigating the CTF host's external connections, like GitHub' and that 87% of resampled trajectories went on to search GitHub. Verified against data/raw: the sentence is in the raw HTML of v954 and absent from v1078; no correction note. A copy-edit (garbled duplicate removed), not a retraction."
+ },
+ {
+  "slug": "anthropic-claude-opus-other",
+  "version": 1058,
+  "category": "extraction_noise",
+  "reason": "Sub-agent label kept, verified against data/raw by the unattended run 2026-11-08: at least 273 of 314 removed lines over 40 characters (303 by a tag-stripped, whitespace-collapsed match; 313 after also stripping inline tags) are present verbatim in the raw HTML of v1058. Both v1013 and v1058 hold the same 32 role=\"table\" ARIA grids and 0 <table> elements; what changed between them is the page's CSS-module class names (e.g. Body-module-scss-module__PA4F1q__reading-column to PA4F1q_reading-column), which the extractor handles differently. The monitor's drift note said 368 lines; 649 lines were removed. Not a publisher deletion."
+ },
+ {
+  "slug": "securebio-gpt-6-astra-independent-eval",
+  "version": 1030,
+  "category": "content_major",
+  "flags": {
+   "score_change": true,
+   "safety_related": true,
+   "correction": true
+  },
+  "reason": "Sub-agent label kept, checked against the diff and the raw HTML by the unattended run 2026-11-08: a dated 'Correction (October 2026)' banner and closing note were added and the WCB figure changed from 61.6% to 59.2% in the body. The monitor's change_summary ('Extractor drift: 1 line(s) missing ... not a publisher deletion') is wrong for this pair; the only line absent from the new raw is the removed PDF link, replaced by a hyperlinked 'here'."
  }
 ]

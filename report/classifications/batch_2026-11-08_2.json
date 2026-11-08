@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "fangcun-ai-deepseek-v4-1-flash-1017-independent-eval",
+  "version": 1056,
+  "category": "content_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": true,
+  "growth_direction": "same",
+  "summary": "PINN Cholesky-bug explanation in PaperBench case study rewritten (mechanism corrected, conclusion same); Table A.1 now lists V4 Flash accessed via INFINI-AI GenStudio, not DeepSeek API.",
+  "safety_implication": "Comparison-model V4 Flash results came from a third-party host (INFINI-AI), not DeepSeek's API; silent-corruption case study mechanism corrected, finding unchanged.",
+  "notable": "A quiet revision corrects both a technical explanation and the access provenance of a comparison model without any erratum note; new text contains a duplicated sentence.",
+  "confidence": "medium"
+ }
+]

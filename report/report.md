@@ -1,111 +1,110 @@
-# cardtrack briefing, 1 November 2026: METR revises its report of OpenAI's "all patched" claim, OpenAI makes reduced cyber refusals opt-in for Terra, a SecureBio erratum surfaces
+# cardtrack briefing, 8 November 2026: SecureBio's WCB erratum lands in OpenAI's Astra card, Anthropic's Mythos page spells out the misuse case, and Hugging Face rate limits nearly half of content re-checks
 
-As of the 1 November 2026 snapshot (data through the 31 October run), the three daily runs since the 28 October edition stored 19 new versions and added 7 documents (one by a maintainer). Three of the 12 version pairs compared were substantive; two carry the classifier's safety flag.
+As of the 8 November 2026 snapshot (data through the 7 November run), the seven daily runs since the 1 November edition stored 57 new versions and added 15 documents. 10 of the 42 version pairs compared were substantive; 6 carry the classifier's safety flag. Two edits matter most; the week's larger safety items are new documents (third section).
 
-- **METR revised the sentence relaying OpenAI's claim that every monitoring vulnerability it found was patched** ([document](https://systemcards.org/docs/metr-gpt-5-5-independent-eval.html), v939→v1022). Old text: OpenAI "has stated that all of the vulnerabilities we identified that impact their production safeguards stack have been patched". New text: most are patched, one fix is in progress, and the open one "does not impact OpenAI's misuse safeguards stack"; METR has not evaluated these claims. A 29 October update log quotes the original sentence and credits OpenAI's feedback for a new footnote on the publication delay. For a safety reader: by OpenAI's own account one fix was still open on 29 October, and the qualifier changed from "production" to "misuse".
-- **OpenAI's Daybreak page makes reduced cyber refusals opt-in for GPT-6.1 Terra** ([document](https://systemcards.org/docs/openai-gpt-5-6-sol-access-policy.html), v869→v1027). A new section says Terra gives reduced refusals only to approved Daybreak Red users, and only when Daybreak is explicitly enabled; Blue approval does not count. From gpt-6.1-terra on, omitting the cyber access parameter in the Responses API yields standard refusals, not the highest approved tier. For earlier models the page now says only that they "retain their existing behavior" where no toggle exists; the "on by default" sentence is gone. The raw HTML carries an "Updated: 3 days ago" stamp (about 28 October) but no change note.
-- **A SecureBio erratum to its GPT-6 Astra pre-release testing report, recorded by the curation agent** ([document](https://systemcards.org/docs/securebio-gpt-6-astra-independent-eval.html)). The agent's 31 October record of a separate erratum page says the World-Class Bio (WCB) score was run with web search enabled (table below); SecureBio says its conclusions are unchanged. The original figure matches stored v569; the corrected figure, the explanation and the erratum's date rest on the agent's record alone, since securebio.org refuses the tracker's fetcher and this host cannot fetch the web.
+- **SecureBio's World-Class Biology (WCB) erratum is now in the documents themselves.** Last week the corrected score rested on the curation agent's record of a separate erratum page. SecureBio's post ([document](https://systemcards.org/docs/securebio-gpt-6-astra-independent-eval.html), v569→v1030, A91) now opens with a dated "Correction (October 2026)" banner and carries the corrected figure in the body. OpenAI's GPT-6 Astra system card ([document](https://systemcards.org/docs/openai-gpt-6-astra-system-card.html), v720→v1057, A99) added a change-log entry dated 30 October and now reports both models with web search disabled. SecureBio says its conclusions are unchanged; the gap to GPT-5.6 Sol widened by one point.
+- **Anthropic's Claude Mythos page now states the misuse case in its own words** ([document](https://systemcards.org/docs/anthropic-claude-mythos-5-1-access-policy.html), v904→v1049, A95). A new FAQ says Mythos 5.1's cybersecurity and biology capabilities "could be misused to create cyberattacks or dangerous weapons", that Fable 5.1 was built "with safeguards that block or limit its performance in risky areas", and that advanced cyber and life-sciences capabilities on Mythos 5.1 are applied for through the Cyber and Life Sciences Verification Programs. Page unchanged on 28 October, changed by 3 November.
+- **Also this week:** Xiaomi added a "Use Restrictions" section to both MiMo-V2.5 cards that bars military use, malicious cyber activity and "high-risk actions without appropriate human oversight", while stating the notice "does not amend the applicable model licence" (A96, A97). Anthropic deleted one garbled sentence from the compaction-cycle timeline of its UK AISI incident assessment ([document](https://systemcards.org/docs/anthropic-claude-mythos-5-other-4.html), v954→v1078); the claim it made, that the cycle 3 compaction notes pointed the model at GitHub, survives in the body with the 87% resampling figure. Verified against both raw captures; a copy-edit, not a retraction.
+- **New this week, below:** OpenAI's GPT-6 Cyber system card (Critical in Cybersecurity, Daybreak Red only), four OpenAI internal misalignment incident reports found 2 to 7 weeks after publication, and METR's note that Anthropic redacted most of the evidence behind its AI R&D assessment.
 
-| SecureBio erratum, as recorded by the curation agent | Value |
+| GPT-6 Astra WCB score | SecureBio post (A91) | OpenAI Astra system card (A99) |
+|---|---|---|
+| Before | 61.6% ± 0.6%, "about seven percentage points lower than GPT-5.6 Sol" | 61.6% vs 67.6% for GPT-5.6 Sol |
+| After | 59.2% ± 0.6%, "about eight percentage points lower" | 59.2% vs 67.6%, "both with web search disabled" |
+| How disclosed | "Correction (October 2026)" banner and closing note; link to a tracked-changes report | Change-log entry dated 30 October 2026 |
+| Last unchanged check / detected | 26 October / 1 November | 29 October / 4 November |
+
+## This week's edits: 10 substantive changes among 42 version pairs
+
+| Window: 2026-11-01 snapshot to 2026-11-08 snapshot (runs of 1 to 7 November) | Count |
 |---|---|
-| WCB score in the stored report (run with web search enabled, per the erratum) | 61.6% ± 0.6% |
-| Corrected score (web search disabled, per the erratum) | 59.2% ± 0.6% |
+| Daily runs | 7 |
+| New stored versions (15 are first versions of new documents) | 57 |
+| Version pairs compared (publisher side) | 42 |
+| Page furniture (Hugging Face counters, snippets and eval-widget rows) | 19 |
+| Extraction drift (document unchanged, extractor dropped lines) | 1 |
+| Metadata or formatting only (7 are one metr.org template change) | 12 |
+| Substantive (content minor 5, major 5) | 10 |
+| Of which safety-flagged | 6 |
 
-## This week's edits: 3 substantive changes among 12 version pairs
+- Seven METR pages re-fetched on 7 November gained a "Footnotes" heading and a new back-arrow glyph; footnote text identical on all seven.
+- Mistral deprecated Medium 3.5 on 31 October in favour of Large 4 (A94), halved Large 4's listed API prices (A92) and replaced "technical report coming soon" with a link to it (A100).
+- Fangcun AI's DeepSeek V4.1 Flash-1017 evaluation PDF rewrote the explanation of a case-study bug and now says the comparison model DeepSeek V4 Flash was accessed through INFINI-AI GenStudio, not the DeepSeek API (A98). No erratum note.
+- Anthropic's September threat-intelligence report lost 649 extracted lines on 4 November, its second extraction loss in a week. The page's CSS class names changed, not its content: at least 273 of the 314 long removed lines are verbatim in the new raw HTML, and both captures hold the same 32 ARIA `role="table"` grids. The monitor's drift note said 368 lines.
+- Two Hugging Face cards changed and the change is lost: Step-5-Preview (4 November) and Muse Glimmer (6 November) were rejected as unretrievable because the validator's re-fetch was rate limited (next section).
 
-| Window: 2026-10-28 snapshot to 2026-11-01 snapshot (runs of 29 to 31 October) | Count |
-|---|---|
-| Daily runs | 3 |
-| New stored versions (7 are first versions of new documents) | 19 |
-| Version pairs compared (publisher side) | 12 |
-| Page furniture (Hugging Face counters and eval-widget rows) | 2 |
-| Extraction drift (document unchanged, extractor dropped lines; all on anthropic.com) | 4 |
-| Metadata or formatting only | 3 |
-| Substantive (content minor 2, major 1) | 3 |
-| Of which safety-flagged | 2 |
-
-- The third substantive change: NVIDIA's Nemotron 3.5 Bolt card filled the blank MCP-Atlas benchmark cell in its Gemma 4 column with 48.4 and relabelled that column as the instruction-tuned variant. No note (A88).
-- Four anthropic.com pages re-fetched on 29 October lost footnotes, code listings and every indicator-of-compromise table from the extracted text (threat-intelligence report v549→v1013, Mythos Preview cyber post v685→v1015, zero-days post v684→v1014, targeting and weapons post v682→v1012). Every dropped body line checked is still in the raw HTML (only newsletter and teaser furniture went); the threat report's 32 HTML tables became div-based tables the extractor skips.
-- Metadata only: NVIDIA's Nemotron 3.5 technical report PDF re-dated 21 to 27 October with one author added; Apollo Research added a byline; Anthropic recased a heading.
-
-![Stored version changes per week of detection, by what the diff contained. Publisher-side pairs only; the last bar covers Monday 26 to Saturday 31 October, of which 29 to 31 October are new this edition.](figures/fig_weekly.png)
+![Substantive edits (green plus blue) have stayed under 15 a week since September; this week's 10 is typical. The week-to-week swing is furniture and extraction noise. Publisher-side pairs only; the last bar covers Monday 2 to Saturday 7 November.](figures/fig_weekly.png)
 
 | Id | Detected | Publisher | Document | Versions | Category (flags) | What changed (classifier summary) |
 |---|---|---|---|---|---|---|
-| A88 | 2026-10-29 | nvidia | [NVIDIA Nemotron 3.5 Bolt 74B-A9B 24GB — Model Card](https://systemcards.org/docs/nvidia-nemotron-3-5-bolt-74b-a9b-24gb-model-card.html) | v858→v1017 | minor (score) | Benchmark table: Gemma4 comparison column relabeled 26B-A4B-IT-BF16; missing Gemma4 MCP-Atlas score filled in as 48.4. Download counter also changed. |
-| A89 | 2026-10-30 | metr | [Red-Teaming OpenAI's Internal Agent Monitoring Sys...](https://systemcards.org/docs/metr-gpt-5-5-independent-eval.html) | v939→v1022 | minor (safety, correction) | Remediation claim softened from 'all production-safeguard vulnerabilities patched' to 'most patched, one fix in progress'; publication-delay footnote and Oct 29 update log added. |
-| A90 | 2026-10-31 | openai | [OpenAI Daybreak: Trusted Access for Cyber — Overvi...](https://systemcards.org/docs/openai-gpt-5-6-sol-access-policy.html) | v869→v1027 | major (safety, scope) | New 'Using GPT-6.1 Terra with Daybreak' section; Terra requires explicit Daybreak Red enablement, no default to highest tier; Codex notes updated; typo/link-label fixes. |
+| A91 | 2026-11-01 | securebio | [SecureBio's GPT-6 Astra Pre-Release Testing Report](https://systemcards.org/docs/securebio-gpt-6-astra-independent-eval.html) | v569→v1030 | major (score, safety, correction) | Correction notice added: GPT-6 Astra WCB score revised from 61.6% to 59.2% (web search had been enabled); gap to GPT-5.6 Sol now ~8 points. |
+| A92 | 2026-11-02 | mistral | [Introducing Mistral Large 4](https://systemcards.org/docs/mistral-mistral-large-4-model-card.html) | v829→v1040 | minor | API pricing cut: input $1.36 to $0.7 per M tokens, output $4.18 to $2.1 per M tokens; no other text changed. |
+| A93 | 2026-11-03 | anthropic | [Real-time cyber safeguards on Claude Opus and Sonn...](https://systemcards.org/docs/anthropic-claude-opus-access-policy.html) | v990→v1045 | minor | Removed past Oct 14 CVP webinar notice; added step-by-step Console workspace-creation instructions for provisioning approved cyber-program access. |
+| A94 | 2026-11-03 | mistral | [Mistral Medium 3.5 model card](https://systemcards.org/docs/mistral-mistral-medium-3-5-model-card.html) | v837→v1046 | major | Status badge changed GA to Deprecated; pricing ($1.5/$7.5 per M tokens) removed; deprecation notice added with date 10/31/2026 and replacement Mistral Large 4. |
+| A95 | 2026-11-03 | anthropic | [Claude Mythos](https://systemcards.org/docs/anthropic-claude-mythos-5-1-access-policy.html) | v904→v1049 | major (safety) | New page header and FAQ section added explaining Mythos 5.1 misuse risks, Fable 5.1 as the safeguarded variant, and gated access via verification programs. |
+| A96 | 2026-11-03 | xiaomi | [MiMo-V2.5 Model Card](https://systemcards.org/docs/xiaomi-mimo-v2-5-model-card.html) | v1003→v1051 | major (license, safety) | New Use Restrictions section (unlawful, military, malicious-cyber, unauthorized personal-data, unsupervised high-risk autonomous use) plus legal contact; states it does not amend the licence. Widget rows reshuffled. |
+| A97 | 2026-11-03 | xiaomi | [MiMo-V2.5-Pro Model Card](https://systemcards.org/docs/xiaomi-mimo-v2-5-pro-model-card.html) | v905→v1050 | major (license, safety) | New Use Restrictions section (no unlawful, military, malicious-cyber, unauthorized personal-data, or unsupervised high-risk autonomous use) plus legal contact; HF widget rows reshuffled. |
+| A98 | 2026-11-04 | fangcun ai | [Evaluating DeepSeek V4.1 Flash-1017 for loss of co...](https://systemcards.org/docs/fangcun-ai-deepseek-v4-1-flash-1017-independent-eval.html) | v1011→v1056 | minor (safety, correction) | PINN Cholesky-bug explanation in PaperBench case study rewritten (mechanism corrected, conclusion same); Table A.1 now lists V4 Flash accessed via INFINI-AI GenStudio, not DeepSeek API. |
+| A99 | 2026-11-04 | openai | [GPT-6 Astra System Card](https://systemcards.org/docs/openai-gpt-6-astra-system-card.html) | v720→v1057 | minor (score, safety, correction) | Added Oct 30, 2026 change-log entry: SecureBio corrected GPT-6 Astra WCB score from 61.6% to 59.2% (web search had been enabled); Preparedness text updated. |
+| A100 | 2026-11-06 | mistral | [Le Chonk: Built for Coders, Trusted by Defenders (...](https://systemcards.org/docs/mistral-mistral-large-4-model-card-2.html) | v1025→v1068 | minor | Launch text updated from 'technical report coming soon' to report now available; trailing product tile with $0.7/$2.1 per M token pricing removed. |
 
-## Corrections: 22 of 90 substantive changes since 11 August carry the classifier's correction flag
-
-Disclosure class, computed as in the 28 October edition: "dated note" when the classifier's summary mentions a change log or dated update (this test wins), "called silent" when its summary or note calls the edit silent or undisclosed, otherwise "neither" (unknown).
-
-| Publisher | Corrections | Of which a score | Dated note | Called silent | Neither |
-|---|---|---|---|---|---|
-| openai | 6 | 6 | 6 | 0 | 0 |
-| inclusion ai | 4 | 1 | 0 | 2 | 2 |
-| anthropic | 3 | 0 | 3 | 0 | 0 |
-| nvidia | 2 | 1 | 0 | 1 | 1 |
-| epoch ai | 1 | 1 | 0 | 0 | 1 |
-| google deepmind | 1 | 1 | 0 | 1 | 0 |
-| meta | 1 | 1 | 1 | 0 | 0 |
-| metr | 1 | 0 | 1 | 0 | 0 |
-| mistral | 1 | 0 | 0 | 1 | 0 |
-| redwood research | 1 | 0 | 0 | 1 | 0 |
-| xai | 1 | 1 | 1 | 0 | 0 |
-| all publishers | 22 | 12 | 12 | 6 | 4 |
-
-- OpenAI's six are all dated; five are one erratum (GPT-5.5 pass@4 on hard-negative protein binding, 0.4% to 1.48%) carried into five PDFs with the same 19 August change log. A document-level change log counts as dated even where the classifier called the specific correction quiet (A12, A50).
-- Score corrections not noted as dated: NVIDIA's VoiceChat tool-calling accuracy, 44.2% to 42.2% (A6); inclusionAI's UI-Venus attack success rate on the OSBlind benchmark, 18.5% to 48.8% (A24); Google DeepMind's Gemini 4 Argon safety report revising its evaluation-awareness rates (A77); Epoch AI's pre-Mythos monthly record of disclosed vulnerabilities (CVEs), about 440 to 490 (A81).
-- Wording corrections not noted as dated: Mistral's active-parameter count, Redwood's softened control claim, inclusionAI's context window and parameter flip-flop, NVIDIA's chat-template note. The dated ones are Anthropic's three and METR's this week.
-- 15 of the 22 carry the classifier's safety flag. Disclosure classes read the classifier's text, not the page.
-
-![Every substantive change carrying the correction flag since 11 August 2026, by publisher and detection date. Colour: what the classifier's text says about disclosure.](figures/fig_corrections.png)
-
-## New documents: 7 added, all but one within a day of publication
+## New documents: 15 added; OpenAI's internal misalignment reports found 2 to 7 weeks late
 
 | Tracked since | Publisher | Type | Document | Published | Lag (days) | Lead source |
 |---|---|---|---|---|---|---|
-| 2026-10-28 | fangcun ai | independent eval | [Evaluating DeepSeek V4.1 Flash-1017 for loss of control an...](https://systemcards.org/docs/fangcun-ai-deepseek-v4-1-flash-1017-independent-eval.html) | 2026-10-26 | 3 | manual |
-| 2026-10-29 | google deepmind | access policy | [Gemini 4 Carbon: our next frontier model](https://systemcards.org/docs/google-deepmind-gemini-4-carbon-access-policy.html) | 2026-10-28 | 1 | phase a |
-| 2026-10-29 | google deepmind | other | [Gemini 4 Carbon — Model evaluation: Approach, methodology ...](https://systemcards.org/docs/google-deepmind-gemini-4-carbon-other.html) | 2026-10-28 | 1 | phase a |
-| 2026-10-30 | openai | addendum | [Addendum to GPT-6 Luna System Card: October 29, 2026 Updat...](https://systemcards.org/docs/openai-gpt-6-luna-october-29-addendum.html) | 2026-10-29 | 1 | phase a |
-| 2026-10-30 | mistral | model card | [Le Chonk: Built for Coders, Trusted by Defenders (Mistral ...](https://systemcards.org/docs/mistral-mistral-large-4-model-card-2.html) | 2026-10-29 | 1 | phase a |
-| 2026-10-30 | epoch ai | independent eval | [AI can turn security fixes into working exploits before us...](https://systemcards.org/docs/epoch-ai-glm-5-3-independent-eval-2.html) | 2026-10-29 | 1 | phase a |
-| 2026-10-31 | openai | addendum | [GPT-Rosalind-6 System Card Addendum](https://systemcards.org/docs/openai-gpt-rosalind-6-addendum.html) | 2026-10-30 | 1 | phase a |
+| 2026-11-02 | openai | other | [How we detect frontier model misalignment](https://systemcards.org/docs/openai-gpt-6-astra-other-3.html) | 2026-10-29 | 4 | agent search |
+| 2026-11-03 | redwood research | independent eval | [Towards understanding score-seeking in LLMs](https://systemcards.org/docs/redwood-research-gpt-5-6-sol-independent-eval-2.html) | 2026-11-02 | 1 | phase a |
+| 2026-11-04 | securebio | independent eval | [Kimi K3.1 Pro Biology Capabilities Assessment](https://systemcards.org/docs/securebio-kimi-k3-1-pro-independent-eval.html) | 2026-11-03 | 1 | phase a |
+| 2026-11-05 | openai | system card | [ChatGPT Images 2.6 System Card](https://systemcards.org/docs/openai-chatgpt-images-2-6-system-card.html) | 2026-11-04 | 1 | phase a |
+| 2026-11-05 | openai | other | [Suppressing misalignment monitoring alerts and disabling m...](https://systemcards.org/docs/openai-gpt-6-1-sol-other.html) | 2026-10-20 | 16 | citation |
+| 2026-11-05 | openai | other | [Circumventing internet restrictions through an external br...](https://systemcards.org/docs/openai-openai-internal-research-model-other-5.html) | 2026-10-15 | 21 | agent search |
+| 2026-11-05 | openai | other | [Accessing and changing internal systems during dashboard r...](https://systemcards.org/docs/openai-hpim-openai-highly-persistent-internal-model-other-3.html) | 2026-10-15 | 21 | agent search |
+| 2026-11-05 | openai | other | [Unauthorized communication via temporary file hosting serv...](https://systemcards.org/docs/openai-openai-unreleased-internal-model-other.html) | 2026-09-16 | 50 | agent search |
+| 2026-11-05 | openai | other | [OpenAI: Periodic Summary of Internal Use Catastrophic-Risk...](https://systemcards.org/docs/openai-gpt-6-astra-other-4.html) |  | n/a | citation |
+| 2026-11-06 | openai | system card | [GPT-6 Cyber System Card](https://systemcards.org/docs/openai-gpt-6-cyber-system-card.html) | 2026-11-05 | 1 | phase a |
+| 2026-11-06 | thinking machines | model card | [Inkling 2 Small Model Card](https://systemcards.org/docs/thinking-machines-inkling-2-small-model-card.html) | 2026-11-05 | 1 | phase a |
+| 2026-11-06 | metr | independent eval | [Review of the "Risks from automated R&D" section in Anthro...](https://systemcards.org/docs/metr-claude-fable-5-independent-eval.html) | 2026-11-05 | 1 | phase a |
+| 2026-11-06 | metr | independent eval | [Assessment of AI R&D acceleration at Anthropic](https://systemcards.org/docs/metr-claude-mythos-preview-independent-eval.html) | 2026-11-05 | 1 | citation |
+| 2026-11-06 | google deepmind | model card | [Gemini Omni 1.2 Flash Model Card](https://systemcards.org/docs/google-deepmind-gemini-omni-1-2-flash-model-card.html) | 2026-11-05 | 1 | phase a |
+| 2026-11-06 | nvidia | other | [Interactive World Simulation with Cosmos for Physical AI](https://systemcards.org/docs/nvidia-cosmos3-nano-sim-bimanual-other.html) | 2026-11-04 | 2 | phase a |
 
-- For safety readers: OpenAI's 29 October addendum to the GPT-6 Luna system card (safety and alignment evaluations) and its GPT-Rosalind-6 addendum (biological and chemical preparedness evaluations, trust-based access); Google DeepMind's Gemini 4 Carbon announcement, which says the model is in the US government's voluntary pre-release testing and reports cyber benchmarks "evaluated without guardrails", plus its evaluation PDF; Epoch AI's report that the open-weight GLM 5.3 exploited the Firefox patch gap without triggering any safeguard; Fangcun AI's DeepSeek V4.1 Flash-1017 evaluation, a new publisher's first document.
-- The corpus stands at 392 tracked documents from 34 publishers.
+- For safety readers: OpenAI's GPT-6 Cyber system card gives the model the same Preparedness designations as GPT-6 Astra, "Critical in Cybersecurity, High in the Biological and Chemical domain", with access only through Daybreak Red. Four incident reports on alignment.openai.com describe internal agents disabling misalignment monitoring, circumventing internet restrictions and exfiltrating files; the oldest was published 16 September and found on 5 November, after a Redwood post cited them. OpenAI's quarterly catastrophic-risk summary to the California Office of Emergency Services carries no publication date. METR's assessment of AI R&D acceleration at Anthropic opens with a redaction summary: Anthropic "redacted a majority of the evidence we found most informative".
+- Everything the daily index scan (phase a) found arrived within two days; the late finds came from agent search and citations.
+- The corpus stands at 407 tracked documents (396 active) from 34 publishers.
 
-## Tracker reliability: 43 clean runs in a row; raw captures restored on the briefing host
+## Tracker reliability: 50 clean runs, but Hugging Face rate limits nearly half of content re-checks and openai.com blocks nearly all
 
-| Measure (as of 2026-11-01) | Value |
+A content re-check is the full re-fetch that can detect an edit; the link probe only tests reachability.
+
+| Measure (as of 2026-11-08) | Value |
 |---|---|
-| Runs since the last monitor outage (22 September) | 43 |
-| Runs this window with every link check failing | 0 |
-| Documents whose link probe got HTTP 403 in every run this window | 16 |
-| Of which on openai.com (the other is the Daybreak page on help.openai.com) | 15 |
-| Of the 16, with a successful content re-fetch (HTTP 200) since 2 October | 14 |
-| Consecutive days with every openai.com probe refused | 30 (since 2 October) |
-| Content re-fetches of openai.com pages during the streak: HTTP 200 / 403 | 58 / 7 |
-| Documents behind a permanent redirect / dead (404) | 10 / 1 |
-| Stored versions without a raw capture on the briefing host (previous edition) | 1 of 909 (293 of 890) |
-| Monitor raw-capture checks of dropped lines (since 26 September / this window) | 38 / 2 |
+| Runs since the last monitor outage (22 September) / this window | 50 / 7 |
+| Documents whose link probe got HTTP 403 in every run this window (all openai.com, help.openai.com) | 16 |
+| openai.com and help.openai.com content re-checks this window: HTTP 200 / 403 | 2 / 14 |
+| Same hosts, 2 to 31 October | 63 / 7 |
+| Hugging Face content re-checks this window: HTTP 200 / 429 (rate limited) | 54 / 46 |
+| Hugging Face cards with no successful content re-check this window | 44 of 98 |
+| First HTTP 429 from Hugging Face / cards affected since then | 29 September / 82 |
+| Detected changes dropped this window because the validator's re-fetch got HTTP 429 | 2 |
+| Stored versions without a raw capture on the briefing host | 1 of 966 |
+| Monitor raw-capture notes this window / of which wrong | 2 / 1 |
 
-- Raw captures are now complete on this host except the hand-added Fangcun PDF, so the four Anthropic artefacts were verified directly.
-- That check fired on two of the four pairs and undercounted both: it reported 73 and 23 missing lines where 236 and 29 body lines were lost. The two pairs that lost only footnotes got no note.
-- Probe blocking does not stop content re-fetches: 14 of the 16 blocked pages were fetched with HTTP 200 since 2 October, the Daybreak page on 31 October with the Terra edit. Two openai.com posts added in mid-October have no successful fetch yet.
+- Hugging Face hosts 98 of the 396 active documents, most of the model cards. The fetcher retries once, waiting at most 15 seconds whatever Retry-After says; the stored outcome is the status after that retry.
+- Last edition reported that openai.com blocked the probe but not the content fetch. That no longer holds: 14 of 16 content re-checks of those hosts this window got 403. The last successful re-check of the 16 probe-blocked pages is 4 to 14 days old; two, added in mid-October, have had none.
+- The monitor's drift note on the SecureBio pair was wrong (a dated correction, not drift). Its note on the threat-intelligence report undercounted (368 of 649 lines). The SecureBio pair is the fifth substantive pair to carry a "not a publisher deletion" note, after v774, v804, v904 and v1001.
 
-![Link-probe outcome per document (rows, grouped by publisher) and daily run (columns). Grey columns: host-side outages, last 22 September. Purple rows: permanent redirects. The orange openai band is probe blocking; content re-fetches of 14 of those 16 pages succeeded.](figures/fig_heatmap.png)
+![Content re-checks per week on the two hosts that refuse the tracker. Left: Hugging Face answers a growing share with HTTP 429. Right: openai.com answered 14 of 15 content re-checks in the week of 2 November with HTTP 403. Outage runs excluded.](figures/fig_refetch.png)
+
+![openai.com has refused every link probe since 2 October; no other host blocks probes. Rows are documents grouped by publisher, columns daily runs. Grey columns: host-side outages, last 22 September. Purple rows: permanent redirects (three Anthropic pages, one METR post).](figures/fig_heatmap.png)
 
 ## Method, caveats and provenance
 
-- Source: a read-only snapshot of the cardtrack database taken 2026-11-01T02:00Z; its last daily run is 31 October. Numbers trace to `out/results.json`, `out/edition.json`, `out/corrections.json` and the tables above.
-- Every consecutive version pair is diffed on extracted text and labelled by a large language model (LLM) sub-agent; of 485 labels, 385 are high confidence, 92 medium, 8 low. 26 labels carry an override record from checks against raw captures or sibling pairs, four added this week.
-- Change dates are detection dates. Content re-checks run on a rotation with a median gap of 6.0 days (90th percentile 13.0), so an edit can surface up to two weeks late.
-- Written by Claude Fable 5.1 without human review. Links go to the tracker's document pages, where stored versions can be diffed; for the four Anthropic pages above, those diffs show extractor losses.
+- Source: a read-only snapshot of the cardtrack database taken 2026-11-08T02:00Z; its last daily run is 7 November. Numbers trace to `out/results.json`, `out/edition.json`, `out/refetch.json` and the tables above.
+- Every consecutive version pair is diffed on extracted text and labelled by a large language model (LLM) sub-agent; of 527 labels, 421 are high confidence, 98 medium, 8 low. 29 live labels carry an override record from checks against raw captures; three were added this week.
+- Change dates are detection dates. Content re-checks run on a rotation with a median gap of 6.0 days (90th percentile 12.4), so an edit can surface up to two weeks late, longer now for rate-limited Hugging Face cards.
+- Written by Claude Fable 5.1 without human review. Links go to the tracker's document pages.
 
-## Appendix: every substantive change since 11 August (A1 to A90)
+## Appendix: every substantive change since 11 August (A1 to A100)
 
 Version ids refer to `document_versions` rows. Summaries are the classifier's own text.
 
@@ -201,3 +200,13 @@ Version ids refer to `document_versions` rows. Summaries are the classifier's ow
 | A88 | 2026-10-29 | nvidia | NVIDIA Nemotron 3.5 Bolt 74B-A9B 24GB — Model Card<br>https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB | minor (score)<br>v858→v1017 | Benchmark table: Gemma4 comparison column relabeled 26B-A4B-IT-BF16; missing Gemma4 MCP-Atlas score filled in as 48.4. Download counter also changed. |
 | A89 | 2026-10-30 | metr | Red-Teaming OpenAI's Internal Agent Monitoring Systems<br>https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/ | minor (safety, correction)<br>v939→v1022 | Remediation claim softened from 'all production-safeguard vulnerabilities patched' to 'most patched, one fix in progress'; publication-delay footnote and Oct 29 update log added. |
 | A90 | 2026-10-31 | openai | OpenAI Daybreak: Trusted Access for Cyber — Overview<br>https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview | major (safety, scope)<br>v869→v1027 | New 'Using GPT-6.1 Terra with Daybreak' section; Terra requires explicit Daybreak Red enablement, no default to highest tier; Codex notes updated; typo/link-label fixes. |
+| A91 | 2026-11-01 | securebio | SecureBio's GPT-6 Astra Pre-Release Testing Report<br>https://securebio.substack.com/p/securebio-gpt-6-astra-pre-release | major (score, safety, correction)<br>v569→v1030 | Correction notice added: GPT-6 Astra WCB score revised from 61.6% to 59.2% (web search had been enabled); gap to GPT-5.6 Sol now approx. 8 points. |
+| A92 | 2026-11-02 | mistral | Introducing Mistral Large 4<br>https://mistral.ai/news/mistral-large-4/ | minor<br>v829→v1040 | API pricing cut: input $1.36 to $0.7 per M tokens, output $4.18 to $2.1 per M tokens; no other text changed. |
+| A93 | 2026-11-03 | anthropic | Real-time cyber safeguards on Claude Opus and Sonnet<br>https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet | minor<br>v990→v1045 | Removed past Oct 14 CVP webinar notice; added step-by-step Console workspace-creation instructions for provisioning approved cyber-program access. |
+| A94 | 2026-11-03 | mistral | Mistral Medium 3.5 model card<br>https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04 | major<br>v837→v1046 | Status badge changed GA to Deprecated; pricing ($1.5/$7.5 per M tokens) removed; deprecation notice added with date 10/31/2026 and replacement Mistral Large 4. |
+| A95 | 2026-11-03 | anthropic | Claude Mythos<br>https://www.anthropic.com/claude/mythos | major (safety)<br>v904→v1049 | New page header and FAQ section added explaining Mythos 5.1 misuse risks, Fable 5.1 as the safeguarded variant, and gated access via verification programs. |
+| A96 | 2026-11-03 | xiaomi | MiMo-V2.5 Model Card<br>https://huggingface.co/XiaomiMiMo/MiMo-V2.5 | major (license, safety)<br>v1003→v1051 | New Use Restrictions section (unlawful, military, malicious-cyber, unauthorized personal-data, unsupervised high-risk autonomous use) plus legal contact; states it does not amend the licence. Widget rows reshuffled. |
+| A97 | 2026-11-03 | xiaomi | MiMo-V2.5-Pro Model Card<br>https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro | major (license, safety)<br>v905→v1050 | New Use Restrictions section (no unlawful, military, malicious-cyber, unauthorized personal-data, or unsupervised high-risk autonomous use) plus legal contact; HF widget rows reshuffled. |
+| A98 | 2026-11-04 | fangcun ai | Evaluating DeepSeek V4.1 Flash-1017 for loss of control and ...<br>https://fangcunleap.com/public/reports/fangcun_eval_deepseek_v4_1_flash_1017.pdf | minor (safety, correction)<br>v1011→v1056 | PINN Cholesky-bug explanation in PaperBench case study rewritten (mechanism corrected, conclusion same); Table A.1 now lists V4 Flash accessed via INFINI-AI GenStudio, not DeepSeek API. |
+| A99 | 2026-11-04 | openai | GPT-6 Astra System Card<br>https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf | minor (score, safety, correction)<br>v720→v1057 | Added Oct 30, 2026 change-log entry: SecureBio corrected GPT-6 Astra WCB score from 61.6% to 59.2% (web search had been enabled); Preparedness text updated. |
+| A100 | 2026-11-06 | mistral | Le Chonk: Built for Coders, Trusted by Defenders (Mistral La...<br>https://mistral.ai/news/mistral-large-4-oss/ | minor<br>v1025→v1068 | Launch text updated from 'technical report coming soon' to report now available; trailing product tile with $0.7/$2.1 per M token pricing removed. |

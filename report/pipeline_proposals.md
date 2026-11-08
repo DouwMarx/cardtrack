@@ -318,3 +318,48 @@ the day at the same request count; in the reverse order it mints furniture faste
 - **Report-runner note.** `edition.py` carried a hand-edited `LAST_EDITION_SNAPSHOT`; it now reads
   `published/meta.json` and falls back to the constant. The previous edition's `appendix_changes.md`
   header row starts on line 3 of the file, not line 4; this edition's first HTML build failed on that.
+
+## 12. Additions from 2026-11-08
+
+- **Hugging Face rate-limits the content re-fetch (HTTP 429), and it is getting worse.** The first 429 was on
+  2026-09-29; this window 46 of 100 Hugging Face content re-fetches (fingerprint checks) were refused and 44 of
+  the 98 active Hugging Face cards had no successful content check in seven runs. `fetch.py` retries once after
+  `Retry-After`, clamped to 15 s (`MAX_RETRY_DELAY_SECONDS`); `link_checks` stores only the status after that
+  retry, so a 429 row means both attempts were refused. Two changed fingerprints were then lost: the monitor saw a
+  change on `stepfun-ai/Step-5-Preview` (2026-11-04) and `meta-models/Muse-Glimmer-30B` (2026-11-06), proposed
+  a `new_version`, and the validator rejected both with `document_retrievable=false: HTTP 429`. Proposals: (a)
+  spread Hugging Face re-fetches across the run (or across runs) instead of fetching the day's rotation in one
+  burst, and honour `Retry-After` with more than one retry; (b) when the validator's re-fetch is rate limited,
+  keep the monitor's capture (it already has the bytes) rather than rejecting the version; (c) count 429 as a
+  distinct outcome in the run summary, since `blocked` currently lumps it with 403.
+- **openai.com now refuses the content fetch too.** The previous edition reported that the probe was blocked
+  but content re-fetches succeeded (58 HTTP 200 against 7 HTTP 403 from 2 to 31 October). This window 14 of 16
+  openai.com and help.openai.com content re-fetches got 403, and the run logs say the agent's own fetcher was
+  refused on 2 and 3 November but got through on 1, 5 and 7 November. The last successful read of the 16
+  probe-blocked pages is 4 to 14 days old; two openai.com posts added in mid-October have had no successful re-check since. The section 7
+  proposal (same client and headers for probe and fetch, record the client in the run log) stands; add: record
+  which client succeeded per fetch so the block can be attributed to the fingerprint or to the IP.
+- **Drift annotation on a substantive pair, seventh case, and this one is a correction notice.** The monitor
+  annotated securebio-gpt-6-astra-independent-eval v569 to v1030 "Extractor drift: 1 line(s) missing ... not a
+  publisher deletion". The one missing line is the removed PDF link; the same diff adds a dated "Correction
+  (October 2026)" banner and changes the WCB score in the body from 61.6% to 59.2%. A reader of the document
+  page is told the opposite of what happened. Same proposal as sections 7 to 10: emit the note only when the
+  dropped lines are the whole diff.
+- **Drift annotation undercounts again (anthropic-claude-opus-other v1013 to v1058).** The note said 368 lines;
+  the diff removes 649, and at least 273 of the 314 removed lines over 40 characters are verbatim in the new raw
+  HTML. This time the table markup did not change (both captures hold 32 `role="table"` grids and no `<table>`);
+  the page's CSS-module class names were renamed (`Body-module-scss-module__PA4F1q__reading-column` to
+  `PA4F1q_reading-column`), and the extractor keeps different blocks under the new names. So the extractor's
+  output depends on class-name tokens; the regression-fixture proposal in sections 9 and 11 should include
+  v1013 and v1058 as a pair that must extract identically.
+- **A publisher deletion the pipeline stored without a note.** anthropic-claude-mythos-5-other-4 v954 to v1078
+  removed one sentence from the UK AISI incident assessment (verified against both raw captures: present in v954,
+  absent from v1078, no correction note). It turned out to be a copy-edit (a garbled duplicate; the claim survives
+  elsewhere on the page), but the monitor could not have told a reader either way: the raw check only fires on
+  dropped lines that *are* in the new raw, so a dropped line that is *not* in the new raw, the interesting case, gets
+  no annotation at all. Proposal: when a removed line of body text is absent from the new raw capture, annotate the
+  version "line removed by publisher" so the document page shows it.
+- **Report-runner note.** `report/edition_refetch.py` (new) writes `out/figures/fig_refetch.png` and
+  `out/refetch.json` from `link_checks`; it needs `out/results.json` and `out/edition.json` first.
+  `pairs/batches/` held 42 pairs in 9 batches this week; batch sizes of 1, 1, 1, 6, 7, 6, 7, 7, 6 mean three
+  sub-agents did one record each, so the batching could pack small batches together.

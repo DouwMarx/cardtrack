@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "anthropic-claude-opus-other",
+    "version": 1058,
+    "category": "extraction_noise",
+    "score_change": false,
+    "license_change": false,
+    "safety_related": false,
+    "model_scope_change": false,
+    "correction": false,
+    "growth_direction": "same",
+    "summary": "Same trafilatura extraction now drops all IOC/egress-IP/outlet/workstream tables and quoted prompts, adds '- ' bullet markers, headings, title; raw HTML still contains them.",
+    "safety_implication": "",
+    "notable": "The apparent 42% shrink (1190 to 687 lines) is an extractor artifact: every dropped indicator table and attacker IP is still present in the v1058 raw page, so this is not a publisher change.",
+    "confidence": "high"
+  }
+]
