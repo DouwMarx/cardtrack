@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-10-25T06:24:17Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy-nomas-model-card&amp;body=Document%3A%20tencent-hunyuan-hy-nomas-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy-Nomas%0AFingerprint%3A%205282b67144121468d5d2907bbc88a77cf11eba5473d9f66c0cc4967af0e37d56%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy-nomas-model-card&amp;body=Document%3A%20tencent-hunyuan-hy-nomas-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy-Nomas%0AFingerprint%3A%20d42e992ec6bf74e98ab942debe93f751a385428f52d0a06dd177e181a6bedcdd%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-08T06:20:51Z</td>
+          <td>text/html</td>
+          <td>199,782</td>
+          <td><code title="d42e992ec6bf74e98ab942debe93f751a385428f52d0a06dd177e181a6bedcdd">d42e992ec6bf74e9</code></td>
+<td><a href="https://data.systemcards.org/raw/7b18c6f8a36ea790e262e50f3211ebaa33ea8ce7014f0f03b6e7b30c7db5371c.html" rel="nofollow" title="archived copy, sha256 7b18c6f8a36ea790e262e50f3211ebaa33ea8ce7014f0f03b6e7b30c7db5371c">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-25T06:24:17Z</td>
           <td>text/html</td>
@@ -76,7 +83,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -97,6 +104,14 @@
           <div class="evidence">Evidence:
 <a href="https://github.com/Tencent-Hunyuan/Hy-Nomas" rel="noopener nofollow">https://github.com/Tencent-Hunyuan/Hy-Nomas</a> · <a href="https://alphasignal.ai/news/tencent-opens-hy-nomas-an-interactive-video-world-model-running-on-one-rtx-4090" rel="noopener nofollow">https://alphasignal.ai/news/tencent-opens-hy-nomas-an-interactive-video-world-model-running-on-one-rtx-4090</a> · <a href="https://en.shiftdelete.net/tencent-unveils-hy-nomas-an-interactive-generative-ai-video-model/" rel="noopener nofollow">https://en.shiftdelete.net/tencent-unveils-hy-nomas-an-interactive-generative-ai-video-model/</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-08T06:20:51Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-08T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/Hy-Nomas" rel="noopener nofollow">https://huggingface.co/tencent/Hy-Nomas</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -106,12 +121,18 @@
     <details>
       <summary>Show extracted text (from the latest fetched version; formatting is lossy —
         use the <a href="https://huggingface.co/tencent/Hy-Nomas" rel="noopener nofollow">original</a> for reading)</summary>
-      <pre class="extracted" data-pagefind-body>中文 ｜ English
+      <pre class="extracted" data-pagefind-body>Instructions to use tencent/Hy-Nomas with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Diffusion Single File How to use tencent/Hy-Nomas with Diffusion Single File: # No code snippets available yet for this library. # To use this model, check the repository files and the library&#39;s documentation. # Want to help? PRs adding snippets are welcome at: # https://github.com/huggingface/huggingface.js
+- Notebooks
+- Google Colab
+- Kaggle
+中文 ｜ English
 Hy-Nomas: Towards Free-Form Interactive World Generation
 🚀 Try the Demo →
-Model Introduction
+Introduction
 Hy-Nomas is a video world generation model that supports free-form, multi-turn interaction through text instructions and camera control. It generates a world one video segment at a time, allowing users to introduce objects, change styles and scenes, describe actions, or control the camera as generation continues.
-The model combines a segment-autoregressive diffusion transformer (DiT), a Qwen text encoder, camera-conditioning modules, and a PixelUMM video decoder. A persistent key/value (KV) cache carries context between segments. The distilled inference configuration uses 8 denoising steps, with 720 × 1280 output at 24 FPS. A separate configuration supports video generation on a single NVIDIA GeForce RTX 4090 using INT8 DiT weights, an INT8 KV cache, an FP8 decoder, and CPU offload.
+The model combines a segment-wise autoregressive diffusion transformer (DiT), a Qwen text encoder, camera-conditioning modules, and a PixelUMM video decoder. A persistent key/value (KV) cache carries context between segments. The distilled inference configuration uses 8 denoising steps, with 720 × 1280 output at 24 FPS. A separate configuration supports video generation on a single NVIDIA GeForce RTX 4090 using INT8 DiT weights, an INT8 KV cache, an FP8 decoder, and CPU offload.
 Key Features
 - Free-form interaction: Guide successive segments with instructions about subjects, actions, appearance, style, and environment.
 - Camera control: Supply camera trajectories alongside text to control viewpoint and movement.
@@ -267,13 +288,15 @@ Runtime Considerations
 License
 Hy-Nomas is licensed under Apache-2.0. Please refer to this repository&#39;s LICENSE file for the applicable terms. Third-party models and components remain subject to their respective licenses.
 Acknowledgement
-We thank the teams behind Gemma 4, Qwen3.8, Kimi-K3, DC-AE, and MagiAttention for their valuable contributions to the community and the models, research, and tools that support this project.
+We thank the teams behind Gemma 4, Qwen3.8, Kimi-K3, DC-AE-V, and MagiAttention for their valuable contributions to the community and the models, research, and tools that support this project.
 Contact
-For questions, non-security bug reports, or suggestions, open an issue in the Hy-Nomas repository or contact hy_nomas@tencent.com. Report suspected security vulnerabilities through the repository&#39;s security guidance.</pre>
+For questions, non-security bug reports, or suggestions, open an issue in the Hy-Nomas repository or contact hy_nomas@tencent.com. Report suspected security vulnerabilities through the repository&#39;s security guidance.
+- Downloads last month
+- 85,925</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-07T06:24:31Z</p></footer>
+<footer><p>Data updated 2026-11-08T06:21:53Z</p></footer>
 </body>
 </html>
