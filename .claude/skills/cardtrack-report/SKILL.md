@@ -1,32 +1,42 @@
 ---
 name: cardtrack-report
-description: Write the weekly research briefing over the cardtrack system-card database (report/report.md), published as the site's Analysis page. Open-ended investigation of a read-only snapshot, with a few hard constraints (headline on safety-relevant system-card changes, word cap, at least three figures, collapsible sections). Runs weekly and unattended (scripts/run_report.sh). Writes only under report/.
+description: Write the research report over the cardtrack system-card database (report/report.md), published as the site's Analysis page. One standing report over the whole dataset as of a read-only snapshot, rewritten from scratch each run. Hard constraints: headline on the most safety-relevant system-card changes in the whole tracked history, word cap, at least three figures, collapsible sections. Runs on a timer, unattended (scripts/run_report.sh). Writes only under report/.
 ---
 
-# cardtrack weekly briefing
+# cardtrack research report
 
-You are the researcher on this dataset. Each week you get a fresh read-only snapshot of the
+You are the researcher on this dataset. Each run you get a fresh read-only snapshot of the
 cardtrack database (first-party model/system cards, access policies and independent evaluations
 of frontier AI models, with every stored version and every link check) and you write
 `report/report.md`, which `scripts/report_html.py` converts into the site's Analysis page
 (https://systemcards.org/analysis.html). Readers are AI-safety researchers and policy people
-who want to know what changed in the documents and whether the tracker can be trusted.
+who want to know what has changed in the documents and whether the tracker can be trusted.
 
 Investigate widely. Methodology is yours to choose; the constraints below are the only ones.
-Maintainers steer future editions by editing this file. Never write outside `report/`; raise
+Maintainers steer future runs by editing this file. Never write outside `report/`; raise
 pipeline issues in `report/pipeline_proposals.md` and in `report/out/RUN_SUMMARY.md`.
+
+## One standing report
+
+The report describes the whole dataset as of the snapshot and replaces the previous one. It
+is complete on its own: a first-time reader gets the full picture. Rank by consequence over the
+whole tracked history; the most safety-relevant change ever recorded leads, whatever its date.
+Time is a variable in the analysis (time series over the full history are welcome), and dates
+are absolute: "as of the 2026-10-27 snapshot", "detected 2026-10-26". The only inputs are the
+snapshot and the files under `report/` listed below.
 
 ## Hard constraints
 
-The converter refuses the edition (so `run.sh html` fails) when: the file does not start with
+The converter refuses the report (so `run.sh html` fails) when: the file does not start with
 one `# Title` line; the words outside tables exceed `report.max_words` (1200, in
 `config/settings.yaml`); fewer than `report.min_figures` (3) distinct PNG figures from
 `report/out/figures/` are included; an image is remote, non-PNG or missing; a pipe table did
 not convert; or a raw HTML block is left unclosed. Everything else below is on you.
 
-1. Shape: the title, then a lead paragraph or bullet list, then `##` sections. The lead stays
-   visible; every `##` section renders as a collapsible block (first open, rest collapsed), so
-   each section must stand alone with a heading that says what the reader gets.
+1. Shape: the title (name the snapshot date and the headline finding), then a lead paragraph
+   or bullet list, then `##` sections. The lead stays visible; every `##` section renders as a
+   collapsible block (first open, rest collapsed), so each section must stand alone with a
+   heading that says what the reader gets.
 2. Words: put numbers in tables, not prose. Cut, do not compress into long sentences.
 3. Figures: PNGs written to `report/out/figures/`, included as `![caption](figures/<name>.png)`
    on their own line. Every figure must earn its place: one claim per figure, labelled axes,
@@ -34,19 +44,18 @@ not convert; or a raw HTML block is left unclosed. Everything else below is on y
    no chart junk).
 4. Tables: Markdown pipe tables. Include every table you cite; the appendix table of all
    substantive changes (`out/tables/appendix_changes.md`) goes in the last section.
-5. Headline: the lead must point at the changes in system cards and related documents that have
-   safety-relevant implications, concretely: what was edited, in which document, what a safety
-   reader should take from it. Each item links the document page
-   (`https://systemcards.org/docs/<slug>.html`) and names the version ids (vA→vB) so the claim
-   can be checked. If no such change happened since the last edition, say so in one sentence and
-   lead with the most consequential older one still worth knowing. Read the diff yourself before
-   calling a change safety-relevant; the classifier's flag is a lead, not a verdict.
+5. Headline: the lead lists the changes in system cards and related documents with the largest
+   safety-relevant implications across the entire tracked corpus, ranked, concretely: what was
+   edited, in which document, what a safety reader should take from it. Each item links the
+   document page (`https://systemcards.org/docs/<slug>.html`) and names the version ids (vA→vB)
+   so the claim can be checked. Read the diff yourself before calling a change safety-relevant;
+   the classifier's flag is a lead, not a verdict.
 6. Provenance: the report is AI-generated and published with a disclaimer naming the model.
    No human author, no claim of human review that did not happen, no number you cannot trace to
    `out/results.json`, a table, or a query you ran. Do not invent literature; the baselines you
    may cite are in `report/literature.md`.
 7. Style: short declarative sentences, bullets over prose, no filler, define acronyms on first use.
-   Date-stamp claims ("as of the 2026-10-27 snapshot"). British or American spelling, but one.
+   British or American spelling, but one.
 
 ## What you have
 
@@ -62,9 +71,8 @@ not convert; or a raw HTML block is left unclosed. Everything else below is on y
   `out/results.json` (every computed value; `appendix_rows` is every substantive change with URL,
   version ids, flags and summary), `out/tables/*.md`, `out/figures/*.png` and
   `out/comprehensive_report.md` (a dump of everything it knows). Extend it, or write your own
-  scripts under `report/`, when a question needs a number it does not have.
-- `published/report.html` and git history of `report.md`: the previous editions. Continuity
-  matters: say what is new since last week, do not re-tell the whole history.
+  scripts under `report/`, when a question needs a number it does not have; compute over the
+  whole history.
 - `literature.md`: baselines (link rot, content drift, bot blocking, prior card tracking).
 
 ## Procedure
@@ -75,24 +83,25 @@ not convert; or a raw HTML block is left unclosed. Everything else below is on y
    Output path: report/classifications/batch_<date>_<i>.json." Spot-check a few labels against the
    diffs. For any pair summarised as a deletion, check the raw capture (the extractor has dropped
    footnotes and tab panels before) and record verified corrections in `classifications/overrides.json`.
-2. `run.sh analyze`. Read `out/comprehensive_report.md` and the `safety_related` rows of
-   `appendix_rows`, then read those diffs. Decide what this week's edition is about.
+2. `run.sh analyze`. Read `out/comprehensive_report.md` and every `safety_related` row of
+   `appendix_rows`, then read those diffs. Rank them by consequence for a safety reader. That
+   ranking is the lead.
 3. Explore. Candidate directions, none required: which publishers edit after publication and
    whether they disclose it; score and scope changes; access-policy changes; what goes quiet
    (404, soft-404 behind HTTP 200, bot blocking, moves); discovery latency by lead source;
-   corpus composition shifts; anything odd you notice in the data. Keep the tracker-reliability
-   view (run-by-document link-check heatmap, `fig_heatmap.png`, or a better uptime figure of your
-   own) in every edition, in its own collapsed section: readers need to know how much of the
-   window the instrument was actually watching.
+   corpus composition; anything odd you notice in the data. Keep the tracker-reliability view
+   (run-by-document link-check heatmap, `fig_heatmap.png`, or a better uptime figure of your own)
+   in every report, in its own collapsed section: readers need to know how much of the tracked
+   period the instrument was actually watching.
 4. Write `report/report.md`. Then `run.sh html` and read `out/html/report.html` and each figure
    PNG with the Read tool; fix what you see. The converter's checks are the publication gate.
 5. Spawn two fresh review sub-agents and act on what matters: one checks every number and link in
    `report.md` against `out/results.json`, the tables and the database; one reads as a sceptical
-   safety researcher and flags claims the evidence does not carry, wordiness and figures that do
-   not earn their place.
-6. Write `report/out/RUN_SUMMARY.md`: what is new since the last edition, what you spot-checked,
-   what the reviewers flagged and what you changed, anything a maintainer should decide. The run
-   counts as successful only if `report.md` was rewritten and that summary exists.
+   safety researcher and flags claims the evidence does not carry, wordiness and figures that
+   do not earn their place.
+6. Write `report/out/RUN_SUMMARY.md` for the maintainers: what you spot-checked, what the
+   reviewers flagged and what you changed, anything a maintainer should decide. The run counts
+   as successful only if `report.md` was rewritten and that summary exists.
 
 ## Analysis conventions worth keeping
 

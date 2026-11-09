@@ -1,4 +1,4 @@
-"""The Analysis page (weekly AI-generated briefing): Markdown -> HTML conversion with
+"""The Analysis page (AI-generated research report): Markdown -> HTML conversion with
 real pandoc, its publication gates (word cap, minimum figures, tables, figure files,
 collapsible sections), and the site page with its mandatory disclaimer."""
 

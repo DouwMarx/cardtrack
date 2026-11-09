@@ -90,8 +90,8 @@ def model_display_name(model_id: str) -> str:
 
 
 def _analysis(repo: Repo) -> dict | None:
-    """The weekly research report (report/published/, written by
-    scripts/report_html.py), or None when no edition has been published yet."""
+    """The research report (report/published/, written by
+    scripts/report_html.py), or None when none has been published yet."""
     pub = repo.root / "report" / "published"
     try:
         meta = json.loads((pub / "meta.json").read_text(encoding="utf-8"))

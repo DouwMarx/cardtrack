@@ -12,7 +12,7 @@ Live site: https://systemcards.org (also reachable at https://cards.douwmarx.com
 Requirements: Python ≥3.11 with [uv](https://docs.astral.sh/uv/), and for the full
 pipeline: `node`/`npx` (Pagefind + wrangler), `pdftotext` (poppler; optional —
 falls back to pypdf), `gh` (optional — GitHub issues loop), `bwrap` (optional —
-agent sandbox), the `claude` CLI (agent phase), and for the weekly report `pandoc`.
+agent sandbox), the `claude` CLI (agent phase), and for the research report `pandoc`.
 
 Production host: `infra/` turns a fresh Debian 13 server into production over SSH;
 see [infra/README.md](infra/README.md). The exact Debian package
@@ -119,7 +119,7 @@ so runs never overlap; a run waits for the lock instead of skipping its day:
 |---|---|---|
 | `cardtrack-canary` | daily 05:15 | one model call with the pipeline's credentials + health issues |
 | `cardtrack` | daily 06:15 | pull + test new code, then the A → B → C run |
-| `cardtrack-report` | Sunday 02:00 | the weekly research report (Analysis page) |
+| `cardtrack-report` | Sunday 02:00 | rewrite the research report (Analysis page) |
 
 ```sh
 scripts/install_units.sh             # install for this checkout's path, enable, linger
@@ -161,7 +161,7 @@ so same-morning retries cannot read as an outage:
 | Condition | Opens when |
 |---|---|
 | `agent-down`, `monitor-down`, `deploy-failing` | no success for 36 h |
-| `report-stale` | no weekly report for 8 days |
+| `report-stale` | no report run for 8 days |
 | `backup-stale` | no R2 copy of `data/raw` for 36 h (only if R2 is configured) |
 | `deploy-rejected` | production refused a commit whose tests failed |
 | `outbox-stuck` | queued issues/comments undelivered for 24 h |
@@ -171,18 +171,18 @@ so same-morning retries cannot read as an outage:
 The GitHub `dead-man` workflow covers the one case the host cannot report: the host
 itself being down (no commit for 48 h).
 
-## Analysis page (weekly report)
+## Analysis page (research report)
 
-`scripts/run_report.sh` has a sandboxed agent (writable: `report/` only) follow
+`scripts/run_report.sh` (Sundays) has a sandboxed agent (writable: `report/` only) follow
 [.claude/skills/cardtrack-report/SKILL.md](.claude/skills/cardtrack-report/SKILL.md)
-to write this week's `report/report.md`: an open-ended investigation of a database
-snapshot whose lead points at safety-relevant changes in the tracked documents.
-`scripts/report_html.py` converts it with pandoc into `report/published/`, turning each
-`##` section into a collapsible block and refusing the edition over the word cap or
-under the figure minimum (`report.max_words`, `report.min_figures`). The site renders
-it at `/analysis.html` with a disclaimer naming the model that wrote it and linking
-the skill at the commit used. Maintainers steer the report by editing the skill;
-`report/run.sh html` previews an edition with the same checks.
+to rewrite `report/report.md` from scratch: one standing investigation of the whole
+database as of a snapshot, whose lead ranks the most safety-relevant changes in the
+tracked documents over the entire history. `scripts/report_html.py` converts it with
+pandoc into `report/published/`, turning each `##` section into a collapsible block and
+refusing the report over the word cap or under the figure minimum (`report.max_words`,
+`report.min_figures`). The site renders it at `/analysis.html` with a disclaimer
+naming the model that wrote it and linking the skill at the commit used. Maintainers
+steer the report by editing the skill; `report/run.sh html` previews it with the same checks.
 
 ## Operational notes
 
@@ -246,8 +246,8 @@ entries but can never reset limits. (Backfills: temporarily raise the caps in
 Phase B runs inside `scripts/agent_sandbox.sh` (bwrap): the filesystem is read-only,
 `$HOME` is a tmpfs (no `~/.ssh`, no `~/.config/secrets.env`, no gh auth), the
 repo-local `.env` is masked with `/dev/null` and every key named in it is unset in
-the agent's environment, and the only writable paths are `data/`, `logs/` (the weekly
-report agent: `report/` only) plus an **ephemeral** `~/.claude`. The one credential
+the agent's environment, and the only writable paths are `data/`, `logs/` (the report
+agent: `report/` only) plus an **ephemeral** `~/.claude`. The one credential
 that enters is Claude's:
 
 - with a setup-token (production): `CLAUDE_CODE_OAUTH_TOKEN` as an env var. It is

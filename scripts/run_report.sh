@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Weekly research report (systemd cardtrack-report.timer). Has the sandboxed agent
-# rewrite report/report.md following .claude/skills/cardtrack-report/SKILL.md,
+# Research report (systemd cardtrack-report.timer, Sundays). Has the sandboxed agent
+# rewrite report/report.md from scratch following .claude/skills/cardtrack-report/SKILL.md,
 # converts it to the site's Analysis page (report/published/) under the published
 # checks (word cap, minimum figures), and commits it. The next daily run deploys it.
 # Holds the same lock as run_daily.sh, so they never overlap.
@@ -30,10 +30,10 @@ flock -w 10800 9 || { echo "[report] run lock busy for 3 h; giving up (systemd r
 mkdir -p "$ROOT/logs" "$ROOT/state"
 RUN_ID="report-$(date -u +%Y%m%dT%H%MZ)"
 exec > >(tee -a "$ROOT/logs/$RUN_ID.log") 2>&1
-echo "== cardtrack weekly report $RUN_ID (role=$ROLE) =="
+echo "== cardtrack report $RUN_ID (role=$ROLE) =="
 
 "$ROOT/report/run.sh" snapshot "$ROOT"
-# A stale checkout (a dev clone that was not pulled) would publish an edition that
+# A stale checkout (a dev clone that was not pulled) would publish a report that
 # reports the tracker as dark. Refuse when the newest recorded run is too old.
 MAX_AGE="$(setting report.max_snapshot_age_days 3)"
 NEWEST_RUN="$("${PY[@]}" - "$ROOT/report/data/docs.sqlite.snapshot" <<'PYEOF'
@@ -67,13 +67,13 @@ if [ "$RC" -ne 0 ] || ! [ "$ROOT/report/report.md" -nt "$START_MARK" ] \
   # never half-publish; on a dev checkout keep the edits for inspection
   if [ "$ROLE" = "prod" ]; then
     git -C "$ROOT" checkout -- report 2>/dev/null || true
-    # drop the failed edition's untracked files too (keep paid-for classifications)
+    # drop the failed run's untracked files too (keep paid-for classifications)
     git -C "$ROOT" clean -fdq -e classifications report 2>/dev/null || true
   fi
   exit 3
 fi
 
-# The model that actually wrote this edition, from the session transcript (the
+# The model that actually wrote this report, from the session transcript (the
 # --model alias resolves server-side, so the alias alone would be the wrong claim).
 MODEL="$("${PY[@]}" - "$ROOT/.agent-home/.claude/projects" <<'PYEOF'
 import collections, glob, json, sys
@@ -98,7 +98,7 @@ STAGE="$(mktemp -d)"
   --model "$MODEL" \
   --skill-url "https://github.com/$GH_REPO/blob/$SKILL_SHA/.claude/skills/cardtrack-report/SKILL.md" \
   --max-words "$(setting report.max_words 1200)" --min-figures "$(setting report.min_figures 3)" \
-  || { echo "[report] FAILED: the edition did not pass the published checks; nothing published"
+  || { echo "[report] FAILED: the report did not pass the published checks; nothing published"
        rm -rf "$STAGE"
        if [ "$ROLE" = "prod" ]; then
          git -C "$ROOT" checkout -- report 2>/dev/null || true
@@ -120,7 +120,7 @@ date -u +%FT%TZ > "$ROOT/state/.report_last_ok"
 if [ "$ROLE" = "prod" ] && [ "$(setting publish.git_commit false)" = "true" ]; then
   git -C "$ROOT" add report
   if ! git -C "$ROOT" diff --cached --quiet; then
-    git -C "$ROOT" commit -q -m "[report] weekly analysis $(date -u +%F), written by $MODEL"
+    git -C "$ROOT" commit -q -m "[report] analysis as of $(date -u +%F), written by $MODEL"
     if [ "$(setting publish.git_push false)" = "true" ]; then
       git -C "$ROOT" push -q \
         || { git -C "$ROOT" pull --rebase --quiet && git -C "$ROOT" push -q; } \

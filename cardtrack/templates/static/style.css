@@ -172,7 +172,7 @@ footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 0.75r
   font: inherit; cursor: pointer;
 }
 
-/* analysis page: the weekly AI-generated research report */
+/* analysis page: the AI-generated research report */
 .report { max-width: 50rem; }
 .report .disclaimer {
   border: 1px solid var(--warn); border-left-width: 4px; border-radius: 6px;
