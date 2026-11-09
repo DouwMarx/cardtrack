@@ -1,73 +1,82 @@
-# cardtrack agent run — 2026-11-08 (run id 2026-11-08T06:19Z-local)
+# cardtrack agent run — 2026-11-09 (run id 2026-11-09T06:20Z-local)
 
-- **Lookback:** the last agent success was 2026-11-07T06:25:10Z, so the 72 h minimum applied (2026-11-05 to 11-08).
-- **Weekly retrospective sweep:** not run. Today is Sunday.
+- **Lookback:** the last agent success was 2026-11-08T06:27:23Z, so the 72 h minimum applied (2026-11-06 to 11-09).
+- **Weekly retrospective sweep:** done (Monday). Swept Transluce, SaferAI and US CAISI.
 - **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
-None. Every in-scope document I found is already catalogued.
+| # | Proposal | Verdict |
+|---|---|---|
+| 1 | Add Transluce, "Agents circumventing website restrictions for public benchmark runs" (2026-10-14, `other`). Models: MiniMax M3, MiniMax M2.7, GLM 5, GLM 5.2, Grok 4.5. Found by the Monday sweep. | **written**: `transluce-minimax-m3-other` (doc 440, v1115) |
 
-## Phase A candidates (10 first seen today)
+**Call worth checking on #1:**
+- **What it is:** an incident investigation, not a benchmark eval. It documents named models' agents trying to get past bot checks (GSMArena, OpenReview, Parks Canada) and registering an EPA account with an invented email. The incidents come from public benchmark records (You.com DeepSearchQA, WildClawBench, ClawBench).
+- **Why it qualifies:** I filed it as a model-specific incident report under `doc_type: other`, with `has_safety_evals: true`. Each incident is tied to a named model, which is why it qualifies while Transluce's earlier rogue-agent reports (no model named, covered by the 09-29 proposal) were skipped.
+- **`risk_domains`:** left empty, because the authors judge the behaviour largely instruction-informed. Retag to `loss_of_control` if the operator reads it as an oversight-failure report.
+- **`openness`:** `closed`, because Grok 4.5 is API-only.
 
-Candidates first seen before today were triaged in earlier runs. All of today's were skipped:
-- **tencent/Qwen3.8-27B-DSpine-b16:** read. It is a 5-layer speculative-decoding draft model for Qwen3.8-27B, with only speedup and acceptance tables. Auxiliary model, out of scope.
-- **Qwen3.8 discussions:** 2.4T-A95B, 2.4T-A95B-FP8 and Flash-Next-FP8 each got a "response template" discussion. Repo housekeeping.
-- **NVIDIA:**
-  - GR00T-N1.7 SimplerEnv / DROID license discussions: housekeeping.
-  - video-to-data-GR00T-N1.7 tissue-box fine-tune: a task fine-tune. GR00T N1.7 is already in the DB.
-- **The rest:** HF profile pages.
+## Phase A candidates (5 first seen today)
 
-## Targeted search (11-05 to 11-08)
+Candidates first seen before today were triaged in earlier runs. All 5 of today's are NVIDIA and all were skipped:
+- `datasets/nvidia/PhysicalAI-Human-1M-100K` and `spaces/nvidia/PhysicalAI-Human-1M-Explorer`: a dataset and a demo space, not model documentation.
+- `papers/2610.35959` (AgentBaton): a research paper on model collaboration, not an evaluation of a named model.
+- `rypuns` and `lockon`: HF profile pages.
+
+## Targeted search (11-06 to 11-09)
 
 Searched for:
 - generic system/model cards;
-- Anthropic, Google DeepMind, OpenAI, xAI, Meta and Mistral;
-- the Chinese labs (DeepSeek, Qwen, GLM, MiniMax, Kimi, MiMo) and Tencent Hy4;
-- UK AISI, CAISI, METR, Apollo, Epoch, Transluce, FAR.AI and Palisade evals;
-- trusted-access programs (LSVP / Cyber Verification Program / Claude Science, Mythos, Daybreak / TAC, Rosalind Biodefense / GPT-Rosalind-6, Gemini for Science).
+- Anthropic, OpenAI (Deployment Safety Hub), Google DeepMind, xAI, Meta, Mistral;
+- the Chinese labs (DeepSeek, Kimi, GLM, MiniMax), plus Tencent Hy4 and Qwen4;
+- UK AISI, CAISI, METR, Apollo, Transluce, FAR.AI;
+- trusted-access programs (LSVP, Daybreak / TAC, Rosalind Biodefense, Glasswing, Claude Science, Gemini for Science / Co-Scientist).
 
 Findings:
-- **Already catalogued:** GPT-6 Cyber, ChatGPT Images 2.6, GPT-Rosalind-6 addendum, GPT-6.1 Sol/Terra, Gemini Omni 1.2 Flash, the METR Anthropic AI R&D assessment and its Risk Report review, Muse Spark Open / Muse Wonder, Mistral Large 4, Kimi K3.1 Pro (card and SecureBio eval), and LSVP / Mythos 5.1 access.
-- **Tencent Hy4:** still API-only. The HF API's newest tencent repo is the DSpine draft model; the weights and system card are still "in the coming days". **Watch for it.**
-- **Qwen4:** announced at Apsara on 10-29, but there is no HF repo or card yet (the newest Qwen repo is Qwen-Image-2.1-Turbo from 10-09). **Watch for it.**
-- **"DeepSeek V4.1 Flash Cyber":** not a DeepSeek release. The name is a third-party label for refusal-removed or hosted variants of V4.1-Flash-1017, and the DeepSeek HF org has nothing newer than V4.1-Flash-1017 (in DB). Skipped.
-- **GPT-Rosalind-6 "dual-track" access (secondary coverage dated 10-31 / 11-01):** traces to the addendum, which is in DB. The GPT-Rosalind help article is already a related URL on existing Rosalind rows, and I found no separate dated access post. Nothing proposed.
-- **Grok 5:** not released. GLM-5.3 FlashX Legal is an API variant with no card found.
+- **Already catalogued:** GPT-6 Cyber, ChatGPT Images 2.6, GPT-Rosalind-6, Gemini Omni 1.2 Flash, Gemini 4 Carbon (access policy and eval), both METR Anthropic assessments, Kimi K3.1 Pro, Mistral Large 4, Muse Wonder and Muse Spark Open, and LSVP.
+- **Tencent Hy4 (full release 11-04):** still no weights or system card. The HF API's newest tencent repo is still Qwen3.8-27B-DSpine-b16 (11-07). **Watch for it.**
+- **Qwen4:** not released. Qwen teased it on 11-06, but the newest Qwen HF repo is still Qwen-Image-2.1-Turbo (10-09). **Watch for it.**
+- **Skipped:**
+  - Anthropic's Claude Enterprise security update (11-05): enterprise admin tooling, no gated model.
+  - Apollo, "Towards embedded evaluations for scheming propensities" (11-08): a policy and method essay with no named-model evaluation.
+  - Reflection "Beam" and webAI TwIL-8B: neither publisher is on the allowlist.
+  - Grok 5: not released.
 
-**Silent-org check (>14 days, via jq):**
-- Silent: palisade, poolside, saferai, rand, dots, zai, transluce, far_ai, us_caisi, cursor, xai, qwen, xiaomi, upstage.
-- Searched zai, qwen, xiaomi, us_caisi, xai and the evaluators. Nothing new and in scope was found.
+## Weekly retrospective sweep
+
+The three orgs with the oldest newest entry are Palisade, poolside and SaferAI. Palisade and poolside were swept on 11-02, so I took the next ones:
+- **Transluce** (newest entry 08-31):
+  - Read the Evaluations and Research index pages.
+  - Added the public-benchmark-runs incident report (above).
+  - "Mass Producing Training Data with Surprising Side Effects" (11-04): a generalization-research method, which fails the system-card test. Skipped.
+  - The 09-23, 09-30, 10-04 and 10-14 (historical-newspaper) incident posts name no model, so they stay under the existing 09-29 proposal.
+- **SaferAI** (newest entry 08-02): both model-specific reports (GLM-5.2 eval, DeepMind safety-case review) are in the DB. The rest are papers and memos with no named-model evaluation.
+- **US CAISI** (newest entry 09-17): the DeepSeek V4 Pro, GLM-5.2, GLM-5.3 and Kimi K3 assessments are all in the DB. The CAISSI research blog has no model-specific post since March.
 
 ## Citation mining
 
-- **Recent adds:** the 11-05 and 11-06 adds were mined in the 11-06 run. Today I re-mined the METR AI R&D acceleration assessment (raw HTML links). It cites:
-  - the Opus 5.5 and Haiku 5.5 system cards (in DB; Haiku via the CDN copy that is already a related URL);
-  - METR's Risk Report review (in DB);
-  - RSP v3.4 (a policy document, not model documentation);
-  - METR's "~100-page Full Report", which is not linked publicly.
-- **The two assets.claude.com "system card" PDFs from 11-06:** read their headers. They are the Opus 4.8 and Opus 4.7 system cards, both already in DB at their stable anthropic.com URLs (hashed CDN copies). No action.
+- **New since the last run:** today's Transluce add is the only document. It cites benchmark run records from You.com, WildClawBench and ClawBench, none of which are allowlisted publishers. Nothing proposed.
+- **Earlier adds:** the 11-05 and 11-06 adds were mined in earlier runs.
 
 ## Blocked-URL escalations (task 5)
 
-- **Phase A:** the same 16 openai.com / help.openai.com URLs were 403 again (streaks 17-30).
-- **My own fetches:** read_doc got HTTP 200 via browser_impersonation on all four I tried:
-  - scaling-trusted-access-for-cyber-defense
-  - path-to-astra
-  - expanding-daybreak-as-the-cyber-defense-window-narrows
-  - accelerating-cyber-defense-ecosystem
-- **Alive check:** the pages are alive, so there are no status changes.
+- **Phase A:** the same 16 openai.com / help.openai.com URLs were 403 again (streaks 18-30).
+- **My own fetches:** read_doc got HTTP 200 via browser_impersonation on all three I sampled:
+  - third-party-cyber-evaluations-involving-openai-models
+  - responding-next-frontier-critical-cyber-capabilities
+  - low-resource-programming-languages
+- **Alive check:** all three are alive, so there are no status changes.
 
 ## Document updates (task 6)
 
-No new entry in updated_docs since yesterday. Today's 7 new versions were all filtered as furniture by the monitor. The top 5 (v1056, v773, v924, v1015, v573) were judged noise or annotated in earlier runs. Nothing annotated.
+- **Queue:** no `updated_docs` entry is newer than 11-07, even though the monitor stored 21 new versions today. Those were evidently classified as furniture.
+- **Top 5:** v1056, v773, v924, v1015 and v573 were all judged noise or annotated in earlier runs.
+- **Result:** nothing annotated.
 
 ## Friction and proposals
 
 Friction, two recurrence entries:
 1. Phase A gets 403 on openai.com while read_doc succeeds.
-2. The stale updated_docs ranking.
+2. The stale updated_docs top 5.
 
-No new proposal.
-
-**Workaround note:** ad-hoc `.venv/bin/python /tmp/x.py` needs approval, but `jq` over state_summary.json works for the silent-org check.
+Both already have PROPOSALS.md entries (2026-10-07 and 2026-10-28), so no new proposal was filed.

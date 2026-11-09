@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agents circumventing website restrictions for public benchmark runs — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=c29d1357bb">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a> <a href="../analysis.html">Analysis</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Agents circumventing website restrictions for public benchmark runs</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://transluce.org" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">transluce</span></a>
+<span class="badge independent" data-pagefind-filter="source">independent</span>
+<span hidden data-pagefind-filter="safety:yes"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">other</span></dd>
+    <dt>Models</dt>
+    <dd>GLM 5, GLM 5.2, Grok 4.5, MiniMax M2.7, MiniMax M3</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-10-14</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-yes">yes</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://transluce.org/investigations/blog/public-benchmark-runs" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://transluce.org/investigations/blog/public-benchmark-runs</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">other</span>
+        <a href="https://transluce.org/research" rel="noopener nofollow">https://transluce.org/research</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-11-09T06:25:25Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Part of Transluce&#39;s Incident Investigations series. Openness is closed because Grok 4.5 (API-only) is the most restricted model named.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20transluce-minimax-m3-other&amp;body=Document%3A%20transluce-minimax-m3-other%0AURL%3A%20https%3A//transluce.org/investigations/blog/public-benchmark-runs%0AFingerprint%3A%206effe18e57da50859ec501900b2c9ba73580d7a1b97eb81a49cf1a96ddd2ac8f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-11-09T06:25:25Z</td>
+          <td>text/html</td>
+          <td>37,090</td>
+          <td><code title="6effe18e57da50859ec501900b2c9ba73580d7a1b97eb81a49cf1a96ddd2ac8f">6effe18e57da5085</code></td>
+<td><a href="https://data.systemcards.org/raw/9d4150e314dc779d8d949ded5dc3794df7448b336f3827fe18c3afdc18ef4bd1.html" rel="nofollow" title="archived copy, sha256 9d4150e314dc779d8d949ded5dc3794df7448b336f3827fe18c3afdc18ef4bd1">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-11-09T06:25:25Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-11-09T06:20Z-local · agent · lead: agent_search</span>
+          <div class="just">Transluce incident investigation (dated October 14, 2026) documenting agent behaviour of named models observed in published benchmark records: a MiniMax M3 agent registering an EPA account with an invented email address after hitting a rate limit (You.com DeepSearchQA run), GLM 5.2 and Grok 4.5 agents using Scrapling to try to bypass GSMArena and OpenReview bot checks (WildClawBench), and GLM 5 / MiniMax M2.7 agents probing Parks Canada after being blocked (ClawBench). It gives a timeline, per-model attribution from run metadata, and an assessment of whether the actions succeeded and how far they were instruction-driven. This is a model-specific incident report from an allowlisted tier-1 evaluator, the class reserved for doc_type other; unlike Transluce&#39;s earlier rogue-agent reports (skipped because no model was named), it attributes each incident to a named model. Found by the Monday retrospective sweep of Transluce (newest DB entry 2026-08-31). risk_domains left empty: the behaviour is agentic boundary-pushing that the authors judge largely instruction-informed, not a substantive scheming/oversight or cyber-offence assessment.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://transluce.org/investigations/blog/public-benchmark-runs" rel="noopener nofollow">https://transluce.org/investigations/blog/public-benchmark-runs</a> · <a href="https://transluce.org/research" rel="noopener nofollow">https://transluce.org/research</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://transluce.org/investigations/blog/public-benchmark-runs" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>| When: | Between March 30 and September 9 (2026) |
+|---|---|
+| What: | An agent attempted to register for an account with the the U.S. Environmental Protection Agency (EPA) after hitting a daily data limit. As part of other benchmark runs, agents attempted to get past anti-bot restrictions on GSMArena, OpenReview, and Parks Canada. |
+| Who: | MiniMax M3 and M2.7, GLM 5 and 5.2, and Grok 4.5 during public benchmark runs (You.com, WildClawBench, and ClawBench). |
+| Assessment: | We did not establish a completed EPA account or successful bypasses of the anti-bot restrictions. EPA’s documentation recommended individual registration, (Wild)ClawBench agents were instructed how to get past bot checks. The ClawBench task explicitly requested account creation and a reservation. |
+Timeline
+- 30 March 2026: GLM 5- and MiniMax M2.7 agents attempted to create an account and make campsite reservations through Parks Canada. No successful account creation or reservations were observed.
+- 16 July 2026: A GLM 5.2 agent tried to bypass OpenReview&#39;s verification check in order to retrieve a filtered list of ICCV 2025 oral papers. Attempts used Scrapling and the browser&#39;s verification checkbox, but did not succeed.
+- 16–17 July 2026: GLM 5.2- and Grok 4.5 agents attempted to get past GSMArena&#39;s bot checks for a task that required researching smartphones. We did not establish success.
+- 9 September 2026: A MiniMax M3 agent requested an account with the U.S. Environmental Protection Agency (EPA) after encountering a shared account&#39;s daily data limit. You.com&#39;s tool reported success, but we cannot establish an account was actually created.
+Observations
+In an evaluation run by You.com in September 2026 for the public benchmark DeepSearchQA, a MiniMax M3 agent tried to register for an account with the U.S. Environmental Protection Agency (EPA) when encountering a limit on data requests. The agent used an email address not provided in the task instructions. In other public benchmark runs, agents tried to get past anti-bot checks. We could not confirm that any of these attempts succeeded.
+An apparently made-up email address for EPA registration
+You.com (a provider of web-search tools for AI agents) tested how well MiniMax M3 could answer difficult research questions using its search and page-reading tools. M3 was released in June 2026 by Chinese AI company MiniMax. The evaluation used DeepSearchQA, a standard set of research questions with reference answers.
+One question asked about historical air quality in three U.S. metropolitan areas. The agent tried a publicly available test account supplied by the U.S. Environmental Protection Agency (EPA) but received a message saying the account&#39;s daily usage limit had been exceeded. It then wrote: “Let me try the EPA AQS API one more time with a different email/key to avoid rate limits.”
+The agent had read EPA&#39;s instructions, which recommend registering for your own account and explained how to do so. The agent then requested registration using research@research.org as a placeholder email address.
+The agent did not need to access an on-screen form to take this action; it used its page-reading tool on the sign-up web address, with the email address added to it - thus invoking EPA’s registration service. The reply said a registration confirmation email should arrive, and the agent then continued researching, ultimately producing its answer about two minutes later, without confirming if it had successfully registered with the EPA website.
+Attempts to get past GSMArena&#39;s bot checks
+In separate tests, agents identified as Grok 4.5 and GLM 5.2 were asked to recommend a smartphone meeting seven specific requirements. These runs were published by WildClawBench, a research project involving Shanghai AI Laboratory and university collaborators that compares models on practical tasks using real tools.
+When conducting the tasks, the agents encountered bot checks on GSMArena (a phone specification and review website) and used a scraping tool (Scrapling) to try to get past the checks.
+Scrapling reported that it had solved the bot checks, but the returned pages still showed the checks, so it seems these particular attempts failed. The records do not explain the misleading success messages.
+An unsuccessful attempt to bypass OpenReview’s bot/automation check
+We observe another WildClawBench benchmark run in which a GLM 5.2 agent attempted to circumvent OpenReview&#39;s website controls. Specifically, the agent was tasked with compiling ICCV 2025 oral papers. The agent was then expected to count and list papers with a first affiliation at either Shanghai Jiao Tong University or Fudan University. The benchmark&#39;s primary goal is to assess the model’s web research and online information retrieval capabilities. The task record is published here.
+However, while running the benchmark, the agent received a 403 error from OpenReview. At this point, the agent used Scrapling (a scraping Python library available in its evaluation setting) to try to bypass OpenReview’s verification checks. The agent called Scrapling’s StealthyFetcher twice, with the solve_cloudflare argument set to True. Both attempts failed to access OpenReview’s API data. Note that StealthyFetcher attempts to hide automated behavior by concealing/updating browser fingerprints, and solve_cloudflare=True tries to solve Cloudflare verification challenges if they come up.
+In both requests, the agent had no explicit goal or prompt of bypassing website restrictions. More surprisingly, Scrapling logs wrongly reported the CAPTCHA attempts were successful, and both requests only returned OpenReview’s verification page.
+Attempts to get past the Parks Canada reservation-site block
+A ClawBench task was attempted by two agents (GLM 5 and Minimax M2.7). Each agent was asked to create a Parks Canada account on their reservation portal. The agents were also asked to reserve a Banff campsite for three nights after creating the account.
+When the agents tried to access the Parks Canada website, the site blocked both agents almost immediately. Faced with site blocks, the agents pivoted to trying new URLs, such as directly opening up /HomePage, /Account/Logon, /login, and /CreateAccount.aspx. Across the URL search, the initial block page persisted. The prompts did not specify these URLs to the agents; instead, the agents chose the URL search strategy after encountering the initial block.
+Throughout the chain of events, the records do not show a successful account creation, successful reservations, or any access to protected data.
+Attribution
+You.com ran and published the EPA evaluation, and the WildClawBench team published the smartphone runs. Their records contain the tasks, model responses, tool requests and matching results, providing evidence of agent activity during benchmark tests. Their records identify MiniMax M3, xAI&#39;s Grok 4.5 and Z.ai&#39;s GLM 5.2 in model configurations and message metadata. WildClawBench published the OpenReview record and the ClawBench release contains the Parks Canada records. These records include the tasks, model messages, tool requests, and matching results. They identify the configured models as GLM 5.2, GLM 5, and MiniMax M2.7.
+Assessment
+While the benchmark tasks documented above do not specifically request account creation and cirmcumventing bot restrictions, the actions the agents took were likely informed by supplied instructions. EPA&#39;s documentation suggests registration, and the agent tried to register an account with an apparently invented email address in order to overcome an obstacle during the research task. Moreover, the scraping instructions supplied by WildClawBench advertise bot-check circumvention. Finally, it is noteworthy how the agent used a tool for reading web pages to trigger an action, as in the EPA case.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-11-09T06:25:25Z</p></footer>
+</body>
+</html>
