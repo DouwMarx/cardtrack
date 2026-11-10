@@ -1,0 +1,44 @@
+Claude Mythos 5.2
+Our most capable model class for cybersecurity and biology research.
+Announcements
+- Introducing Claude Mythos 5.2Claude Mythos 5.2 is our most capable model for cybersecurity and life sciences research. It’s available to vetted organizations through our verification programs. View more
+- Expanding the Cyber Verification ProgramSecurity teams can now apply for advanced cyber capabilities on Claude Opus 5.5, Claude Sonnet 5.5, Claude Mythos 5.1, and future models. View more
+- Introducing Claude Mythos 5.1Claude Mythos 5.1 is our newest Mythos-class model, with gains in cybersecurity and biology. Access remains limited to a small set of vetted organizations. View more
+- Claude Mythos 5 export controls have been liftedWe have restored access to Mythos 5 for a set of US organizations, following the US government’s approval. View more
+- Claude Mythos 5 is currently unavailableWe apologize for this disruption to our customers and are working to restore access as soon as possible. View more
+- Claude Mythos 5Claude Mythos 5 is the latest update for Mythos Preview, seeing gains in cybersecurity, biology, and healthcare benchmarks. Given its capabilities, Mythos 5 is currently only available to a small group of vetted partners with a goal of opening up more broadly in the future. View more
+- Expanding Project GlasswingWe’re extending Project Glasswing to approximately 150 new organizations in more than fifteen countries. View more
+Availability and pricing
+Claude Mythos 5.2 is available to vetted cyberdefenders and life scientists through our trusted access programs. Life sciences researchers can apply for advanced capabilities through the Life Sciences Verification Program. Security teams can apply for advanced cyber capabilities on Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Mythos 5.1, and future models through the Cyber Verification Program.
+Pricing for Claude Mythos 5.2 starts at $8 per million input tokens and $40 per million output tokens.
+Fast mode for Claude Mythos 5.2 is also available through our trusted access programs. It costs $16 per million input tokens and $80 per million output tokens.
+Claude Security also now runs on Mythos 5.2.
+Safeguards
+Because Mythos 5.2 is highly capable for cybersecurity and biology research, it could be used both for good and for harm. We currently provide access to a set of vetted organizations through our verification programs.
+We extensively test and evaluate our models to ensure they meet Anthropic’s standards for safety, security, and reliability. The accompanying system card covers safety results in depth.
+Data retention
+Using Mythos models requires 30-day data retention for safety monitoring by default. With Enterprise Frontier Safeguards (EFS), automated safety monitoring is run on prompts and responses that are stored in a customer’s infrastructure, making it compatible with zero data retention (ZDR). Until EFS is available, eligible Cyber Verification Program customers who already have ZDR can keep it for Mythos 5.2.
+Learn more about data retention. Learn more about Enterprise Frontier Safeguards.
+Benchmarks
+Claude Fable 5.2 and Claude Mythos 5.2 are the same underlying model. Results below are for Fable 5.2 unless noted; where Mythos 5.2 results are shown, the gap reflects tasks where Fable 5.2’s safeguards intervene.
+|  | Fable 5.2 | Fable 5.1 | Opus 5.5 | GPT-6 Astra | Gemini 4 Carbon |
+|---|---|---|---|---|---|
+| Agentic codingFrontierCode 2.0 | 49.1%Xhigh effort | 32.4%Xhigh effort | 45.5% | 42.8% | 41.1%Medium effort |
+| Agentic codingFrontierSWE v2 | 69.9% | 56.3% | 62.3% | 65.5% | 61.2% |
+| Business workflowsAutomationBench | 51.4% | 31.4% | 42.5% | 41.4% | 53.9% |
+| Agentic scientific researchTerminal-Bench-Science 0.1 | 74.6%75.3% (Mythos 5.2) | 52.6% | 58.7% | 68.1% | 64.8% |
+| CybersecurityCyScenarioBench† | 76.3%Mythos 5.2 | 61.7%Mythos 5.1 | 67.6%without safeguards | 61%GPT-6 Cyber | — |
+| CybersecurityCVE Rediscovery | 89.6%Mythos 5.2 | 78.3%Mythos 5.1 | 81.3%without safeguards | — | — |
+| Protein designDe novo binder design (24 hr) | 85.1%Mythos 5.2 | 79.1%Mythos 5.1 | 82.6%without safeguards | — | — |
+| Agentic searchWANDR (relaxed score) | 82.1% | 68.7% | 72.3% | — | — |
+| Computer useOSWorld 2.1 (offline set, partial) | 89.3% | 83.5% | 87.2% | 79.5% | 81.5% |
+| RoboticsRoboDojo Sim‡ | 64.9% | 27.6% | 39.4% | 29.8% | — |
+| Knowledge workAA-Briefcase v1.1 | 66.1%rubric | 61.5%rubric | 61.2%rubric | 52.0%rubric | 61.8%rubric |
+|  | 1785Elo | 1669Elo | 1800Elo | 1569Elo | 1611Elo |
+| Knowledge workRemote Labor Index (RLI) | 41.3%High effort | 17.9% | 21.3% | 20.8% | — |
+| Multidisciplinary reasoningHumanity’s Last Exam (with tools) | 74.2% | 65.6% | 67.7% | 57.2% | — |
+| Visual chart recognitionChartography (no tools) | 73.4% | 44.8% | 64.4% | 71.0% | 72.5% |
+For details on evaluation methodology, see the Claude Fable 5.2 and Claude Mythos 5.2 System Card. Scores for Fable 5.2, Fable 5.1, and Opus 5.5 show results with safeguards on unless otherwise noted. All scores show each model’s highest-available effort unless otherwise noted. † On CyScenarioBench, each lab’s scores are based on unique tasks. ‡ RoboDojo Sim shows the highest-available effort and was run internally.
+Frequently asked questions
+Making models as capable as Mythos Preview generally available comes with risks. The model’s capabilities in specific areas like cybersecurity and biology are advanced enough that they could be misused to create cyberattacks or dangerous weapons. To release Mythos-level capabilities more broadly, we developed Claude Fable models with safeguards that block or limit its performance in risky areas.
+Security teams can apply for advanced cyber capabilities on Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Mythos 5.1, and future models through the Cyber Verification Program. Life sciences researchers can apply for advanced capabilities through the Life Sciences Verification Program.
