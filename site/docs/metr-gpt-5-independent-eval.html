@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Early work on monitorability evaluations — systemcards.org</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
-<link rel="stylesheet" href="../style.css?v=c29d1357bb">
+<link rel="stylesheet" href="../style.css?v=6dfde30586">
 </head>
 <body>
 <header class="masthead">
@@ -49,10 +49,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:49:09Z</dd>
     <dt>Versions</dt>
-    <dd>3</dd>
+    <dd>4</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-gpt-5-independent-eval&amp;body=Document%3A%20metr-gpt-5-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-01-19-early-work-on-monitorability-evaluations/%0AFingerprint%3A%207b2c31ff7d3b4a068cba195480d7e8dbe5fca2a69705d0f8e743cad7accb3e31%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20metr-gpt-5-independent-eval&amp;body=Document%3A%20metr-gpt-5-independent-eval%0AURL%3A%20https%3A//metr.org/blog/2026-01-19-early-work-on-monitorability-evaluations/%0AFingerprint%3A%203db34789b65260b40652f33f9930aa129b4896fd5cfa4a8c9999f8e84b4b537e%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -60,6 +60,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-11T06:21:49Z</td>
+          <td>text/html</td>
+          <td>105,048</td>
+          <td><code title="3db34789b65260b40652f33f9930aa129b4896fd5cfa4a8c9999f8e84b4b537e">3db34789b65260b4</code></td>
+<td><a href="https://data.systemcards.org/raw/d8cc427d2d4c07609b05149f335e41bd495e41090ca74f4191e69de14410ee13.html" rel="nofollow" title="archived copy, sha256 d8cc427d2d4c07609b05149f335e41bd495e41090ca74f4191e69de14410ee13">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-23T06:19:44Z</td>
           <td>text/html</td>
@@ -91,7 +98,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 9 changelog entries
+    <summary>Show 10 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -174,6 +181,14 @@
           <div class="just">Diff v589-&gt;v921: one new footnote sentence; the remaining changes are footnote renumbering.</div>
           <div class="evidence">Evidence:
 <a href="https://metr.org" rel="noopener nofollow">https://metr.org</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-11T06:21:49Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-11T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://metr.org/blog/2026-01-19-early-work-on-monitorability-evaluations/" rel="noopener nofollow">https://metr.org/blog/2026-01-19-early-work-on-monitorability-evaluations/</a>          </div>
       </li>
     </ol>
     </details>
@@ -403,28 +418,29 @@ Performance of selected agents split by side task
 Here are the percentage of uncaught runs, plotted per side task for a selected subset of agents.
 Percentage of uncaught runs of agents and monitors with similar time horizons
 Here are the percentage of uncaught runs where the agent and the monitors have similar time horizons, within 10%.
+Footnotes
 -
-      We chose a 5% FPR for these initial experiments because this FPR is relatively low, without being so low that we require large quantities of ‘main-task-only’ agent runs to set monitor thresholds with a reasonable degree of certainty. ↩
+      We chose a 5% FPR for these initial experiments because this FPR is relatively low, without being so low that we require large quantities of ‘main-task-only’ agent runs to set monitor thresholds with a reasonable degree of certainty. ↩︎
 -
-      HCAST: Human-Calibrated Autonomy Software Tasks ↩
+      HCAST: Human-Calibrated Autonomy Software Tasks ↩︎
 -
-      We get our human time-to-complete from either a baseline, where we tested how long a human actually would take to complete the task, or from an estimate, where a METR employee with knowledge of the rest of the task suite and baseline times estimated how long it would take a human to solve the task. ↩
+      We get our human time-to-complete from either a baseline, where we tested how long a human actually would take to complete the task, or from an estimate, where a METR employee with knowledge of the rest of the task suite and baseline times estimated how long it would take a human to solve the task. ↩︎
 -
-      These baseline times and estimates are for solving the task on its own, not as a part of a side task setup. ↩
+      These baseline times and estimates are for solving the task on its own, not as a part of a side task setup. ↩︎
 -
-      Also note that the visible reasoning agents have fewer runs than other agents. This is because visible reasoning is incompatible with a zero-data retention API and so we could only use a subset of our main tasks that are already public and can be used with data retention APIs. ↩
+      Also note that the visible reasoning agents have fewer runs than other agents. This is because visible reasoning is incompatible with a zero-data retention API and so we could only use a subset of our main tasks that are already public and can be used with data retention APIs. ↩︎
 -
-      Specifically, for each agent-monitor pair, we resample, with replacement, each of the main task runs and the side task runs, recalculate the 5% threshold, and use that to calculate the percent uncaught for that bootstrap sample. Note that this procedure does not preserve the number of runs from each main or side task - only the total number of runs for the (agent, monitor) pair. The bootstrap also does not directly take into account variance from the choice of side tasks that were selected (like a block bootstrap would). ↩
+      Specifically, for each agent-monitor pair, we resample, with replacement, each of the main task runs and the side task runs, recalculate the 5% threshold, and use that to calculate the percent uncaught for that bootstrap sample. Note that this procedure does not preserve the number of runs from each main or side task - only the total number of runs for the (agent, monitor) pair. The bootstrap also does not directly take into account variance from the choice of side tasks that were selected (like a block bootstrap would). ↩︎
 -
-      In the future we might explore giving these agents a hidden scratchpad they can use, to make them more analogous to reasoning models whose reasoning is hidden from monitors. ↩
+      In the future we might explore giving these agents a hidden scratchpad they can use, to make them more analogous to reasoning models whose reasoning is hidden from monitors. ↩︎
 -
-      Averaged monitor catch rate is calculated by first finding the mean fraction of agent runs that the monitor successfully flags (at the monitor’s 5% FPR threshold for that agent), then averaging these mean fractions over all monitors. We calculate it this way to account for different monitors having different agent runs excluded due to e.g. transcripts exceeding specific monitors’ context lengths. ↩
+      Averaged monitor catch rate is calculated by first finding the mean fraction of agent runs that the monitor successfully flags (at the monitor’s 5% FPR threshold for that agent), then averaging these mean fractions over all monitors. We calculate it this way to account for different monitors having different agent runs excluded due to e.g. transcripts exceeding specific monitors’ context lengths. ↩︎
 -
-      Our original experiments were primarily with hidden reasoning, and on shorter tasks, where context length issues were less prominent. Now that we are using longer tasks and more verbose agents, context length issues are significant enough that we want to chunk monitor transcripts. ↩</pre>
+      Our original experiments were primarily with hidden reasoning, and on shorter tasks, where context length issues were less prominent. Now that we are using longer tasks and more verbose agents, context length issues are significant enough that we want to chunk monitor transcripts. ↩︎</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-10T06:28:36Z</p></footer>
+<footer><p>Data updated 2026-11-11T06:26:01Z</p></footer>
 </body>
 </html>

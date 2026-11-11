@@ -1,112 +1,112 @@
-# cardtrack agent run — 2026-11-10 (run id 2026-11-10T06:16Z-local)
+# cardtrack agent run — 2026-11-11 (run id 2026-11-11T06:19Z-local)
 
-- **Lookback:** the last agent success was 2026-11-09T06:26:33Z, so the 72 h minimum applied (2026-11-07 to 11-10).
-- **Weekly retrospective sweep:** not run. It is a Tuesday; it ran yesterday.
+- **Lookback:** the last agent success was 2026-11-10T06:29:52Z, so the 72 h minimum applied (2026-11-08 to 11-11).
+- **Weekly retrospective sweep:** not run. It is a Wednesday.
 - **Open issues:** `fetch_ok: true` with no open issues, so task 4 had nothing to do.
-- **Cap use:** 13 adds today, against the cap of 15 new documents per rolling 24 h.
+- **Cap:** reached on the 7th add. The rolling-24h window still counts yesterday's 13 adds.
 
 ## Proposals (validator verdicts)
 
 | # | Proposal | Verdict |
 |---|---|---|
-| 1 | Add the Claude Fable 5.2 & Mythos 5.2 System Card (PDF, 2026-11-09, `system_card`). Tagged with all 5 risk domains; `restricted`. | **written**: `anthropic-claude-fable-5-2-system-card` (doc 441) |
-| 2 | Add the "Introducing Claude Fable 5.2 and Claude Mythos 5.2" launch post (`access_policy`). Tagged cbrn, cyber, loss_of_control; `restricted`. Mirrors the 5.1 launch-post row. | **written**: `anthropic-claude-fable-5-2-access-policy` (doc 442) |
-| 3 | Annotate v1116 of the Mythos program page: retitled to Mythos 5.2, new pricing, fast mode gated to the trusted-access programs, ZDR carve-out, Fable 5.2 benchmark table. | **written** |
-| 4 | `field_update` on that page's `model_names`, adding Claude Mythos 5.2. | **written** |
-| 5 | Add Anthropic, "Testing Claude on real-world electronics design" (`other`). Fable 5.2 scored 69% on PCB Gym and 83.5% on BenchCAD 2.1. No safety evals; `closed`. | **written**: `anthropic-claude-fable-5-2-other` (doc 443) |
-| 6 | Add Meta's Muse Ember Evaluation Methodology (`other`), with the 11-09 blog as announcement. No safety evals; `closed`. | **written**: `meta-muse-ember-other` (doc 444) |
-| 7 | Add the OpenAI misalignment report "Covert underperformance on safety research tasks" (GPT-6 Astra; tagged loss_of_control). | **written**: `openai-gpt-6-astra-other-5` (doc 445) |
-| 8 | OpenAI MR "Self-generated prompt injections in compaction summaries" (Astra-family model) | **written**: doc 446 |
-| 9 | OpenAI MR "Using a funded test cryptocurrency wallet without authorization" (GPT-5.6 Sol family) | **written**: doc 447 |
-| 10 | OpenAI MR "Retrieving server secrets … government statistics website" (HPIM; tagged cyber and loss_of_control) | **written**: doc 448 |
-| 11 | OpenAI MR "Reaching an internal EDA host through a reference tool" (tagged cyber and loss_of_control) | **written**: doc 449 |
-| 12 | OpenAI MR "Bypassing network restrictions during a coding evaluation" | **written**: doc 450 |
-| 13 | OpenAI MR "Trying to prompt-inject the grader in filenames" | **written**: doc 451 |
-| 14 | OpenAI MR "Command injecting a reference tool to copy a source file" | **written**: doc 452 |
-| 15 | OpenAI MR "Self-replicating prompt injections exist" (GPT-5.5 plus a GPT-5.4-mini-based GPT-Red model; tagged cyber) | **written**: `openai-gpt-5-5-other` (doc 453) |
+| 1 | Add the Gemini 4 Carbon Safety & Security Report PDF (`system_card`, dated 11-10, the GA launch day). Tagged with all 5 domains; `closed`. | **written**: `google-deepmind-gemini-4-carbon-system-card` (doc 454) |
+| 2 | Add the Gemini 4 Carbon Model Card PDF (`model_card`), with the HTML card as `web_version` and the GA post as `announcement`. Tagged societal_harm; `closed`. | **written**: `google-deepmind-gemini-4-carbon-model-card` (doc 455) |
+| 3 | Add FAR.AI's Security Stress Test of Kimi K3.1 Pro (`independent_eval`, 11-09). Tagged cbrn, cyber; `open_weight_restrictive`. | **written**: `far-ai-kimi-k3-1-pro-independent-eval` (doc 456) |
+| 4 | Add the Gemini Robotics 2.5 launch post (`other`, 11-10). Has safety evals but no tags; `restricted` (partner rollout only). | **written**: `google-deepmind-gemini-robotics-2-5-other` (doc 457) |
+| 5 | OpenAI misalignment report "Unsanctioned Artifactory writes and cross-sample communication" (tagged loss_of_control). Deferred from 11-10. | **written**: `openai-openai-internal-research-model-other-9` (doc 458) |
+| 6 | OpenAI misalignment report "Uploading files to the internet in order to cite them" (tagged loss_of_control). Deferred from 11-10. | **written**: `openai-openai-internal-research-model-other-10` (doc 459) |
+| 7 | OpenAI misalignment report "Signing up for disposable emails and searching GitHub for leaked API keys" (tagged cyber, loss_of_control) | **rejected**: `cap_exceeded` (rolling 24 h). **Next run: re-propose; /tmp is wiped, so rebuild the JSON.** |
+| 8 | Annotate v1142 of `google-deepmind-gemini-4-carbon-other` (the GA-day revision of the evaluation PDF) | **written** |
 
 Every proposed document was fetched and read with read_doc before proposing.
 
 **Calls worth checking:**
-- **#2, launch post as a second row:** this follows the 5.1 precedent (`anthropic-claude-fable-5-1-access-policy` alongside the 5.1 system card). The post defines the Fable/Mythos access split and verification-program gating, and reports sandbox-escape rates. If the operator now prefers one row per release, retire #2 rather than the card.
-- **#5, the electronics post:** a capability showcase with measured results for a named model. Admitted on the claude-plays-robotics and Claude-accelerates-protein-design precedent.
-- **#8-#15, unnamed internal models:** admitted under the practice that has held since 09-29 (option (a) in the 2026-09-29 PROPOSALS entry, still not ruled on). `publication_date` uses each report's "Report updated" date, the convention of the existing rows. Disclosure #15 quotes worm-style injection payloads verbatim. They were treated as data, not instructions.
+- **#1/#2, openness `closed`:** this follows the 10-14 Argon card and safety-report rows. Carbon is now on the public paid API, but its cyber tier stays gated to Fairwind verified defenders. Under the 09-04 "any vetted-access model" rule, the operator may prefer `restricted` here. Whatever is decided should apply to the Argon rows too.
+- **#4, launch post as the document:** no Robotics 2.5 model card or safety PDF exists yet. Both guessed storage paths returned 404, and the model-cards index has no entry. It was admitted because the post reports measured capability and physical-safety results for a named model. **If a card appears, add it as the primary row and consider retiring this one.**
+- **#3, openness:** the HF card releases the weights under a custom "Kimi K3.1 Pro License", so it was classed as restrictive.
 
-## Phase A candidates (41 first seen 11-09 / 11-10)
+## Phase A candidates (first seen 11-11)
 
-Candidates first seen before 11-10 were triaged in earlier runs. Today's leads:
+Earlier candidates were triaged in previous runs.
 
 **Proposed:**
-- the Fable/Mythos 5.2 launch post, which led to the system card (#1, #2);
-- the electronics-design post (#5);
-- Muse Ember (#6);
-- the Redwood post "Astra covertly underperforming…", which led to the OpenAI report (#7) by citation.
+- the Gemini 4 Carbon model card, which led to the card PDF and the safety report (#1, #2);
+- the "Gemini 4 Carbon is now available" post, recorded as `announcement` on #2 rather than as its own row (Argon precedent);
+- FAR.AI's Kimi K3.1 Pro test (#3);
+- Gemini Robotics 2.5 (#4).
 
 **Skipped:**
-- **Redwood post itself:** commentary on OpenAI's data, with hypotheses but no measurement of its own. Its source report is now catalogued instead.
-- **Meta:** the "muse" explainer pages and meta.ai/learn are explainers, not model documentation.
-- **DeepSeek V4.1-Flash and tencent Qwen3.8-DSpine:** HF discussion threads only.
+- **FAR.AI SynthDeception:** probe-training dataset research, not an evaluation of a named model.
+- **Redwood "We don't understand whether GDM intentionally trains on CoT":** commentary on the Gemini 4 safety report, which is already catalogued.
+- **AlphaProof Code:** a verification-framework showcase that uses Carbon, with no measured evaluation of the model.
+- **Anthropic IPO roadshow; Cursor Projects multiplayer; DeepMind blog page 20:** not model documentation.
+- **MiniMax-H3-Image (repo, blog, Space, PE, discussions):** an image model, out of scope per the minimax scope note.
+- **inclusionAI SingVL_S1_4B:** a small VLM outside the Ling/LLaDA scope, with no outside announcement.
 - **NVIDIA:**
-  - CPU-ARC and AutoCompress papers: research using models, not evaluations of one.
-  - PII-Japan and Personas-Finance-Japan blogs and datasets, G1-Factory, and the human-1m bucket: datasets, not model documentation.
-  - Cosmos3 Edge/Super/Nano FP8: quantization re-uploads, not distinct releases.
-- **StepFun:** a paper and a profile page.
-- **MiniMax:** an H3 README discussion and a profile page.
-- **Epoch:** the Inference Performance Index measures hardware, not a model.
-- **SecureBio:** Substack furniture links.
-- **NIST:** the SI Agent Standards Initiative page is a standards program with no model evaluation.
+  - ESM2 re-uploads (protein LMs, auxiliary);
+  - GR00T-N1.7 fine-tunes (fine-tune checkpoints of a catalogued family);
+  - Aerial collection, Granary-v2, isaaclab-assets: datasets and assets;
+  - rfd4-proteina Space;
+  - profile pages.
+- **tencent GroupAssistBench:** dataset, plus profile pages.
 
-## Targeted search (11-07 to 11-10)
+## Targeted search (11-08 to 11-11)
 
 **Searched for:**
-- generic "system card" for November 2026;
-- METR / UK AISI reports on Fable 5.2 and Mythos 5.2;
-- the OpenAI Deployment Safety Hub;
-- Google DeepMind model cards;
-- Grok 5, Qwen4, Tencent Hy4 and Gemini 4;
-- access programs (CVP, LSVP, Rosalind, Daybreak, Gemini for Science);
-- a release tracker for 11-06 to 11-10.
+- generic "system card November 2026" (returned only trading-card noise);
+- third-party Gemini 4 Carbon evals;
+- METR / AISI reports on Mythos 5.2;
+- trusted-access programs for November;
+- release trackers for 11-09 / 11-10 (Qwen, DeepSeek, Grok, Mistral);
+- Kimi K3.1 Pro government evals;
+- LSVP expansion.
 
 **Findings:**
-- **Anthropic Fable / Mythos 5.2 (11-09):** the only frontier release in the window, now catalogued (#1-#4).
-- **External testers:** the system card names UK AISI, METR, Frontier Design and NIST CAISSI. None has published its own Mythos 5.2 report yet. **Watch metr.org and aisi.gov.uk.**
-- **Muse Ember (11-09):** Meta published no separate Safety & Preparedness Report. The blog states only that the model stayed below the Meta Superintelligence Scaling Framework thresholds. **Watch for one.**
-- **Tencent Hy4:** still no weights or system card. The newest tencent HF repo is still DSpine (11-07). **Watch.**
-- **Qwen4:** not released. The newest Qwen repo is still Qwen-Image-2.1-Turbo (10-09).
-- **Grok 5 / Gemini 4:** not released.
-- **Already in the DB:** GPT-6 Cyber, Images 2.6, Rosalind-6, Gemini Omni 1.2 Flash, the CVP / LSVP posts and the CVP support article.
-- **ByteDance Seedream 5.5 (11-09):** limited rollout with no model card, and the publisher is not allowlisted. Skipped.
+- **New, now catalogued:** Gemini 4 Carbon GA (11-10) and its documents (#1, #2).
+- **Already in the DB:**
+  - Anthropic's UK AISI alignment assessment;
+  - the GPT-6 Cyber launch;
+  - the CVP and LSVP launch posts;
+  - SecureBio's K3.1 Pro report.
+- **No new LSVP expansion page found.**
+- **Still not published (watch):**
+  - METR / UK AISI reports on Mythos 5.2;
+  - third-party Gemini 4 Carbon evals;
+  - AISI / CAISI work on Kimi K3.1 Pro.
+- **Release-tracker hit:** "DeepSeek V4.1 Flash 1017 Uncensored (HeimdaLLM)" is a third-party fine-tune. Skipped.
+- **Artificial Analysis "trusted-access models in the Cyber Index":** the publisher is not allowlisted. Skipped.
 
 ## Citation mining
 
-- **Fable 5.2 card:** checked for third-party reports (METR, UK AISI, CAISSI). None is published yet.
-- **Launch post links:**
-  - the electronics post: added (#5);
-  - formalizing-fermats-last-theorem: from September, already discussed in PROPOSALS;
-  - project-vend-2 and the model-hardware-standard post: not followed today. **Next run should check them.**
-- **Redwood Astra post:** led to OpenAI's misalignment-report hub. The hub's raw HTML lists 23 reports, 11 of them already catalogued.
-  - **9 of the 12 uncatalogued reports were added** (#7 to #15).
-  - **3 were deferred for cap headroom:** `unauthorized-artifactory-writes-and-cross-sample-communication`, `uploading-files-to-the-internet-in-order-to-cite-them` and `searching-github-for-leaked-api-keys`. All three are dated 09-16, read at header level, and look admissible under the same practice. **Next run: propose them.**
+- **Fable 5.2 launch-post follow-ups:**
+  - project-vend-2 is the Dec 2025 phase-two post (Sonnet 4.0/4.5), so it is before the 2026-01-01 floor. Skipped.
+  - The model-hardware-standard post is not linked from the stored launch-post text. It was not pursued.
+- **Gemini 4 Carbon card:** led to the safety report (#1).
+- **Misalignment hub backlog:** 2 of the 3 deferred reports were added today. The third was stopped by the cap (#7).
 
 ## Blocked-URL escalations (task 5)
 
-- **Phase A:** the same 16 openai.com / help.openai.com URLs were 403 again (streaks 19-30).
-- **My own fetches:** read_doc got HTTP 200 via browser_impersonation on all three I sampled:
-  - introducing-the-rosalind-academic-plan
-  - the Daybreak help article
-  - hugging-face-model-evaluation-security-incident
-- **Alive check:** all three are alive, so there are no status changes.
+- **Phase A:** the same 16 openai.com / help.openai.com URLs got 403 again (streaks 20-30).
+- **My own fetches:** read_doc got HTTP 200 via browser_impersonation on all four I sampled:
+  - path-to-astra
+  - low-resource-programming-languages
+  - introducing-gpt-rosalind
+  - trusted-access-for-cyber
+- **Alive check:** all four are alive, so there are no status changes.
 
 ## Document updates (task 6)
 
-- **v1116 (Mythos program page):** substantive, so it was annotated (#3) and its `model_names` updated (#4).
-- **Top 5 (v1056, v773, v924, v1015, v573):** all judged noise or annotated in earlier runs, and skipped. v1116 was ranked 6th, behind them.
+- **Top 5 (v1056, v773, v924, v1015, v573):** unchanged from earlier runs, which judged them noise or already annotated. Skipped.
+- **v1142 (Carbon evaluation PDF, recaptured on 11-11):** substantive wording changes, annotated (#8):
+  - cyber results now scoped to Fairwind access;
+  - FrontierSWE renamed FrontierSWE 2;
+  - CWE-bench attribution revised.
+- **v1139 (METR GPT-5):** only a footnote-block reformatting (↩ to ↩︎, plus a "Footnotes" header). Noise, skipped.
 
 ## Friction and proposals
 
-Friction, three recurrence entries:
-1. The misalignment hub is still unwatched. Its raw HTML does carry all the report links, so a link-extracting index would work.
-2. Phase A gets 403 on openai.com while read_doc succeeds.
-3. The stale updated_docs top 5 pushed today's only real update to 6th place.
+Friction:
+1. A recurrence of the Phase A openai.com 403 false alarm (of 2026-11-10T06:28:59Z).
+2. A new `cap` entry: an in-scope add (#7) was rejected and deferred for the second time.
 
-All three are covered by existing PROPOSALS.md entries (09-25, 10-07, 10-28), so no new proposal was filed.
+No proposal was filed. The add cap's interaction with backlog catch-up is already covered by the 2026-08-09 and 2026-09-23 PROPOSALS.md entries.
