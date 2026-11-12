@@ -2018,3 +2018,20 @@ Suggested change: when the diff writer caps output, append an explicit trailer s
 
 Evidence: `logs/version_diffs/openai-gpt-6-astra-system-card-v1057.diff` (ends at line 211 inside the TOC); the stored v1057 text in `data/text/003c5fbc…e60.txt`, lines 172-181 and 2666; friction entries 2026-10-21T06:28:26Z and 2026-11-04T06:25:25Z.
 
+---
+
+## 2026-11-12 — Watch openai.com/news/rss.xml: plain-fetchable, dated, would have caught 4 missed OpenAI documents
+
+Update to the open 2026-08 entry asking for `https://openai.com/news/` as an openai index_url.
+
+**Problem.** OpenAI publishes most of its catalogable material (cyber-capability reports, access-program posts, containment/red-team reports, eval posts) under `openai.com/index/…`. The only openai `index_url` is `deploymentsafety.openai.com/`, and `openai.com/news/` and `/index/` pages 403 to Phase A (16 URLs at streaks 21-30). On 2026-11-12 a manual sweep found four documents from 10-23 to 11-06 that never reached candidates.json, and all four were written: ids 461-464.
+
+**Suggested change.** Add `https://openai.com/news/rss.xml` to `openai.index_urls` in `config/sources.yaml`. If Phase A's link extraction cannot parse RSS, add a small RSS/Atom branch: take `<item><link>` plus `<pubDate>`, and carry the pubDate into the candidate as `published_at`. The feed:
+- fetches on the plain direct path. read_doc reported "via direct" with no impersonation, while the HTML pages need browser_impersonation;
+- lists roughly 100 recent posts with exact pubDates;
+- also fixes dating. Extracted openai.com/index text carries no visible date, so today's dates had to come from the feed.
+
+Most feed items are customer stories and company news. The agent's existing triage already filters that kind of noise from HF org pages.
+
+**Evidence.** logs/friction.jsonl index_gap entry 2026-11-12T06:27:23Z; documents 461 (Daybreak Red GovCloud), 462 (A thousand fewer paths to root), 463 (Securing our frontier model training environment), 464 (BioBasicsBench).
+
