@@ -49,12 +49,12 @@
     <dt>First seen</dt>
     <dd>2026-10-18T06:21:58Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Model card describes itself as a minor update to DeepSeek-V4.1-Flash; separate row per the document-unit rule (criteria.yaml, clarified 2026-10-05).</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-1-flash-1017-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-1-flash-1017-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017%0AFingerprint%3A%2082fb11f8aa6c31adb235016465ea31e394a6dc93746956a36c1f08ae30c36b6d%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20deepseek-deepseek-v4-1-flash-1017-model-card&amp;body=Document%3A%20deepseek-deepseek-v4-1-flash-1017-model-card%0AURL%3A%20https%3A//huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017%0AFingerprint%3A%2090916763ceb6387c086fc0d719d1a42e837d72d93eb7730db44eb65ebaa28685%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-14T06:17:55Z</td>
+          <td>text/html</td>
+          <td>409,851</td>
+          <td><code title="90916763ceb6387c086fc0d719d1a42e837d72d93eb7730db44eb65ebaa28685">90916763ceb6387c</code></td>
+<td><a href="https://data.systemcards.org/raw/6d9f9caeb9877734dc3fdb95e8bd7728d34f7d154978dc49d8230a8357d19cb4.html" rel="nofollow" title="archived copy, sha256 6d9f9caeb9877734dc3fdb95e8bd7728d34f7d154978dc49d8230a8357d19cb4">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-25T06:21:29Z</td>
           <td>text/html</td>
@@ -85,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 2 changelog entries
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -114,6 +121,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-14T06:17:55Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-14T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" rel="noopener nofollow">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -127,7 +142,17 @@
 - Libraries
 -  Transformers How to use deepseek-ai/DeepSeek-V4.1-Flash-1017 with Transformers: # Use a pipeline as a high-level helper
 from transformers import pipeline
-pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;)# pip install -U transformers accelerate
+pipe = pipeline(&#34;image-text-to-text&#34;, model=&#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;)
+messages = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;url&#34;: &#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG&#34;},
+            {&#34;type&#34;: &#34;text&#34;, &#34;text&#34;: &#34;What animal is on the candy?&#34;}
+        ]
+    },
+]
+pipe(text=messages)# pip install -U transformers accelerate
 # Load model directly
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(&#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;, device_map=&#34;auto&#34;)
@@ -142,13 +167,27 @@ pip install vllm
 # Start the vLLM server:
 vllm serve &#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;
 # Call the server using curl (OpenAI-compatible API):
-curl -X POST &#34;http://localhost:8000/v1/completions&#34; \
+curl -X POST &#34;http://localhost:8000/v1/chat/completions&#34; \
 	-H &#34;Content-Type: application/json&#34; \
 	--data &#39;{
 		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;,
-		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
-		&#34;max_tokens&#34;: 512,
-		&#34;temperature&#34;: 0.5
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
 	}&#39;Use Dockerdocker model run hf.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
 -  SGLang  How to use deepseek-ai/DeepSeek-V4.1-Flash-1017 with SGLang: Install from pip and serve model# Install SGLang from pip:
 pip install sglang
@@ -158,13 +197,27 @@ python3 -m sglang.launch_server \
     --host 0.0.0.0 \
     --port 30000
 # Call the server using curl (OpenAI-compatible API):
-curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 	-H &#34;Content-Type: application/json&#34; \
 	--data &#39;{
 		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;,
-		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
-		&#34;max_tokens&#34;: 512,
-		&#34;temperature&#34;: 0.5
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
 	}&#39;Use Docker imagesdocker run --gpus all \
     --shm-size 32g \
     -p 30000:30000 \
@@ -177,13 +230,27 @@ curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
         --host 0.0.0.0 \
         --port 30000
 # Call the server using curl (OpenAI-compatible API):
-curl -X POST &#34;http://localhost:30000/v1/completions&#34; \
+curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 	-H &#34;Content-Type: application/json&#34; \
 	--data &#39;{
 		&#34;model&#34;: &#34;deepseek-ai/DeepSeek-V4.1-Flash-1017&#34;,
-		&#34;prompt&#34;: &#34;Once upon a time,&#34;,
-		&#34;max_tokens&#34;: 512,
-		&#34;temperature&#34;: 0.5
+		&#34;messages&#34;: [
+			{
+				&#34;role&#34;: &#34;user&#34;,
+				&#34;content&#34;: [
+					{
+						&#34;type&#34;: &#34;text&#34;,
+						&#34;text&#34;: &#34;Describe this image in one sentence.&#34;
+					},
+					{
+						&#34;type&#34;: &#34;image_url&#34;,
+						&#34;image_url&#34;: {
+							&#34;url&#34;: &#34;https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg&#34;
+						}
+					}
+				]
+			}
+		]
 	}&#39;
 -  Docker Model Runner  How to use deepseek-ai/DeepSeek-V4.1-Flash-1017 with Docker Model Runner: docker model run hf.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
 DeepSeek-V4.1-Flash-1017
@@ -226,21 +293,22 @@ Citation
 Contact
 If you have any questions, please raise an issue or contact us at service@deepseek.com.
 - Downloads last month
-- 73,215
+- 398,161
 Model tree for deepseek-ai/DeepSeek-V4.1-Flash-1017
-Spaces using deepseek-ai/DeepSeek-V4.1-Flash-1017 14
+Spaces using deepseek-ai/DeepSeek-V4.1-Flash-1017 53
 Collection including deepseek-ai/DeepSeek-V4.1-Flash-1017
 Evaluation results
+- collinear-ai/cwe-bench · Resolve Rate View evaluation results source leaderboard
+- harborframework/terminal-bench-science · Terminalbenchscience 0 1 View evaluation results  source leaderboard
+- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
 - harborframework/terminal-bench · Terminalbench 4 View evaluation results leaderboard
 - agents-last-exam/agents-last-exam · Overall Pass Rate View evaluation results leaderboard
-- datacurve/deep-swe · Deep Swe View evaluation results leaderboard
-- cais/hle · Hle
-- Without tools. View evaluation results42.6 *
-- Text-only subset, without tools. View evaluation results44 *</pre>
+- VCLab-PolyU/OmniCompass · OmniCompass VL View evaluation results  source leaderboard28 *
+- cais/hle · Hle</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-13T06:24:37Z</p></footer>
+<footer><p>Data updated 2026-11-14T06:24:58Z</p></footer>
 </body>
 </html>
