@@ -1,0 +1,17 @@
+[
+ {
+  "slug": "thinking-machines-inkling-2-small-model-card",
+  "version": 1163,
+  "category": "content_major",
+  "score_change": true,
+  "license_change": true,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Open-weights release: Apache 2.0 license added, HF download/hardware section, ~20 new benchmark rows incl. HoneyBench safety row, many scores filled or revised.",
+  "safety_implication": "Safety table gains HoneyBench and fuller FORTRESS/StrongREJECT comparisons; new conclusion asserts no material uplift beyond existing open-weight models, justifying open release.",
+  "notable": "The card quietly shifted from API-only to open weights (Apache 2.0) with a one-sentence open-release safety justification, while several previously published scores (DesignArena, Sudo L7, MathVision, FrontierCode) changed without any correction note.",
+  "confidence": "high"
+ }
+]

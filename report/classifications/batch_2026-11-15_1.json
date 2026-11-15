@@ -1,0 +1,62 @@
+[
+ {
+  "slug": "deepseek-deepseek-v4-1-flash-1017-model-card",
+  "version": 1170,
+  "category": "furniture",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Only HF page chrome changed: auto-generated 'How to use' code snippets switched to multimodal chat format, download/Spaces counters, eval-widget leaderboard rows.",
+  "safety_implication": "",
+  "notable": "HF's eval widget dropped the HLE rows (42.6 / 44) and added CWE-bench, terminal-bench-science and OmniCompass rows, but the README body itself is unchanged.",
+  "confidence": "high"
+ },
+ {
+  "slug": "metr-claude-opus-4-5-independent-eval",
+  "version": 1117,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Footnote rendering changed: a 'Footnotes' heading was added and the back-reference arrow glyph changed; footnote text unchanged.",
+  "safety_implication": "",
+  "notable": "",
+  "confidence": "medium"
+ },
+ {
+  "slug": "openai-hpim-openai-highly-persistent-internal-model-other",
+  "version": 1156,
+  "category": "metadata_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": false,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "grew",
+  "summary": "Appended canary-string boilerplate (MAPS EVALS / BENCHMARK DATA GUIDs) to keep the report out of training corpora; incident text unchanged.",
+  "safety_implication": "",
+  "notable": "OpenAI began adding training-data canary strings to its public misalignment reports, signalling intent to keep incident write-ups out of future models' training data.",
+  "confidence": "high"
+ },
+ {
+  "slug": "google-deepmind-gemini-4-carbon-access-policy",
+  "version": 1141,
+  "category": "content_minor",
+  "score_change": false,
+  "license_change": false,
+  "safety_related": true,
+  "model_scope_change": false,
+  "correction": false,
+  "growth_direction": "same",
+  "summary": "Safety section clarified: 'our Safety and Security report' now reads 'our Safety and Security report for Argon'; no other text changed.",
+  "safety_implication": "Clarifies that the cited alignment-propensity results are from Argon's report, not a Carbon-specific safety report; no new Carbon safety evidence is referenced.",
+  "notable": "Google quietly disambiguated that the alignment reporting it cites for Gemini 4 Carbon belongs to the predecessor Argon, not Carbon itself.",
+  "confidence": "high"
+ }
+]

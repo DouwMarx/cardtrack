@@ -363,3 +363,30 @@ the day at the same request count; in the reverse order it mints furniture faste
   `out/refetch.json` from `link_checks`; it needs `out/results.json` and `out/edition.json` first.
   `pairs/batches/` held 42 pairs in 9 batches this week; batch sizes of 1, 1, 1, 6, 7, 6, 7, 7, 6 mean three
   sub-agents did one record each, so the batching could pack small batches together.
+
+## 13. Additions from 2026-11-15 (first standing report over the whole history)
+
+- **Drift annotation wrong on both pairs that carried it this week.** The monitor annotated
+  thinking-machines-inkling-2-small-model-card v1073 to v1163 and nvidia-nemotron-3-5-super-vl-model-card
+  v856 to v1138 "Extractor drift: 1 line(s) missing from the extracted text are still present in the raw
+  capture; not a publisher deletion". The Inkling diff is the card's open-weights revision (Apache 2.0 licence,
+  about 20 new benchmark rows, several revised scores, a new "no material uplift" conclusion), verified in both
+  raw captures; the Nemotron diff rewrites the serving section (SGLang recipes, draft-token counts). That is the
+  eighth and ninth substantive pair with a "not a publisher deletion" note. Same proposal as sections 7 to 12:
+  emit the note only when the dropped lines are the whole diff, or phrase it as "one dropped line is an
+  extractor artefact" so it does not characterise the rest of the change.
+- **Four openai.com pages blocked from their first probe.** openai-gpt-5-6-cyber-access-policy,
+  openai-gpt-6-cyber-other, openai-gpt-6-astra-cyber-other and openai-gpt-6-astra-other-6 were added on
+  12 November (the agent's fetch succeeded) and every link probe since has returned HTTP 403, taking the
+  blocked count from 16 to 20. The probe/fetch client mismatch proposal (sections 7 and 12) stands.
+- **Hugging Face HTTP 429 share keeps rising**: 82 of 206 content re-checks since 1 November (40%), against
+  206 of 707 since the first 429 on 29 September (29%). 10 of 98 Hugging Face cards had no successful content
+  fetch in the 14 days before the snapshot. Honouring Retry-After or spacing Hugging Face re-checks across the
+  run would recover most of these; the fetcher currently retries once after at most 15 s.
+- **Batch packing.** `pairs/batches/` held 57 pairs in 9 batches sized 1, 4, 6, 7, 7, 8, 8, 8, 8; one
+  sub-agent classified a single record. Packing to a minimum of 5 per batch would save sub-agent overhead.
+- **Report-runner note.** The window helpers were removed on 2026-11-09; `report/standing_figs.py` (new) draws
+  the three whole-history figures the standing report uses (`fig_timeline`, `fig_corrections`,
+  `fig_edits_by_doc`) from `out/results.json` and writes `out/standing_figs.json`. It runs after
+  `run.sh analyze`. The corrections list inside it is hand-curated from diffs read during the run and must be
+  extended by the report agent when new numeric corrections appear.
