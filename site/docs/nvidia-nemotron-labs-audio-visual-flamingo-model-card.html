@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nemotron-Labs-Audio-Visual Flamingo (AVF-Instruct) model card — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=6dfde30586">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a> <a href="../analysis.html">Analysis</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Nemotron-Labs-Audio-Visual Flamingo (AVF-Instruct) model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>AVF-Instruct, Nemotron-Labs-Audio-Visual Flamingo</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-11-15</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">paper</span>
+        <a href="https://arxiv.org/abs/2607.16107" rel="noopener nofollow">https://arxiv.org/abs/2607.16107</a></span><br>        <span class="related-item"><span class="badge">code</span>
+        <a href="https://github.com/NVIDIA/audio-flamingo" rel="noopener nofollow">https://github.com/NVIDIA/audio-flamingo</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-11-16T06:24:04Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>License: NVIDIA OneWay Noncommercial. Publication date inferred from when the repo became public (HF lastModified 2026-11-15); the paper dates from 2026-07-17.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audio-visual-flamingo-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audio-visual-flamingo-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf%0AFingerprint%3A%200cbd49e0f1efff3a21ce1440ce10db4969fc57fd8875e50e5d10263bdc2619b0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-11-16T06:24:04Z</td>
+          <td>text/html</td>
+          <td>227,257</td>
+          <td><code title="0cbd49e0f1efff3a21ce1440ce10db4969fc57fd8875e50e5d10263bdc2619b0">0cbd49e0f1efff3a</code></td>
+<td><a href="https://data.systemcards.org/raw/4d907f87f22c53d98f1aa6980b2289df2ee540634b7e7448a24afa3d4bf211e1.html" rel="nofollow" title="archived copy, sha256 4d907f87f22c53d98f1aa6980b2289df2ee540634b7e7448a24afa3d4bf211e1">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-11-16T06:24:04Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-11-16T06:18Z-local · agent · lead: phase_a</span>
+          <div class="just">NVIDIA&#39;s own Hugging Face model card for Nemotron-Labs-Audio-Visual Flamingo (AVF), an open audio-visual large language model (SigLIP vision tower, AF-Whisper audio encoder, Qwen2.5-7B-family decoder) that generates text over long videos, images and audio. It is a generative multimodal foundation model in the Nemotron-branded line, which is within the NVIDIA scope note (Nemotron LLM/VLM family), and it is distinct from the already-catalogued Audio Flamingo Next card. The card documents architecture, a three-stage training curriculum, a benchmark table (WorldSense, DailyOmni, Video-MME, MMAU, ASR WER) and license terms. Notability outside the repo: NVIDIA/UMD technical report arXiv 2607.16107 plus a project page and GitHub code. There are no safety evals; only limitations and ethical-considerations prose. The repo was created privately on 2026-04-15 and first appeared publicly in the org feed on 2026-11-15/16 (last modified 2026-11-15), so that date is used; the card itself carries no date.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2607.16107" rel="noopener nofollow">https://arxiv.org/abs/2607.16107</a> · <a href="https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf" rel="noopener nofollow">https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use nvidia/nemotron-labs-audio-visual-flamingo-hf with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use nvidia/nemotron-labs-audio-visual-flamingo-hf with Transformers: # pip install -U transformers accelerate
+# Load model directly
+from transformers import AutoModelForSeq2SeqLM
+model = AutoModelForSeq2SeqLM.from_pretrained(&#34;nvidia/nemotron-labs-audio-visual-flamingo-hf&#34;, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+Model Overview
+Nemotron-Labs-Audio-Visual Flamingo: Open Audio-Visual Intelligence for Long and Complex Videos
+Nemotron-Labs-Audio-Visual Flamingo (AVF) is a fully open audio-visual large language model for joint understanding and reasoning over audio, images, and videos. nvidia/nemotron-labs-audio-visual-flamingo-hf is the instruction-tuned checkpoint for multimodal understanding and text generation over long, complex, real-world videos.
+AVF is designed for settings where the answer depends on both what is visible and what is audible: speech, background sounds, music, visual actions, scene transitions, temporal order, and cross-modal alignment. This checkpoint generates text only; streaming TTS is not included in the Hub weights.
+This model is for non-commercial research purposes only.
+Description
+AVF extends the Audio Flamingo line from audio-only understanding into joint audio-visual reasoning. The model combines:
+- a SigLIP vision tower for images and sampled video frames
+- Dynamic-S2 visual preprocessing for high-resolution images and long videos
+- an AF-Whisper audio encoder for speech, sound, and music
+- separate 2-layer projectors for visual and audio features
+- temporal audio-visual interleaving with Constrained Rotary Time Embeddings (CRTE)
+- a Qwen2.5-7B-family decoder-only language backbone
+Unlike systems that process video frames and audio as independent streams, AVF aligns synchronized visual and audio chunks, interleaves them along the time axis, and feeds the fused sequence to the language model. This helps the model attend across co-occurring visual and auditory events.
+Model Details
+- Developed by: NVIDIA and University of Maryland
+- Checkpoint: AVF-Instruct, final 2026-06-29 release checkpoint
+- Model type: audio-visual large language model for conditional text generation
+- Backbone: Qwen2.5-7B-family decoder-only language model
+- Modalities: text, image, audio, video
+- Language: English-focused release
+- License: NVIDIA OneWay Noncommercial License
+Model Sources
+- Checkpoint: https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf
+- Demo: https://huggingface.co/spaces/nvidia/nemotron-labs-audio-visual-flamingo
+- Project page: https://avflamingo.pages.dev/
+- arXiv: https://arxiv.org/abs/2607.16107
+- Dataset: https://huggingface.co/datasets/nvidia/AV-Skills
+- Code repository: https://github.com/NVIDIA/audio-flamingo
+- Transformers integration fork: https://github.com/lashahub/transformers/tree/add_AudioVisualFlamingo
+Best For
+- video question answering where both audio and visual evidence matter
+- detailed audio-visual captioning for real-world videos
+- temporal reasoning over event order, scene changes, and long-range context
+- audio-visual event alignment, such as identifying which sound matches a visual moment
+- reasoning over speech, environmental sounds, music, and visual actions together
+- image, audio, video, and text prompts in a single chat-template interface
+Usage
+Install
+AVF support is currently available through the AVF Transformers integration fork while the upstream Transformers PR is pending.
+pip install --upgrade pip
+pip install &#34;transformers[video] @ git+https://github.com/lashahub/transformers.git@add_AudioVisualFlamingo&#34;
+pip install accelerate torch torchaudio librosa soundfile
+For video and audio decoding, make sure ffmpeg and libsndfile1 are available in your system environment.
+Notes
+- Use load_audio_in_video=True when a video file should contribute both sampled frames and its audio track.
+- The processor expects audio at 16 kHz mono internally and extracts128 -bin log-mel features.
+- Audio is processed in 30 -second windows.
+- The released processor defaults to num_video_frames=128 .
+- AVF is trained for long videos up to 15 minutes and32K context in long-context stages. Very long, dense videos can still be challenging.
+- Prompting matters. Ask explicitly for audio-visual evidence, timestamps, scene transitions, speech, sounds, or temporal order when those details matter.
+Video + Audio From One Container
+import torch
+from transformers import AudioVisualFlamingoForConditionalGeneration, AutoProcessor
+model_id = &#34;nvidia/nemotron-labs-audio-visual-flamingo-hf&#34;
+dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
+model = AudioVisualFlamingoForConditionalGeneration.from_pretrained(
+    model_id,
+    device_map=&#34;auto&#34;,
+    dtype=dtype,
+    load_audio_in_video=True,
+).eval()
+processor = AutoProcessor.from_pretrained(
+    model_id,
+    padding_side=&#34;left&#34;,
+    use_fast=False,
+    load_audio_in_video=True,
+    num_video_frames=128,
+    audio_chunk_length=&#34;max_3600&#34;,
+)
+conversation = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;video&#34;, &#34;video&#34;: &#34;/path/to/video.mp4&#34;},
+            {
+                &#34;type&#34;: &#34;text&#34;,
+                &#34;text&#34;: (
+                    &#34;Describe the full video. Include the visual scene, spoken content, &#34;
+                    &#34;important sounds or music, and how the audio and visuals align over time.&#34;
+                ),
+            },
+        ],
+    }
+]
+inputs = processor.apply_chat_template(
+    conversation,
+    tokenize=True,
+    add_generation_prompt=True,
+    return_dict=True,
+).to(model.device)
+generated_ids = model.generate(
+    **inputs,
+    max_new_tokens=1024,
+    do_sample=False,
+)
+new_tokens = generated_ids[:, inputs[&#34;input_ids&#34;].shape[1] :]
+print(processor.batch_decode(new_tokens, skip_special_tokens=True)[0])
+Image, Audio, Video, and Text Items
+AVF uses one chat-template interface for all modalities:
+conversation = [
+    {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: [
+            {&#34;type&#34;: &#34;image&#34;, &#34;image&#34;: &#34;/path/to/reference_frame.jpg&#34;},
+            {&#34;type&#34;: &#34;audio&#34;, &#34;path&#34;: &#34;/path/to/audio.wav&#34;},
+            {&#34;type&#34;: &#34;video&#34;, &#34;video&#34;: &#34;/path/to/video.mp4&#34;},
+            {
+                &#34;type&#34;: &#34;text&#34;,
+                &#34;text&#34;: &#34;What does the audio reveal that is not obvious from the image and video frames alone?&#34;,
+            },
+        ],
+    }
+]
+Prompt Guide
+| Task | Prompt pattern |
+|---|---|
+| Detailed AV captioning | Generate a detailed caption of the full video, covering both visual events and the audio track. |
+| Audio-visual alignment | Explain how the audio and visuals align over time. Mention key timestamps or scene transitions. |
+| Temporal order | Arrange the major audio-visual events in chronological order and explain the evidence. |
+| Spoken-content analysis | Transcribe the speech, identify speakers if possible, and relate the speech to the visual scene. |
+| Sound-grounded QA | What sound occurs when the camera shows &lt;event&gt;, and what visual evidence supports it? |
+| Visual-grounded audio QA | Which visible action best explains the sound heard around &lt;time/event&gt;? |
+| Long-video reasoning | Answer using evidence from the whole video, not a single moment. Cite the relevant audio and visual cues. |
+Architecture
+At a high level, AVF contains:
+- Vision encoder: SigLIP vision tower with 448 x 448 image processing and Dynamic-S2 multi-scale tiling.
+- Audio encoder: AF-Whisper-style encoder with 128 mel bins,16 kHz input audio, and long-audio chunking.
+- Projectors: separate visual and audio MLP projectors that map encoder outputs into the LLM hidden size.
+- Temporal fusion: synchronized visual and audio chunks are interleaved over time and augmented with CRTE.
+- Language model: Qwen2.5-7B-family decoder-only backbone for multimodal reasoning and text generation.
+The released config uses:
+- vision_tower_cfg.hidden_size = 1152
+- vision_tower_cfg.image_size = 448
+- sound_tower_cfg.d_model = 1280
+- sound_tower_cfg.encoder_layers = 32
+- llm_cfg.hidden_size = 3584
+- llm_cfg.num_hidden_layers = 28
+- llm_cfg.max_position_embeddings = 32768
+- num_video_frames = 128 by default in the released processor
+- interleaved_video_segment_duration = 30
+- load_audio_in_video = true
+- interleaved_vis_aud_in_video = true
+Training Summary
+AVF uses a three-stage training curriculum:
+| Stage | Main data mixture | Max input / context | Output checkpoint |
+|---|---|---|---|
+| Short-context SFT | AV-Skills-Short plus audio, music, image, video, and speech data | 5 min /16K tokens | AVF short-context model |
+| Long-context SFT | AV-Skills-Long plus downsampled short/audio/music/speech data | 15 min /32K tokens | AVF-Instruct |
+| CoT post-training | AV-Think reasoning triplets with SFT and GRPO | 15 min /32K tokens | AVF-Think |
+The AV-Skills data mixture includes:
+- 100K hours of short video and3.8M AV-Skills-Short training instances
+- about 140K hours of long video and3.2M long-video caption/QA instances
+- about 4.8M QA pairs across the full AV-Skills collection
+- long-video skill categories such as needle-in-the-haystack reasoning, temporal reasoning, sub-scene understanding, holistic reasoning, counting, audio-visual referring, event alignment, event sequence reasoning, inference, comparative reasoning, and context understanding
+- AV-Think, with about 24K temporally grounded audio-visual reasoning samples
+Training uses bf16 precision on 512 NVIDIA H100 GPUs, with ZeRO-3, sequence parallelism for long-context stages, cosine learning-rate decay, warmup ratio 0.03, and GRPO post-training for the AVF-Think variant.
+Results
+ACC is higher-is-better and WER is lower-is-better.
+This repository hosts AVF-Instruct. AVF-Think entries summarize the post-trained reasoning variant where it was evaluated.
+| Area | Benchmark | AVF-Instruct | AVF-Think |
+|---|---|---|---|
+| Omni understanding | WorldSense ACC | 50.3 | 51.6 |
+| Omni understanding | DailyOmni ACC | 72.4 | 73.9 |
+| Omni understanding | OmniBench ACC | 48.5 | 50.6 |
+| Omni understanding | MMOU ACC | 56.9 | 60.2 |
+| Audio hallucination | CMM Hallucination ACC | 86.7 | - |
+| Audio reasoning | MMAR ACC | 60.1 | - |
+| Audio reasoning | MMSU ACC | 61.5 | - |
+| Audio reasoning | MMAU avg ACC | 73.49 | - |
+| Video understanding | Video-MME ACC, no subtitles / with subtitles | 70.7 / 71.2 | - |
+| Video understanding | LongVideoBench ACC | 60.1 | - |
+| Video understanding | MVHBench ACC | 71.7 | - |
+| ASR | LibriSpeech test-clean / test-other WER | 1.64 / 3.5 | - |
+| ASR | SPGISpeech WER | 2.8 | - |
+| ASR | TEDLIUM WER | 3.0 | - |
+| ASR | GigaSpeech WER | 10.2 | - |
+| ASR | VoxPopuli WER | 5.8 | - |
+AVF-Instruct improves over OmniVinci on WorldSense, DailyOmni, Video-MME, MMAR, and several ASR settings, while AVF-Think further improves temporally grounded reasoning where evaluated.
+Input and Output
+Input
+- Modalities: text, image, audio, video, or mixed audio-visual video containers
+- Image format: common image formats supported by the Transformers image loader
+- Audio format: WAV/MP3/FLAC or audio track from video containers, decoded to mono 16 kHz
+- Video format: local or remote video files supported by the Transformers video loader and PyAV/ffmpeg stack
+- Recommended video setting: load_audio_in_video=True for joint frame/audio understanding
+Output
+- Type: generated text
+- Format: UTF-8 string
+- Typical max generation: task dependent; examples use 512 to1024 new tokens
+Limitations
+Known limitations:
+- AV-Skills is built from public datasets and open-internet videos, which can introduce source bias and possible overlap with prior training data.
+- Very long and highly dense videos remain difficult, especially when the relevant evidence is sparse, subtle, or far apart in time.
+- Current benchmarks do not fully capture open-ended real-world deployment.
+- The Hub checkpoint generates text only; streaming TTS is not included.
+- The Transformers integration is currently available through an AVF fork while upstream support is pending.
+Users should evaluate the model on their own target data before deployment, especially for safety-sensitive, privacy-sensitive, or high-stakes settings.
+Ethical Considerations
+AVF can support beneficial applications such as accessibility, lecture and documentary understanding, audio description, media analysis, and multimodal research. It can also be misused for surveillance, deepfake analysis workflows, or multimodal disinformation at scale. The model and associated assets are released for non-commercial research use only, and downstream users are responsible for applying appropriate safeguards, privacy controls, and domain-specific evaluation.
+Please report security vulnerabilities or NVIDIA AI concerns through NVIDIA&#39;s vulnerability disclosure channel.
+License / Terms of Use
+The model is released under the NVIDIA OneWay Noncommercial License. Underlying datasets and components retain their original licenses and distribution terms. AVF uses Qwen2.5-7B as the base LLM and Apache 2.0 component, with AF-Whisper/OmniVinci-derived components under NVIDIA OneWay Noncommercial terms.
+Deployment Geography
+Global.
+Intended Use
+This checkpoint is intended for researchers and developers exploring:
+- joint audio-visual understanding
+- long-video question answering and captioning
+- temporal audio-visual reasoning
+- multimodal assistant research
+- evaluation of open audio-visual models
+It is not intended for production surveillance, biometric identification, rights enforcement, medical diagnosis, legal decision-making, or other high-stakes decisions without extensive independent validation and safeguards.
+Software Integration
+Runtime engine: PyTorch / Hugging Face Transformers AVF integration fork
+Recommended hardware: NVIDIA A100/H100-class GPUs for long video inputs
+Supported OS: Linux
+The integration of foundation and fine-tuned models into AI systems requires use-case-specific testing. Developers should validate quality, latency, safety, privacy, and failure modes on representative data before deployment.
+Citation
+@misc{ghosh2026audiovisualflamingoopenaudiovisual,
+      title={Audio-Visual Flamingo: Open Audio-Visual Intelligence for Long and Complex Videos},
+      author={Sreyan Ghosh and Arushi Goel and Kaousheik Jayakumar and Lasha Koroshinadze and Nishit Anand and Siddharth Gururani and Hanrong Ye and Pritam Biswas and Yuanhang Su and Ehsan Hosseini-Asl and Sang-gil Lee and Zhifeng Kong and Jaehyeon Kim and Sungwon Kim and S Sakshi and Ramani Duraiswami and Dinesh Manocha and Andrew Tao and Mohammad Shoeybi and Bryan Catanzaro and Ming-Yu Liu and Wei Ping},
+      year={2026},
+      eprint={2607.16107},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2607.16107},
+}
+Acknowledgements
+Nemotron-Labs-Audio-Visual Flamingo builds on the Audio Flamingo series, AF-Whisper, OmniVinci, Qwen2.5, NVILA-style Dynamic-S2 processing, and the open audio, video, and multimodal learning community.
+- Downloads last month
+- 570</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-11-16T06:26:36Z</p></footer>
+</body>
+</html>

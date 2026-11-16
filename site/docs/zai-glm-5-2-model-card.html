@@ -53,12 +53,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:54Z</dd>
     <dt>Versions</dt>
-    <dd>4</dd>
+    <dd>5</dd>
     <dt>Notes</dt>
     <dd>Verified co-hosted copy: Mistral lists &#39;Z.ai GLM 5.2&#39; at docs.mistral.ai/models/zai-glm-5-2 (published 2026-08-06, public preview) but it is a hosting/product listing without benchmarks or licence text, so it is recorded here as co_published only, not proposed under mistral. GLM-5.2-FP8 is a quantised re-upload of this same card. Card header now points new_version at GLM-5.3-BF16. Independent evals of GLM-5.2 in the database: us-caisi-glm-5-2-independent-eval, uk-aisi-glm-5-2-independent-eval, saferai-glm-5-2-independent-eval. Z.ai blog unreachable from the curation sandbox.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-2-model-card&amp;body=Document%3A%20zai-glm-5-2-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.2%0AFingerprint%3A%20821d206de8f2679046fddb9b654cabafcffa134450ac692d68ea77bd6534df86%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-2-model-card&amp;body=Document%3A%20zai-glm-5-2-model-card%0AURL%3A%20https%3A//huggingface.co/zai-org/GLM-5.2%0AFingerprint%3A%203b12c5eeb25f10e674af943abe6ff1d70b0aeed214049f0be070a04290c8f7c5%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -66,6 +66,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-16T06:19:53Z</td>
+          <td>text/html</td>
+          <td>399,521</td>
+          <td><code title="3b12c5eeb25f10e674af943abe6ff1d70b0aeed214049f0be070a04290c8f7c5">3b12c5eeb25f10e6</code></td>
+<td><a href="https://data.systemcards.org/raw/98394e54328c1c2ea3e74f18a78182ade3518c5f84bb48d7384ddf674641f0ba.html" rel="nofollow" title="archived copy, sha256 98394e54328c1c2ea3e74f18a78182ade3518c5f84bb48d7384ddf674641f0ba">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-09T06:22:22Z</td>
           <td>text/html</td>
@@ -103,7 +110,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -144,6 +151,14 @@
         <span class="ts">2026-11-09T06:22:22Z</span>
         <strong>new_version</strong>
         <span class="run">run 2026-11-09T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/zai-org/GLM-5.2" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.2</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-16T06:19:53Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-16T06:18Z-local · monitor · lead: monitor</span>
           <div class="just">Content fingerprint changed on scheduled re-fetch</div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/zai-org/GLM-5.2" rel="noopener nofollow">https://huggingface.co/zai-org/GLM-5.2</a>          </div>
@@ -318,7 +333,7 @@ If you find GLM-5.2 useful in your research, please cite our technical report:
       url={https://arxiv.org/abs/2602.15763},
 }
 - Downloads last month
-- 324,229
+- 309,982
 Model tree for zai-org/GLM-5.2
 Spaces using zai-org/GLM-5.2 100
 Collection including zai-org/GLM-5.2
@@ -327,18 +342,18 @@ IndexCache: Accelerating Sparse Attention via Cross-Layer Index Reuse
 GLM-5: from Vibe Coding to Agentic Engineering
 Article mentioning zai-org/GLM-5.2
 Evaluation results
-- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   91.2
 - google/physical-engineerings-last-exam · Overall Score View evaluation results source leaderboard
-- crosbylegal/RedlineBench · Redline Overall View evaluation results    leaderboard   45.7 *
+- Idavidrein/gpqa · Diamond View evaluation results    leaderboard   91.2
+- harborframework/terminal-bench-2.1 · Terminalbench 2 1 leaderboard
+- Terminus-2 harness (temperature=1.0, top_p=1.0, 256K context, max_episodes=500). View evaluation results81 *
+- Best reported harness: Claude Code 2.1.167 (temperature=1.0, top_p=0.95, max_new_tokens=131072, no wall-clock limit, averaged over 5 runs). View evaluation results82.7 *
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results leaderboard
 - datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   46.2
-- cais/hle · Hle
-- default View evaluation results40.5
-- With tools View evaluation results54.7 *
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   62.1</pre>
+- .eval_results/ale-claude-code-max.yaml error</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-15T06:22:58Z</p></footer>
+<footer><p>Data updated 2026-11-16T06:26:36Z</p></footer>
 </body>
 </html>
