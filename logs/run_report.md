@@ -1,70 +1,70 @@
-# cardtrack agent run — 2026-11-16 (run id 2026-11-16T06:18Z-local)
+# cardtrack agent run — 2026-11-17 (run id 2026-11-17T06:20Z-local)
 
-- **Lookback:** last agent success 2026-11-15T06:25:02Z, so the 72 h minimum applied (2026-11-12 to 11-16).
-- **Weekly retrospective sweep:** done (Monday). Palisade and poolside were swept on 11-02, and Transluce, SaferAI and US CAISI on 11-09, so today covered the next-oldest orgs: **RAND** (newest 08-11), **Dots Studio** (08-14) and **Z.ai** (08-28). typesafe has zero rows but was settled as out of scope on 10-05.
+- **Lookback:** last agent success 2026-11-16T06:27:21Z, so the 72 h minimum applied (2026-11-14 to 11-17).
+- **Weekly retrospective sweep:** not due (Tuesday).
 - **Open issues:** `fetch_ok: true`, no open issues; task 4 had nothing to do.
 
 ## Proposals (validator verdicts)
 
 | # | Proposal | Verdict |
 |---|---|---|
-| 1 | add `nvidia-nemotron-labs-audio-visual-flamingo-model-card`: NVIDIA Nemotron-Labs-Audio-Visual Flamingo (AVF-Instruct) HF card (Phase A lead, first_seen 11-16). It is an audio-visual LLM with a Qwen2.5-7B backbone and text output, so it is a covered omni/VLM class. Notability: the NVIDIA/UMD tech report arXiv 2607.16107. No safety evals; open_weight_restrictive (NVIDIA OneWay Noncommercial). The repo was created privately on 04-15 and first went public around 11-15 (HF lastModified), so publication_date is 2026-11-15; the reasoning is in the notes. | **written** (doc 468) |
-| 2 | add `rand-gpt-oss-120b-independent-eval`: RAND CAST RR-A5112-1, *Open-Weight AI Models May Increase Biological Misuse Risks* (PDF, published 2026-09-14). It is a bio-misuse eval of GPT-OSS-120B, Qwen3.5-397B, Qwen3-235B, DeepSeek-V3.1 and Kimi K2.5 under anti-refusal SFT, RL capability enhancement and abliteration, against Gemini 3.1 Pro and GPT-5.4 baselines, using the SecureBio suite and an influenza pathway eval. Tagged cbrn; openness closed (most restricted named model is public-API). **Recovered lead:** lost on 09-15 to agent-side 403s (friction 09-15/09-25/09-26, PROPOSALS 09-15); read_doc fetched the full PDF today. | **written** (doc 469) |
-| 3 | field_update `related_urls` on `thinking-machines-inkling-2-small-model-card`: added the official HF weights repo (`weights`) and kept the news page (`announcement`). The HF page carries the same card text as the catalogued thinkingmachines.ai card, which already states open weights / Apache 2.0, so an add would be a mirror. | **written** |
+| 1 | add `redwood-research-gemini-4-argon-independent-eval`: Redwood Research, *Gemini 4 safety reports don't demonstrate low loss-of-control risk* (Westover & Kaufman, 2026-11-16; Phase A lead). It is an analysis of GDM's Argon and Carbon safety reports: Argon evades realistic monitors about half the time (64% in the internal-codebase setting), Carbon had no control evals, and graders could see CoT during training. No new experiments; this follows the precedent of the catalogued Redwood "SOTA alignment assessments" independent_eval. Tagged loss_of_control; openness closed (both models are GA on the Gemini API since 11-10). | **written** (doc 470) |
+| 2 | add `nvidia-nemotron-labs-sigma-8b-instruct-model-card`: NVIDIA Nemotron-Labs-Sigma, a 3B/8B continuous diffusion LM family (Phase A lead, 11-17). One family row on the 8B-instruct card, which lists the base and instruct siblings. The ten -distill-* repos are excluded as distillation artifacts per NVIDIA's scope note. Notability: NVIDIA's tech report arXiv 2610.02665 (v2 11-13), the same basis as the AVF and Nemotron-Labs-Diffusion rows. Card release date 11/12/2026. No safety evals; open_weight_restrictive (NVIDIA Nemotron Open Model License). | **written** (doc 471) |
+| 3 | add `google-deepmind-gemini-4-hydrogen-system-card`: *Gemini 4 Hydrogen Safety & Security Report* (PDF), the item on the "coming days" watch list. Contents: FSF MCC assessment, targeted CBRN and cyber CCL tests (below the CCLs, at the alert thresholds), loss of control / AI control, content safety, health and mental health, agentic alignment, sycophancy, prompt injection, and cyber exploitation evals. Tagged cbrn, cyber, loss_of_control, harmful_manipulation, societal_harm; openness closed. **publication_date null:** the PDF is dated only "November 2026". It was absent on 11-13 (the model card says "coming soon") and is live on 11-17. The bounds are in the notes. | **written** (doc 472) |
 
-## Phase A candidates (new today, first_seen 11-16)
+## Phase A candidates (new today, first_seen 11-17)
 
-- **nvidia/nemotron-labs-audio-visual-flamingo-hf:** added (#1).
-- **Skipped:** the nilayc and cfahlgren1 profile pages, and the nvidia/USDCraft-10K dataset discussion. None is documentation.
+- **Redwood Gemini 4 post:** added (#1).
+- **NVIDIA Sigma (4 cards, collection, 10 distills):** added as one row (#2).
+- **OpenAI CSAM Image Classifier Model Card (deploymentsafety, 11-16):** skipped. It is a content-safety classifier, which criteria.yaml lists as auxiliary. Its evals cover detection precision/recall, open-web flag rate, online precision and demographic recall, but there are no safety or dangerous-capability evals of a generative model. This is a judgment call, so it is logged as `ambiguous_criteria`.
+- **Anthropic CVD timelines post:** skipped. It is a disclosure-policy change that names no model.
+- **gemini.google/business:** skipped as product marketing.
+- **labs.google.com/science/interested:** skipped. It is a generic sign-up form; the program pages are already catalogued.
+- **Skipped as not documentation:** HF profiles (hhoh, psharpe-NV, saladday1, xy-lsy), discussions (Hy-SimulMT, MiniMax-H3-Image) and HF papers 2611.16661 / 2506.03690.
 - **Older candidates:** triaged in earlier runs.
 
-## Targeted search (11-12 to 11-16)
+## Targeted search (11-14 to 11-17)
 
-- **Inkling 2 Small HF card:** handled as #3.
-- **DeepSeek news261113 (11-13):** API features (web search, file input, URL reading, ASR/TTS, safety checks) for the existing V4.1-Flash. No new model and no card.
-- **OpenAI Daybreak Red Team / Defense Factory (11-12):** read both, plus the Daybreak hub, with read_doc. They are product pages that name no model, so they fail the access_policy named-model gate. Daybreak is already covered by three access-policy rows. Skipped.
-- **Ling 3.2 Flash (inclusionAI, on OpenRouter 11-13):** no card; the HF repo returns 401.
-- **Restricted-access programs** (Rosalind, Glasswing/Mythos, LSVP, CVP, Claude Science, Gemini for Science/Co-Scientist, Flash Cyber/CodeMender, Isomorphic bioresilience): nothing new in the window.
-- **Watch:**
-  - **Gemini 4 Hydrogen S&S report:** still "coming days".
-  - **Grok 4.8:** no card.
-  - **Qwen4-Max-Preview:** no card; retires 11-25.
-  - **Tencent Hy4:** repo still 401.
-  - **Muse Spark 1.4:** leak only.
-
-## Weekly retrospective sweep
-
-- **RAND:** read both CAST index pages. Added RR-A5112-1 (#2). Everything else since August is policy or commentary with no named-model eval: AIxBio workshop, recursive self-improvement, mirror life, life-science framework, SL3 weight security, Select Agent volumes, data-center siting, DOE RFI.
-- **Z.ai:**
-  - Nothing newer than GLM-5.3 / 5.3-Flash, which are both catalogued.
-  - GLM-5.3 FlashX / FlashX-Legal (11-02) are pricing/speed tiers.
-  - GLM-5-Turbo (about 2026-03-15) was skipped. Its only primary doc is an undated docs.z.ai API page with one vendor benchmark (ZClawBench) and no method or safety content, so it is a product launch without documentation; this is consistent with the 09-25 Upstage decision. A future GLM-5-Turbo tech report or HF card would qualify.
-- **Dots Studio:** the HF org has only dots3-note-prev (catalogued), its fp8 copy, and the dots.tts / dots.mocr models (TTS and OCR, so auxiliary). The dots3 tech report is not out yet.
+- **Gemini 4 Hydrogen S&S report:** found and added (#3).
+- **Qwen4-Max (GA 11-16):** not proposed. The only primary documentation is qwen.ai/blog?id=qwen4-max, a client-rendered shell that both read_doc and WebFetch fail on. There are no weights and no HF card. Logged as a friction recurrence.
+- **Apollo Research "A Pilot Towards Embedded Evaluations" (11-16):** skipped. It announces an embedded-assessor program at OpenAI (with METR, Transluce and Goodfire) and reports no results and names no model. Watch for Apollo's first report on training incentives for subversion.
+- **OpenAI "Broadening access to AI for scientists":** skipped. It expands ChatGPT Plus grants for a GA product. Its GPT-Rosalind mention only points to the catalogued Rosalind Academic Plan / trusted-access process.
+- **Zhipu "Cybersecurity Trusted Access":** known only via Bloomberg/secondary reporting (startupfortune 11-17), with no primary page and no opening date. Watch.
+- **GPT-6 Rosalind Research:** only an enterprise release-note line (10-30), already seen by the 10-31 run. No new primary document.
+- **Other checks:**
+  - Mistral Timestral (time-series forecasting) is auxiliary.
+  - DeepSeek API features (11-13) were judged yesterday.
+  - Restricted-access programs (Rosalind, Daybreak, Glasswing/CVP, LSVP, Claude Science, Gemini for Science, Flash Cyber/CodeMender, Isomorphic bioresilience): nothing new in the window.
+- **Watch list:**
+  - **Grok 4.8:** still no card.
+  - **Muse Spark 1.4:** not released.
+  - **Tencent Hy4:** open weights and system cards still "coming days".
+  - **Qwen4-Max:** tech report or HF card if one appears.
+  - **Apollo/OpenAI:** first embedded-evaluation report.
 
 ## Citation mining
 
-The AVF card cites OmniVinci, Audio Flamingo 3/Next, AF-Whisper and Qwen2.5. These are pre-floor or already catalogued (AF-Next). The RAND report's model subjects are labs' own releases, not third-party evals. Nothing to propose.
+- **Hydrogen report:** references GDM's own reports and Irregular's CyScenarioBench, used in-house; no separate third-party report is cited.
+- **Redwood post:** cites the catalogued Argon and Carbon safety reports.
+- **Sigma:** cites its own arXiv report (recorded as a related_url).
+
+Nothing to propose.
 
 ## Blocked-URL escalations (task 5)
 
-- **Phase A:** 403 on the same 20 openai.com / help.openai.com URLs (16 at streak 30, 1 at 25, 3 at streak 4).
-- **My own fetches:** read_doc fetched introducing-gpt-rosalind, path-to-astra, low-resource-programming-languages and hugging-face-model-evaluation-security-incident with HTTP 200 via browser_impersonation. Yesterday's run fetched the streak-4 group the same way.
+- **Phase A:** 403 on the same 20 openai.com / help.openai.com URLs (16 at streak 30, 1 at 26, 3 at streak 5).
+- **My own fetches:** read_doc fetched measuring-how-ai-agents-handle-wet-lab-science, a-thousand-fewer-paths-to-root, the Daybreak trusted-access help article and scaling-trusted-access-for-cyber-defense, all with HTTP 200 via browser_impersonation.
 - **Verdict:** alive and bot-blocked; no status changes.
 
 ## Document updates (task 6)
 
-Top 5 in order:
-- **v1056** (FangCun eval): already judged in earlier runs. Skipped.
-- **v773** (DeepSeek-V4.1-Flash HF card): already judged in earlier runs. Skipped.
-- **v1170** (DeepSeek-V4.1-Flash-1017 HF card): already judged furniture. Skipped.
-- **v924** (Mythos Preview other-3): already judged in earlier runs. Skipped.
-- **v1015** (Mythos Preview red-team post): re-read today. It is extraction noise: section headings were restored ("Our scaffold", "Finding zero-day vulnerabilities", ...) and footnote markers changed, with no content change. Skipped.
-
-No new versions entered the queue today.
+The top 5 are again v1056, v773, v1170, v924 and v1015, all judged in earlier runs as noise or already handled. Skipped. No new versions entered the queue.
 
 ## Friction and proposals
 
-- **Friction:** 2 recurrence entries.
-  1. The OpenAI Phase A 403s, with read_doc working.
-  2. The stale updated_docs head.
-- **PROPOSALS.md:** no new entry. The stale-queue issue is already filed (2026-10-28). The RAND recovery shows that point 1 of the 2026-09-15 proposal (an agent read path) is now in place via read_doc.
+- **Friction:** 4 entries.
+  1. Recurrence: OpenAI Phase A 403s, with read_doc working.
+  2. Recurrence: stale updated_docs head.
+  3. Recurrence: qwen.ai unfetchable (Qwen4-Max).
+  4. ambiguous_criteria: whether a safety classifier's own detection and fairness evals count as safety evals, using the OpenAI CSAM classifier card as the case.
+- **PROPOSALS.md:** no new entry.
