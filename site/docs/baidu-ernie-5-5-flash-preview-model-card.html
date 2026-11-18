@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducing ERNIE 5.5 Flash Preview — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=6dfde30586">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a> <a href="../analysis.html">Analysis</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Introducing ERNIE 5.5 Flash Preview</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">baidu</span><span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>ERNIE 5.5 Flash Preview</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-11-11</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://ernie.baidu.com/release/ernie-5-5-flash-preview/" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://ernie.baidu.com/release/ernie-5-5-flash-preview/</a>
+    </dd>
+    <dt>First seen</dt>
+    <dd>2026-11-18T06:25:38Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Benchmark numbers are in an image chart only. Watch for the Apache-2.0 weights release and HF card; the base model is catalogued as baidu-ernie-5-5-flash-base-model-card.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20baidu-ernie-5-5-flash-preview-model-card&amp;body=Document%3A%20baidu-ernie-5-5-flash-preview-model-card%0AURL%3A%20https%3A//ernie.baidu.com/release/ernie-5-5-flash-preview/%0AFingerprint%3A%2067e12afdaa5723111b1800c74bbada8808422c50ebd8a6965a0c8373d254beb2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-11-18T06:25:38Z</td>
+          <td>text/html</td>
+          <td>56,494</td>
+          <td><code title="67e12afdaa5723111b1800c74bbada8808422c50ebd8a6965a0c8373d254beb2">67e12afdaa572311</code></td>
+<td><a href="https://data.systemcards.org/raw/108a8c92f15008bf98e0c862be054fc924af27847cb3ee2c2ce7553b14441b7f.html" rel="nofollow" title="archived copy, sha256 108a8c92f15008bf98e0c862be054fc924af27847cb3ee2c2ce7553b14441b7f">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-11-18T06:25:38Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-11-18T06:19Z-local · agent · lead: agent_search</span>
+          <div class="just">Baidu&#39;s own release post for ERNIE 5.5 Flash Preview (dated 2026-11-11), the first post-trained model on ERNIE-5.5-Flash-Base (280B / 14B active, 1M context). It is served via API on Baidu&#39;s Qianfan platform and is the only primary documentation for this model. Weights are promised under Apache 2.0 but not yet released, and there is no HF card. It is a distinct release, a post-trained instruct/agent model rather than a size or precision variant of the base row. The post describes post-training focus areas (game development, 3D modeling/CAD, knowledge-work environments, video creation) and includes a benchmark-results chart, rendered as an image whose values I could not read as text. It says the model is an intermediate post-training checkpoint. Documentation is thin and the post contains no safety evals. It is proposed under admit-and-flag because it is the sole documentation for a notable, API-served release from a newly allowlisted lab. It should be superseded or supplemented by an HF card when the open weights ship. Openness is closed: API only, no weights yet.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://ernie.baidu.com/release/ernie-5-5-flash-preview/" rel="noopener nofollow">https://ernie.baidu.com/release/ernie-5-5-flash-preview/</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://ernie.baidu.com/release/ernie-5-5-flash-preview/" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Today we are releasing ERNIE 5.5 Flash Preview, the first post-trained model built on the ERNIE 5.5 Flash Base we released earlier. It has 280B total parameters with 14B active and a 1M-token context, and it is strong at coding, 3D modeling, knowledge work and content creation.
+It balances capability with inference efficiency, scoring competitively across major benchmarks while keeping decoding fast. The API is now available on the Qianfan platform, and the weights will be open-sourced under Apache 2.0 soon.
+Here is work ERNIE 5.5 Flash Preview produced on real tasks in game development, 3D modeling and design, knowledge work and video creation. The model completed every piece end to end inside an agent harness. External assets and tools are credited alongside each piece.
+Game Development
+ERNIE 5.5 Flash Preview supports a broad range of coding tasks, from fixing and iterating on real-world codebases to building complex applications and complete projects. It is particularly capable of long-horizon tasks, with strong planning, execution, and iterative refinement capabilities. We have further improved its game development capabilities through domain-specific training data and a dedicated evaluation framework, focusing on game mechanics implementation, gameplay logic orchestration, runtime state management, and asset pipelines. We have also strengthened its support for major game engines, including Unreal Engine, Unity, and Godot, enabling it to work effectively with each engine’s development paradigms, tools, and workflows. This allows the model to handle practical tasks across the game development process, from game design and gameplay implementation to scene creation.
+3D Modeling and Design
+Through specialized training in professional tools such as Blender and CAD, we have significantly enhanced ERNIE 5.5 Flash Preview’s capabilities in 3D modeling and design. ERNIE excels at parametric modeling and spatial reasoning. Leveraging tools, it can accurately interpret text descriptions to infer the shapes, proportions, and spatial relationships, and use these insights to create usable 3D models through procedural modeling. It can also flexibly integrate and reuse existing assets, seamlessly incorporating external resources into established workflows to create large-scale, richly detailed 3D scenes.
+Knowledge Work
+Hand ERNIE 5.5 Flash Preview a pile of scattered material and it works through the steps a request calls for, then delivers professional-quality spreadsheets, documents or slide decks. For domains such as finance and law, we built 300,000 workspaces holding 10 million reference files in more than 40 file types. The training environments range from personal workspaces of 10 to 100 files to enterprise knowledge bases of a thousand files or more.
+Video Creation
+For content creators, ERNIE 5.5 Flash Preview can gather, generate and arrange material, set the visuals and pacing, and deliver a finished video. We built more than 150,000 creation environments for popular-science explainers, motion comics, creative edits and takes on trending topics. They cover the full pipeline from concept, script and storyboard to visual assets and voice-over, support more than a thousand creation skills, and have produced about 5,300 minutes of finished video so far.
+ERNIE 5.5 Flash Preview is an intermediate checkpoint from post-training. It is already competitive with models of its size, but because training is not finished, some capabilities may still fall short. Post-training is ongoing and ERNIE 5.5 Flash is improving quickly. We will keep a close eye on how the Preview performs in real-world use and on user feedback, and make improvements in the official release.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-11-18T06:27:05Z</p></footer>
+</body>
+</html>

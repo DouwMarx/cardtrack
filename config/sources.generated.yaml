@@ -28,3 +28,11 @@ publishers:
     openrouter_slug: typesafe
     first_seen: '2026-09-25'
     index_urls: []
+  baidu:
+    tier: 2
+    display_name: Baidu
+    origin: openrouter
+    openrouter_slug: baidu
+    first_seen: '2026-11-18'
+    index_urls:
+    - https://huggingface.co/baidu
