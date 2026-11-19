@@ -1,83 +1,80 @@
-# cardtrack agent run — 2026-11-18 (run id 2026-11-18T06:19Z-local)
+# cardtrack agent run — 2026-11-19 (run id 2026-11-19T06:18Z-local)
 
-- **Lookback:** last agent success 2026-11-17T06:29:07Z, so the 72 h minimum applied (2026-11-15 to 11-18).
-- **Weekly retrospective sweep:** not due (Wednesday). However, Baidu joined `sources.generated.yaml` today (origin openrouter) with zero rows, so I ran a scope-floor backfill for Baidu (see below).
+- **Lookback:** last agent success 2026-11-18T06:29:09Z, so the 72 h minimum applied (2026-11-16 to 11-19).
+- **Weekly retrospective sweep:** not due (Thursday).
 - **Open issues:** `fetch_ok: true`, no open issues; task 4 had nothing to do.
-- **Process slip:** I ran one read-only `git log -- logs/run_report.md` early in the run to see recent report history. Nothing was modified, but this breaks the no-git rule and will not recur.
 
 ## Proposals (validator verdicts)
 
 | # | Proposal | Verdict |
 |---|---|---|
-| 1 | add `openai-gpt-6-2-astra-system-card`: *GPT-6.2 Astra and Sol System Card* (PDF, 2026-11-17; Phase A lead). The HTML hub page is recorded as web_version and the openai.com announcement as related.<br>**Ratings:** both models Critical for cyber and High for bio/chem; Astra is OpenAI's first external model at High for AI self-improvement.<br>**External evals:** SecureBio, UK AISI (including a universal cyber jailbreak), Irregular, Epoch and Vals.<br>**Alignment and safety content:** evaluation awareness, CoT-monitorability regressions, blocker deception, and under-18 and mental-health benchmarks.<br>**Tags:** cbrn, cyber, loss_of_control, societal_harm. "Avoiding deceptive interactions with users" is agent misreporting, so it is tagged loss_of_control, not harmful_manipulation.<br>**Openness:** closed. Both models are on the public API; only the reduced-refusal cyber config is gated to Daybreak Red. | **written** (doc 473) |
-| 2 | add `epoch-ai-claude-fable-5-2-independent-eval`: Epoch, *How good are Fable 5.2 and GPT-6.2 Astra at real work?* (11-17). Hand-graded Epoch Automation Reports results for six named models: Fable 5.2 scored 97.5% on data-center analysis, and GPT-6.2 Astra averaged 65%, 17 points below Fable 5.2. Capability only: has_safety_evals false, no tags, closed. | **written** (doc 474) |
-| 3 | add `tencent-hunyuan-hy4-flash-model-card`: Tencent Hy4 flash (220B / ~12B active VLM, 1M context; 11-17). One family row covering flash and flash-base, with FP8 recorded as weights. Notability: PR Newswire release plus press. Tencent Hy License 1.0 (Apache-derived with MaaS commercial terms), so open_weight_restrictive. No safety evals. | **written** (doc 475) |
-| 4 | add `baidu-ernie-5-5-flash-base-model-card`: HF card for ERNIE-5.5-Flash-Base (280B-A14B base, 11-05). The ernie.baidu.com tech blog is the announcement and the BF16 repo is recorded as weights. The license excludes the EU, UK and South Korea, so open_weight_restrictive. No safety evals. | **written** (doc 476) |
-| 5 | add `baidu-ernie-5-5-flash-preview-model-card`: release post for ERNIE 5.5 Flash Preview (11-11), the post-trained model. API-only on Qianfan, so closed; Apache weights are promised. This is thin documentation: its benchmark numbers appear only in an image chart. Admitted under admit-and-flag because it is the model's only primary documentation. | **written** (doc 477) |
-| 6 | add `baidu-ernie-5-0-other`: *ERNIE 5.0 Technical Report* (arXiv 2602.04705, 2026-02-04). Backfill. Unified multimodal model at trillion-parameter scale. A keyword scan found no safety content. Closed. | **written** (doc 478) |
-| 7 | add `baidu-ernie-5-1-model-card`: ERNIE 5.1 official release post (2026-05-09). Backfill. Benchmarks plus elastic-subnetwork training details; no tech paper exists. Closed, no safety evals. | **written** (doc 479) |
-| 8 | add `baidu-ernie-image-model-card`: ERNIE-Image HF card (8B DiT text-to-image, 2026-04-15). Backfill. Covers ERNIE-Image and ERNIE-Image-Turbo; Apache-2.0, so open_weight_permissive. No safety evals. | **written** (doc 480) |
+| 1 | add `google-deepmind-gemini-4-neon-model-card`: *Gemini 4 Neon — Model Card* (PDF, 2026-11-18; Phase A lead). Neon is a new mid-tier model adapted from Gemini 4 Carbon. The HTML card is recorded as web_version and the launch blog as announcement.<br>**Safety content:** content-safety deltas vs Hydrogen, plus an FSF Material Capability Change assessment (below threshold, so T/CCL determinations are carried forward from Argon: bio CCL and cyber CCL cannot be ruled out; LoC stealth TCL cannot be ruled out).<br>**Tags:** cbrn, cyber, loss_of_control. Closed. | **written** (doc 481) |
+| 2 | add `google-deepmind-gemini-4-neon-other`: the Neon model-evaluation PDF (methodology and results; the evals-methodology URL redirects to it). Same pattern as the Argon, Carbon and Hydrogen `-other` rows. Capability benchmarks, including cyber and Gray Swan IPI; has_safety_evals false and no tags, consistent with the sibling rows. Closed. | **written** (doc 482) |
+| 3 | add `google-deepmind-genie-4-model-card`: *Genie 4 — Model Card* (PDF, 2026-11-18; Phase A lead). Released alongside the Project Genie / Ultra availability post. Includes red-teaming and process description plus an inherited FSF assessment (unlikely to reach any T/CCL). has_safety_evals true, no tags. Closed: a paid Ultra tier is not vetting. Distinct from the existing `google-deepmind-genie-4-access-policy` row (10-27 research blog). | **written** (doc 483) |
+| 4 | add `google-deepmind-gemini-4-neon-access-policy`: the *Introducing Gemini 4 Neon* blog (11-18). It names "Gemini 4 Neon for cyber", rolling out to trusted defenders via the Fairwind Program (request through the Cloud account team). This mirrors the Carbon access-policy precedent. The post reports misalignment-monitor, cheating, honesty, IPI and cyber results. Tags: cyber, loss_of_control. Restricted. | **written** (doc 484) |
+| 5 | add `openai-astra-for-law-access-policy`: *Astra for Law leads in legal intelligence* (11-17; search lead). Updated Astra for Law (a GPT-6.2 Astra configuration). Trusted Access now expanded to all ChatGPT Enterprise customers and the API. Gating: business verification, a signed Legal Technology and Trust Addendum, and lawyers-only use (help article recorded as related). Capability results only. Restricted. | **written** (doc 485) |
+| 6 | add `openai-astra-for-law-access-policy-2`: *Introducing Astra for Law* (2026-09-17). Backfill found while handling #5: the program launch post (Trusted Access for selected law firms). The pipeline never surfaced it, as Phase A cannot read openai.com. Restricted. | **written** (doc 487) |
+| 7 | add `metr-claude-opus-5-5-independent-eval-2`: METR, *Measuring alignment eval tells* (11-16; search lead). Investigator agents in 19 alignment and 36 capability environments: Opus 5.5 ranks every alignment eval above every capability eval, and Astra recognises a simulated safety scenario. This is evaluation-awareness content of the kind found in system cards. Tag: loss_of_control. Closed.<br>**Caveat:** the note says only "Astra"; I recorded GPT-6 Astra (the 6.x line) and said so in the justification. | **written** (doc 486) |
 
-## Phase A candidates (new today, first_seen 11-18)
+## Phase A candidates (new today, first_seen 11-19)
 
 - **Added:**
-  - **GPT-6.2 system card:** #1.
-  - **Epoch real-work post:** #2.
-  - **Tencent Hy4-flash:** #3. Its FP8 and base repos and the collection links are covered by that one row.
-  - **Baidu ERNIE-5.5-Flash-Base and BF16 repo:** #4.
-- **Baidu HF org page:** this is Baidu's first index pass, so roughly 90 links were surfaced.
-  - **Added:** ERNIE-Image (#8).
-  - **Skipped as auxiliary OCR:** Unlimited-OCR / Unlimited-OCR-2, Qianfan-OCR.
-  - **Skipped as pre-floor 2025 releases:** Qianfan-VL-8B/70B, ERNIE-4.5-VL-28B-A3B-PT, ernie4.5 blog.
-  - **Skipped as not documentation:** profiles, spaces, papers, GitHub/X/nav links, blog listings, ERIA-1K dataset, ERNIE-Image-Aes.
-  - **Left for a later run (not judged today):** NAVA, an audio-video generator from about June 2026, with a paused Space.
-- **Apollo "pilot towards embedded evaluations":** skipped. It was already judged on 11-17 (no model, no results).
-- **Skipped as other non-documentation:**
-  - RAND mirror-life guide and electrical-equipment brief: no model.
-  - Redwood "defining capabilities activities": an essay.
-  - xAI Grok Bot accounting: product.
-- **Skipped as distillation/quant artifacts per NVIDIA scope:** NVIDIA draft models (Llama-3.2-1B / Qwen3.5-0.8B / Qwen3.5-4B Qwen3.8-27B drafts) and Qwen3.8-Flash-Next-NVFP4-QAD.
-- **Skipped as not documentation:** inclusionAI invoker-render-1.0 and the SingVL discussion (no announcement evidence; HF repos only), HF profiles, and discussions.
+  - **Gemini 4 Neon model card and announcement:** #1, #2, #4.
+  - **Genie 4 model card and availability post:** #3.
+- **Neon Safety & Security Report:** announced as "coming soon". `gemini_4_neon_safety_report.pdf` returns 404 today. Watch for it, following the Argon/Carbon/Hydrogen pattern.
+- **Skipped:**
+  - **Anthropic "Claude solves two open problems in black-hole physics":** a capability showcase with no measured model results.
+  - **Anthropic IPO pricing:** corporate news.
+  - **NVIDIA Qwen3.8-27B-NVFP4-QAD and its discussion:** a quantization artifact, out of scope per NVIDIA's scope note.
+  - **inclusionAI LingSante collection:** its only model, Ling-3.0-flash-Sante, is already catalogued.
+  - **LingSante-MedGuard:** a dataset.
+  - **Code World Model 2.0:** a paper.
+  - **Tencent WeMM-Ecom collection:** empty.
+  - **Tencent paper and profile links:** not documentation.
+  - **MiniMax ecosystem space:** not documentation.
+  - **Apollo Trust Center:** not documentation.
+  - **Epoch data insights:** compute and inference-capacity charts, no named model.
+  - **Thinking Machines status page:** not documentation.
 - **Older candidates:** triaged in earlier runs.
 
-## Targeted search (11-15 to 11-18)
+## Targeted search (11-16 to 11-19)
 
-- **GPT-6.2 external evals:** none published separately yet. securebio.org/resources/gpt-6-2-astra-assessment.pdf returns 404; the SecureBio, UK AISI, Irregular and Apollo results appear only inside the system card for now.
-- **NVIDIA "Nemotron for Science" (SC26, 11-16):** skipped. It is an open toolkit (Nemotron 3.5 Super VL, LitmusBench v0.2 dataset, RL recipes). The model's card and tech report are already catalogued, and the toolkit has no gating, so it is not an access policy.
-- **Restricted-access programs:** nothing new in the window.
-  - Daybreak changes for GPT-6.2 are documented in the system card (§2.2.8).
-  - CVP's three-tier expansion (Oct) and LSVP are already catalogued.
-  - Rosalind's next grant round opens 11-23; this is a GA academic-grant program and was skipped earlier.
-  - No news on Claude Science, Gemini for Science, Flash Cyber/CodeMender or Isomorphic.
+- **OpenAI "Our first phase of embedded assessments":** skipped. Read via read_doc. It announces agreements with Apollo, METR, Transluce and Goodfire, but names no model and reports no results; this is consistent with the 11-17 skip of Apollo's pilot post. Watch for the resulting assessor reports.
+- **Astra for Law:** see #5 and #6.
+- **METR alignment-eval tells:** see #7.
+- **Restricted-access programs:** nothing new beyond Neon for cyber/Fairwind (#4) and Astra for Law.
+  - CVP/Glasswing tiers (Oct), LSVP, Rosalind (incl. the GPT-Rosalind-6 addendum) and Co-Scientist are already catalogued.
+  - The ChatGPT for Academic Researchers expansion (applications open 11-23) is a GA grant program, skipped as before.
+  - No news on Claude Science, Gemini for Science or Isomorphic.
 - **Watch list:**
-  - **Grok 4.8:** still no card.
-  - **Qwen4-Max:** no card or tech report; qwen.ai is still unfetchable.
-  - **Tencent flagship Hy4:** open weights to follow.
-  - **ERNIE 5.5 Flash Preview:** Apache weights and HF card to come.
-  - **SecureBio GPT-6.2 Astra:** pre-release report.
-  - **Apollo/OpenAI:** first embedded-evaluation report.
+  - **Grok 4.8:** still no card (search confirms none as of 11-16).
+  - **Qwen4-Max:** no new primary documentation.
+  - **Neon Safety & Security Report:** pending.
+  - **Embedded-assessment reports:** pending.
 
 ## Citation mining
 
-- **GPT-6.2 card:** cites SecureBio, UK AISI, Irregular, Epoch, Vals, Apollo and Gray Swan. Epoch's real-work piece is now added (#2). No other standalone report exists yet.
-- **Epoch post:** cites Kezins et al. 2026 (a paper, out of scope).
-- **Hy4 flash / ERNIE:** no third-party evals cited.
+- **Neon model card:** points to the evals-methodology page (added as #2) and to the Argon/Carbon Safety & Security reports, which are already catalogued.
+- **Neon blog:** cites Vals, Artificial Analysis, Surge, Zapier, Andon Labs and Gray Swan results. These are leaderboards, not standalone reports.
+- **Genie 4 post:** links a "model research overview", which is the 10-27 blog already catalogued.
 
 ## Blocked-URL escalations (task 5)
 
-- **Phase A:** 403 on the same 20 openai.com / help.openai.com URLs (16 at streak 30, 1 at 27, 3 at streak 6).
-- **My own fetches:** today read_doc also got 403 on all four I sampled: hugging-face incident, introducing-gpt-rosalind, securing-frontier-training-environment and the Daybreak help article. It also got 403 on the GPT-6.2 announcement.
-- **Verdict:** today's web searches still return these pages (e.g. the Daybreak help article and the Rosalind Academic Plan), so they are bot-blocked, not gone. No status changes.
+- **Phase A:** 403 on the same 20 openai.com / help.openai.com URLs (16 at streak 30, 1 at 28, 3 at 7).
+- **My own fetches:** today read_doc got HTTP 200 via browser_impersonation on all four I sampled: hugging-face incident, the Daybreak help article, wet-lab-science and introducing-gpt-rosalind. The new Astra for Law, embedded-assessments and help pages also fetched fine.
+- **Verdict:** all are alive. No status changes.
+- **Three HF 429s** (Hy4-flash, ERNIE-5.5-Flash-Base, ERNIE-Image; streak 1): transient rate limiting, no action.
 
 ## Document updates (task 6)
 
-The top 5 are v1056, v773, v1170, v924 and v1015 again. All were judged in earlier runs as noise or already handled. Skipped. The queue has no new entries.
+- **Top 5:** v1056, v773, v1170, v924 and v1015 again. All were judged in earlier runs as noise or already handled. Skipped.
+- **New entry `dots-studio-dots3-note-preview-model-card` v1238:** noise. It is a multimodal quickstart snippet, reordered eval-result badges and a download counter. Skipped, no annotation.
 
 ## Friction and proposals
 
 - **Friction:** 2 recurrence entries.
-  1. OpenAI 403s; read_doc is also blocked today.
+  1. OpenAI 403s in Phase A while read_doc's impersonation works. Two OpenAI documents were found only by search.
   2. Stale updated_docs head.
 - **PROPOSALS.md:** no new entry.
-  - Today's Baidu backfill is further evidence for the existing 2026-10-03 proposal: overlay publishers join with no backfill.
-  - The stale-queue issue is covered by the existing 2026-10-28 proposal.
+  - The missed Astra for Law posts are further evidence for the existing 2026-10-07 entry (Phase A vs impersonation fetcher) and the 2026-11-12 entry (watch openai.com/news/rss.xml).
+  - The stale queue is covered by the existing 2026-10-28 entry.
