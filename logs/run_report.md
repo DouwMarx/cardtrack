@@ -1,80 +1,58 @@
-# cardtrack agent run — 2026-11-19 (run id 2026-11-19T06:18Z-local)
+# Run report — 2026-11-20T06:17Z-local
 
-- **Lookback:** last agent success 2026-11-18T06:29:09Z, so the 72 h minimum applied (2026-11-16 to 11-19).
-- **Weekly retrospective sweep:** not due (Thursday).
-- **Open issues:** `fetch_ok: true`, no open issues; task 4 had nothing to do.
+Last agent success: 2026-11-19T06:27Z. Search window: the 72 h minimum (since 2026-11-17). Today is a Friday, so no weekly retrospective sweep.
 
-## Proposals (validator verdicts)
+## Proposals and validator verdicts
 
-| # | Proposal | Verdict |
-|---|---|---|
-| 1 | add `google-deepmind-gemini-4-neon-model-card`: *Gemini 4 Neon — Model Card* (PDF, 2026-11-18; Phase A lead). Neon is a new mid-tier model adapted from Gemini 4 Carbon. The HTML card is recorded as web_version and the launch blog as announcement.<br>**Safety content:** content-safety deltas vs Hydrogen, plus an FSF Material Capability Change assessment (below threshold, so T/CCL determinations are carried forward from Argon: bio CCL and cyber CCL cannot be ruled out; LoC stealth TCL cannot be ruled out).<br>**Tags:** cbrn, cyber, loss_of_control. Closed. | **written** (doc 481) |
-| 2 | add `google-deepmind-gemini-4-neon-other`: the Neon model-evaluation PDF (methodology and results; the evals-methodology URL redirects to it). Same pattern as the Argon, Carbon and Hydrogen `-other` rows. Capability benchmarks, including cyber and Gray Swan IPI; has_safety_evals false and no tags, consistent with the sibling rows. Closed. | **written** (doc 482) |
-| 3 | add `google-deepmind-genie-4-model-card`: *Genie 4 — Model Card* (PDF, 2026-11-18; Phase A lead). Released alongside the Project Genie / Ultra availability post. Includes red-teaming and process description plus an inherited FSF assessment (unlikely to reach any T/CCL). has_safety_evals true, no tags. Closed: a paid Ultra tier is not vetting. Distinct from the existing `google-deepmind-genie-4-access-policy` row (10-27 research blog). | **written** (doc 483) |
-| 4 | add `google-deepmind-gemini-4-neon-access-policy`: the *Introducing Gemini 4 Neon* blog (11-18). It names "Gemini 4 Neon for cyber", rolling out to trusted defenders via the Fairwind Program (request through the Cloud account team). This mirrors the Carbon access-policy precedent. The post reports misalignment-monitor, cheating, honesty, IPI and cyber results. Tags: cyber, loss_of_control. Restricted. | **written** (doc 484) |
-| 5 | add `openai-astra-for-law-access-policy`: *Astra for Law leads in legal intelligence* (11-17; search lead). Updated Astra for Law (a GPT-6.2 Astra configuration). Trusted Access now expanded to all ChatGPT Enterprise customers and the API. Gating: business verification, a signed Legal Technology and Trust Addendum, and lawyers-only use (help article recorded as related). Capability results only. Restricted. | **written** (doc 485) |
-| 6 | add `openai-astra-for-law-access-policy-2`: *Introducing Astra for Law* (2026-09-17). Backfill found while handling #5: the program launch post (Trusted Access for selected law firms). The pipeline never surfaced it, as Phase A cannot read openai.com. Restricted. | **written** (doc 487) |
-| 7 | add `metr-claude-opus-5-5-independent-eval-2`: METR, *Measuring alignment eval tells* (11-16; search lead). Investigator agents in 19 alignment and 36 capability environments: Opus 5.5 ranks every alignment eval above every capability eval, and Astra recognises a simulated safety scenario. This is evaluation-awareness content of the kind found in system cards. Tag: loss_of_control. Closed.<br>**Caveat:** the note says only "Astra"; I recorded GPT-6 Astra (the 6.x line) and said so in the justification. | **written** (doc 486) |
+| # | Action | Target | Verdict |
+|---|---|---|---|
+| 1 | add | https://huggingface.co/tencent/Hy4 — Hy4 model card (tencent_hunyuan, model_card, Hy4 + Hy4 base, 2026-11-20, open_weight_restrictive, has_safety_evals=false) | **written** → `tencent-hunyuan-hy4-model-card` (doc 488, v1250) |
+| 2 | annotate_version | `google-deepmind-gemini-4-hydrogen-model-card` v1247 | **written** |
 
-## Phase A candidates (new today, first_seen 11-19)
+## Task 1: Phase A candidates (first_seen 2026-11-20)
 
-- **Added:**
-  - **Gemini 4 Neon model card and announcement:** #1, #2, #4.
-  - **Genie 4 model card and availability post:** #3.
-- **Neon Safety & Security Report:** announced as "coming soon". `gemini_4_neon_safety_report.pdf` returns 404 today. Watch for it, following the Argon/Carbon/Hydrogen pattern.
-- **Skipped:**
-  - **Anthropic "Claude solves two open problems in black-hole physics":** a capability showcase with no measured model results.
-  - **Anthropic IPO pricing:** corporate news.
-  - **NVIDIA Qwen3.8-27B-NVFP4-QAD and its discussion:** a quantization artifact, out of scope per NVIDIA's scope note.
-  - **inclusionAI LingSante collection:** its only model, Ling-3.0-flash-Sante, is already catalogued.
-  - **LingSante-MedGuard:** a dataset.
-  - **Code World Model 2.0:** a paper.
-  - **Tencent WeMM-Ecom collection:** empty.
-  - **Tencent paper and profile links:** not documentation.
-  - **MiniMax ecosystem space:** not documentation.
-  - **Apollo Trust Center:** not documentation.
-  - **Epoch data insights:** compute and inference-capacity charts, no named model.
-  - **Thinking Machines status page:** not documentation.
-- **Older candidates:** triaged in earlier runs.
+- **tencent/Hy4** (and Hy4-FP8 / Hy4-base): this is Tencent Hy's new 770B-A49B flagship and the full successor to Hy4 preview. KuCoin, BigGo Finance and others covered the launch. Proposed and written as one family row (FP8 is a quantization, base is the pretrained checkpoint). The card links a **Hy4 System Card PDF** at https://hy.tencent.ai/Hy4_system_card.pdf. Today that URL returns only the hy.tencent.ai client-rendered HTML shell (6314 bytes), both through read_doc and WebFetch. Since I couldn't read it, I didn't propose it, and I logged friction. **A later run should re-check this URL**: news reports say a safety-assessment system card shipped with the model.
+- **tencent/WeMM-Video-{2B,4B,9B,35BA3B} + FP8/AWQ/GGUF/NVFP4 quants**, plus the WeMM-Video paper: skipped. WeMM is WeChat's multimodal line, not the Hunyuan Hy line that the tencent_hunyuan scope note covers. It's a multi-size checkpoint drop with no outside announcement, and the earlier WeMM-Embedding row was removed.
+- tencent/WeVisForensics (detector), nvidia Riva-Translate-4B (translation), C-RADIOv4-H-AV (vision backbone), parakeet-tdt (ASR): all auxiliary models, out of scope.
+- muse.ai/blog/security-and-safety-for-ai-agents…: the same post is already cataloged at its research.meta.ai URL (`meta-muse-other`). Skipped as a mirror.
+- Also skipped: HF papers (research), datasets, buckets, spaces, user profiles, discussion threads (new_version pointers, chat-template fixes), and inclusionAI *-singprobe repos (probes, not models).
+- Older candidates (first_seen before today) were triaged by earlier runs.
 
-## Targeted search (11-16 to 11-19)
+## Task 2: Targeted web search
 
-- **OpenAI "Our first phase of embedded assessments":** skipped. Read via read_doc. It announces agreements with Apollo, METR, Transluce and Goodfire, but names no model and reports no results; this is consistent with the 11-17 skip of Apollo's pilot post. Watch for the resulting assessor reports.
-- **Astra for Law:** see #5 and #6.
-- **METR alignment-eval tells:** see #7.
-- **Restricted-access programs:** nothing new beyond Neon for cyber/Fairwind (#4) and Astra for Law.
-  - CVP/Glasswing tiers (Oct), LSVP, Rosalind (incl. the GPT-Rosalind-6 addendum) and Co-Scientist are already catalogued.
-  - The ChatGPT for Academic Researchers expansion (applications open 11-23) is a GA grant program, skipped as before.
-  - No news on Claude Science, Gemini for Science or Isomorphic.
-- **Watch list:**
-  - **Grok 4.8:** still no card (search confirms none as of 11-16).
-  - **Qwen4-Max:** no new primary documentation.
-  - **Neon Safety & Security Report:** pending.
-  - **Embedded-assessment reports:** pending.
+Queries: system cards 18–19 Nov; open-weight releases this week; trusted/restricted access programs; AISI/METR/Apollo reports; Anthropic LSVP/CVP; xAI, Z.ai, Qwen, Xiaomi, Mistral recency; Qwen4-Max docs; Tencent Hy4.
+- Already cataloged: GPT-6.2 Astra/Sol card, Gemini 4 Neon/Carbon/Hydrogen, Genie 4, ChatGPT Images 2.6, Fable/Mythos 5.2, the Anthropic CVP expansion and LSVP pages, METR "Measuring alignment eval tells" (2026-11-16), Mistral Large 4 ("Le Chonk"), and Grok 4.7.
+- **Qwen4-Max** (2026-11-16, API-only): skipped. Alibaba published no model card or tech report. The qwen.ai blog renders client-side (unreadable via read_doc and WebFetch). The readable alibabacloud.com post is a press release with leaderboard ranks and a generic "safety by design" paragraph, with no evaluation results. If open-weight Qwen4 models ship with HF cards, Phase A will see them.
+- **OpenAI embedded assessments** (Apollo, METR, Transluce, Goodfire; 2026-11-16): skipped. It's a process/partnership announcement with no evaluated model named. Any assessor reports it produces will be candidates.
+- Not allowlisted, so not proposed: Shanghai AI Lab Sage S2.1 Flash, SenseTime SenseNova Loop-9B, RadixArk DaisyRose-27B, Runway Praxis-1, Reson8 Rumble-2-Flash (ASR).
+- Orgs silent for more than 14 days (Palisade, Poolside, SaferAI, Z.ai, RAND, CAISI, xAI, Qwen, Xiaomi, StepFun, DeepSeek, and others): spot searches found no new in-scope documents. Z.ai's latest is still GLM-5.3 (cataloged). Grok 5 isn't released. Xiaomi's latest is MiMo-V2.6 (cataloged).
 
-## Citation mining
+## Task 3: Citation mining
 
-- **Neon model card:** points to the evals-methodology page (added as #2) and to the Argon/Carbon Safety & Security reports, which are already catalogued.
-- **Neon blog:** cites Vals, Artificial Analysis, Surge, Zapier, Andon Labs and Gray Swan results. These are leaderboards, not standalone reports.
-- **Genie 4 post:** links a "model research overview", which is the 10-27 blog already catalogued.
+GPT-6.2 Astra/Sol system card (added 2026-11-17): its external evaluations are by SecureBio, UK AISI (cyber safeguards, alignment, monitorability) and Irregular. All of them appear only as hub sub-pages of the cataloged card. SecureBio's resources page still lists only the GPT-6 Astra report, and I found no standalone UK AISI post on GPT-6.2. Nothing new to propose.
 
-## Blocked-URL escalations (task 5)
+## Task 4: Open issues
 
-- **Phase A:** 403 on the same 20 openai.com / help.openai.com URLs (16 at streak 30, 1 at 28, 3 at 7).
-- **My own fetches:** today read_doc got HTTP 200 via browser_impersonation on all four I sampled: hugging-face incident, the Daybreak help article, wet-lab-science and introducing-gpt-rosalind. The new Astra for Law, embedded-assessments and help pages also fetched fine.
-- **Verdict:** all are alive. No status changes.
-- **Three HF 429s** (Hy4-flash, ERNIE-5.5-Flash-Base, ERNIE-Image; streak 1): transient rate limiting, no action.
+`fetch_ok: true`, and there are no open issues.
 
-## Document updates (task 6)
+## Task 5: Blocked-URL escalations
 
-- **Top 5:** v1056, v773, v1170, v924 and v1015 again. All were judged in earlier runs as noise or already handled. Skipped.
-- **New entry `dots-studio-dots3-note-preview-model-card` v1238:** noise. It is a multimodal quickstart snippet, reordered eval-result badges and a download counter. Skipped, no annotation.
+Phase A again got 403 on all 20 standing openai.com / help.openai.com URLs (16 at streak 30, 1 at 29, 3 at 8). It also got 403 on two new ones at streak 1: astra-for-law and astra-law-6-2. read_doc fetched path-to-astra, a-thousand-fewer-paths-to-root, astra-for-law, astra-law-6-2 and the Daybreak help article with HTTP 200 via browser_impersonation. **All alive; no status changes.** The HF 429s (Hy4-flash, ERNIE-5.5-Flash-Base, ERNIE-Image, streak 2) are rate limits; read_doc fetched HF pages normally today.
 
-## Friction and proposals
+## Task 6: Document updates (top 5 of 20)
 
-- **Friction:** 2 recurrence entries.
-  1. OpenAI 403s in Phase A while read_doc's impersonation works. Two OpenAI documents were found only by search.
-  2. Stale updated_docs head.
-- **PROPOSALS.md:** no new entry.
-  - The missed Astra for Law posts are further evidence for the existing 2026-10-07 entry (Phase A vs impersonation fetcher) and the 2026-11-12 entry (watch openai.com/news/rss.xml).
-  - The stale queue is covered by the existing 2026-10-28 entry.
+1. `fangcun-ai-deepseek-v4-1-flash-1017-independent-eval` v1056: **skipped, noise**. It's PDF figure-label reflow, plus a TOC page number changing from 85 to 84.
+2. `deepseek-deepseek-v4-1-flash-model-card` v773: **skipped, noise**. HF widget furniture: auto-generated usage snippets switched to chat/completions, download/Spaces counts, and community leaderboard widgets.
+3. `deepseek-deepseek-v4-1-flash-1017-model-card` v1170: **skipped, noise**. Same HF widget furniture as #2.
+4. `anthropic-claude-mythos-preview-other-3` v924: **skipped**. The diff is newly extracted section headings, a dropped newsletter banner, and the 11-task description table no longer extracted. The prose is unchanged, so this looks like an extractor/layout change rather than a revision.
+5. `google-deepmind-gemini-4-hydrogen-model-card` v1247: **annotated**. The Safety & Security Report moved from "coming soon" to published and linked.
+   - That report is already cataloged (`google-deepmind-gemini-4-hydrogen-system-card`). Its `publication_date` is null, and the PDF gives only "November 2026", so I left it null rather than guess.
+
+## Task 7: Friction logged
+
+- `recurrence` (of 2026-11-19T06:26:54Z): Phase A 403s on openai.com while read_doc reads the same pages fine.
+- `other`: the Hy4 System Card PDF link serves only the hy.tencent.ai SPA shell, so it's unreadable and has no watching index.
+
+## Task 8: Proposals
+
+None filed.
