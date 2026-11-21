@@ -1,35 +1,44 @@
-# Run report — 2026-11-20T06:17Z-local
+# Run report — 2026-11-21T06:19Z-local
 
-Last agent success: 2026-11-19T06:27Z. Search window: the 72 h minimum (since 2026-11-17). Today is a Friday, so no weekly retrospective sweep.
+Last agent success: 2026-11-20T06:27Z. Search window: the 72 h minimum (since 2026-11-18). Today is a Saturday, so no weekly retrospective sweep.
 
 ## Proposals and validator verdicts
 
 | # | Action | Target | Verdict |
 |---|---|---|---|
-| 1 | add | https://huggingface.co/tencent/Hy4 — Hy4 model card (tencent_hunyuan, model_card, Hy4 + Hy4 base, 2026-11-20, open_weight_restrictive, has_safety_evals=false) | **written** → `tencent-hunyuan-hy4-model-card` (doc 488, v1250) |
-| 2 | annotate_version | `google-deepmind-gemini-4-hydrogen-model-card` v1247 | **written** |
+| 1 | add | https://thinkingmachines.ai/model-card/inkling-2-mini/ — Inkling 2 Mini Model Card (thinking_machines, model_card, 2026-11-20, open_weight_permissive / Apache 2.0, has_safety_evals=true, risk_domains cbrn/cyber/loss_of_control/societal_harm) | **written** → `thinking-machines-inkling-2-mini-model-card` (doc 489, v1264) |
+| 2 | add | https://metr.org/blog/2026-11-20-q4-2026-capability-update/ — METR Q4 2026 capability update (metr, independent_eval, 2026-11-20, closed, has_safety_evals=true, loss_of_control) | **written** → `metr-claude-opus-5-5-independent-eval-3` (doc 490, v1265) |
 
-## Task 1: Phase A candidates (first_seen 2026-11-20)
+## Task 1: Phase A candidates (first_seen 2026-11-21)
 
-- **tencent/Hy4** (and Hy4-FP8 / Hy4-base): this is Tencent Hy's new 770B-A49B flagship and the full successor to Hy4 preview. KuCoin, BigGo Finance and others covered the launch. Proposed and written as one family row (FP8 is a quantization, base is the pretrained checkpoint). The card links a **Hy4 System Card PDF** at https://hy.tencent.ai/Hy4_system_card.pdf. Today that URL returns only the hy.tencent.ai client-rendered HTML shell (6314 bytes), both through read_doc and WebFetch. Since I couldn't read it, I didn't propose it, and I logged friction. **A later run should re-check this URL**: news reports say a safety-assessment system card shipped with the model.
-- **tencent/WeMM-Video-{2B,4B,9B,35BA3B} + FP8/AWQ/GGUF/NVFP4 quants**, plus the WeMM-Video paper: skipped. WeMM is WeChat's multimodal line, not the Hunyuan Hy line that the tencent_hunyuan scope note covers. It's a multi-size checkpoint drop with no outside announcement, and the earlier WeMM-Embedding row was removed.
-- tencent/WeVisForensics (detector), nvidia Riva-Translate-4B (translation), C-RADIOv4-H-AV (vision backbone), parakeet-tdt (ASR): all auxiliary models, out of scope.
-- muse.ai/blog/security-and-safety-for-ai-agents…: the same post is already cataloged at its research.meta.ai URL (`meta-muse-other`). Skipped as a mirror.
-- Also skipped: HF papers (research), datasets, buckets, spaces, user profiles, discussion threads (new_version pointers, chat-template fixes), and inclusionAI *-singprobe repos (probes, not models).
-- Older candidates (first_seen before today) were triaged by earlier runs.
+- **Inkling 2 Mini** (thinkingmachines.ai/news/inkling-2-mini/): this is a new open-weight looped MoE (26.4B total / 3.4B active, Apache 2.0) released 2026-11-20.
+  - I proposed the dedicated model card as canonical. The news post (announcement) and the HF weights go in related_urls.
+  - The card has a Safety and Alignment table (FORTRESS, StrongREJECT, internal misbehavior/covert/destructive, HoneyBench) and a safety section on CBRN/cyber uplift (with refusal-suppressed variants), loss-of-control (sabotage, deception), self-harm and sycophancy, plus CoT-monitorability tests. The tags follow the Inkling 2 Small row's precedent.
+  - The research variant TML-d24-varloop-research is noted in `notes`, not proposed separately.
+  - Press coverage exists (letsdatascience).
+- **METR "AI R&D-relevant model capabilities are improving rapidly…"** (2026-11-20): this passes the system-card test. It gives per-model time-horizon estimates on TH1.1/TH2/MirrorCode (GPT-6 Astra ~40 h, Opus 5.5 ~39 h), human-percentile placements, reward-hack checks, and developer-specific trend analysis. It sits alongside the cataloged TH1.1 post. Proposed and written.
+  - The validator generated the slug `metr-claude-opus-5-5-independent-eval-3` from the first model name. It is functional, but it doesn't describe the document well.
+- inclusionAI/LingSante-Pulse-1.0: skipped. It is a physiological-signal (ECG) encoder, an auxiliary model.
+- Anthropic IPO-close post: corporate news, skipped.
+- nvidia Nemotron-3.5-Transcribe GGUF: ASR quant, skipped.
+- Qwen2-VL-2B / Qwen2-1.5B: old pre-floor models, only metadata updated; skipped. Qwen/MiniMax discussion threads (new_version pointers, README fixes): skipped.
+- HF papers, user profiles, and simready dataset discussions: skipped.
+- Older candidates were triaged by earlier runs.
 
 ## Task 2: Targeted web search
 
-Queries: system cards 18–19 Nov; open-weight releases this week; trusted/restricted access programs; AISI/METR/Apollo reports; Anthropic LSVP/CVP; xAI, Z.ai, Qwen, Xiaomi, Mistral recency; Qwen4-Max docs; Tencent Hy4.
-- Already cataloged: GPT-6.2 Astra/Sol card, Gemini 4 Neon/Carbon/Hydrogen, Genie 4, ChatGPT Images 2.6, Fable/Mythos 5.2, the Anthropic CVP expansion and LSVP pages, METR "Measuring alignment eval tells" (2026-11-16), Mistral Large 4 ("Le Chonk"), and Grok 4.7.
-- **Qwen4-Max** (2026-11-16, API-only): skipped. Alibaba published no model card or tech report. The qwen.ai blog renders client-side (unreadable via read_doc and WebFetch). The readable alibabacloud.com post is a press release with leaderboard ranks and a generic "safety by design" paragraph, with no evaluation results. If open-weight Qwen4 models ship with HF cards, Phase A will see them.
-- **OpenAI embedded assessments** (Apollo, METR, Transluce, Goodfire; 2026-11-16): skipped. It's a process/partnership announcement with no evaluated model named. Any assessor reports it produces will be candidates.
-- Not allowlisted, so not proposed: Shanghai AI Lab Sage S2.1 Flash, SenseTime SenseNova Loop-9B, RadixArk DaisyRose-27B, Runway Praxis-1, Reson8 Rumble-2-Flash (ASR).
-- Orgs silent for more than 14 days (Palisade, Poolside, SaferAI, Z.ai, RAND, CAISI, xAI, Qwen, Xiaomi, StepFun, DeepSeek, and others): spot searches found no new in-scope documents. Z.ai's latest is still GLM-5.3 (cataloged). Grok 5 isn't released. Xiaomi's latest is MiMo-V2.6 (cataloged).
+Queries: "system card November 2026"; open-weight model cards around 20 Nov; trusted-access programs Nov 2026; AISI evaluation reports; Anthropic new model/system card; OpenAI GPT-6.2 addendum; Anthropic LSVP expansion; Apollo/Palisade/Epoch evals; Gemini/Grok/Mistral/DeepSeek/Kimi releases around 19 Nov; Hy4 system card.
+
+- Already cataloged: GPT-6.2 Astra/Sol card (OpenAI revised its AI self-improvement wording on 11-17, which is for the version monitor), Fable/Mythos 5.2, Gemini 4 Neon/Carbon/Hydrogen, GPT-6 Cyber, Rosalind programs, accelerating-cyber-defense-ecosystem, the AISI unsanctioned-agent incident report, and the Anthropic LSVP pages. The LSVP search found no new expansion page.
+- **OpenAI "Broadening access to AI for scientists"** (ChatGPT for Academic Researchers expansion): skipped. It grants free ChatGPT Plus to researchers. That is a general product, not a gated model, and GPT-Rosalind is only mentioned in passing (its access pages are cataloged).
+- **Reflection AI** trusted access for "Laser" (Axios 11-17): skipped. Reflection is not allowlisted, and Laser is a pentest tool rather than a named model.
+- **Hy4 System Card**: re-checked. hy.tencent.ai/Hy4_system_card.pdf still serves only the SPA shell. The HF repo file list and the Tencent-Hunyuan/Hy4 GitHub repo contain no PDF, and press articles don't link an alternate copy. **Still unreadable, so not proposed.** A later run should keep checking.
 
 ## Task 3: Citation mining
 
-GPT-6.2 Astra/Sol system card (added 2026-11-17): its external evaluations are by SecureBio, UK AISI (cyber safeguards, alignment, monitorability) and Irregular. All of them appear only as hub sub-pages of the cataloged card. SecureBio's resources page still lists only the GPT-6 Astra report, and I found no standalone UK AISI post on GPT-6.2. Nothing new to propose.
+- The Inkling 2 Mini post cites Goodfire's early interpretability write-up on looped models. Goodfire is not allowlisted, and I found no link target in the page.
+- The METR Q4 post cites the Anthropic AI R&D acceleration assessment and the Gemini 4 Argon Safety & Security Report. Both are already cataloged.
+- Nothing new to propose.
 
 ## Task 4: Open issues
 
@@ -37,22 +46,24 @@ GPT-6.2 Astra/Sol system card (added 2026-11-17): its external evaluations are b
 
 ## Task 5: Blocked-URL escalations
 
-Phase A again got 403 on all 20 standing openai.com / help.openai.com URLs (16 at streak 30, 1 at 29, 3 at 8). It also got 403 on two new ones at streak 1: astra-for-law and astra-law-6-2. read_doc fetched path-to-astra, a-thousand-fewer-paths-to-root, astra-for-law, astra-law-6-2 and the Daybreak help article with HTTP 200 via browser_impersonation. **All alive; no status changes.** The HF 429s (Hy4-flash, ERNIE-5.5-Flash-Base, ERNIE-Image, streak 2) are rate limits; read_doc fetched HF pages normally today.
+- `tencent-hunyuan-hy4-flash-model-card` (https://huggingface.co/tencent/Hy4-flash, 429, streak 3): read_doc got HTTP 200 with full card content. **Alive.** It was an HF rate limit; no status change.
+- The standing openai.com 403 escalations are absent from today's phase_a_summary (no blocked entries other than Hy4-flash), so Phase A apparently read openai.com fine this run.
 
-## Task 6: Document updates (top 5 of 20)
+## Task 6: Document updates
 
-1. `fangcun-ai-deepseek-v4-1-flash-1017-independent-eval` v1056: **skipped, noise**. It's PDF figure-label reflow, plus a TOC page number changing from 85 to 84.
-2. `deepseek-deepseek-v4-1-flash-model-card` v773: **skipped, noise**. HF widget furniture: auto-generated usage snippets switched to chat/completions, download/Spaces counts, and community leaderboard widgets.
-3. `deepseek-deepseek-v4-1-flash-1017-model-card` v1170: **skipped, noise**. Same HF widget furniture as #2.
-4. `anthropic-claude-mythos-preview-other-3` v924: **skipped**. The diff is newly extracted section headings, a dropped newsletter banner, and the 11-task description table no longer extracted. The prose is unchanged, so this looks like an extractor/layout change rather than a revision.
-5. `google-deepmind-gemini-4-hydrogen-model-card` v1247: **annotated**. The Safety & Security Report moved from "coming soon" to published and linked.
-   - That report is already cataloged (`google-deepmind-gemini-4-hydrogen-system-card`). Its `publication_date` is null, and the PDF gives only "November 2026", so I left it null rather than guess.
+The top 5 (v1056, v773, v1170, v924, v1015) were all judged noise by previous runs and are unchanged, so I didn't re-read the first four. I read ranks 5–9 instead:
+
+1. `anthropic-claude-mythos-preview-other` v1015: **skipped, noise**. Section headings newly extracted, footnote markers changed from [1] to 1, and the newsletter banner dropped.
+2. `deepseek-deepseek-v4-pro-model-card` v573: **skipped, noise**. HF usage-snippet swap (chat/completions to completions), download counter, and eval-widget reordering.
+3. `deepseek-deepseek-v4-flash-0731-model-card` v578: **skipped, noise**. Same HF snippet furniture.
+4. `anthropic-glm-5-2-other` v974: **skipped, noise**. Headings newly extracted, the newsletter banner dropped, and one small table no longer extracted. The prose is unchanged.
+5. `dots-studio-dots3-note-preview-model-card` v1238: **skipped, noise**. HF snippet expansion (processor and image example), download counter, and eval-widget reordering.
 
 ## Task 7: Friction logged
 
-- `recurrence` (of 2026-11-19T06:26:54Z): Phase A 403s on openai.com while read_doc reads the same pages fine.
-- `other`: the Hy4 System Card PDF link serves only the hy.tencent.ai SPA shell, so it's unreadable and has no watching index.
+- `recurrence` (of 2026-11-19T06:26:55Z): the stale already-judged entries still fill the updated_docs top 5. The dismissal path is already proposed in PROPOSALS.md (2026-10-28).
+- `recurrence` (of 2026-11-20T06:24:20Z): the Hy4 System Card PDF is still unreadable (SPA shell), and there is no alternate copy.
 
 ## Task 8: Proposals
 
-None filed.
+None filed. The stale-queue problem is already covered by the 2026-10-28 proposal.
