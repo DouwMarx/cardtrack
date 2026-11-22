@@ -52,12 +52,12 @@
     <dt>First seen</dt>
     <dd>2026-10-07T06:20:15Z</dd>
     <dt>Versions</dt>
-    <dd>2</dd>
+    <dd>3</dd>
     <dt>Notes</dt>
     <dd>Successor structure to Project Glasswing (see anthropic-claude-mythos-preview-access-policy rows). Mythos 5.1 is vetted-access, hence restricted.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-5-5-access-policy&amp;body=Document%3A%20anthropic-claude-opus-5-5-access-policy%0AURL%3A%20https%3A//www.anthropic.com/news/cyber-verification-program%0AFingerprint%3A%201b2c32087587a87da5f64e89cd7fadfa4bee4064931b1a4551bc7af31f22cc89%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20anthropic-claude-opus-5-5-access-policy&amp;body=Document%3A%20anthropic-claude-opus-5-5-access-policy%0AURL%3A%20https%3A//www.anthropic.com/news/cyber-verification-program%0AFingerprint%3A%20efd17a854ab1efadc7d089fbab4711ef97361801e3347d2ec3da07b9d8cb33a6%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -65,6 +65,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-22T06:21:37Z</td>
+          <td>text/html</td>
+          <td>173,773</td>
+          <td><code title="efd17a854ab1efadc7d089fbab4711ef97361801e3347d2ec3da07b9d8cb33a6">efd17a854ab1efad</code></td>
+<td><a href="https://data.systemcards.org/raw/914d9d3f714c39119087c43d7f5c6031337f6af32e2a77c8f4789bdb51875553.html" rel="nofollow" title="archived copy, sha256 914d9d3f714c39119087c43d7f5c6031337f6af32e2a77c8f4789bdb51875553">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-10-27T06:21:34Z</td>
           <td>text/html</td>
@@ -89,7 +96,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 4 changelog entries
+    <summary>Show 5 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -136,6 +143,14 @@
           <div class="evidence">Evidence:
 <a href="https://www.anthropic.com/news/cyber-verification-program" rel="noopener nofollow">https://www.anthropic.com/news/cyber-verification-program</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-22T06:21:37Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-22T06:19Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://www.anthropic.com/news/cyber-verification-program" rel="noopener nofollow">https://www.anthropic.com/news/cyber-verification-program</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -155,8 +170,9 @@ Defense Access is for defensive work, including security operations center and i
 We expect many organizations conducting defensive cybersecurity work to qualify for this tier. We aim to respond to applications within a few days.
 Red Team Access adds authorized penetration testing and red-teaming to the defensive uses above. Examples of qualifying organizations include in-house red teams, government red teams, and security and penetration testing firms. Organizations in this tier can only perform adversarial testing against systems they are authorized to test, including IT systems in critical industries. Users will still experience real-time blocks on actions that could cause physical harm or mass disruption, such as deploying ransomware, damaging physical systems, or pen testing high-risk safety systems.
 Given the increased eligibility requirements and security controls, we expect applications in this tier to take a few weeks to review. Qualifying organizations will be enrolled in the Defense Access tier while we review their Red Team Access applications. Currently, this tier is for organizations only; individual researchers are not eligible.
-Specialized Access, which has the fewest cyber blocks, is reserved for a limited set of verified organizations that are authorized to test safety systems that could impact people’s lives or disrupt markets, such as flight operating systems, power grids, telecom networks, interbank transfer infrastructure, and government administrative networks.
-For this tier, we currently review every organization in depth in collaboration with the US government. Existing members of Project Glasswing will transition to this tier and do not require reapproval for current models.
+Specialized Access, which has the fewest cyber blocks, is reserved for a limited set of verified organizations dedicated to red-teaming systemically important infrastructure whose failure could impact people’s lives or disrupt markets, such as flight operating systems, power grids, telecom networks, interbank transfer infrastructure, and government administrative networks. Organizations in this tier can conduct authorized penetration testing and red-teaming of this infrastructure, as well as research into the highest-severity techniques.
+Most critical infrastructure organizations can do their security work with Defense or Red Team Access. Operating critical infrastructure doesn’t, by itself, qualify an organization for Specialized Access; applicants must show that they’re authorized to test this type of infrastructure and describe the work they can’t do with Red Team Access. Like Red Team Access, this tier is available only on Enterprise and API plans.
+We currently review every application for this tier in depth, in collaboration with the US government, so reviews take longer than they do for Red Team Access. Organizations that qualify for a lower tier will receive access to that tier while we complete our review. Existing members of Project Glasswing will transition to Specialized Access and won’t need to be reapproved for current models.
 Our generally available models can continue to be used for tasks such as code review, patching known issues, vulnerability finding in owned source code, and triage of security alerts.
 Data retention is required for organizations enrolled in the program so that we can monitor for cyber misuse. Once Enterprise Frontier Safeguards (EFS)—a new solution that combines the privacy of zero data retention with robust safeguards—is available later this fall, eligible organizations will be able to store data in cloud infrastructure they control. Until EFS is available, organizations with access to Claude Fable 5.1 or Claude Mythos 5.1 with zero data retention can also use CVP with zero data retention. To register interest in EFS, fill out this form.
 Below, we share an overview of what’s available at each CVP access level, as well as requirements for security and privacy controls:
@@ -174,11 +190,12 @@ The changes we’re making to our Cyber Verification Program today are intended 
 Apply for access
 Interested organizations can apply to CVP here. As part of the application process, we will verify all applicants and request proof of the required security controls for the relevant access tier. Existing CVP members will keep their current settings for previous models and will be automatically evaluated for access to Claude Opus 5.5, Claude Sonnet 5.5, and Claude Mythos 5.1 through the updated program. Admins will need to assign access to specific workspaces by following these steps.
 CVP is available on the Claude Platform, Google Cloud’s Vertex AI, and Microsoft Foundry. CVP is only available on Amazon Bedrock for customers eligible for Enterprise Frontier Safeguards.
-If you’re blocked on work you think your tier should allow, you can report it here. Full details on each tier can be found in our Help Center.</pre>
+If you’re blocked on work you think your tier should allow, you can report it here. Full details on each tier can be found in our Help Center.
+Updated November 18, 2026, to reflect changes to plan availability for Red Team Access and Specialized Access, and to clarify who qualifies for Specialized Access.</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-21T06:23:46Z</p></footer>
+<footer><p>Data updated 2026-11-22T06:23:16Z</p></footer>
 </body>
 </html>

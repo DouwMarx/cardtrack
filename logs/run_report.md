@@ -1,44 +1,52 @@
-# Run report — 2026-11-21T06:19Z-local
+# Run report — 2026-11-22T06:19Z-local
 
-Last agent success: 2026-11-20T06:27Z. Search window: the 72 h minimum (since 2026-11-18). Today is a Saturday, so no weekly retrospective sweep.
+Last agent success: 2026-11-21T06:26Z. Search window: the 72 h minimum (since 2026-11-19). Today is a Sunday, so no weekly retrospective sweep.
 
 ## Proposals and validator verdicts
 
 | # | Action | Target | Verdict |
 |---|---|---|---|
-| 1 | add | https://thinkingmachines.ai/model-card/inkling-2-mini/ — Inkling 2 Mini Model Card (thinking_machines, model_card, 2026-11-20, open_weight_permissive / Apache 2.0, has_safety_evals=true, risk_domains cbrn/cyber/loss_of_control/societal_harm) | **written** → `thinking-machines-inkling-2-mini-model-card` (doc 489, v1264) |
-| 2 | add | https://metr.org/blog/2026-11-20-q4-2026-capability-update/ — METR Q4 2026 capability update (metr, independent_eval, 2026-11-20, closed, has_safety_evals=true, loss_of_control) | **written** → `metr-claude-opus-5-5-independent-eval-3` (doc 490, v1265) |
+| 1 | annotate_version | `anthropic-claude-opus-access-policy` v1274 (CVP support article): Team plans limited to Defense Access; Red Team/Specialized now Enterprise and API only; constrained products now accepting Defense Access applications (data retention required); unconstrained products "Not yet available" | **written** (doc 304) |
+| 2 | annotate_version | `inclusion-ai-llada2-2-flash-model-card` v980: the "SGLang deployment coming soon" placeholder was replaced by a full SGLang deployment section with JointThresholdInDel decoding defaults | **written** (doc 247) |
 
-## Task 1: Phase A candidates (first_seen 2026-11-21)
+No add proposals today.
 
-- **Inkling 2 Mini** (thinkingmachines.ai/news/inkling-2-mini/): this is a new open-weight looped MoE (26.4B total / 3.4B active, Apache 2.0) released 2026-11-20.
-  - I proposed the dedicated model card as canonical. The news post (announcement) and the HF weights go in related_urls.
-  - The card has a Safety and Alignment table (FORTRESS, StrongREJECT, internal misbehavior/covert/destructive, HoneyBench) and a safety section on CBRN/cyber uplift (with refusal-suppressed variants), loss-of-control (sabotage, deception), self-harm and sycophancy, plus CoT-monitorability tests. The tags follow the Inkling 2 Small row's precedent.
-  - The research variant TML-d24-varloop-research is noted in `notes`, not proposed separately.
-  - Press coverage exists (letsdatascience).
-- **METR "AI R&D-relevant model capabilities are improving rapidly…"** (2026-11-20): this passes the system-card test. It gives per-model time-horizon estimates on TH1.1/TH2/MirrorCode (GPT-6 Astra ~40 h, Opus 5.5 ~39 h), human-percentile placements, reward-hack checks, and developer-specific trend analysis. It sits alongside the cataloged TH1.1 post. Proposed and written.
-  - The validator generated the slug `metr-claude-opus-5-5-independent-eval-3` from the first model name. It is functional, but it doesn't describe the document well.
-- inclusionAI/LingSante-Pulse-1.0: skipped. It is a physiological-signal (ECG) encoder, an auxiliary model.
-- Anthropic IPO-close post: corporate news, skipped.
-- nvidia Nemotron-3.5-Transcribe GGUF: ASR quant, skipped.
-- Qwen2-VL-2B / Qwen2-1.5B: old pre-floor models, only metadata updated; skipped. Qwen/MiniMax discussion threads (new_version pointers, README fixes): skipped.
-- HF papers, user profiles, and simready dataset discussions: skipped.
+## Task 1: Phase A candidates (first_seen 2026-11-22)
+
+- There was one new candidate: the nvidia/AeroZoo dataset "Update README.md" discussion. It's a dataset discussion thread, so I skipped it.
 - Older candidates were triaged by earlier runs.
 
 ## Task 2: Targeted web search
 
-Queries: "system card November 2026"; open-weight model cards around 20 Nov; trusted-access programs Nov 2026; AISI evaluation reports; Anthropic new model/system card; OpenAI GPT-6.2 addendum; Anthropic LSVP expansion; Apollo/Palisade/Epoch evals; Gemini/Grok/Mistral/DeepSeek/Kimi releases around 19 Nov; Hy4 system card.
+Queries:
+- "system card new AI model November 2026"
+- open-weight model cards around Nov 20
+- trusted-access programs Nov 2026
+- UK AISI pre-deployment evaluation reports
+- Apollo/Palisade/METR/Epoch evals of GPT-6.2 and Gemini 4 Neon
+- Anthropic LSVP/CVP Mythos
+- GPT-Rosalind / Daybreak / Gemini for Science / Claude Science access
+- DeepSeek/Qwen/Mistral/xAI releases Nov 19–21
+- Grok/Mistral/Nova model cards
+- Hy4 system card
 
-- Already cataloged: GPT-6.2 Astra/Sol card (OpenAI revised its AI self-improvement wording on 11-17, which is for the version monitor), Fable/Mythos 5.2, Gemini 4 Neon/Carbon/Hydrogen, GPT-6 Cyber, Rosalind programs, accelerating-cyber-defense-ecosystem, the AISI unsanctioned-agent incident report, and the Anthropic LSVP pages. The LSVP search found no new expansion page.
-- **OpenAI "Broadening access to AI for scientists"** (ChatGPT for Academic Researchers expansion): skipped. It grants free ChatGPT Plus to researchers. That is a general product, not a gated model, and GPT-Rosalind is only mentioned in passing (its access pages are cataloged).
-- **Reflection AI** trusted access for "Laser" (Axios 11-17): skipped. Reflection is not allowlisted, and Laser is a pentest tool rather than a named model.
-- **Hy4 System Card**: re-checked. hy.tencent.ai/Hy4_system_card.pdf still serves only the SPA shell. The HF repo file list and the Tencent-Hunyuan/Hy4 GitHub repo contain no PDF, and press articles don't link an alternate copy. **Still unreadable, so not proposed.** A later run should keep checking.
+I also checked the nocode.mba and llmgateway release trackers for Nov 17–22.
+
+- **Already cataloged**: GPT-6.2 Astra/Sol, Gemini 4 Neon/Hydrogen, Inkling 2 Mini, Kimi K3.1 Pro (plus the FAR.AI and SecureBio evals), Mistral Large 4, Grok 4.6/4.7, Muse Ember, and the Anthropic Mythos, LSVP and CVP pages.
+- **Kimi K3.1 Pro Prime** (Nov 20): skipped. It is an Alibaba Model Studio hosting tier of the already-cataloged K3.1 Pro, not a distinct release.
+- **Microsoft MAI Code 2 / MAI Cyber 2 Flash / MAI Realtime 1** (Nov 17): skipped. Microsoft is not in sources.yaml or the generated overlay.
+- **Others skipped**: SenseNova-Loop-9B, Baseten bison-1/groundhog-1, Metric AI Ayb and Reson8 Rumble are non-allowlisted publishers. AssemblyAI STT is an ASR product, not catalog material.
+- **Restricted access**: nothing new. The Reflection AI "Laser" program is still out of scope (publisher not allowlisted, and Laser is a tool rather than a named model). The OpenAI academic-researcher expansion was already skipped on 11-21.
+- **Hy4 System Card** (Tencent, released 2026-11-20, 82 pp. per press): **still unreadable, not proposed**.
+  - hy.tencent.ai/Hy4_system_card.pdf still returns the SPA shell.
+  - The SPA bundle builds the PDF path at runtime (it has only `systemCardsTitle`/`systemCardsDesc` keys and a bare ".pdf" string), so I did not guess a CDN URL.
+  - The HF tencent/Hy4 file list and the GitHub Tencent-Hunyuan/Hy4 tree still have no PDF.
+  - KuCoin and OrcaRouter coverage give no direct link.
+- **Silent-org check (>14 days)**: limited. I couldn't run a helper script over the state summary (the Bash guard asked for approval), so I only spot-checked xAI, Mistral, Meta, Moonshot and Google DeepMind with Grep. All have entries from late Oct or Nov.
 
 ## Task 3: Citation mining
 
-- The Inkling 2 Mini post cites Goodfire's early interpretability write-up on looped models. Goodfire is not allowlisted, and I found no link target in the page.
-- The METR Q4 post cites the Anthropic AI R&D acceleration assessment and the Gemini 4 Argon Safety & Security Report. Both are already cataloged.
-- Nothing new to propose.
+There were no new adds this run. Yesterday's two adds (Inkling 2 Mini, METR Q4 2026 update) were mined on 11-21 and yielded nothing proposable. Nothing new today.
 
 ## Task 4: Open issues
 
@@ -46,24 +54,26 @@ Queries: "system card November 2026"; open-weight model cards around 20 Nov; tru
 
 ## Task 5: Blocked-URL escalations
 
-- `tencent-hunyuan-hy4-flash-model-card` (https://huggingface.co/tencent/Hy4-flash, 429, streak 3): read_doc got HTTP 200 with full card content. **Alive.** It was an HF rate limit; no status change.
-- The standing openai.com 403 escalations are absent from today's phase_a_summary (no blocked entries other than Hy4-flash), so Phase A apparently read openai.com fine this run.
+- `tencent-hunyuan-hy4-flash-model-card` (https://huggingface.co/tencent/Hy4-flash, 429, streak 4): read_doc got HTTP 200 (321 KB, 17.7k chars of card content). **Alive**, so no status change. Phase A has now been rate-limited on this URL for 4 runs, which I logged as friction.
 
 ## Task 6: Document updates
 
-The top 5 (v1056, v773, v1170, v924, v1015) were all judged noise by previous runs and are unchanged, so I didn't re-read the first four. I read ranks 5–9 instead:
+1. `anthropic-claude-opus-access-policy` v1274 (fetched today): **substantive, annotated** (see table).
+2. `inclusion-ai-llada2-2-flash-model-card` v980: **substantive (section added), annotated**.
+3. `epoch-ai-gpt-5-6-terra-independent-eval` v870: **skipped, noise**. Appendix headings went from "Appendix A." to "Appendix A:", plus an "Appendices" header. No numbers changed.
+4. `anthropic-claude-mythos-preview-other-2` v922: **skipped, noise**. Section headings were newly extracted, and the newsletter banner, footnotes and related-post teasers dropped out of extraction. The prose is unchanged.
+5. `inclusion-ai-ring-2-6-1t-model-card` v979: **skipped, noise**. HF usage-snippet expansion, download/Spaces counters and eval-widget reordering (same scores).
 
-1. `anthropic-claude-mythos-preview-other` v1015: **skipped, noise**. Section headings newly extracted, footnote markers changed from [1] to 1, and the newsletter banner dropped.
-2. `deepseek-deepseek-v4-pro-model-card` v573: **skipped, noise**. HF usage-snippet swap (chat/completions to completions), download counter, and eval-widget reordering.
-3. `deepseek-deepseek-v4-flash-0731-model-card` v578: **skipped, noise**. Same HF snippet furniture.
-4. `anthropic-glm-5-2-other` v974: **skipped, noise**. Headings newly extracted, the newsletter banner dropped, and one small table no longer extracted. The prose is unchanged.
-5. `dots-studio-dots3-note-preview-model-card` v1238: **skipped, noise**. HF snippet expansion (processor and image example), download counter, and eval-widget reordering.
+The stale top entries (v1056, v773, v1170, v924, v1015) were judged noise by earlier runs and are unchanged, so I didn't re-read them.
 
 ## Task 7: Friction logged
 
-- `recurrence` (of 2026-11-19T06:26:55Z): the stale already-judged entries still fill the updated_docs top 5. The dismissal path is already proposed in PROPOSALS.md (2026-10-28).
-- `recurrence` (of 2026-11-20T06:24:20Z): the Hy4 System Card PDF is still unreadable (SPA shell), and there is no alternate copy.
+- `other`: Phase A gets a persistent HF 429 on tencent/Hy4-flash (4 runs) while the agent-side fetch gets 200.
+- `recurrence` (of 2026-11-21T06:25:35Z): the Hy4 System Card PDF is still unreadable (SPA shell), and there is no alternate copy.
+- `recurrence` (of 2026-11-21T06:25:33Z): already-judged stale entries still lead the updated_docs queue.
 
 ## Task 8: Proposals
 
-None filed. The stale-queue problem is already covered by the 2026-10-28 proposal.
+None filed.
+- The Hy4 unreadable-PDF case is covered by the existing PROPOSALS.md entry suggesting a headless-render fallback and `logs/unretrievable.jsonl`.
+- The stale-queue problem is covered by the 2026-10-28 proposal.
