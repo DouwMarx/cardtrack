@@ -390,3 +390,41 @@ the day at the same request count; in the reverse order it mints furniture faste
   `fig_edits_by_doc`) from `out/results.json` and writes `out/standing_figs.json`. It runs after
   `run.sh analyze`. The corrections list inside it is hand-curated from diffs read during the run and must be
   extended by the report agent when new numeric corrections appear.
+
+## 14. Additions from 2026-11-22 (standing report, snapshot 2026-11-22T02:00Z)
+
+- **Drift annotation wrong on three of the seven pairs that carried it this week.** The monitor annotated
+  openai-gpt-5-6-sol-access-policy v1027 to v1237 "Extractor drift: 1 line(s) missing ... not a publisher
+  deletion"; the diff rewrites the Daybreak Red tier (GPT-5.6 Cyber for every Red organisation, GPT-6 Cyber
+  under separate approval, GPT-6.2 Astra and Sol added, GPT-5.5-Cyber deprecated 2027-02-01). That is the tenth
+  substantive pair with a "not a publisher deletion" note, and the second time on this page (v671 to v774 in
+  October). meta-muse-other v822 to v1180 was annotated "7 line(s) missing"; one of the removed lines, the
+  sentence "(You can reach us at muse-security@meta.com.)", is in the raw HTML of v822 (4 occurrences) and absent
+  from v1180, so it is a publisher deletion the note denied. anthropic-claude-opus-5-5-other v941 to v1224 was
+  annotated "1 line(s) missing" although the diff only adds a byline. Same proposal as sections 7 to 13: emit the
+  note only when the dropped lines are the whole diff, and only when every dropped line is in the new raw.
+- **openai.com answered the probe again on 2026-11-21.** Every openai.com link probe returned HTTP 403 on each
+  of the 50 days from 2 October to 20 November; on 21 November all 21 openai.com pages and the help.openai.com
+  page answered HTTP 206, and 20 of 21 content re-checks of those hosts since 15 November succeeded. Whether
+  OpenAI changed its edge rules or the tracker's exit address changed is not recorded; the section 7 and 12
+  proposal (record client and exit address per fetch) would settle it next time.
+- **alignment.openai.com moved to openai.com/safety-alignment on 2026-11-21.** All 24 tracked pages
+  (23 misalignment reports and the "How we detect frontier model misalignment" post) returned a permanent
+  redirect and were marked moved the same day; the redirect targets keep the path, so the follow-up is a
+  canonical_url update, not a re-add. 22 of the reports had gained training-data canary strings between 9 and
+  18 November (14 pairs this week), which the classifier labels metadata_minor; a dedicated furniture rule for
+  the five-line canary block would keep these out of the pair batches.
+- **Hugging Face 429 share fell this week**: 16 of 113 content re-checks since 15 November (14%), against 98 of
+  319 since 1 November (31%). 9 of 104 Hugging Face cards still had no successful content fetch in the 14 days
+  before the snapshot. The Retry-After proposal (section 13) stands.
+- **Silent rescoring on thinkingmachines.ai, second week running.** Inkling 2 Small v1163 to v1239 changes the
+  whole Tax Agent Bench row for 13 models and adds a "bash only" qualifier to SWE-bench Multilingual, with no
+  note; the card had already revised several scores without a note in the open-weights revision (A109). A
+  publisher-level "edits without notice" counter on the document page would surface this pattern.
+- **Batch packing.** `pairs/batches/` held 71 pairs in 9 batches sized 1, 3, 6, 7, 10, 11, 11, 11, 11; one
+  sub-agent classified a single record. Packing to a minimum of 5 per batch would save sub-agent overhead
+  (same as section 13).
+- **Report-runner note.** `standing_figs.py` now also draws `fig_access_timeline.png` (every substantive edit to
+  an access-policy page by detection date) and records the rows in `out/standing_figs.json`; the corrections
+  list gained A117. `out/scratch/rawcheck_1122.py` is this run's raw-capture check; `out/scratch/assemble.py`
+  concatenates `report_body.md` and `out/tables/appendix_changes.md` into `report.md`.

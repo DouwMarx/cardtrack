@@ -100,6 +100,7 @@ CORR = [
     ("A18", "inclusionAI Ling-3.0-tiny card", "activated parameters (B), 25 Aug", 1.4, 1.3, False),
     ("A56", "inclusionAI Ling-3.0-flash-VL card", "context window (K tokens)", 1000, 256, False),
     ("A6", "NVIDIA VoiceChat 11B card", "tool-calling argument accuracy (%)", 44.2, 42.2, False),
+    ("A117", "Thinking Machines Inkling 2 Small card", "Tax Agent Bench, Inkling 2 Small (%)", 65.8, 38.9, False),
 ]
 CORR.sort(key=lambda t: abs(100 * (t[4] - t[3]) / t[3]), reverse=True)
 fig, ax = plt.subplots(figsize=(6.8, 3.0))
@@ -144,7 +145,8 @@ ax.set_yticklabels(labels, fontsize=6.5)
 ax.invert_yaxis()
 ax.set_xlim(0, max(len(l) for _, l in top) + 2.2)
 ax.set_xticks(range(0, max(len(l) for _, l in top) + 1))
-ax.set_xlabel("substantive edits detected, 11 Aug to 14 Nov 2026")
+LAST = max(r["detected"] for r in rows)
+ax.set_xlabel(f"substantive edits detected, 11 Aug to {dt.date.fromisoformat(LAST[:10]).strftime('%d %b %Y')}")
 ax.legend(handles=[Patch(color=TYPE_COL[k], label=k.replace("_", " ")) for k in TYPE_COL
                    if any(l[0]["doc_type"] == k for _, l in top)]
           + [Patch(facecolor="none", edgecolor=INK, hatch="////", label="safety-flagged")],
@@ -152,10 +154,51 @@ ax.legend(handles=[Patch(color=TYPE_COL[k], label=k.replace("_", " ")) for k in 
 ax.grid(axis="y", visible=False)
 save(fig, "fig_edits_by_doc")
 
+# ---- F4 access-policy edits over time ------------------------------------------------------
+# Every substantive edit to a document of type access_policy, one row per page, marker per detection.
+PUB_COL = {"anthropic": PAL["blue"], "openai": PAL["orange"], "google_deepmind": PAL["aqua"]}
+ap = [r for r in rows if r["doc_type"] == "access_policy"]
+pages = collections.defaultdict(list)
+for r in ap:
+    pages[r["slug"]].append(r)
+page_order = sorted(pages, key=lambda s: (pages[s][0]["publisher"], min(r["detected"] for r in pages[s])))
+d0 = min(dt.date.fromisoformat(r["ts"][:10]) for r in runs)
+d1 = max(dt.date.fromisoformat(r["ts"][:10]) for r in runs)
+fig, ax = plt.subplots(figsize=(6.8, 2.9))
+for i, slug in enumerate(page_order):
+    lst = pages[slug]
+    col = PUB_COL.get(lst[0]["publisher"], GREY)
+    ax.hlines(i, d0, d1, color="#e6e5e1", lw=0.8, zorder=1)
+    for r in lst:
+        x = dt.date.fromisoformat(r["detected"][:10])
+        big = r["category"] == "content_major"
+        ax.scatter([x], [i], s=46 if big else 18, color=col, marker="o" if big else "o",
+                   edgecolor=INK if "model_scope_change" in r["flags"] else "none", linewidths=0.9, zorder=3)
+labels = []
+for slug in page_order:
+    t = pages[slug][0]["title"]
+    labels.append(pages[slug][0]["publisher"].replace("_", " ") + ": " + (t if len(t) <= 44 else t[:42].rstrip() + "…"))
+ax.set_yticks(range(len(page_order)))
+ax.set_yticklabels(labels, fontsize=6.5)
+ax.invert_yaxis()
+ax.set_xlim(d0, d1 + dt.timedelta(days=1))
+import matplotlib.dates as mdates  # noqa: E402
+ax.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=0, interval=2))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%d %b"))
+ax.set_xlabel("detection date, 2026")
+ax.grid(axis="y", visible=False)
+from matplotlib.lines import Line2D  # noqa: E402
+ax.legend(handles=[Line2D([], [], ls="", marker="o", ms=7, color=GREY, label="major edit"),
+                   Line2D([], [], ls="", marker="o", ms=4.5, color=GREY, label="minor edit"),
+                   Line2D([], [], ls="", marker="o", ms=7, color="none", markeredgecolor=INK, label="model coverage changed")],
+          loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=3, handlelength=1.2)
+save(fig, "fig_access_timeline")
+
 json.dump({"corrections": [dict(ids=a, document=d, metric=m, before=b, after=af, disclosed=di,
                                 rel_change_pct=round(100 * (af - b) / b, 1)) for a, d, m, b, af, di in CORR],
            "weekly": {w.isoformat(): dict(cnt[w]) | {"valid_runs": valid_runs.get(w, 0), "outage_runs": out_runs.get(w, 0)}
                       for w in weeks},
-           "most_edited": [(slug, len(lst), sum(1 for r in lst if "safety_related" in r["flags"])) for slug, lst in top]},
+           "most_edited": [(slug, len(lst), sum(1 for r in lst if "safety_related" in r["flags"])) for slug, lst in top],
+           "access_policy_edits": {slug: [(r["id"], r["detected"], r["category"], r["flags"]) for r in pages[slug]] for slug in page_order}},
           open(os.path.join(OUT, "standing_figs.json"), "w"), indent=1)
 print("wrote fig_timeline, fig_corrections, fig_edits_by_doc")

@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "anthropic-claude-opus-access-policy",
+    "version": 1188,
+    "category": "content_major",
+    "score_change": false,
+    "license_change": false,
+    "safety_related": true,
+    "model_scope_change": true,
+    "correction": false,
+    "growth_direction": "grew",
+    "summary": "Full rewrite of Cyber Verification Program article: adds Mythos 5.2, tier table with seat caps, prohibited activities, review-time targets; removes eligibility-factors section.",
+    "safety_implication": "Reduced cyber safeguards now extend to Claude Mythos 5.2; explicit caution about military/intelligence/law-enforcement customers and diversion risk dropped; CVP stated to leave non-cyber (e.g., biology) safeguards untouched.",
+    "notable": "The rewrite quietly removed the published eligibility criteria (legal environment, diversion risk, military/intelligence customers) while extending reduced-safeguard access to a newer frontier model, Mythos 5.2.",
+    "confidence": "high"
+  }
+]
