@@ -49,12 +49,12 @@
     <dt>First seen</dt>
     <dd>2026-11-16T06:24:04Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>License: NVIDIA OneWay Noncommercial. Publication date inferred from when the repo became public (HF lastModified 2026-11-15); the paper dates from 2026-07-17.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audio-visual-flamingo-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audio-visual-flamingo-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf%0AFingerprint%3A%200cbd49e0f1efff3a21ce1440ce10db4969fc57fd8875e50e5d10263bdc2619b0%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-audio-visual-flamingo-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-audio-visual-flamingo-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf%0AFingerprint%3A%20abd98f0b6a3df3b9f8a07f1e44c96c7a17501ace90ac4ee34b89630ce14cb24a%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -62,6 +62,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-23T06:21:41Z</td>
+          <td>text/html</td>
+          <td>229,335</td>
+          <td><code title="abd98f0b6a3df3b9f8a07f1e44c96c7a17501ace90ac4ee34b89630ce14cb24a">abd98f0b6a3df3b9</code></td>
+<td><a href="https://data.systemcards.org/raw/61afa48eca3ef58b9330eb98d68cd90340a0fcd9f2b8178aecd74a5e039fee8e.html" rel="nofollow" title="archived copy, sha256 61afa48eca3ef58b9330eb98d68cd90340a0fcd9f2b8178aecd74a5e039fee8e">archived copy</a></td>          <td class="change-summary">Extractor drift: 3 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion.
+</td>
+        </tr>
         <tr>
           <td>2026-11-16T06:24:04Z</td>
           <td>text/html</td>
@@ -78,7 +86,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -98,6 +106,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://arxiv.org/abs/2607.16107" rel="noopener nofollow">https://arxiv.org/abs/2607.16107</a> · <a href="https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf" rel="noopener nofollow">https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-23T06:21:41Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-23T06:18Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf" rel="noopener nofollow">https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-23T06:21:41Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-11-23T06:18Z-local · monitor</span>
+          <div class="just">change_summary: null → "Extractor drift: 3 line(s) missing from the extracted text are still present in the raw capture; not a publisher deletion."</div>
+          <div class="just">Deleted lines found verbatim in the new raw capture</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf" rel="noopener nofollow">https://huggingface.co/nvidia/nemotron-labs-audio-visual-flamingo-hf</a>          </div>
       </li>
     </ol>
     </details>
@@ -147,6 +172,7 @@ Model Sources
 - Dataset: https://huggingface.co/datasets/nvidia/AV-Skills
 - Code repository: https://github.com/NVIDIA/audio-flamingo
 - Transformers integration fork: https://github.com/lashahub/transformers/tree/add_AudioVisualFlamingo
+- Transformers PR: https://github.com/huggingface/transformers/pull/45586
 Best For
 - video question answering where both audio and visual evidence matter
 - detailed audio-visual captioning for real-world videos
@@ -156,42 +182,26 @@ Best For
 - image, audio, video, and text prompts in a single chat-template interface
 Usage
 Install
-AVF support is currently available through the AVF Transformers integration fork while the upstream Transformers PR is pending.
-pip install --upgrade pip
-pip install &#34;transformers[video] @ git+https://github.com/lashahub/transformers.git@add_AudioVisualFlamingo&#34;
-pip install accelerate torch torchaudio librosa soundfile
-For video and audio decoding, make sure ffmpeg and libsndfile1 are available in your system environment.
+AVF support is available from the AVF Transformers fork until the upstream Transformers PR is merged.
+pip install &#34;transformers[torch,vision] @ git+https://github.com/lashahub/transformers.git@add_AudioVisualFlamingo&#34; torchcodec
+Videos and audio are decoded with torchcodec, which needs FFmpeg (see the torchcodec installation guide).
 Notes
-- Use load_audio_in_video=True when a video file should contribute both sampled frames and its audio track.
-- The processor expects audio at 16 kHz mono internally and extracts128 -bin log-mel features.
-- Audio is processed in 30 -second windows.
-- The released processor defaults to num_video_frames=128 .
+- Pass load_audio_from_video=True toapply_chat_template so that a video contributes both its sampled frames and its audio track.
+- The audio track is interleaved with the frames: the video is split into 30 -second segments, in which the visual tokens are followed by the audio tokens of the same segment.
+- Videos are sampled to 128 frames by default, which can be changed withprocessor_kwargs={&#34;num_frames&#34;: ...} inapply_chat_template .
+- Audio is resampled to 16 kHz mono and converted to128 -bin log-mel features. Audio longer thanmax_audio_len seconds (600 by default) is truncated, which can be changed withAutoProcessor.from_pretrained(model_id, max_audio_len=...) , keeping in mind that 30 seconds of audio take 750 tokens of the32K token context.
 - AVF is trained for long videos up to 15 minutes and32K context in long-context stages. Very long, dense videos can still be challenging.
 - Prompting matters. Ask explicitly for audio-visual evidence, timestamps, scene transitions, speech, sounds, or temporal order when those details matter.
 Video + Audio From One Container
-import torch
 from transformers import AudioVisualFlamingoForConditionalGeneration, AutoProcessor
 model_id = &#34;nvidia/nemotron-labs-audio-visual-flamingo-hf&#34;
-dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
-model = AudioVisualFlamingoForConditionalGeneration.from_pretrained(
-    model_id,
-    device_map=&#34;auto&#34;,
-    dtype=dtype,
-    load_audio_in_video=True,
-).eval()
-processor = AutoProcessor.from_pretrained(
-    model_id,
-    padding_side=&#34;left&#34;,
-    use_fast=False,
-    load_audio_in_video=True,
-    num_video_frames=128,
-    audio_chunk_length=&#34;max_3600&#34;,
-)
+processor = AutoProcessor.from_pretrained(model_id)
+model = AudioVisualFlamingoForConditionalGeneration.from_pretrained(model_id, device_map=&#34;auto&#34;)
 conversation = [
     {
         &#34;role&#34;: &#34;user&#34;,
         &#34;content&#34;: [
-            {&#34;type&#34;: &#34;video&#34;, &#34;video&#34;: &#34;/path/to/video.mp4&#34;},
+            {&#34;type&#34;: &#34;video&#34;, &#34;path&#34;: &#34;/path/to/video.mp4&#34;},
             {
                 &#34;type&#34;: &#34;text&#34;,
                 &#34;text&#34;: (
@@ -207,23 +217,21 @@ inputs = processor.apply_chat_template(
     tokenize=True,
     add_generation_prompt=True,
     return_dict=True,
+    load_audio_from_video=True,
 ).to(model.device)
-generated_ids = model.generate(
-    **inputs,
-    max_new_tokens=1024,
-    do_sample=False,
-)
+generated_ids = model.generate(**inputs, max_new_tokens=1024)
 new_tokens = generated_ids[:, inputs[&#34;input_ids&#34;].shape[1] :]
 print(processor.batch_decode(new_tokens, skip_special_tokens=True)[0])
 Image, Audio, Video, and Text Items
-AVF uses one chat-template interface for all modalities:
+AVF uses one chat-template interface for all modalities. Media can be given by local path or by url, and several
+conversations can be batched by passing a list of conversations to apply_chat_template.
 conversation = [
     {
         &#34;role&#34;: &#34;user&#34;,
         &#34;content&#34;: [
-            {&#34;type&#34;: &#34;image&#34;, &#34;image&#34;: &#34;/path/to/reference_frame.jpg&#34;},
+            {&#34;type&#34;: &#34;image&#34;, &#34;path&#34;: &#34;/path/to/reference_frame.jpg&#34;},
             {&#34;type&#34;: &#34;audio&#34;, &#34;path&#34;: &#34;/path/to/audio.wav&#34;},
-            {&#34;type&#34;: &#34;video&#34;, &#34;video&#34;: &#34;/path/to/video.mp4&#34;},
+            {&#34;type&#34;: &#34;video&#34;, &#34;path&#34;: &#34;/path/to/video.mp4&#34;},
             {
                 &#34;type&#34;: &#34;text&#34;,
                 &#34;text&#34;: &#34;What does the audio reveal that is not obvious from the image and video frames alone?&#34;,
@@ -249,17 +257,17 @@ At a high level, AVF contains:
 - Temporal fusion: synchronized visual and audio chunks are interleaved over time and augmented with CRTE.
 - Language model: Qwen2.5-7B-family decoder-only backbone for multimodal reasoning and text generation.
 The released config uses:
-- vision_tower_cfg.hidden_size = 1152
-- vision_tower_cfg.image_size = 448
-- sound_tower_cfg.d_model = 1280
-- sound_tower_cfg.encoder_layers = 32
-- llm_cfg.hidden_size = 3584
-- llm_cfg.num_hidden_layers = 28
-- llm_cfg.max_position_embeddings = 32768
-- num_video_frames = 128 by default in the released processor
-- interleaved_video_segment_duration = 30
-- load_audio_in_video = true
-- interleaved_vis_aud_in_video = true
+- vision_config.hidden_size = 1152
+- vision_config.image_size = 448
+- audio_config.d_model = 1280
+- audio_config.encoder_layers = 32
+- text_config.hidden_size = 3584
+- text_config.num_hidden_layers = 28
+- text_config.max_position_embeddings = 32768
+and the released processor:
+- video_processor.num_frames = 128
+- video_segment_duration = 30
+- max_audio_len = 600
 Training Summary
 AVF uses a three-stage training curriculum:
 | Stage | Main data mixture | Max input / context | Output checkpoint |
@@ -301,8 +309,8 @@ Input
 - Modalities: text, image, audio, video, or mixed audio-visual video containers
 - Image format: common image formats supported by the Transformers image loader
 - Audio format: WAV/MP3/FLAC or audio track from video containers, decoded to mono 16 kHz
-- Video format: local or remote video files supported by the Transformers video loader and PyAV/ffmpeg stack
-- Recommended video setting: load_audio_in_video=True for joint frame/audio understanding
+- Video format: local or remote video files decoded with torchcodec (FFmpeg)
+- Recommended video setting: load_audio_from_video=True inapply_chat_template for joint frame/audio understanding
 Output
 - Type: generated text
 - Format: UTF-8 string
@@ -348,11 +356,11 @@ Citation
 Acknowledgements
 Nemotron-Labs-Audio-Visual Flamingo builds on the Audio Flamingo series, AF-Whisper, OmniVinci, Qwen2.5, NVILA-style Dynamic-S2 processing, and the open audio, video, and multimodal learning community.
 - Downloads last month
-- 570</pre>
+- 787</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-22T06:23:16Z</p></footer>
+<footer><p>Data updated 2026-11-23T06:27:21Z</p></footer>
 </body>
 </html>
