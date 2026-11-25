@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nemotron-Labs-Image-30B-A3B (Nemotron-Labs-VisualCreation) model card — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=6dfde30586">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a> <a href="../analysis.html">Analysis</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">Nemotron-Labs-Image-30B-A3B (Nemotron-Labs-VisualCreation) model card</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://www.nvidia.com" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">nvidia</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:open_weight_restrictive"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>Nemotron-Labs-Image-30B-A3B</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-11-23</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-restrictive">open weights (restrictive license)</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">paper</span>
+        <a href="https://arxiv.org/abs/2611.31358" rel="noopener nofollow">https://arxiv.org/abs/2611.31358</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-11-25T06:24:19Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20nvidia-nemotron-labs-image-30b-a3b-model-card&amp;body=Document%3A%20nvidia-nemotron-labs-image-30b-a3b-model-card%0AURL%3A%20https%3A//huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B%0AFingerprint%3A%20df63eeb4c0d815eacdd6a898f7b0ce6e9937bae589f7b599b8a47c1646eae659%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-11-25T06:24:19Z</td>
+          <td>text/html</td>
+          <td>290,529</td>
+          <td><code title="df63eeb4c0d815eacdd6a898f7b0ce6e9937bae589f7b599b8a47c1646eae659">df63eeb4c0d815ea</code></td>
+<td><a href="https://data.systemcards.org/raw/ef3d1a892efd9e8b981412d0e17ae994984e2af2fd67eeac6033f572541e3947.html" rel="nofollow" title="archived copy, sha256 ef3d1a892efd9e8b981412d0e17ae994984e2af2fd67eeac6033f572541e3947">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-11-25T06:24:19Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-11-25T06:16Z-local · agent · lead: phase_a</span>
+          <div class="just">NVIDIA&#39;s own Hugging Face model card for Nemotron-Labs-Image-30B-A3B, a new 30B-total/3B-active autoregressive text-to-image generator initialized from Nemotron 3 Nano and the raster component of the Nemotron-Labs-VisualCreation (Pixel as Code) agentic framework. Image generation is a covered model class and the model is Nemotron-branded, within NVIDIA&#39;s scope note. The card reports benchmark results (GenEval, GenEval2, WISE Verified, BizGenEval, LongTextBench etc.) against GPT Image 2 and Nano Banana Pro, plus tokenizer reconstruction metrics. Notability outside the repo: the accompanying technical report arXiv 2611.31358 (submitted 2026-11-23) and independent coverage (zicq, AGI Hunt, explainx). The card contains only a generic limitations paragraph, no safety evaluations. Weights are released under the NVIDIA License for non-commercial research and evaluation. Publication date uses the technical report&#39;s submission date; the HF repo was created privately on 2026-09-24 and surfaced publicly this week.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://arxiv.org/abs/2611.31358" rel="noopener nofollow">https://arxiv.org/abs/2611.31358</a> · <a href="https://zicq.com/articles/n-1b9ee6900f66a56e159731ae1e5676a3-NVIDIA-s-Pixel-as-Code-Unifies-Raster-Ge.html" rel="noopener nofollow">https://zicq.com/articles/n-1b9ee6900f66a56e159731ae1e5676a3-NVIDIA-s-Pixel-as-Code-Unifies-Raster-Ge.html</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Instructions to use nvidia/Nemotron-Labs-Image-30B-A3B with libraries, inference providers, notebooks, and local apps. Follow these links to get started.
+- Libraries
+-  Transformers How to use nvidia/Nemotron-Labs-Image-30B-A3B with Transformers: # pip install -U transformers accelerate
+# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained(&#34;nvidia/Nemotron-Labs-Image-30B-A3B&#34;, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(&#34;nvidia/Nemotron-Labs-Image-30B-A3B&#34;, trust_remote_code=True, device_map=&#34;auto&#34;)
+- Notebooks
+- Google Colab
+- Kaggle
+Nemotron-Labs-VisualCreation
+Pixel as Code for Agentic Visual Creation
+Overview · Showcase · Harness · Results · Release Plan · Image Model · Authors
+Model Overview
+Nemotron-Labs-VisualCreation is an agentic framework for creating expressive raster images and editable visual artifacts, including webpages, presentations, documents, charts, and scientific figures. Its Pixel as Code interface connects learned visual tokens and explicit programs through generation, rendering, and visual inspection.
+The framework combines a Nemotron-native harness with specialized components for visual tokenization, autoregressive image generation, and structured visual coding. Nemotron-Labs-Image-30B-A3B is its raster image-generation component. The initial model release covers the image generator and its bundled visual tokenizer.
+Figure 1 from the paper. Raster appearance and editable structure share a generation-and-rendering interface.
+Key Design
+- Represent appearance and structure. Discrete visual tokens capture raster content. SVG, HTML/CSS, plotting programs, and document markup expose editable text, geometry, and layout. Hybrid artifacts combine generated images with explicit structure.
+- Plan for the deliverable. Routing selects the artifact family, representation, rendering backend, and asset policy. Structured and hybrid requests additionally establish a layout contract.
+- Use rendered evidence. Visual selection chooses among raster candidates. Browser-based creation uses renderer checks and visual audits to diagnose issues, assign targeted repairs, and retain artifact checkpoints.
+Visual Showcase
+Figure 2. Raster image creation examples spanning illustrated infographics, text-rich compositions, portraits, stylized typography, and product imagery.
+Image Generation Gallery → — Browse generated images, original prompts, and resolution sets.
+| Raster images | Editable structured artifacts |
+|---|---|
+Figures 3 and 4 from the paper. Select either image to view it at full size. The Gallery button at the top opens the interactive showcase.
+Harness Architecture
+Super-VL denotes Nemotron-3.5-Super-VL, Ultra denotes Nemotron 3 Ultra, and Image denotes Nemotron-Labs-Image-30B-A3B.
+| Route | Generation and inspection | Deliverable |
+|---|---|---|
+| Direct raster | Image generates candidates. Super-VL performs visual selection. | Selected raster image |
+| Browser-based structured / hybrid | Ultra resolves the layout and assets. Ultra and Super-VL act as Dual Coder. Renderer checks, visual audits, and pairwise selection guide bounded repairs. | Editable artifact and rendered preview |
+| Native presentation / document / SVG | Format-specific generators and renderers provide inspection and judging. | Native artifact |
+The browser workflow freezes the request checklist and layout contract before generation. Audits assign issues to plan, asset, layout, code, interaction, or content owners. Repairs may regenerate an asset, revise the plan, or update the explicit representation. The default limits allow three accepted repairs within eight attempted cycles, with checkpoint selection retaining the strongest eligible artifact.
+Learned Components
+| Component | Role in Pixel as Code |
+|---|---|
+| Nemotron-Labs-Image-Tokenizer | Roughly 642M-parameter encoder and decoder, 16×16 patches, and a fixed codebook of 196,560 Leech-lattice vectors |
+| Nemotron-Labs-Image-30B-A3B | Autoregressive raster generator initialized from Nemotron 3 Nano, with 30B total and 3B active parameters |
+| Nemotron-Labs-VisionCode | 30B-A3B and 120B-A12B models trained for the structured-code interface and evaluated in standalone coding tests |
+VisionCode&#39;s 30B and 120B variants are initialized from Nemotron-3-Nano-Omni and Nemotron-3.5-Super-VL, respectively. They use the same training data and training procedure. Their standalone evaluation is separate from the harness Dual Coder assignment shown above.
+Results
+The tables below summarize selected results from the technical report. The paper provides the complete comparison sets, evaluation protocols, and metric definitions.
+Raster Generation and Agentic Creation
+Nemotron-Labs-VisualCreation reports our best score for each benchmark across the configurations evaluated in the paper. English benchmark settings are used where applicable. GenEval2 reports Soft-TIFA GM, and WISE uses the Verified protocol. A dash indicates an unreported value. Bold marks the highest score in each displayed row. The comparison includes selected closed-source and open-weight baselines from the paper.
+| Benchmark ↑ | Nemotron-Labs-VisualCreation | GPT Image 2 | Nano Banana Pro |
+|---|---|---|---|
+| GenEval | 92.86 | 89.00 | — |
+| GenEval2 | 65.43 | 81.00 | 59.00 |
+| UniGenBench++ short | 93.20 | — | 92.72 |
+| UniGenBench++ long | 94.25 | — | 94.20 |
+| LongTextBench | 97.98 | 96.00 | 97.60 |
+| CVTG-2K | 92.53 | 90.03 | 77.90 |
+| OneIG | 54.63 | 51.60 | 58.30 |
+| Qwen-Image-Bench | 52.46 | 65.23 | 59.33 |
+| WISE Verified | 91.50 | — | 87.60 |
+| BizGenEval | 86.0 | 83.2 | 76.7 |
+More comparisons — SenseNova-U1.5, FLUX.2 Dev, and Qwen-Image
+| Benchmark ↑ | Nemotron-Labs-VisualCreation | SenseNova-U1.5 | FLUX.2 Dev | Qwen-Image |
+|---|---|---|---|---|
+| GenEval | 92.86 | 92.00 | 87.00 | 86.83 |
+| GenEval2 | 65.43 | 55.00 | — | 33.80 |
+| UniGenBench++ short | 93.20 | — | 84.76 | 78.36 |
+| UniGenBench++ long | 94.25 | — | 90.31 | 83.94 |
+| LongTextBench | 97.98 | 98.80 | 96.30 | 94.30 |
+| CVTG-2K | 92.53 | 94.80 | 89.26 | 82.88 |
+| OneIG | 54.63 | 55.20 | — | 53.90 |
+| Qwen-Image-Bench | 52.46 | 52.82 | — | 48.48 |
+| WISE Verified | 91.50 | — | 56.50 | 51.00 |
+| BizGenEval | 86.0 | — | 4.9 | 6.3 |
+Nemotron-Labs-VisualCreation reaches 92.86 on GenEval and 91.50 on WISE Verified. On BizGenEval, it scores 86.0, compared with 83.2 for GPT Image 2 and 76.7 for Nano Banana Pro. SenseNova-U1.5 leads LongTextBench and CVTG-2K among the displayed models. Nano Banana Pro leads the displayed OneIG comparison, while GPT Image 2 leads GenEval2 and Qwen-Image-Bench. The paper provides the complete configuration breakdown. In the GenEval2 source, Nano Banana Pro is reported as Gemini 3 Pro Image.
+Structured Visual Coding
+The paper evaluates five tasks across Chart2Code, MMSVG image-to-SVG and text-to-SVG, Design2Code, and Image2Struct. Both VisionCode variants use thinking-enabled inference in these standalone tests.
+| Model | Chart + SVG Overall ↑ | SVG + Web + Document Overall ↑ | Five-task aggregate ↑ |
+|---|---|---|---|
+| Nemotron-3-Nano-Omni-30B-A3B | 46.81 | 62.93 | 56.48 |
+| VisionCode-30B-A3B | 91.17 | 95.25 | 93.62 |
+| Nemotron-3.5-Super-VL-120B-A12B | 93.12 | 91.96 | 92.42 |
+| VisionCode-120B-A12B | 97.47 | 98.80 | 98.27 |
+| Qwen3.5-35B-A3B | 87.29 | — | — |
+| Qwen3.5-122B-A10B | 90.54 | — | — |
+| Kimi K3.1 Pro (2.8T-A104B) | 96.28 | 93.21 | 94.44 |
+VisionCode refers to the Nemotron-Labs-VisionCode family. The first score covers Chart2Code and Img2SVG. The second covers Text2SVG, Design2Code, and Image2Struct. Each metric is divided by the best reported value for that metric and scaled to 100. Normalized metrics are averaged within each task, then tasks receive equal weight. The five-task aggregate weights the two table scores by 2/5 and 3/5, respectively. Scores require complete measurements for the covered tasks. Qwen models have no reported Text2SVG results. These descriptive aggregates depend on the included models and metrics.
+VisionCode-120B-A12B leads the aggregate among models with complete coverage. Kimi K3.1 Pro retains higher Img2SVG DINO and SSIM and higher Text2SVG aesthetic quality. Full task metrics and trade-offs appear in Tables 11 and 12 of the paper.
+Visual Tokenizer Quality and Efficiency
+Reconstruction is evaluated on approximately 178K images across six visual domains. Quality metrics below compare reconstructed images against Emu3.5 IBQ using the paper&#39;s protocol.
+| Metric | Emu3.5 IBQ | Nemotron-Labs-Image-Tokenizer |
+|---|---|---|
+| PSNR (dB) ↑ | 26.08 | 29.57 |
+| SSIM ↑ | 0.781 | 0.834 |
+| LPIPS ↓ | 0.0855 | 0.0713 |
+| GMSD ↓ | 0.0994 | 0.0675 |
+| FID ↓ | 36.36 | 35.06 |
+| FD-DINOv2 ↓ | 7.49 | 5.25 |
+| MUSIQ ↑ | 65.84 | 65.78 |
+| CLIP-IQA ↑ | 0.593 | 0.583 |
+| Laplacian-variance ratio (target 1) | 0.892 | 0.982 |
+At batch size one on A100, tokenizer encoding takes 41.30 ms and decoding 37.10 ms, compared with 294.53 ms and 405.46 ms for Emu3.5. These measurements correspond to 7.13× and 10.93× tokenizer latency speedups. End-to-end creation also includes visual-token generation and the agentic workflow.
+Release Plan
+The initial release scope is Nemotron-Labs-Image-30B-A3B, including its bundled visual tokenizer, model definition, and inference code. The broader framework and VisionCode release items are listed below.
+| Component | Plan |
+|---|---|
+| Nemotron-Labs-Image-30B-A3B | Release |
+| Nemotron-Labs-VisualCreation harness | Will be released upon legal clearance. |
+| Nemotron-Labs-VisionCode | Will be released upon legal clearance. |
+Image Model
+Nemotron-Labs-Image-30B-A3B provides standalone autoregressive image generation. It uses progressive mid-training followed by GRPO for semantic alignment and image quality. Its visual-token outputs are rendered by the bundled Nemotron-Labs-Image-Tokenizer.
+Repository contents
+| Component | Location |
+|---|---|
+| Nemotron image-generation weights | Repository root; 32 safetensors shards |
+| Model and tokenizer code | Repository root |
+| L24SQ image tokenizer/decoder | Nemotron-Labs-Image-Tokenizer/ |
+The image tokenizer keeps its internal Transformers model type,
+l24sq_vit. The external directory name does not change its architecture or
+weights.
+Download, installation, inference code, generation settings, and model details
+Quick start
+1. Create an environment and install the dependencies
+Use Linux with Python 3.12 and an NVIDIA driver compatible with CUDA 13.0.
+The inference example below uses four NVIDIA H100 80GB GPUs. Check that the
+GPUs are visible with nvidia-smi before installing the Python packages.
+Create a separate environment and install the reference package versions:
+python3.12 -m venv .venv-image
+source .venv-image/bin/activate
+python -m pip install --upgrade pip
+python -m pip install \
+  &#34;torch==2.11.0&#34; \
+  &#34;vllm==0.21.0&#34; \
+  &#34;transformers==5.23.0&#34; \
+  &#34;Pillow==12.3.0&#34; \
+  &#34;safetensors==0.8.0&#34; \
+  &#34;einops&gt;=0.8,&lt;1&#34; \
+  &#34;huggingface_hub&gt;=1,&lt;3&#34;
+python -m pip check
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+The previously validated environment used Python 3.12.13, PyTorch 2.11.0+cu130, vLLM 0.21.0, Transformers 5.23.0, Pillow 12.3.0, and safetensors 0.8.0. The commands above install Python dependencies; the host must already have a compatible NVIDIA driver. No container is required.
+Check the installed environment:
+python - &lt;&lt;&#39;PY_CHECK&#39;
+import torch
+import transformers
+import vllm
+from PIL import __version__ as pillow_version
+import safetensors
+print(&#34;PyTorch:&#34;, torch.__version__)
+print(&#34;CUDA build:&#34;, torch.version.cuda)
+print(&#34;vLLM:&#34;, vllm.__version__)
+print(&#34;Transformers:&#34;, transformers.__version__)
+print(&#34;Pillow:&#34;, pillow_version)
+print(&#34;safetensors:&#34;, safetensors.__version__)
+assert torch.cuda.is_available(), &#34;CUDA is not available; check the NVIDIA driver.&#34;
+assert torch.cuda.device_count() &gt;= 4, &#34;This example requires four visible GPUs.&#34;
+print(&#34;Environment check passed.&#34;)
+PY_CHECK
+2. Download the repository
+Keep the environment active and run the following command from the directory
+where you will save infer.py. The model tokenizer requires a local checkpoint
+path. Download the entire repository, including the image-tokenizer directory.
+# Required only while the repository is private or if access requires login:
+# hf auth login
+hf download nvidia/Nemotron-Labs-Image-30B-A3B \
+  --local-dir ./Nemotron-Labs-Image-30B-A3B
+3. Generate an image from a prompt
+The following example generates one 1024×1024 image. Save it as infer.py and
+run python infer.py. It preserves the model&#39;s required chat template,
+visual-token framing, size header, and L24SQ decoding protocol.
+import re
+from pathlib import Path
+import torch
+from PIL import Image
+from transformers import AutoModel, AutoTokenizer
+from vllm import LLM, SamplingParams
+MODEL_DIR = Path(&#34;./Nemotron-Labs-Image-30B-A3B&#34;).resolve()
+DECODER_DIR = MODEL_DIR / &#34;Nemotron-Labs-Image-Tokenizer&#34;
+OUTPUT_PATH = Path(&#34;output.png&#34;)
+PROMPT = &#34;A cinematic photograph of a red fox in a snowy pine forest at dawn.&#34;
+WIDTH = 1024
+HEIGHT = 1024
+PATCH_SIZE = 16
+SYSTEM_PROMPT = (
+    &#34;Generate an image matching the requested resolution by detailing the color, &#34;
+    &#34;quantity, text, shape, size, texture, spatial relationships of the objects &#34;
+    &#34;and background.&#34;
+)
+def extract_l24sq_codes(token_ids, tokenizer):
+    &#34;&#34;&#34;Validate one generated image block and return codebook indices.&#34;&#34;&#34;
+    image_start = tokenizer.convert_tokens_to_ids(&#34;&lt;|img_start|&gt;&#34;)
+    image_end = tokenizer.convert_tokens_to_ids(&#34;&lt;|img_end|&gt;&#34;)
+    visual_row = tokenizer.convert_tokens_to_ids(&#34;&lt;|vis_row|&gt;&#34;)
+    vision = tokenizer.unitron_token_ranges[&#34;vision&#34;]
+    vision_start = int(vision[&#34;start_id&#34;])
+    vision_end = int(vision[&#34;end_id&#34;])
+    try:
+        start = token_ids.index(image_start)
+        end = token_ids.index(image_end, start + 1)
+    except ValueError as exc:
+        raise RuntimeError(&#34;Generation did not contain a complete image block&#34;) from exc
+    prefix_ids = []
+    rows = []
+    current_row = None
+    for token_id in token_ids[start + 1 : end]:
+        if token_id == visual_row:
+            if current_row is not None:
+                rows.append(current_row)
+            current_row = []
+        elif vision_start &lt;= token_id &lt; vision_end:
+            if current_row is None:
+                raise RuntimeError(&#34;Visual token appeared before the first row marker&#34;)
+            current_row.append(token_id - vision_start)
+        elif current_row is None:
+            prefix_ids.append(token_id)
+        else:
+            raise RuntimeError(&#34;Non-visual token appeared inside the image grid&#34;)
+    if current_row is not None:
+        rows.append(current_row)
+    size_header = tokenizer.decode(prefix_ids, skip_special_tokens=False)
+    match = re.search(r&#34;height=(\d+)\s+width=(\d+)&#34;, size_header)
+    if match is None:
+        raise RuntimeError(&#34;Generation did not contain a valid size header&#34;)
+    generated_height, generated_width = map(int, match.groups())
+    if (generated_height, generated_width) != (HEIGHT, WIDTH):
+        raise RuntimeError(
+            f&#34;Generated size {(generated_width, generated_height)} does not match &#34;
+            f&#34;the requested size {(WIDTH, HEIGHT)}&#34;
+        )
+    expected_grid = (HEIGHT // PATCH_SIZE, WIDTH // PATCH_SIZE)
+    if len(rows) != expected_grid[0] or any(
+        len(row) != expected_grid[1] for row in rows
+    ):
+        raise RuntimeError(&#34;Generated visual-token grid has the wrong shape&#34;)
+    codes = [code for row in rows for code in row]
+    return codes, expected_grid
+def main():
+    tokenizer = AutoTokenizer.from_pretrained(
+        str(MODEL_DIR),
+        trust_remote_code=True,
+    )
+    messages = [
+        {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: SYSTEM_PROMPT},
+        {
+            &#34;role&#34;: &#34;user&#34;,
+            &#34;content&#34;: f&#34;Generate a {WIDTH}x{HEIGHT} image.\n\n{PROMPT}&#34;,
+        },
+    ]
+    prompt_token_ids = tokenizer.apply_chat_template(
+        messages,
+        tokenize=True,
+        add_generation_prompt=True,
+        enable_thinking=False,
+        return_tensors=None,
+    )
+    image_end_id = tokenizer.convert_tokens_to_ids(&#34;&lt;|img_end|&gt;&#34;)
+    sampling = SamplingParams(
+        temperature=0.9,
+        top_p=1.0,
+        top_k=-1,
+        max_tokens=4352,
+        seed=42,
+        n=1,
+        skip_special_tokens=False,
+        detokenize=True,
+        stop=[&#34;&lt;|img_end|&gt;&#34;],
+        stop_token_ids=[image_end_id],
+        include_stop_str_in_output=True,
+    )
+    generator = LLM(
+        model=str(MODEL_DIR),
+        tokenizer=str(MODEL_DIR),
+        trust_remote_code=True,
+        tensor_parallel_size=4,
+        moe_backend=&#34;triton&#34;,
+        dtype=&#34;bfloat16&#34;,
+        max_model_len=6144,
+        gpu_memory_utilization=0.70,
+        enforce_eager=True,
+        seed=42,
+    )
+    result = generator.generate(
+        [{&#34;prompt_token_ids&#34;: prompt_token_ids}],
+        sampling,
+        use_tqdm=False,
+    )[0]
+    generated_token_ids = list(result.outputs[0].token_ids)
+    codes, grid_size = extract_l24sq_codes(generated_token_ids, tokenizer)
+    decoder = AutoModel.from_pretrained(
+        str(DECODER_DIR),
+        trust_remote_code=True,
+        dtype=torch.bfloat16,
+    ).to(&#34;cuda:0&#34;).eval()
+    indices = torch.tensor(codes, dtype=torch.long, device=&#34;cuda:0&#34;)
+    with torch.inference_mode():
+        decoded = decoder.pack_decode(
+            indices_list=[indices],
+            grid_sizes=[grid_size],
+        )[0]
+    pixels = (
+        ((decoded.float().clamp(-1, 1) + 1) / 2 * 255)
+        .round()
+        .to(torch.uint8)
+        .permute(1, 2, 0)
+        .cpu()
+        .numpy()
+    )
+    Image.fromarray(pixels).save(OUTPUT_PATH)
+    print(f&#34;Saved {OUTPUT_PATH}&#34;)
+if __name__ == &#34;__main__&#34;:
+    main()
+To change the output resolution, edit WIDTH and HEIGHT near the top of the
+script. For example, use the following settings for a landscape image:
+WIDTH = 1184
+HEIGHT = 880
+The script automatically includes the selected resolution in the generation prompt, validates the resulting visual-token grid, and decodes it at the requested size.
+The example selects the Triton MoE backend, matching the validated inference configuration and avoiding FlashInfer MoE extension compilation during startup.
+The generator and decoder may be run in separate processes if GPU memory is tight. Preserve the generated token IDs between the two stages.
+Image resolutions
+The model supports any-resolution image generation. For the best balance of quality, composition, and inference cost, the recommended resolutions are:
+- 1024x1024
+- 1184x880
+- 1248x832
+- 880x1184
+Width and height must be positive multiples of 16. For other resolutions, the
+visual-token grid (WIDTH / 16 × HEIGHT / 16) must fit within max_tokens and
+the model context window. The recommended resolutions above fit the example&#39;s
+4,352-token generation budget.
+Recommended generation settings
+| Parameter | Value |
+|---|---|
+| Temperature | 0.9 |
+| Top-p | 1.0 |
+| Top-k | -1 |
+| Maximum generated tokens | 4,352 |
+| Seed | 42 |
+| Generation dtype | bfloat16 |
+| Tensor parallel size | 4 |
+| vLLM maximum model length | 6,144 |
+Model details
+| Field | Value |
+|---|---|
+| Developer | NVIDIA |
+| Task | Text-to-image generation |
+| Architecture | NemotronHForCausalLM |
+| Precision | bfloat16 |
+| Context length | 262,144 tokens |
+| Model vocabulary rows | 327,680 |
+| Base text vocabulary | 131,072 |
+| Visual vocabulary | 196,560 virtual tokens |
+| Visual framing tokens | `&lt; |
+| Image patch size | 16 pixels |
+| Pixel decoder | Nemotron-Labs-Image-Tokenizer/ (l24sq_vit ) |
+Limitations
+Limitations
+- This is not a Diffusers pipeline and is not compatible with
+AutoPipelineForText2Image .
+- Loading executes repository code through trust_remote_code=True ; pin and
+review a specific repository revision for controlled deployments.
+- Image generation is stochastic. Composition, anatomy, object counts, spatial relationships, and rendered text may be incorrect.
+- Generated images can contain biases, false details, or content resembling people, brands, copyrighted styles, and other training concepts.
+- Users are responsible for reviewing outputs and applying appropriate policy, privacy, provenance, and content controls.
+License/Terms of Use
+GOVERNING TERMS: This model is licensed for non-commercial research and evaluation under the NVIDIA License. A copy is included in LICENSE.
+Authors
+Core contributors
+Guo Chen*, Fuxiao Liu*, Haoqin Tu*, Yiyang Zhou*, Andrew Tao, Bryan Catanzaro, and Guilin Liu.
+*Equal contribution. Listed alphabetically by surname.
+Project lead — Guilin Liu.
+Contributors
+Cihang Xie, Yuyin Zhou, Huaxiu Yao, Lidong Lu, and Zongxia Li.
+Affiliations
+NVIDIA, University of North Carolina at Chapel Hill, University of California, Santa Cruz, University of Maryland, and Nanjing University. Haoqin Tu and Yiyang Zhou contributed during their internships at NVIDIA.
+Acknowledgments
+We thank Wei Xiong, Yongsheng Yu, Max Ehrlich, Edward Liu, Mike Ranzinger, Zhiding Yu, Greg Heinrich, Weili Nie, Karan Sapra, Danial Mohseni Taheri, Amala Sanjay Deshmukh, Matthieu Le, Tuomas Rintamaki, Mingjie Liu, Atefeh Sohrabizadeh, Enze Xie, Song Han and Ming-Yu Liu for their valuable discussions and feedback.
+Related Papers
+Selected foundations and related work cited in our technical report.
+| Paper | Connection to this work |
+|---|---|
+| Nemotron 3 Nano | Backbone initialization for Nemotron-Labs-Image-30B-A3B. |
+| Nemotron 3 Nano Omni | Base model for Nemotron-Labs-VisionCode-30B-A3B. |
+| Nemotron 3.5 Super and Lightning | The Super-VL model used for routing, coding, and visual assessment, and as the base for VisionCode-120B-A12B. |
+| Nemotron 3 Ultra | Semantic planning and the Ultra side of the harness Dual Coder. |
+| Cosmos 3: Omnimodal World Models for Physical AI | Related work on multimodal understanding and generation. |
+| Cosmos-Reason1: From Physical Common Sense to Embodied Reasoning | Related work on visual understanding and reasoning. |
+Citations
+If you use this model or framework in your research, please cite our paper, Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation.
+@misc{chen2026nemotronlabsvisualcreationpixelcodeagentic,
+      title={Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation},
+      author={Guo Chen and Fuxiao Liu and Haoqin Tu and Yiyang Zhou and Andrew Tao and Bryan Catanzaro and Cihang Xie and Yuyin Zhou and Huaxiu Yao and Didong Lu and Zongxia Li and Guilin Liu},
+      year={2026},
+      eprint={2611.31358},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2611.31358},
+}
+- Downloads last month
+- 7</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-11-25T06:28:06Z</p></footer>
+</body>
+</html>

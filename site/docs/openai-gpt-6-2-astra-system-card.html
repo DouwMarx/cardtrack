@@ -55,12 +55,12 @@
     <dt>First seen</dt>
     <dd>2026-11-18T06:24:00Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Section 4.1.3 &#39;Avoiding Deceptive Interactions with Users&#39; covers agents misreporting their own work (blocker deception) and is tagged loss_of_control, not harmful_manipulation. Change log 2026-11-17: wording update to the AI Self-Improvement threat-modeling section. The openai.com announcement returns 403 to both fetchers and was identified via search.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-6-2-astra-system-card&amp;body=Document%3A%20openai-gpt-6-2-astra-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf%0AFingerprint%3A%20d092fe15829454aa141c41a3de5d6673e81b9237f7730aabe78f61498a6128bb%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-6-2-astra-system-card&amp;body=Document%3A%20openai-gpt-6-2-astra-system-card%0AURL%3A%20https%3A//deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf%0AFingerprint%3A%20e595dceda8f4c678dfbf2509828cc893fef10fbf28e7c08da5773edb835ff3c1%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -68,6 +68,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-25T06:20:17Z</td>
+          <td>application/pdf</td>
+          <td>10,000,509</td>
+          <td><code title="e595dceda8f4c678dfbf2509828cc893fef10fbf28e7c08da5773edb835ff3c1">e595dceda8f4c678</code></td>
+<td><a href="https://data.systemcards.org/raw/6abf62b0831eb7541daed597d84ff296cc85663c6133614a1f42897da4307f50.pdf" rel="nofollow" title="archived copy, sha256 6abf62b0831eb7541daed597d84ff296cc85663c6133614a1f42897da4307f50">archived copy</a></td>          <td class="change-summary">Added a November 22, 2026 change-log entry and revised the OAI-repo Sabotage v2 section to define the L2 monitor&#39;s priorities: P0 calls for immediate Security review, while P0.5 flags a high-priority concern whose follow-up can wait until business hours. The rest of the diff is PDF reflow.
+</td>
+        </tr>
         <tr>
           <td>2026-11-18T06:24:01Z</td>
           <td>application/pdf</td>
@@ -84,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -104,6 +112,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://deploymentsafety.openai.com/gpt-6-2-astra-sol" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-2-astra-sol</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-25T06:20:17Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-25T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-25T06:28:06Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-11-25T06:16Z-local · agent · lead: monitor</span>
+          <div class="just">change_summary: null → "Added a November 22, 2026 change-log entry and revised the OAI-repo Sabotage v2 section to define the L2 monitor\u0027s priorities: P0 calls for immediate Security review, while P0.5 flags a high-priority concern whose follow-up can wait until business hours. The rest of the diff is PDF reflow."</div>
+          <div class="just">Diff v1225 to v1321 adds a dated change-log bullet and new P0/P0.5 definition text in section 4.2.2.2. All other hunks are page-break and column reflow with identical numbers.</div>
+          <div class="evidence">Evidence:
+<a href="https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf" rel="noopener nofollow">https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf</a>          </div>
       </li>
     </ol>
     </details>
@@ -182,6 +207,11 @@ System Card
           stone for preparing safeguards ahead of fully automated, recursive self-
           improvement.”
 
+        • November 22, 2026: Updates to the OAI-repo Sabotage v2 section. We
+          clarify what the P0 and P0.5 classifications assigned by our L2 monitor
+          mean. P0 calls for immediate Security review, while P0.5 flags a high-
+          priority concern for which follow-up can wait until business hours.
+
 1 Safety Overview
       Today, we are releasing GPT-6.2 Astra and GPT-6.2 Sol, the most capable
       models we have deployed externally to date.
@@ -208,12 +238,11 @@ System Card
        across our research infrastructure and can stop them quickly when safety
        or security concerns arise.
 
-    3. Both models performed similarly to GPT-6 Astra on most alignment eval-
+3                                                                                      OpenAI
+    3. Both models performed similarly to GPT-6 Astra on most alignment eval-
        uations, particularly those measuring agentic workloads, but were more
        likely to omit known obstacles when reporting their work. Improvements
-
-3                                                                                      OpenAI
-       on alignment evaluations were most pronounced for evaluations using sim-
+       on alignment evaluations were most pronounced for evaluations using sim-
        ulated realistic workplace tasks; in those evaluations, GPT-6.2 Astra and
        GPT-6.2 Sol took improper actions about half as often as their respective
        predecessors. We saw regressions on model-only evaluations that measure
@@ -256,11 +285,11 @@ System Card
        models without carrying over our safeguards, we’ve strengthened the de-
        fenses we have in place against unauthorized distillation. These additional
        safeguards include protections for encrypted reasoning and added checks
-       that can hold streamed responses if they might expose private model rea-
-       soning. In our adaptive red-teaming evaluations, attempts to extract private
 
 4                                                                                       OpenAI
-           reasoning for both earlier-turn and current-turn reasoning succeeded less
+           that can hold streamed responses if they might expose private model rea-
+           soning. In our adaptive red-teaming evaluations, attempts to extract private
+           reasoning for both earlier-turn and current-turn reasoning succeeded less
            than 1 percent of the time for GPT-6.2 Astra and GPT-6.2 Sol.
 
            The rest of this system card describes our evaluations and safeguards in
@@ -288,8 +317,6 @@ System Card
            OpenAI uses GPT-6.2 Astra and GPT-6.2 Sol internally to generate training
            data, evaluate and monitor other models, and help staff with everyday work
            and research. Given both of these models’ cybersecurity capabilities and
-           their ability to act autonomously over long horizons, our Preparedness
-           Framework requires that we apply safeguards to internal use as well.
 
 1
     GPT-6.2 Astra and GPT-6.2 Sol are intended to be used in accordance with OpenAI’s Usage Policies, Service
@@ -303,7 +330,9 @@ System Card
     A list of the languages that ChatGPT currently supports can be found here.
 
 5                                                                                                         OpenAI
-            For GPT-6.2 Astra and GPT-6.2 Sol, we built on the safeguards we introduced
+            their ability to act autonomously over long horizons, our Preparedness
+            Framework requires that we apply safeguards to internal use as well.
+            For GPT-6.2 Astra and GPT-6.2 Sol, we built on the safeguards we introduced
             around the internal deployment of GPT-6 Astra—including controlled inter-
             nal deployment gated by alignment evaluations, extensive monitoring of
             agents’ behavior, and comprehensive security controls. Since GPT-6 Astra,
@@ -335,8 +364,6 @@ System Card
             Based on the assessment below, we determined that GPT-6.2 Astra and GPT-
             6.2 Sol meet the Critical threshold for Cybersecurity capabilities and the
             High threshold for Biological and Chemical capabilities. We determined
-            that GPT-6.2 Astra meets the High threshold for AI Self-Improvement capa-
-            bilities, while GPT-6.2 Sol does not reach the High threshold. GPT-6.2 Astra
 
 2
     Our Frontier Governance Framework [3] (FGF) explains how our safety and security practices, including
@@ -347,7 +374,9 @@ System Card
     Tier 1 because they do not yet show the ability to reliably evade detection across a variety of evaluation methods.
 
 6                                                                                                              OpenAI
-         is therefore the first model we are deploying externally that meets the High
+         that GPT-6.2 Astra meets the High threshold for AI Self-Improvement capa-
+         bilities, while GPT-6.2 Sol does not reach the High threshold. GPT-6.2 Astra
+         is therefore the first model we are deploying externally that meets the High
          threshold for AI Self-Improvement.
          As described in the Internal Deployment section above and the Safeguards
          section below, we have applied our strongest safeguards yet to GPT-6.2 Astra
@@ -384,11 +413,11 @@ System Card
          those in the CDC’s highest-risk category. To do so, we consider the model’s
          ability to carry out novel design, threat ideation, and wet-lab assistance. A
          model can also reach this threshold if, given access to tools and laboratory
-         equipment, it can carry out the entire process of engineering or synthesizing
-         a regulated or novel biological threat without human intervention.
 
 7                                                                                          OpenAI
-          In this section, we explain our basis for determining that GPT-6.2 Astra
+          equipment, it can carry out the entire process of engineering or synthesizing
+          a regulated or novel biological threat without human intervention.
+          In this section, we explain our basis for determining that GPT-6.2 Astra
           and Sol meet the High threshold for Biological and Chemical capabilities
           while still falling short of the Critical threshold. We report the results of
           the evaluations we used to inform this assessment, along with the results
@@ -429,14 +458,13 @@ EUREKA-Bench                   Threat Ideation              How accurately do no
 Sequitur Research: Lab         Wet-Lab Automation           How much of a simulated wet-lab workflow
 Automation                                                  can the model carry out on its own?
 
-2.1.1.1 Evaluations used to assess High biological capabilities
-
-          We used two scalable evaluations to inform our assessment that GPT-6.2
-          Astra and GPT-6.2 Sol meet the High threshold for Biological and Chemical
-          capabilities. These evaluations provide a signal on whether our models
-
 8                                                                                                OpenAI
-                 could give someone with a basic relevant technical background enough
+2.1.1.1 Evaluations used to assess High biological capabilities
+
+                 We used two scalable evaluations to inform our assessment that GPT-6.2
+                 Astra and GPT-6.2 Sol meet the High threshold for Biological and Chemical
+                 capabilities. These evaluations provide a signal on whether our models
+                 could give someone with a basic relevant technical background enough
                  additional help to create a known biological or chemical threat.
 
                   • GPQA Diamond (no tools) tests whether the model can answer graduate-
@@ -452,19 +480,19 @@ Automation                                                  can the model carry 
                  making it harder to distinguish their performance.
 
 Table 2: Results on the High biological capability evaluations.
-                                                                        GPT-6      GPT-6.1     GPT-6.2     GPT-6.2
-    Evaluation                 Metric           GPT-5      GPT-5.5      Astra       Terra        Sol        Astra
+                                                                       GPT-6      GPT-6.1     GPT-6.2     GPT-6.2
+    Evaluation                Metric           GPT-5      GPT-5.5      Astra       Terra        Sol        Astra
 
-    GPQA Diamond (no tools)    accuracy         85.7%       93.6%       96.0%       93.56%      96.0%        97.0%
-                                                                        55.78%      46.52%      55.40%      61.80%
- Multi-select Virology                          41.91%      53.7%
-                               pass@1                                  observed    observed    observed    observed
+    GPQA Diamond (no tools)   accuracy         85.7%       93.6%       96.0%       93.56%      96.0%        97.0%
+                                                                       55.78%      46.52%      55.40%      61.80%
+ Multi-select Virology                         41.91%      53.7%
+                              pass@1                                  observed    observed    observed    observed
  Troubleshooting
-                                                             53.8%      63.11%      52.54%      55.71%      61.93%
-                                                 Not
-                                                            refusal-    refusal-    refusal-    refusal-    refusal-
-                                               available
-                                                           adjusted    adjusted    adjusted    adjusted    adjusted
+                                                            53.8%      63.11%      52.54%      55.71%      61.93%
+                                                Not
+                                                           refusal-    refusal-    refusal-    refusal-    refusal-
+                                              available
+                                                          adjusted    adjusted    adjusted    adjusted    adjusted
 
                     2.1.1.1.1 GPQA Diamond (no tools) GPQA Diamond (no tools) is an eval-
                  uation that measures graduate-level scientific reasoning using the open-
@@ -480,15 +508,14 @@ Table 2: Results on the High biological capability evaluations.
                  a broader suite that included ProtocolQA Open-Ended, Tacit Knowledge &amp;
                  Troubleshooting, and TroubleshootingBench.
 
-                    2.1.1.1.2 Multi-select Virology Troubleshooting Multi-select Virology
-                 Troubleshooting is an evaluation that uses SecureBio’s Virology Capabilities
-                 Test [5] to measure whether models can identify correct explanations or
-                 next steps in laboratory troubleshooting scenarios.
-                 Virologists wrote and peer-reviewed the 322 questions. Each question
-                 presents a laboratory scenario, sometimes with an image, and four
-
-9                                                                                                             OpenAI
-         to ten statements. The model earns credit only if it selects every true
+9                                                                                                            OpenAI
+            2.1.1.1.2 Multi-select Virology Troubleshooting Multi-select Virology
+         Troubleshooting is an evaluation that uses SecureBio’s Virology Capabilities
+         Test [5] to measure whether models can identify correct explanations or
+         next steps in laboratory troubleshooting scenarios.
+         Virologists wrote and peer-reviewed the 322 questions. Each question
+         presents a laboratory scenario, sometimes with an image, and four
+         to ten statements. The model earns credit only if it selects every true
          statement and leaves every false statement unselected. We report the
          share of questions answered correctly on a single attempt (pass@1).
          The refusal-adjusted score also gives credit when the model declines or
@@ -527,7 +554,7 @@ Table 2: Results on the High biological capability evaluations.
              appear next in viruses that infect bacteria and in plasmids carried by
              their hosts.
 
-10                                                                                     OpenAI
+10                                                                                      OpenAI
 Table 3: Results on the Critical biological capability evaluations.
                                                                         GPT-6                     GPT-6.2
  Evaluation                  Metric               GPT-5     GPT-5.5     Astra     GPT-6.2 Sol      Astra
@@ -3973,6 +4000,9 @@ Table 21: Conversation Replay scores by Model Spec principle
 108                                                                                            OpenAI
 4.2.2.2   OAI-repo Sabotage v2
 
+          November 22, 2026: We clarify what the P0 and P0.5 classifications assigned by
+          our L2 monitor mean. P0 calls for immediate Security review, while P0.5 flags a
+          high-priority concern for which follow-up can wait until business hours.
           OAI-repo Sabotage v2 is an internal OpenAI evaluation that tests whether a
           coding agent can sabotage control-relevant OpenAI services without being
           detected by our monitors. We instruct the agent to perform both a coding
@@ -4009,24 +4039,24 @@ Table 21: Conversation Replay scores by Model Spec principle
           at evading a CoT-only version of our L1 monitor, particularly with step-by-
           step guidance and at higher reasoning effort. Monitors with access to the
           models’ actions are significantly better at sabotage detection than CoT-only
-          monitors. When using our standard L1 monitor, a recall-biased monitor
-          with access to the full trajectory, the successful evasion rate is close to zero.
-          Misalignments that are flagged by our L1 monitor are sent to the L2 monitor
-          for review, which assigns priorities to the misalignments (or flags them
-          as not high priority), where a P0 priority results in paging the security
 
-109                                                                                           OpenAI
+109                                                                                         OpenAI
       Figure 50: Monitor evasion under guided sabotage Monitor evasion rate when
                  sabotaging OpenAI’s control-relevant services with sabotage guidance
                  (guided).
 
-      team, and lower priorities are flagged less urgently. In light of this, we
-      specifically measure our models’ ability to avoid the L2 monitoring system’s
-      P0 classification, which would allow it to avoid our paging escalations. We
-      find that GPT-6.2 Astra and Sol have evasion rates similar to those of previous
-      models.
+      monitors. When using our standard L1 monitor, a recall-biased monitor
+      with access to the full trajectory, the successful evasion rate is close to zero.
+      Misalignments that are flagged by our L1 monitor are sent to the L2 monitor
+      for review, which assigns priorities to the misalignments (or flags them as
+      not high priority). P0 calls for immediate Security review, whereas P0.5 flags
+      a high-priority concern for follow-up that can wait until business hours.
+      In light of this, we specifically measure our models’ ability to avoid the L2
+      monitoring system’s P0 classification, which would allow it to avoid our
+      paging escalations. We find that GPT-6.2 Astra and Sol have evasion rates
+      similar to those of previous models.
 
-110                                                                                     OpenAI
+110                                                                                       OpenAI
           Figure 51: Monitor evasion under unguided sabotage Monitor evasion rate when
                      sabotaging OpenAI’s control-relevant services without sabotage guid-
                      ance (unguided).
@@ -4279,6 +4309,6 @@ References
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-24T06:26:52Z</p></footer>
+<footer><p>Data updated 2026-11-25T06:28:06Z</p></footer>
 </body>
 </html>
