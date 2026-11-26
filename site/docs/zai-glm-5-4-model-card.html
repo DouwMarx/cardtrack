@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLM-5.4 — Overview (Z.AI Developer Documentation) — systemcards.org</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=ce4656a266">
+<link rel="stylesheet" href="../style.css?v=6dfde30586">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1><a href="../index.html">systemcards.org</a></h1>
+  </div>
+  <nav><a href="../index.html">Table</a> <a href="../search.html">Search</a> <a href="../about.html">About</a> <a href="../analysis.html">Analysis</a></nav>
+</header>
+
+<article class="doc">
+  <h2 data-pagefind-meta="title">GLM-5.4 — Overview (Z.AI Developer Documentation)</h2>
+
+  <dl class="meta">
+    <dt>Publisher</dt>
+    <dd><a href="https://z.ai" rel="noopener nofollow"><span data-pagefind-filter="publisher" data-pagefind-meta="publisher">zai</span></a>
+<span class="badge" data-pagefind-filter="source">first-party</span><span hidden data-pagefind-filter="safety:no"></span>        <span hidden data-pagefind-filter="openness:closed"></span>
+        <span hidden data-pagefind-meta="source_kind:web"></span></dd>
+    <dt>Type</dt>
+    <dd><span data-pagefind-filter="type">model_card</span></dd>
+    <dt>Models</dt>
+    <dd>GLM-5.4</dd>
+    <dt>Published</dt>
+    <dd><span data-pagefind-meta="date">2026-11-23</span>
+        <span data-pagefind-filter="year" hidden>2026</span></dd>
+    <dt>Status</dt>
+    <dd><span class="badge status-active">active</span></dd>
+    <dt>Safety evals</dt>
+    <dd><span class="badge safety-no">none found</span>
+</dd>
+    <dt>Openness</dt>
+    <dd><span class="badge openness-closed">closed weights</span>
+</dd>
+    <dt>Source</dt>
+    <dd>
+      <a href="https://docs.z.ai/guides/llm/glm-5.4" rel="noopener nofollow" data-pagefind-meta="source_url[href]">https://docs.z.ai/guides/llm/glm-5.4</a>
+    </dd>
+    <dt>Related</dt>
+    <dd>        <span class="related-item"><span class="badge">announcement</span>
+        <a href="https://z.ai/blog/glm-5.4" rel="noopener nofollow">https://z.ai/blog/glm-5.4</a></span></dd>
+    <dt>First seen</dt>
+    <dd>2026-11-26T06:28:42Z</dd>
+    <dt>Versions</dt>
+    <dd>1</dd>
+    <dt>Notes</dt>
+    <dd>Availability at publication is the GLM Coding Plan only (1.5x the GLM-5.3 weekly quota); Z.ai says the Model API will open after a safety assessment and that weights are planned, with no dates. The publication date is the 2026-11-23 announcement date, corroborated by the blog&#39;s dated asset path (5.4-blog/20261123) and third-party coverage; the docs page itself carries no date. Z.ai&#39;s release-notes index still listed GLM-5.3 as the newest entry when checked.</dd>
+  </dl>
+
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20zai-glm-5-4-model-card&amp;body=Document%3A%20zai-glm-5-4-model-card%0AURL%3A%20https%3A//docs.z.ai/guides/llm/glm-5.4%0AFingerprint%3A%2006ac1d64c016e335e5b923d5de3cbdb457e15c2b93b938f9789eaf13f5c02e2f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+
+  <section>
+    <h3>Version history</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-11-26T06:28:42Z</td>
+          <td>text/html</td>
+          <td>154,046</td>
+          <td><code title="06ac1d64c016e335e5b923d5de3cbdb457e15c2b93b938f9789eaf13f5c02e2f">06ac1d64c016e335</code></td>
+<td><a href="https://data.systemcards.org/raw/f02d311a9d6fb8d8d3511d191aab3fdc4c63d7c04b6b52235e7d7e1b1aef018d.html" rel="nofollow" title="archived copy, sha256 f02d311a9d6fb8d8d3511d191aab3fdc4c63d7c04b6b52235e7d7e1b1aef018d">archived copy</a></td>          <td class="change-summary"><span class="muted">initial version</span>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Provenance</h3>
+    <details>
+    <summary>Show 1 changelog entry
+      (when, how, and why this entry changed)</summary>
+    <ol class="provenance">
+      <li>
+        <span class="ts">2026-11-26T06:28:42Z</span>
+        <strong>add</strong>
+        <span class="run">run 2026-11-26T06:17Z-local · agent · lead: agent_search</span>
+          <div class="just">Z.ai&#39;s own documentation page for GLM-5.4, its new flagship model announced 2026-11-23 and the first in the GLM-5.x line built on a Loop Transformer (28 GLM-5 base layers run for two iterations at 750B scale). The page is substantive model documentation, not a press release: input/output modalities, 1M context and 128K max output, gated progressive updates, hybrid KV cache with global sharing plus an independent sliding window, sparse-attention index reuse, the iso-parameter 30B ablation showing gains in math/scientific/long-context reasoning with 10-14% shorter outputs on GPQA-Diamond and MMLU-Pro, and a stated limitation that the model gets caught in overly long &#39;marathon thinking&#39; loops. GLM-5.x is explicitly in this publisher&#39;s scope note. The canonical URL is the docs page because the companion blog at z.ai/blog/glm-5.4 renders client-side and returns only a 2 KB JS shell to every fetcher (the same limitation sources.yaml records for this publisher); the blog is recorded as the announcement. No weights, no model card on Hugging Face and no arXiv report exist yet, and the page contains no safety or dangerous-capability evaluations, so has_safety_evals is false.</div>
+          <div class="evidence">Criteria:
+              document_retrievable=pass;
+              min_publication_date=pass;
+              publisher_on_allowlist=pass
+              · attested about_a_specific_model_or_eval=true
+              · attested covered_model_class=true
+              · attested distinct_model_release=true
+              · attested notable_release=true
+              · attested primary_source=true
+          </div>
+          <div class="evidence">Evidence:
+<a href="https://docs.z.ai/guides/llm/glm-5.4" rel="noopener nofollow">https://docs.z.ai/guides/llm/glm-5.4</a> · <a href="https://www.datacamp.com/blog/glm-5-4" rel="noopener nofollow">https://www.datacamp.com/blog/glm-5-4</a> · <a href="https://dataphoenix.info/news/z-ai-glm-five-four-release" rel="noopener nofollow">https://dataphoenix.info/news/z-ai-glm-five-four-release</a>          </div>
+      </li>
+    </ol>
+    </details>
+  </section>
+
+  <section>
+    <h3>Extracted text</h3>
+    <details>
+      <summary>Show extracted text (from the latest fetched version; formatting is lossy —
+        use the <a href="https://docs.z.ai/guides/llm/glm-5.4" rel="noopener nofollow">original</a> for reading)</summary>
+      <pre class="extracted" data-pagefind-body>Overview
+GLM-5.4 is Z.ai’s latest flagship model and the first built on the Loop Transformer architecture, reaching intelligence levels comparable to 2T-3T parameter models. It marks the start of Generalized Coding, where code becomes the foundation for solving a much wider range of tasks and unlocking new capabilities: Loop Transformer Architecture GLM-5.4 introduces a Loop Transformer architecture that reuses 28 layers of the GLM-5 base model across two iterations, enabling deeper reasoning without increasing parameter count. Combined with optimized KV caching and sparse attention, it delivers stronger reasoning performance while keeping deployment costs under control, particularly at 1M context lengths. Generalized Coding Driven by improvements in both coding and vision, GLM-5.4 generalizes well beyond traditional software development. It can write code to generate and edit videos, build complete games, and handle 3D modeling and mechanical design. ↗ Blog
+Input Modality
+Video / Image / Text / File
+Output Modality
+Text
+Context Length
+1M
+Maximum Output Tokens
+128K
+How to Use
+GLM Coding Plan
+GLM-5.4 is now available to all GLM Coding Plan users and can be accessed through your preferred coding tools. For users on weekly quota plans, the available quota for GLM-5.4 is increased to 1.5× that of GLM-5.3. Subscribe Now: Personal Plan, Team Plan.
+Capability Support
+- Thinking Mode：Supports thinking mode for deeper reasoning; with the Loop Transformer, the model reasons more deeply without adding parameters, and part of the reasoning shifts from explicit output tokens into the implicit depth of the loop
+- Streaming Messages：Supports real-time streaming responses for an enhanced user interaction experience, with up to 200 tokens/s during off-peak hours and 70–80 tokens/s at peak load
+- Function Calling：Provides powerful tool-calling capabilities and supports integration with a wide range of external tools
+- Context Caching：Uses an intelligent caching mechanism to optimize performance in long-context conversations
+- Structured Output：Supports structured output formats such as JSON for seamless system integration
+Key Advancements
+Over the past three months, we have aggressively scaled both loop depth and model size in parallel. The first surprise came from the Loop Transformer architecture itself. By executing a shared block of layers across multiple iterations, the model can reason more deeply without adding parameters, effectively matching the performance of much larger models. GLM-5.4 is our first flagship model built on the Loop Transformer architecture, reaching intelligence levels comparable to 2T-3T parameter models. GLM-5.4 marks the start of Generalized Coding, where code becomes the foundation for solving a much wider range of tasks and unlocking new capabilities. The model still has some limitations. Most notably, it tends to get caught in overly long “marathon thinking” loops, though this prolonged reflection and self-correction does consistently improve accuracy beyond its parameter count.
+The Loop Architecture
+As we noted in our GLM-5.3 technical blog, memory-intensive tasks benefit from more parameters, while reasoning-intensive tasks benefit from more effective compute. Large-scale software engineering, cybersecurity, 3D modeling, and physical control are all ultra-long-chain reasoning tasks. The model must follow multi-step causal chains while maintaining global logical consistency. Stacking parameters and memorizing data cannot solve this.
+From Pre-Trained Base to Loop Transformer
+In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass. This gives us a deeper network without increasing the parameter count. The idea is not new. The 2018 Universal Transformer proposed weight-shared depth, and recent work on recurrent depth and looped language models has shown gains at small scales. However, while weight sharing improves parameter efficiency, looped models trained from scratch still lag behind unshared models under the same pre-training compute budget. Instead of pre-training from scratch, we adapted an already pre-trained base model into a Loop Transformer through continued training. This lets us raise the intelligence ceiling with a relatively small compute overhead.
+Architectural Modifications at 750B Scale
+GLM-5.4 loops 28 layers of the GLM-5 base model for two iterations. To balance performance gains with deployment costs at the 750B scale, we made three changes after extensive experimentation:
+Gated Progressive Updates
+When converting middle layers of an existing model into a multi-pass loop, directly overwriting hidden states causes activation norms to blow up across iterations. Downstream layers then receive representations outside their expected scale and distribution. GLM-5.4 adds independent per-token gates for each iteration to proportionally write candidate updates back into the residual stream. After training, these gates develop a clear division of labor. The first pass builds global context and writes conservatively with small gate values to keep scales stable. The second pass reuses this state to refine the output, opening the gates to write full updates. The gates also adjust step size dynamically based on token difficulty: on harder tokens, the first pass writes more aggressively so complex predictions benefit more from iterative refinement.
+Hybrid KV Cache (Global Sharing + Independent Sliding Window)
+A naive implementation keeps a full KV cache for every loop iteration, multiplying memory usage with the loop count. Instead, we build on cross-loop KV sharing by supplementing it with a local sliding window for the new pass: the second loop reuses the sparse KV selected in the first pass, while retaining its own newly generated KV within the sliding window. These two KV streams can overlap at the same positions, allowing the model to attend to both the first-pass context representations and the updated local representations from the second pass. As a result, an extra loop only costs one sliding window of KV cache rather than a full context cache. At 1M context lengths, this keeps GLM-5.4’s deployment cost increase over GLM-5.3 well under control.
+Sparse Attention Index Reuse
+GLM-5.4’s base model uses sparse attention. The second loop directly reuses the attention indices generated by the first loop’s indexer, adding zero indexing overhead. Our experiments show this performs nearly identically to recomputing indices on every pass.
+Scaling Correctness &amp; Controlled Iso-Parameter Ablations
+Looping is also a strict test of Scaling Correctness: any architectural change must still work at scale. Before committing our flagship model to it, we validated the Loop architecture progressively across 1B, 4B, 30B, and 750B base models. On a 30B model with the exact same architecture as our 750B base, we ran a controlled iso-parameter comparison. With identical parameter counts and only ~10% more total training compute, the looped version showed clear gains: (Evaluated on the 30B model after 200K long-context SFT, with thinking mode enabled.) Two findings stand out:
+- Longer reasoning chains benefit more. The largest gains show up in math, scientific reasoning, and long-context tasks, which are core to Generalized Coding.
+- Fewer tokens spent on thinking. Across most benchmarks like GPQA-Diamond and MMLU-Pro, average output length drops by 10–14%, mostly from shorter chains of thought. In effect, part of the reasoning shifts from explicit output tokens into the implicit depth of the loop.</pre>
+    </details>
+  </section>
+</article>
+
+<footer><p>Data updated 2026-11-26T06:31:45Z</p></footer>
+</body>
+</html>

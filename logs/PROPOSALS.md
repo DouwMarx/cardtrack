@@ -2035,3 +2035,75 @@ Most feed items are customer stories and company news. The agent's existing tria
 
 **Evidence.** logs/friction.jsonl index_gap entry 2026-11-12T06:27:23Z; documents 461 (Daybreak Red GovCloud), 462 (A thousand fewer paths to root), 463 (Securing our frontier model training environment), 464 (BioBasicsBench).
 
+---
+
+## 2026-11-26 — Promised companion documents ("safety report coming soon") are tracked only in prose, and both recent catches were luck
+
+## Problem
+
+Frontier labs increasingly ship the model card first and the safety report days later, and
+the pipeline has no mechanism that watches for the second document. It has now happened
+twice in two weeks with the same publisher, and both times the catch was luck:
+
+- **Gemini 4 Hydrogen Safety & Security Report.** The model card (2026-11-12) said the
+  report was coming "in the coming days". The 2026-11-13 run report wrote a prose
+  **Watch:** line, the 2026-11-14 and 2026-11-15 runs repeated it by hand, and the report
+  was finally found on 2026-11-17 by an agent web search — four days after it was promised,
+  and only because three consecutive agents happened to re-copy the note forward.
+- **Gemini 4 Neon Safety & Security Report.** The model card (2026-11-18) carried the same
+  "coming soon" text. It was caught today (2026-11-26) only because the model-card diff
+  happened to rank third in `updated_docs`, inside the top 5 I am told to read. Had it
+  ranked sixth — as a genuinely substantive version did on 2026-11-25 — the report would
+  have sat uncatalogued for days more.
+
+The report URLs are not reachable by index diffing at all: they live under
+`storage.googleapis.com/deepmind-media/gemini/<model>_safety_report.pdf`, which is in no
+watched index. The only signals are (a) the promise sentence inside a document the
+pipeline already stores, and (b) the model card diff when the sentence is replaced by a
+link. Signal (a) is currently handled by prose in `logs/run_report.md`, which nothing reads
+— the same failure mode as the 2026-08-25 "skip decisions live only in a prose log nothing
+reads" entry. Signal (b) is rank-dependent.
+
+A second cost falls out of the same gap: because discovery is late and these PDFs are
+dated only "November 2026", both rows carry `publication_date: null` and go to human
+review. The pipeline knew the document was absent on one date and present on another, but
+never recorded it.
+
+## Suggested change
+
+1. **A promised-companion watch list, derived not transcribed.** When a stored version's
+   text matches a promise pattern ("coming soon", "will be available in the coming days",
+   "forthcoming") in the same section as a named companion document, write a row to a
+   `pending_documents` table: source slug, the promised title, and the sentence. Phase A
+   probes each pending row every run and, on a 200, emits it as a candidate with
+   `source_of_lead: promised_companion`. For publishers with a stable naming convention —
+   DeepMind's `<model>_safety_report.pdf` next to the already-stored
+   `<model>_model_evaluation.pdf` is the clear case — the probe URL can be derived from the
+   sibling that is already catalogued, so no guessing is needed.
+2. **Record the bounds the probe already establishes.** Store the last run the URL 404'd
+   and the first run it returned 200. For an undated document that interval is strictly
+   better than null: the operator can set a date from it, and the site can show
+   "first seen live" instead of nothing. This would have dated both reports to within a day
+   without any human lookup.
+3. **Fallback if 1 is too much machinery:** promote the promise detection only, and surface
+   pending rows in `candidates.json` as a `promised` list alongside `blocked_escalations`,
+   leaving the fetch to the agent. That alone removes the dependence on an agent choosing to
+   re-copy a prose note into the next day's report.
+
+## Evidence
+
+- `logs/run-20261113-061718Z.log:23`, `run-20261114-061618Z.log:19`,
+  `run-20261115-061818Z.log:19` — the hand-carried Hydrogen watch note.
+- `logs/run-20261117-062018Z.log:12` — Hydrogen report found four days late by search,
+  `publication_date` left null.
+- `logs/run-20261120-061718Z.log:11` — the Hydrogen model-card annotation recording the
+  same "coming soon → published" transition.
+- This run: `google-deepmind-gemini-4-neon-system-card` (doc 500, `publication_date` null)
+  and the v1338 annotation of `google-deepmind-gemini-4-neon-model-card`, found via a
+  rank-3 diff.
+- `logs/friction.jsonl` 2026-08-18T07:55:20Z and today's recurrence of it — the undated
+  companion-document cost.
+- `logs/PROPOSALS.md` 2026-08-25 ("Skip decisions live only in a prose log nothing reads")
+  and 2026-10-28 (the updated_docs top-5 queue), the two existing entries this one sits
+  between.
+

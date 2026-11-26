@@ -48,10 +48,10 @@
     <dt>First seen</dt>
     <dd>2026-08-31T10:12:10Z</dd>
     <dt>Versions</dt>
-    <dd>7</dd>
+    <dd>8</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-access-policy&amp;body=Document%3A%20openai-gpt-5-6-sol-access-policy%0AURL%3A%20https%3A//help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview%0AFingerprint%3A%20ee7ec8d7ed687eded1ebc457159dddbb44093be6e4bdae656c97f2c4e21676ab%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20openai-gpt-5-6-sol-access-policy&amp;body=Document%3A%20openai-gpt-5-6-sol-access-policy%0AURL%3A%20https%3A//help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview%0AFingerprint%3A%203441f1d1ce0df6e57ab546848053f88fcb0c436b4f8c23cd2e9f33e7ba1ab952%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -59,6 +59,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-26T06:21:30Z</td>
+          <td>text/html</td>
+          <td>120,029</td>
+          <td><code title="3441f1d1ce0df6e57ab546848053f88fcb0c436b4f8c23cd2e9f33e7ba1ab952">3441f1d1ce0df6e5</code></td>
+<td><a href="https://data.systemcards.org/raw/6f332da7c543aa68ca8a377979ca236809a56af2b73afc0d16a3f7eae77bb180.html" rel="nofollow" title="archived copy, sha256 6f332da7c543aa68ca8a377979ca236809a56af2b73afc0d16a3f7eae77bb180">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-19T06:21:42Z</td>
           <td>text/html</td>
@@ -123,7 +130,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 15 changelog entries
+    <summary>Show 16 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -262,6 +269,14 @@
           <div class="evidence">Evidence:
 <a href="https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview" rel="noopener nofollow">https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-26T06:21:30Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-26T06:17Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview" rel="noopener nofollow">https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -283,13 +298,13 @@ The table below describes the current trusted access levels:
 | Access | Models and safeguards | Intended use cases |
 |---|---|---|
 | Standard mainline model usage | Supported mainline models, including GPT-5.5, GPT-5.6 Sol, GPT-6 Sol, GPT-6 Luna, and Astra, with standard safeguards for general-purpose use. No access to cyber-specialized models. | Secure SDLC and application security workflows, including threat modeling, secure code reviews and patching, as well as generalized blue teaming |
-| Daybreak Blue | Reduced refusals on supported mainline models, including GPT-5.5, GPT-5.6 Sol, GPT-6 Sol, and GPT-6 Luna, for verified defensive work in authorized environments. Astra retains standard safeguards. No access to cyber-specialized models. | Vulnerability triage, secure code review, malware analysis, detection engineering, incident response, and patch validation. |
+| Daybreak Blue | Reduced refusals on supported mainline models, including GPT-5.5, GPT-5.6 Sol, GPT-6 Sol, and GPT-6 Luna, for verified defensive work in authorized environments. With Daybreak Blue, Astra uses reduced refusals in a Daybreak Red-approved workspace or API organization and standard safeguards elsewhere. No access to cyber-specialized models. | Vulnerability triage, secure code review, malware analysis, detection engineering, incident response, and patch validation. |
 | Daybreak Red | GPT-5.6 Cyber for all Daybreak Red organizations, GPT-6 Cyber with separate model approval, and GPT-5.5-Cyber for organizations with existing access, plus reduced refusals on supported mainline models, including Astra. Requires separate Red approval, stronger verification, and access controls. | Authorized penetration testing, red teaming, exploit validation or development, and controlled vulnerability research. |
 Daybreak Blue is the recommended starting point for most security teams. It supports approved defensive workflows including secure code review, vulnerability triage, detection engineering, incident response, malware analysis, and patch validation. Most existing safeguards and usage policies continue to apply.
 Daybreak Red is intended for advanced, authorized workflows, including proof-of-concept exploit development, exploit-chain validation, penetration testing, and red teaming.
 Access for Daybreak Blue and Red requires additional approval.
 Using GPT-6.1 Terra with Daybreak
-GPT-6.1 Terra supports reduced cyber refusals for approved Daybreak Red users and projects when Daybreak is explicitly enabled. Daybreak Blue approval alone does not enable reduced refusals on Terra.
+For reduced refusals on GPT-6.1 Terra, explicitly enable Daybreak for the request. See the model behavior table below for eligibility.
 Use the Responses API with the approved organization and enabled non-default project, and explicitly set access_programs.cyber for the request. Terra does not default to the highest available Daybreak tier. Chat Completions uses standard safeguards and does not support Terra’s reduced-refusal path.
 For Codex or ChatGPT Work, use the approved workspace, a supported client, and the enabled Daybreak control. API project enablement and workspace access are separate. Terra is a general-purpose model; Daybreak access does not make it a cyber-specialized model or automatically extend approval to other models.
 Reduced refusals behavior by model
@@ -300,8 +315,9 @@ GPT-5.5-Cyber is available only to customers with existing approved access. The 
 | Earlier supported mainline models (including GPT-5.5 and GPT-5.6 Sol) | Standard safeguards | Reduced refusals | Reduced refusals |
 | GPT-6 Luna | Standard safeguards | Reduced refusals | Reduced refusals |
 | GPT-6 Sol | Standard safeguards | Reduced refusals | Reduced refusals |
-| GPT-6.1-Sol | Standard safeguards | Standard safeguards | Reduced refusals |
-| Astra | Standard safeguards | Standard safeguards | Reduced refusals |
+| GPT-6.1-Sol | Standard safeguards | Standard safeguards. Reduced refusals in a Daybreak Red-approved workspace or API organization. | Reduced refusals |
+| GPT-6.1 Terra | Standard safeguards | Standard safeguards. Reduced refusals in a Daybreak Red-approved workspace or API organization. | Reduced refusals |
+| Astra | Standard safeguards | Standard safeguards. Reduced refusals in a Daybreak Red-approved workspace or API organization. | Reduced refusals |
 | GPT-6.2 Astra | Standard safeguards | Standard safeguards | Reduced refusals |
 | GPT-6.2 Sol | Standard safeguards | Standard safeguards | Reduced refusals |
 | GPT-5.5-Cyber | No access | No access | Reduced refusals for existing approved access only |
@@ -358,7 +374,7 @@ FAQ
 What changes after approval?
 Daybreak approval provides an API org or ChatGPT/Codex workspace with more precise safeguards on mainline models (Daybreak Blue) and access to specialized cyber models (Daybreak Red) - these are enabled default OFF, so no immediate change will be visible to users. An org or the workspace owner then enables access for approved users and groups, or an API organization owner enables access for approved projects. Note that other safeguards, usage policies and access restrictions continue to apply.
 Can I use Daybreak Blue with Astra?
-At this time, reduced refusals on Astra are available to Daybreak Red customers only. We’re working on extending reduced refusals on Astra to Daybreak Blue customers. If you have Daybreak Blue access, you can use Astra with standard safeguards, subject to your account’s model access, or switch to a model that supports reduced refusals for Daybreak Blue, such as GPT-6 Sol or GPT-6 Luna.
+With Daybreak Blue enabled for the request, Astra uses reduced refusals in a Daybreak Red-approved workspace or API organization. Elsewhere, Astra uses standard safeguards with Daybreak Blue. Model availability depends on your account. GPT-6 Sol and GPT-6 Luna also support reduced refusals with Daybreak Blue.
 Can I get Daybreak Red as an individual?
 Daybreak Red is currently available only to approved business and enterprise organizations. It isn&#39;t available through the individual application process.
 Individuals can apply for Daybreak Blue, but Blue approval doesn&#39;t include Daybreak Red.
@@ -393,6 +409,6 @@ Where Daybreak access controls are enabled, a workspace owner can use custom rol
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-25T06:28:06Z</p></footer>
+<footer><p>Data updated 2026-11-26T06:31:45Z</p></footer>
 </body>
 </html>
