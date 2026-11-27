@@ -48,12 +48,12 @@
     <dt>First seen</dt>
     <dd>2026-08-27T06:23:45Z</dd>
     <dt>Versions</dt>
-    <dd>9</dd>
+    <dd>10</dd>
     <dt>Notes</dt>
     <dd>Licensed qwen-community-1.0 (use-restricted community licence). Quantized sibling repo https://huggingface.co/Qwen/Qwen3.8-Flash-Next-FP8 covered by this entry. No safety/dangerous-capability evaluation or red-teaming section in the card -- benchmarks only.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-flash-next-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-flash-next-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-Flash-Next%0AFingerprint%3A%2039c7ab64a46b84c47710a1c5dadd197b5c79476dbab7f898e9f7e21081bb5e68%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20alibaba-qwen-qwen3-8-flash-next-model-card&amp;body=Document%3A%20alibaba-qwen-qwen3-8-flash-next-model-card%0AURL%3A%20https%3A//huggingface.co/Qwen/Qwen3.8-Flash-Next%0AFingerprint%3A%203dac08d4613b0d1d7d924a2a7e52e3614f1735c390768e25acdf68ca791131f2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -61,6 +61,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-27T06:22:29Z</td>
+          <td>text/html</td>
+          <td>551,299</td>
+          <td><code title="3dac08d4613b0d1d7d924a2a7e52e3614f1735c390768e25acdf68ca791131f2">3dac08d4613b0d1d</code></td>
+<td><a href="https://data.systemcards.org/raw/44196d24a896c97a78d6a785e96ff2971e78fd5c9ea65a9c9eb550aa38f307b0.html" rel="nofollow" title="archived copy, sha256 44196d24a896c97a78d6a785e96ff2971e78fd5c9ea65a9c9eb550aa38f307b0">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-21T06:21:35Z</td>
           <td>text/html</td>
@@ -133,7 +140,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 10 changelog entries
+    <summary>Show 11 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -224,6 +231,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-Flash-Next</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-27T06:22:29Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-27T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" rel="noopener nofollow">https://huggingface.co/Qwen/Qwen3.8-Flash-Next</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -271,6 +286,7 @@ inputs = processor.apply_chat_template(
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
+- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -366,6 +382,7 @@ curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 		]
 	}&#39;
 -  Docker Model Runner  How to use Qwen/Qwen3.8-Flash-Next with Docker Model Runner: docker model run hf.co/Qwen/Qwen3.8-Flash-Next
+You have been granted access to this model
 Qwen3.8-Flash-Next
 This repository contains model weights and configuration files for the post-trained model in the Hugging Face Transformers format.
 These artifacts are compatible with Hugging Face Transformers, vLLM, SGLang, TokenSpeed, etc.
@@ -699,7 +716,7 @@ If you find our work helpful, feel free to give us a cite.
     url    = {https://qwen.ai/blog?id=qwen3.8-flash-next}
 }
 - Downloads last month
-- 2,727,999
+- 1,658,768
 Model tree for Qwen/Qwen3.8-Flash-Next
 Spaces using Qwen/Qwen3.8-Flash-Next 29
 Collection including Qwen/Qwen3.8-Flash-Next
@@ -707,14 +724,14 @@ Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   91.7
 - datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   58.7 *
 - agents-last-exam/agents-last-exam leaderboard
-- Overall Pass Rate View evaluation resultsHarness not specified.24.3 *
+- Overall Pass Rate View evaluation results
 - Overall Score View evaluation results
-- Delores-Lin/MDPBench leaderboard
-- Overall View evaluation resultssource80.5</pre>
+- llamaindex/ExtractBench leaderboard
+- Mean View evaluation resultssource</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-26T06:31:45Z</p></footer>
+<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
 </body>
 </html>

@@ -50,12 +50,12 @@
     <dt>First seen</dt>
     <dd>2026-11-20T06:24:09Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Hy4-FP8 is a quantization and Hy4 base is the pretrained checkpoint, both covered by this card. Released under the Tencent Hy License (commercial-use restrictions above revenue/MAU thresholds). The Hy4 System Card PDF (https://hy.tencent.ai/Hy4_system_card.pdf) is linked from the card but was not retrievable on 2026-11-20; re-check on later runs.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy4-model-card&amp;body=Document%3A%20tencent-hunyuan-hy4-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy4%0AFingerprint%3A%2009d680262ee219a6c114899d4843245e01baa30f7a0c7be3ba7a65ae0503d264%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20tencent-hunyuan-hy4-model-card&amp;body=Document%3A%20tencent-hunyuan-hy4-model-card%0AURL%3A%20https%3A//huggingface.co/tencent/Hy4%0AFingerprint%3A%20c8e0115e2b44a404d35511567ed311b8073a6e61cf12ed2b0339c4f10f7eb23f%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -63,6 +63,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-27T06:22:22Z</td>
+          <td>text/html</td>
+          <td>430,462</td>
+          <td><code title="c8e0115e2b44a404d35511567ed311b8073a6e61cf12ed2b0339c4f10f7eb23f">c8e0115e2b44a404</code></td>
+<td><a href="https://data.systemcards.org/raw/63d8102a1c67bd9e879b46281b9fb3bec20e15351b19f330ec941a21bfb2cb4f.html" rel="nofollow" title="archived copy, sha256 63d8102a1c67bd9e879b46281b9fb3bec20e15351b19f330ec941a21bfb2cb4f">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-20T06:24:09Z</td>
           <td>text/html</td>
@@ -79,7 +86,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 2 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -99,6 +106,14 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/tencent/Hy4" rel="noopener nofollow">https://huggingface.co/tencent/Hy4</a> · <a href="https://www.kucoin.com/news/flash/tencent-hunyuan-hy4-open-sourced-with-system-card-release" rel="noopener nofollow">https://www.kucoin.com/news/flash/tencent-hunyuan-hy4-open-sourced-with-system-card-release</a> · <a href="https://finance.biggo.com/news/10e223a7-0473-4292-b04d-b69ba9036cc7" rel="noopener nofollow">https://finance.biggo.com/news/10e223a7-0473-4292-b04d-b69ba9036cc7</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-27T06:22:22Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-27T06:20Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/tencent/Hy4" rel="noopener nofollow">https://huggingface.co/tencent/Hy4</a>          </div>
       </li>
     </ol>
     </details>
@@ -147,6 +162,7 @@ inputs = processor.apply_chat_template(
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
+- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -247,7 +263,7 @@ curl -X POST &#34;http://localhost:30000/v1/chat/completions&#34; \
 🖥️ Official Website | 💬 GitHub | 📱 GGUF
 Table of Contents
 Model Introduction
-Hy4 is a new-generation Mixture-of-Experts (MoE) flagship model developed by the Tencent Hy Team, supporting text, image, and video understanding. The language backbone comprises 770B total parameters, of which 49B are activated per token. It consists of 78 layers, with a standard dense FFN in the first layer and MoE FFNs in the remaining 77 layers. Each MoE layer contains 256 routed experts and 1 shared expert; every token activates the top-8 routed experts along with the shared expert. In addition to the backbone, a 5-layer DFly2 drafter (3.3B parameters) is built in for speculative decoding.
+Hy4 is a new-generation Mixture-of-Experts (MoE) flagship model developed by the Tencent Hy Team, supporting text and image understanding. The language backbone comprises 770B total parameters, of which 49B are activated per token. It consists of 78 layers, with a standard dense FFN in the first layer and MoE FFNs in the remaining 77 layers. Each MoE layer contains 256 routed experts and 1 shared expert; every token activates the top-8 routed experts along with the shared expert. In addition to the backbone, a 5-layer DFly2 drafter (3.3B parameters) is built in for speculative decoding.
 On the architecture side, inspired by DeepSeek and GLM, the attention module employs Gated DeepSeek Sparse Attention (Gated DSA) with IndexCache for cross-layer sparse index reuse. The residual pathway uses iHC (identity Hyper-Connections) to expand inter-layer information flow. A ViT supports dynamic image resolutions, with an adapter converting image and video frame features into visual tokens for the language model to process alongside text tokens. DFly2, a parallel drafter, reuses Hy4&#39;s KV cache and sparse indices to support long-context speculative decoding at a low, constant cost.
 Model Specifications
 | Property | Value |
@@ -347,9 +363,9 @@ Known Limitations
 Although Hy4 is one of the strongest open-weight models available today, a notable gap remains between it and top proprietary models, particularly on challenging internal benchmarks for research-level mathematics, long-horizon coding, model self-improvement, and advanced visual question answering.
 Appendix: benchmark results
 News
-- We open-source Hy4, Hy4-FP8, and the pre-trained Hy4 base model weights on Hugging Face, ModelScope, and GitCode.
+- We open-source Hy4, Hy4-FP8, and the pre-trained Hy4 base model weights on Hugging Face, ModelScope, and AtomGit.
 Model Links
-| Model Name | Description | Hugging Face | ModelScope | GitCode |
+| Model Name | Description | Hugging Face | ModelScope | AtomGit |
 |---|---|---|---|---|
 | Hy4 | Instruct model | Model | Model | Model |
 | Hy4-FP8 | FP8 quantized instruct model | Model | Model | Model |
@@ -420,11 +436,26 @@ If you have any questions or suggestions, feel free to reach out to our R&amp;D 
 📧 hunyuan_opensource@tencent.com
 Hy4 is developed by the Tencent Hy Team.
 - Downloads last month
-- 2</pre>
+- 2,898
+Model tree for tencent/Hy4
+Spaces using tencent/Hy4 2
+Collection including tencent/Hy4
+Papers for tencent/Hy4
+IndexCache: Accelerating Sparse Attention via Cross-Layer Index Reuse
+DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models
+Evaluation results
+- collinear-ai/cwe-bench · Resolve Rate View evaluation results source leaderboard
+- datacurve/deep-swe · Deep Swe View evaluation results    leaderboard   74.9 *
+- harborframework/terminal-bench · Terminalbench 4 View evaluation results leaderboard
+- agents-last-exam/agents-last-exam · Overall Pass Rate View evaluation results leaderboard
+- harborframework/terminal-bench-science · Terminalbenchscience 0 1 View evaluation results leaderboard
+- MMMU/MMMU_Pro · Mmmu Pro Standard 10 Options View evaluation results    leaderboard   78.6
+- mercor/apex-agents · Apex Agents View evaluation results leaderboard
+- cais/hle · Hle View evaluation results      59.1 *</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-26T06:31:45Z</p></footer>
+<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
 </body>
 </html>
