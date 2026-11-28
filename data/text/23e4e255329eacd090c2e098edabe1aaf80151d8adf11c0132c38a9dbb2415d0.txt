@@ -1,0 +1,30 @@
+- Models
+- Mistral Small 4
+Mistral Small 4
+Apache 2.0
+GA
+Hybrid instruct and reasoning MoE; unifies Instruct, Magistral, and Devstral into one model with multimodal input.
+v26.03
+info
+Speed
+Performance
+Input
+Output
+context
+Context
+256K
+pricei
+Input (/M Tokens)
+$0.15
+Output (/M Tokens)
+$0.6
+Features and weights
+Chat Completions
+Function Calling
+Agents & Conversations
+Built-In Tools (Connectors)
+Structured Outputs
+Predicted Outputs
+Document QnA
+Prefix
+Batching

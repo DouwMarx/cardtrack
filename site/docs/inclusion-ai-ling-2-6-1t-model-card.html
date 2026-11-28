@@ -45,12 +45,12 @@
     <dt>First seen</dt>
     <dd>2026-08-21T07:37:26Z</dd>
     <dt>Versions</dt>
-    <dd>7</dd>
+    <dd>8</dd>
     <dt>Notes</dt>
     <dd>MIT licence. Ling-2.6-1T-base (2026-06-02) is the pre-trained checkpoint, excluded as a variant per distinct_model_release, consistent with the 2026-08-20 treatment of the Ling-3.0 base checkpoints.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ling-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-2.6-1T%0AFingerprint%3A%20cf989dd4877f2cc507bc6994723f0aba9a1a7f5ae7f35d7eeba007b013a65beb%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20inclusion-ai-ling-2-6-1t-model-card&amp;body=Document%3A%20inclusion-ai-ling-2-6-1t-model-card%0AURL%3A%20https%3A//huggingface.co/inclusionAI/Ling-2.6-1T%0AFingerprint%3A%2069fed2fada22cea80347129c4020dd7943d7866e14e76558244dda202aacb584%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -58,6 +58,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-28T06:21:28Z</td>
+          <td>text/html</td>
+          <td>427,770</td>
+          <td><code title="69fed2fada22cea80347129c4020dd7943d7866e14e76558244dda202aacb584">69fed2fada22cea8</code></td>
+<td><a href="https://data.systemcards.org/raw/a49e657d2c694e7d450dfb2d3effbe5a1bead945a1217ffdfd2ef806163eae9d.html" rel="nofollow" title="archived copy, sha256 a49e657d2c694e7d450dfb2d3effbe5a1bead945a1217ffdfd2ef806163eae9d">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-15T06:21:26Z</td>
           <td>text/html</td>
@@ -117,7 +124,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 8 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -194,6 +201,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/inclusionAI/Ling-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-2.6-1T</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-28T06:21:28Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/inclusionAI/Ling-2.6-1T" rel="noopener nofollow">https://huggingface.co/inclusionAI/Ling-2.6-1T</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -228,7 +243,6 @@ inputs = tokenizer.apply_chat_template(
 ).to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
-- Inference
 - Notebooks
 - Google Colab
 - Kaggle
@@ -394,7 +408,7 @@ Training content summary
 The public training-content summary identifying Ling-2.6-1T is available below. Please refer to the document for its covered model versions, training-content scope, summary version, and update date.
 This summary concerns training-content disclosure; it does not replace the model’s technical documentation, usage terms, or license.
 - Downloads last month
-- 2,892
+- 3,030
 Spaces using inclusionAI/Ling-2.6-1T 15
 Collection including inclusionAI/Ling-2.6-1T
 Paper for inclusionAI/Ling-2.6-1T
@@ -406,6 +420,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
+<footer><p>Data updated 2026-11-28T06:24:22Z</p></footer>
 </body>
 </html>

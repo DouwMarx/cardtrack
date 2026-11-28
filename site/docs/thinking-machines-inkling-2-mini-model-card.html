@@ -55,12 +55,12 @@
     <dt>First seen</dt>
     <dd>2026-11-21T06:23:33Z</dd>
     <dt>Versions</dt>
-    <dd>1</dd>
+    <dd>2</dd>
     <dt>Notes</dt>
     <dd>Announcement post also describes a research-only variable-loop variant (TML-d24-varloop-research) released on Hugging Face and used for the monitorability experiments; Goodfire had early access for interpretability work.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-inkling-2-mini-model-card&amp;body=Document%3A%20thinking-machines-inkling-2-mini-model-card%0AURL%3A%20https%3A//thinkingmachines.ai/model-card/inkling-2-mini/%0AFingerprint%3A%203b652da6ac353ebdbe7daae97a89e2dd96ca5cf2c4ed0f476cecb90f7bb8b625%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20thinking-machines-inkling-2-mini-model-card&amp;body=Document%3A%20thinking-machines-inkling-2-mini-model-card%0AURL%3A%20https%3A//thinkingmachines.ai/model-card/inkling-2-mini/%0AFingerprint%3A%20dd24cbf1808f3a70d4d34d004b26b0c834f7e9eeaf1cff39a12853d01da6f045%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -68,6 +68,14 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-28T06:21:32Z</td>
+          <td>text/html</td>
+          <td>222,597</td>
+          <td><code title="dd24cbf1808f3a70d4d34d004b26b0c834f7e9eeaf1cff39a12853d01da6f045">dd24cbf1808f3a70</code></td>
+<td><a href="https://data.systemcards.org/raw/2fd49bae2efdbef1914314280ebc2d93742f89e903f66354c30b02b95f5efe28.html" rel="nofollow" title="archived copy, sha256 2fd49bae2efdbef1914314280ebc2d93742f89e903f66354c30b02b95f5efe28">archived copy</a></td>          <td class="change-summary">Filled in previously blank comparison-model scores across the benchmark table, e.g. SWEBench Multimodal v2, PMPP-Hard, JobBench, Diligence Bench, OmniDocBench, BabyVision, ScreenSpot Pro, MathVision, GraphWalks and MRCR; one comparison score (-7.7 on AA-Omniscience) was removed. Inkling 2 Mini&#39;s own reported scores are unchanged.
+</td>
+        </tr>
         <tr>
           <td>2026-11-21T06:23:33Z</td>
           <td>text/html</td>
@@ -84,7 +92,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 1 changelog entry
+    <summary>Show 3 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -104,6 +112,23 @@
           </div>
           <div class="evidence">Evidence:
 <a href="https://thinkingmachines.ai/news/inkling-2-mini/" rel="noopener nofollow">https://thinkingmachines.ai/news/inkling-2-mini/</a> · <a href="https://thinkingmachines.ai/model-card/inkling-2-mini/" rel="noopener nofollow">https://thinkingmachines.ai/model-card/inkling-2-mini/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-28T06:21:32Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://thinkingmachines.ai/model-card/inkling-2-mini/" rel="noopener nofollow">https://thinkingmachines.ai/model-card/inkling-2-mini/</a>          </div>
+      </li>
+      <li>
+        <span class="ts">2026-11-28T06:24:22Z</span>
+        <strong>field_update</strong>
+        <span class="run">run 2026-11-28T06:16Z-local · agent</span>
+          <div class="just">change_summary: null → "Filled in previously blank comparison-model scores across the benchmark table, e.g. SWEBench Multimodal v2, PMPP-Hard, JobBench, Diligence Bench, OmniDocBench, BabyVision, ScreenSpot Pro, MathVision, GraphWalks and MRCR; one comparison score (-7.7 on AA-Omniscience) was removed. Inkling 2 Mini\u0027s own reported scores are unchanged."</div>
+          <div class="just">Diff v1264-&gt;v1360 shows only table cells for comparison columns changing from blank to values (and best/second-best markers moving accordingly); the Inkling 2 Mini column is identical. Substantive results revision, not extraction noise.</div>
+          <div class="evidence">Evidence:
+<a href="https://thinkingmachines.ai/model-card/inkling-2-mini/" rel="noopener nofollow">https://thinkingmachines.ai/model-card/inkling-2-mini/</a>          </div>
       </li>
     </ol>
     </details>
@@ -190,45 +215,45 @@ Data curation includes cleaning, processing, and modifying datasets. These proce
 | SWEBench Pro v2 (Hard)mini-swe-agent v2.4.6 | 77.9% (Best reported score in this row) | 13.2% | 53.9% | 14.2% | 44.3% | 73.8% | 44.1% | 77.2% (Second-best reported score in this row) |
 | SWEBench MultilingualInkling 2 Mini with bash only | 73.7% (Second-best reported score in this row) | 43.0% | 56.9% | 43.0% | 66.9% | 70.0% | 67.7% | 78.0% (Best reported score in this row) |
 | SWEBench Verifiedbash only | 79.2% (Second-best reported score in this row) | 61.8% | 67.3% | 46.1% | 76.0% | 77.8% | 71.1% | 80.1% (Best reported score in this row) |
-| SWEBench Multimodal v2mini-swe-agent (vals) | 37.9% (Best reported score in this row) | – | – | – | – | – | 25.8% (Second-best reported score in this row) | – |
+| SWEBench Multimodal v2mini-swe-agent (vals) | 37.9% (Best reported score in this row) | – | 31.0% | 27.5% | 31.0% | 37.5% (Second-best reported score in this row) | 25.8% | – |
 | Vibe Code Bench v1.1openhands (vals) | 77.9% (Best reported score in this row) | – | – | – | – | 64.9% | 3.5% | 66.4% (Second-best reported score in this row) |
 | Code Migration v1.1pi (vals) | 23.2% (Best reported score in this row) | – | – | – | – | – | 16.4% | 22.9% (Second-best reported score in this row) |
 | Terminal Bench Science v0.1mini-swe-agent v2.4.6 | 1.4% (Best reported score in this row) | 0.0% | 0.0% | 0.0% | 0.0% | 0.5% (Second-best reported score in this row) | 0.0% | 0.5% (Second-best reported score in this row) |
-| PMPP-Hard (AUC, 0–10h)pi v0.83.0 | 455.82 (Best reported score in this row) | – | – | – | – | 262.50 (Second-best reported score in this row) | – | – |
+| PMPP-Hard (AUC, 0–10h)pi v0.83.0 | 455.82 (Best reported score in this row) | – | – | – | – | 262.50 | 253.59 | 294.24 (Second-best reported score in this row) |
 | Agentic Search, Tool Use, and Knowledge Work |  |  |  |  |  |  |  |  |
 | BrowseCompInkling 2 Mini with compaction | 79.0% (Best reported score in this row) | 38.9% | 16.7% | 37.0% | 63.9% | 61.6% | 78.9% (Second-best reported score in this row) | 76.8% |
 | DeepSearchQAInkling 2 Mini with compaction | 85.3% (Best reported score in this row) | 66.0% | 38.1% | 61.7% | 74.6% | 79.7% | 77.7% | 80.5% (Second-best reported score in this row) |
 | MCP AtlasPublic | 82.7% (Second-best reported score in this row) | 54.2% | 51.4% | 54.2% | 75.5% | 77.3% | 67.7% | 83.2% (Best reported score in this row) |
 | AA-Briefcase v1.1 | 1263 (Second-best reported score in this row) | – | – | 369 | 478 | 1391 (Best reported score in this row) | 999 | 976 |
 | GDPVal-AA v2.1 | 1319 (Second-best reported score in this row) | – | – | 627 | 792 | 1427 (Best reported score in this row) | 1162 | 1177 |
-| JobBench | 49.6% (Best reported score in this row) | – | – | 8.2% | 16.1% | 33.4% | 36.5% | 43.6% (Second-best reported score in this row) |
+| JobBench | 49.6% (Best reported score in this row) | 18.7% | 30.2% | 8.2% | 16.1% | 33.4% | 36.5% | 43.6% (Second-best reported score in this row) |
 | AutomationBench-AA v1.0.6 | 41.8% | – | – | 4.9% | 6.8% | 48.2% (Second-best reported score in this row) | 14.8% | 48.5% (Best reported score in this row) |
 | EnterpriseOps-Gym | 42.0% (Second-best reported score in this row) | 26.0% | 27.9% | 28.4% | 34.7% | 44.2% (Best reported score in this row) | 28.1% | 40.1% |
 | Finance Agent v2.1 | 56.5% (Best reported score in this row) | – | – | – | – | – | 47.7% | 51.8% (Second-best reported score in this row) |
 | Excel Modeling Benchmark v1.1 | 66.0% (Best reported score in this row) | – | – | – | – | – | 52.8% | 64.7% (Second-best reported score in this row) |
 | Tax Agent Bench | 14.1% (Second-best reported score in this row) | – | – | – | – | 30.9% (Best reported score in this row) | 11.6% | 8.8% |
 | AA-AnalystAgent | 46.3% (Best reported score in this row) | – | – | – | 20.0% (Second-best reported score in this row) | – | – | – |
-| Diligence BenchBest harness | 48.6% (Best reported score in this row) | – | – | – | 40.9% | 46.4% (Second-best reported score in this row) | 45.0% | – |
+| Diligence BenchBest harness | 48.6% (Best reported score in this row) | 35.2% | 35.4% | 26.3% | 40.9% | 46.4% (Second-best reported score in this row) | 45.0% | 44.2% |
 | Vision Interpretation and Creation |  |  |  |  |  |  |  |  |
 | GDP.pdf | 16.8% (Best reported score in this row) | – | 3.4% | 6.0% | 11.8% | 16.4% (Second-best reported score in this row) | 8.0% | 11.6% |
-| PerceptionBench | 57.5% (Best reported score in this row) | – | – | 40.7% | 42.8% | 52.4% (Second-best reported score in this row) | 36.8% | – |
+| PerceptionBench | 57.5% (Best reported score in this row) | – | 33.0% | 40.7% | 42.8% | 52.4% (Second-best reported score in this row) | 36.8% | – |
 | MMMU ProStandard 10 | 74.9% (Second-best reported score in this row) | – | 64.5% | 73.4% | 74.3% | 76.3% (Best reported score in this row) | 72.3% | – |
-| OmniDocBench v1.6 | 92.8% (Best reported score in this row) | – | – | 82.5% | 90.4% | 91.5% (Second-best reported score in this row) | 77.9% | – |
-| BabyVisionoriginal / with Python | 53.4/88.8% (Best reported score in this row) | – | 16.5%/– | 24.2/36.8% | 26.5/45.9% | 65.7/85.6% (Second-best reported score in this row) | 29.6/43.0% | – |
-| ScreenSpot Prooriginal / with Python | 76.5/87.7% (Best reported score in this row) | – | – | 5.9%/– | 75.4%/– (Second-best reported score in this row) | 57.6/78.9% | 43.5%/– | – |
-| Charxiv RQoriginal / with Python | 80.6/88.3% (Second-best reported score in this row) | – | 59.1%/– | 68.2/76.1% | 78.8/81.1% | 83.7/90.2% (Best reported score in this row) | 80.8/84.0% | – |
-| Chartographyoriginal / with Python | 22.1/72.5% (Best reported score in this row) | – | 7.1%/– | 12.0/11.8% | 17.4/25.1% (Second-best reported score in this row) | 12.2/52.1% | 9.7/29.3% | – |
-| ZeroBench (main)original / with Python | 17.0/34.0% (Best reported score in this row) | – | 8.0%/– | 9.0/12.0% | 9.0/17.0% | 12.0%/– (Second-best reported score in this row) | 11.0/12.0% | – |
-| GroundingME | 55.5% (Best reported score in this row) | – | 15.1% | – | 42.9% | 44.7% (Second-best reported score in this row) | 42.4% | – |
+| OmniDocBench v1.6 | 92.8% (Best reported score in this row) | – | 84.4% | 82.5% | 90.4% | 91.5% (Second-best reported score in this row) | 77.9% | – |
+| BabyVisionoriginal / with Python | 53.4/88.8% (Best reported score in this row) | – | 16.5/55.9% | 24.2/36.8% | 26.5/45.9% | 65.7/85.6% (Second-best reported score in this row) | 29.6/43.0% | – |
+| ScreenSpot Prooriginal / with Python | 76.5/87.7% (Best reported score in this row) | – | –/62.3% | 5.9/15.9% | 75.4%/– (Second-best reported score in this row) | 57.6/78.9% | 43.5%/– | – |
+| Charxiv RQoriginal / with Python | 80.6/88.3% (Second-best reported score in this row) | – | 59.1/61.7% | 68.2/76.1% | 78.8/81.1% | 83.7/90.2% (Best reported score in this row) | 80.8/84.0% | – |
+| Chartographyoriginal / with Python | 22.1/72.5% (Best reported score in this row) | – | 7.1/36.9% | 12.0%/– | 17.4/25.1% (Second-best reported score in this row) | 12.2/52.1% | 9.7/29.3% | – |
+| ZeroBench (main)original / with Python | 17.0/34.0% (Best reported score in this row) | – | 8.0/15.0% | 9.0/12.0% | 9.0/17.0% | 12.0/29.0% (Second-best reported score in this row) | 11.0/12.0% | – |
+| GroundingME | 55.5% (Best reported score in this row) | – | 15.1% | 20.3% | 42.9% | 44.7% (Second-best reported score in this row) | 42.4% | – |
 | SAGE v1.1 | 85.9% (Best reported score in this row) | – | – | 82.8% (Second-best reported score in this row) | – | – | – | – |
-| MathVision | 89.0% (Second-best reported score in this row) | – | – | 85.6% | 77.5% | 90.0% (Best reported score in this row) | 78.2% | – |
+| MathVision | 89.0% (Second-best reported score in this row) | – | 63.1% | 85.6% | 77.5% | 90.0% (Best reported score in this row) | 78.2% | – |
 | MuirBench | 77.5% (Second-best reported score in this row) | – | 54.3% | 72.3% | 77.6% (Best reported score in this row) | 65.9% | 72.7% | – |
-| BVB | 68.4% (Second-best reported score in this row) | – | – | 47.0% | 50.5% | 70.7% (Best reported score in this row) | 52.1% | – |
+| BVB | 68.4% (Second-best reported score in this row) | – | 20.3% | 47.0% | 50.5% | 70.7% (Best reported score in this row) | 52.1% | – |
 | Code2Video-AA | 870 (Second-best reported score in this row) | – | – | – | – | 949 (Best reported score in this row) | – | 675 |
 | Reasoning, Knowledge, and Epistemics |  |  |  |  |  |  |  |  |
 | HLE-Diamond | 15.2% (Second-best reported score in this row) | 6.2% | 5.7% | 7.2% | 9.1% | 15.3% (Best reported score in this row) | 8.8% | 12.8% |
 | HLE (text only) | 30.7% | 10.4% | 15.6% | 23.6% | 22.0% | 33.9% (Second-best reported score in this row) | 30.7% | 36.2% (Best reported score in this row) |
-| CritPt v2Full / Hard | 31.4/17.0% (Second-best reported score in this row) | – | – | –/4.0% | –/7.0% | 10.6/4.0% | 36.9/13.5% | 40.0/26.5% (Best reported score in this row) |
+| CritPt v2Full / Hard | 31.4/17.0% (Second-best reported score in this row) | – | – | 11.7/4.0% | 24.3/7.0% | 10.6/4.0% | 36.9/13.5% | 40.0/26.5% (Best reported score in this row) |
 | GPQA Diamond | 86.6% | 72.2% | 74.8% | 85.7% | 83.5% | 90.5% (Best reported score in this row) | 89.5% | 90.5% (Best reported score in this row) |
 | Apex 2025 | 34.4% (Best reported score in this row) | 1.0% | 2.1% | 5.2% | 4.2% | 18.8% | 22.9% (Second-best reported score in this row) | 21.9% |
 | ARC-AGI-1 | 84.5% (Second-best reported score in this row) | – | – | – | – | 87.5% (Best reported score in this row) | 22.7% | 74.0% |
@@ -237,9 +262,9 @@ Data curation includes cleaning, processing, and modifying datasets. These proce
 | ProofBench v1.1 | 18.0% (Best reported score in this row) | – | – | – | – | 16.0% | – | 18.0% (Best reported score in this row) |
 | AA-LCR v1.1 | 80.0% | 77.0% | 60.5% | 69.7% | 83.3% (Best reported score in this row) | 82.0% (Second-best reported score in this row) | 69.0% | 79.3% |
 | LongBench v2 | 66.9% (Best reported score in this row) | 41.5% | 51.4% | 52.9% | 33.1% | 52.3% | 62.1% | 66.9% (Best reported score in this row) |
-| GraphWalks BFS256K | 69.7% (Best reported score in this row) | – | – | – | – | 50.4% | 63.3% (Second-best reported score in this row) | 25.7% |
-| MRCR v28-needle 256K–512K | 46.4% (Best reported score in this row) | – | 6.5% | – | – | 38.0% (Second-best reported score in this row) | 5.7% | – |
-| AA-Omniscience v1.1score | -8.6 | -7.7 | – | -48.5 | -32.2 | -6.4 | -2.9 (Second-best reported score in this row) | 2.3 (Best reported score in this row) |
+| GraphWalks BFS256K | 69.7% (Best reported score in this row) | – | 26.5% | – | – | 50.4% | 63.3% (Second-best reported score in this row) | 25.7% |
+| MRCR v28-needle 256K–512K | 46.4% (Best reported score in this row) | – | 6.5% | – | – | 38.0% (Second-best reported score in this row) | 5.7% | 28.0% |
+| AA-Omniscience v1.1score | -8.6 | – | – | -48.5 | -32.2 | -6.4 | -2.9 (Second-best reported score in this row) | 2.3 (Best reported score in this row) |
 | AA-Omniscience v1.1non-hallucination rate | 63.4% | – | – | 14.5% | 16.4% | 71.4% (Best reported score in this row) | 69.5% (Second-best reported score in this row) | 59.0% |
 | ComplexConstraints v1.1openhands v1.45.0 | 33.4% | 17.9% | 10.1% | 31.6% | 35.6% (Second-best reported score in this row) | 30.1% | 30.1% | 42.9% (Best reported score in this row) |
 | Safety and Alignment |  |  |  |  |  |  |  |  |
@@ -276,6 +301,6 @@ We recommend that downstream developers and deployers:
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
+<footer><p>Data updated 2026-11-28T06:24:22Z</p></footer>
 </body>
 </html>

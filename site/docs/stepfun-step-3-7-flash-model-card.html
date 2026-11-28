@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-10T09:47:43Z</dd>
     <dt>Versions</dt>
-    <dd>5</dd>
+    <dd>6</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-3-7-flash-model-card&amp;body=Document%3A%20stepfun-step-3-7-flash-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-3.7-Flash%0AFingerprint%3A%208bd1238333a5ab4b99cd12d0ddf04c121fe5e104b7362ca90e0421a39da054e2%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20stepfun-step-3-7-flash-model-card&amp;body=Document%3A%20stepfun-step-3-7-flash-model-card%0AURL%3A%20https%3A//huggingface.co/stepfun-ai/Step-3.7-Flash%0AFingerprint%3A%204c48cea2ba84931961ec61e00291620ee3568069a22514f50296277e21c90153%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-28T06:21:51Z</td>
+          <td>text/html</td>
+          <td>294,087</td>
+          <td><code title="4c48cea2ba84931961ec61e00291620ee3568069a22514f50296277e21c90153">4c48cea2ba849319</code></td>
+<td><a href="https://data.systemcards.org/raw/d14968eac35f247c0b328cce723b1bce59893bed27fc157b070eb81a159cf12f.html" rel="nofollow" title="archived copy, sha256 d14968eac35f247c0b328cce723b1bce59893bed27fc157b070eb81a159cf12f">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-09T06:22:23Z</td>
           <td>text/html</td>
@@ -101,7 +108,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 8 changelog entries
+    <summary>Show 9 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -178,6 +185,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/stepfun-ai/Step-3.7-Flash" rel="noopener nofollow">https://huggingface.co/stepfun-ai/Step-3.7-Flash</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-28T06:21:51Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/stepfun-ai/Step-3.7-Flash" rel="noopener nofollow">https://huggingface.co/stepfun-ai/Step-3.7-Flash</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -224,8 +239,6 @@ inputs = processor.apply_chat_template(
 ).to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
-- Inference
-- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -588,7 +601,7 @@ As we work to shape the future of AGI by expanding broad model capabilities, we 
 📄 License
 This project is open-sourced under the Apache 2.0 License.
 - Downloads last month
-- 10,332
+- 11,183
 Model tree for stepfun-ai/Step-3.7-Flash
 Spaces using stepfun-ai/Step-3.7-Flash 26
 Collection including stepfun-ai/Step-3.7-Flash
@@ -600,6 +613,6 @@ Evaluation results
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
+<footer><p>Data updated 2026-11-28T06:24:22Z</p></footer>
 </body>
 </html>

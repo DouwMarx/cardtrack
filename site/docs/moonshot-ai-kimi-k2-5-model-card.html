@@ -45,10 +45,10 @@
     <dt>First seen</dt>
     <dd>2026-08-09T20:26:50Z</dd>
     <dt>Versions</dt>
-    <dd>13</dd>
+    <dd>14</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20moonshot-ai-kimi-k2-5-model-card&amp;body=Document%3A%20moonshot-ai-kimi-k2-5-model-card%0AURL%3A%20https%3A//huggingface.co/moonshotai/Kimi-K2.5%0AFingerprint%3A%20b58a2604bed8cbb405c9557dd2502b6c0ecd73e4ac7cd9ec88e5481b05a0e53c%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20moonshot-ai-kimi-k2-5-model-card&amp;body=Document%3A%20moonshot-ai-kimi-k2-5-model-card%0AURL%3A%20https%3A//huggingface.co/moonshotai/Kimi-K2.5%0AFingerprint%3A%20e6ef833cd13977a8c40dd347974c6a1623a891c06329870e828a7609dd1e8d81%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -56,6 +56,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-28T06:21:35Z</td>
+          <td>text/html</td>
+          <td>620,585</td>
+          <td><code title="e6ef833cd13977a8c40dd347974c6a1623a891c06329870e828a7609dd1e8d81">e6ef833cd13977a8</code></td>
+<td><a href="https://data.systemcards.org/raw/01f5e641b5a8c1d646cbca698090ee5020649c610fe82fc4eeec5520810f6f3f.html" rel="nofollow" title="archived copy, sha256 01f5e641b5a8c1d646cbca698090ee5020649c610fe82fc4eeec5520810f6f3f">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-22T06:21:33Z</td>
           <td>text/html</td>
@@ -158,7 +165,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 16 changelog entries
+    <summary>Show 17 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -299,6 +306,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/moonshotai/Kimi-K2.5" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K2.5</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-28T06:21:35Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/moonshotai/Kimi-K2.5" rel="noopener nofollow">https://huggingface.co/moonshotai/Kimi-K2.5</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -345,8 +360,6 @@ inputs = processor.apply_chat_template(
 ).to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(processor.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
-- Inference
-- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -700,7 +713,7 @@ If you find K2.5 useful for your research, please kindly cite K2.5 technical rep
       url={https://arxiv.org/abs/2602.02276},
 }
 - Downloads last month
-- 389,664
+- 280,040
 Model tree for moonshotai/Kimi-K2.5
 Spaces using moonshotai/Kimi-K2.5 100
 Collection including moonshotai/Kimi-K2.5
@@ -709,14 +722,14 @@ Evaluation results
 - Idavidrein/gpqa · Diamond leaderboard
 - GPQA Diamond View evaluation results source87.37 *
 - default View evaluation results87.6
+- MMMU/MMMU_Pro · Mmmu Pro Vision View evaluation results    leaderboard   78.5
+- MathArena/aime_2026 · MathArena Aime 2026 View evaluation results  source  leaderboard   95.83
 - Delores-Lin/MDPBench leaderboard
-- Overall View evaluation resultssource77.5
-- Digital View evaluation resultssource85
-- Photographed View evaluation resultssource75</pre>
+- Overall View evaluation resultssource77.5</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
+<footer><p>Data updated 2026-11-28T06:24:22Z</p></footer>
 </body>
 </html>

@@ -50,12 +50,12 @@
     <dt>First seen</dt>
     <dd>2026-09-22T11:44:13Z</dd>
     <dt>Versions</dt>
-    <dd>7</dd>
+    <dd>8</dd>
     <dt>Notes</dt>
     <dd>Card README updated through 2026-03-10 (added GPQA/HLE and SWE-Bench Verified results); LICENSE-MODEL file added 2026-03-06 with version release date 2026-02-13. Covered in the family technical report arXiv 2605.26494.</dd>
   </dl>
 
-  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m2-5-model-card&amp;body=Document%3A%20minimax-minimax-m2-5-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M2.5%0AFingerprint%3A%20d7b1232ad363c58b2e75af5ea9097ad0be8e5387cf91d6a64fe4d42e22e42d65%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
+  <p><a class="button" href="https://github.com/DouwMarx/cardtrack/issues/new?labels=data-error&amp;title=%5Bdata-error%5D%20minimax-minimax-m2-5-model-card&amp;body=Document%3A%20minimax-minimax-m2-5-model-card%0AURL%3A%20https%3A//huggingface.co/MiniMaxAI/MiniMax-M2.5%0AFingerprint%3A%206d5ff85d375062d8dfed46bb7cacb1498c77258ebc12590c0c962e8f66179c21%0A%0AWhat%20is%20wrong%20%28wrong%20metadata%2C%20dead%20link%2C%20wrong%20version%2C%20should%20not%20be%20listed%2C%20...%29%3F%0A" rel="noopener">Report an issue with this entry</a></p>
 
   <section>
     <h3>Version history</h3>
@@ -63,6 +63,13 @@
     <table>
       <thead><tr><th>Fetched</th><th>Content type</th><th>Size</th><th>Fingerprint</th><th>Original</th><th>What changed</th></tr></thead>
       <tbody>
+        <tr>
+          <td>2026-11-28T06:21:47Z</td>
+          <td>text/html</td>
+          <td>389,539</td>
+          <td><code title="6d5ff85d375062d8dfed46bb7cacb1498c77258ebc12590c0c962e8f66179c21">6d5ff85d375062d8</code></td>
+<td><a href="https://data.systemcards.org/raw/1b000dd7d7a83ec5b3129d0fef2a2a6b0db0a02eaff6d611d4b5490f5479c971.html" rel="nofollow" title="archived copy, sha256 1b000dd7d7a83ec5b3129d0fef2a2a6b0db0a02eaff6d611d4b5490f5479c971">archived copy</a></td>          <td class="change-summary"><span class="muted">—</span></td>
+        </tr>
         <tr>
           <td>2026-11-22T06:21:48Z</td>
           <td>text/html</td>
@@ -121,7 +128,7 @@
   <section>
     <h3>Provenance</h3>
     <details>
-    <summary>Show 7 changelog entries
+    <summary>Show 8 changelog entries
       (when, how, and why this entry changed)</summary>
     <ol class="provenance">
       <li>
@@ -190,6 +197,14 @@
           <div class="evidence">Evidence:
 <a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.5" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M2.5</a>          </div>
       </li>
+      <li>
+        <span class="ts">2026-11-28T06:21:47Z</span>
+        <strong>new_version</strong>
+        <span class="run">run 2026-11-28T06:16Z-local · monitor · lead: monitor</span>
+          <div class="just">Content fingerprint changed on scheduled re-fetch</div>
+          <div class="evidence">Evidence:
+<a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.5" rel="noopener nofollow">https://huggingface.co/MiniMaxAI/MiniMax-M2.5</a>          </div>
+      </li>
     </ol>
     </details>
   </section>
@@ -225,6 +240,7 @@ inputs = tokenizer.apply_chat_template(
 outputs = model.generate(**inputs, max_new_tokens=256)
 print(tokenizer.decode(outputs[0][inputs[&#34;input_ids&#34;].shape[-1]:]))
 - Inference
+- HuggingChat
 - Notebooks
 - Google Colab
 - Kaggle
@@ -373,22 +389,22 @@ Evaluation methods:
 - Finance Modeling: Internal benchmark. Primarily contains financial modeling problems constructed by industry experts, involving end-to-end research and analysis tasks performed via Excel tools. Each problem is scored using expert-designed rubrics. Final results are averaged over 3 runs.
 - AIME25 ~ AA-LCR: Obtained through internal testing based on the public evaluation sets and evaluation methods covered by the Artificial Analysis Intelligence Index leaderboard.
 - Downloads last month
-- 855,164
+- 344,721
 Model tree for MiniMaxAI/MiniMax-M2.5
 Spaces using MiniMaxAI/MiniMax-M2.5 100
 Collection including MiniMaxAI/MiniMax-M2.5
 Evaluation results
 - Idavidrein/gpqa · Diamond View evaluation results    leaderboard   85.2
-- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results  source  leaderboard   80.1
-- ScaleAI/SWE-bench_Pro · SWE Bench Pro View evaluation results    leaderboard   55.4
-- cais/hle · Hle View evaluation results      19.4
 - SWE-bench/SWE-bench_Verified · Swe Bench Resolved View evaluation results  source leaderboard75.8 *
+- cais/hle · Hle View evaluation results      19.4
 - allenai/IFBench_test · Prompt Level Loose View evaluation results    leaderboard   70
-- internlm/WildClawBench</pre>
+- TIGER-Lab/MMLU-Pro · Mmlu Pro View evaluation results  source  leaderboard   80.1
+- internlm/WildClawBench
+- Overall View evaluation resultssource27.1</pre>
     </details>
   </section>
 </article>
 
-<footer><p>Data updated 2026-11-27T06:22:30Z</p></footer>
+<footer><p>Data updated 2026-11-28T06:24:22Z</p></footer>
 </body>
 </html>

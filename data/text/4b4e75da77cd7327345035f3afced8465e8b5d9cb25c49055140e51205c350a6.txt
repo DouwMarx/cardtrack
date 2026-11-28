@@ -1,0 +1,24 @@
+- Models
+- Leanstral 1.5
+Leanstral 1.5
+Apache 2.0
+Deprecated
+Proof engineering and verification in Lean 4.
+v1.5
+This model is deprecated since September 29, 2026.
+info
+Speed
+Performance
+Input
+Output
+context
+Context
+256K
+Features and weights
+Chat Completions
+Function Calling
+Agents & Conversations
+Structured Outputs
+| weights | licence | parameters (B) | active (B) | ≈ GPU RAM at bf16 - fp4 (GB) | context size (tokens) |
+|---|---|---|---|---|---|
+| Weights | Apache 2.0 | 119 | 6.5 | 238 - 60 i | 256K |

@@ -1,0 +1,18 @@
+- Models
+- Leanstral
+Our first open-source code agent designed for Lean 4, built for formal proof engineering in realistic repositories. 119B parameters with 6.5B active.
+v26.03
+This model is retired since June 30, 2026. Use Leanstral 1.5 for new integrations.
+info
+Speed
+Performance
+Input
+Output
+context
+Context
+256K
+Features and weights
+Chat Completions
+Function Calling
+Agents & Conversations
+Structured Outputs
